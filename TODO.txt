@@ -1,0 +1,22 @@
+* implement basic emitter and basic particle
+* emitter
+	* emitter surface -> plane used to randomly generate snow for example
+	* emitter affectors
+	* child particles
+	* particles can also be emitters -> for example: an missile(mesh  particle) exploding into small chunks(mesh particle) and smoke&fire(billboard)
+	* ...
+* particle
+	* billboard
+	* mesh
+	* voxel
+	* trail
+	* ...
+* affectors
+	* force
+		* whirlwind
+		* gravity
+		* wind (randomized force influence during lifetime of particles)
+	* motor
+	* blocker
+	* explode (used with generated particles to simulate explosions)
+	* ...

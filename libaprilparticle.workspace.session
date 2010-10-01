@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Session Name="C:\Development\SVN\April Engine\libaprilparticle\trunk\libaprilparticle.workspace">
+  <int Value="5" Name="m_selectedTab"/>
+  <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\libaprilparticle.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\aprilparticleExport.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="4" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\BillboardParticle.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="4" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\MeshParticle.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="5" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\BaseParticle.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="1" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\ParticleEmitter.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="12" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\libaprilparticle\trunk\include\aprilparticle\BaseAffector.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="8" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="0" Name="Count"/>
+  </SerializedObject>
+</Session>
