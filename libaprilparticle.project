@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Project Name="libaprilparticle" InternalType="Library">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00050001N0005Debug0000000000000001N0011Linux_Debug0000000000000001N0013Linux_Release0000000000000001N0011Win32_Debug0000000000000001N0013Win32_Release000000000000]]>
+    </Plugin>
+  </Plugins>
   <Description/>
   <Dependencies/>
-  <Settings Type="Dynamic Library">
-    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+  <VirtualDirectory Name="src">
+    <File Name="src/BaseParticle.cpp"/>
+    <File Name="src/BaseAffector.cpp"/>
+    <File Name="src/ParticleEmitter.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="include/aprilparticle/aprilparticleExport.h"/>
+    <File Name="include/aprilparticle/BaseParticle.h"/>
+    <File Name="include/aprilparticle/ParticleEmitter.h"/>
+    <File Name="include/aprilparticle/BaseAffector.h"/>
+  </VirtualDirectory>
+  <Settings Type="Executable">
+    <Configuration Name="Linux_Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
       </Compiler>
-      <Linker Options="" Required="yes"/>
+      <Linker Options="-O0" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="Debug"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -23,7 +42,7 @@
         <PreprocessFileCommand/>
         <SingleFileCommand/>
         <MakefileGenerationCommand/>
-        <ThirdPartyToolName/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
         <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
@@ -31,13 +50,16 @@
         <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
-    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="" Required="yes" PreCompiledHeader="">
+    <Configuration Name="Linux_Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
       </Compiler>
-      <Linker Options="-O2" Required="yes"/>
+      <Linker Options="-O0" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="Debug"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./Release" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -51,7 +73,65 @@
         <PreprocessFileCommand/>
         <SingleFileCommand/>
         <MakefileGenerationCommand/>
-        <ThirdPartyToolName/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Win32_Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+        <IncludePath Value="."/>
+        <Preprocessor Value="_WIN32"/>
+      </Compiler>
+      <Linker Options="-g" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.dll" IntermediateDirectory="./bin/Win32/Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Win32_Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" Required="yes" PreCompiledHeader="">
+        <IncludePath Value="."/>
+        <Preprocessor Value="_WIN32"/>
+      </Compiler>
+      <Linker Options="-O2 -g" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./bin/Win32/Release" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
         <WorkingDirectory/>
       </CustomBuild>
       <AdditionalRules>
@@ -61,7 +141,9 @@
     </Configuration>
     <GlobalSettings>
       <Compiler Options="">
-        <IncludePath Value=". ./include/aprilparticle"/>
+        <IncludePath Value="./include/aprilparticle"/>
+        <IncludePath Value="../../libgtypes/trunk/include/gtypes"/>
+        <Preprocessor Value="APRILPARTICLE_EXPORTS"/>
       </Compiler>
       <Linker Options="">
         <LibraryPath Value="."/>
@@ -69,19 +151,4 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="src/BaseParticle.cpp"/>
-    <File Name="src/BaseAffector.cpp"/>
-    <File Name="src/BillboardParticle.cpp"/>
-    <File Name="src/MeshParticle.cpp"/>
-    <File Name="src/ParticleEmitter.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="include/aprilparticle/aprilparticleExport.h"/>
-    <File Name="include/aprilparticle/BillboardParticle.h"/>
-    <File Name="include/aprilparticle/MeshParticle.h"/>
-    <File Name="include/aprilparticle/BaseParticle.h"/>
-    <File Name="include/aprilparticle/ParticleEmitter.h"/>
-    <File Name="include/aprilparticle/BaseAffector.h"/>
-  </VirtualDirectory>
 </CodeLite_Project>

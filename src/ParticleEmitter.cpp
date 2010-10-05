@@ -3,13 +3,13 @@
 namespace April
 {
 
-ParticleEmitter::ParticleEmitter()
-{
-}
+	ParticleEmitter::ParticleEmitter()
+	{
+	}
 
-ParticleEmitter::~ParticleEmitter()
-{
-}
+	ParticleEmitter::~ParticleEmitter()
+	{
+	}
 
 }
 

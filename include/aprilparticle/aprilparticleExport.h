@@ -1,5 +1,5 @@
 /************************************************************************************\
-* This source file is part of the C++ Geometry Types Library (libgtypes)             *
+* This source file is part of the C++ April Particle System Library(libaprilparticle)*
 * For latest info, see http://libgtypes.sourceforge.net/                             *
 **************************************************************************************
 * Copyright (c) 2010 Domagoj Cerjan, Kresimir Spes, Boris Mikic                      *

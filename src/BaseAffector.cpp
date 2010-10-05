@@ -3,13 +3,13 @@
 namespace April
 {
 
-BaseAffector::BaseAffector()
-{
-}
+	BaseAffector::BaseAffector()
+	{
+	}
 
-BaseAffector::~BaseAffector()
-{
-}
+	BaseAffector::~BaseAffector()
+	{
+	}
 
 }
 

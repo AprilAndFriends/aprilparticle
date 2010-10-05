@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Workspace Name="libaprilparticle" Database="./libaprilparticle.tags">
   <Project Name="libaprilparticle" Path="libaprilparticle.project" Active="Yes"/>
+  <Project Name="libgtypes" Path="../../libgtypes/trunk/libgtypes.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
-      <Project Name="libaprilparticle" ConfigName="Debug"/>
+    <WorkspaceConfiguration Name="Win32_Debug" Selected="yes">
+      <Project Name="libaprilparticle" ConfigName="Win32_Debug"/>
+      <Project Name="libgtypes" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="libaprilparticle" ConfigName="Release"/>
+    <WorkspaceConfiguration Name="Win32_Release" Selected="yes">
+      <Project Name="libaprilparticle" ConfigName="Win32_Release"/>
+      <Project Name="libgtypes" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Linux_Debug" Selected="yes">
+      <Project Name="libaprilparticle" ConfigName="Linux_Debug"/>
+      <Project Name="libgtypes" ConfigName="Linux_Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Linux_Release" Selected="yes">
+      <Project Name="libaprilparticle" ConfigName="Win32_Release"/>
+      <Project Name="libgtypes" ConfigName="Debug"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
