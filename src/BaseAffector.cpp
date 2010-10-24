@@ -10,6 +10,15 @@ namespace April
 	BaseAffector::~BaseAffector()
 	{
 	}
+	
+	void BaseAffector::update(float k)
+	{
+	}
+	
+	void BaseAffector::assignEmitter(April::ParticleEmitter *emitter)
+	{
+		this->asignedEmitters.push_back(emitter);
+	}
 
 }
 
