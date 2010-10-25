@@ -1,72 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Session Name="C:\Development\SVN\April Engine\aprilparticle\libaprilparticle.workspace">
-  <int Value="10" Name="m_selectedTab"/>
+  <int Value="0" Name="m_selectedTab"/>
   <wxString Value="C:\Development\SVN\April Engine\aprilparticle\libaprilparticle.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\src\BaseAffector.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\demos\main.cpp" Name="FileName"/>
+      <int Value="32" Name="FirstVisibleLine"/>
+      <int Value="50" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\src\BaseParticle.cpp" Name="FileName"/>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\ParticleEmitter.h" Name="FileName"/>
+      <int Value="19" Name="FirstVisibleLine"/>
+      <int Value="24" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\src\ParticleEmitter.cpp" Name="FileName"/>
+      <int Value="99" Name="FirstVisibleLine"/>
+      <int Value="124" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\Affectors.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="16" Name="CurrentLine"/>
+      <int Value="3" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\DirectionalForceAffector.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="10" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\src\DirectionalForceAffector.cpp" Name="FileName"/>
+      <int Value="13" Name="FirstVisibleLine"/>
+      <int Value="31" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\BaseParticle.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="20" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\src\ParticleEmitter.cpp" Name="FileName"/>
-      <int Value="50" Name="FirstVisibleLine"/>
-      <int Value="66" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\BaseAffector.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
       <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\include\aprilparticle\ParticleEmitter.h" Name="FileName"/>
-      <int Value="10" Name="FirstVisibleLine"/>
-      <int Value="34" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\aprilparticle\demos\main.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="9" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\gtypes\include\gtypes\LinkedLERP3.h" Name="FileName"/>
-      <int Value="13" Name="FirstVisibleLine"/>
-      <int Value="27" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\gtypes\src\LinkedLERP3.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\gtypes\include\gtypes\CatmullRomSpline3.h" Name="FileName"/>
-      <int Value="30" Name="FirstVisibleLine"/>
-      <int Value="37" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Development\SVN\April Engine\gtypes\src\CatmullRomSpline3.cpp" Name="FileName"/>
-      <int Value="419" Name="FirstVisibleLine"/>
-      <int Value="443" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
     </TabInfo>
   </TabInfoArray>

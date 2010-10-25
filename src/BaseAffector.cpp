@@ -11,13 +11,8 @@ namespace April
 	{
 	}
 	
-	void BaseAffector::update(float k)
+	void BaseAffector::update(ParticleEmitter *emitter, double t)
 	{
-	}
-	
-	void BaseAffector::assignEmitter(April::ParticleEmitter *emitter)
-	{
-		this->asignedEmitters.push_back(emitter);
 	}
 
 }

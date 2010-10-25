@@ -3,25 +3,21 @@
 
 #include "aprilparticleExport.h"
 #include "BaseParticle.h"
-#include "ParticleEmitter.h"
 #include "gtypes/Vector3.h"
 #include <vector>
 #include <iostream>
 
 namespace April
 {
+	class ParticleEmitter;
 
 	class aprilparticleExport BaseAffector {
-		
-			float affectingRadius;
-			std::vector<April::ParticleEmitter*> asignedEmitters;
 
 		public:
 			BaseAffector();
 			~BaseAffector();
 			
-			virtual void update(float k);
-			void assignEmitter(April::ParticleEmitter *emitter);
+			virtual void update(ParticleEmitter *emitter, double t);
 
 	};
 
