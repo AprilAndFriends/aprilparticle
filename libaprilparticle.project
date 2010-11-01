@@ -8,18 +8,28 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="src/BaseParticle.cpp"/>
     <File Name="src/ParticleEmitter.cpp"/>
-    <File Name="src/BaseAffector.cpp"/>
-    <File Name="src/DirectionalForceAffector.cpp"/>
+    <File Name="src/ColorAffector.cpp"/>
+    <File Name="src/MultiColorAffector.cpp"/>
+    <File Name="src/LinearDirectionalForce.cpp"/>
+    <File Name="src/Particle.cpp"/>
+    <File Name="src/Affector.cpp"/>
+    <File Name="src/DirectionalForceField.cpp"/>
+    <File Name="src/Rotator.cpp"/>
+    <File Name="src/Attractor.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/aprilparticle/aprilparticleExport.h"/>
-    <File Name="include/aprilparticle/BaseParticle.h"/>
     <File Name="include/aprilparticle/ParticleEmitter.h"/>
-    <File Name="include/aprilparticle/BaseAffector.h"/>
     <File Name="include/aprilparticle/Affectors.h"/>
-    <File Name="include/aprilparticle/DirectionalForceAffector.h"/>
+    <File Name="include/aprilparticle/ColorAffector.h"/>
+    <File Name="include/aprilparticle/MultiColorAffector.h"/>
+    <File Name="include/aprilparticle/LinearDirectionalForce.h"/>
+    <File Name="include/aprilparticle/Particle.h"/>
+    <File Name="include/aprilparticle/Affector.h"/>
+    <File Name="include/aprilparticle/DirectionalForceField.h"/>
+    <File Name="include/aprilparticle/Rotator.h"/>
+    <File Name="include/aprilparticle/Attractor.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="other">
     <File Name="TODO.txt"/>

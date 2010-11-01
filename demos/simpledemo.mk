@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Domagoj
-Date                   :=10/25/10
+Date                   :=11/01/10
 CodeLitePath           :="C:\Program Files (x86)\CodeLite"
 LinkerName             :=g++
 ArchiveTool            :=ar rcus
@@ -38,9 +38,9 @@ PreprocessOnlySwitch   :=-E
 MakeDirCommand         :=makedir
 CmpOptions             := -g $(Preprocessors)
 LinkOptions            :=  
-IncludePath            :=  "$(IncludeSwitch)../../gtypes/include" "$(IncludeSwitch)../../hltypes/include" "$(IncludeSwitch)../../april/include" "$(IncludeSwitch)../include" "$(IncludeSwitch)." 
+IncludePath            :=  "$(IncludeSwitch)../../gtypes/include" "$(IncludeSwitch)../../hltypes/include" "$(IncludeSwitch)../../april/include" "$(IncludeSwitch)../include" "$(IncludeSwitch)../../april/aprilutil/include" "$(IncludeSwitch)." 
 RcIncludePath          :=
-Libs                   :=$(LibrarySwitch)gtypes_d $(LibrarySwitch)hltypes_d $(LibrarySwitch)aprilparticle_d $(LibrarySwitch)april_d $(LibrarySwitch)DevIL 
+Libs                   :=$(LibrarySwitch)gtypes_d $(LibrarySwitch)hltypes_d $(LibrarySwitch)aprilparticle_d $(LibrarySwitch)april_d $(LibrarySwitch)DevIL $(LibrarySwitch)aprilutil_d 
 LibPath                := "$(LibraryPathSwitch)." "$(LibraryPathSwitch)../bin" "$(LibraryPathSwitch)../../gtypes/bin" "$(LibraryPathSwitch)../../hltypes/bin" "$(LibraryPathSwitch)../../aprilparticle/bin" "$(LibraryPathSwitch)../../april/bin" "$(LibraryPathSwitch)../../gtypes/include" "$(LibraryPathSwitch)../../hltypes/include" "$(LibraryPathSwitch)../../april/include" "$(LibraryPathSwitch)../include" 
 
 
