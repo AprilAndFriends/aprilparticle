@@ -2,9 +2,9 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=simpledemo
-ConfigurationName      :=Debug
+ConfigurationName      :=Release
 IntermediateDirectory  :=./bin
 OutDir                 := $(IntermediateDirectory)
 WorkspacePath          := "C:\Development\SVN\April Engine\aprilparticle"
@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Domagoj
-Date                   :=11/01/10
+Date                   :=11/10/10
 CodeLitePath           :="C:\Program Files (x86)\CodeLite"
 LinkerName             :=g++
 ArchiveTool            :=ar rcus
@@ -36,11 +36,11 @@ ObjectSwitch           :=-o
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E 
 MakeDirCommand         :=makedir
-CmpOptions             := -g $(Preprocessors)
-LinkOptions            :=  
+CmpOptions             :=  $(Preprocessors)
+LinkOptions            :=  -O2
 IncludePath            :=  "$(IncludeSwitch)../../gtypes/include" "$(IncludeSwitch)../../hltypes/include" "$(IncludeSwitch)../../april/include" "$(IncludeSwitch)../include" "$(IncludeSwitch)../../april/aprilutil/include" "$(IncludeSwitch)." 
 RcIncludePath          :=
-Libs                   :=$(LibrarySwitch)gtypes_d $(LibrarySwitch)hltypes_d $(LibrarySwitch)aprilparticle_d $(LibrarySwitch)april_d $(LibrarySwitch)DevIL $(LibrarySwitch)aprilutil_d 
+Libs                   :=$(LibrarySwitch)gtypes $(LibrarySwitch)hltypes $(LibrarySwitch)aprilparticle $(LibrarySwitch)april $(LibrarySwitch)DevIL $(LibrarySwitch)aprilutil 
 LibPath                := "$(LibraryPathSwitch)." "$(LibraryPathSwitch)../bin" "$(LibraryPathSwitch)../../gtypes/bin" "$(LibraryPathSwitch)../../hltypes/bin" "$(LibraryPathSwitch)../../aprilparticle/bin" "$(LibraryPathSwitch)../../april/bin" "$(LibraryPathSwitch)../../gtypes/include" "$(LibraryPathSwitch)../../hltypes/include" "$(LibraryPathSwitch)../../april/include" "$(LibraryPathSwitch)../include" 
 
 

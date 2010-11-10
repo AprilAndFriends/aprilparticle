@@ -27,11 +27,15 @@ namespace April
 		void Attractor::update(Particle *particle, double t)
 		{
 			gvec3 mDirection(mOrigin - particle->mPosition);
-			//mDirection.normalise();
-			float len = (particle->mPosition - mOrigin).length();
-			float lensquared = (particle->mPosition - mOrigin).squaredLength();
-			particle->mPosition += mDirection * (mRadius - (len) / mRadius) *
-								   (mRadius / (lensquared + 1.0)) * t / mRadius;
+			if(mDirection.squaredLength() > 0.4)
+			{
+				float len = (particle->mPosition - mOrigin).length();
+				float lensquared = (particle->mPosition - mOrigin).squaredLength();
+				particle->mPosition += mDirection * (mRadius - (len) / mRadius) *
+									   (mRadius / (lensquared + 1.0)) * t / mRadius;
+			}
+			//else
+			//	particle->mLife = -1.0;
 		}
 
 	}

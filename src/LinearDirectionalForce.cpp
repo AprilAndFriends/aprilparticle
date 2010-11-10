@@ -29,7 +29,7 @@ namespace April
 		
 		void LinearDirectionalForce::update(Particle *particle, double t)
 		{
-			particle->mSpeed += mForce * t;
+			particle->mSpeed += mForce * t * 0.001;
 			particle->mPosition += mDirection * particle->mSpeed * particle->mDirection.length();
 		}
 		

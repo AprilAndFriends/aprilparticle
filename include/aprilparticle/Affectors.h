@@ -7,5 +7,6 @@
 #include "MultiColorAffector.h"
 #include "Rotator.h"
 #include "Attractor.h"
+#include "Swirl.h"
 
 #endif // _AFFECTORS_H_

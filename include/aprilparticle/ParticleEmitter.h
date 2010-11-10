@@ -6,6 +6,7 @@
 #include "Particle.h"
 #include "Affectors.h" // includes all affectors
 #include <string>
+#include <deque>
 #include <list>
 #include <math.h>
 
@@ -25,16 +26,21 @@ namespace April
 	enum ParticlesDrawType
 	{
 		PDT_Additive = 0,
-		PDT_Subtractive = 1,
+		PDT_AlphaBlend = 1,
 		PDT_Normal = 2
 	};
 
 	class aprilparticleExport ParticleEmitter : public Particle
 	{
+			
+			April::ColoredTexturedVertex *_mTriangleBatch;
+			unsigned int 			mMaxParticles;
+			
 		public:
 		
-			std::list<Particle> 	mParticles;
-			std::list<Affectors::Affector*> 	mAffecttors;
+			std::deque<Particle> 					mParticles;
+			std::list<Affectors::Affector*> 		mAffecttors;
+			
 			
 			float 					mWidth, mHeigth, mLenght;
 			ParticlesDrawType 		mDrawType;
@@ -50,10 +56,8 @@ namespace April
 			
 			float 					mLifeMin, mLifeMax;
 			
-			unsigned int 			mMaxParticles;
-			
 			April::Texture* 		mTex;
-		
+	
 			ParticleEmitter();
 			ParticleEmitter(float life, float particlesPerSecond = 60,
 							gvec3 position = gvec3(0,0,0), gvec3 direction = gvec3(0,0,1), unsigned int max = 256);
@@ -61,16 +65,25 @@ namespace April
 			
 			void setEmitterType(EmitterType type);
 			void setEmiterVolume(float width, float height, float length);
-			
-			void setParticleDrawType(ParticlesDrawType type);
-			
+			void setParticleDrawType(ParticlesDrawType type) { mDrawType = type; }
 			void setTexture(std::string texture);
+			void setMaxParticles(int maxParticles);
+			void setParticlesEmissionRate(int particlesEmissionRate) { mParticlesPerSecond = particlesEmissionRate; }
+			void setLifeRange(float lifeMin, float lifeMax) { mLifeMin = lifeMin; mLifeMax = lifeMax; }
+			void setLife(float life) { mLife = life; }
+			void setSizeRange(float sizeMin, float sizeMax) { mMinSize = sizeMin; mMaxSize = sizeMax; }
+			
+			void setRandomStartLife(bool startLife) { mRandomLife = startLife; }
+			void setRandomStartSize(bool startSize) { mRandomStartSize = startSize; }
+			void setRandomStartAngle(bool startAngle) { mRandomStartAngle = startAngle; }
+			
+			
 			void addAffector(Affectors::Affector *affector);
 			
 			void update(float t);
 			void createParticle();
 			
-			void draw();
+			void draw(gvec3 point, gvec3 up);
 			void drawAffectors();
 			
 	};
