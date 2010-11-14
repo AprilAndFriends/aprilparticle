@@ -7,7 +7,7 @@
   <Project Name="simpledemo" Path="demos/simpledemo.project" Active="Yes"/>
   <Project Name="libaprilutil" Path="../april/aprilutil/libaprilutil.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Win32_Debug" Selected="no">
+    <WorkspaceConfiguration Name="Win32_Debug" Selected="yes">
       <Project Name="simpledemo" ConfigName="Debug"/>
       <Project Name="libhltypes" ConfigName="Debug"/>
       <Project Name="libgtypes" ConfigName="Debug"/>
@@ -15,7 +15,7 @@
       <Project Name="libaprilparticle" ConfigName="Win32_Debug"/>
       <Project Name="libapril" ConfigName="DirectX_Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Win32_Release" Selected="yes">
+    <WorkspaceConfiguration Name="Win32_Release" Selected="no">
       <Project Name="simpledemo" ConfigName="Release"/>
       <Project Name="libhltypes" ConfigName="Release_Win32"/>
       <Project Name="libgtypes" ConfigName="Release_Win32"/>

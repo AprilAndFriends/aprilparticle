@@ -89,7 +89,7 @@ bool render(float time_increase)
 
 int main()
 {
-	April::init("April",800,600,0,"April: 3D Demo");
+	April::init("April",800,600,0,"AprilParticle Demo");
 	April::rendersys->registerUpdateCallback(render);
 	
 	setupGrid(2.0);
