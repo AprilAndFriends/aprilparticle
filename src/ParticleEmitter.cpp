@@ -239,13 +239,13 @@ namespace April
 			v2 = billboard * v2;
 			v3 = billboard * v3;
 			
-			v[0].x = v0.x; v[0].y =  v0.y; v[0].z = v0.z;   v[0].u = 0.0; v[0].v = 0.0; v[0].color = it->mColor;
-			v[1].x = v1.x; v[1].y =  v1.y; v[1].z = v1.z;   v[1].u = 1.0; v[1].v = 0.0; v[1].color = it->mColor;
-			v[2].x = v2.x; v[2].y =  v2.y; v[2].z = v2.z;   v[2].u = 0.0; v[2].v = 1.0; v[2].color = it->mColor;
+			v[0].x = v0.x; v[0].y =  v0.y; v[0].z = v0.z;   v[0].u = 1.0; v[0].v = 1.0; v[0].color = it->mColor;
+			v[1].x = v1.x; v[1].y =  v1.y; v[1].z = v1.z;   v[1].u = 0.0; v[1].v = 1.0; v[1].color = it->mColor;
+			v[2].x = v2.x; v[2].y =  v2.y; v[2].z = v2.z;   v[2].u = 1.0; v[2].v = 0.0; v[2].color = it->mColor;
 			
-			v[3].x = v1.x; v[3].y =  v1.y; v[3].z = v1.z;   v[3].u = 1.0; v[3].v = 0.0; v[3].color = it->mColor;
-			v[4].x = v2.x; v[4].y =  v2.y; v[4].z = v2.z;   v[4].u = 0.0; v[4].v = 1.0; v[4].color = it->mColor;
-			v[5].x = v3.x; v[5].y =  v3.y; v[5].z = v3.z;   v[5].u = 1.0; v[5].v = 1.0; v[5].color = it->mColor;
+			v[3].x = v1.x; v[3].y =  v1.y; v[3].z = v1.z;   v[3].u = 0.0; v[3].v = 1.0; v[3].color = it->mColor;
+			v[4].x = v2.x; v[4].y =  v2.y; v[4].z = v2.z;   v[4].u = 1.0; v[4].v = 0.0; v[4].color = it->mColor;
+			v[5].x = v3.x; v[5].y =  v3.y; v[5].z = v3.z;   v[5].u = 0.0; v[5].v = 0.0; v[5].color = it->mColor;
 			
 			_mTriangleBatch[i*6 + 0] = v[0];
 			_mTriangleBatch[i*6 + 1] = v[1];

@@ -116,8 +116,8 @@
       <Linker Options="">
         <LibraryPath Value="."/>
         <LibraryPath Value="../bin"/>
-        <LibraryPath Value="../../gtypes/bin/Debug"/>
-        <LibraryPath Value="../../hltypes/bin/Debug"/>
+        <LibraryPath Value="../../gtypes/bin"/>
+        <LibraryPath Value="../../hltypes/bin"/>
         <LibraryPath Value="../../aprilparticle/bin/"/>
         <LibraryPath Value="../../april/bin"/>
         <LibraryPath Value="../../lib"/>

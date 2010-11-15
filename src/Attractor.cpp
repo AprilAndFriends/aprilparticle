@@ -27,7 +27,7 @@ namespace April
 		void Attractor::update(Particle *particle, double t)
 		{
 			gvec3 mDirection(mOrigin - particle->mPosition);
-			if(mDirection.squaredLength() > 0.4)
+			if(mDirection.squaredLength() > 0.02)
 			{
 				float len = (particle->mPosition - mOrigin).length();
 				float lensquared = (particle->mPosition - mOrigin).squaredLength();

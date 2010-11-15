@@ -47,7 +47,9 @@ namespace April
 				float clockwise;
 				mClockwise ? clockwise = -1.0 : clockwise = 1.0;
 				_mRotation.setRotation3D(mUp, (1.0 - sqrt(sqlen) / mRange) * mForce * t * clockwise * 360.0);
-				particle->mPosition = _mRotation * particle->mPosition;
+				gvec3 pos;
+				pos = particle->mPosition - mPosition;
+				particle->mPosition = mPosition + _mRotation * pos;
 			}
 		}
 
