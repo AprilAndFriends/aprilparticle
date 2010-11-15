@@ -16,7 +16,7 @@ April::StaticMesh *msh;
 April::Affectors::DirectionalForceField force1(4.0, gvec3(0,-1,0), gvec3(0,1,0));
 April::Affectors::ColorAffector colorFader(0xFF1131FF, 0x00220000);
 April::Affectors::MultiColorAffector colorAffector;
-April::Affectors::LinearDirectionalForce linearforce1(gvec3(0,1,0), 0.012);
+April::Affectors::LinearDirectionalForce linearforce1(gvec3(0,1,0), 18.0);
 April::Affectors::Rotator rotator(50.0);
 April::Affectors::Attractor attractor1(gvec3(0,0,0), 4.0);
 April::Affectors::Swirl swirl(gvec3(0,0,0), gvec3(0,1,0), 12.0, 1.0);

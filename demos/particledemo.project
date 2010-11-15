@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CodeLite_Project Name="simpledemo" InternalType="Console">
+<CodeLite_Project Name="particledemo" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
@@ -8,16 +8,9 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="simpledemo.cpp"/>
+    <File Name="particledemo.cpp"/>
   </VirtualDirectory>
-  <Dependencies Name="Release">
-    <Project Name="libapril"/>
-    <Project Name="libaprilutil"/>
-    <Project Name="libaprilparticle"/>
-  </Dependencies>
   <Dependencies Name="Debug">
-    <Project Name="libgtypes"/>
-    <Project Name="libhltypes"/>
     <Project Name="libapril"/>
     <Project Name="libaprilutil"/>
     <Project Name="libaprilparticle"/>
@@ -36,7 +29,7 @@
         <Library Value="libaprilutil_d"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./bin" Command="$(ProjectName)" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./bin" Command="./$(ProjectName)" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
@@ -77,19 +70,14 @@
         <Library Value="libaprilutil"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./bin" Command="$(ProjectName)" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
       </Debugger>
       <PreBuild/>
-      <PostBuild>
-        <Command Enabled="yes">copy ..\bin\*.dll bin</Command>
-        <Command Enabled="yes">copy ..\..\april\bin\*.dll bin</Command>
-        <Command Enabled="yes">copy ..\..\gtypes\bin\*dll bin</Command>
-        <Command Enabled="yes">copy ..\..\hltypes\bin\*dll bin</Command>
-      </PostBuild>
+      <PostBuild/>
       <CustomBuild Enabled="no">
         <RebuildCommand/>
         <CleanCommand/>
