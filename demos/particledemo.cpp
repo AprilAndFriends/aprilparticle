@@ -17,6 +17,8 @@ April::Affectors::Rotator rotator(50.0);
 April::Affectors::Attractor attractor1(gvec3(10,0,0), 2.0);
 April::Affectors::Swirl swirl(gvec3(10,0,0), gvec3(0,1,0), 8.0, 0.2);
 
+April::Texture *jet, *plasmaball, *fire, *red, *raindrop, *boubbles;
+
 // kvazar
 April::ParticleEmitter quazar_disc(4, 240), quazar_jet_top(4, 120), quazar_jet_bottom(4, 120);
 April::Affectors::LinearDirectionalForce top(gvec3(1,0,0), 24), bottom(gvec3(-1,0,0), 24);
@@ -145,9 +147,9 @@ void setupQuazar()
 	quazar_jet_top.setParticleDrawType(April::PDT_Additive);
 	quazar_jet_bottom.setParticleDrawType(April::PDT_Additive);
 	
-	quazar_disc.setTexture("../media/plasma_ball.png");
-	quazar_jet_bottom.setTexture("../media/quazar_jet.png");
-	quazar_jet_top.setTexture("../media/quazar_jet.png");
+	quazar_disc.setTexture(plasmaball);
+	quazar_jet_bottom.setTexture(jet);
+	quazar_jet_top.setTexture(jet);
 	
 	quazar_disc.setEmitterType(April::ET_HollowSphere);
 	quazar_disc.setEmiterVolume(6,6,1);
@@ -179,9 +181,9 @@ void setupQuazar()
 
 void setupTwirl()
 {
-	twirl1.setMaxParticles(720);
+	twirl1.setMaxParticles(600);
 	twirl1.setParticleDrawType(April::PDT_Additive);
-	twirl1.setTexture("../media/red_particle.png");
+	twirl1.setTexture(red);
 	twirl1.setEmitterType(April::ET_Point);
 	twirl1.mPosition.x = 10;
 	twirl1.mPosition.z = -10;
@@ -193,9 +195,9 @@ void setupTwirl()
 	twirl1.addAffector(&wind);
 	twirl1.addAffector(&grav);
 	
-	twirl2.setMaxParticles(720);
+	twirl2.setMaxParticles(600);
 	twirl2.setParticleDrawType(April::PDT_Additive);
-	twirl2.setTexture("../media/plasma_ball.png");
+	twirl2.setTexture(plasmaball);
 	twirl2.setEmitterType(April::ET_Point);
 	twirl2.mPosition.x = 10;
 	twirl2.mPosition.z = -10;
@@ -212,7 +214,7 @@ void setupRain()
 {
 	rain.setMaxParticles(240);
 	rain.setParticleDrawType(April::PDT_Additive);
-	rain.setTexture("../media/raindrop.png");
+	rain.setTexture(raindrop);
 	rain.setEmitterType(April::ET_Box);
 	rain.setEmiterVolume(6,0,6);
 	rain.mPosition.x = -10;
@@ -228,7 +230,7 @@ void setupFlame()
 {
 	flame.setMaxParticles(128);
 	flame.setParticleDrawType(April::PDT_Additive);
-	flame.setTexture("../media/partikl_strange.png");
+	flame.setTexture(fire);
 	flame.setEmitterType(April::ET_HollowSphere);
 	flame.setEmiterVolume(2,4,2);
 	flame.mPosition.x = -10;
@@ -246,7 +248,7 @@ void setupBubbles()
 {
 	bubbles.setMaxParticles(300);
 	bubbles.setParticleDrawType(April::PDT_Normal);
-	bubbles.setTexture("../media/bubbles.png");
+	bubbles.setTexture(boubbles);
 	bubbles.setEmitterType(April::ET_Cylinder);
 	bubbles.setEmiterVolume(5,4,5);
 	bubbles.mPosition.x = 0;
@@ -262,7 +264,7 @@ void setupVortex()
 {
 	vortex.setMaxParticles(800);
 	vortex.setParticleDrawType(April::PDT_Additive);
-	vortex.setTexture("../media/red_particle.png");
+	vortex.setTexture(red);
 	vortex.setEmitterType(April::ET_Sphere);
 	vortex.setEmiterVolume(8,0,8);
 	vortex.mPosition.x = 10;
@@ -276,6 +278,13 @@ int main()
 	April::init("April",800,600,0,"AprilParticle Demo");
 	April::rendersys->registerUpdateCallback(render);
 	setupGrid(2.0);
+	
+	red = April::rendersys->loadTexture("../media/red_particle.png");
+	boubbles = April::rendersys->loadTexture("../media/bubbles.png");
+	plasmaball = April::rendersys->loadTexture("../media/plasma_ball.png");
+	fire = April::rendersys->loadTexture("../media/partikl_strange.png");
+	raindrop = April::rendersys->loadTexture("../media/raindrop.png");
+	jet = April::rendersys->loadTexture("../media/quazar_jet.png");
 	
 	setupFlame();
 	setupBubbles();

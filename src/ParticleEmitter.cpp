@@ -66,18 +66,14 @@ namespace April
 		delete[] _mTriangleBatch;
 	}
 	
-	void ParticleEmitter::setTexture(std::string texture)
+	void ParticleEmitter::setTexture(April::Texture *texture)
 	{
-		mTex = April::rendersys->loadTexture(texture);
+		mTex = texture;
 	}
 	
 	/*bool isDead(const April::Particle& particle)
 	{
-		if(particle.mLife < 0.0)
-		{
-			return true;
-		}
-		return false;
+		return(particle.mLife < 0.0);
 	}*/
 	
 	void ParticleEmitter::createParticle()

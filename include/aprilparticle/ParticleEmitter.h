@@ -66,7 +66,7 @@ namespace April
 			void setEmitterType(EmitterType type);
 			void setEmiterVolume(float width, float height, float length);
 			void setParticleDrawType(ParticlesDrawType type) { mDrawType = type; }
-			void setTexture(std::string texture);
+			void setTexture(April::Texture *texture);
 			void setMaxParticles(int maxParticles);
 			void setParticlesEmissionRate(int particlesEmissionRate) { mParticlesPerSecond = particlesEmissionRate; }
 			void setLifeRange(float lifeMin, float lifeMax) { mLifeMin = lifeMin; mLifeMax = lifeMax; }

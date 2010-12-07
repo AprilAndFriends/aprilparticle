@@ -14,18 +14,18 @@ namespace April
 
 	class aprilparticleExport CompositeParticleObject {
 		
-		gvec3 _mPosition;
+	public:
+	
+		gvec3 _mPostion;
 		std::list<April::ParticleEmitter*> _mEmitters;
 		std::list<April::Affectors::Affector*> _mAffectors;
-		std::list<April::Texture *> _mTextures;
 
 	public:
 		CompositeParticleObject();
 		~CompositeParticleObject();
 		
-		void addEmitter(April::ParticleEmitter *emitter);
-		void addAffector(April::Affectors::Affector *affector);
-		void addTexture(April::Texture *tex);
+		//void addEmitter(April::ParticleEmitter *emitter);
+		//void addAffector(April::Affectors::Affector *affector);
 
 	};
 
