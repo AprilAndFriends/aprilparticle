@@ -1,29 +1,30 @@
-#ifndef _MULTI_COLOR_AFFECTOR_H_
-#define _MULTI_COLOR_AFFECTOR_H_
+#ifndef MULTI_COLOR_AFFECTOR_H
+#define MULTI_COLOR_AFFECTOR_H
 
-#include "DirectionalForceField.h"
-#include <map>
+#include <hltypes/hmap.h>
 
-namespace April
+#include "Affector.h"
+
+namespace april
 {
-	
+	class Particle;
+
 	namespace Affectors
 	{
-
 		class aprilparticleExport MultiColorAffector : public Affector
 		{
-
-			public:
+		public:
 			
-				std::map<float, unsigned int> mColors;
-
-				MultiColorAffector();
-				MultiColorAffector(std::map<float, unsigned int> colors);
-				~MultiColorAffector();
+			MultiColorAffector();
+			MultiColorAffector(hmap<float, unsigned int> colors);
+			~MultiColorAffector();
 				
-				void update(Particle *emitter, double t);
-				void setColors(std::map<float, unsigned int> colors);
-				void draw();
+			void update(Particle* emitter, double t);
+			void setColors(hmap<float, unsigned int> colors);
+			void draw();
+			
+		protected:
+			hmap<float, unsigned int> colors;
 
 		};
 		
@@ -31,4 +32,4 @@ namespace April
 
 }
 
-#endif // _MULTI_COLOR_AFFECTOR_H_
+#endif

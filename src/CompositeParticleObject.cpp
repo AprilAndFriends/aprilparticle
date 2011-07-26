@@ -1,8 +1,7 @@
 #include "CompositeParticleObject.h"
 
-namespace April
+namespace april
 {
-
 	CompositeParticleObject::CompositeParticleObject()
 	{
 	}

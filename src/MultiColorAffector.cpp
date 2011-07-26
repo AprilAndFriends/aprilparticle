@@ -1,93 +1,83 @@
+#include <hltypes/hmap.h>
+
 #include "MultiColorAffector.h"
-#include "ParticleEmitter.h"
+#include "Particle.h"
 
-#include <stdio.h>
-
-namespace April
+namespace april
 {
-	
 	namespace Affectors
 	{
-	
 		MultiColorAffector::MultiColorAffector()
 		{
-			this->mColors[0.0] = 0xFFFFFFFF;
-			this->mColors[1.0] = 0x00FFFFFF;
+			this->colors[0.0f] = 0xFFFFFFFF;
+			this->colors[1.0f] = 0x00FFFFFF;
 		}
 		
-		MultiColorAffector::MultiColorAffector(std::map<float, unsigned int> colors)
+		MultiColorAffector::MultiColorAffector(hmap<float, unsigned int> colors)
 		{
-			this->mColors = colors;
+			this->colors = colors;
 		}
 
 		MultiColorAffector::~MultiColorAffector()
 		{
 		}
 		
-		void MultiColorAffector::draw()
+		void MultiColorAffector::setColors(hmap<float, unsigned int> colors)
 		{
-			
+			this->colors = colors;
 		}
 		
-		void MultiColorAffector::setColors(std::map<float, unsigned int> colors)
+		void MultiColorAffector::update(Particle* particle, double t)
 		{
-			this->mColors = colors;
-		}
-		
-		void MultiColorAffector::update(Particle *particle, double t)
-		{
-			float ratio, first, second;
+			float first;
+			float second;
 			unsigned int sr, sg, sb, sa, ea, er, eg, eb, ca, cr, cg, cb;
 			unsigned int start, end;
 			
-			if(particle->mTotalLife > 0.0) ratio = particle->mLife / particle->mTotalLife;
-			else ratio = 1.0;
-			if(ratio < 0.0) ratio = 0.0;
+
+			float life = particle->getLife();
+			float totalLife = particle->getTotalLife();
+			float ratio = (totalLife > 0.0f ? hmax(life / totalLife, 0.0f) : 1.0f);
 			
-			first = 0.0;
-			second = 1.0;
+			first = 0.0f;
+			second = 1.0f;
 			
-			//first we find the segment in which our color currently lies
-			for(std::map<float, unsigned int>::iterator it = mColors.begin(); it != mColors.end(); it++)
+			// first we find the segment in which our color currently lies
+			foreach_map (float, unsigned int, it, this->colors)
 			{
 				second = it->first;
-				if(it->first > (1.0 - ratio))
+				if (it->first > (1.0f - ratio))
+				{
 					break;
+				}
 				first = it->first;
 			}
 			
-			start 	= mColors[first];
-			end 	= mColors[second];
+			start = this->colors[first];
+			end = this->colors[second];
 			
-			sa = (start & 0xFF000000) >> 24;
-			sr = (start & 0x00FF0000) >> 16;
-			sg = (start & 0x0000FF00) >> 8;
-			sb = (start & 0x000000FF);
+			sr = (start & 0xFF000000) >> 24;
+			sg = (start & 0x00FF0000) >> 16;
+			sb = (start & 0x0000FF00) >> 8;
+			sa = (start & 0x000000FF);
 			
-			ea = (end & 0xFF000000) >> 24;
-			er = (end & 0x00FF0000) >> 16;
-			eg = (end & 0x0000FF00) >> 8;
-			eb = (end & 0x000000FF);
+			er = (end & 0xFF000000) >> 24;
+			eg = (end & 0x00FF0000) >> 16;
+			eb = (end & 0x0000FF00) >> 8;
+			ea = (end & 0x000000FF);
 			
-			ratio = 1.0 - (second - (1.0 - ratio)) / (second - first);
+			ratio = 1.0f - (second - (1.0f - ratio)) / (second - first);
 			
-			ca = (unsigned int)(ratio * ea + (1.0 - ratio) * sa);
-			ca = ca << 24;
+			cr = (unsigned int)(ratio * sr + (1.0f - ratio) * er) << 24;
+			cg = (unsigned int)(ratio * sg + (1.0f - ratio) * eg) << 16;
+			cb = (unsigned int)(ratio * sb + (1.0f - ratio) * eb) << 8;
+			ca = (unsigned int)(ratio * sa + (1.0f - ratio) * ea);
 			
-			cr = (unsigned int)(ratio * er + (1.0 - ratio) * sr);
-			cr = cr << 16;
-			
-			cg = (unsigned int)(ratio * eg + (1.0 - ratio) * sg);
-			cg = cg << 8;
-			
-			cb = (unsigned int)(ratio * eb + (1.0 - ratio) * sb);
-				
-			particle->mColor = 0x00000000;
-			particle->mColor |= ca;
-			particle->mColor |= cr;
-			particle->mColor |= cg;
-			particle->mColor |= cb;
-			
+			particle->setColor(cr | cg | cb | ca);
+		}
+		
+		void MultiColorAffector::draw()
+		{
 		}
 		
 	}

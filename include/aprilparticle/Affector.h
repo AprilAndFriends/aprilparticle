@@ -1,32 +1,26 @@
-#ifndef _AFFECTOR_H_
-#define _AFFECTOR_H_
+#ifndef AFFECTOR_H
+#define AFFECTOR_H
 
 #include "aprilparticleExport.h"
-#include "Particle.h"
-#include "gtypes/Vector3.h"
-#include <vector>
-#include <iostream>
 
-namespace April
+namespace april
 {
-	
+	class Particle;
+
 	namespace Affectors
 	{
-
 		class aprilparticleExport Affector
 		{
-
-			public:
-				Affector();
-				~Affector();
+		public:
+			Affector();
+			virtual ~Affector();
 				
-				virtual void update(Particle *particle, double t);
-				virtual void draw();
+			virtual void update(Particle* particle, double t);
+			virtual void draw();
 
 		};
-		
-	}
 
+	}
 }
 
-#endif // _AFFECTOR_H_
+#endif

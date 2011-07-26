@@ -1,19 +1,18 @@
 #include "Attractor.h"
+#include "Particle.h"
 
-namespace April
+namespace april
 {
-
 	namespace Affectors
 	{
-
 		Attractor::Attractor()
 		{
 		}
 		
 		Attractor::Attractor(gvec3 origin, float radius)
 		{
-			mOrigin = origin;
-			mRadius = radius;
+			this->origin = origin;
+			this->radius = radius;
 		}
 
 		Attractor::~Attractor()
@@ -24,15 +23,16 @@ namespace April
 		{
 		}
 		
-		void Attractor::update(Particle *particle, double t)
+		void Attractor::update(Particle* particle, double t)
 		{
-			gvec3 mDirection(mOrigin - particle->mPosition);
-			if(mDirection.squaredLength() > 0.02)
+			gvec3 position = particle->getPosition();
+			gvec3 mDirection(this->origin - position);
+			if (mDirection.squaredLength() > 0.02f)
 			{
-				float len = (particle->mPosition - mOrigin).length();
-				float lensquared = (particle->mPosition - mOrigin).squaredLength();
-				particle->mPosition += mDirection * (mRadius - (len) / mRadius) *
-									   (mRadius / (lensquared + 1.0)) * t / mRadius;
+				float len = (position - this->origin).length();
+				float lenSquared = (position - this->origin).squaredLength();
+				position += mDirection * (this->radius - (len) / this->radius) * (this->radius / (lenSquared + 1.0f)) * (float)t / this->radius;
+				particle->setPosition(position);
 			}
 			//else
 			//	particle->mLife = -1.0;

@@ -1,34 +1,39 @@
-#ifndef _COMPOSITE_PARTICLE_OBJECT_H_
-#define _COMPOSITE_PARTICLE_OBJECT_H_
+#ifndef COMPOSITE_PARTICLE_OBJECT_H
+#define COMPOSITE_PARTICLE_OBJECT_H
+
+#include <gtypes/Vector3.h>
+#include <hltypes/hlist.h>
 
 #include "aprilparticleExport.h"
-#include "April/RenderSystem.h"
-#include "ParticleEmitter.h"
-#include "Affectors.h"
-#include "gtypes/Vector3.h"
-#include "gtypes/Matrix4.h"
-#include <list>
 
-namespace April
+namespace april
 {
+	class ParticleEmitter;
+	class Texture;
 
-	class aprilparticleExport CompositeParticleObject {
-		
-	public:
-	
-		gvec3 _mPostion;
-		std::list<April::ParticleEmitter*> _mEmitters;
-		std::list<April::Affectors::Affector*> _mAffectors;
+	namespace Affectors
+	{
+		class Affector;
+	}
 
+	class aprilparticleExport CompositeParticleObject
+	{
 	public:
 		CompositeParticleObject();
 		~CompositeParticleObject();
 		
-		//void addEmitter(April::ParticleEmitter *emitter);
-		//void addAffector(April::Affectors::Affector *affector);
+		void addEmitter(april::ParticleEmitter* emitter);
+		void addAffector(april::Affectors::Affector* affector);
+		void addTexture(april::Texture* texture);
+
+	protected:
+		gvec3 _position;
+		hlist<april::ParticleEmitter*> _emitters;
+		hlist<april::Affectors::Affector*> _affectors;
+		hlist<april::Texture*> _textures;
 
 	};
 
 }
 
-#endif // _COMPOSITE_PARTICLE_OBJECT_H_
+#endif

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CodeLite_Project Name="particledemo" InternalType="Console">
+<CodeLite_Project Name="demo_particle" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
@@ -8,13 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="particledemo.cpp"/>
+    <File Name="demo_particle.cpp"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug">
-    <Project Name="libapril"/>
-    <Project Name="libaprilutil"/>
-    <Project Name="libaprilparticle"/>
-  </Dependencies>
   <Settings Type="Executable">
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g" Required="yes" PreCompiledHeader="">
@@ -118,4 +113,20 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
+  <Dependencies Name="Release">
+    <Project Name="demo_simple"/>
+    <Project Name="libapril"/>
+    <Project Name="libaprilparticle"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
+  <Dependencies Name="Debug">
+    <Project Name="libapril"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libaprilparticle"/>
+    <Project Name="demo_simple"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
 </CodeLite_Project>

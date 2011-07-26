@@ -1,207 +1,237 @@
-#include "ParticleEmitter.h"
-#include "gtypes/Matrix4.h"
-#include "gtypes/Matrix3.h"
-#include "gtypes/Vector2.h"
 #include <math.h>
 
-namespace April
+#include <gtypes/Constants.h>
+#include <gtypes/Matrix3.h>
+#include <gtypes/Matrix4.h>
+#include <gtypes/Vector2.h>
+#include <hltypes/util.h>
+
+#include "ParticleEmitter.h"
+
+namespace april
 {
+	april::ColoredTexturedVertex v[6]; // optimization
 
 	ParticleEmitter::ParticleEmitter()
 	{
-		mDrawType 					= April::PDT_Additive;
-		mEmitterType 				= April::ET_Point;
+		this->drawType = april::PDT_Additive;
+		this->emitterType = april::ET_Point;
 		
-		mPosition					= gvec3(0.0,0.0,0.0);
-		mDirection					= gvec3(0.0,1.0,0.0);
+		this->position = gvec3(0.0f, 0.0f, 0.0f);
+		this->direction = gvec3(0.0f, 1.0f, 0.0f);
 		
-		mWidth = mHeigth = mLenght	= 1.0;
+		this->width = 1.0f;
+		this->height = 1.0f;
+		this->length = 1.0f;
 		
-		mRandomStartAngle			= false;
-		mRandomStartSize			= false;
-		mRandomLife					= false;
+		this->randomStartAngle = false;
+		this->randomStartSize = false;
+		this->randomLife = false;
 		
-		mSize						= 1.0;
-		mMinSize					= 0.8;
-		mMaxSize					= 1.2;
+		this->size = 1.0f;
+		this->minSize = 0.8f;
+		this->maxSize = 1.2f;
 			
-		mParticlesPerSecond			= 1.0;
-		mCounter					= 0.0;
-		mMaxParticles				= 10;
-		_mTriangleBatch = new April::ColoredTexturedVertex[mMaxParticles * 6];
-		mLife = mLifeMax = mLifeMin	= 1.0;
-			
-		mTex						= NULL;
+		this->particlesPerSecond	 = 60.0f;
+		this->counter = 0.0f;
+		this->maxParticles = 10;
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		this->life = 1.0f;
+		this->lifeMax = 1.0f;
+		this->lifeMin = 1.0f;
+		this->texture = NULL;
 	}
 	
 	ParticleEmitter::ParticleEmitter(float life, float particlesPerSecond, gvec3 position, gvec3 direction, unsigned int max)
 	{
-		mDrawType 					= April::PDT_Additive;
-		mEmitterType 				= April::ET_Point;
+		this->drawType = april::PDT_Additive;
+		this->emitterType = april::ET_Point;
 		
-		mPosition					= position;
-		mDirection					= direction;
+		this->position = position;
+		this->direction = direction;
 		
-		mWidth = mHeigth = mLenght	= 1.0;
+		this->width = 1.0f;
+		this->height = 1.0f;
+		this->length = 1.0f;
 		
-		mRandomStartAngle			= false;
-		mRandomStartSize			= false;
-		mRandomLife					= false;
+		this->randomStartAngle = false;
+		this->randomStartSize = false;
+		this->randomLife = false;
 		
-		mSize						= 1.0;
-		mMinSize					= 0.8;
-		mMaxSize					= 1.2;
+		this->size = 1.0f;
+		this->minSize = 0.8f;
+		this->maxSize = 1.2f;
 			
-		mParticlesPerSecond			= particlesPerSecond;
-		mCounter					= 0.0;
-		mMaxParticles				= max;
-		_mTriangleBatch = new April::ColoredTexturedVertex[mMaxParticles * 6];
-		mLife = mLifeMax = mLifeMin	= life;
-			
-		mTex						= NULL;
+		this->particlesPerSecond	 = particlesPerSecond;
+		this->counter = 0.0f;
+		this->maxParticles = max;
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		this->life = life;
+		this->lifeMax = life;
+		this->lifeMin = life;
+		this->texture = NULL;
 	}
 
 	ParticleEmitter::~ParticleEmitter()
 	{
-		delete[] _mTriangleBatch;
+		delete [] _triangleBatch;
 	}
 	
-	void ParticleEmitter::setTexture(April::Texture *texture)
+	void ParticleEmitter::setLifeRange(float lifeMin, float lifeMax)
 	{
-		mTex = texture;
+		this->lifeMin = lifeMin;
+		this->lifeMax = lifeMax;
+	}
+
+	void ParticleEmitter::setSizeRange(float sizeMin, float sizeMax)
+	{
+		this->minSize = sizeMin;
+		this->maxSize = sizeMax;
+	}
+
+	void ParticleEmitter::setTexture(std::string texture)
+	{
+		this->texture = april::rendersys->loadTexture(texture);
 	}
 	
-	/*bool isDead(const April::Particle& particle)
+	/*bool isDead(const april::Particle& particle)
 	{
-		return(particle.mLife < 0.0);
+		if(particle.mLife < 0.0)
+		{
+			return true;
+		}
+		return false;
 	}*/
 	
 	void ParticleEmitter::createParticle()
 	{
 		gvec3 npos;
-			switch(mEmitterType)
+		switch (this->emitterType)
+		{
+			case april::ET_Point:
 			{
-				case April::ET_Point:
-				{
-					npos = mPosition;
-					break;
-				}
-				case April::ET_Sphere:
-				{
-					float rho, phi, theta, S;
-					
-					rho = ((float)(rand()) / RAND_MAX);
-					phi = ((float)(rand()) / RAND_MAX) * 2 * M_PI;
-					theta = ((float)(rand()) / RAND_MAX) * M_PI;
-					
-					S = rho * sin(phi);
-					npos.x = mPosition.x + S * cos(theta) * mLenght * 0.5;
-					npos.y = mPosition.y + S * sin(theta) * mHeigth * 0.5;
-					npos.z = mPosition.z + rho * cos(phi) * mWidth * 0.5;
-					break;
-				}
-				case April::ET_HollowSphere:
-				{
-					float rho, phi, theta, S;
-					
-					rho = 1.0;
-					phi = ((float)(rand()) / RAND_MAX) * 2 * M_PI;
-					theta = ((float)(rand()) / RAND_MAX) * M_PI;
-					
-					S = rho * sin(phi);
-					npos.x = mPosition.x + S * cos(theta) * mLenght * 0.5;
-					npos.y = mPosition.y + S * sin(theta) * mHeigth * 0.5;
-					npos.z = mPosition.z + rho * cos(phi) * mWidth * 0.5;
-					break;
-				}
-				case April::ET_Box:
-				{
-					npos.x = mPosition.x + ((float)(rand()) / RAND_MAX) * mLenght - mLenght * 0.5;
-					npos.y = mPosition.y + ((float)(rand()) / RAND_MAX) * mHeigth - mHeigth * 0.5;
-					npos.z = mPosition.z + ((float)(rand()) / RAND_MAX) * mWidth - mWidth * 0.5;
-					break;
-				}
-				case April::ET_Cylinder:
-				{
-					float rho, phi, theta, S;
-					
-					rho = ((float)(rand()) / RAND_MAX);
-					phi = ((float)(rand()) / RAND_MAX) * 2 * M_PI;
-					theta = ((float)(rand()) / RAND_MAX) * M_PI;
-					
-					S = rho * sin(phi);
-					
-					npos.x = mPosition.x + S * cos(theta) * mLenght * 0.5;
-					npos.y = mPosition.y + ((float)(rand()) / RAND_MAX) * mHeigth - mHeigth * 0.5;
-					npos.z = mPosition.z + rho * cos(phi) * mWidth * 0.5;
-					break;
-				}
-				case April::ET_HollowCylinder:
-				{
-					float rho, phi, theta, S;
-					
-					rho = 1.0;
-					phi = ((float)(rand()) / RAND_MAX) * 2 * M_PI;
-					theta = ((float)(rand()) / RAND_MAX) * M_PI;
-					
-					S = rho * sin(phi);
-					
-					npos.x = mPosition.x + S * cos(theta) * mLenght * 0.5;
-					npos.y = mPosition.y + ((float)(rand()) / RAND_MAX) * mHeigth - mHeigth * 0.5;
-					npos.z = mPosition.z + rho * cos(phi) * mWidth * 0.5;
-					break;
-				}
-				case April::ET_Ring:
-				{
-					// 2do
-					npos = mPosition;
-					break;
-				}
+				npos = this->position;
+				break;
 			}
-			Particle p(mLife,npos,mDirection, 0.0);
-			
-			if(mRandomStartSize) p.mSize = mMinSize + (mMaxSize - mMinSize) * ((float)(rand()) / RAND_MAX);
-			else p.mSize = mSize;
-			
-			if(mRandomStartAngle) p.mAngle = (float)(rand());
-			
-			mParticles.push_back(p);
+			case april::ET_Sphere:
+			{
+				float rho, phi, theta, S;
+					
+				rho = hrandf(1.0f);
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				npos.y = this->position.y + S * sin(theta) * this->height * 0.5f;
+				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case april::ET_HollowSphere:
+			{
+				float rho, phi, theta, S;
+					
+				rho = 1.0f;
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				npos.y = this->position.y + S * sin(theta) * this->height * 0.5f;
+				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case april::ET_Box:
+			{
+				npos.x = this->position.x + ((float)(rand()) / RAND_MAX) * this->length - this->length * 0.5f;
+				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
+				npos.z = this->position.z + ((float)(rand()) / RAND_MAX) * this->width - this->width * 0.5f;
+				break;
+			}
+			case april::ET_Cylinder:
+			{
+				float rho, phi, theta, S;
+					
+				rho = hrandf(1.0f);
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+					
+				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
+				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case april::ET_HollowCylinder:
+			{
+				float rho, phi, theta, S;
+					
+				rho = 1.0f;
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+					
+				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
+				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case april::ET_Ring:
+			{
+				// 2do
+				npos = this->position;
+				break;
+			}
+		}
+
+		Particle particle(this->life, npos, this->direction, 0.0f);
+		particle.setSize(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size);
+		particle.setAngle(hrandf((float)(2 * G_PI)));
+		this->particles.push_back(particle);
 	}
 	
 	void ParticleEmitter::update(float t)
 	{
-		mCounter += t;
-		if(mParticlesPerSecond > 0)
+		this->counter += t;
+		if (this->particlesPerSecond > 0)
 		{
-			float cs = 1.0 / mParticlesPerSecond;
-			int quotta = (int)(mCounter / cs);
-			if(mParticles.size() >= mMaxParticles)
-				mCounter = 0.0;
-			if((mCounter > cs) &&(mParticles.size() < mMaxParticles))
+			float cs = 1.0f / this->particlesPerSecond;
+			int quota = (int)(this->counter / cs);
+			if (this->particles.size() >= this->maxParticles)
 			{
-				for(int i = 0; i < quotta; ++i)
+				this->counter = 0.0f;
+			}
+			if (this->counter > cs && this->particles.size() < this->maxParticles)
+			{
+				for (int i = 0; i < quota; i++)
+				{
 					createParticle();
-				mCounter = 0.0;
+				}
+				this->counter = 0.0f;
 			}
 		}
 		
-		for(std::deque<April::Particle>::iterator it = mParticles.begin(); it != mParticles.end(); it++)
+		// TODO - change to a foreach_q iterator
+		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
 		{
-			it->mLife -= t;
-			for(std::list<Affectors::Affector*>::iterator jt = mAffecttors.begin(); jt != mAffecttors.end(); jt++)
+			(*it).setLife((*it).getLife() - t);
+			for (std::list<Affectors::Affector*>::iterator jt = this->affectors.begin(); jt != this->affectors.end(); jt++)
 			{
 				(*jt)->update(&(*it), t);
 			}
 		}
-		
-		while(mParticles.front().mLife < 0.0)
-			mParticles.pop_front();
-		
+		while (this->particles.front().getLife() < 0.0f)
+		{
+			this->particles.pop_front();
+		}
 	}
 	
 	void ParticleEmitter::addAffector(Affectors::Affector* affector)
 	{
-		mAffecttors.push_back(affector);
+		// TODO - change to operator+=
+		this->affectors.push_back(affector);
 	}
 	
 	void ParticleEmitter::draw(gvec3 point, gvec3 up)
@@ -210,20 +240,20 @@ namespace April
 		gvec3 v0,v1,v2,v3;
 		gmat3 rot;
 		float s;
-		April::ColoredTexturedVertex v[6];
+		
 		
 		int i = 0;
-		for(std::deque<April::Particle>::iterator it = mParticles.begin(); it != mParticles.end(); i++, it++)
+		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
 		{
-			billboard.lookAt(it->mPosition, point - it->mPosition, up);
-			s = it->mSize;
+			billboard.lookAt((*it).getPosition(), point - (*it).getPosition(), up);
+			s = (*it).getSize();
 			
-			v0 = gvec3(-s/2, -s/2, 0.0);
-			v1 = gvec3( s/2, -s/2, 0.0);
-			v2 = gvec3(-s/2,  s/2, 0.0);
-			v3 = gvec3( s/2,  s/2, 0.0);
+			v0 = gvec3(-s / 2, -s / 2, 0.0f);
+			v1 = gvec3(s / 2, -s / 2, 0.0f);
+			v2 = gvec3(-s / 2, s / 2, 0.0f);
+			v3 = gvec3(s / 2, s / 2, 0.0f);
 			
-			rot.setRotation3D(0,0,1,it->mAngle);
+			rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it).getAngle());
 			v0 = rot * v0;
 			v1 = rot * v1;
 			v2 = rot * v2;
@@ -235,66 +265,67 @@ namespace April
 			v2 = billboard * v2;
 			v3 = billboard * v3;
 			
-			v[0].x = v0.x; v[0].y =  v0.y; v[0].z = v0.z;   v[0].u = 1.0; v[0].v = 1.0; v[0].color = it->mColor;
-			v[1].x = v1.x; v[1].y =  v1.y; v[1].z = v1.z;   v[1].u = 0.0; v[1].v = 1.0; v[1].color = it->mColor;
-			v[2].x = v2.x; v[2].y =  v2.y; v[2].z = v2.z;   v[2].u = 1.0; v[2].v = 0.0; v[2].color = it->mColor;
+			unsigned int color = (*it).getColor();
+			v[0].x = v0.x;	v[0].y = v0.y;	v[0].z = v0.z;	v[0].u = 1.0f;	v[0].v = 1.0f;	v[0].color = color;
+			v[1].x = v1.x;	v[1].y = v1.y;	v[1].z = v1.z;	v[1].u = 0.0f;	v[1].v = 1.0f;	v[1].color = color;
+			v[2].x = v2.x;	v[2].y = v2.y;	v[2].z = v2.z;	v[2].u = 1.0f;	v[2].v = 0.0f;	v[2].color = color;
 			
-			v[3].x = v1.x; v[3].y =  v1.y; v[3].z = v1.z;   v[3].u = 0.0; v[3].v = 1.0; v[3].color = it->mColor;
-			v[4].x = v2.x; v[4].y =  v2.y; v[4].z = v2.z;   v[4].u = 1.0; v[4].v = 0.0; v[4].color = it->mColor;
-			v[5].x = v3.x; v[5].y =  v3.y; v[5].z = v3.z;   v[5].u = 0.0; v[5].v = 0.0; v[5].color = it->mColor;
+			v[3].x = v1.x;	v[3].y = v1.y;	v[3].z = v1.z;	v[3].u = 0.0f;	v[3].v = 1.0f;	v[3].color = color;
+			v[4].x = v2.x;	v[4].y = v2.y;	v[4].z = v2.z;	v[4].u = 1.0f;	v[4].v = 0.0f;	v[4].color = color;
+			v[5].x = v3.x;	v[5].y = v3.y;	v[5].z = v3.z;	v[5].u = 0.0f;	v[5].v = 0.0f;	v[5].color = color;
 			
-			_mTriangleBatch[i*6 + 0] = v[0];
-			_mTriangleBatch[i*6 + 1] = v[1];
-			_mTriangleBatch[i*6 + 2] = v[2];
-			_mTriangleBatch[i*6 + 3] = v[3];
-			_mTriangleBatch[i*6 + 4] = v[4];
-			_mTriangleBatch[i*6 + 5] = v[5];
+			this->_triangleBatch[i * 6 + 0] = v[0];
+			this->_triangleBatch[i * 6 + 1] = v[1];
+			this->_triangleBatch[i * 6 + 2] = v[2];
+			this->_triangleBatch[i * 6 + 3] = v[3];
+			this->_triangleBatch[i * 6 + 4] = v[4];
+			this->_triangleBatch[i * 6 + 5] = v[5];
 			
 		}
 		
-		if(mTex != NULL)
-			April::rendersys->setTexture(mTex);
-		
-		switch(mDrawType)
+		if (this->texture != NULL)
 		{
-			case April::PDT_Additive:
-				April::rendersys->setBlendMode(April::ADD);
+			april::rendersys->setTexture(this->texture);
+		}
+		switch (this->drawType)
+		{
+			case april::PDT_Additive:
+				april::rendersys->setBlendMode(april::ADD);
 				break;
-			case April::PDT_Normal:
-				April::rendersys->setBlendMode(April::DEFAULT);
+			case april::PDT_Normal:
+				april::rendersys->setBlendMode(april::DEFAULT);
 				break;
-			case April::PDT_AlphaBlend:
-				April::rendersys->setBlendMode(April::ALPHA_BLEND);
+			case april::PDT_AlphaBlend:
+				april::rendersys->setBlendMode(april::ALPHA_BLEND);
 				break;
 		}
-		April::rendersys->render(April::TriangleList, _mTriangleBatch, mParticles.size() * 6);
+		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->particles.size() * 6);
 	}
 	
 	void ParticleEmitter::drawAffectors()
 	{
-		for(std::list<Affectors::Affector*>::iterator it = mAffecttors.begin(); it != mAffecttors.end(); it++)
+		foreach_l (Affectors::Affector*, it, this->affectors)
+		{
 			(*it)->draw();
+		}
 	}
 	
 	
-	void ParticleEmitter::setEmiterVolume(float width, float heigth, float lenght)
+	void ParticleEmitter::setEmitterVolume(float width, float height, float length)
 	{
-		mWidth 		= width;
-		mHeigth 	= heigth;
-		mLenght 	= lenght;
-		
+		this->width = width;
+		this->height = height;
+		this->length = length;
 	}
 	
-	void ParticleEmitter::setEmitterType(April::EmitterType type)
+	void ParticleEmitter::setMaxParticles(int value)
 	{
-		mEmitterType = type;
-	}
-	
-	void ParticleEmitter::setMaxParticles(int maxParticles)
-	{
-		mMaxParticles = maxParticles;
-		delete[] _mTriangleBatch;
-		_mTriangleBatch = new April::ColoredTexturedVertex[maxParticles * 6];
+		if (this->maxParticles != value)
+		{
+			this->maxParticles = value;
+			delete [] this->_triangleBatch;
+			this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		}
 	}
 
 }

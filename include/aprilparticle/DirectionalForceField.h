@@ -1,34 +1,35 @@
-#ifndef _DIRECTIONAL_FORCE_FIELD_H_
-#define _DIRECTIONAL_FORCE_FIELD_H_
+#ifndef DIRECTIONAL_FORCE_FIELD_H
+#define DIRECTIONAL_FORCE_FIELD_H
 
-#include "gtypes/Vector3.h"
-#include "Particle.h"
+#include <gtypes/Vector3.h>
+
 #include "Affector.h"
 
-namespace April
+namespace april
 {
+	class Particle;
+
 	namespace Affectors
 	{
-
 		class aprilparticleExport DirectionalForceField : public Affector
 		{
-
-			public:
-				float mForce;
-				gvec3 mPosition;
-				gvec3 mDirection;
-			
-				DirectionalForceField();
-				DirectionalForceField(float force, gvec3 position, gvec3 direction);
-				~DirectionalForceField();
+		public:
+			DirectionalForceField();
+			DirectionalForceField(float force, gvec3 position, gvec3 direction);
+			~DirectionalForceField();
 				
-				void update(Particle *particle, double t);
-				void draw();
+			void update(Particle* article, double t);
+			void draw();
 
+		protected:
+			gvec3 position;
+			gvec3 direction;
+			float force;
+			
 		};
 		
 	}
 
 }
 
-#endif // _DIRECTIONAL_FORCE_FIELD_H_
+#endif

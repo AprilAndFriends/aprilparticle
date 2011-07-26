@@ -1,35 +1,33 @@
-#ifndef _LINEAR_DIRECTIONAL_FORCE_H_
-#define _LINEAR_DIRECTIONAL_FORCE_H_
+#ifndef LINEAR_DIRECTIONAL_FORCE_H
+#define LINEAR_DIRECTIONAL_FORCE_H
 
-#include "DirectionalForceField.h"
-#include "ParticleEmitter.h"
+#include <gtypes/Vector3.h>
 
-#include "gtypes/Vector3.h"
+#include "Affector.h"
 
-namespace April
+namespace april
 {
+	class Particle;
 
 	namespace Affectors
 	{
 		class aprilparticleExport LinearDirectionalForce : public Affector
 		{
-
-			public:
-			
-				gvec3 mDirection;
-				float mForce;
-			
-				LinearDirectionalForce();
-				LinearDirectionalForce(gvec3 direction = gvec3(0,-1,0), float force = 1.0);
-				~LinearDirectionalForce();
-				
-				void draw();
-				void update(Particle *particle, double t);
-
-		};
+		public:
+			LinearDirectionalForce(gvec3 direction = gvec3(0.0f, -1.0f, 0.0f), float force = 1.0f);
+			~LinearDirectionalForce();
 		
-	}
+			void draw();
+			void update(Particle* particle, double t);
 
+		protected:
+			gvec3 direction;
+			float force;
+	
+		};
+
+	}
+	
 }
 
-#endif // _LINEAR_DIRECTIONAL_FORCE_H_
+#endif

@@ -1,29 +1,29 @@
-#ifndef _ATTRACTOR_H_
-#define _ATTRACTOR_H_
+#ifndef ATTRACTOR_H
+#define ATTRACTOR_H
+
+#include <gtypes/Vector3.h>
 
 #include "Affector.h"
-#include "Particle.h"
 
-namespace April
+namespace april
 {
+	class Particle;
 
 	namespace Affectors
 	{
-
 		class aprilparticleExport Attractor : public Affector
 		{
-
-			public:
-			
-			gvec3 mOrigin;
-			float mRadius;
-			
-				Attractor();
-				Attractor(gvec3 origin, float radius);
-				~Attractor();
+		public:
+			Attractor();
+			Attractor(gvec3 origin, float radius);
+			~Attractor();
 				
-				void draw();
-				void update(Particle *particle, double t);
+			void draw();
+			void update(Particle* particle, double t);
+
+		protected:
+			gvec3 origin;
+			float radius;
 
 		};
 
@@ -31,4 +31,4 @@ namespace April
 
 }
 
-#endif // _ATTRACTOR_H_
+#endif

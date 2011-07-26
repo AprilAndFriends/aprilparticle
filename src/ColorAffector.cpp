@@ -1,19 +1,16 @@
+#include <hltypes/util.h>
+
 #include "ColorAffector.h"
-#include "ParticleEmitter.h"
+#include "Particle.h"
 
-#include <iostream>
-#include <stdio.h>
-
-namespace April
+namespace april
 {
-
 	namespace Affectors
 	{
-		
 		ColorAffector::ColorAffector()
 		{
-			startColor = 0xFFFFFFFF;
-			endColor = 0xFFFFFFFF;
+			this->startColor = 0xFFFFFFFF;
+			this->endColor = 0xFFFFFFFF;
 		}
 		
 		ColorAffector::ColorAffector(unsigned int endColor)
@@ -32,42 +29,30 @@ namespace April
 		{
 		}
 	
-		void ColorAffector::update(Particle *particle, double t)
+		void ColorAffector::update(Particle* particle, double t)
 		{
-			float ratio;
 			unsigned int sr, sg, sb, sa, ea, er, eg, eb, ca, cr, cg, cb;
 			
-			sa = (startColor & 0xFF000000) >> 24;
-			sr = (startColor & 0x00FF0000) >> 16;
-			sg = (startColor & 0x0000FF00) >> 8;
-			sb = (startColor & 0x000000FF);
+			sr = (startColor & 0xFF000000) >> 24;
+			sg = (startColor & 0x00FF0000) >> 16;
+			sb = (startColor & 0x0000FF00) >> 8;
+			sa = (startColor & 0x000000FF);
 			
-			ea = (endColor & 0xFF000000) >> 24;
-			er = (endColor & 0x00FF0000) >> 16;
-			eg = (endColor & 0x0000FF00) >> 8;
-			eb = (endColor & 0x000000FF);
+			er = (endColor & 0xFF000000) >> 24;
+			eg = (endColor & 0x00FF0000) >> 16;
+			eb = (endColor & 0x0000FF00) >> 8;
+			ea = (endColor & 0x000000FF);
 			
-			if(particle->mTotalLife > 0.0) ratio = particle->mLife / particle->mTotalLife;
-			else ratio = 1.0;
-			if(ratio < 0.0) ratio = 0.0;
+			float life = particle->getLife();
+			float totalLife = particle->getTotalLife();
+			float ratio = (totalLife > 0.0f ? hmax(life / totalLife, 0.0f) : 1.0f);
+
+			cr = (unsigned int)(ratio * sr + (1.0f - ratio) * er) << 24;
+			cg = (unsigned int)(ratio * sg + (1.0f - ratio) * eg) << 16;
+			cb = (unsigned int)(ratio * sb + (1.0f - ratio) * eb) << 8;
+			ca = (unsigned int)(ratio * sa + (1.0f - ratio) * ea);
 			
-			ca = (unsigned int)(ratio * sa + (1.0 - ratio) * ea);
-			ca = ca << 24;
-			
-			cr = (unsigned int)(ratio * sr + (1.0 - ratio) * er);
-			cr = cr << 16;
-			
-			cg = (unsigned int)(ratio * sg + (1.0 - ratio) * eg);
-			cg = cg << 8;
-			
-			cb = (unsigned int)(ratio * sb + (1.0 - ratio) * eb);
-				
-			particle->mColor = 0x00000000;
-			particle->mColor |= ca;
-			particle->mColor |= cr;
-			particle->mColor |= cg;
-			particle->mColor |= cb;
-				
+			particle->setColor(cr | cg | cb | ca);
 		}
 		
 		void ColorAffector::draw()

@@ -1,11 +1,10 @@
-#include "DirectionalForceField.h"
+#include "Affector.h"
+#include "Particle.h"
 
-namespace April
+namespace april
 {
-
 	namespace Affectors
 	{
-		
 		Affector::Affector()
 		{
 		}
@@ -14,15 +13,14 @@ namespace April
 		{
 		}
 		
-		void Affector::update(Particle *particle, double t)
+		void Affector::update(Particle* particle, double t)
 		{
 		}
 		
 		void Affector::draw()
 		{
 		}
-
+	
 	}
 
 }
-

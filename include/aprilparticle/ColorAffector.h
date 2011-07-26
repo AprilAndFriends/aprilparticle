@@ -1,28 +1,28 @@
-#ifndef _COLOR_AFFECTOR_H_
-#define _COLOR_AFFECTOR_H_
+#ifndef COLOR_AFFECTOR_H
+#define COLOR_AFFECTOR_H
 
-#include "DirectionalForceField.h"
+#include "Affector.h"
 
-namespace April
+namespace april
 {
-	
+	class Particle;
+
 	namespace Affectors
 	{
-
 		class aprilparticleExport ColorAffector : public Affector
 		{
-
-			public:
-			
-				unsigned int startColor, endColor;
-
-				ColorAffector();
-				ColorAffector(unsigned int endColor);
-				ColorAffector(unsigned int startColor, unsigned int endColor);
-				~ColorAffector();
+		public:
+			ColorAffector();
+			ColorAffector(unsigned int endColor);
+			ColorAffector(unsigned int startColor, unsigned int endColor);
+			~ColorAffector();
 				
-				void update(Particle *particle, double t);
-				void draw();
+			void update(Particle* particle, double t);
+			void draw();
+
+		protected:
+			unsigned int startColor;
+			unsigned int endColor;
 
 		};
 	
@@ -30,4 +30,4 @@ namespace April
 
 }
 
-#endif // _COLOR_AFFECTOR_H_
+#endif

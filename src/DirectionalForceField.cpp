@@ -1,75 +1,88 @@
-#include "DirectionalForceField.h"
-#include "April/RenderSystem.h"
 #include <math.h>
 
-namespace April
-{
+#include <april/RenderSystem.h>
+#include <gtypes/Vector3.h>
 
+#include "DirectionalForceField.h"
+#include "Particle.h"
+
+namespace april
+{
 	namespace Affectors
 	{
-		
+		// optimizations
+		april::ColoredVertex u[91];
+		april::ColoredVertex v[91];
+		april::ColoredVertex w[91];
+		april::ColoredVertex arrow[2];
+
 		DirectionalForceField::DirectionalForceField()
 		{
-			mForce = 0;
-			mPosition = gvec3(0,0,0);
-			mDirection = gvec3(0,0,1);
+			this->position = gvec3(0.0f, 0.0f, 0.0f);
+			this->direction = gvec3(0.0f, 0.0f, 1.0f);
+			this->force = 0.0f;
 		}
 		
 		DirectionalForceField::DirectionalForceField(float force, gvec3 position, gvec3 direction)
 		{
-			mForce = force;
-			mPosition = position;
-			mDirection = direction;
+			this->position = position;
+			this->direction = direction;
+			this->force = force;
 		}
 
 		DirectionalForceField::~DirectionalForceField()
 		{
 		}
 		
-		void DirectionalForceField::update(Particle *particle, double t)
+		void DirectionalForceField::update(Particle* particle, double t)
 		{
-			particle->mPosition += mDirection * (mForce - ((particle->mPosition - mPosition).length()) / mForce) *
-								  (mForce / (gvec3(particle->mPosition - mPosition).squaredLength() *
-								  particle->mDirection.length() + 1.0) -
-								  particle->mSpeed) * t;
-			
+			gvec3 position = particle->getPosition();
+			gvec3 difference = position - this->position;
+			position += this->direction * (this->force - (difference.length()) / this->force) *
+						(this->force / (difference.squaredLength() *
+						particle->getDirection().length() + 1.0f) -
+						particle->getSpeed()) * (float)t;
+			particle->setPosition(position);
 		}
 		
 		void DirectionalForceField::draw()
 		{
-			April::ColoredVertex u[91], v[91], w[91];
-			for(int i = 0; i < 91; ++i)
+			for (int i = 0; i < 91; i++)
 			{
-				gvec3 u1(sin(i*0.069777), cos(i*0.069777), 0);
-				gvec3 v1(0, cos(i*0.069777), sin(i*0.069777));
-				gvec3 w1(cos(i*0.069777), 0, sin(i*0.069777));
-				u[i].x = mPosition.x + u1.x*mForce;
-				u[i].y = mPosition.y + u1.y*mForce;
-				u[i].z = mPosition.z + u1.z*mForce; u[i].color = 0xFFFFFFFF;
+				gvec3 u1((float)sin(i * 0.069777), (float)cos(i * 0.069777), 0.0f);
+				gvec3 v1(0.0f, (float)cos(i * 0.069777), (float)sin(i * 0.069777));
+				gvec3 w1((float)cos(i * 0.069777), 0.0f, (float)sin(i * 0.069777));
+
+				u[i].x = this->position.x + u1.x * this->force;
+				u[i].y = this->position.y + u1.y * this->force;
+				u[i].z = this->position.z + u1.z * this->force;
+				u[i].color = 0xFFFFFFFF;
 				
-				v[i].x = mPosition.x + v1.x*mForce;
-				v[i].y = mPosition.y + v1.y*mForce;
-				v[i].z = mPosition.z + v1.z*mForce; v[i].color = 0xFFFFFFFF;
+				v[i].x = this->position.x + v1.x * this->force;
+				v[i].y = this->position.y + v1.y * this->force;
+				v[i].z = this->position.z + v1.z * this->force;
+				v[i].color = 0xFFFFFFFF;
 				
-				w[i].x = mPosition.x + w1.x*mForce;
-				w[i].y = mPosition.y + w1.y*mForce;
-				w[i].z = mPosition.z + w1.z*mForce; w[i].color = 0xFFFFFFFF;
+				w[i].x = this->position.x + w1.x * this->force;
+				w[i].y = this->position.y + w1.y * this->force;
+				w[i].z = this->position.z + w1.z * this->force;
+				w[i].color = 0xFFFFFFFF;
 			}
 			
-			April::ColoredVertex arrow[2];
-			arrow[0].x = mPosition.x;
-			arrow[0].y = mPosition.y;
-			arrow[0].z = mPosition.z; arrow[0].color = 0xFFFFFFFF;
+			arrow[0].x = this->position.x;
+			arrow[0].y = this->position.y;
+			arrow[0].z = this->position.z;
+			arrow[0].color = 0xFFFFFFFF;
 			
+			arrow[1].x = this->position.x + this->direction.x * this->force;
+			arrow[1].y = this->position.y + this->direction.y * this->force;
+			arrow[1].z = this->position.z + this->direction.z * this->force;
+			arrow[1].color = 0xFFFFFFFF;
 			
-			arrow[1].x = mPosition.x + mDirection.x*mForce;
-			arrow[1].y = mPosition.y + mDirection.y*mForce;
-			arrow[1].z = mPosition.z + mDirection.z*mForce; arrow[1].color = 0xFFFFFFFF;
-			
-			April::rendersys->render(April::LineStrip,u,91);
-			April::rendersys->render(April::LineStrip,v,91);
-			April::rendersys->render(April::LineStrip,w,91);
-			April::rendersys->render(April::LineStrip,arrow,2);
+			april::rendersys->render(april::LineStrip, u, 91);
+			april::rendersys->render(april::LineStrip, v, 91);
+			april::rendersys->render(april::LineStrip, w, 91);
+			april::rendersys->render(april::LineStrip, arrow, 2);
 		}
 		
 	}

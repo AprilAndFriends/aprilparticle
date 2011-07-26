@@ -9,48 +9,81 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="src/ParticleEmitter.cpp"/>
-    <File Name="src/ColorAffector.cpp"/>
-    <File Name="src/MultiColorAffector.cpp"/>
-    <File Name="src/LinearDirectionalForce.cpp"/>
     <File Name="src/Particle.cpp"/>
-    <File Name="src/Affector.cpp"/>
-    <File Name="src/DirectionalForceField.cpp"/>
-    <File Name="src/Attractor.cpp"/>
-    <File Name="src/Swirl.cpp"/>
-    <File Name="src/Rotator.cpp"/>
     <File Name="src/CompositeParticleObject.cpp"/>
-    <File Name="src/ParticleSystem.cpp"/>
-    <File Name="src/xmlHelper.cpp"/>
-    <File Name="src/Exception.cpp"/>
+    <File Name="fileproperties.rc"/>
+    <VirtualDirectory Name="Affectors">
+      <File Name="src/Affector.cpp"/>
+      <File Name="src/Attractor.cpp"/>
+      <File Name="src/ColorAffector.cpp"/>
+      <File Name="src/DirectionalForceField.cpp"/>
+      <File Name="src/LinearDirectionalForce.cpp"/>
+      <File Name="src/MultiColorAffector.cpp"/>
+      <File Name="src/Rotator.cpp"/>
+      <File Name="src/Swirl.cpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/aprilparticle/aprilparticleExport.h"/>
     <File Name="include/aprilparticle/ParticleEmitter.h"/>
     <File Name="include/aprilparticle/Affectors.h"/>
-    <File Name="include/aprilparticle/ColorAffector.h"/>
-    <File Name="include/aprilparticle/MultiColorAffector.h"/>
-    <File Name="include/aprilparticle/LinearDirectionalForce.h"/>
     <File Name="include/aprilparticle/Particle.h"/>
-    <File Name="include/aprilparticle/Affector.h"/>
-    <File Name="include/aprilparticle/DirectionalForceField.h"/>
-    <File Name="include/aprilparticle/Rotator.h"/>
-    <File Name="include/aprilparticle/Attractor.h"/>
-    <File Name="include/aprilparticle/Swirl.h"/>
     <File Name="include/aprilparticle/CompositeParticleObject.h"/>
-    <File Name="include/aprilparticle/ParticleSystem.h"/>
-    <File Name="include/aprilparticle/xmlHelper.h"/>
-    <File Name="include/aprilparticle/Exception.h"/>
+    <VirtualDirectory Name="Affectors">
+      <File Name="include/aprilparticle/Affector.h"/>
+      <File Name="include/aprilparticle/Attractor.h"/>
+      <File Name="include/aprilparticle/ColorAffector.h"/>
+      <File Name="include/aprilparticle/DirectionalForceField.h"/>
+      <File Name="include/aprilparticle/LinearDirectionalForce.h"/>
+      <File Name="include/aprilparticle/MultiColorAffector.h"/>
+      <File Name="include/aprilparticle/Rotator.h"/>
+      <File Name="include/aprilparticle/Swirl.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
-  <VirtualDirectory Name="other">
-    <File Name="TODO.txt"/>
-  </VirtualDirectory>
-  <Dependencies Name="Linux_Debug"/>
-  <Dependencies Name="Linux_Release"/>
-  <Dependencies Name="Win32_Release"/>
-  <Dependencies Name="Win32_Debug"/>
+  <Dependencies Name="Win32_Debug">
+    <Project Name="libapril"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
+  <Dependencies Name="Win32_Release">
+    <Project Name="libapril"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
+  <Dependencies Name="Linux_Debug">
+    <Project Name="libapril"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
+  <Dependencies Name="Linux_Release">
+    <Project Name="libapril"/>
+    <Project Name="libaprilutil"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
+  </Dependencies>
   <Settings Type="Dynamic Library">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+        <IncludePath Value="./src"/>
+        <IncludePath Value="./include/aprilparticle"/>
+        <IncludePath Value="../gtypes/include"/>
+        <IncludePath Value="../april/include"/>
+        <IncludePath Value="../hltypes/include"/>
+        <Preprocessor Value="APRILPARTICLE_EXPORTS"/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="../april/bin"/>
+        <Library Value="libxml2"/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
     <Configuration Name="Linux_Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="-O0" Required="yes">
@@ -58,8 +91,7 @@
         <LibraryPath Value="Debug"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
-      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -82,7 +114,7 @@
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Linux_Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
       </Compiler>
       <Linker Options="-O0" Required="yes">
@@ -90,8 +122,7 @@
         <LibraryPath Value="Debug"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
-      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -114,7 +145,7 @@
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Win32_Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g" Required="yes" PreCompiledHeader="">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
         <Preprocessor Value="_WIN32"/>
         <Preprocessor Value="_DIRECTX9"/>
@@ -127,8 +158,7 @@
         <Library Value="libhltypes_d"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.dll" IntermediateDirectory="./bin/$(ConfigurationName)" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
-      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.dll" IntermediateDirectory="./bin/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -153,21 +183,20 @@
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Win32_Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="" Required="yes" PreCompiledHeader="">
+      <Compiler Options="" C_Options="" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
         <Preprocessor Value="_WIN32"/>
         <Preprocessor Value="_DIRECTX9"/>
       </Compiler>
       <Linker Options="-O2 -g" Required="yes">
-        <LibraryPath Value="../hltypes/bin"/>
-        <LibraryPath Value="../gtypes/bin"/>
+        <LibraryPath Value="../hltypes/bin/Release_Win32"/>
+        <LibraryPath Value="../gtypes/bin/Release_Win32"/>
         <Library Value="libgtypes"/>
         <Library Value="libapril"/>
         <Library Value="libhltypes"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./bin/Win32_Release/" Command="" CommandArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
-      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./bin/Win32_Release/" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -204,9 +233,9 @@
         <LibraryPath Value="../gtypes/bin"/>
         <LibraryPath Value="../april/bin"/>
         <LibraryPath Value="../hltypes/bin"/>
-        <Library Value="libxml2"/>
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
+  <Dependencies Name="Win32_Debug"/>
 </CodeLite_Project>

@@ -1,34 +1,33 @@
 #include "Particle.h"
 
-namespace April
+namespace april
 {
-
 	Particle::Particle()
 	{
-		mLife 					= 1.0;
-		mTotalLife 				= 1.0;
-		mSize 					= 1.0;
-		mSpeed 					= 0.0;
-		mAngle 					= 0.0;
-		
-		mDirection 				= gvec3(0.0,1.0,0.0);
-		mPosition 				= gvec3(0.0,0.0,0.0);
-		
-		mColor = 0xFFFFFFFF;
+		this->position = gvec3(0.0f, 0.0f, 0.0f);
+		this->direction = gvec3(0.0f, 1.0f, 0.0f);
+		this->life = 1.0f;
+		this->totalLife = 1.0f;
+		this->size = 1.0f;
+		this->speed = 0.0f;
+		this->angle = 0.0f;
+		this->color = 0xFFFFFFFF;
 	}
 	
 	Particle::Particle(float life, gvec3 position, gvec3 direction, float size)
 	{
-		mLife 					= life;
-		mTotalLife 				= life;
-		mSize 					= size;
-		mSpeed 					= 0.0;
-		mAngle 					= 0.0;
-		
-		mDirection 				= direction;
-		mPosition 				= position;
-		
-		mColor = 0xFFFFFFFF;
+		this->position = position;
+		this->direction = direction;
+		this->life = life;
+		this->totalLife = life;
+		this->size = size;
+		this->speed = 0.0f;
+		this->angle = 0.0f;
+		this->color = 0xFFFFFFFF;
+	}
+	
+	Particle::~Particle()
+	{
 	}
 	
 }

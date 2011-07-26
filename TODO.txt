@@ -1,0 +1,1 @@
+* Emitters emit only particles
