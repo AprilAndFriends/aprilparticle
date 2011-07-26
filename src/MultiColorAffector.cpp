@@ -22,11 +22,6 @@ namespace april
 		{
 		}
 		
-		void MultiColorAffector::setColors(hmap<float, unsigned int> colors)
-		{
-			this->colors = colors;
-		}
-		
 		void MultiColorAffector::update(Particle* particle, double t)
 		{
 			float first;

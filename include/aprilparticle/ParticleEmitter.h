@@ -25,12 +25,7 @@ namespace april
 		ET_HollowCylinder = 6
 	};
 	
-	enum ParticlesDrawType
-	{
-		PDT_Additive = 0,
-		PDT_AlphaBlend = 1,
-		PDT_Normal = 2
-	};
+	class Texture;
 
 	class aprilparticleExport ParticleEmitter : public Particle
 	{
@@ -40,23 +35,22 @@ namespace april
 						gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
 		~ParticleEmitter();
 			
-		void setParticleDrawType(ParticlesDrawType value) { this->drawType = value; }
+		void setBlendMode(BlendMode value) { this->blendMode = value; }
 		void setParticlesEmissionRate(float value) { this->particlesPerSecond = value; }
 		void setEmitterType(EmitterType value) { this->emitterType = value; }
 		void setLife(float value) { this->life = value; }
 		void setRandomStartLife(bool value) { this->randomLife = value; }
 		void setRandomStartSize(bool value) { this->randomStartSize = value; }
 		void setRandomStartAngle(bool value) { this->randomStartAngle = value; }
+		void setTexture(april::Texture* texture) { this->texture = texture; }
 
 		void setMaxParticles(int value);
-
-		void setTexture(std::string texture);
 			
 		void setEmitterVolume(float width, float height, float length);
 		void setLifeRange(float lifeMin, float lifeMax);
 		void setSizeRange(float sizeMin, float sizeMax);
 			
-		void addAffector(Affectors::Affector *affector);
+		void addAffector(Affectors::Affector* affector);
 			
 		void update(float t);
 		void createParticle();
@@ -72,7 +66,7 @@ namespace april
 		float width;
 		float height;
 		float length;
-		ParticlesDrawType drawType;
+		BlendMode blendMode;
 		EmitterType emitterType;
 		bool randomStartAngle;
 		bool randomStartSize;

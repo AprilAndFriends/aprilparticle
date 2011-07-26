@@ -64,21 +64,19 @@
     <Project Name="libgtypes"/>
     <Project Name="libhltypes"/>
   </Dependencies>
+  <Dependencies Name="Win32_Debug"/>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="">
-        <IncludePath Value="."/>
-        <IncludePath Value="./src"/>
         <IncludePath Value="./include/aprilparticle"/>
         <IncludePath Value="../gtypes/include"/>
         <IncludePath Value="../april/include"/>
         <IncludePath Value="../hltypes/include"/>
+        <IncludePath Value="../hltypes/hlxml/include"/>
         <Preprocessor Value="APRILPARTICLE_EXPORTS"/>
       </Compiler>
       <Linker Options="">
-        <LibraryPath Value="."/>
         <LibraryPath Value="../april/bin"/>
-        <Library Value="libxml2"/>
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
@@ -92,6 +90,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -123,6 +122,7 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName).so" IntermediateDirectory="./bin/Linux/Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -148,17 +148,20 @@
       <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
         <Preprocessor Value="_WIN32"/>
-        <Preprocessor Value="_DIRECTX9"/>
+        <Preprocessor Value="_DEBUG"/>
       </Compiler>
       <Linker Options="-g" Required="yes">
-        <LibraryPath Value="../hltypes/bin/Debug"/>
         <LibraryPath Value="../gtypes/bin/Debug"/>
+        <LibraryPath Value="../hltypes/bin/Debug"/>
+        <LibraryPath Value="../hltypes/bin/hlxml/Debug"/>
         <Library Value="libgtypes_d"/>
-        <Library Value="libapril_d"/>
         <Library Value="libhltypes_d"/>
+        <Library Value="libhlxml_d"/>
+        <Library Value="libapril_d"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.dll" IntermediateDirectory="./bin/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -186,17 +189,19 @@
       <Compiler Options="" C_Options="" Required="yes" PreCompiledHeader="">
         <IncludePath Value="."/>
         <Preprocessor Value="_WIN32"/>
-        <Preprocessor Value="_DIRECTX9"/>
       </Compiler>
       <Linker Options="-O2 -g" Required="yes">
-        <LibraryPath Value="../hltypes/bin/Release_Win32"/>
         <LibraryPath Value="../gtypes/bin/Release_Win32"/>
+        <LibraryPath Value="../hltypes/bin/Release_Win32"/>
+        <LibraryPath Value="../hltypes/bin/hlxml/Release_Win32"/>
         <Library Value="libgtypes"/>
-        <Library Value="libapril"/>
         <Library Value="libhltypes"/>
+        <Library Value="libhlxml"/>
+        <Library Value="libapril"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./bin/Win32_Release/" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
       <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
         <PostConnectCommands/>
         <StartupCommands/>
@@ -220,22 +225,5 @@
         <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
-    <GlobalSettings>
-      <Compiler Options="">
-        <IncludePath Value="./include/aprilparticle"/>
-        <IncludePath Value="../gtypes/include"/>
-        <IncludePath Value="../april/include"/>
-        <IncludePath Value="../hltypes/include"/>
-        <Preprocessor Value="APRILPARTICLE_EXPORTS"/>
-      </Compiler>
-      <Linker Options="">
-        <LibraryPath Value="."/>
-        <LibraryPath Value="../gtypes/bin"/>
-        <LibraryPath Value="../april/bin"/>
-        <LibraryPath Value="../hltypes/bin"/>
-      </Linker>
-      <ResourceCompiler Options=""/>
-    </GlobalSettings>
   </Settings>
-  <Dependencies Name="Win32_Debug"/>
 </CodeLite_Project>

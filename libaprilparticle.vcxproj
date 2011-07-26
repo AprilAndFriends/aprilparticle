@@ -44,7 +44,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='win32_Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WIN32;_DEBUG;APRILPARTICLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -54,9 +54,9 @@
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;libhlxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);..\hltypes\bin\hlxml\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(TargetDir)\$(TargetName).lib</ImportLibrary>
     </Link>
@@ -69,7 +69,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WIN32;APRILPARTICLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -78,8 +78,8 @@
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;libhlxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);..\hltypes\bin\hlxml\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -104,6 +104,7 @@
     <ClInclude Include="include\aprilparticle\MultiColorAffector.h" />
     <ClInclude Include="include\aprilparticle\Particle.h" />
     <ClInclude Include="include\aprilparticle\ParticleEmitter.h" />
+    <ClInclude Include="include\aprilparticle\ParticleSystem.h" />
     <ClInclude Include="include\aprilparticle\Rotator.h" />
     <ClInclude Include="include\aprilparticle\Swirl.h" />
   </ItemGroup>
@@ -117,6 +118,7 @@
     <ClCompile Include="src\MultiColorAffector.cpp" />
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Rotator.cpp" />
     <ClCompile Include="src\Swirl.cpp" />
   </ItemGroup>

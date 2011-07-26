@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include/aprilparticle;../april/include;../gtypes/include;../hltypes/include"
+				AdditionalIncludeDirectories="../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
 				PreprocessorDefinitions="_WIN32;_DEBUG;APRILPARTICLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,9 +60,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libapril_d.lib libgtypes_d.lib libhltypes_d.lib"
+				AdditionalDependencies="libapril_d.lib libgtypes_d.lib libhltypes_d.lib libhlxml_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
-				AdditionalLibraryDirectories="..\april\bin;..\gtypes\bin\$(ConfigurationName);..\hltypes\bin\$(ConfigurationName)"
+				AdditionalLibraryDirectories="..\april\bin;..\gtypes\bin\$(ConfigurationName);..\hltypes\bin\$(ConfigurationName);..\hltypes\bin\hlxml\$(ConfigurationName)"
 				GenerateDebugInformation="true"
 				ImportLibrary="$(TargetDir)\$(TargetName).lib"
 			/>
@@ -116,7 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="include/aprilparticle;../april/include;../gtypes/include;../hltypes/include"
+				AdditionalIncludeDirectories="../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
 				PreprocessorDefinitions="_WIN32;APRILPARTICLE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -135,8 +135,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libapril.lib libgtypes.lib libhltypes.lib"
-				AdditionalLibraryDirectories="..\april\bin;..\gtypes\bin\$(ConfigurationName);..\hltypes\bin\$(ConfigurationName)"
+				AdditionalDependencies="libapril.lib libgtypes.lib libhltypes.lib libhlxml.lib"
+				AdditionalLibraryDirectories="..\april\bin;..\gtypes\bin\$(ConfigurationName);..\hltypes\bin\$(ConfigurationName);..\hltypes\bin\hlxml\$(ConfigurationName)"
 			/>
 			<Tool
 				Name="VCALinkTool"

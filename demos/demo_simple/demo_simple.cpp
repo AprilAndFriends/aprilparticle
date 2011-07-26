@@ -8,7 +8,7 @@
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
-#include <iostream>
+//#include <iostream>
 
 april::ColoredVertex grid[44];
 //april::ParticleSystem *mPartSys;
@@ -16,27 +16,27 @@ april::ColoredVertex grid[44];
 void setupGrid(float spacing)
 {
 	int i = 0;
-	for(float s = -5*spacing; s <= 5*spacing; ++i, s += spacing)
+	for (float s = -5 * spacing; s <= 5 * spacing; i++, s += spacing)
 	{
 		april::ColoredVertex u,v,p,r;
 		u.color = v.color = p.color = r.color = 0xAAAAAAFF;
-		u.x = -5*spacing;
-		u.y = 0;
+		u.x = -5 * spacing;
+		u.y = 0.0f;
 		u.z = s;
-		v.x = 5*spacing;
-		v.y = 0;
+		v.x = 5 * spacing;
+		v.y = 0.0f;
 		v.z = s;
-		grid[i*4 + 0] = u;
-		grid[i*4 + 1] = v;
+		grid[i * 4 + 0] = u;
+		grid[i * 4 + 1] = v;
 		
 		p.x = s;
-		p.y = 0;
-		p.z = -5*spacing;
+		p.y = 0.0f;
+		p.z = -5 * spacing;
 		r.x = s;
-		r.y = 0;
-		r.z = 5*spacing;
-		grid[i*4 + 2] = p;
-		grid[i*4 + 3] = r;
+		r.y = 0.0f;
+		r.z = 5 * spacing;
+		grid[i * 4 + 2] = p;
+		grid[i * 4 + 3] = r;
 	}
 }
 
@@ -67,7 +67,7 @@ void april_init(const harray<hstr>& args)
 {
 	april::init();
 	april::createRenderSystem("");
-	april::createRenderTarget(800, 600, false, "AprilParticle Demo");
+	april::createRenderTarget(1024, 768, false, "AprilParticle Demo");
 	april::rendersys->getWindow()->setUpdateCallback(render);
 	
 	setupGrid(2.0f);

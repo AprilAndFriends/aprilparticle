@@ -14,7 +14,7 @@ namespace april
 
 	ParticleEmitter::ParticleEmitter()
 	{
-		this->drawType = april::PDT_Additive;
+		this->blendMode = april::ADD;
 		this->emitterType = april::ET_Point;
 		
 		this->position = gvec3(0.0f, 0.0f, 0.0f);
@@ -44,7 +44,7 @@ namespace april
 	
 	ParticleEmitter::ParticleEmitter(float life, float particlesPerSecond, gvec3 position, gvec3 direction, unsigned int max)
 	{
-		this->drawType = april::PDT_Additive;
+		this->blendMode = april::ADD;
 		this->emitterType = april::ET_Point;
 		
 		this->position = position;
@@ -87,11 +87,6 @@ namespace april
 	{
 		this->minSize = sizeMin;
 		this->maxSize = sizeMax;
-	}
-
-	void ParticleEmitter::setTexture(std::string texture)
-	{
-		this->texture = april::rendersys->loadTexture(texture);
 	}
 	
 	/*bool isDead(const april::Particle& particle)
@@ -222,7 +217,7 @@ namespace april
 				(*jt)->update(&(*it), t);
 			}
 		}
-		while (this->particles.front().getLife() < 0.0f)
+		while (this->particles.size() > 0 && this->particles.front().getLife() < 0.0f)
 		{
 			this->particles.pop_front();
 		}
@@ -287,18 +282,7 @@ namespace april
 		{
 			april::rendersys->setTexture(this->texture);
 		}
-		switch (this->drawType)
-		{
-			case april::PDT_Additive:
-				april::rendersys->setBlendMode(april::ADD);
-				break;
-			case april::PDT_Normal:
-				april::rendersys->setBlendMode(april::DEFAULT);
-				break;
-			case april::PDT_AlphaBlend:
-				april::rendersys->setBlendMode(april::ALPHA_BLEND);
-				break;
-		}
+		april::rendersys->setBlendMode(this->blendMode);
 		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->particles.size() * 6);
 	}
 	

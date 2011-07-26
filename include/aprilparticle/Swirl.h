@@ -19,6 +19,17 @@ namespace april
 			Swirl();
 			Swirl(gvec3 position, gvec3 up, float range, float force);
 			~Swirl();
+
+			float getRange() { return this->range; }
+			void setRange(float value) { this->range = value; }
+			float getForce() { return this->force; }
+			void setForce(float value) { this->force = value; }
+			gvec3 getPosition() { return this->position; }
+			void setPosition(gvec3 value) { this->position = value; }
+			gvec3 getUp() { return this->up; }
+			void setUp(gvec3 value) { this->up = value; }
+			bool getClockwise() { return this->clockwise; }
+			void setClockwise(bool value) { this->clockwise = value; }
 			
 			void draw();
 			void update(april::Particle* particle, double t);

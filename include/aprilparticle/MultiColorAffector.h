@@ -18,9 +18,11 @@ namespace april
 			MultiColorAffector();
 			MultiColorAffector(hmap<float, unsigned int> colors);
 			~MultiColorAffector();
+
+			hmap<float, unsigned int> getColors() { return this->colors; }
+			void setColors(hmap<float, unsigned int> value) { this->colors = value; }
 				
 			void update(Particle* emitter, double t);
-			void setColors(hmap<float, unsigned int> colors);
 			void draw();
 			
 		protected:

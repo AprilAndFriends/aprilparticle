@@ -18,31 +18,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\aprilparticle\Affector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\aprilparticle\Affectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\aprilparticle\aprilparticleExport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\aprilparticle\Attractor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\aprilparticle\ColorAffector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\aprilparticle\CompositeParticleObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\aprilparticle\DirectionalForceField.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\aprilparticle\LinearDirectionalForce.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\aprilparticle\MultiColorAffector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\aprilparticle\Particle.h">
@@ -51,33 +33,39 @@
     <ClInclude Include="include\aprilparticle\ParticleEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\aprilparticle\Rotator.h">
+    <ClInclude Include="include\aprilparticle\ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\Affector.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\Attractor.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\ColorAffector.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\DirectionalForceField.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\LinearDirectionalForce.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\MultiColorAffector.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\Rotator.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
     <ClInclude Include="include\aprilparticle\Swirl.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Affectors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Affector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Attractor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ColorAffector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\CompositeParticleObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DirectionalForceField.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\LinearDirectionalForce.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MultiColorAffector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Particle.cpp">
@@ -86,10 +74,28 @@
     <ClCompile Include="src\ParticleEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Affector.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ColorAffector.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DirectionalForceField.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LinearDirectionalForce.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultiColorAffector.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
     <ClCompile Include="src\Rotator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Affectors</Filter>
     </ClCompile>
     <ClCompile Include="src\Swirl.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

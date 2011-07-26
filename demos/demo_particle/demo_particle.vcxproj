@@ -47,7 +47,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='win32_Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../include;../../../gtypes/include;../../../hltypes/include;../../../april/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../gtypes/include;../../../hltypes/include;../../../april/include;../../../aprilparticle/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -59,25 +59,25 @@
       <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../lib/msvc100;../../bin/$(Configuration);../../../gtypes/bin/$(Configuration);../../../hltypes/bin/$(Configuration);../../../april/bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libapril.lib;libaprilparticle.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../lib/msvc100;../../bin/$(Configuration);../../../gtypes/bin/$(Configuration);../../../hltypes/bin/$(Configuration);../../../april/bin;../../../aprilparticle/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
       <Command>copy ..\..\..\april\bin\*.dll ..\..\bin\$(Configuration)
-copy ..\..\..\hltypes\bin\$(Configuration)\*.dll ..\..\bin\$(Configuration)
 copy ..\..\..\gtypes\bin\$(Configuration)\*.dll ..\..\bin\$(Configuration)
-copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)
-</Command>
+copy ..\..\..\hltypes\bin\$(Configuration)\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\hltypes\bin\hlxml\$(Configuration)\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='win32_Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../include;../../../gtypes/include;../../../hltypes/include;../../../april/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../include;../../../gtypes/include;../../../hltypes/include;../../../april/include;../../../aprilparticle/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -87,8 +87,8 @@ copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../lib;../../bin/$(Configuration);;../../../gtypes/bin/$(Configuration);../../../hltypes/bin/$(Configuration);../../../april/bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libapril.lib;libaprilparticle.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../lib/msvc100;../../bin/$(Configuration);../../../gtypes/bin/$(Configuration);../../../hltypes/bin/$(Configuration);../../../april/bin;../../../aprilparticle/bin/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -96,6 +96,13 @@ copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Command>copy ..\..\..\april\bin\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\gtypes\bin\$(Configuration)\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\hltypes\bin\$(Configuration)\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\hltypes\bin\hlxml\$(Configuration)\*.dll ..\..\bin\$(Configuration)
+copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
