@@ -2,41 +2,28 @@
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
 #include <april/Window.h>
-//#include <aprilparticle/ParticleSystem.h>
+#include <aprilparticle/ParticleSystem.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
-//#include <iostream>
-
 april::ColoredVertex grid[44];
-//april::ParticleSystem *mPartSys;
+april::ParticleSystem* particleSystem = NULL;
 
 void setupGrid(float spacing)
 {
 	int i = 0;
 	for (float s = -5 * spacing; s <= 5 * spacing; i++, s += spacing)
 	{
-		april::ColoredVertex u,v,p,r;
-		u.color = v.color = p.color = r.color = 0xAAAAAAFF;
-		u.x = -5 * spacing;
-		u.y = 0.0f;
-		u.z = s;
-		v.x = 5 * spacing;
-		v.y = 0.0f;
-		v.z = s;
-		grid[i * 4 + 0] = u;
-		grid[i * 4 + 1] = v;
-		
-		p.x = s;
-		p.y = 0.0f;
-		p.z = -5 * spacing;
-		r.x = s;
-		r.y = 0.0f;
-		r.z = 5 * spacing;
-		grid[i * 4 + 2] = p;
-		grid[i * 4 + 3] = r;
+		grid[i * 4 + 0].set(-5 * spacing, 0.0f, s);
+		grid[i * 4 + 0].color = 0x777777FF;
+		grid[i * 4 + 1].set(5 * spacing, 0.0f, s);
+		grid[i * 4 + 1].color = 0x777777FF;
+		grid[i * 4 + 2].set(s, 0.0f, -5 * spacing);
+		grid[i * 4 + 2].color = 0x777777FF;
+		grid[i * 4 + 3].set(s, 0.0f, 5 * spacing);
+		grid[i * 4 + 3].color = 0x777777FF;
 	}
 }
 
@@ -72,8 +59,8 @@ void april_init(const harray<hstr>& args)
 	
 	setupGrid(2.0f);
 	
-	//mPartSys = new april::ParticleSystem();
-	//mPartSys->loadParticleObject("../media/particle.apd");
+	//particleSystem = new april::ParticleSystem();
+	//particleSystem->loadParticleObject("../media/particle.apd");
     
 }
 

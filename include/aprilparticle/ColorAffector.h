@@ -1,6 +1,8 @@
 #ifndef COLOR_AFFECTOR_H
 #define COLOR_AFFECTOR_H
 
+#include <april/Color.h>
+
 #include "Affector.h"
 
 namespace april
@@ -13,21 +15,20 @@ namespace april
 		{
 		public:
 			ColorAffector();
-			ColorAffector(unsigned int endColor);
-			ColorAffector(unsigned int startColor, unsigned int endColor);
+			ColorAffector(april::Color endColor);
+			ColorAffector(april::Color startColor, april::Color endColor);
 			~ColorAffector();
 
-			unsigned int getStartColor() { return this->startColor; }
-			void setStartColor(unsigned int value) { this->startColor = value; }
-			unsigned int getEndColor() { return this->endColor; }
-			void setEndColor(unsigned int value) { this->endColor = value; }
+			april::Color getStartColor() { return this->startColor; }
+			void setStartColor(april::Color value) { this->startColor = value; }
+			april::Color getEndColor() { return this->endColor; }
+			void setEndColor(april::Color value) { this->endColor = value; }
 				
-			void update(Particle* particle, double t);
-			void draw();
+			void update(Particle* particle, float k);
 
 		protected:
-			unsigned int startColor;
-			unsigned int endColor;
+			april::Color startColor;
+			april::Color endColor;
 
 		};
 	

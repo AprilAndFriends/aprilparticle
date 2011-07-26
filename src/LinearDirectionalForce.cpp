@@ -15,15 +15,9 @@ namespace april
 		{
 		}
 		
-		void LinearDirectionalForce::draw()
+		void LinearDirectionalForce::update(Particle* particle, float k)
 		{
-			
-		}
-		
-		void LinearDirectionalForce::update(Particle* particle, double t)
-		{
-			float speed = particle->getSpeed();
-			speed += this->force * (float)t * 0.001f;
+			float speed = particle->getSpeed() + this->force * k * 0.001f;
 			particle->setSpeed(speed);
 			particle->setPosition(particle->getPosition() + this->direction * speed * particle->getDirection().length());
 		}

@@ -1,3 +1,5 @@
+#include <april/Color.h>
+
 #include "Particle.h"
 
 namespace april
@@ -11,10 +13,10 @@ namespace april
 		this->size = 1.0f;
 		this->speed = 0.0f;
 		this->angle = 0.0f;
-		this->color = 0xFFFFFFFF;
+		this->color = APRIL_COLOR_WHITE;
 	}
 	
-	Particle::Particle(float life, gvec3 position, gvec3 direction, float size)
+	Particle::Particle(gvec3 position, gvec3 direction, float life, float size)
 	{
 		this->position = position;
 		this->direction = direction;
@@ -23,7 +25,7 @@ namespace april
 		this->size = size;
 		this->speed = 0.0f;
 		this->angle = 0.0f;
-		this->color = 0xFFFFFFFF;
+		this->color = APRIL_COLOR_WHITE;
 	}
 	
 	Particle::~Particle()

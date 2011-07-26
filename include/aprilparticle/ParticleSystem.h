@@ -21,7 +21,7 @@ namespace april
 		
 		//CompositeParticleObject* getParticleObject(chstr name);
 		CompositeParticleObject* loadParticleObject(chstr filename, chstr name = "");
-		void update(double t);
+		void update(float k);
 		void draw();
 		
 	protected:

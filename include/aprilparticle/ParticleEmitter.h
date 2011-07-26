@@ -34,11 +34,10 @@ namespace april
 		ParticleEmitter(float life, float particlesPerSecond = 60.0f,
 						gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
 		~ParticleEmitter();
-			
+		
 		void setBlendMode(BlendMode value) { this->blendMode = value; }
 		void setParticlesEmissionRate(float value) { this->particlesPerSecond = value; }
 		void setEmitterType(EmitterType value) { this->emitterType = value; }
-		void setLife(float value) { this->life = value; }
 		void setRandomStartLife(bool value) { this->randomLife = value; }
 		void setRandomStartSize(bool value) { this->randomStartSize = value; }
 		void setRandomStartAngle(bool value) { this->randomStartAngle = value; }
@@ -52,7 +51,7 @@ namespace april
 			
 		void addAffector(Affectors::Affector* affector);
 			
-		void update(float t);
+		void update(float k);
 		void createParticle();
 			
 		void draw(gvec3 point, gvec3 up);

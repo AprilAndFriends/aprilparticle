@@ -9,9 +9,9 @@ namespace april
 		{
 		}
 		
-		Attractor::Attractor(gvec3 origin, float radius)
+		Attractor::Attractor(gvec3 position, float radius)
 		{
-			this->origin = origin;
+			this->position = position;
 			this->radius = radius;
 		}
 
@@ -19,23 +19,17 @@ namespace april
 		{
 		}
 		
-		void Attractor::draw()
-		{
-		}
-		
-		void Attractor::update(Particle* particle, double t)
+		void Attractor::update(Particle* particle, float k)
 		{
 			gvec3 position = particle->getPosition();
-			gvec3 mDirection(this->origin - position);
+			gvec3 mDirection(this->position - position);
 			if (mDirection.squaredLength() > 0.02f)
 			{
-				float len = (position - this->origin).length();
-				float lenSquared = (position - this->origin).squaredLength();
-				position += mDirection * (this->radius - (len) / this->radius) * (this->radius / (lenSquared + 1.0f)) * (float)t / this->radius;
+				float len = (position - this->position).length();
+				float lenSquared = (position - this->position).squaredLength();
+				position += mDirection * (this->radius - (len) / this->radius) * (this->radius / (lenSquared + 1.0f)) * k / this->radius;
 				particle->setPosition(position);
 			}
-			//else
-			//	particle->mLife = -1.0;
 		}
 
 	}

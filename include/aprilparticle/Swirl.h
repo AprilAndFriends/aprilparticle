@@ -31,8 +31,7 @@ namespace april
 			bool getClockwise() { return this->clockwise; }
 			void setClockwise(bool value) { this->clockwise = value; }
 			
-			void draw();
-			void update(april::Particle* particle, double t);
+			void update(april::Particle* particle, float k);
 
 		protected:
 			gmat3 _rotation;

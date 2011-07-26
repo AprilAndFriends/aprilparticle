@@ -15,7 +15,7 @@ namespace april
 		{
 		public:
 			DirectionalForceField();
-			DirectionalForceField(float force, gvec3 position, gvec3 direction);
+			DirectionalForceField(gvec3 position, gvec3 direction, float force);
 			~DirectionalForceField();
 
 			gvec3 getPosition() { return this->position; }
@@ -25,7 +25,7 @@ namespace april
 			float getForce() { return this->force; }
 			void setForce(float value) { this->force = value; }
 				
-			void update(Particle* article, double t);
+			void update(Particle* article, float k);
 			void draw();
 
 		protected:

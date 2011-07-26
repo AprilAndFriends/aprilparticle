@@ -11,12 +11,10 @@ namespace april
 {
 	ParticleSystem::ParticleSystem() 
 	{
-		
 	}
 	
 	ParticleSystem::~ParticleSystem()
 	{
-		
 	}
 	
 	CompositeParticleObject* ParticleSystem::loadParticleObject(chstr filename, chstr name)
@@ -34,28 +32,28 @@ namespace april
 		
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
-		foreach_xmlnode(node, root)
+		foreach_xmlnode (node, root)
 		{
 			if (*node != "text")
 			{
 				printf("\n%s\n", (const char*)node->name);
 			}
-			foreach_xmlproperty(prop, node)
+			foreach_xmlproperty (prop, node)
 			{
 				printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
 			}
-			foreach_xmlnode(child, node)
+			foreach_xmlnode (child, node)
 			{
 				if (*child != "text")
 				{
 					printf("\n%s\n", (const char*)child->name);
 				}
-				foreach_xmlnode(cchild, child)
+				foreach_xmlnode (cchild, child)
 				{
-					if(*cchild != "text")
+					if (*cchild != "text")
 					{
 						printf("\t\t%s - ", (const char*)cchild->name);
-						foreach_xmlproperty(pprop, cchild)
+						foreach_xmlproperty (pprop, cchild)
 						{
 							printf("%s : %s ", pprop->name().c_str(), pprop->value().c_str());
 							if (*cchild == "Affector")
@@ -92,7 +90,6 @@ namespace april
 						}
 						printf("\n");
 					}
-						
 				}
 			}
 		}

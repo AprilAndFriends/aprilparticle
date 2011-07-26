@@ -13,18 +13,6 @@
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
-april::ParticleEmitter flame(4, 32);
-april::ParticleEmitter bubbles(6, 50);
-april::ParticleEmitter vortex(2, 200);
-
-april::Affectors::DirectionalForceField directionalForce(4.0f, gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
-april::Affectors::ColorAffector colorFader(0x1131FFFF, 0x22000000);
-april::Affectors::MultiColorAffector colorAffector1, colorAffector2;
-april::Affectors::LinearDirectionalForce linearforce1(gvec3(0.0f, 1.0f, 0.0f), 18.0f);
-april::Affectors::Rotator rotator(50.0f);
-april::Affectors::Attractor attractor1(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
-april::Affectors::Swirl swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f);
-
 april::Texture* jet;
 april::Texture* plasmaball;
 april::Texture* fire;
@@ -32,61 +20,62 @@ april::Texture* red;
 april::Texture* raindrop;
 april::Texture* bubble;
 
+april::ParticleEmitter* flame = new april::ParticleEmitter(4.0f, 32.0f);
+april::ParticleEmitter* bubbles = new april::ParticleEmitter(6.0f, 50.0f);
+april::ParticleEmitter* vortex = new april::ParticleEmitter(2.0f, 200.0f);
+
+april::Affectors::DirectionalForceField* directionalForce = new april::Affectors::DirectionalForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
+april::Affectors::ColorAffector* colorFader = new april::Affectors::ColorAffector(april::Color(0x1131FFFF), april::Color(0x22000000));
+april::Affectors::MultiColorAffector* colorAffector1 = new april::Affectors::MultiColorAffector();
+april::Affectors::MultiColorAffector* colorAffector2 = new april::Affectors::MultiColorAffector();
+april::Affectors::LinearDirectionalForce* linearforce1 = new april::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), 18.0f);
+april::Affectors::Rotator* rotator = new april::Affectors::Rotator(50.0f);
+april::Affectors::Attractor* attractor1 = new april::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
+april::Affectors::Swirl* swirl = new april::Affectors::Swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f);
+
 // kvazar
-april::ParticleEmitter quazar_disc(4, 240);
-april::ParticleEmitter quazar_jet_top(4, 120);
-april::ParticleEmitter quazar_jet_bottom(4, 120);
-april::Affectors::LinearDirectionalForce top(gvec3(1.0f, 0.0f, 0.0f), 24), bottom(gvec3(-1.0f, 0.0f, 0.0f), 24);
-april::Affectors::Attractor gravity(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
-april::Affectors::Swirl spin(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.1f);
-april::Affectors::Attractor inverse_gravitiy(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
-april::Affectors::Attractor attraction_point_bottom(gvec3(-10.0f, 0.0f, 10.0f), 6.0f);
-april::Affectors::Attractor attraction_point_top(gvec3(10.0f, 0.0f, 10.0f), 6.0f);
+april::ParticleEmitter* quazar_disc = new april::ParticleEmitter(4.0f, 240.0f);
+april::ParticleEmitter* quazar_jet_top = new april::ParticleEmitter(4.0f, 120.0f);
+april::ParticleEmitter* quazar_jet_bottom = new april::ParticleEmitter(4.0f, 120.0f);
+april::Affectors::LinearDirectionalForce* top = new april::Affectors::LinearDirectionalForce(gvec3(1.0f, 0.0f, 0.0f), 24);
+april::Affectors::LinearDirectionalForce* bottom = new april::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 24);
+april::Affectors::Attractor* gravity = new april::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
+april::Affectors::Swirl* spin = new april::Affectors::Swirl(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.1f);
+april::Affectors::Attractor* inverse_gravitiy = new april::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
+april::Affectors::Attractor* attraction_point_bottom = new april::Affectors::Attractor(gvec3(-10.0f, 0.0f, 10.0f), 6.0f);
+april::Affectors::Attractor* attraction_point_top = new april::Affectors::Attractor(gvec3(10.0f, 0.0f, 10.0f), 6.0f);
 
 // kisa
-april::ParticleEmitter rain(4, 60);
-april::Affectors::LinearDirectionalForce gravity_rain(gvec3(0.0f, 1.0f, 0.0f), -12);
+april::ParticleEmitter* rain = new april::ParticleEmitter(4.0f);
+april::Affectors::LinearDirectionalForce* gravity_rain = new april::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -12.0f);
 
 // twirl
-april::ParticleEmitter twirl1(6, 100);
-april::Affectors::DirectionalForceField force1(4.0, gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f));
-april::Affectors::DirectionalForceField force2(4.0, gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f));
+april::ParticleEmitter* twirl1 = new april::ParticleEmitter(6.0f, 100.0f);
+april::Affectors::DirectionalForceField* force1 = new april::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
+april::Affectors::DirectionalForceField* force2 = new april::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
 
-april::ParticleEmitter twirl2(6, 100);
-april::Affectors::DirectionalForceField force3(4.0, gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f));
-april::Affectors::DirectionalForceField force4(4.0, gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f));
+april::ParticleEmitter* twirl2 = new april::ParticleEmitter(6.0f, 100.0f);
+april::Affectors::DirectionalForceField* force3 = new april::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
+april::Affectors::DirectionalForceField* force4 = new april::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
 
-april::Affectors::LinearDirectionalForce wind(gvec3(-1.0f, 0.0f, 0.0f), 12.0f);
-april::Affectors::Attractor grav(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
-
+april::Affectors::LinearDirectionalForce* wind = new april::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 12.0f);
+april::Affectors::Attractor* grav = new april::Affectors::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
 
 april::ColoredVertex grid[44];
-
-april::ColoredVertex u, v, p, r;
 
 void setupGrid(float spacing)
 {
 	int i = 0;
 	for (float s = -5 * spacing; s <= 5 * spacing; i++, s += spacing)
 	{
-		u.color = v.color = p.color = r.color = 0x222222FF;
-		u.x = -5 * spacing;
-		u.y = 0.0f;
-		u.z = s;
-		v.x = 5 * spacing;
-		v.y = 0.0f;
-		v.z = s;
-		grid[i * 4 + 0] = u;
-		grid[i * 4 + 1] = v;
-		
-		p.x = s;
-		p.y = 0.0f;
-		p.z = -5 * spacing;
-		r.x = s;
-		r.y = 0.0f;
-		r.z = 5 * spacing;
-		grid[i * 4 + 2] = p;
-		grid[i * 4 + 3] = r;
+		grid[i * 4 + 0].set(-5 * spacing, 0.0f, s);
+		grid[i * 4 + 0].color = 0x777777FF;
+		grid[i * 4 + 1].set(5 * spacing, 0.0f, s);
+		grid[i * 4 + 1].color = 0x777777FF;
+		grid[i * 4 + 2].set(s, 0.0f, -5 * spacing);
+		grid[i * 4 + 2].color = 0x777777FF;
+		grid[i * 4 + 3].set(s, 0.0f, 5 * spacing);
+		grid[i * 4 + 3].color = 0x777777FF;
 	}
 }
 
@@ -110,53 +99,37 @@ bool render(float k)
 	april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
 	drawGrid();
 	
-	flame.update(k);
-	flame.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	flame->update(k);
+	flame->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
-	bubbles.update(k);
-	bubbles.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	bubbles->update(k);
+	bubbles->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
-	vortex.update(k);
-	vortex.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	vortex->update(k);
+	vortex->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
 	// kvazar
-	quazar_disc.update(k);
-	quazar_jet_bottom.update(k);
-	quazar_jet_top.update(k);
-	quazar_disc.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	quazar_jet_bottom.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	quazar_jet_top.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	quazar_disc->update(k);
+	quazar_jet_bottom->update(k);
+	quazar_jet_top->update(k);
+	quazar_disc->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	quazar_jet_bottom->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	quazar_jet_top->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
 	// rain
-	rain.update(k);
-	rain.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	rain->update(k);
+	rain->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
-	gvec3 direction;
-	direction = force1.getDirection();
-	direction.x = sin(angle * 0.067f);
-	direction.z = cos(angle * 0.033f);
-	force1.setDirection(direction);
+	force1->setDirection(gvec3(sin(angle * 0.067f), 0.0f, cos(angle * 0.033f)));
+	force2->setDirection(gvec3(sin(angle * 0.067f), sin(angle * 0.033f), 0.0f));
+	force3->setDirection(gvec3(cos(angle * 0.033f), 0.0f, sin(angle * 0.067f)));
+	force4->setDirection(gvec3(sin(angle * 0.033f), sin(angle * 0.067f), 0.0f));
 	
-	direction = force2.getDirection();
-	direction.y = sin(angle * 0.033f);
-	direction.x = sin(angle * 0.067f);
-	force2.setDirection(direction);
+	twirl1->update(k);
+	twirl1->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
-	direction = force3.getDirection();
-	direction.z = sin(angle * 0.067f);
-	direction.x = cos(angle * 0.033f);
-	force3.setDirection(direction);
-	
-	direction = force4.getDirection();
-	direction.x = sin(angle * 0.033f);
-	direction.y = sin(angle * 0.067f);
-	force4.setDirection(direction);
-	
-	twirl1.update(k);
-	twirl1.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
-	twirl2.update(k);
-	twirl2.draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+	twirl2->update(k);
+	twirl2->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
 	
 	return true;
 }
@@ -165,132 +138,188 @@ void setupQuazar()
 {
 	gvec3 position;
 
-	quazar_disc.setMaxParticles(960);
-	quazar_jet_top.setMaxParticles(480);
-	quazar_jet_bottom.setMaxParticles(480);
+	quazar_disc->setMaxParticles(960);
+	quazar_jet_top->setMaxParticles(480);
+	quazar_jet_bottom->setMaxParticles(480);
 	
-	quazar_disc.setBlendMode(april::ADD);
-	quazar_jet_top.setBlendMode(april::ADD);
-	quazar_jet_bottom.setBlendMode(april::ADD);
+	quazar_disc->setBlendMode(april::ADD);
+	quazar_jet_top->setBlendMode(april::ADD);
+	quazar_jet_bottom->setBlendMode(april::ADD);
 	
-	quazar_disc.setTexture(plasmaball);
-	quazar_jet_bottom.setTexture(jet);
-	quazar_jet_top.setTexture(jet);
+	quazar_disc->setTexture(plasmaball);
+	quazar_jet_bottom->setTexture(jet);
+	quazar_jet_top->setTexture(jet);
 	
-	quazar_disc.setEmitterType(april::ET_HollowSphere);
-	quazar_disc.setEmitterVolume(6.0f, 6.0f, 1.0f);
-	quazar_disc.setPosition(gvec3(0.0f, 0.0f, 10.0f));
-	quazar_disc.setSize(0.3f);
-	quazar_disc.addAffector(&gravity);
-	quazar_disc.addAffector(&spin);
+	quazar_disc->setEmitterType(april::ET_HollowSphere);
+	quazar_disc->setEmitterVolume(6.0f, 6.0f, 1.0f);
+	quazar_disc->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_disc->setSize(0.3f);
+	quazar_disc->addAffector(gravity);
+	quazar_disc->addAffector(spin);
 	
-	quazar_jet_bottom.setEmitterType(april::ET_Sphere);
-	quazar_jet_bottom.setEmitterVolume(1.0f, 1.0f, 1.0f);
-	quazar_jet_bottom.setPosition(gvec3(0.0f, 0.0f, 10.0f));
-	quazar_jet_bottom.setSize(0.3f);
-	quazar_jet_bottom.addAffector(&bottom);
-	quazar_jet_bottom.addAffector(&inverse_gravitiy);
-	quazar_jet_bottom.addAffector(&attraction_point_bottom);
+	quazar_jet_bottom->setEmitterType(april::ET_Sphere);
+	quazar_jet_bottom->setEmitterVolume(1.0f, 1.0f, 1.0f);
+	quazar_jet_bottom->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_jet_bottom->setSize(0.3f);
+	quazar_jet_bottom->addAffector(bottom);
+	quazar_jet_bottom->addAffector(inverse_gravitiy);
+	quazar_jet_bottom->addAffector(attraction_point_bottom);
 	
-	quazar_jet_top.setEmitterType(april::ET_Sphere);
-	quazar_jet_top.setEmitterVolume(1.0f, 1.0f, 1.0f);
-	quazar_jet_top.setPosition(gvec3(0.0f, 0.0f, 10.0f));
-	quazar_jet_top.setSize(0.3f);
-	quazar_jet_top.addAffector(&top);
-	quazar_jet_top.addAffector(&inverse_gravitiy);
-	quazar_jet_top.addAffector(&attraction_point_top);
+	quazar_jet_top->setEmitterType(april::ET_Sphere);
+	quazar_jet_top->setEmitterVolume(1.0f, 1.0f, 1.0f);
+	quazar_jet_top->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_jet_top->setSize(0.3f);
+	quazar_jet_top->addAffector(top);
+	quazar_jet_top->addAffector(inverse_gravitiy);
+	quazar_jet_top->addAffector(attraction_point_top);
 	
 }
 
 void setupTwirl()
 {
-	twirl1.setMaxParticles(600);
-	twirl1.setBlendMode(april::ADD);
-	twirl1.setTexture(red);
-	twirl1.setEmitterType(april::ET_Point);
-	twirl1.setPosition(gvec3(10.0f, 0.0f, -10.0f));
-	twirl1.setRandomStartSize(true);
-	twirl1.setSizeRange(0.1f, 0.4f);
-	twirl1.addAffector(&force1);
-	twirl1.addAffector(&force2);
-	twirl1.addAffector(&wind);
-	twirl1.addAffector(&grav);
+	twirl1->setMaxParticles(600);
+	twirl1->setBlendMode(april::ADD);
+	twirl1->setTexture(red);
+	twirl1->setEmitterType(april::ET_Point);
+	twirl1->setPosition(gvec3(10.0f, 0.0f, -10.0f));
+	twirl1->setRandomStartSize(true);
+	twirl1->setSizeRange(0.1f, 0.4f);
+	twirl1->addAffector(force1);
+	twirl1->addAffector(force2);
+	twirl1->addAffector(wind);
+	twirl1->addAffector(grav);
 	
-	twirl2.setMaxParticles(600);
-	twirl2.setBlendMode(april::ADD);
-	twirl2.setTexture(plasmaball);
-	twirl2.setEmitterType(april::ET_Point);
-	twirl2.setPosition(gvec3(10.0f, 0.0f, -10.0f));
-	twirl2.setRandomStartSize(true);
-	twirl2.setSizeRange(0.1f, 0.4f);
-	twirl2.addAffector(&force3);
-	twirl2.addAffector(&force4);
-	twirl2.addAffector(&wind);
-	twirl2.addAffector(&grav);
+	twirl2->setMaxParticles(600);
+	twirl2->setBlendMode(april::ADD);
+	twirl2->setTexture(plasmaball);
+	twirl2->setEmitterType(april::ET_Point);
+	twirl2->setPosition(gvec3(10.0f, 0.0f, -10.0f));
+	twirl2->setRandomStartSize(true);
+	twirl2->setSizeRange(0.1f, 0.4f);
+	twirl2->addAffector(force3);
+	twirl2->addAffector(force4);
+	twirl2->addAffector(wind);
+	twirl2->addAffector(grav);
 }
 
 void setupRain()
 {
-	rain.setMaxParticles(240);
-	rain.setBlendMode(april::ADD);
-	rain.setTexture(raindrop);
-	rain.setEmitterType(april::ET_Box);
-	rain.setEmitterVolume(6.0f, 0.0f, 6.0f);
-	twirl1.setPosition(gvec3(10.0f, 0.0f, -10.0f));
-	rain.setPosition(gvec3(-10.0f, -10.0f, 6.0f));
-	rain.setRandomStartSize(true);
-	rain.setSizeRange(0.1f, 0.4f);
-	rain.addAffector(&gravity_rain);
+	rain->setMaxParticles(240);
+	rain->setBlendMode(april::ADD);
+	rain->setTexture(raindrop);
+	rain->setEmitterType(april::ET_Box);
+	rain->setEmitterVolume(6.0f, 0.0f, 6.0f);
+	twirl1->setPosition(gvec3(10.0f, 0.0f, -10.0f));
+	rain->setPosition(gvec3(-10.0f, -10.0f, 6.0f));
+	rain->setRandomStartSize(true);
+	rain->setSizeRange(0.1f, 0.4f);
+	rain->addAffector(gravity_rain);
 }
 
 void setupFlame()
 {
-	flame.setMaxParticles(128);
-	flame.setBlendMode(april::ADD);
-	flame.setTexture(fire);
-	flame.setEmitterType(april::ET_HollowSphere);
-	flame.setEmitterVolume(2.0f, 4.0f, 2.0f);
-	flame.setPosition(gvec3(-10.0f, 0.0f, 0.0f));
-	flame.setRandomStartAngle(true);
-	flame.setRandomStartSize(true);
-	flame.setSizeRange(2.4f, 3.4f);
-	flame.addAffector(&colorAffector1);
-	flame.addAffector(&linearforce1);
-	flame.addAffector(&rotator);
+	flame->setMaxParticles(128);
+	flame->setBlendMode(april::ADD);
+	flame->setTexture(fire);
+	flame->setEmitterType(april::ET_HollowSphere);
+	flame->setEmitterVolume(2.0f, 4.0f, 2.0f);
+	flame->setPosition(gvec3(-10.0f, 0.0f, 0.0f));
+	flame->setRandomStartAngle(true);
+	flame->setRandomStartSize(true);
+	flame->setSizeRange(2.4f, 3.4f);
+	hmap<float, april::Color> colors1;
+	colors1[0.0f] = april::Color(0xFF000000);
+	colors1[0.1f] = april::Color(0xFF6432F3);
+	colors1[0.65f] = april::Color(0x3F3F3FAF);
+	colors1[1.0f] = april::Color(0x00000000);
+	colorAffector1->setColors(colors1);
+	flame->addAffector(colorAffector1);
+	flame->addAffector(linearforce1);
+	flame->addAffector(rotator);
 }
 
 void setupBubbles()
 {
-	bubbles.setMaxParticles(300);
-	bubbles.setBlendMode(april::DEFAULT);
-	bubbles.setTexture(bubble);
-	bubbles.setEmitterType(april::ET_Cylinder);
-	bubbles.setEmitterVolume(5.0f, 4.0f, 5.0f);
-	bubbles.setPosition(gvec3(0.0f, 0.0f, 0.0f));
-	bubbles.setRandomStartSize(true);
-	bubbles.setSizeRange(0.4f, 0.8f);
-	bubbles.addAffector(&colorAffector2);
-	bubbles.addAffector(&directionalForce);
+	bubbles->setMaxParticles(300);
+	bubbles->setBlendMode(april::DEFAULT);
+	bubbles->setTexture(bubble);
+	bubbles->setEmitterType(april::ET_Cylinder);
+	bubbles->setEmitterVolume(5.0f, 4.0f, 5.0f);
+	bubbles->setPosition(gvec3(0.0f, 0.0f, 0.0f));
+	bubbles->setRandomStartSize(true);
+	bubbles->setSizeRange(0.4f, 0.8f);
+	hmap<float, april::Color> colors2;
+	colors2[0.0f] = april::Color(0xFFFFFF00);
+	colors2[0.04f] = april::Color(0xFFFFFFFF);
+	colors2[0.96f] = april::Color(0xFFFFFFFF);
+	colors2[1.0f] = april::Color(0xFFFFFF00);
+	colorAffector2->setColors(colors2);
+	bubbles->addAffector(colorAffector2);
+	bubbles->addAffector(directionalForce);
 }
 
 void setupVortex()
 {
-	vortex.setMaxParticles(800);
-	vortex.setBlendMode(april::ADD);
-	vortex.setTexture(red);
-	vortex.setEmitterType(april::ET_Sphere);
-	vortex.setEmitterVolume(8.0f, 0.0f, 8.0f);
-	vortex.setPosition(gvec3(10.0f, 0.0f, 0.0f));
-	vortex.setSize(0.4f);
-	vortex.addAffector(&swirl);
-	vortex.addAffector(&attractor1);
+	vortex->setMaxParticles(800);
+	vortex->setBlendMode(april::ADD);
+	vortex->setTexture(red);
+	vortex->setEmitterType(april::ET_Sphere);
+	vortex->setEmitterVolume(8.0f, 0.0f, 8.0f);
+	vortex->setPosition(gvec3(10.0f, 0.0f, 0.0f));
+	vortex->setSize(0.4f);
+	vortex->addAffector(swirl);
+	vortex->addAffector(attractor1);
 }
 
 void april_init(const harray<hstr>& args)
 {
+#ifdef __APPLE__
+	// On MacOSX, the current working directory is not set by
+	// the Finder, since you are expected to use Core Foundation
+	// or ObjC APIs to find files. 
+	// So, when porting you probably want to set the current working
+	// directory to something sane (e.g. .../Resources/ in the app
+	// bundle).
+	// In this case, we set it to parent of the .app bundle.
+	{	// curly braces in order to localize variables 
+
+		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+		
+		// let's hope chdir() will be happy with utf8 encoding
+		const char* cpath=CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
+		char* cpath_alloc=0;
+		if(!cpath)
+		{
+			// CFStringGetCStringPtr is allowed to return NULL. bummer.
+			// we need to use CFStringGetCString instead.
+			cpath_alloc = (char*)malloc(CFStringGetLength(path)+1);
+			CFStringGetCString(path, cpath_alloc, CFStringGetLength(path)+1, kCFStringEncodingUTF8);
+		}
+		else {
+			// even though it didn't return NULL, we still want to slice off bundle name.
+			cpath_alloc = (char*)malloc(CFStringGetLength(path)+1);
+			strcpy(cpath_alloc, cpath);
+		}
+		// just in case / is appended to .app path for some reason
+		if(cpath_alloc[CFStringGetLength(path)-1]=='/')
+			cpath_alloc[CFStringGetLength(path)-1] = 0;
+		
+		// replace pre-.app / with a null character, thus
+		// cutting off .app's name and getting parent of .app.
+		strrchr(cpath_alloc, '/')[0] = 0;
+							   
+		// change current dir using posix api
+		chdir(cpath_alloc);
+		
+		free(cpath_alloc); // even if null, still ok
+		CFRelease(path);
+		CFRelease(url);
+	}
+#endif
 	april::init();
 	april::createRenderSystem("");
-	april::createRenderTarget(800, 600, false, "AprilParticle Demo");
+	april::createRenderTarget(1024, 768, false, "AprilParticle Demo");
 	april::rendersys->getWindow()->setUpdateCallback(render);
 	setupGrid(2.0f);
 	
@@ -300,30 +329,13 @@ void april_init(const harray<hstr>& args)
 	fire = april::rendersys->loadTexture("../media/partikl_strange.png");
 	raindrop = april::rendersys->loadTexture("../media/raindrop.png");
 	jet = april::rendersys->loadTexture("../media/quazar_jet.png");
-	
+
 	setupFlame();
 	setupBubbles();
 	setupVortex();
 	setupQuazar();
 	setupRain();
 	setupTwirl();
-	
-	hmap<float, unsigned int> colors1;
-	colors1[0.0f]  = 0xFF000000;
-	colors1[0.1f] = 0xFF6432F3;
-	colors1[0.65f] = 0x3F3F3FAF;
-	colors1[1.0f]  = 0x00000000;
-	
-	colorAffector1.setColors(colors1);
-	
-	hmap<float, unsigned int> colors2;
-	colors2[0.0f]  = 0xFFFFFF00;
-	colors2[0.04f] = 0xFFFFFFFF;
-	colors2[0.96f] = 0xFFFFFFFF;
-	colors2[1.0f]  = 0xFFFFFF00;
-	
-	colorAffector2.setColors(colors2);
-	
 	
 	//emitter->addAffector(&force1);
 	//emitter->addAffector(&colorFader);
@@ -337,3 +349,4 @@ void april_destroy()
 {
 	april::destroy();
 }
+

@@ -18,8 +18,7 @@ namespace april
 			float getRotationSpeed() { return this->rotationSpeed; }
 			void setRotationSpeed(float value) { this->rotationSpeed = value; }
 				
-			void update(Particle* particle, double t);
-			void draw();
+			void update(Particle* particle, float k);
 
 		protected:
 			float rotationSpeed;

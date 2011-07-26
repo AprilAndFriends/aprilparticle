@@ -175,21 +175,21 @@ namespace april
 			}
 			case april::ET_Ring:
 			{
-				// 2do
+				// TODO
 				npos = this->position;
 				break;
 			}
 		}
 
-		Particle particle(this->life, npos, this->direction, 0.0f);
+		Particle particle(npos, this->direction, this->life, 0.0f);
 		particle.setSize(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size);
 		particle.setAngle(hrandf((float)(2 * G_PI)));
 		this->particles.push_back(particle);
 	}
 	
-	void ParticleEmitter::update(float t)
+	void ParticleEmitter::update(float k)
 	{
-		this->counter += t;
+		this->counter += k;
 		if (this->particlesPerSecond > 0)
 		{
 			float cs = 1.0f / this->particlesPerSecond;
@@ -211,10 +211,10 @@ namespace april
 		// TODO - change to a foreach_q iterator
 		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
 		{
-			(*it).setLife((*it).getLife() - t);
-			for (std::list<Affectors::Affector*>::iterator jt = this->affectors.begin(); jt != this->affectors.end(); jt++)
+			(*it).setLife((*it).getLife() - k);
+			for (hlist<Affectors::Affector*>::iterator jt = this->affectors.begin(); jt != this->affectors.end(); jt++)
 			{
-				(*jt)->update(&(*it), t);
+				(*jt)->update(&(*it), k);
 			}
 		}
 		while (this->particles.size() > 0 && this->particles.front().getLife() < 0.0f)
@@ -232,17 +232,26 @@ namespace april
 	void ParticleEmitter::draw(gvec3 point, gvec3 up)
 	{
 		gmat4 billboard;
-		gvec3 v0,v1,v2,v3;
+		gvec3 v0;
+		gvec3 v1;
+		gvec3 v2;
+		gvec3 v3;
 		gmat3 rot;
 		float s;
 		
+		v[0].u = 1.0f;	v[0].v = 1.0f;
+		v[1].u = 0.0f;	v[1].v = 1.0f;
+		v[2].u = 1.0f;	v[2].v = 0.0f;
+		v[3].u = 0.0f;	v[3].v = 1.0f;
+		v[4].u = 1.0f;	v[4].v = 0.0f;
+		v[5].u = 0.0f;	v[5].v = 0.0f;
 		
 		int i = 0;
+		unsigned int color;
 		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
 		{
 			billboard.lookAt((*it).getPosition(), point - (*it).getPosition(), up);
 			s = (*it).getSize();
-			
 			v0 = gvec3(-s / 2, -s / 2, 0.0f);
 			v1 = gvec3(s / 2, -s / 2, 0.0f);
 			v2 = gvec3(-s / 2, s / 2, 0.0f);
@@ -260,14 +269,14 @@ namespace april
 			v2 = billboard * v2;
 			v3 = billboard * v3;
 			
-			unsigned int color = (*it).getColor();
-			v[0].x = v0.x;	v[0].y = v0.y;	v[0].z = v0.z;	v[0].u = 1.0f;	v[0].v = 1.0f;	v[0].color = color;
-			v[1].x = v1.x;	v[1].y = v1.y;	v[1].z = v1.z;	v[1].u = 0.0f;	v[1].v = 1.0f;	v[1].color = color;
-			v[2].x = v2.x;	v[2].y = v2.y;	v[2].z = v2.z;	v[2].u = 1.0f;	v[2].v = 0.0f;	v[2].color = color;
+			color = (unsigned int)(*it).getColor();
+			v[0] = v0;	v[0].color = color;
+			v[1] = v1;	v[1].color = color;
+			v[2] = v2;	v[2].color = color;
 			
-			v[3].x = v1.x;	v[3].y = v1.y;	v[3].z = v1.z;	v[3].u = 0.0f;	v[3].v = 1.0f;	v[3].color = color;
-			v[4].x = v2.x;	v[4].y = v2.y;	v[4].z = v2.z;	v[4].u = 1.0f;	v[4].v = 0.0f;	v[4].color = color;
-			v[5].x = v3.x;	v[5].y = v3.y;	v[5].z = v3.z;	v[5].u = 0.0f;	v[5].v = 0.0f;	v[5].color = color;
+			v[3] = v1;	v[3].color = color;
+			v[4] = v2;	v[4].color = color;
+			v[5] = v3;	v[5].color = color;
 			
 			this->_triangleBatch[i * 6 + 0] = v[0];
 			this->_triangleBatch[i * 6 + 1] = v[1];
@@ -277,7 +286,6 @@ namespace april
 			this->_triangleBatch[i * 6 + 5] = v[5];
 			
 		}
-		
 		if (this->texture != NULL)
 		{
 			april::rendersys->setTexture(this->texture);

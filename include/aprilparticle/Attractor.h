@@ -15,19 +15,18 @@ namespace april
 		{
 		public:
 			Attractor();
-			Attractor(gvec3 origin, float radius);
+			Attractor(gvec3 position, float radius);
 			~Attractor();
 
-			gvec3 getOrigin() { return this->origin; }
-			void setOrigin(gvec3 value) { this->origin = value; }
+			gvec3 getPosition() { return this->position; }
+			void setPosition(gvec3 value) { this->position = value; }
 			float getRadius() { return this->radius; }
 			void setRadius(float value) { this->radius = value; }
 				
-			void draw();
-			void update(Particle* particle, double t);
+			void update(Particle* particle, float k);
 
 		protected:
-			gvec3 origin;
+			gvec3 position;
 			float radius;
 
 		};

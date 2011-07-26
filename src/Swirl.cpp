@@ -31,11 +31,7 @@ namespace april
 		{
 		}
 		
-		void Swirl::draw()
-		{
-		}
-		
-		void Swirl::update(april::Particle* particle, double t)
+		void Swirl::update(april::Particle* particle, float k)
 		{
 			gvec3 position = particle->getPosition();
 			gvec3 direction = (this->position - position);
@@ -43,7 +39,7 @@ namespace april
 			if (sqlen < this->range * this->range * 0.25)
 			{
 				float clockDirection = (this->clockwise ? -1.0f : 1.0f);
-				this->_rotation.setRotation3D(this->up, (1.0f - sqrt(sqlen) / this->range) * this->force * (float)t * clockDirection * 360.0f);
+				this->_rotation.setRotation3D(this->up, (1.0f - sqrt(sqlen) / this->range) * this->force * k * clockDirection * 360.0f);
 				gvec3 pos;
 				particle->setPosition(this->position + this->_rotation * (position - this->position));
 			}

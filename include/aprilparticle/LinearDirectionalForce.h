@@ -22,8 +22,7 @@ namespace april
 			float getForce() { return this->force; }
 			void setForce(float value) { this->force = value; }
 
-			void draw();
-			void update(Particle* particle, double t);
+			void update(Particle* particle, float k);
 
 		protected:
 			gvec3 direction;

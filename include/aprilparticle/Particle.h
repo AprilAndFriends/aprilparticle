@@ -1,6 +1,7 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
+#include <april/Color.h>
 #include <gtypes/Vector3.h>
 
 #include "aprilparticleExport.h"
@@ -11,7 +12,7 @@ namespace april
 	{
 	public:
 		Particle();
-		Particle(float life, gvec3 position, gvec3 direction, float size);
+		Particle(gvec3 position, gvec3 direction, float life, float size);
 		virtual ~Particle();
 
 		gvec3 getPosition() { return this->position; }
@@ -28,8 +29,8 @@ namespace april
 		void setSpeed(float value) { this->speed = value; }
 		float getAngle() { return this->angle; }
 		void setAngle(float value) { this->angle = value; }
-		unsigned int getColor() { return this->color; }
-		void setColor(unsigned int value) { this->color = value; }
+		april::Color getColor() { return this->color; }
+		void setColor(april::Color value) { this->color = value; }
 
 	protected:
 		gvec3 position;
@@ -39,10 +40,9 @@ namespace april
 		float size;
 		float speed;
 		float angle;
-		unsigned int color;
+		april::Color color;
 
 	};
 
 }
-
-#endif // _PARTICLE_H_
+#endif

@@ -12,15 +12,16 @@ namespace april
 		class aprilparticleExport Affector
 		{
 		public:
-			Affector();
-			virtual ~Affector();
+			Affector() { }
+			virtual ~Affector() { }
 				
-			virtual void update(Particle* particle, double t);
-			virtual void draw();
+			virtual void update(Particle* particle, float k) { }
+			virtual void draw() { }
 
 		};
 
 	}
+
 }
 
 #endif

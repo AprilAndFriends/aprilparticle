@@ -15,13 +15,9 @@ namespace april
 		{
 		}
 		
-		void Rotator::draw()
+		void Rotator::update(Particle* particle, float k)
 		{
-		}
-		
-		void Rotator::update(Particle* particle, double t)
-		{
-			particle->setAngle(particle->getAngle() + this->rotationSpeed * (float)t);
+			particle->setAngle(particle->getAngle() + this->rotationSpeed * k);
 		}
 
 	}
