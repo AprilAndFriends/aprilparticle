@@ -33,6 +33,7 @@ namespace april
 		void setColor(april::Color value) { this->color = value; }
 
 		float getLifeProgressRatio();
+		bool isDead();
 
 		void update(float k);
 

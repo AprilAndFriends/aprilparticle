@@ -38,6 +38,11 @@ namespace april
 		return (1.0f - (this->totalLife > 0.0f ? hclamp(this->life / this->totalLife, 0.0f, 1.0f) : 1.0f));
 	}
 
+	bool Particle::isDead()
+	{
+		return (this->life <= 0.0f);
+	}
+
 	void Particle::update(float k)
 	{
 		this->life -= k;
