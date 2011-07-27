@@ -64,7 +64,7 @@ namespace april
 			}
 			if (i < size)
 			{
-				ratio = 1.0f - (this->times[i + 1] - ratio) / (this->times[i + 1] - this->times[i]);
+				ratio = (this->times[i + 1] - ratio) / (this->times[i + 1] - this->times[i]);
 				particle->setColor(this->colors[i] * ratio + this->colors[i + 1] * (1.0f - ratio));
 			}
 			else

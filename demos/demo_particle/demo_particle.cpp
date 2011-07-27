@@ -252,7 +252,7 @@ void setupBubbles()
 	hmap<float, april::Color> colors2;
 	colors2[0.0f] = april::Color(0xFFFFFF00);
 	colors2[0.04f] = april::Color(0xFFFFFFFF);
-	colors2[0.96f] = april::Color(0xFFFFFFFF);
+	colors2[0.99f] = april::Color(0xFFFFFFFF);
 	colors2[1.0f] = april::Color(0xFFFFFF00);
 	colorAffector2->setTimeColors(colors2);
 	bubbles->addAffector(colorAffector2);
