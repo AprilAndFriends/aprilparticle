@@ -32,6 +32,10 @@ namespace april
 		april::Color getColor() { return this->color; }
 		void setColor(april::Color value) { this->color = value; }
 
+		float getLifeProgressRatio();
+
+		void update(float k);
+
 	protected:
 		gvec3 position;
 		gvec3 direction;

@@ -32,9 +32,7 @@ namespace april
 	
 		void ColorAffector::update(Particle* particle, float k)
 		{
-			float life = particle->getLife();
-			float totalLife = particle->getTotalLife();
-			float ratio = (totalLife > 0.0f ? hmax(life / totalLife, 0.0f) : 1.0f);
+			float ratio = particle->getLifeProgressRatio();
 			particle->setColor(this->startColor * ratio + this->endColor * (1.0f - ratio));
 		}
 		

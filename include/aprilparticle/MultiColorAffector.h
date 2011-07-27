@@ -2,6 +2,7 @@
 #define MULTI_COLOR_AFFECTOR_H
 
 #include <april/Color.h>
+#include <hltypes/harray.h>
 #include <hltypes/hmap.h>
 
 #include "Affector.h"
@@ -17,17 +18,24 @@ namespace april
 		public:
 			
 			MultiColorAffector();
-			MultiColorAffector(hmap<float, april::Color> colors);
+			MultiColorAffector(hmap<float, april::Color> timeColors);
 			~MultiColorAffector();
 
-			hmap<float, april::Color> getColors() { return this->colors; }
-			void setColors(hmap<float, april::Color> value) { this->colors = value; }
+			harray<float> getTimes() { return this->times; }
+			void setTimes(harray<float> value) { this->times = value; }
+			harray<april::Color> getColors() { return this->colors; }
+			void setColors(harray<april::Color> value) { this->colors = value; }
+
+			void setTimeColors(hmap<float, april::Color> timeColors);
+
+			void addTimeColor(float time, april::Color color);
 				
 			void update(Particle* emitter, float k);
 			void draw();
 			
 		protected:
-			hmap<float, april::Color> colors;
+			harray<float> times;
+			harray<april::Color> colors;
 
 		};
 		

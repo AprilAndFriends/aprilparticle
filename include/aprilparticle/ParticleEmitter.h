@@ -77,6 +77,8 @@ namespace april
 		float lifeMin;
 		float lifeMax;
 		april::Texture* texture;
+
+		void _setupTriangleBatch();
 		
 	};
 

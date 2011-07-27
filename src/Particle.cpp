@@ -1,4 +1,5 @@
 #include <april/Color.h>
+#include <hltypes/util.h>
 
 #include "Particle.h"
 
@@ -30,6 +31,16 @@ namespace april
 	
 	Particle::~Particle()
 	{
+	}
+
+	float Particle::getLifeProgressRatio()
+	{
+		return (1.0f - (this->totalLife > 0.0f ? hclamp(this->life / this->totalLife, 0.0f, 1.0f) : 1.0f));
+	}
+
+	void Particle::update(float k)
+	{
+		this->life -= k;
 	}
 	
 }

@@ -10,38 +10,67 @@ namespace april
 	{
 		MultiColorAffector::MultiColorAffector()
 		{
-			this->colors[0.0f] = APRIL_COLOR_WHITE;
-			this->colors[1.0f] = april::Color(APRIL_COLOR_WHITE, 0);
+			this->times += 0.0f;
+			this->colors += APRIL_COLOR_WHITE;
+			this->times += 1.0f;
+			this->colors += april::Color(APRIL_COLOR_WHITE, 0);
 		}
 		
-		MultiColorAffector::MultiColorAffector(hmap<float, april::Color> colors)
+		MultiColorAffector::MultiColorAffector(hmap<float, april::Color> timeColors)
 		{
-			this->colors = colors;
+			this->setTimeColors(timeColors);
 		}
 
 		MultiColorAffector::~MultiColorAffector()
 		{
 		}
-		
-		void MultiColorAffector::update(Particle* particle, float k)
+
+		void MultiColorAffector::setTimeColors(hmap<float, april::Color> timeColors)
 		{
-			float life = particle->getLife();
-			float totalLife = particle->getTotalLife();
-			float ratio = (totalLife > 0.0f ? hmax(life / totalLife, 0.0f) : 1.0f);
-			float first = 0.0f;
-			float second = 1.0f;
-			// first we find the segment in which our color currently lies
-			foreach_map (float, april::Color, it, this->colors)
+			this->colors.clear();
+			this->times = timeColors.keys().sorted();
+			foreach (float, it, this->times)
 			{
-				second = it->first;
-				if (it->first > (1.0f - ratio))
+				this->colors += timeColors[*it];
+			}
+		}
+		
+		void MultiColorAffector::addTimeColor(float time, april::Color color)
+		{
+			time = hclamp(time, 0.0f, 1.0f);
+			int i;
+			for (i = 0; i < this->times.size(); i++)
+			{
+				if (time > this->times[i])
 				{
 					break;
 				}
-				first = it->first;
 			}
-			ratio = 1.0f - (second - (1.0f - ratio)) / (second - first);
-			particle->setColor(this->colors[first] * ratio + this->colors[second] * (1.0f - ratio));
+			this->times.insert_at(i, time);
+			this->colors.insert_at(i, color);
+		}
+
+		void MultiColorAffector::update(Particle* particle, float k)
+		{
+			float ratio = particle->getLifeProgressRatio();
+			int i;
+			int size = this->times.size() - 1;
+			for (i = 0; i < size; i++)
+			{
+				if (ratio > this->times[i] && ratio <= this->times[i + 1])
+				{
+					break;
+				}
+			}
+			if (i < size)
+			{
+				ratio = 1.0f - (this->times[i + 1] - ratio) / (this->times[i + 1] - this->times[i]);
+				particle->setColor(this->colors[i] * ratio + this->colors[i + 1] * (1.0f - ratio));
+			}
+			else
+			{
+				particle->setColor(this->colors[i]);
+			}
 		}
 		
 		void MultiColorAffector::draw()

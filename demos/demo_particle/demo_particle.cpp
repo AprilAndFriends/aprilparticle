@@ -230,9 +230,10 @@ void setupFlame()
 	hmap<float, april::Color> colors1;
 	colors1[0.0f] = april::Color(0xFF000000);
 	colors1[0.1f] = april::Color(0xFF6432F3);
-	colors1[0.65f] = april::Color(0x3F3F3FAF);
-	colors1[1.0f] = april::Color(0x00000000);
-	colorAffector1->setColors(colors1);
+	colors1[0.4f] = april::Color(0xFF7F3FAF);
+	colors1[0.75f] = april::Color(0x7F7F7FAF);
+	colors1[1.0f] = april::Color(0x7F7F7F00);
+	colorAffector1->setTimeColors(colors1);
 	flame->addAffector(colorAffector1);
 	flame->addAffector(linearforce1);
 	flame->addAffector(rotator);
@@ -253,7 +254,7 @@ void setupBubbles()
 	colors2[0.04f] = april::Color(0xFFFFFFFF);
 	colors2[0.96f] = april::Color(0xFFFFFFFF);
 	colors2[1.0f] = april::Color(0xFFFFFF00);
-	colorAffector2->setColors(colors2);
+	colorAffector2->setTimeColors(colors2);
 	bubbles->addAffector(colorAffector2);
 	bubbles->addAffector(directionalForce);
 }
@@ -287,23 +288,24 @@ void april_init(const harray<hstr>& args)
 		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
 		
 		// let's hope chdir() will be happy with utf8 encoding
-		const char* cpath=CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
-		char* cpath_alloc=0;
-		if(!cpath)
+		const char* cpath = CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
+		char* cpath_alloc = 0;
+		if (!cpath)
 		{
 			// CFStringGetCStringPtr is allowed to return NULL. bummer.
 			// we need to use CFStringGetCString instead.
-			cpath_alloc = (char*)malloc(CFStringGetLength(path)+1);
-			CFStringGetCString(path, cpath_alloc, CFStringGetLength(path)+1, kCFStringEncodingUTF8);
+			cpath_alloc = (char*)malloc(CFStringGetLength(path) + 1);
+			CFStringGetCString(path, cpath_alloc, CFStringGetLength(path) + 1, kCFStringEncodingUTF8);
 		}
-		else {
+		else
+		{
 			// even though it didn't return NULL, we still want to slice off bundle name.
-			cpath_alloc = (char*)malloc(CFStringGetLength(path)+1);
+			cpath_alloc = (char*)malloc(CFStringGetLength(path) + 1);
 			strcpy(cpath_alloc, cpath);
 		}
 		// just in case / is appended to .app path for some reason
-		if(cpath_alloc[CFStringGetLength(path)-1]=='/')
-			cpath_alloc[CFStringGetLength(path)-1] = 0;
+		if(cpath_alloc[CFStringGetLength(path) - 1] == '/')
+			cpath_alloc[CFStringGetLength(path) - 1] = 0;
 		
 		// replace pre-.app / with a null character, thus
 		// cutting off .app's name and getting parent of .app.

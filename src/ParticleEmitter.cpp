@@ -10,8 +10,6 @@
 
 namespace april
 {
-	april::ColoredTexturedVertex v[6]; // optimization
-
 	ParticleEmitter::ParticleEmitter()
 	{
 		this->blendMode = april::ADD;
@@ -35,7 +33,8 @@ namespace april
 		this->particlesPerSecond	 = 60.0f;
 		this->counter = 0.0f;
 		this->maxParticles = 10;
-		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		this->_triangleBatch = NULL;
+		this->_setupTriangleBatch();
 		this->life = 1.0f;
 		this->lifeMax = 1.0f;
 		this->lifeMin = 1.0f;
@@ -65,7 +64,8 @@ namespace april
 		this->particlesPerSecond	 = particlesPerSecond;
 		this->counter = 0.0f;
 		this->maxParticles = max;
-		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		this->_triangleBatch = NULL;
+		this->_setupTriangleBatch();
 		this->life = life;
 		this->lifeMax = life;
 		this->lifeMin = life;
@@ -138,9 +138,9 @@ namespace april
 			}
 			case april::ET_Box:
 			{
-				npos.x = this->position.x + ((float)(rand()) / RAND_MAX) * this->length - this->length * 0.5f;
-				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
-				npos.z = this->position.z + ((float)(rand()) / RAND_MAX) * this->width - this->width * 0.5f;
+				npos.x = this->position.x + hrandf(1.0f) * this->length - this->length * 0.5f;
+				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				npos.z = this->position.z + hrandf(1.0f) * this->width - this->width * 0.5f;
 				break;
 			}
 			case april::ET_Cylinder:
@@ -154,7 +154,7 @@ namespace april
 				S = rho * sin(phi);
 					
 				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
+				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
 				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
 				break;
 			}
@@ -169,7 +169,7 @@ namespace april
 				S = rho * sin(phi);
 					
 				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + ((float)(rand()) / RAND_MAX) * this->height - this->height * 0.5f;
+				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
 				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
 				break;
 			}
@@ -202,7 +202,7 @@ namespace april
 			{
 				for (int i = 0; i < quota; i++)
 				{
-					createParticle();
+					this->createParticle();
 				}
 				this->counter = 0.0f;
 			}
@@ -211,13 +211,13 @@ namespace april
 		// TODO - change to a foreach_q iterator
 		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
 		{
-			(*it).setLife((*it).getLife() - k);
-			for (hlist<Affectors::Affector*>::iterator jt = this->affectors.begin(); jt != this->affectors.end(); jt++)
+			(*it).update(k);
+			foreach_l (Affectors::Affector*, it2, this->affectors)
 			{
-				(*jt)->update(&(*it), k);
+				(*it2)->update(&(*it), k);
 			}
 		}
-		while (this->particles.size() > 0 && this->particles.front().getLife() < 0.0f)
+		while (this->particles.size() > 0 && this->particles[0].getLife() < 0.0f)
 		{
 			this->particles.pop_front();
 		}
@@ -239,15 +239,21 @@ namespace april
 		gmat3 rot;
 		float s;
 		
-		v[0].u = 1.0f;	v[0].v = 1.0f;
-		v[1].u = 0.0f;	v[1].v = 1.0f;
-		v[2].u = 1.0f;	v[2].v = 0.0f;
-		v[3].u = 0.0f;	v[3].v = 1.0f;
-		v[4].u = 1.0f;	v[4].v = 0.0f;
-		v[5].u = 0.0f;	v[5].v = 0.0f;
-		
 		int i = 0;
 		unsigned int color;
+		/*
+		if (this->particles.size() > 0)
+		{
+			april::Color c = this->particles[0].getColor();
+			printf("-> %d %d %d %d\n", c.r, c.g, c.b, c.a);
+			color = (unsigned int)c;
+			printf("   %d %d %d %d\n", (color >> 24) & 0xFF, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
+			if (c.r == 255)
+			{
+				c = c;
+			}
+		}
+		*/
 		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
 		{
 			billboard.lookAt((*it).getPosition(), point - (*it).getPosition(), up);
@@ -270,21 +276,12 @@ namespace april
 			v3 = billboard * v3;
 			
 			color = (unsigned int)(*it).getColor();
-			v[0] = v0;	v[0].color = color;
-			v[1] = v1;	v[1].color = color;
-			v[2] = v2;	v[2].color = color;
-			
-			v[3] = v1;	v[3].color = color;
-			v[4] = v2;	v[4].color = color;
-			v[5] = v3;	v[5].color = color;
-			
-			this->_triangleBatch[i * 6 + 0] = v[0];
-			this->_triangleBatch[i * 6 + 1] = v[1];
-			this->_triangleBatch[i * 6 + 2] = v[2];
-			this->_triangleBatch[i * 6 + 3] = v[3];
-			this->_triangleBatch[i * 6 + 4] = v[4];
-			this->_triangleBatch[i * 6 + 5] = v[5];
-			
+			this->_triangleBatch[i * 6 + 0] = v0;	this->_triangleBatch[i * 6 + 0].color = color;
+			this->_triangleBatch[i * 6 + 1] = v1;	this->_triangleBatch[i * 6 + 1].color = color;
+			this->_triangleBatch[i * 6 + 2] = v2;	this->_triangleBatch[i * 6 + 2].color = color;
+			this->_triangleBatch[i * 6 + 3] = v1;	this->_triangleBatch[i * 6 + 3].color = color;
+			this->_triangleBatch[i * 6 + 4] = v2;	this->_triangleBatch[i * 6 + 4].color = color;
+			this->_triangleBatch[i * 6 + 5] = v3;	this->_triangleBatch[i * 6 + 5].color = color;
 		}
 		if (this->texture != NULL)
 		{
@@ -315,8 +312,25 @@ namespace april
 		if (this->maxParticles != value)
 		{
 			this->maxParticles = value;
+			this->_setupTriangleBatch();
+		}
+	}
+
+	void ParticleEmitter::_setupTriangleBatch()
+	{
+		if (this->_triangleBatch != NULL)
+		{
 			delete [] this->_triangleBatch;
-			this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		}
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		for (unsigned int i = 0; i < this->maxParticles; i++)
+		{
+			this->_triangleBatch[i * 6 + 0].u = 1.0f;	this->_triangleBatch[i * 6 + 0].v = 1.0f;
+			this->_triangleBatch[i * 6 + 1].u = 0.0f;	this->_triangleBatch[i * 6 + 1].v = 1.0f;
+			this->_triangleBatch[i * 6 + 2].u = 1.0f;	this->_triangleBatch[i * 6 + 2].v = 0.0f;
+			this->_triangleBatch[i * 6 + 3].u = 0.0f;	this->_triangleBatch[i * 6 + 3].v = 1.0f;
+			this->_triangleBatch[i * 6 + 4].u = 1.0f;	this->_triangleBatch[i * 6 + 4].v = 0.0f;
+			this->_triangleBatch[i * 6 + 5].u = 0.0f;	this->_triangleBatch[i * 6 + 5].v = 0.0f;
 		}
 	}
 
