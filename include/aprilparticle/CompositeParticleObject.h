@@ -8,13 +8,13 @@
 
 namespace april
 {
-	class ParticleEmitter;
 	class Texture;
+}
 
-	namespace Affectors
-	{
-		class Affector;
-	}
+namespace aprilparticle
+{
+	class Affector;
+	class ParticleEmitter;
 
 	class aprilparticleExport CompositeParticleObject
 	{
@@ -22,14 +22,14 @@ namespace april
 		CompositeParticleObject();
 		~CompositeParticleObject();
 		
-		void addEmitter(april::ParticleEmitter* emitter);
-		void addAffector(april::Affectors::Affector* affector);
+		void addEmitter(ParticleEmitter* emitter);
+		void addAffector(Affector* affector);
 		void addTexture(april::Texture* texture);
 
 	protected:
 		gvec3 _position;
-		hlist<april::ParticleEmitter*> _emitters;
-		hlist<april::Affectors::Affector*> _affectors;
+		hlist<ParticleEmitter*> _emitters;
+		hlist<Affector*> _affectors;
 		hlist<april::Texture*> _textures;
 
 	};

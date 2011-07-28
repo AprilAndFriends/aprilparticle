@@ -170,6 +170,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\aprilparticle.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CompositeParticleObject.cpp"
 				>
 			</File>
@@ -179,6 +183,10 @@
 			</File>
 			<File
 				RelativePath=".\src\ParticleEmitter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\ParticleSystem.cpp"
 				>
 			</File>
 			<Filter
@@ -228,6 +236,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\aprilparticle\aprilparticle.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\aprilparticle\aprilparticleExport.h"
 				>
 			</File>
@@ -241,6 +253,10 @@
 			</File>
 			<File
 				RelativePath=".\include\aprilparticle\ParticleEmitter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\aprilparticle\ParticleSystem.h"
 				>
 			</File>
 			<Filter

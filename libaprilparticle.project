@@ -22,6 +22,7 @@
       <File Name="src/Rotator.cpp"/>
       <File Name="src/Swirl.cpp"/>
     </VirtualDirectory>
+    <File Name="src/aprilparticle.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/aprilparticle/aprilparticleExport.h"/>
@@ -39,6 +40,7 @@
       <File Name="include/aprilparticle/Rotator.h"/>
       <File Name="include/aprilparticle/Swirl.h"/>
     </VirtualDirectory>
+    <File Name="include/aprilparticle/aprilparticle.h"/>
   </VirtualDirectory>
   <Dependencies Name="Win32_Debug">
     <Project Name="libapril"/>

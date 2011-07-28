@@ -60,6 +60,9 @@
     <ClInclude Include="include\aprilparticle\Swirl.h">
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\aprilparticle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CompositeParticleObject.cpp">
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="src\Attractor.cpp">
       <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\aprilparticle.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

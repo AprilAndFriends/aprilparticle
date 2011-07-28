@@ -1,27 +1,22 @@
 #include "LinearDirectionalForce.h"
 #include "Particle.h"
 
-namespace april
+namespace aprilparticle
 {
-	namespace Affectors
+	LinearDirectionalForce::LinearDirectionalForce(gvec3 direction, float force)
 	{
-		LinearDirectionalForce::LinearDirectionalForce(gvec3 direction, float force)
-		{
-			this->direction = direction;
-			this->force = force;
-		}
+		this->direction = direction;
+		this->force = force;
+	}
 
-		LinearDirectionalForce::~LinearDirectionalForce()
-		{
-		}
+	LinearDirectionalForce::~LinearDirectionalForce()
+	{
+	}
 		
-		void LinearDirectionalForce::update(Particle* particle, float k)
-		{
-			float speed = particle->getSpeed() + this->force * k * 0.001f;
-			particle->setSpeed(speed);
-			particle->setPosition(particle->getPosition() + this->direction * speed * particle->getDirection().length());
-		}
-		
+	void LinearDirectionalForce::update(Particle* particle, float k)
+	{
+		particle->speed += this->force * k * 0.001f;
+		particle->position += this->direction * particle->speed * particle->direction.length();
 	}
 
 }

@@ -3,13 +3,14 @@
 #include <april/Timer.h>
 #include <april/Window.h>
 #include <aprilparticle/ParticleSystem.h>
+#include <aprilparticle/aprilparticle.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
 april::ColoredVertex grid[44];
-april::ParticleSystem* particleSystem = NULL;
+aprilparticle::ParticleSystem* particleSystem = NULL;
 
 void setupGrid(float spacing)
 {
@@ -55,6 +56,7 @@ void april_init(const harray<hstr>& args)
 	april::init();
 	april::createRenderSystem("");
 	april::createRenderTarget(1024, 768, false, "AprilParticle Demo");
+	aprilparticle::init();
 	april::rendersys->getWindow()->setUpdateCallback(render);
 	
 	setupGrid(2.0f);
@@ -66,5 +68,6 @@ void april_init(const harray<hstr>& args)
 
 void april_destroy()
 {
+	aprilparticle::destroy();
 	april::destroy();
 }

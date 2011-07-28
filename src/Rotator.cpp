@@ -1,25 +1,20 @@
 #include "Particle.h"
 #include "Rotator.h"
 
-namespace april
+namespace aprilparticle
 {
-	namespace Affectors
+	Rotator::Rotator(float rotationSpeed)
 	{
-		
-		Rotator::Rotator(float rotationSpeed)
-		{
-			this->rotationSpeed = rotationSpeed;
-		}
+		this->rotationSpeed = rotationSpeed;
+	}
 
-		Rotator::~Rotator()
-		{
-		}
+	Rotator::~Rotator()
+	{
+	}
 		
-		void Rotator::update(Particle* particle, float k)
-		{
-			particle->setAngle(particle->getAngle() + this->rotationSpeed * k);
-		}
-
+	void Rotator::update(Particle* particle, float k)
+	{
+		particle->angle += this->rotationSpeed * k;
 	}
 
 }

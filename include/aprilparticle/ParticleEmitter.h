@@ -14,6 +14,11 @@
 
 namespace april
 {
+	class Texture;
+}
+
+namespace aprilparticle
+{
 	enum EmitterType
 	{
 		ET_Point = 0,
@@ -25,8 +30,6 @@ namespace april
 		ET_HollowCylinder = 6
 	};
 	
-	class Texture;
-
 	class aprilparticleExport ParticleEmitter : public Particle
 	{
 	public:
@@ -35,7 +38,7 @@ namespace april
 						gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
 		~ParticleEmitter();
 		
-		void setBlendMode(BlendMode value) { this->blendMode = value; }
+		void setBlendMode(april::BlendMode value) { this->blendMode = value; }
 		void setParticlesEmissionRate(float value) { this->particlesPerSecond = value; }
 		void setEmitterType(EmitterType value) { this->emitterType = value; }
 		void setRandomStartLife(bool value) { this->randomLife = value; }
@@ -46,10 +49,10 @@ namespace april
 		void setMaxParticles(int value);
 			
 		void setEmitterVolume(float width, float height, float length);
-		void setLifeRange(float lifeMin, float lifeMax);
-		void setSizeRange(float sizeMin, float sizeMax);
+		void setLifeRange(float minLife, float maxLife);
+		void setSizeRange(float minSize, float maxSize);
 			
-		void addAffector(Affectors::Affector* affector);
+		void addAffector(Affector* affector);
 			
 		void update(float k);
 		void createParticle();
@@ -60,12 +63,12 @@ namespace april
 	protected:
 		april::ColoredTexturedVertex* _triangleBatch;
 		std::deque<Particle> particles;
-		hlist<Affectors::Affector*> affectors;
+		hlist<Affector*> affectors;
 		unsigned int maxParticles;
 		float width;
 		float height;
 		float length;
-		BlendMode blendMode;
+		april::BlendMode blendMode;
 		EmitterType emitterType;
 		bool randomStartAngle;
 		bool randomStartSize;
@@ -74,8 +77,8 @@ namespace april
 		float counter;
 		float minSize;
 		float maxSize;
-		float lifeMin;
-		float lifeMax;
+		float minLife;
+		float maxLife;
 		april::Texture* texture;
 
 		void _setupTriangleBatch();

@@ -4,38 +4,34 @@
 #include "ColorAffector.h"
 #include "Particle.h"
 
-namespace april
+namespace aprilparticle
 {
-	namespace Affectors
+	ColorAffector::ColorAffector()
 	{
-		ColorAffector::ColorAffector()
-		{
-			this->startColor = APRIL_COLOR_WHITE;
-			this->endColor = april::Color(APRIL_COLOR_WHITE, 0);
-		}
+		this->startColor = APRIL_COLOR_WHITE;
+		this->endColor = april::Color(APRIL_COLOR_WHITE, 0);
+	}
 		
-		ColorAffector::ColorAffector(april::Color endColor)
-		{
-			this->startColor = APRIL_COLOR_WHITE;
-			this->endColor = endColor;
-		}
+	ColorAffector::ColorAffector(april::Color endColor)
+	{
+		this->startColor = APRIL_COLOR_WHITE;
+		this->endColor = endColor;
+	}
 		
-		ColorAffector::ColorAffector(april::Color startColor, april::Color endColor)
-		{
-			this->startColor = startColor;
-			this->endColor = endColor;
-		}
+	ColorAffector::ColorAffector(april::Color startColor, april::Color endColor)
+	{
+		this->startColor = startColor;
+		this->endColor = endColor;
+	}
 
-		ColorAffector::~ColorAffector()
-		{
-		}
+	ColorAffector::~ColorAffector()
+	{
+	}
 	
-		void ColorAffector::update(Particle* particle, float k)
-		{
-			float ratio = particle->getLifeProgressRatio();
-			particle->setColor(this->startColor * ratio + this->endColor * (1.0f - ratio));
-		}
-		
+	void ColorAffector::update(Particle* particle, float k)
+	{
+		float ratio = particle->getLifeProgressRatio();
+		particle->color = this->startColor * ratio + this->endColor * (1.0f - ratio);
 	}
 
 }

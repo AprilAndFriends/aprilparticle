@@ -6,11 +6,31 @@
 
 #include "aprilparticleExport.h"
 
-namespace april
+namespace aprilparticle
 {
+	class Affector;
+	class Attractor;
+	class ColorAffector;
+	class DirectionalForceField;
+	class LinearDirectionalForce;
+	class MultiColorAffector;
+	class ParticleEmitter;
+	class Rotator;
+	class Swirl;
+
 	class aprilparticleExport Particle
 	{
 	public:
+		friend class Affector;
+		friend class Attractor;
+		friend class ColorAffector;
+		friend class DirectionalForceField;
+		friend class LinearDirectionalForce;
+		friend class MultiColorAffector;
+		friend class ParticleEmitter;
+		friend class Rotator;
+		friend class Swirl;
+
 		Particle();
 		Particle(gvec3 position, gvec3 direction, float life, float size);
 		virtual ~Particle();
@@ -34,8 +54,6 @@ namespace april
 
 		float getLifeProgressRatio();
 		bool isDead();
-
-		void update(float k);
 
 	protected:
 		gvec3 position;

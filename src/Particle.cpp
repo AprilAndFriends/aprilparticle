@@ -3,7 +3,7 @@
 
 #include "Particle.h"
 
-namespace april
+namespace aprilparticle
 {
 	Particle::Particle()
 	{
@@ -43,11 +43,6 @@ namespace april
 		return (this->life <= 0.0f);
 	}
 
-	void Particle::update(float k)
-	{
-		this->life -= k;
-	}
-	
 }
 
 

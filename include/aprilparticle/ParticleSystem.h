@@ -10,8 +10,12 @@
 
 namespace april
 {
-	class CompositeParticleObject;
 	class Texture;
+}
+
+namespace aprilparticle
+{
+	class CompositeParticleObject;
 
 	class aprilparticleExport ParticleSystem
 	{
@@ -26,7 +30,7 @@ namespace april
 		
 	protected:
 		hmap<april::Texture*, int> _mTextures;
-		hlist<april::CompositeParticleObject*> _mComposites;
+		hlist<CompositeParticleObject*> _mComposites;
 		int _mNumerator;
 		
 	};

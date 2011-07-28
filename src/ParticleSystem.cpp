@@ -7,7 +7,7 @@
 #include "CompositeParticleObject.h"
 #include "ParticleSystem.h"
 
-namespace april
+namespace aprilparticle
 {
 	ParticleSystem::ParticleSystem() 
 	{

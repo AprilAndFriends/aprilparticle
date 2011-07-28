@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="include\aprilparticle\Affector.h" />
     <ClInclude Include="include\aprilparticle\Affectors.h" />
+    <ClInclude Include="include\aprilparticle\aprilparticle.h" />
     <ClInclude Include="include\aprilparticle\aprilparticleExport.h" />
     <ClInclude Include="include\aprilparticle\Attractor.h" />
     <ClInclude Include="include\aprilparticle\ColorAffector.h" />
@@ -110,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Affector.cpp" />
+    <ClCompile Include="src\aprilparticle.cpp" />
     <ClCompile Include="src\Attractor.cpp" />
     <ClCompile Include="src\ColorAffector.cpp" />
     <ClCompile Include="src\CompositeParticleObject.cpp" />

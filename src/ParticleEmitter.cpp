@@ -8,14 +8,14 @@
 
 #include "ParticleEmitter.h"
 
-namespace april
+namespace aprilparticle
 {
 	gvec3 v[4]; // optimization
 
 	ParticleEmitter::ParticleEmitter()
 	{
 		this->blendMode = april::ADD;
-		this->emitterType = april::ET_Point;
+		this->emitterType = ET_Point;
 		
 		this->position = gvec3(0.0f, 0.0f, 0.0f);
 		this->direction = gvec3(0.0f, 1.0f, 0.0f);
@@ -38,15 +38,15 @@ namespace april
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
 		this->life = 1.0f;
-		this->lifeMax = 1.0f;
-		this->lifeMin = 1.0f;
+		this->minLife = 1.0f;
+		this->maxLife = 1.0f;
 		this->texture = NULL;
 	}
 	
 	ParticleEmitter::ParticleEmitter(float life, float particlesPerSecond, gvec3 position, gvec3 direction, unsigned int max)
 	{
 		this->blendMode = april::ADD;
-		this->emitterType = april::ET_Point;
+		this->emitterType = ET_Point;
 		
 		this->position = position;
 		this->direction = direction;
@@ -69,8 +69,8 @@ namespace april
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
 		this->life = life;
-		this->lifeMax = life;
-		this->lifeMin = life;
+		this->minLife = life;
+		this->maxLife = life;
 		this->texture = NULL;
 	}
 
@@ -79,73 +79,29 @@ namespace april
 		delete [] _triangleBatch;
 	}
 	
-	void ParticleEmitter::setLifeRange(float lifeMin, float lifeMax)
+	void ParticleEmitter::setLifeRange(float minLife, float maxLife)
 	{
-		this->lifeMin = lifeMin;
-		this->lifeMax = lifeMax;
+		this->minLife = minLife;
+		this->maxLife = maxLife;
 	}
 
-	void ParticleEmitter::setSizeRange(float sizeMin, float sizeMax)
+	void ParticleEmitter::setSizeRange(float minSize, float maxSize)
 	{
-		this->minSize = sizeMin;
-		this->maxSize = sizeMax;
+		this->minSize = minSize;
+		this->maxSize = maxSize;
 	}
-	
-	/*bool isDead(const april::Particle& particle)
-	{
-		if(particle.mLife < 0.0)
-		{
-			return true;
-		}
-		return false;
-	}*/
 	
 	void ParticleEmitter::createParticle()
 	{
-		gvec3 npos;
+		gvec3 position;
 		switch (this->emitterType)
 		{
-			case april::ET_Point:
+			case ET_Point:
 			{
-				npos = this->position;
+				position = this->position;
 				break;
 			}
-			case april::ET_Sphere:
-			{
-				float rho, phi, theta, S;
-					
-				rho = hrandf(1.0f);
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + S * sin(theta) * this->height * 0.5f;
-				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case april::ET_HollowSphere:
-			{
-				float rho, phi, theta, S;
-					
-				rho = 1.0f;
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + S * sin(theta) * this->height * 0.5f;
-				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case april::ET_Box:
-			{
-				npos.x = this->position.x + hrandf(1.0f) * this->length - this->length * 0.5f;
-				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				npos.z = this->position.z + hrandf(1.0f) * this->width - this->width * 0.5f;
-				break;
-			}
-			case april::ET_Cylinder:
+			case ET_Sphere:
 			{
 				float rho, phi, theta, S;
 					
@@ -154,13 +110,48 @@ namespace april
 				theta = hrandf((float)G_PI);
 					
 				S = rho * sin(phi);
-					
-				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				position.y = this->position.y + S * sin(theta) * this->height * 0.5f;
+				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
 				break;
 			}
-			case april::ET_HollowCylinder:
+			case ET_HollowSphere:
+			{
+				float rho, phi, theta, S;
+					
+				rho = 1.0f;
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				position.y = this->position.y + S * sin(theta) * this->height * 0.5f;
+				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case ET_Box:
+			{
+				position.x = this->position.x + hrandf(1.0f) * this->length - this->length * 0.5f;
+				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				position.z = this->position.z + hrandf(1.0f) * this->width - this->width * 0.5f;
+				break;
+			}
+			case ET_Cylinder:
+			{
+				float rho, phi, theta, S;
+					
+				rho = hrandf(1.0f);
+				phi = hrandf((float)(2 * G_PI));
+				theta = hrandf((float)G_PI);
+					
+				S = rho * sin(phi);
+					
+				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				break;
+			}
+			case ET_HollowCylinder:
 			{
 				float rho, phi, theta, S;
 					
@@ -170,22 +161,22 @@ namespace april
 					
 				S = rho * sin(phi);
 					
-				npos.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				npos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				npos.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
+				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
+				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
 				break;
 			}
-			case april::ET_Ring:
+			case ET_Ring:
 			{
 				// TODO
-				npos = this->position;
+				position = this->position;
 				break;
 			}
 		}
 
-		Particle particle(npos, this->direction, this->life, 0.0f);
-		particle.setSize(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size);
-		particle.setAngle(hrandf((float)(2 * G_PI)));
+		Particle particle(position, this->direction, this->life, 0.0f);
+		particle.size = this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size;
+		particle.angle = hrandf((float)(2 * G_PI));
 		this->particles.push_back(particle);
 	}
 	
@@ -214,7 +205,7 @@ namespace april
 		// first remove all expired particles
 		while (this->particles.size() > 0)
 		{
-			this->particles[0].update(k);
+			this->particles[0].life -= k;
 			if (this->particles[0].isDead())
 			{
 				this->particles.pop_front();
@@ -225,17 +216,20 @@ namespace april
 			}
 		}
 		// TODO - change to a foreach_q iterator
-		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
+		for (std::deque<Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
 		{
-			(*it).update(k);
-			foreach_l (Affectors::Affector*, it2, this->affectors)
+			(*it).life -= k;
+			if (!(*it).isDead())
 			{
-				(*it2)->update(&(*it), k);
+				foreach_l (Affector*, it2, this->affectors)
+				{
+					(*it2)->update(&(*it), k);
+				}
 			}
 		}
 	}
 	
-	void ParticleEmitter::addAffector(Affectors::Affector* affector)
+	void ParticleEmitter::addAffector(Affector* affector)
 	{
 		// TODO - change to operator+=
 		this->affectors.push_back(affector);
@@ -245,33 +239,22 @@ namespace april
 	{
 		gmat4 billboard;
 		gmat3 rot;
-		float s;
-		
 		int i = 0;
 		unsigned int color;
-		/*
-		if (this->particles.size() > 0)
+		for (std::deque<Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
 		{
-			april::Color c = this->particles[0].getColor();
-			printf("-> %d %d %d %d\n", c.r, c.g, c.b, c.a);
-			color = (unsigned int)c;
-			printf("   %d %d %d %d\n", (color >> 24) & 0xFF, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
-			if (c.r == 255)
+			if ((*it).isDead())
 			{
-				c = c;
+				i--;
+				continue;
 			}
-		}
-		*/
-		for (std::deque<april::Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
-		{
-			billboard.lookAt((*it).getPosition(), point - (*it).getPosition(), up);
-			s = (*it).getSize();
-			v[0].set(-s / 2, -s / 2, 0.0f);
-			v[1].set(s / 2, -s / 2, 0.0f);
-			v[2].set(-s / 2, s / 2, 0.0f);
-			v[3].set(s / 2, s / 2, 0.0f);
+			billboard.lookAt((*it).position, point - (*it).position, up);
+			v[0].set(-(*it).size / 2, -(*it).size / 2, 0.0f);
+			v[1].set((*it).size / 2, -(*it).size / 2, 0.0f);
+			v[2].set(-(*it).size / 2, (*it).size / 2, 0.0f);
+			v[3].set((*it).size / 2, (*it).size / 2, 0.0f);
 			
-			rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it).getAngle());
+			rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it).angle);
 			v[0] = rot * v[0];
 			v[1] = rot * v[1];
 			v[2] = rot * v[2];
@@ -283,7 +266,7 @@ namespace april
 			v[2] = billboard * v[2];
 			v[3] = billboard * v[3];
 			
-			color = (unsigned int)(*it).getColor();
+			color = (unsigned int)(*it).color;
 			this->_triangleBatch[i * 6 + 0] = v[0];	this->_triangleBatch[i * 6 + 0].color = color;
 			this->_triangleBatch[i * 6 + 1] = v[1];	this->_triangleBatch[i * 6 + 1].color = color;
 			this->_triangleBatch[i * 6 + 2] = v[2];	this->_triangleBatch[i * 6 + 2].color = color;
@@ -296,17 +279,16 @@ namespace april
 			april::rendersys->setTexture(this->texture);
 		}
 		april::rendersys->setBlendMode(this->blendMode);
-		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->particles.size() * 6);
+		april::rendersys->render(april::TriangleList, this->_triangleBatch, i * 6);
 	}
 	
 	void ParticleEmitter::drawAffectors()
 	{
-		foreach_l (Affectors::Affector*, it, this->affectors)
+		foreach_l (Affector*, it, this->affectors)
 		{
 			(*it)->draw();
 		}
 	}
-	
 	
 	void ParticleEmitter::setEmitterVolume(float width, float height, float length)
 	{

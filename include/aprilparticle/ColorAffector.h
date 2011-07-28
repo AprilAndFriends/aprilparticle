@@ -5,35 +5,31 @@
 
 #include "Affector.h"
 
-namespace april
+namespace aprilparticle
 {
 	class Particle;
 
-	namespace Affectors
+	class aprilparticleExport ColorAffector : public Affector
 	{
-		class aprilparticleExport ColorAffector : public Affector
-		{
-		public:
-			ColorAffector();
-			ColorAffector(april::Color endColor);
-			ColorAffector(april::Color startColor, april::Color endColor);
-			~ColorAffector();
+	public:
+		ColorAffector();
+		ColorAffector(april::Color endColor);
+		ColorAffector(april::Color startColor, april::Color endColor);
+		~ColorAffector();
 
-			april::Color getStartColor() { return this->startColor; }
-			void setStartColor(april::Color value) { this->startColor = value; }
-			april::Color getEndColor() { return this->endColor; }
-			void setEndColor(april::Color value) { this->endColor = value; }
+		april::Color getStartColor() { return this->startColor; }
+		void setStartColor(april::Color value) { this->startColor = value; }
+		april::Color getEndColor() { return this->endColor; }
+		void setEndColor(april::Color value) { this->endColor = value; }
 				
-			void update(Particle* particle, float k);
+		void update(Particle* particle, float k);
 
-		protected:
-			april::Color startColor;
-			april::Color endColor;
+	protected:
+		april::Color startColor;
+		april::Color endColor;
 
-		};
+	};
 	
-	}
-
 }
 
 #endif
