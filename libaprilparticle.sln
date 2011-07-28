@@ -30,6 +30,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaprilutil", "..\april\aprilutil\libaprilutil.vcxproj", "{2D053CDA-686C-4B36-80EB-1DA5F0CEF8F9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libhlxml", "..\hltypes\hlxml\libhlxml.vcxproj", "{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4D373BF-E227-48B9-99E6-84987E8674EC} = {E4D373BF-E227-48B9-99E6-84987E8674EC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,6 +4,7 @@
 #include <gtypes/Matrix3.h>
 #include <gtypes/Matrix4.h>
 #include <gtypes/Vector2.h>
+#include <hltypes/hdeque.h>
 #include <hltypes/util.h>
 
 #include "ParticleEmitter.h"
@@ -174,14 +175,29 @@ namespace aprilparticle
 			}
 		}
 
-		Particle particle(position, this->direction, this->life, 0.0f);
-		particle.size = this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size;
+		Particle particle(position, this->direction, this->life,
+			(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size));
 		particle.angle = hrandf((float)(2 * G_PI));
 		this->particles.push_back(particle);
 	}
 	
 	void ParticleEmitter::update(float k)
 	{
+		// first remove all expired particles
+		while (this->particles.size() > 0)
+		{
+			this->particles[0].life -= k;
+			if (this->particles[0].isDead())
+			{
+				this->particles.pop_front();
+			}
+			else
+			{
+				this->particles[0].life += k;
+				break;
+			}
+		}
+
 		this->counter += k;
 		if (this->particlesPerSecond > 0.0f)
 		{
@@ -202,21 +218,7 @@ namespace aprilparticle
 			}
 		}
 		
-		// first remove all expired particles
-		while (this->particles.size() > 0)
-		{
-			this->particles[0].life -= k;
-			if (this->particles[0].isDead())
-			{
-				this->particles.pop_front();
-			}
-			else
-			{
-				break;
-			}
-		}
-		// TODO - change to a foreach_q iterator
-		for (std::deque<Particle>::iterator it = this->particles.begin(); it != this->particles.end(); it++)
+		foreach_q (Particle, it, this->particles)
 		{
 			(*it).life -= k;
 			if (!(*it).isDead())
@@ -241,38 +243,37 @@ namespace aprilparticle
 		gmat3 rot;
 		int i = 0;
 		unsigned int color;
-		for (std::deque<Particle>::iterator it = this->particles.begin(); it != this->particles.end(); i++, it++)
+		foreach_q (Particle, it, this->particles)
 		{
-			if ((*it).isDead())
+			if (!(*it).isDead())
 			{
-				i--;
-				continue;
+				billboard.lookAt((*it).position, point - (*it).position, up);
+				v[0].set(-(*it).size / 2, -(*it).size / 2, 0.0f);
+				v[1].set((*it).size / 2, -(*it).size / 2, 0.0f);
+				v[2].set(-(*it).size / 2, (*it).size / 2, 0.0f);
+				v[3].set((*it).size / 2, (*it).size / 2, 0.0f);
+			
+				rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it).angle);
+				v[0] = rot * v[0];
+				v[1] = rot * v[1];
+				v[2] = rot * v[2];
+				v[3] = rot * v[3];
+			
+				billboard.inverse();
+				v[0] = billboard * v[0];
+				v[1] = billboard * v[1];
+				v[2] = billboard * v[2];
+				v[3] = billboard * v[3];
+			
+				color = (unsigned int)(*it).color;
+				this->_triangleBatch[i * 6 + 0] = v[0];	this->_triangleBatch[i * 6 + 0].color = color;
+				this->_triangleBatch[i * 6 + 1] = v[1];	this->_triangleBatch[i * 6 + 1].color = color;
+				this->_triangleBatch[i * 6 + 2] = v[2];	this->_triangleBatch[i * 6 + 2].color = color;
+				this->_triangleBatch[i * 6 + 3] = v[1];	this->_triangleBatch[i * 6 + 3].color = color;
+				this->_triangleBatch[i * 6 + 4] = v[2];	this->_triangleBatch[i * 6 + 4].color = color;
+				this->_triangleBatch[i * 6 + 5] = v[3];	this->_triangleBatch[i * 6 + 5].color = color;
+				i++;
 			}
-			billboard.lookAt((*it).position, point - (*it).position, up);
-			v[0].set(-(*it).size / 2, -(*it).size / 2, 0.0f);
-			v[1].set((*it).size / 2, -(*it).size / 2, 0.0f);
-			v[2].set(-(*it).size / 2, (*it).size / 2, 0.0f);
-			v[3].set((*it).size / 2, (*it).size / 2, 0.0f);
-			
-			rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it).angle);
-			v[0] = rot * v[0];
-			v[1] = rot * v[1];
-			v[2] = rot * v[2];
-			v[3] = rot * v[3];
-			
-			billboard.inverse();
-			v[0] = billboard * v[0];
-			v[1] = billboard * v[1];
-			v[2] = billboard * v[2];
-			v[3] = billboard * v[3];
-			
-			color = (unsigned int)(*it).color;
-			this->_triangleBatch[i * 6 + 0] = v[0];	this->_triangleBatch[i * 6 + 0].color = color;
-			this->_triangleBatch[i * 6 + 1] = v[1];	this->_triangleBatch[i * 6 + 1].color = color;
-			this->_triangleBatch[i * 6 + 2] = v[2];	this->_triangleBatch[i * 6 + 2].color = color;
-			this->_triangleBatch[i * 6 + 3] = v[1];	this->_triangleBatch[i * 6 + 3].color = color;
-			this->_triangleBatch[i * 6 + 4] = v[2];	this->_triangleBatch[i * 6 + 4].color = color;
-			this->_triangleBatch[i * 6 + 5] = v[3];	this->_triangleBatch[i * 6 + 5].color = color;
 		}
 		if (this->texture != NULL)
 		{
@@ -313,7 +314,7 @@ namespace aprilparticle
 			delete [] this->_triangleBatch;
 		}
 		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
-		for (unsigned int i = 0; i < this->maxParticles; i++)
+		for (int i = 0; i < this->maxParticles; i++)
 		{
 			this->_triangleBatch[i * 6 + 0].u = 1.0f;	this->_triangleBatch[i * 6 + 0].v = 1.0f;
 			this->_triangleBatch[i * 6 + 1].u = 0.0f;	this->_triangleBatch[i * 6 + 1].v = 1.0f;

@@ -2,11 +2,8 @@
 #define PARTICLE_EMITTER_H
 
 #include <april/RenderSystem.h>
+#include <hltypes/hdeque.h>
 #include <hltypes/hlist.h>
-
-//#include <string>
-#include <deque>
-//#include <math.h>
 
 #include "aprilparticleExport.h"
 #include "Particle.h"
@@ -62,9 +59,9 @@ namespace aprilparticle
 			
 	protected:
 		april::ColoredTexturedVertex* _triangleBatch;
-		std::deque<Particle> particles;
+		hdeque<Particle> particles;
 		hlist<Affector*> affectors;
-		unsigned int maxParticles;
+		int maxParticles;
 		float width;
 		float height;
 		float length;
