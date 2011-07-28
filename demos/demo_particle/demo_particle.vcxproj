@@ -85,6 +85,7 @@ copy ..\..\..\lib\msvc100\*.dll ..\..\bin\$(Configuration)</Command>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libapril.lib;libaprilparticle.lib;libgtypes.lib;libhltypes.lib;%(AdditionalDependencies)</AdditionalDependencies>

@@ -192,7 +192,7 @@ namespace april
 	void ParticleEmitter::update(float k)
 	{
 		this->counter += k;
-		if (this->particlesPerSecond > 0)
+		if (this->particlesPerSecond > 0.0f)
 		{
 			float cs = 1.0f / this->particlesPerSecond;
 			int quota = (int)(this->counter / cs);
@@ -202,6 +202,7 @@ namespace april
 			}
 			if (this->counter > cs && this->particles.size() < this->maxParticles)
 			{
+				quota = hmin(quota, (int)(this->maxParticles - this->particles.size()));
 				for (int i = 0; i < quota; i++)
 				{
 					this->createParticle();
