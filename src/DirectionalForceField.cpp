@@ -6,12 +6,14 @@
 #include "DirectionalForceField.h"
 #include "Particle.h"
 
+#define VERTEX_COUNT 91 // you can't touch this
+
 namespace aprilparticle
 {
 	// optimizations
-	april::ColoredVertex u[91];
-	april::ColoredVertex v[91];
-	april::ColoredVertex w[91];
+	april::ColoredVertex u[VERTEX_COUNT];
+	april::ColoredVertex v[VERTEX_COUNT];
+	april::ColoredVertex w[VERTEX_COUNT];
 	april::ColoredVertex arrow[2];
 	gvec3 ut;
 	gvec3 vt;
@@ -19,7 +21,7 @@ namespace aprilparticle
 
 	void initDirectionalForceField()
 	{
-		for (int i = 0; i < 91; i++)
+		for (int i = 0; i < VERTEX_COUNT; i++)
 		{
 			ut.x = sin(i * 0.069777f);
 			ut.y = cos(i * 0.069777f);
@@ -63,7 +65,7 @@ namespace aprilparticle
 		
 	void DirectionalForceField::draw()
 	{
-		for (int i = 0; i < 91; i++)
+		for (int i = 0; i < VERTEX_COUNT; i++)
 		{
 			u[i] = this->position + ut * this->force;
 			v[i] = this->position + vt * this->force;
@@ -71,9 +73,9 @@ namespace aprilparticle
 		}
 		arrow[0] = this->position;
 		arrow[1] = this->position + this->direction * this->force;
-		april::rendersys->render(april::LineStrip, u, 91);
-		april::rendersys->render(april::LineStrip, v, 91);
-		april::rendersys->render(april::LineStrip, w, 91);
+		april::rendersys->render(april::LineStrip, u, VERTEX_COUNT);
+		april::rendersys->render(april::LineStrip, v, VERTEX_COUNT);
+		april::rendersys->render(april::LineStrip, w, VERTEX_COUNT);
 		april::rendersys->render(april::LineStrip, arrow, 2);
 	}
 

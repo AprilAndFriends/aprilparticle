@@ -233,7 +233,7 @@ namespace aprilparticle
 	
 	void ParticleEmitter::addAffector(Affector* affector)
 	{
-		// TODO - change to operator+=
+		// TODO - change to operator+= after it has been implemented
 		this->affectors.push_back(affector);
 	}
 	

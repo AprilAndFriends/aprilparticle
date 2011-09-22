@@ -25,7 +25,7 @@ namespace aprilparticle
     void init()
     {
 		log("initializing AprilParticle");
-		initDirectionalForceField();
+		initDirectionalForceField(); // so we can shoot the bad guys
     }
     
     void destroy()
