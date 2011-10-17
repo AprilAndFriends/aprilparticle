@@ -56,13 +56,14 @@
     <Link>
       <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;libhlxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);..\hltypes\bin\hlxml\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\lib\msvc100;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(TargetDir)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>mkdir $(SolutionDir)bin\lib\msvc100
+copy bin\$(Configuration)\*.dll $(SolutionDir)bin\lib\msvc100
+copy bin\$(Configuration)\*.lib $(SolutionDir)bin\lib\msvc100</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='win32_Release|Win32'">
@@ -79,8 +80,13 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libapril.lib;libgtypes.lib;libhltypes.lib;libhlxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\april\bin;..\gtypes\bin\$(Configuration);..\hltypes\bin\$(Configuration);..\hltypes\bin\hlxml\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\lib\msvc100;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(SolutionDir)bin\lib\msvc100
+copy bin\$(Configuration)\*.dll $(SolutionDir)bin\lib\msvc100
+copy bin\$(Configuration)\*.lib $(SolutionDir)bin\lib\msvc100</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\april\libapril.vcxproj">
