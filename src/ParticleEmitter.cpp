@@ -186,14 +186,14 @@ namespace aprilparticle
 		// first remove all expired particles
 		while (this->particles.size() > 0)
 		{
-			this->particles[0].life -= k;
-			if (this->particles[0].isDead())
+			this->particles.front().life -= k;
+			if (this->particles.front().isDead())
 			{
 				this->particles.pop_front();
 			}
 			else
 			{
-				this->particles[0].life += k;
+				this->particles.front().life += k;
 				break;
 			}
 		}
