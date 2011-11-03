@@ -1,5 +1,19 @@
-#ifndef ROTATOR_H
-#define ROTATOR_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a rotation affector.
+
+#ifndef APRILPARTICLE_ROTATOR_H
+#define APRILPARTICLE_ROTATOR_H
 
 #include "Affector.h"
 

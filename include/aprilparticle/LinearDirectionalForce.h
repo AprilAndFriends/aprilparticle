@@ -1,5 +1,19 @@
-#ifndef LINEAR_DIRECTIONAL_FORCE_H
-#define LINEAR_DIRECTIONAL_FORCE_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a linear directional force affector.
+
+#ifndef APRILPARTICLE_LINEAR_DIRECTIONAL_FORCE_H
+#define APRILPARTICLE_LINEAR_DIRECTIONAL_FORCE_H
 
 #include <gtypes/Vector3.h>
 
@@ -12,7 +26,7 @@ namespace aprilparticle
 	class aprilparticleExport LinearDirectionalForce : public Affector
 	{
 	public:
-		LinearDirectionalForce(gvec3 direction = gvec3(0.0f, -1.0f, 0.0f), float force = 1.0f);
+		LinearDirectionalForce(gvec3 direction = gvec3(0.0f, -1.0f, 0.0f), float force = 0.001f);
 		~LinearDirectionalForce();
 		
 		gvec3 getDirection() { return this->direction; }

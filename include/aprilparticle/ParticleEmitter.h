@@ -1,5 +1,19 @@
-#ifndef PARTICLE_EMITTER_H
-#define PARTICLE_EMITTER_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a particle emitter.
+
+#ifndef APRILPARTICLE_PARTICLE_EMITTER_H
+#define APRILPARTICLE_PARTICLE_EMITTER_H
 
 #include <april/RenderSystem.h>
 #include <hltypes/hdeque.h>
@@ -55,7 +69,7 @@ namespace aprilparticle
 		void createParticle();
 			
 		void draw(gvec3 point, gvec3 up);
-		void drawAffectors();
+		void drawAffectors(); // usually only used for debug purposes
 			
 	protected:
 		april::ColoredTexturedVertex* _triangleBatch;

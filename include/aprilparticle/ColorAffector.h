@@ -1,5 +1,19 @@
-#ifndef COLOR_AFFECTOR_H
-#define COLOR_AFFECTOR_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a color affector. This class is more light-weight compared to multi-color affector.
+
+#ifndef APRILPARTICLE_COLOR_AFFECTOR_H
+#define APRILPARTICLE_COLOR_AFFECTOR_H
 
 #include <april/Color.h>
 
@@ -27,6 +41,9 @@ namespace aprilparticle
 	protected:
 		april::Color startColor;
 		april::Color endColor;
+
+	private:
+		float _ratio;
 
 	};
 	

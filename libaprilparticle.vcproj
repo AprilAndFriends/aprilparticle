@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
+				AdditionalIncludeDirectories=".;src;../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
 				PreprocessorDefinitions="_WIN32;_DEBUG;APRILPARTICLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -116,7 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
+				AdditionalIncludeDirectories=".;src;../include;include/aprilparticle;../april/include;../gtypes/include;../hltypes/include;../hltypes/hlxml/include"
 				PreprocessorDefinitions="_WIN32;APRILPARTICLE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -176,10 +176,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\CompositeParticleObject.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\Particle.cpp"
 				>
 			</File>
@@ -189,6 +185,10 @@
 			</File>
 			<File
 				RelativePath=".\src\ParticleSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Util.cpp"
 				>
 			</File>
 			<Filter
@@ -246,10 +246,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\aprilparticle\CompositeParticleObject.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\aprilparticle\Particle.h"
 				>
 			</File>
@@ -259,6 +255,10 @@
 			</File>
 			<File
 				RelativePath=".\include\aprilparticle\ParticleSystem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Util.h"
 				>
 			</File>
 			<Filter

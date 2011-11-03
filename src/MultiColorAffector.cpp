@@ -1,3 +1,13 @@
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
 #include <april/Color.h>
 #include <hltypes/hmap.h>
 
@@ -12,6 +22,7 @@ namespace aprilparticle
 		this->colors += APRIL_COLOR_WHITE;
 		this->times += 1.0f;
 		this->colors += april::Color(APRIL_COLOR_WHITE, 0);
+		this->_size = 1;
 	}
 		
 	MultiColorAffector::MultiColorAffector(hmap<float, april::Color> timeColors)
@@ -31,43 +42,42 @@ namespace aprilparticle
 		{
 			this->colors += timeColors[*it];
 		}
+		this->_size = this->times.size() - 1;
 	}
 		
 	void MultiColorAffector::addTimeColor(float time, april::Color color)
 	{
 		time = hclamp(time, 0.0f, 1.0f);
-		int i;
-		for (i = 0; i < this->times.size(); i++)
+		for (this->_i = 0; this->_i < this->times.size(); this->_i++)
 		{
-			if (time > this->times[i])
+			if (time > this->times[this->_i])
 			{
 				break;
 			}
 		}
-		this->times.insert_at(i, time);
-		this->colors.insert_at(i, color);
+		this->times.insert_at(this->_i, time);
+		this->colors.insert_at(this->_i, color);
+		this->_size++;
 	}
 
 	void MultiColorAffector::update(Particle* particle, float k)
 	{
-		float ratio = particle->getLifeProgressRatio();
-		int i;
-		int size = this->times.size() - 1;
-		for (i = 0; i < size; i++)
+		this->_ratio = particle->getLifeProgressRatio();
+		for (this->_i = 0; this->_i < this->_size; this->_i++)
 		{
-			if (ratio > this->times[i] && ratio <= this->times[i + 1])
+			if (is_in_range(this->_ratio, this->times[this->_i], this->times[this->_i + 1]))
 			{
 				break;
 			}
 		}
-		if (i < size)
+		if (this->_i < this->_size)
 		{
-			ratio = (this->times[i + 1] - ratio) / (this->times[i + 1] - this->times[i]);
-			particle->color = this->colors[i] * ratio + this->colors[i + 1] * (1.0f - ratio);
+			this->_ratio = (this->times[this->_i + 1] - this->_ratio) / (this->times[this->_i + 1] - this->times[this->_i]);
+			particle->color = this->colors[this->_i] * this->_ratio + this->colors[this->_i + 1] * (1.0f - this->_ratio);
 		}
 		else
 		{
-			particle->color = this->colors[i];
+			particle->color = this->colors[this->_i];
 		}
 	}
 		

@@ -1,34 +1,38 @@
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
 #include <hltypes/hlist.h>
 #include <hltypes/hmap.h>
 #include <hlxml/Document.h>
 #include <hlxml/Node.h>
 #include <hlxml/Property.h>
 
-#include "CompositeParticleObject.h"
 #include "ParticleSystem.h"
+#include "Util.h"
 
 namespace aprilparticle
 {
-	ParticleSystem::ParticleSystem() 
+	ParticleSystem::ParticleSystem(chstr filename, chstr name) 
 	{
+		this->filename = filename;
+		this->name = (name == "" ? aprilparticle::generateName("ParticleSystem") : name);
 	}
 	
 	ParticleSystem::~ParticleSystem()
 	{
 	}
 	
-	CompositeParticleObject* ParticleSystem::loadParticleObject(chstr filename, chstr name)
+	void ParticleSystem::load()
 	{
-		hstr newName;
-		
 		hlist<hstr> textureTable;
 		hlist<hstr> affectorTable;
-		
-		if (name == "")
-		{
-			newName = hstr("untitled_") + hstr(_mNumerator);
-			_mNumerator++;
-		}
 		
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
@@ -93,15 +97,14 @@ namespace aprilparticle
 				}
 			}
 		}
-		foreach_l(hstr, it, affectorTable)
+		foreach_l (hstr, it, affectorTable)
 		{
 			printf("%s\n", (*it).c_str());
 		}
-		foreach_l(hstr, it, textureTable)
+		foreach_l (hstr, it, textureTable)
 		{
 			printf("%s\n", (*it).c_str());
 		}
-		return NULL;
 	}
 
 }

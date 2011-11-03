@@ -1,5 +1,19 @@
-#ifndef DIRECTIONAL_FORCE_FIELD_H
-#define DIRECTIONAL_FORCE_FIELD_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a directional force field affector.
+
+#ifndef APRILPARTICLE_DIRECTIONAL_FORCE_FIELD_H
+#define APRILPARTICLE_DIRECTIONAL_FORCE_FIELD_H
 
 #include <gtypes/Vector3.h>
 
@@ -30,7 +44,10 @@ namespace aprilparticle
 		gvec3 position;
 		gvec3 direction;
 		float force;
-			
+
+	private:
+		float _length;
+
 	};
 
 }

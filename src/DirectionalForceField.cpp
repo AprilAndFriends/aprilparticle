@@ -1,3 +1,13 @@
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
 #include <math.h>
 
 #include <april/RenderSystem.h>
@@ -57,10 +67,9 @@ namespace aprilparticle
 		
 	void DirectionalForceField::update(Particle* particle, float k)
 	{
-		gvec3 difference = particle->position - this->position;
-		float len = difference.length();
-		particle->position += this->direction * (this->force - len / this->force) *
-			(this->force / (len * len * particle->direction.length() + 1.0f) - particle->speed) * k;
+		this->_length = (particle->position - this->position).length();
+		particle->position += this->direction * (this->force - this->_length / this->force) *
+			(this->force / (this->_length * this->_length * particle->direction.length() + 1.0f) - particle->speed) * k;
 	}
 		
 	void DirectionalForceField::draw()

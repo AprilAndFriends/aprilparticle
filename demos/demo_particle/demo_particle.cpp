@@ -6,7 +6,6 @@
 #include <april/Window.h>
 #include <aprilparticle/ParticleEmitter.h>
 #include <aprilparticle/aprilparticle.h>
-//#include <aprilutil/StaticMesh.h>
 
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
@@ -29,7 +28,7 @@ aprilparticle::DirectionalForceField* directionalForce = new aprilparticle::Dire
 aprilparticle::ColorAffector* colorFader = new aprilparticle::ColorAffector(april::Color(0x1131FFFF), april::Color(0x22000000));
 aprilparticle::MultiColorAffector* colorAffector1 = new aprilparticle::MultiColorAffector();
 aprilparticle::MultiColorAffector* colorAffector2 = new aprilparticle::MultiColorAffector();
-aprilparticle::LinearDirectionalForce* linearforce1 = new aprilparticle::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), 18.0f);
+aprilparticle::LinearDirectionalForce* linearforce1 = new aprilparticle::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), 0.018f);
 aprilparticle::Rotator* rotator = new aprilparticle::Rotator(50.0f);
 aprilparticle::Attractor* attractor1 = new aprilparticle::Attractor(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
 aprilparticle::Swirl* swirl = new aprilparticle::Swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f);
@@ -38,8 +37,8 @@ aprilparticle::Swirl* swirl = new aprilparticle::Swirl(gvec3(10.0f, 0.0f, 0.0f),
 aprilparticle::ParticleEmitter* quazar_disc = new aprilparticle::ParticleEmitter(4.0f, 240.0f);
 aprilparticle::ParticleEmitter* quazar_jet_top = new aprilparticle::ParticleEmitter(4.0f, 120.0f);
 aprilparticle::ParticleEmitter* quazar_jet_bottom = new aprilparticle::ParticleEmitter(4.0f, 120.0f);
-aprilparticle::LinearDirectionalForce* top = new aprilparticle::LinearDirectionalForce(gvec3(1.0f, 0.0f, 0.0f), 24);
-aprilparticle::LinearDirectionalForce* bottom = new aprilparticle::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 24);
+aprilparticle::LinearDirectionalForce* top = new aprilparticle::LinearDirectionalForce(gvec3(1.0f, 0.0f, 0.0f), 0.024f);
+aprilparticle::LinearDirectionalForce* bottom = new aprilparticle::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.024f);
 aprilparticle::Attractor* gravity = new aprilparticle::Attractor(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
 aprilparticle::Swirl* spin = new aprilparticle::Swirl(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.1f);
 aprilparticle::Attractor* inverse_gravitiy = new aprilparticle::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
@@ -48,7 +47,7 @@ aprilparticle::Attractor* attraction_point_top = new aprilparticle::Attractor(gv
 
 // kisa
 aprilparticle::ParticleEmitter* rain = new aprilparticle::ParticleEmitter(4.0f);
-aprilparticle::LinearDirectionalForce* gravity_rain = new aprilparticle::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -12.0f);
+aprilparticle::LinearDirectionalForce* gravity_rain = new aprilparticle::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -0.012f);
 
 // twirl
 aprilparticle::ParticleEmitter* twirl1 = new aprilparticle::ParticleEmitter(6.0f, 100.0f);
@@ -59,7 +58,7 @@ aprilparticle::ParticleEmitter* twirl2 = new aprilparticle::ParticleEmitter(6.0f
 aprilparticle::DirectionalForceField* force3 = new aprilparticle::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
 aprilparticle::DirectionalForceField* force4 = new aprilparticle::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
 
-aprilparticle::LinearDirectionalForce* wind = new aprilparticle::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 12.0f);
+aprilparticle::LinearDirectionalForce* wind = new aprilparticle::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.012f);
 aprilparticle::Attractor* grav = new aprilparticle::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
 
 april::ColoredVertex grid[44];

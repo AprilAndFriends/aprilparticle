@@ -1,5 +1,19 @@
-#ifndef SWIRL_H
-#define SWIRL_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a swirler affector.
+
+#ifndef APRILPARTICLE_SWIRL_H
+#define APRILPARTICLE_SWIRL_H
 
 #include <gtypes/Vector3.h>
 
@@ -25,8 +39,8 @@ namespace aprilparticle
 		void setPosition(gvec3 value) { this->position = value; }
 		gvec3 getUp() { return this->up; }
 		void setUp(gvec3 value) { this->up = value; }
-		bool getClockwise() { return this->clockwise; }
-		void setClockwise(bool value) { this->clockwise = value; }
+		bool getClockwise();
+		void setClockwise(bool value);
 			
 		void update(Particle* particle, float k);
 
@@ -35,7 +49,11 @@ namespace aprilparticle
 		float force;
 		gvec3 position;
 		gvec3 up;
-		bool clockwise;
+		float angle;
+
+	private:
+		gvec3 _direction;
+		float _squaredLength;
 		
 	};
 

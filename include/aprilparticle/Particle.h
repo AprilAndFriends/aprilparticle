@@ -1,5 +1,19 @@
-#ifndef PARTICLE_H
-#define PARTICLE_H
+/// @file
+/// @author  Domagoj Cerjan
+/// @author  Boris Mikic
+/// @version 1.2
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+/// 
+/// @section DESCRIPTION
+/// 
+/// Represents a particle.
+
+#ifndef APRILPARTICLE_PARTICLE_H
+#define APRILPARTICLE_PARTICLE_H
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
