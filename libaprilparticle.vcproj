@@ -195,35 +195,39 @@
 				Name="Affectors"
 				>
 				<File
-					RelativePath=".\src\Affector.cpp"
+					RelativePath=".\src\Affectors\Affector.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Attractor.cpp"
+					RelativePath=".\src\Affectors\AffectorAttractor.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\ColorAffector.cpp"
+					RelativePath=".\src\Affectors\AffectorCallbackAffector.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\DirectionalForceField.cpp"
+					RelativePath=".\src\Affectors\AffectorColorChanger.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\LinearDirectionalForce.cpp"
+					RelativePath=".\src\Affectors\AffectorDirectionalForceField.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\MultiColorAffector.cpp"
+					RelativePath=".\src\Affectors\AffectorLinearDirectionalForce.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Rotator.cpp"
+					RelativePath=".\src\Affectors\AffectorMultiColorChanger.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Swirl.cpp"
+					RelativePath=".\src\Affectors\AffectorRotator.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorSwirl.cpp"
 					>
 				</File>
 			</Filter>
@@ -269,31 +273,35 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\Attractor.h"
+					RelativePath=".\include\aprilparticle\AffectorAttractor.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\ColorAffector.h"
+					RelativePath=".\include\aprilparticle\AffectorCallbackAffector.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\DirectionalForceField.h"
+					RelativePath=".\include\aprilparticle\AffectorColorChanger.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\LinearDirectionalForce.h"
+					RelativePath=".\include\aprilparticle\AffectorDirectionalForceField.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\MultiColorAffector.h"
+					RelativePath=".\include\aprilparticle\AffectorLinearDirectionalForce.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\Rotator.h"
+					RelativePath=".\include\aprilparticle\AffectorMultiColorChanger.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\Swirl.h"
+					RelativePath=".\include\aprilparticle\AffectorRotator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorSwirl.h"
 					>
 				</File>
 			</Filter>

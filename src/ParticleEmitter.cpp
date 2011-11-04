@@ -44,7 +44,7 @@ namespace aprilparticle
 		this->maxSize = 1.2f;
 			
 		this->particlesPerSecond	 = 60.0f;
-		this->counter = 0.0f;
+		this->timer = 0.0f;
 		this->maxParticles = 10;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
@@ -75,7 +75,7 @@ namespace aprilparticle
 		this->maxSize = 1.2f;
 			
 		this->particlesPerSecond	 = particlesPerSecond;
-		this->counter = 0.0f;
+		this->timer = 0.0f;
 		this->maxParticles = max;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
@@ -87,7 +87,10 @@ namespace aprilparticle
 
 	ParticleEmitter::~ParticleEmitter()
 	{
-		delete [] _triangleBatch;
+		if (this->_triangleBatch != NULL)
+		{
+			delete [] this->_triangleBatch;
+		}
 	}
 	
 	void ParticleEmitter::setLifeRange(float minLife, float maxLife)
@@ -104,91 +107,63 @@ namespace aprilparticle
 	
 	void ParticleEmitter::createParticle()
 	{
-		gvec3 position;
 		switch (this->emitterType)
 		{
 			case ET_Point:
-			{
-				position = this->position;
+				this->_pos = this->position;
 				break;
-			}
 			case ET_Sphere:
-			{
-				float rho, phi, theta, S;
-					
-				rho = hrandf(1.0f);
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				position.y = this->position.y + S * sin(theta) * this->height * 0.5f;
-				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case ET_HollowSphere:
-			{
-				float rho, phi, theta, S;
-					
-				rho = 1.0f;
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				position.y = this->position.y + S * sin(theta) * this->height * 0.5f;
-				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case ET_Box:
-			{
-				position.x = this->position.x + hrandf(1.0f) * this->length - this->length * 0.5f;
-				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				position.z = this->position.z + hrandf(1.0f) * this->width - this->width * 0.5f;
-				break;
-			}
-			case ET_Cylinder:
-			{
-				float rho, phi, theta, S;
-					
-				rho = hrandf(1.0f);
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-					
-				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case ET_HollowCylinder:
-			{
-				float rho, phi, theta, S;
-					
-				rho = 1.0f;
-				phi = hrandf((float)(2 * G_PI));
-				theta = hrandf((float)G_PI);
-					
-				S = rho * sin(phi);
-					
-				position.x = this->position.x + S * cos(theta) * this->length * 0.5f;
-				position.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
-				position.z = this->position.z + rho * cos(phi) * this->width * 0.5f;
-				break;
-			}
-			case ET_Ring:
-			{
-				// TODO
-				position = this->position;
-				break;
-			}
-		}
+				this->_rho = hrandf(1.0f);
+				this->_phi = hrandf((float)G_PIx2);
+				this->_theta = hrandf((float)G_PI);
+				this->_S = this->_rho * sin(this->_phi);
 
-		Particle particle(position, this->direction, this->life,
-			(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size));
-		particle.angle = hrandf((float)(2 * G_PI));
-		this->particles.push_back(particle);
+				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->length * 0.5f;
+				this->_pos.y = this->position.y + this->_S * sin(this->_theta) * this->height * 0.5f;
+				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->width * 0.5f;
+				break;
+			case ET_HollowSphere:
+				this->_rho = 1.0f;
+				this->_phi = hrandf((float)G_PIx2);
+				this->_theta = hrandf((float)G_PI);
+				this->_S = this->_rho * sin(this->_phi);
+
+				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->length * 0.5f;
+				this->_pos.y = this->position.y + this->_S * sin(this->_theta) * this->height * 0.5f;
+				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->width * 0.5f;
+				break;
+			case ET_Box:
+				this->_pos.x = this->position.x + hrandf(1.0f) * this->length - this->length * 0.5f;
+				this->_pos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				this->_pos.z = this->position.z + hrandf(1.0f) * this->width - this->width * 0.5f;
+				break;
+			case ET_Cylinder:
+				this->_rho = hrandf(1.0f);
+				this->_phi = hrandf((float)G_PIx2);
+				this->_theta = hrandf((float)G_PI);
+				this->_S = this->_rho * sin(this->_phi);
+					
+				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->length * 0.5f;
+				this->_pos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->width * 0.5f;
+				break;
+			case ET_HollowCylinder:
+				this->_rho = 1.0f;
+				this->_phi = hrandf((float)G_PIx2);
+				this->_theta = hrandf((float)G_PI);
+				this->_S = this->_rho * sin(this->_phi);
+					
+				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->length * 0.5f;
+				this->_pos.y = this->position.y + hrandf(1.0f) * this->height - this->height * 0.5f;
+				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->width * 0.5f;
+				break;
+			case ET_Ring:
+				// TODO
+				this->_pos = this->position;
+				break;
+		}
+		this->particles += Particle(this->_pos, this->direction, this->life,
+			(this->randomStartSize ? hrandf(this->minSize, this->maxSize) : this->size), 0.0f, hrandf((float)G_PIx2));
 	}
 	
 	void ParticleEmitter::update(float k)
@@ -208,23 +183,23 @@ namespace aprilparticle
 			}
 		}
 
-		this->counter += k;
+		this->timer += k;
 		if (this->particlesPerSecond > 0.0f)
 		{
-			float cs = 1.0f / this->particlesPerSecond;
-			int quota = (int)(this->counter / cs);
+			this->_cs = 1.0f / this->particlesPerSecond;
+			this->_quota = (int)(this->timer * this->particlesPerSecond);
 			if (this->particles.size() >= this->maxParticles)
 			{
-				this->counter = 0.0f;
+				this->timer = 0.0f;
 			}
-			if (this->counter > cs && this->particles.size() < this->maxParticles)
+			else if (this->timer > this->_cs && this->particles.size() < this->maxParticles)
 			{
-				quota = hmin(quota, (int)(this->maxParticles - this->particles.size()));
-				for (int i = 0; i < quota; i++)
+				this->_quota = hmin(this->_quota, (int)(this->maxParticles - this->particles.size()));
+				for (int i = 0; i < this->_quota; i++)
 				{
 					this->createParticle();
 				}
-				this->counter = 0.0f;
+				this->timer = 0.0f;
 			}
 		}
 		
@@ -243,10 +218,43 @@ namespace aprilparticle
 	
 	void ParticleEmitter::addAffector(Affector* affector)
 	{
-		// TODO - change to operator+= after it has been implemented
-		this->affectors.push_back(affector);
+		this->affectors += affector;
 	}
 	
+	void ParticleEmitter::setEmitterVolume(float width, float height, float length)
+	{
+		this->width = width;
+		this->height = height;
+		this->length = length;
+	}
+	
+	void ParticleEmitter::setMaxParticles(int value)
+	{
+		if (this->maxParticles != value)
+		{
+			this->maxParticles = value;
+			this->_setupTriangleBatch();
+		}
+	}
+
+	void ParticleEmitter::_setupTriangleBatch()
+	{
+		if (this->_triangleBatch != NULL)
+		{
+			delete [] this->_triangleBatch;
+		}
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
+		for (int i = 0; i < this->maxParticles; i++)
+		{
+			this->_triangleBatch[i * 6 + 0].u = 1.0f;	this->_triangleBatch[i * 6 + 0].v = 1.0f;
+			this->_triangleBatch[i * 6 + 1].u = 0.0f;	this->_triangleBatch[i * 6 + 1].v = 1.0f;
+			this->_triangleBatch[i * 6 + 2].u = 1.0f;	this->_triangleBatch[i * 6 + 2].v = 0.0f;
+			this->_triangleBatch[i * 6 + 3].u = 0.0f;	this->_triangleBatch[i * 6 + 3].v = 1.0f;
+			this->_triangleBatch[i * 6 + 4].u = 1.0f;	this->_triangleBatch[i * 6 + 4].v = 0.0f;
+			this->_triangleBatch[i * 6 + 5].u = 0.0f;	this->_triangleBatch[i * 6 + 5].v = 0.0f;
+		}
+	}
+
 	void ParticleEmitter::draw(gvec3 point, gvec3 up)
 	{
 		gmat4 billboard;
@@ -301,39 +309,5 @@ namespace aprilparticle
 		}
 	}
 	
-	void ParticleEmitter::setEmitterVolume(float width, float height, float length)
-	{
-		this->width = width;
-		this->height = height;
-		this->length = length;
-	}
-	
-	void ParticleEmitter::setMaxParticles(int value)
-	{
-		if (this->maxParticles != value)
-		{
-			this->maxParticles = value;
-			this->_setupTriangleBatch();
-		}
-	}
-
-	void ParticleEmitter::_setupTriangleBatch()
-	{
-		if (this->_triangleBatch != NULL)
-		{
-			delete [] this->_triangleBatch;
-		}
-		this->_triangleBatch = new april::ColoredTexturedVertex[this->maxParticles * 6];
-		for (int i = 0; i < this->maxParticles; i++)
-		{
-			this->_triangleBatch[i * 6 + 0].u = 1.0f;	this->_triangleBatch[i * 6 + 0].v = 1.0f;
-			this->_triangleBatch[i * 6 + 1].u = 0.0f;	this->_triangleBatch[i * 6 + 1].v = 1.0f;
-			this->_triangleBatch[i * 6 + 2].u = 1.0f;	this->_triangleBatch[i * 6 + 2].v = 0.0f;
-			this->_triangleBatch[i * 6 + 3].u = 0.0f;	this->_triangleBatch[i * 6 + 3].v = 1.0f;
-			this->_triangleBatch[i * 6 + 4].u = 1.0f;	this->_triangleBatch[i * 6 + 4].v = 0.0f;
-			this->_triangleBatch[i * 6 + 5].u = 0.0f;	this->_triangleBatch[i * 6 + 5].v = 0.0f;
-		}
-	}
-
 }
 

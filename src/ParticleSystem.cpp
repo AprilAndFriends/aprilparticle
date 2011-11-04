@@ -31,6 +31,8 @@ namespace aprilparticle
 	
 	void ParticleSystem::load()
 	{
+
+
 		hlist<hstr> textureTable;
 		hlist<hstr> affectorTable;
 		
@@ -72,7 +74,7 @@ namespace aprilparticle
 								}
 								if (!found)
 								{
-									affectorTable.push_back(pprop->value());
+									affectorTable += pprop->value();
 								}
 							}
 							else if (*cchild == "Property" && pprop->name() == "name" && pprop->value() == "Texture")
@@ -88,7 +90,7 @@ namespace aprilparticle
 								}
 								if (!found)
 								{
-									affectorTable.push_back(pprop->next()->value());
+									affectorTable += pprop->next()->value();
 								}
 							}
 						}

@@ -57,7 +57,6 @@ namespace aprilparticle
 		hmap<april::Texture*, int> textures;
 		
 	};
-
 }
 
 #endif

@@ -27,16 +27,16 @@ namespace aprilparticle
 		this->color = APRIL_COLOR_WHITE;
 	}
 	
-	Particle::Particle(gvec3 position, gvec3 direction, float life, float size)
+	Particle::Particle(gvec3 position, gvec3 direction, float life, float size, float speed, float angle, april::Color color)
 	{
 		this->position = position;
 		this->direction = direction;
 		this->life = life;
 		this->totalLife = life;
 		this->size = size;
-		this->speed = 0.0f;
-		this->angle = 0.0f;
-		this->color = APRIL_COLOR_WHITE;
+		this->speed = speed;
+		this->angle = angle;
+		this->color = color;
 	}
 	
 	Particle::~Particle()

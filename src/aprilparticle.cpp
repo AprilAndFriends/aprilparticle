@@ -18,7 +18,7 @@ namespace aprilparticle
 		printf("%s\n", message.c_str());
 	}
 	void (*g_logFunction)(chstr) = aprilparticle_writelog;
-
+	
 	extern void initDirectionalForceField();
     void init()
     {

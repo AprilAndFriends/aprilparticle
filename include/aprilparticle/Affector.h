@@ -15,6 +15,8 @@
 #ifndef APRILPARTICLE_AFFECTOR_H
 #define APRILPARTICLE_AFFECTOR_H
 
+#include <hltypes/hstring.h>
+
 #include "aprilparticleExport.h"
 
 namespace aprilparticle
@@ -24,14 +26,21 @@ namespace aprilparticle
 	class aprilparticleExport Affector
 	{
 	public:
-		Affector() { }
-		virtual ~Affector() { }
+		Affector();
+		virtual ~Affector();
+
+		hstr getName() { return this->name; }
+		void setName(chstr value) { this->name = value; }
 				
 		virtual void update(Particle* particle, float k) { }
 		virtual void draw() { }
+		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
+		virtual bool setProperty(chstr name, chstr value);
+
+	protected:
+		hstr name;
 
 	};
-
 }
 
 #endif

@@ -14,12 +14,14 @@
 #ifndef APRILPARTICLE_AFFECTORS_H
 #define APRILPARTICLE_AFFECTORS_H
 
-#include "Attractor.h"
-#include "ColorAffector.h"
-#include "DirectionalForceField.h"
-#include "LinearDirectionalForce.h"
-#include "MultiColorAffector.h"
-#include "Rotator.h"
-#include "Swirl.h"
+#include "Affector.h"
+#include "AffectorAttractor.h"
+#include "AffectorCallbackAffector.h"
+#include "AffectorColorChanger.h"
+#include "AffectorDirectionalForceField.h"
+#include "AffectorLinearDirectionalForce.h"
+#include "AffectorMultiColorChanger.h"
+#include "AffectorRotator.h"
+#include "AffectorSwirl.h"
 
 #endif

@@ -30,6 +30,8 @@ namespace april
 
 namespace aprilparticle
 {
+	class Affector;
+
 	enum EmitterType
 	{
 		ET_Point = 0,
@@ -45,8 +47,8 @@ namespace aprilparticle
 	{
 	public:
 		ParticleEmitter();
-		ParticleEmitter(float life, float particlesPerSecond = 60.0f,
-						gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
+		ParticleEmitter(float life, float particlesPerSecond = 60.0f, gvec3 position = gvec3(0.0f, 0.0f, 0.0f),
+			gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
 		~ParticleEmitter();
 		
 		void setBlendMode(april::BlendMode value) { this->blendMode = value; }
@@ -85,7 +87,7 @@ namespace aprilparticle
 		bool randomStartSize;
 		bool randomLife;
 		float particlesPerSecond;
-		float counter;
+		float timer;
 		float minSize;
 		float maxSize;
 		float minLife;
@@ -93,9 +95,17 @@ namespace aprilparticle
 		april::Texture* texture;
 
 		void _setupTriangleBatch();
+
+	private:
+		gvec3 _pos;
+		float _rho;
+		float _phi;
+		float _theta;
+		float _S;
+		float _cs;
+		int _quota;
 		
 	};
-
 }
 
 #endif // PARTICLE_EMITTER_H

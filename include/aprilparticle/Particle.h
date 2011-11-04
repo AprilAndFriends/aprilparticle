@@ -23,30 +23,36 @@
 namespace aprilparticle
 {
 	class Affector;
-	class Attractor;
-	class ColorAffector;
-	class DirectionalForceField;
-	class LinearDirectionalForce;
-	class MultiColorAffector;
 	class ParticleEmitter;
-	class Rotator;
-	class Swirl;
+
+	namespace Affectors
+	{
+		class Attractor;
+		class CallbackAffector;
+		class ColorChanger;
+		class DirectionalForceField;
+		class LinearDirectionalForce;
+		class MultiColorChanger;
+		class Rotator;
+		class Swirl;
+	}
 
 	class aprilparticleExport Particle
 	{
 	public:
 		friend class Affector;
-		friend class Attractor;
-		friend class ColorAffector;
-		friend class DirectionalForceField;
-		friend class LinearDirectionalForce;
-		friend class MultiColorAffector;
 		friend class ParticleEmitter;
-		friend class Rotator;
-		friend class Swirl;
+		friend class Affectors::Attractor;
+		friend class Affectors::CallbackAffector;
+		friend class Affectors::ColorChanger;
+		friend class Affectors::DirectionalForceField;
+		friend class Affectors::LinearDirectionalForce;
+		friend class Affectors::MultiColorChanger;
+		friend class Affectors::Rotator;
+		friend class Affectors::Swirl;
 
 		Particle();
-		Particle(gvec3 position, gvec3 direction, float life, float size);
+		Particle(gvec3 position, gvec3 direction, float life, float size, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
 		virtual ~Particle();
 
 		gvec3 getPosition() { return this->position; }
@@ -80,6 +86,6 @@ namespace aprilparticle
 		april::Color color;
 
 	};
-
 }
+
 #endif
