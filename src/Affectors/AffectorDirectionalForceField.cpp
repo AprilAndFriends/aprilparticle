@@ -49,7 +49,7 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		DirectionalForceField::DirectionalForceField()
+		DirectionalForceField::DirectionalForceField() : Affector()
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->direction = gvec3(0.0f, 0.0f, 1.0f);

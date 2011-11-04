@@ -18,7 +18,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		ColorChanger::ColorChanger()
+		ColorChanger::ColorChanger() : Affector()
 		{
 			this->startColor = APRIL_COLOR_WHITE;
 			this->endColor = april::Color(APRIL_COLOR_WHITE, 0);

@@ -16,12 +16,15 @@
 #define APRILPARTICLE_PARTICLE_EMITTER_H
 
 #include <april/RenderSystem.h>
+#include <gtypes/Matrix3.h>
+#include <gtypes/Matrix4.h>
+#include <gtypes/Vector3.h>
 #include <hltypes/hdeque.h>
 #include <hltypes/hlist.h>
 
+#include "Affectors.h" // includes all affectors
 #include "aprilparticleExport.h"
 #include "Particle.h"
-#include "Affectors.h" // includes all affectors
 
 namespace april
 {
@@ -32,38 +35,43 @@ namespace aprilparticle
 {
 	class Affector;
 
-	enum EmitterType
-	{
-		ET_Point = 0,
-		ET_Box = 1,
-		ET_Sphere = 2,
-		ET_HollowSphere = 3,
-		ET_Ring = 4,
-		ET_Cylinder = 5,
-		ET_HollowCylinder = 6
-	};
-	
 	class aprilparticleExport ParticleEmitter : public Particle
 	{
 	public:
+		enum Type
+		{
+			Point,
+			Box,
+			Sphere,
+			HollowSphere,
+			Ring,
+			Cylinder,
+			HollowCylinder
+		};
+	
 		ParticleEmitter();
-		ParticleEmitter(float life, float particlesPerSecond = 60.0f, gvec3 position = gvec3(0.0f, 0.0f, 0.0f),
+		ParticleEmitter(float life, float emissionRate = 60.0f, gvec3 position = gvec3(0.0f, 0.0f, 0.0f),
 			gvec3 direction = gvec3(0.0f, 0.0f, 1.0f), unsigned int max = 256);
 		~ParticleEmitter();
+
+		void setParticleScale(float value);
+
+
+
+		void setParticleScaleRange(float min, float max);
+		void setParticleAngleRange(float min, float max);
+
 		
 		void setBlendMode(april::BlendMode value) { this->blendMode = value; }
-		void setParticlesEmissionRate(float value) { this->particlesPerSecond = value; }
-		void setEmitterType(EmitterType value) { this->emitterType = value; }
-		void setRandomStartLife(bool value) { this->randomLife = value; }
-		void setRandomStartSize(bool value) { this->randomStartSize = value; }
-		void setRandomStartAngle(bool value) { this->randomStartAngle = value; }
+		void setParticlesEmissionRate(float value) { this->emissionRate = value; }
+		void setEmitterType(Type value) { this->emitterType = value; }
 		void setTexture(april::Texture* texture) { this->texture = texture; }
 
 		void setMaxParticles(int value);
 			
 		void setEmitterVolume(float width, float height, float length);
 		void setLifeRange(float minLife, float maxLife);
-		void setSizeRange(float minSize, float maxSize);
+		void setSizeRange(float minParticleScale, float maxParticleScale);
 			
 		void addAffector(Affector* affector);
 			
@@ -82,14 +90,11 @@ namespace aprilparticle
 		float height;
 		float length;
 		april::BlendMode blendMode;
-		EmitterType emitterType;
-		bool randomStartAngle;
-		bool randomStartSize;
-		bool randomLife;
-		float particlesPerSecond;
+		Type emitterType;
+		float emissionRate;
 		float timer;
-		float minSize;
-		float maxSize;
+		float minParticleScale;
+		float maxParticleScale;
 		float minLife;
 		float maxLife;
 		april::Texture* texture;
@@ -104,6 +109,10 @@ namespace aprilparticle
 		float _S;
 		float _cs;
 		int _quota;
+		gmat4 _billboard;
+		gmat3 _rot;
+		int _i;
+		unsigned int _color;
 		
 	};
 }

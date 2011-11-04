@@ -52,7 +52,7 @@ namespace aprilparticle
 		friend class Affectors::Swirl;
 
 		Particle();
-		Particle(gvec3 position, gvec3 direction, float life, float size, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
+		Particle(gvec3 position, gvec3 direction, float life, float scale, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
 		virtual ~Particle();
 
 		gvec3 getPosition() { return this->position; }
@@ -63,8 +63,8 @@ namespace aprilparticle
 		void setLife(float value) { this->life = value; }
 		float getTotalLife() { return this->totalLife; }
 		void setTotalLife(float value) { this->totalLife = value; }
-		float getSize() { return this->size; }
-		void setSize(float value) { this->size = value; }
+		float getScale() { return this->scale; }
+		void setScale(float value) { this->scale = value; }
 		float getSpeed() { return this->speed; }
 		void setSpeed(float value) { this->speed = value; }
 		float getAngle() { return this->angle; }
@@ -80,7 +80,7 @@ namespace aprilparticle
 		gvec3 direction;
 		float life;
 		float totalLife;
-		float size;
+		float scale;
 		float speed;
 		float angle;
 		april::Color color;

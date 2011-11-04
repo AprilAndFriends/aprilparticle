@@ -21,7 +21,7 @@ namespace aprilparticle
 	{
 		gmat3 rotation;
 
-		Swirl::Swirl()
+		Swirl::Swirl() : Affector()
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->up = gvec3(0.0f, 1.0f, 0.0f);

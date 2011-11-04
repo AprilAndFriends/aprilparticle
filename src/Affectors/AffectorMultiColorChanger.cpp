@@ -21,7 +21,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		MultiColorChanger::MultiColorChanger()
+		MultiColorChanger::MultiColorChanger() : Affector()
 		{
 			this->times += 0.0f;
 			this->colors += APRIL_COLOR_WHITE;
@@ -91,9 +91,10 @@ namespace aprilparticle
 		void MultiColorChanger::update(Particle* particle, float k)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
+			this->_size = this->times.size() - 1;
 			for (this->_i = 0; this->_i < this->_size; this->_i++)
 			{
-				if (is_in_range(this->_ratio, this->times[this->_i], this->times[this->_i + 1]))
+				if (is_inside(this->_ratio, this->times[this->_i], this->times[this->_i + 1]))
 				{
 					break;
 				}

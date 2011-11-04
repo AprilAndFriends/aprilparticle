@@ -15,7 +15,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		Rotator::Rotator(float rotationSpeed)
+		Rotator::Rotator(float rotationSpeed) : Affector()
 		{
 			this->rotationSpeed = rotationSpeed;
 		}
