@@ -114,6 +114,7 @@
     <ClInclude Include="include\aprilparticle\Particle.h" />
     <ClInclude Include="include\aprilparticle\ParticleEmitter.h" />
     <ClInclude Include="include\aprilparticle\ParticleSystem.h" />
+    <ClInclude Include="include\aprilparticle\Space3DObject.h" />
     <ClInclude Include="src\Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +131,7 @@
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
     <ClCompile Include="src\ParticleSystem.cpp" />
+    <ClCompile Include="src\Space3DObject.cpp" />
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>

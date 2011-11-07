@@ -9,30 +9,30 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include <april/Color.h>
+#include <gtypes/Vector2.h>
+#include <gtypes/Vector3.h>
 #include <hltypes/util.h>
 
 #include "Particle.h"
 
 namespace aprilparticle
 {
-	Particle::Particle()
+	Particle::Particle() : Space3DObject()
 	{
-		this->position = gvec3(0.0f, 0.0f, 0.0f);
-		this->direction = gvec3(0.0f, 1.0f, 0.0f);
+		this->timer = 0.0f;
 		this->life = 1.0f;
-		this->totalLife = 1.0f;
 		this->scale = 1.0f;
 		this->speed = 0.0f;
 		this->angle = 0.0f;
 		this->color = APRIL_COLOR_WHITE;
 	}
 	
-	Particle::Particle(gvec3 position, gvec3 direction, float life, float scale, float speed, float angle, april::Color color)
+	Particle::Particle(gvec3 position, gvec3 direction, float life, gvec2 size, float scale, float speed,
+		float angle, april::Color color) : Space3DObject(position, direction)
 	{
-		this->position = position;
-		this->direction = direction;
+		this->timer = 0.0f;
 		this->life = life;
-		this->totalLife = life;
+		this->size = size;
 		this->scale = scale;
 		this->speed = speed;
 		this->angle = angle;
@@ -45,12 +45,12 @@ namespace aprilparticle
 
 	float Particle::getLifeProgressRatio()
 	{
-		return (1.0f - (this->totalLife > 0.0f ? hclamp(this->life / this->totalLife, 0.0f, 1.0f) : 1.0f));
+		return (this->life > 0.0f ? (hclamp(this->timer / this->life, 0.0f, 1.0f)) : 1.0f);
 	}
 
 	bool Particle::isDead()
 	{
-		return (this->life <= 0.0f);
+		return (this->timer >= this->life);
 	}
 
 }

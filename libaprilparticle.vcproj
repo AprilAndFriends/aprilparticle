@@ -188,6 +188,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Space3DObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Util.cpp"
 				>
 			</File>
@@ -259,6 +263,10 @@
 			</File>
 			<File
 				RelativePath=".\include\aprilparticle\ParticleSystem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\aprilparticle\Space3DObject.h"
 				>
 			</File>
 			<File

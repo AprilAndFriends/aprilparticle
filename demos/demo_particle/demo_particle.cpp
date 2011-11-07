@@ -4,14 +4,17 @@
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
 #include <april/Window.h>
-#include <aprilparticle/ParticleEmitter.h>
 #include <aprilparticle/aprilparticle.h>
+#include <aprilparticle/Affectors.h>
+#include <aprilparticle/ParticleEmitter.h>
 
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
+
+gvec3 up(0.0f, 1.0f, 0.0f);
 
 april::Texture* jet;
 april::Texture* plasmaball;
@@ -20,46 +23,20 @@ april::Texture* red;
 april::Texture* raindrop;
 april::Texture* bubble;
 
-aprilparticle::ParticleEmitter* flame = new aprilparticle::ParticleEmitter(4.0f, 32.0f);
-aprilparticle::ParticleEmitter* bubbles = new aprilparticle::ParticleEmitter(6.0f, 50.0f);
-aprilparticle::ParticleEmitter* vortex = new aprilparticle::ParticleEmitter(2.0f, 200.0f);
+aprilparticle::ParticleEmitter* flame;
+aprilparticle::ParticleEmitter* bubbles;
+aprilparticle::ParticleEmitter* vortex;
+aprilparticle::ParticleEmitter* rain;
+aprilparticle::ParticleEmitter* quazar_disc;
+aprilparticle::ParticleEmitter* quazar_jet_top;
+aprilparticle::ParticleEmitter* quazar_jet_bottom;
+aprilparticle::ParticleEmitter* twirl1;
+aprilparticle::ParticleEmitter* twirl2;
 
-aprilparticle::Affectors::DirectionalForceField* directionalForce = new aprilparticle::Affectors::DirectionalForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
-aprilparticle::Affectors::ColorChanger* colorFader = new aprilparticle::Affectors::ColorChanger(april::Color(0x1131FFFF), april::Color(0x22000000));
-aprilparticle::Affectors::MultiColorChanger* colorAffector1 = new aprilparticle::Affectors::MultiColorChanger();
-aprilparticle::Affectors::MultiColorChanger* colorAffector2 = new aprilparticle::Affectors::MultiColorChanger();
-aprilparticle::Affectors::LinearDirectionalForce* linearforce1 = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), 0.018f);
-aprilparticle::Affectors::Rotator* rotator = new aprilparticle::Affectors::Rotator(50.0f);
-aprilparticle::Affectors::Attractor* attractor1 = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
-aprilparticle::Affectors::Swirl* swirl = new aprilparticle::Affectors::Swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 0.2f, 8.0f);
-
-// kvazar
-aprilparticle::ParticleEmitter* quazar_disc = new aprilparticle::ParticleEmitter(4.0f, 240.0f);
-aprilparticle::ParticleEmitter* quazar_jet_top = new aprilparticle::ParticleEmitter(4.0f, 120.0f);
-aprilparticle::ParticleEmitter* quazar_jet_bottom = new aprilparticle::ParticleEmitter(4.0f, 120.0f);
-aprilparticle::Affectors::LinearDirectionalForce* top = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(1.0f, 0.0f, 0.0f), 0.024f);
-aprilparticle::Affectors::LinearDirectionalForce* bottom = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.024f);
-aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
-aprilparticle::Affectors::Swirl* spin = new aprilparticle::Affectors::Swirl(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 0.1f, 8.0f);
-aprilparticle::Affectors::Attractor* inverse_gravitiy = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
-aprilparticle::Affectors::Attractor* attraction_point_bottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 10.0f), 6.0f);
-aprilparticle::Affectors::Attractor* attraction_point_top = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 10.0f), 6.0f);
-
-// kisa
-aprilparticle::ParticleEmitter* rain = new aprilparticle::ParticleEmitter(4.0f, 60.0f);
-aprilparticle::Affectors::LinearDirectionalForce* gravity_rain = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -0.012f);
-
-// twirl
-aprilparticle::ParticleEmitter* twirl1 = new aprilparticle::ParticleEmitter(6.0f, 100.0f);
-aprilparticle::Affectors::DirectionalForceField* force1 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
-aprilparticle::Affectors::DirectionalForceField* force2 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
-
-aprilparticle::ParticleEmitter* twirl2 = new aprilparticle::ParticleEmitter(6.0f, 100.0f);
-aprilparticle::Affectors::DirectionalForceField* force3 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
-aprilparticle::Affectors::DirectionalForceField* force4 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
-
-aprilparticle::Affectors::LinearDirectionalForce* wind = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.012f);
-aprilparticle::Affectors::Attractor* grav = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
+aprilparticle::Affectors::DirectionalForceField* force1;
+aprilparticle::Affectors::DirectionalForceField* force2;
+aprilparticle::Affectors::DirectionalForceField* force3;
+aprilparticle::Affectors::DirectionalForceField* force4;
 
 april::ColoredVertex grid[44];
 
@@ -100,170 +77,220 @@ bool render(float k)
 	drawGrid();
 	
 	flame->update(k);
-	flame->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
 	bubbles->update(k);
-	bubbles->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
 	vortex->update(k);
-	vortex->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
-	// kvazar
 	quazar_disc->update(k);
 	quazar_jet_bottom->update(k);
 	quazar_jet_top->update(k);
-	quazar_disc->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	quazar_jet_bottom->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	quazar_jet_top->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
-	// rain
 	rain->update(k);
-	rain->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
-	force1->setDirection(gvec3(sin(angle * 0.067f), 0.0f, cos(angle * 0.033f)));
-	force2->setDirection(gvec3(sin(angle * 0.067f), sin(angle * 0.033f), 0.0f));
-	force3->setDirection(gvec3(cos(angle * 0.033f), 0.0f, sin(angle * 0.067f)));
-	force4->setDirection(gvec3(sin(angle * 0.033f), sin(angle * 0.067f), 0.0f));
-	
 	twirl1->update(k);
-	twirl1->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
-	
 	twirl2->update(k);
-	twirl2->draw(pos, gvec3(0.0f, 1.0f, 0.0f));
+
+	force1->setDirection(gvec3(sin(angle * 0.06666667f), 0.0f, cos(angle * 0.03333333f)));
+	force2->setDirection(gvec3(sin(angle * 0.06666667f), sin(angle * 0.03333333f), 0.0f));
+	force3->setDirection(gvec3(cos(angle * 0.03333333f), 0.0f, sin(angle * 0.06666667f)));
+	force4->setDirection(gvec3(sin(angle * 0.03333333f), sin(angle * 0.06666667f), 0.0f));
+	
+	flame->draw(pos, up);
+	bubbles->draw(pos, up);
+	vortex->draw(pos, up);
+	quazar_disc->draw(pos, up);
+	quazar_jet_bottom->draw(pos, up);
+	quazar_jet_top->draw(pos, up);
+	rain->draw(pos, up);
+	twirl1->draw(pos, up);
+	twirl2->draw(pos, up);
 	
 	return true;
 }
 
+void setupFlame()
+{
+	aprilparticle::Affectors::MultiColorChanger* colorChanger = new aprilparticle::Affectors::MultiColorChanger();
+	aprilparticle::Affectors::LinearDirectionalForce* linearforce = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), 0.018f);
+	aprilparticle::Affectors::Rotator* rotator = new aprilparticle::Affectors::Rotator(50.0f);
+	flame = new aprilparticle::ParticleEmitter();
+
+	flame->setParticleLife(4.0f);
+	flame->setEmissionRate(32.0f);
+	flame->setParticleLimit(128);
+	flame->setBlendMode(april::ADD);
+	flame->setTexture(fire);
+	flame->setType(aprilparticle::ParticleEmitter::HollowSphere);
+	flame->setSize(2.0f, 4.0f, 2.0f);
+	flame->setPosition(-10.0f, 0.0f, 0.0f);
+	flame->setParticleScaleRange(2.4f, 3.4f);
+	flame->setParticleAngleRange(0.0f, 360.0f);
+	hmap<float, april::Color> colors;
+	colors[0.0f] = april::Color(0xFF000000);
+	colors[0.1f] = april::Color(0xFF6432F3);
+	colors[0.4f] = april::Color(0xFF7F3FAF);
+	colors[0.75f] = april::Color(0x7F7F7FAF);
+	colors[1.0f] = april::Color(0x7F7F7F00);
+	colorChanger->setColorTimings(colors);
+	flame->registerAffector(colorChanger);
+	flame->registerAffector(linearforce);
+	flame->registerAffector(rotator);
+}
+
+void setupBubbles()
+{
+	aprilparticle::Affectors::MultiColorChanger* colorChanger = new aprilparticle::Affectors::MultiColorChanger();
+	aprilparticle::Affectors::DirectionalForceField* directionalForce = new aprilparticle::Affectors::DirectionalForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
+	bubbles = new aprilparticle::ParticleEmitter();
+
+	bubbles->setParticleLife(6.0f);
+	bubbles->setEmissionRate(50.0f);
+	bubbles->setParticleLimit(300);
+	bubbles->setBlendMode(april::DEFAULT);
+	bubbles->setTexture(bubble);
+	bubbles->setType(aprilparticle::ParticleEmitter::Cylinder);
+	bubbles->setSize(5.0f, 4.0f, 5.0f);
+	bubbles->setPosition(0.0f, 0.0f, 0.0f);
+	bubbles->setParticleScaleRange(0.4f, 0.8f);
+	hmap<float, april::Color> colors;
+	colors[0.0f] = april::Color(0xFFFFFF00);
+	colors[0.04f] = april::Color(0xFFFFFFFF);
+	colors[0.99f] = april::Color(0xFFFFFFFF);
+	colors[1.0f] = april::Color(0xFFFFFF00);
+	colorChanger->setColorTimings(colors);
+	bubbles->registerAffector(colorChanger);
+	bubbles->registerAffector(directionalForce);
+}
+
+void setupVortex()
+{
+	aprilparticle::Affectors::Attractor* attractor1 = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
+	aprilparticle::Affectors::Swirl* swirl = new aprilparticle::Affectors::Swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 0.2f, 8.0f);
+	vortex = new aprilparticle::ParticleEmitter();
+
+	vortex->setParticleLife(2.0f);
+	vortex->setEmissionRate(200.0f);
+	vortex->setParticleLimit(800);
+	vortex->setBlendMode(april::ADD);
+	vortex->setTexture(red);
+	vortex->setType(aprilparticle::ParticleEmitter::Sphere);
+	vortex->setSize(8.0f, 0.0f, 8.0f);
+	vortex->setPosition(10.0f, 0.0f, 0.0f);
+	vortex->setParticleScale(0.4f);
+	vortex->registerAffector(swirl);
+	vortex->registerAffector(attractor1);
+}
+
+void setupRain()
+{
+	aprilparticle::Affectors::LinearDirectionalForce* gravity = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -0.012f);
+	rain = new aprilparticle::ParticleEmitter();
+
+	rain->setParticleLife(4.0f);
+	rain->setEmissionRate(60.0f);
+	rain->setParticleLimit(240);
+	rain->setBlendMode(april::ADD);
+	rain->setTexture(raindrop);
+	rain->setType(aprilparticle::ParticleEmitter::Box);
+	rain->setSize(6.0f, 0.0f, 6.0f);
+	rain->setPosition(-10.0f, -10.0f, 6.0f);
+	rain->setParticleScaleRange(0.1f, 0.4f);
+	rain->registerAffector(gravity);
+}
+
 void setupQuazar()
 {
-	gvec3 position;
+	aprilparticle::Affectors::LinearDirectionalForce* top = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(1.0f, 0.0f, 0.0f), 0.024f);
+	aprilparticle::Affectors::LinearDirectionalForce* bottom = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.024f);
+	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
+	aprilparticle::Affectors::Swirl* spin = new aprilparticle::Affectors::Swirl(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 0.1f, 8.0f);
+	aprilparticle::Affectors::Attractor* inverseGravity1 = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
+	aprilparticle::Affectors::Attractor* inverseGravity2 = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
+	aprilparticle::Affectors::Attractor* attractionPointBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 10.0f), 6.0f);
+	aprilparticle::Affectors::Attractor* attractionPointTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 10.0f), 6.0f);
+	quazar_disc = new aprilparticle::ParticleEmitter();
+	quazar_jet_top = new aprilparticle::ParticleEmitter();
+	quazar_jet_bottom = new aprilparticle::ParticleEmitter();
 
-	quazar_disc->setMaxParticles(960);
-	quazar_jet_top->setMaxParticles(480);
-	quazar_jet_bottom->setMaxParticles(480);
+	quazar_disc->setParticleLife(4.0f);
+	quazar_jet_top->setParticleLife(4.0f);
+	quazar_jet_bottom->setParticleLife(4.0f);
+	
+	quazar_disc->setEmissionRate(240.0f);
+	quazar_jet_top->setEmissionRate(120.0f);
+	quazar_jet_bottom->setEmissionRate(120.0f);
+	
+	quazar_disc->setParticleLimit(960);
+	quazar_jet_top->setParticleLimit(480);
+	quazar_jet_bottom->setParticleLimit(480);
 	
 	quazar_disc->setBlendMode(april::ADD);
 	quazar_jet_top->setBlendMode(april::ADD);
 	quazar_jet_bottom->setBlendMode(april::ADD);
 	
 	quazar_disc->setTexture(plasmaball);
-	quazar_jet_bottom->setTexture(jet);
 	quazar_jet_top->setTexture(jet);
+	quazar_jet_bottom->setTexture(jet);
 	
-	quazar_disc->setEmitterType(aprilparticle::ParticleEmitter::HollowSphere);
-	quazar_disc->setEmitterVolume(6.0f, 6.0f, 1.0f);
-	quazar_disc->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_disc->setType(aprilparticle::ParticleEmitter::HollowSphere);
+	quazar_disc->setSize(1.0f, 6.0f, 6.0f);
+	quazar_disc->setPosition(0.0f, 0.0f, 10.0f);
 	quazar_disc->setParticleScale(0.3f);
-	quazar_disc->addAffector(gravity);
-	quazar_disc->addAffector(spin);
+	quazar_disc->registerAffector(gravity);
+	quazar_disc->registerAffector(spin);
 	
-	quazar_jet_bottom->setEmitterType(aprilparticle::ParticleEmitter::Sphere);
-	quazar_jet_bottom->setEmitterVolume(1.0f, 1.0f, 1.0f);
-	quazar_jet_bottom->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_jet_bottom->setType(aprilparticle::ParticleEmitter::Sphere);
+	quazar_jet_bottom->setSize(1.0f, 1.0f, 1.0f);
+	quazar_jet_bottom->setPosition(0.0f, 0.0f, 10.0f);
 	quazar_jet_bottom->setParticleScale(0.3f);
-	quazar_jet_bottom->addAffector(bottom);
-	quazar_jet_bottom->addAffector(inverse_gravitiy);
-	quazar_jet_bottom->addAffector(attraction_point_bottom);
+	quazar_jet_bottom->registerAffector(bottom);
+	quazar_jet_bottom->registerAffector(inverseGravity1);
+	quazar_jet_bottom->registerAffector(attractionPointBottom);
 	
-	quazar_jet_top->setEmitterType(aprilparticle::ParticleEmitter::Sphere);
-	quazar_jet_top->setEmitterVolume(1.0f, 1.0f, 1.0f);
-	quazar_jet_top->setPosition(gvec3(0.0f, 0.0f, 10.0f));
+	quazar_jet_top->setType(aprilparticle::ParticleEmitter::Sphere);
+	quazar_jet_top->setSize(1.0f, 1.0f, 1.0f);
+	quazar_jet_top->setPosition(0.0f, 0.0f, 10.0f);
 	quazar_jet_top->setParticleScale(0.3f);
-	quazar_jet_top->addAffector(top);
-	quazar_jet_top->addAffector(inverse_gravitiy);
-	quazar_jet_top->addAffector(attraction_point_top);
+	quazar_jet_top->registerAffector(top);
+	quazar_jet_top->registerAffector(inverseGravity2);
+	quazar_jet_top->registerAffector(attractionPointTop);
 	
 }
 
 void setupTwirl()
 {
-	twirl1->setMaxParticles(600);
+	aprilparticle::Affectors::LinearDirectionalForce* wind1 = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.012f);
+	aprilparticle::Affectors::Attractor* gravity1 = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
+	aprilparticle::Affectors::LinearDirectionalForce* wind2 = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(-1.0f, 0.0f, 0.0f), 0.012f);
+	aprilparticle::Affectors::Attractor* gravity2 = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
+	force1 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
+	force2 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
+	force3 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(-1.0f, 1.0f, 0.0f), 4.0f);
+	force4 = new aprilparticle::Affectors::DirectionalForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(1.0f, 1.0f, 0.0f), 4.0f);
+	twirl1 = new aprilparticle::ParticleEmitter();
+	twirl2 = new aprilparticle::ParticleEmitter();
+
+	twirl1->setParticleLife(6.0f);
+	twirl1->setEmissionRate(100.0f);
+	twirl1->setParticleLimit(600);
 	twirl1->setBlendMode(april::ADD);
 	twirl1->setTexture(red);
-	twirl1->setEmitterType(aprilparticle::ParticleEmitter::Point);
-	twirl1->setPosition(gvec3(10.0f, 0.0f, -10.0f));
+	twirl1->setType(aprilparticle::ParticleEmitter::Point);
+	twirl1->setPosition(10.0f, 0.0f, -10.0f);
 	twirl1->setParticleScaleRange(0.1f, 0.4f);
-	twirl1->addAffector(force1);
-	twirl1->addAffector(force2);
-	twirl1->addAffector(wind);
-	twirl1->addAffector(grav);
+	twirl1->registerAffector(force1);
+	twirl1->registerAffector(force2);
+	twirl1->registerAffector(wind1);
+	twirl1->registerAffector(gravity1);
 	
-	twirl2->setMaxParticles(600);
+	twirl2->setParticleLife(6.0f);
+	twirl2->setEmissionRate(100.0f);
+	twirl2->setParticleLimit(600);
 	twirl2->setBlendMode(april::ADD);
 	twirl2->setTexture(plasmaball);
-	twirl2->setEmitterType(aprilparticle::ParticleEmitter::Point);
-	twirl2->setPosition(gvec3(10.0f, 0.0f, -10.0f));
+	twirl2->setType(aprilparticle::ParticleEmitter::Point);
+	twirl2->setPosition(10.0f, 0.0f, -10.0f);
 	twirl2->setParticleScaleRange(0.1f, 0.4f);
-	twirl2->addAffector(force3);
-	twirl2->addAffector(force4);
-	twirl2->addAffector(wind);
-	twirl2->addAffector(grav);
-}
-
-void setupRain()
-{
-	rain->setMaxParticles(240);
-	rain->setBlendMode(april::ADD);
-	rain->setTexture(raindrop);
-	rain->setEmitterType(aprilparticle::ParticleEmitter::Box);
-	rain->setEmitterVolume(6.0f, 0.0f, 6.0f);
-	rain->setPosition(gvec3(-10.0f, -10.0f, 6.0f));
-	rain->setParticleScaleRange(0.1f, 0.4f);
-	rain->addAffector(gravity_rain);
-}
-
-void setupFlame()
-{
-	flame->setMaxParticles(128);
-	flame->setBlendMode(april::ADD);
-	flame->setTexture(fire);
-	flame->setEmitterType(aprilparticle::ParticleEmitter::HollowSphere);
-	flame->setEmitterVolume(2.0f, 4.0f, 2.0f);
-	flame->setPosition(gvec3(-10.0f, 0.0f, 0.0f));
-	flame->setParticleScaleRange(2.4f, 3.4f);
-	flame->setParticleAngleRange(0.0f, 360.0f);
-	hmap<float, april::Color> colors1;
-	colors1[0.0f] = april::Color(0xFF000000);
-	colors1[0.1f] = april::Color(0xFF6432F3);
-	colors1[0.4f] = april::Color(0xFF7F3FAF);
-	colors1[0.75f] = april::Color(0x7F7F7FAF);
-	colors1[1.0f] = april::Color(0x7F7F7F00);
-	colorAffector1->setColorTimings(colors1);
-	flame->addAffector(colorAffector1);
-	flame->addAffector(linearforce1);
-	flame->addAffector(rotator);
-}
-
-void setupBubbles()
-{
-	bubbles->setMaxParticles(300);
-	bubbles->setBlendMode(april::DEFAULT);
-	bubbles->setTexture(bubble);
-	bubbles->setEmitterType(aprilparticle::ParticleEmitter::Cylinder);
-	bubbles->setEmitterVolume(5.0f, 4.0f, 5.0f);
-	bubbles->setPosition(gvec3(0.0f, 0.0f, 0.0f));
-	bubbles->setParticleScaleRange(0.4f, 0.8f);
-	hmap<float, april::Color> colors2;
-	colors2[0.0f] = april::Color(0xFFFFFF00);
-	colors2[0.04f] = april::Color(0xFFFFFFFF);
-	colors2[0.99f] = april::Color(0xFFFFFFFF);
-	colors2[1.0f] = april::Color(0xFFFFFF00);
-	colorAffector2->setColorTimings(colors2);
-	bubbles->addAffector(colorAffector2);
-	bubbles->addAffector(directionalForce);
-}
-
-void setupVortex()
-{
-	vortex->setMaxParticles(800);
-	vortex->setBlendMode(april::ADD);
-	vortex->setTexture(red);
-	vortex->setEmitterType(aprilparticle::ParticleEmitter::Sphere);
-	vortex->setEmitterVolume(8.0f, 0.0f, 8.0f);
-	vortex->setPosition(gvec3(10.0f, 0.0f, 0.0f));
-	vortex->setParticleScale(0.4f);
-	vortex->addAffector(swirl);
-	vortex->addAffector(attractor1);
+	twirl2->registerAffector(force3);
+	twirl2->registerAffector(force4);
+	twirl2->addAffector(wind2);
+	twirl2->registerAffector(gravity2);
 }
 
 void april_init(const harray<hstr>& args)
@@ -340,6 +367,15 @@ void april_init(const harray<hstr>& args)
 
 void april_destroy()
 {
+	delete flame;
+	delete bubbles;
+	delete vortex;
+	delete rain;
+	delete quazar_disc;
+	delete quazar_jet_top;
+	delete quazar_jet_bottom;
+	delete twirl1;
+	delete twirl2;
 	aprilparticle::destroy();
 	april::destroy();
 }

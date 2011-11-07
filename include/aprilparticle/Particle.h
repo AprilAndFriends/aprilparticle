@@ -16,9 +16,11 @@
 #define APRILPARTICLE_PARTICLE_H
 
 #include <april/Color.h>
+#include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
 
 #include "aprilparticleExport.h"
+#include "Space3DObject.h"
 
 namespace aprilparticle
 {
@@ -37,7 +39,7 @@ namespace aprilparticle
 		class Swirl;
 	}
 
-	class aprilparticleExport Particle
+	class aprilparticleExport Particle : public Space3DObject
 	{
 	public:
 		friend class Affector;
@@ -52,17 +54,13 @@ namespace aprilparticle
 		friend class Affectors::Swirl;
 
 		Particle();
-		Particle(gvec3 position, gvec3 direction, float life, float scale, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
+		Particle(gvec3 position, gvec3 direction = gvec3(0.0f, 1.0f, 0.0f), float life = 1.0f, gvec2 size = gvec2(1.0f, 1.0f), float scale = 1.0f, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
 		virtual ~Particle();
 
-		gvec3 getPosition() { return this->position; }
-		void setPosition(gvec3 value) { this->position = value; }
-		gvec3 getDirection() { return this->direction; }
-		void setDirection(gvec3 value) { this->direction = value; }
 		float getLife() { return this->life; }
 		void setLife(float value) { this->life = value; }
-		float getTotalLife() { return this->totalLife; }
-		void setTotalLife(float value) { this->totalLife = value; }
+		gvec2 getSize() { return this->size; }
+		void setSize(gvec2 value) { this->size = value; }
 		float getScale() { return this->scale; }
 		void setScale(float value) { this->scale = value; }
 		float getSpeed() { return this->speed; }
@@ -76,10 +74,9 @@ namespace aprilparticle
 		bool isDead();
 
 	protected:
-		gvec3 position;
-		gvec3 direction;
+		float timer;
 		float life;
-		float totalLife;
+		gvec2 size;
 		float scale;
 		float speed;
 		float angle;

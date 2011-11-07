@@ -66,6 +66,9 @@
     <ClInclude Include="include\aprilparticle\AffectorSwirl.h">
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\Space3DObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Particle.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="src\Affectors\AffectorSwirl.cpp">
       <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Space3DObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
