@@ -12,8 +12,8 @@
 /// 
 /// Represents a particle emitter.
 
-#ifndef APRILPARTICLE_PARTICLE_EMITTER_H
-#define APRILPARTICLE_PARTICLE_EMITTER_H
+#ifndef APRILPARTICLE_EMITTER_H
+#define APRILPARTICLE_EMITTER_H
 
 #include <april/RenderSystem.h>
 #include <gtypes/Matrix3.h>
@@ -37,23 +37,25 @@ namespace aprilparticle
 	class Affector;
 	class Particle;
 
-	class aprilparticleExport ParticleEmitter : public Space3DObject
+	class aprilparticleExport Emitter : public Space3DObject
 	{
 	public:
 		enum Type
 		{
 			Point,
 			Box,
+			HollowBox,
 			Sphere,
 			HollowSphere,
-			Ring,
 			Cylinder,
-			HollowCylinder
+			HollowCylinder,
+			Circle,
+			Ring
 		};
 	
-		ParticleEmitter(gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f),
+		Emitter(gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 0.0f, 1.0f),
 			float particleLife = 1.0f, float emissionRate = 60.0f, unsigned int max = 256);
-		~ParticleEmitter();
+		~Emitter();
 
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
@@ -93,7 +95,7 @@ namespace aprilparticle
 
 		void update(float k);
 		
-		void draw(gvec3 point, gvec3 up);
+		void draw(gvec3 point, gvec3 up, gvec3 offset = gvec3());
 		void drawAffectors(); // usually only used for debug purposes
 		
 	protected:

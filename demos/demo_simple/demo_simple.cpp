@@ -2,7 +2,7 @@
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
 #include <april/Window.h>
-#include <aprilparticle/ParticleSystem.h>
+#include <aprilparticle/System.h>
 #include <aprilparticle/aprilparticle.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
@@ -10,7 +10,7 @@
 #include <hltypes/hstring.h>
 
 april::ColoredVertex grid[44];
-aprilparticle::ParticleSystem* particleSystem = NULL;
+aprilparticle::System* particleSystem = NULL;
 
 void setupGrid(float spacing)
 {
@@ -61,7 +61,7 @@ void april_init(const harray<hstr>& args)
 	
 	setupGrid(2.0f);
 	
-	//particleSystem = new april::ParticleSystem();
+	//particleSystem = new april::System();
 	//particleSystem->loadParticleObject("../media/particle.apd");
     
 }

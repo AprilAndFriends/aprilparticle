@@ -176,19 +176,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Emitter.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Particle.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\ParticleEmitter.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ParticleSystem.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\Space3DObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\System.cpp"
 				>
 			</File>
 			<File
@@ -254,19 +254,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\aprilparticle\Emitter.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\aprilparticle\Particle.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\aprilparticle\ParticleEmitter.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\aprilparticle\ParticleSystem.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\aprilparticle\Space3DObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\aprilparticle\System.h"
 				>
 			</File>
 			<File

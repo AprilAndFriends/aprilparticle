@@ -111,10 +111,10 @@
     <ClInclude Include="include\aprilparticle\AffectorSwirl.h" />
     <ClInclude Include="include\aprilparticle\aprilparticle.h" />
     <ClInclude Include="include\aprilparticle\aprilparticleExport.h" />
+    <ClInclude Include="include\aprilparticle\Emitter.h" />
     <ClInclude Include="include\aprilparticle\Particle.h" />
-    <ClInclude Include="include\aprilparticle\ParticleEmitter.h" />
-    <ClInclude Include="include\aprilparticle\ParticleSystem.h" />
     <ClInclude Include="include\aprilparticle\Space3DObject.h" />
+    <ClInclude Include="include\aprilparticle\System.h" />
     <ClInclude Include="src\Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -128,10 +128,10 @@
     <ClCompile Include="src\Affectors\AffectorRotator.cpp" />
     <ClCompile Include="src\Affectors\AffectorSwirl.cpp" />
     <ClCompile Include="src\aprilparticle.cpp" />
+    <ClCompile Include="src\Emitter.cpp" />
     <ClCompile Include="src\Particle.cpp" />
-    <ClCompile Include="src\ParticleEmitter.cpp" />
-    <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Space3DObject.cpp" />
+    <ClCompile Include="src\System.cpp" />
     <ClCompile Include="src\Util.cpp" />
   </ItemGroup>
   <ItemGroup>

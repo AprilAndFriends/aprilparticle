@@ -26,7 +26,7 @@
 namespace aprilparticle
 {
 	class Affector;
-	class ParticleEmitter;
+	class Emitter;
 
 	namespace Affectors
 	{
@@ -44,7 +44,7 @@ namespace aprilparticle
 	{
 	public:
 		friend class Affector;
-		friend class ParticleEmitter;
+		friend class Emitter;
 		friend class Affectors::Attractor;
 		friend class Affectors::CallbackAffector;
 		friend class Affectors::ColorChanger;

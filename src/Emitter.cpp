@@ -18,7 +18,7 @@
 #include <hltypes/util.h>
 
 #include "Affector.h"
-#include "ParticleEmitter.h"
+#include "Emitter.h"
 #include "Particle.h"
 
 #define RANDOMIZE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
@@ -27,7 +27,7 @@ namespace aprilparticle
 {
 	gvec3 v[4]; // optimization
 
-	ParticleEmitter::ParticleEmitter(gvec3 position, gvec3 direction, float particleLife, float emissionRate, unsigned int max)
+	Emitter::Emitter(gvec3 position, gvec3 direction, float particleLife, float emissionRate, unsigned int max)
 	{
 		this->timer = 0.0f;
 		this->position = position;
@@ -52,7 +52,7 @@ namespace aprilparticle
 		this->_setupTriangleBatch();
 	}
 
-	ParticleEmitter::~ParticleEmitter()
+	Emitter::~Emitter()
 	{
 		if (this->_triangleBatch != NULL)
 		{
@@ -68,37 +68,37 @@ namespace aprilparticle
 		}
 	}
 
-	void ParticleEmitter::setLife(float value)
+	void Emitter::setLife(float value)
 	{
 		this->minLife = value;
 		this->maxLife = value;
 	}
 
-	void ParticleEmitter::setSize(gvec2 value)
+	void Emitter::setSize(gvec2 value)
 	{
 		this->minSize = value;
 		this->maxSize = value;
 	}
 
-	void ParticleEmitter::setScale(float value)
+	void Emitter::setScale(float value)
 	{
 		this->minScale = value;
 		this->maxScale = value;
 	}
 
-	void ParticleEmitter::setSpeed(float value)
+	void Emitter::setSpeed(float value)
 	{
 		this->minSpeed = value;
 		this->maxSpeed = value;
 	}
 
-	void ParticleEmitter::setAngle(float value)
+	void Emitter::setAngle(float value)
 	{
 		this->minAngle = value;
 		this->maxAngle = value;
 	}
 
-	void ParticleEmitter::setParticleLimit(int value)
+	void Emitter::setParticleLimit(int value)
 	{
 		if (this->particleLimit != value)
 		{
@@ -107,7 +107,7 @@ namespace aprilparticle
 		}
 	}
 
-	void ParticleEmitter::_setupTriangleBatch()
+	void Emitter::_setupTriangleBatch()
 	{
 		if (this->_triangleBatch != NULL)
 		{
@@ -125,66 +125,77 @@ namespace aprilparticle
 		}
 	}
 
-	void ParticleEmitter::setLifeRange(float min, float max)
+	void Emitter::setLifeRange(float min, float max)
 	{
 		this->minLife = min;
 		this->maxLife = max;
 	}
 
-	void ParticleEmitter::setSizeRange(gvec2 min, gvec2 max)
+	void Emitter::setSizeRange(gvec2 min, gvec2 max)
 	{
 		this->minSize = min;
 		this->maxSize = max;
 	}
 
-	void ParticleEmitter::setScaleRange(float min, float max)
+	void Emitter::setScaleRange(float min, float max)
 	{
 		this->minScale = min;
 		this->maxScale = max;
 	}
 
-	void ParticleEmitter::setSpeedRange(float min, float max)
+	void Emitter::setSpeedRange(float min, float max)
 	{
 		this->minSpeed = min;
 		this->maxSpeed = max;
 	}
 
-	void ParticleEmitter::setAngleRange(float min, float max)
+	void Emitter::setAngleRange(float min, float max)
 	{
 		this->minAngle = min;
 		this->maxAngle = max;
 	}
 
-	void ParticleEmitter::addAffector(Affector* affector)
+	void Emitter::addAffector(Affector* affector)
 	{
 		this->affectors += affector;
 	}
 	
-	void ParticleEmitter::removeAffector(Affector* affector)
+	void Emitter::removeAffector(Affector* affector)
 	{
 		this->affectors -= affector;
 	}
 	
-	void ParticleEmitter::registerAffector(Affector* affector)
+	void Emitter::registerAffector(Affector* affector)
 	{
 		this->affectors += affector;
 		this->registeredAffectors += affector;
 	}
 	
-	void ParticleEmitter::unregisterAffector(Affector* affector)
+	void Emitter::unregisterAffector(Affector* affector)
 	{
 		this->affectors -= affector;
 		this->registeredAffectors -= affector;
 	}
 	
-	void ParticleEmitter::_createNewParticle()
+	void Emitter::_createNewParticle()
 	{
 		switch (this->type)
 		{
 			case Point:
 				this->_pos = this->position;
 				break;
+			case Box:
+				this->_pos.x = this->position.x + hrandf(1.0f) * this->dimensions.x - this->dimensions.x * 0.5f;
+				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
+				this->_pos.z = this->position.z + hrandf(1.0f) * this->dimensions.z - this->dimensions.z * 0.5f;
+				break;
+			case HollowBox:
+				this->_pos.x = this->position.x + hrand(2) * this->dimensions.x - this->dimensions.x * 0.5f;
+				this->_pos.y = this->position.y + hrand(2) * this->dimensions.y - this->dimensions.y * 0.5f;
+				this->_pos.z = this->position.z + hrand(2) * this->dimensions.z - this->dimensions.z * 0.5f;
+				break;
 			case Sphere:
+				// TODO
 				this->_rho = hrandf(1.0f);
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
@@ -195,6 +206,7 @@ namespace aprilparticle
 				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
 				break;
 			case HollowSphere:
+				// TODO
 				this->_rho = 1.0f;
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
@@ -204,12 +216,8 @@ namespace aprilparticle
 				this->_pos.y = this->position.y + this->_S * sin(this->_theta) * this->dimensions.y * 0.5f;
 				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
 				break;
-			case Box:
-				this->_pos.x = this->position.x + hrandf(1.0f) * this->dimensions.x - this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + hrandf(1.0f) * this->dimensions.z - this->dimensions.z * 0.5f;
-				break;
 			case Cylinder:
+				// TODO
 				this->_rho = hrandf(1.0f);
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
@@ -220,6 +228,7 @@ namespace aprilparticle
 				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
 				break;
 			case HollowCylinder:
+				// TODO
 				this->_rho = 1.0f;
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
@@ -228,6 +237,10 @@ namespace aprilparticle
 				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->dimensions.x * 0.5f;
 				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
 				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
+				break;
+			case Circle:
+				// TODO
+				this->_pos = this->position;
 				break;
 			case Ring:
 				// TODO
@@ -243,7 +256,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void ParticleEmitter::update(float k)
+	void Emitter::update(float k)
 	{
 		// first update all particles
 		this->_alive = 0;
@@ -294,14 +307,14 @@ namespace aprilparticle
 		}
 	}
 	
-	void ParticleEmitter::draw(gvec3 point, gvec3 up)
+	void Emitter::draw(gvec3 point, gvec3 up, gvec3 offset)
 	{
 		this->_i = 0;
 		foreach_q (Particle*, it, this->particles)
 		{
 			if (!(*it)->isDead())
 			{
-				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
+				this->_billboard.lookAt((*it)->position + offset, point - ((*it)->position + offset), up);
 				v[0].set(-(*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
 				v[1].set((*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
 				v[2].set(-(*it)->size.x * (*it)->scale * 0.5f, (*it)->size.y * (*it)->scale * 0.5f, 0.0f);
@@ -337,7 +350,7 @@ namespace aprilparticle
 		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 	}
 	
-	void ParticleEmitter::drawAffectors()
+	void Emitter::drawAffectors()
 	{
 		foreach (Affector*, it, this->affectors)
 		{

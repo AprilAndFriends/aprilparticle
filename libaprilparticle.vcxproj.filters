@@ -27,12 +27,6 @@
     <ClInclude Include="include\aprilparticle\Particle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\aprilparticle\ParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\aprilparticle\ParticleSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\aprilparticle\aprilparticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,15 +63,15 @@
     <ClInclude Include="include\aprilparticle\Space3DObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\Emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Particle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\aprilparticle.cpp">
@@ -114,6 +108,12 @@
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
     <ClCompile Include="src\Space3DObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
