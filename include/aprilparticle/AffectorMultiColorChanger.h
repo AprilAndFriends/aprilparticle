@@ -18,6 +18,7 @@
 #include <april/Color.h>
 #include <hltypes/harray.h>
 #include <hltypes/hmap.h>
+#include <hltypes/util.h>
 
 #include "Affector.h"
 
@@ -34,8 +35,8 @@ namespace aprilparticle
 			MultiColorChanger(hmap<float, april::Color> timeColors);
 			~MultiColorChanger();
 
-			harray<float> getTimes() { return this->times; }
-			harray<april::Color> getColors() { return this->colors; }
+			HL_DEFINE_GET(harray<float>, times, Times);
+			HL_DEFINE_GET(harray<april::Color>, colors, Colors);
 			void setColorTimings(hmap<float, april::Color> timeColors);
 			void setColorTimings(chstr timeColors);
 

@@ -16,6 +16,7 @@
 #define APRILPARTICLE_AFFECTOR_H
 
 #include <hltypes/hstring.h>
+#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 
@@ -29,8 +30,7 @@ namespace aprilparticle
 		Affector();
 		virtual ~Affector();
 
-		hstr getName() { return this->name; }
-		void setName(chstr value) { this->name = value; }
+		HL_DEFINE_GETSET(hstr, name, Name);
 				
 		virtual void update(Particle* particle, float k) { }
 		virtual void draw() { }

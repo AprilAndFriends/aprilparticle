@@ -15,6 +15,7 @@
 #define APRILPARTICLE_SPACE_3D_OBJECT_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 
@@ -26,11 +27,9 @@ namespace aprilparticle
 		Space3DObject(gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 1.0f, 0.0f));
 		virtual ~Space3DObject();
 
-		gvec3 getPosition() { return this->position; }
-		void setPosition(gvec3 value) { this->position = value; }
+		HL_DEFINE_GETSET(gvec3, position, Position);
+		HL_DEFINE_GETSET(gvec3, direction, Direction);
 		void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-		gvec3 getDirection() { return this->direction; }
-		void setDirection(gvec3 value) { this->direction = value; }
 		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 
 	protected:

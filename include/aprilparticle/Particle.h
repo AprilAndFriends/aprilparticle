@@ -18,6 +18,7 @@
 #include <april/Color.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 #include "Space3DObject.h"
@@ -57,18 +58,12 @@ namespace aprilparticle
 		Particle(gvec3 position, gvec3 direction = gvec3(0.0f, 1.0f, 0.0f), float life = 1.0f, gvec2 size = gvec2(1.0f, 1.0f), float scale = 1.0f, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
 		virtual ~Particle();
 
-		float getLife() { return this->life; }
-		void setLife(float value) { this->life = value; }
-		gvec2 getSize() { return this->size; }
-		void setSize(gvec2 value) { this->size = value; }
-		float getScale() { return this->scale; }
-		void setScale(float value) { this->scale = value; }
-		float getSpeed() { return this->speed; }
-		void setSpeed(float value) { this->speed = value; }
-		float getAngle() { return this->angle; }
-		void setAngle(float value) { this->angle = value; }
-		april::Color getColor() { return this->color; }
-		void setColor(april::Color value) { this->color = value; }
+		HL_DEFINE_GETSET(float, life, Life);
+		HL_DEFINE_GETSET(gvec2, size, Size);
+		HL_DEFINE_GETSET(float, scale, Scale);
+		HL_DEFINE_GETSET(float, speed, Speed);
+		HL_DEFINE_GETSET(float, angle, Angle);
+		HL_DEFINE_GETSET(april::Color, color, Color);
 
 		float getLifeProgressRatio();
 		bool isDead();

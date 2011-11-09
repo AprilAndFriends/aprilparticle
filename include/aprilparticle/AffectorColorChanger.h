@@ -17,6 +17,7 @@
 
 #include <april/Color.h>
 #include <hltypes/hstring.h>
+#include <hltypes/util.h>
 
 #include "Affector.h"
 
@@ -34,11 +35,9 @@ namespace aprilparticle
 			ColorChanger(april::Color startColor, april::Color endColor);
 			~ColorChanger();
 
-			april::Color getStartColor() { return this->startColor; }
-			void setStartColor(april::Color value) { this->startColor = value; }
+			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
+			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
 			void setStartColor(chstr value) { this->startColor.set(value); }
-			april::Color getEndColor() { return this->endColor; }
-			void setEndColor(april::Color value) { this->endColor = value; }
 			void setEndColor(chstr value) { this->endColor.set(value); }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);

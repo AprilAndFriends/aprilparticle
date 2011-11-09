@@ -15,6 +15,8 @@
 #ifndef APRILPARTICLE_ROTATOR_H
 #define APRILPARTICLE_ROTATOR_H
 
+#include <hltypes/util.h>
+
 #include "Affector.h"
 
 namespace aprilparticle
@@ -29,8 +31,7 @@ namespace aprilparticle
 			Rotator(float rotationSpeed = 1.0f);
 			~Rotator();
 
-			float getRotationSpeed() { return this->rotationSpeed; }
-			void setRotationSpeed(float value) { this->rotationSpeed = value; }
+			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

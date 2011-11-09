@@ -111,16 +111,16 @@ void setupFlame()
 	aprilparticle::Affectors::Rotator* rotator = new aprilparticle::Affectors::Rotator(50.0f);
 	flame = new aprilparticle::ParticleEmitter();
 
-	flame->setParticleLife(4.0f);
+	flame->setLife(4.0f);
 	flame->setEmissionRate(32.0f);
 	flame->setParticleLimit(128);
 	flame->setBlendMode(april::ADD);
 	flame->setTexture(fire);
 	flame->setType(aprilparticle::ParticleEmitter::HollowSphere);
-	flame->setSize(2.0f, 4.0f, 2.0f);
+	flame->setDimensions(2.0f, 4.0f, 2.0f);
 	flame->setPosition(-10.0f, 0.0f, 0.0f);
-	flame->setParticleScaleRange(2.4f, 3.4f);
-	flame->setParticleAngleRange(0.0f, 360.0f);
+	flame->setScaleRange(2.4f, 3.4f);
+	flame->setAngleRange(0.0f, 360.0f);
 	hmap<float, april::Color> colors;
 	colors[0.0f] = april::Color(0xFF000000);
 	colors[0.1f] = april::Color(0xFF6432F3);
@@ -139,15 +139,15 @@ void setupBubbles()
 	aprilparticle::Affectors::DirectionalForceField* directionalForce = new aprilparticle::Affectors::DirectionalForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
 	bubbles = new aprilparticle::ParticleEmitter();
 
-	bubbles->setParticleLife(6.0f);
+	bubbles->setLife(6.0f);
 	bubbles->setEmissionRate(50.0f);
 	bubbles->setParticleLimit(300);
 	bubbles->setBlendMode(april::DEFAULT);
 	bubbles->setTexture(bubble);
 	bubbles->setType(aprilparticle::ParticleEmitter::Cylinder);
-	bubbles->setSize(5.0f, 4.0f, 5.0f);
+	bubbles->setDimensions(5.0f, 4.0f, 5.0f);
 	bubbles->setPosition(0.0f, 0.0f, 0.0f);
-	bubbles->setParticleScaleRange(0.4f, 0.8f);
+	bubbles->setScaleRange(0.4f, 0.8f);
 	hmap<float, april::Color> colors;
 	colors[0.0f] = april::Color(0xFFFFFF00);
 	colors[0.04f] = april::Color(0xFFFFFFFF);
@@ -164,15 +164,15 @@ void setupVortex()
 	aprilparticle::Affectors::Swirl* swirl = new aprilparticle::Affectors::Swirl(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 0.2f, 8.0f);
 	vortex = new aprilparticle::ParticleEmitter();
 
-	vortex->setParticleLife(2.0f);
+	vortex->setLife(2.0f);
 	vortex->setEmissionRate(200.0f);
 	vortex->setParticleLimit(800);
 	vortex->setBlendMode(april::ADD);
 	vortex->setTexture(red);
 	vortex->setType(aprilparticle::ParticleEmitter::Sphere);
-	vortex->setSize(8.0f, 0.0f, 8.0f);
+	vortex->setDimensions(8.0f, 0.0f, 8.0f);
 	vortex->setPosition(10.0f, 0.0f, 0.0f);
-	vortex->setParticleScale(0.4f);
+	vortex->setScale(0.4f);
 	vortex->registerAffector(swirl);
 	vortex->registerAffector(attractor1);
 }
@@ -182,15 +182,15 @@ void setupRain()
 	aprilparticle::Affectors::LinearDirectionalForce* gravity = new aprilparticle::Affectors::LinearDirectionalForce(gvec3(0.0f, 1.0f, 0.0f), -0.012f);
 	rain = new aprilparticle::ParticleEmitter();
 
-	rain->setParticleLife(4.0f);
+	rain->setLife(4.0f);
 	rain->setEmissionRate(60.0f);
 	rain->setParticleLimit(240);
 	rain->setBlendMode(april::ADD);
 	rain->setTexture(raindrop);
 	rain->setType(aprilparticle::ParticleEmitter::Box);
-	rain->setSize(6.0f, 0.0f, 6.0f);
+	rain->setDimensions(6.0f, 0.0f, 6.0f);
 	rain->setPosition(-10.0f, -10.0f, 6.0f);
-	rain->setParticleScaleRange(0.1f, 0.4f);
+	rain->setScaleRange(0.1f, 0.4f);
 	rain->registerAffector(gravity);
 }
 
@@ -208,9 +208,9 @@ void setupQuazar()
 	quazar_jet_top = new aprilparticle::ParticleEmitter();
 	quazar_jet_bottom = new aprilparticle::ParticleEmitter();
 
-	quazar_disc->setParticleLife(4.0f);
-	quazar_jet_top->setParticleLife(4.0f);
-	quazar_jet_bottom->setParticleLife(4.0f);
+	quazar_disc->setLife(4.0f);
+	quazar_jet_top->setLife(4.0f);
+	quazar_jet_bottom->setLife(4.0f);
 	
 	quazar_disc->setEmissionRate(240.0f);
 	quazar_jet_top->setEmissionRate(120.0f);
@@ -229,24 +229,24 @@ void setupQuazar()
 	quazar_jet_bottom->setTexture(jet);
 	
 	quazar_disc->setType(aprilparticle::ParticleEmitter::HollowSphere);
-	quazar_disc->setSize(1.0f, 6.0f, 6.0f);
+	quazar_disc->setDimensions(1.0f, 6.0f, 6.0f);
 	quazar_disc->setPosition(0.0f, 0.0f, 10.0f);
-	quazar_disc->setParticleScale(0.3f);
+	quazar_disc->setScale(0.3f);
 	quazar_disc->registerAffector(gravity);
 	quazar_disc->registerAffector(spin);
 	
 	quazar_jet_bottom->setType(aprilparticle::ParticleEmitter::Sphere);
-	quazar_jet_bottom->setSize(1.0f, 1.0f, 1.0f);
+	quazar_jet_bottom->setDimensions(1.0f, 1.0f, 1.0f);
 	quazar_jet_bottom->setPosition(0.0f, 0.0f, 10.0f);
-	quazar_jet_bottom->setParticleScale(0.3f);
+	quazar_jet_bottom->setScale(0.3f);
 	quazar_jet_bottom->registerAffector(bottom);
 	quazar_jet_bottom->registerAffector(inverseGravity1);
 	quazar_jet_bottom->registerAffector(attractionPointBottom);
 	
 	quazar_jet_top->setType(aprilparticle::ParticleEmitter::Sphere);
-	quazar_jet_top->setSize(1.0f, 1.0f, 1.0f);
+	quazar_jet_top->setDimensions(1.0f, 1.0f, 1.0f);
 	quazar_jet_top->setPosition(0.0f, 0.0f, 10.0f);
-	quazar_jet_top->setParticleScale(0.3f);
+	quazar_jet_top->setScale(0.3f);
 	quazar_jet_top->registerAffector(top);
 	quazar_jet_top->registerAffector(inverseGravity2);
 	quazar_jet_top->registerAffector(attractionPointTop);
@@ -266,27 +266,27 @@ void setupTwirl()
 	twirl1 = new aprilparticle::ParticleEmitter();
 	twirl2 = new aprilparticle::ParticleEmitter();
 
-	twirl1->setParticleLife(6.0f);
+	twirl1->setLife(6.0f);
 	twirl1->setEmissionRate(100.0f);
 	twirl1->setParticleLimit(600);
 	twirl1->setBlendMode(april::ADD);
 	twirl1->setTexture(red);
 	twirl1->setType(aprilparticle::ParticleEmitter::Point);
 	twirl1->setPosition(10.0f, 0.0f, -10.0f);
-	twirl1->setParticleScaleRange(0.1f, 0.4f);
+	twirl1->setScaleRange(0.1f, 0.4f);
 	twirl1->registerAffector(force1);
 	twirl1->registerAffector(force2);
 	twirl1->registerAffector(wind1);
 	twirl1->registerAffector(gravity1);
 	
-	twirl2->setParticleLife(6.0f);
+	twirl2->setLife(6.0f);
 	twirl2->setEmissionRate(100.0f);
 	twirl2->setParticleLimit(600);
 	twirl2->setBlendMode(april::ADD);
 	twirl2->setTexture(plasmaball);
 	twirl2->setType(aprilparticle::ParticleEmitter::Point);
 	twirl2->setPosition(10.0f, 0.0f, -10.0f);
-	twirl2->setParticleScaleRange(0.1f, 0.4f);
+	twirl2->setScaleRange(0.1f, 0.4f);
 	twirl2->registerAffector(force3);
 	twirl2->registerAffector(force4);
 	twirl2->addAffector(wind2);

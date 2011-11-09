@@ -16,6 +16,7 @@
 #define APRILPARTICLE_ATTRACTOR_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/util.h>
 
 #include "Affector.h"
 
@@ -32,16 +33,14 @@ namespace aprilparticle
 			Attractor(gvec3 position, float radius);
 			~Attractor();
 
-			gvec3 getPosition() { return this->position; }
-			void setPosition(gvec3 value) { this->position = value; }
+			HL_DEFINE_GETSET(gvec3, position, Position);
+			HL_DEFINE_GETSET(float, radius, Radius);
 			float getX() { return this->position.x; }
 			void setX(float value) { this->position.x = value; }
 			float getY() { return this->position.y; }
 			void setY(float value) { this->position.y = value; }
 			float getZ() { return this->position.z; }
 			void setZ(float value) { this->position.z = value; }
-			float getRadius() { return this->radius; }
-			void setRadius(float value) { this->radius = value; }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

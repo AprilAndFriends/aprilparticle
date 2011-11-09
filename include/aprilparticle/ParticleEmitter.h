@@ -22,10 +22,9 @@
 #include <gtypes/Vector3.h>
 #include <hltypes/hdeque.h>
 #include <hltypes/hlist.h>
+#include <hltypes/util.h>
 
-#include "Affectors.h" // includes all affectors
 #include "aprilparticleExport.h"
-#include "particle.h"
 #include "Space3DObject.h"
 
 namespace april
@@ -36,6 +35,7 @@ namespace april
 namespace aprilparticle
 {
 	class Affector;
+	class Particle;
 
 	class aprilparticleExport ParticleEmitter : public Space3DObject
 	{
@@ -55,36 +55,41 @@ namespace aprilparticle
 			float particleLife = 1.0f, float emissionRate = 60.0f, unsigned int max = 256);
 		~ParticleEmitter();
 
-		gvec3 getSize() { return this->size; }
-		void setSize(gvec3 value) { this->size = value; }
-		void setSize(float x, float y, float z) { this->size.set(x, y, z); }
-		void setParticleLife(float value);
-		void setParticleSize(gvec2 value);
-		void setParticleScale(float value);
-		void setParticleSpeed(float value);
-		void setParticleAngle(float value);
-		void setEmissionRate(float value) { this->emissionRate = value; }
+		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
+		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
+		HL_DEFINE_GETSET(float, minLife, MinLife);
+		HL_DEFINE_GETSET(float, maxLife, MaxLife);
+		HL_DEFINE_GETSET(gvec2, minSize, MinSize);
+		HL_DEFINE_GETSET(gvec2, maxSize, MaxSize);
+		HL_DEFINE_GETSET(float, minScale, MinScale);
+		HL_DEFINE_GETSET(float, maxScale, MaxScale);
+		HL_DEFINE_GETSET(float, minSpeed, MinSpeed);
+		HL_DEFINE_GETSET(float, maxSpeed, MaxSpeed);
+		HL_DEFINE_GETSET(float, minAngle, MinAngle);
+		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
+		HL_DEFINE_SET(float, emissionRate, EmissionRate);
+		HL_DEFINE_GETSET(Type, type, Type);
+		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
+		// TODO - change access through textureFilename
+		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
+		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 		void setParticleLimit(int value);
-		Type getType() { return this->type; }
-		void setType(Type value) { this->type = value; }
-		april::BlendMode getBlendMode() { return this->blendMode; }
-		void setBlendMode(april::BlendMode value) { this->blendMode = value; }
-		// TODO
-		april::Texture* getTexture() { return this->texture; }
-		void setTexture(april::Texture* texture) { this->texture = texture; }
-		harray<Affector*> getAffectors() { return this->affectors; }
+		void setLife(float value);
+		void setSize(gvec2 value);
+		void setScale(float value);
+		void setSpeed(float value);
+		void setAngle(float value);
 
-		void setParticleLifeRange(float min, float max);
-		void setParticleSizeRange(gvec2 min, gvec2 max);
-		void setParticleScaleRange(float min, float max);
-		void setParticleSpeedRange(float min, float max);
-		void setParticleAngleRange(float min, float max);
+		void setLifeRange(float min, float max);
+		void setSizeRange(gvec2 min, gvec2 max);
+		void setScaleRange(float min, float max);
+		void setSpeedRange(float min, float max);
+		void setAngleRange(float min, float max);
 
 		void addAffector(Affector* affector);
 		void removeAffector(Affector* affector);
 		void registerAffector(Affector* affector);
 		void unregisterAffector(Affector* affector);
-		void createParticle();
 
 		void update(float k);
 		
@@ -93,25 +98,27 @@ namespace aprilparticle
 		
 	protected:
 		float timer;
-		gvec3 size;
-		float minParticleLife;
-		float maxParticleLife;
-		gvec2 minParticleSize;
-		gvec2 maxParticleSize;
-		float minParticleScale;
-		float maxParticleScale;
-		float minParticleSpeed;
-		float maxParticleSpeed;
-		float minParticleAngle;
-		float maxParticleAngle;
+		gvec3 dimensions;
+		float minLife;
+		float maxLife;
+		gvec2 minSize;
+		gvec2 maxSize;
+		float minScale;
+		float maxScale;
+		float minSpeed;
+		float maxSpeed;
+		float minAngle;
+		float maxAngle;
 		float emissionRate;
 		int particleLimit;
 		Type type;
 		april::BlendMode blendMode;
 		april::Texture* texture;
-		hdeque<Particle> particles;
+		hdeque<Particle*> particles;
 		harray<Affector*> affectors;
 		harray<Affector*> registeredAffectors;
+
+		void _createNewParticle();
 
 	private:
 		april::ColoredTexturedVertex* _triangleBatch;
@@ -122,6 +129,8 @@ namespace aprilparticle
 		float _S;
 		float _cs;
 		int _quota;
+		int _alive;
+		Particle* _particle;
 		gmat4 _billboard;
 		gmat3 _rot;
 		int _i;
