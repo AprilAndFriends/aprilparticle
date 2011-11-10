@@ -8,18 +8,22 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
+#include <hltypes/harray.h>
+#include <hltypes/hstring.h>
+
 #include "AffectorAttractor.h"
+#include "aprilparticle.h"
 #include "Particle.h"
 
 namespace aprilparticle
 {
 	namespace Affectors
 	{
-		Attractor::Attractor() : Affector()
+		Attractor::Attractor(chstr name) : Affector(name)
 		{
 		}
 		
-		Attractor::Attractor(gvec3 position, float radius)
+		Attractor::Attractor(gvec3 position, float radius, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->radius = radius;
@@ -35,19 +39,15 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "x")		return this->getX();
-			if (name == "y")		return this->getY();
-			if (name == "z")		return this->getZ();
-			if (name == "radius")	return this->getRadius();
+			if (name == "position")		return gvec3_to_str(this->getPosition());
+			if (name == "radius")		return this->getRadius();
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool Attractor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "x")		this->setX(value);
-			else if	(name == "y")		this->setY(value);
-			else if	(name == "z")		this->setZ(value);
-			else if	(name == "radius")	this->setRadius(value);
+			if		(name == "position")	this->setPosition(str_to_gvec3(value));
+			else if	(name == "radius")		this->setRadius(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}

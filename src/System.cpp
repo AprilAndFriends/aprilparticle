@@ -21,12 +21,18 @@
 #include "System.h"
 #include "Util.h"
 
+#define TRY_LOAD_AFFECTOR(affector, type, name) \
+	if (type == #name) \
+	{ \
+		affector = new Affectors::name(); \
+	}
+
 namespace aprilparticle
 {
-	System::System(chstr filename, chstr name)
+	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name)
 	{
 		this->filename = filename;
-		this->name = (name == "" ? aprilparticle::generateName("System") : name);
+		this->loaded = false;
 	}
 	
 	System::~System()
@@ -39,40 +45,83 @@ namespace aprilparticle
 		{
 			delete (*it);
 		}
-		foreach (april::Texture*, it, this->textures)
+		foreach_m (april::Texture*, it, this->textures)
 		{
-			delete (*it);
+			delete it->second;
 		}
 	}
 	
-	void System::registerEmitter(Emitter* emitter)
+	bool System::registerEmitter(Emitter* emitter)
 	{
+		if (this->emitters.contains(emitter))
+		{
+			return false;
+		}
 		this->emitters += emitter;
+		emitter->_setSystem(this);
+		return true;
 	}
 
-	void System::unregisterEmitter(Emitter* emitter)
+	bool System::unregisterEmitter(Emitter* emitter)
 	{
+		if (!this->emitters.contains(emitter))
+		{
+			return false;
+		}
 		this->emitters -= emitter;
+		emitter->_setSystem(NULL);
+		return true;
 	}
 
-	void System::registerAffector(Affector* affector)
+	bool System::registerAffector(Affector* affector)
 	{
+		if (this->affectors.contains(affector))
+		{
+			return false;
+		}
 		this->affectors += affector;
+		return true;
 	}
 
-	void System::unregisterAffector(Affector* affector)
+	bool System::unregisterAffector(Affector* affector)
 	{
+		if (!this->affectors.contains(affector))
+		{
+			return false;
+		}
 		this->affectors -= affector;
+		return true;
 	}
 
-	void System::registerTexture(april::Texture* texture)
+	bool System::registerTexture(april::Texture* texture, chstr name)
 	{
-		this->textures += texture;
+		hstr newName = (name == "" ? generateName(this->name + "_Texture") : name);
+		if (this->textures.has_key(newName) || this->textures.has_value(texture))
+		{
+			return false;
+		}
+		this->textures[newName] = texture;
+		return true;
 	}
 
-	void System::unregisterTexture(april::Texture* texture)
+	bool System::unregisterTexture(april::Texture* texture)
 	{
-		this->textures -= texture;
+		if (!this->textures.has_value(texture))
+		{
+			return false;
+		}
+		this->textures.remove_value(texture);
+		return true;
+	}
+
+	bool System::unregisterTexture(chstr name)
+	{
+		if (!this->textures.has_key(name))
+		{
+			return false;
+		}
+		this->textures.remove_key(name);
+		return true;
 	}
 
 	Emitter* System::getEmitter(chstr name)
@@ -87,36 +136,18 @@ namespace aprilparticle
 		return NULL;
 	}
 
-	Affector* System::getAffector(chstr name)
+	april::Texture* System::getTexture(chstr name)
 	{
-		foreach (Affector*, it, this->affectors)
-		{
-			if ((*it)->getName() == name)
-			{
-				return (*it);
-			}
-		}
-		Affector* affector;
-		foreach (Emitter*, it, this->emitters)
-		{
-			affector = (*it)->getAffector(name);
-			if (affector != NULL)
-			{
-				return affector;
-			}
-		}
-		return NULL;
+		return this->textures.try_get_by_key(name, NULL);
 	}
 
 	void System::load()
 	{
-		if (this->filename == "")
+		if (this->filename == "" || this->loaded)
 		{
 			return;
 		}
-		hlist<hstr> affectorTable;
-		hlist<hstr> textureTable;
-		
+		this->loaded = true;
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
 		foreach_xmlnode (node, root)
@@ -126,112 +157,117 @@ namespace aprilparticle
 				printf("Properties\n");
 				foreach_xmlproperty (prop, node)
 				{
-					// TODO
 					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
+					this->setProperty(prop->name(), prop->value());
 				}
 			}
 			else if (*node == "Emitter")
 			{
-				printf("Emitter\n");
-				foreach_xmlproperty (prop, node)
-				{
-					// TODO
-					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
-				}
-				foreach_xmlnode (child, node)
-				{
-					if (*node == "Affector")
-					{
-						printf("Affector\n");
-						foreach_xmlproperty (prop, child)
-						{
-							// TODO
-							printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
-						}
-					}
-				}
+				this->_loadEmitter(node);
 			}
 			else if (*node == "Affector")
 			{
-				printf("Affector\n");
-				foreach_xmlproperty (prop, node)
-				{
-					// TODO
-					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
-				}
+				this->_loadAffector(node);
 			}
+			else if (*node == "Texture")
+			{
+				this->_loadTexture(node);
+			}
+		}
+		foreach_map (Emitter*, harray<hstr>, it, this->_mappedAffectors)
+		{
+			foreach (hstr, it2, it->second)
+			{
+				it->first->addAffector(this->getAffector(*it2));
+			}
+		}
+		foreach_map (Emitter*, hstr, it, this->_mappedTextures)
+		{
+			it->first->setTexture(this->getTexture(it->second));
+		}
+		this->_mappedAffectors.clear();
+		this->_mappedTextures.clear();
+	}
 
-			/*
-			if (*node != "text")
+	void System::_loadEmitter(hlxml::Node* root)
+	{
+		printf("Emitter\n");
+		Emitter* emitter = new Emitter();
+		foreach_xmlproperty (prop, root)
+		{
+			printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
+			emitter->setProperty(prop->name(), prop->value());
+		}
+		foreach_xmlnode (node, root)
+		{
+			if (*node == "Affector")
 			{
-				printf("\n%s\n", (const char*)node->name);
+				this->_loadAffector(node, emitter);
 			}
-				foreach_xmlproperty (prop, node)
+			else if (*node == "Texture")
+			{
+				this->_loadTexture(node, emitter);
+			}
+		}
+		this->registerEmitter(emitter);
+	}
+
+	void System::_loadAffector(hlxml::Node* root, Emitter* emitter)
+	{
+		printf("Affector\n");
+		Affector* affector = NULL;
+		if (root->pexists("type"))
+		{
+			hstr type = root->pstr("type");
+			TRY_LOAD_AFFECTOR(affector, type, Attractor);
+			TRY_LOAD_AFFECTOR(affector, type, CallbackAffector);
+			TRY_LOAD_AFFECTOR(affector, type, ColorChanger);
+			TRY_LOAD_AFFECTOR(affector, type, DirectionalForceField);
+			TRY_LOAD_AFFECTOR(affector, type, LinearDirectionalForce);
+			TRY_LOAD_AFFECTOR(affector, type, MultiColorChanger);
+			TRY_LOAD_AFFECTOR(affector, type, Rotator);
+			TRY_LOAD_AFFECTOR(affector, type, Swirl);
+			if (affector != NULL)
+			{
+				foreach_xmlproperty (prop, root)
 				{
 					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
+					affector->setProperty(prop->name(), prop->value());
 				}
-			foreach_xmlnode (child, node)
-			{
-				if (*child != "text")
+				this->registerAffector(affector);
+				if (emitter != NULL)
 				{
-					printf("\n%s\n", (const char*)child->name);
-				}
-				foreach_xmlnode (cchild, child)
-				{
-					if (*cchild != "text")
-					{
-						printf("\t\t%s - ", (const char*)cchild->name);
-						foreach_xmlproperty (pprop, cchild)
-						{
-							printf("%s : %s ", pprop->name().c_str(), pprop->value().c_str());
-							if (*cchild == "Affector")
-							{
-								bool found = false;
-								foreach(hstr, it, affectorTable)
-								{
-									if ((*it) == pprop->value())
-									{
-										found = true;
-									}
-								}
-								if (!found)
-								{
-									affectorTable += pprop->value();
-								}
-							}
-							else if (*cchild == "Property" && pprop->name() == "name" && pprop->value() == "Texture")
-							{
-								bool found = false;
-								foreach(hstr, it, textureTable)
-								{
-									if ((*it) == pprop->next()->value())
-									{
-										found = true;
-										break;
-									}
-								}
-								if (!found)
-								{
-									affectorTable += pprop->next()->value();
-								}
-							}
-						}
-						printf("\n");
-					}
+					emitter->addAffector(affector);
 				}
 			}
-			*/
 		}
-		/*
-		foreach (hstr, it, affectorTable)
+		else if (emitter != NULL && root->pexists("reference"))
 		{
-			printf("%s\n", (*it).c_str());
+			if (!this->_mappedAffectors.has_key(emitter))
+			{
+				this->_mappedAffectors[emitter] = harray<hstr>();
+			}
+			this->_mappedAffectors[emitter] += root->pstr("reference");
 		}
-		foreach (hstr, it, textureTable)
+	}
+
+	void System::_loadTexture(hlxml::Node* root, Emitter* emitter)
+	{
+		printf("Texture\n");
+		april::Texture* texture = NULL;
+		if (root->pexists("filename"))
 		{
-			printf("%s\n", (*it).c_str());
+			texture = april::rendersys->loadTexture(get_basedir(this->filename) + "/" + root->pstr("filename"));
+			this->registerTexture(texture, root->pstr("name"));
+			if (emitter != NULL)
+			{
+				emitter->setTexture(texture);
+			}
 		}
-		*/
+		else if (emitter != NULL && root->pexists("reference"))
+		{
+			this->_mappedTextures[emitter] = root->pstr("reference");
+		}
 	}
 
 	void System::update(float k)
@@ -242,11 +278,11 @@ namespace aprilparticle
 		}
 	}
 
-	void System::draw(gvec3 point, gvec3 up)
+	void System::draw(gvec3 point)
 	{
 		foreach (Emitter*, it, this->emitters)
 		{
-			(*it)->draw(point, up, this->position);
+			(*it)->draw(point, this->direction);
 		}
 	}
 

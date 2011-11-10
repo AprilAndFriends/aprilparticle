@@ -99,6 +99,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\aprilparticle\ActiveObject.h" />
     <ClInclude Include="include\aprilparticle\Affector.h" />
     <ClInclude Include="include\aprilparticle\AffectorAttractor.h" />
     <ClInclude Include="include\aprilparticle\AffectorCallbackAffector.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="src\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ActiveObject.cpp" />
     <ClCompile Include="src\Affectors\Affector.cpp" />
     <ClCompile Include="src\Affectors\AffectorAttractor.cpp" />
     <ClCompile Include="src\Affectors\AffectorCallbackAffector.cpp" />

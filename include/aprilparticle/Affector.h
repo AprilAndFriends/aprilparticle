@@ -27,7 +27,7 @@ namespace aprilparticle
 	class aprilparticleExport Affector
 	{
 	public:
-		Affector();
+		Affector(chstr name = "");
 		virtual ~Affector();
 
 		HL_DEFINE_GETSET(hstr, name, Name);

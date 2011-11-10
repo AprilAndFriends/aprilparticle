@@ -28,7 +28,8 @@ namespace aprilparticle
 		class aprilparticleExport CallbackAffector : public Affector
 		{
 		public:
-			CallbackAffector();
+			CallbackAffector(chstr name = "");
+			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float), chstr name = "");
 			~CallbackAffector();
 
 			void (*getAffectionCallback())(CallbackAffector*, Particle*, float) { return this->affectionCallback; }

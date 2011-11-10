@@ -29,7 +29,8 @@ namespace aprilparticle
 		class aprilparticleExport LinearDirectionalForce : public Affector
 		{
 		public:
-			LinearDirectionalForce(gvec3 direction = gvec3(0.0f, -1.0f, 0.0f), float force = 0.001f);
+			LinearDirectionalForce(chstr name = "");
+			LinearDirectionalForce(gvec3 direction, float force, chstr name = "");
 			~LinearDirectionalForce();
 			
 			HL_DEFINE_GETSET(gvec3, direction, Direction);

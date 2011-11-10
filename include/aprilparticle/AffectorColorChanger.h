@@ -30,9 +30,9 @@ namespace aprilparticle
 		class aprilparticleExport ColorChanger : public Affector
 		{
 		public:
-			ColorChanger();
-			ColorChanger(april::Color endColor);
-			ColorChanger(april::Color startColor, april::Color endColor);
+			ColorChanger(chstr name = "");
+			ColorChanger(april::Color endColor, chstr name = "");
+			ColorChanger(april::Color startColor, april::Color endColor, chstr name = "");
 			~ColorChanger();
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);

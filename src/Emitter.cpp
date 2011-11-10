@@ -18,23 +18,31 @@
 #include <hltypes/util.h>
 
 #include "Affector.h"
+#include "aprilparticle.h"
 #include "Emitter.h"
 #include "Particle.h"
+#include "System.h"
+#include "Util.h"
 
+#define DATA_SEPARATOR " "
 #define RANDOMIZE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
+#define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
+#define TRY_GET_TYPE(value, name) if (value == name) return #name;
 
 namespace aprilparticle
 {
 	gvec3 v[4]; // optimization
 
-	Emitter::Emitter(gvec3 position, gvec3 direction, float particleLife, float emissionRate, unsigned int max)
+	Emitter::Emitter(chstr name) : ActiveObject(name == "" ? generateName("Emitter") : name)
 	{
 		this->timer = 0.0f;
-		this->position = position;
-		this->direction = direction;
+		this->type = Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
-		this->minLife = particleLife;
-		this->maxLife = particleLife;
+		this->blendMode = april::ADD;
+		this->emissionRate = emissionRate;
+		this->limit = 10;
+		this->minLife = 1.0f;
+		this->maxLife = 1.0f;
 		this->minSize.set(1.0f, 1.0f);
 		this->maxSize.set(1.0f, 1.0f);
 		this->minScale = 1.0f;
@@ -43,14 +51,10 @@ namespace aprilparticle
 		this->maxSpeed = 0.0f;
 		this->minAngle = 0.0f;
 		this->maxAngle = 0.0f;
-		this->emissionRate = emissionRate;
-		this->particleLimit = max;
-		this->type = Point;
-		this->blendMode = april::ADD;
 		this->texture = NULL;
-		this->registeredTexture = NULL;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
+		this->system = NULL;
 	}
 
 	Emitter::~Emitter()
@@ -62,14 +66,6 @@ namespace aprilparticle
 		foreach_q (Particle*, it, this->particles)
 		{
 			delete (*it);
-		}
-		foreach (Affector*, it, this->registeredAffectors)
-		{
-			delete (*it);
-		}
-		if (this->registeredTexture != NULL)
-		{
-			delete this->registeredTexture;
 		}
 	}
 
@@ -103,11 +99,41 @@ namespace aprilparticle
 		this->maxAngle = value;
 	}
 
-	void Emitter::setParticleLimit(int value)
+	void Emitter::setLife(chstr value)
 	{
-		if (this->particleLimit != value)
+		harray<hstr> data = value.split(DATA_SEPARATOR);
+		this->setLifeRange(data.first(), data.last());
+	}
+
+	void Emitter::setSize(chstr value)
+	{
+		harray<hstr> data = value.split(DATA_SEPARATOR);
+		this->setSizeRange(str_to_gvec2(data.first()), str_to_gvec2(data.last()));
+	}
+
+	void Emitter::setScale(chstr value)
+	{
+		harray<hstr> data = value.split(DATA_SEPARATOR);
+		this->setScaleRange(data.first(), data.last());
+	}
+
+	void Emitter::setSpeed(chstr value)
+	{
+		harray<hstr> data = value.split(DATA_SEPARATOR);
+		this->setSpeedRange(data.first(), data.last());
+	}
+
+	void Emitter::setAngle(chstr value)
+	{
+		harray<hstr> data = value.split(APRILPARTICLE_VALUE_SEPARATOR);
+		this->setAngleRange(data.first(), data.last());
+	}
+
+	void Emitter::setLimit(int value)
+	{
+		if (this->limit != value)
 		{
-			this->particleLimit = value;
+			this->limit = value;
 			this->_setupTriangleBatch();
 		}
 	}
@@ -118,8 +144,8 @@ namespace aprilparticle
 		{
 			delete [] this->_triangleBatch;
 		}
-		this->_triangleBatch = new april::ColoredTexturedVertex[this->particleLimit * 6];
-		for (this->_i = 0; this->_i < this->particleLimit; this->_i++)
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
+		for (this->_i = 0; this->_i < this->limit; this->_i++)
 		{
 			this->_triangleBatch[this->_i * 6 + 0].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 1.0f;
 			this->_triangleBatch[this->_i * 6 + 1].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 1.0f;
@@ -170,56 +196,68 @@ namespace aprilparticle
 		this->affectors -= affector;
 	}
 	
-	void Emitter::registerAffector(Affector* affector)
+	hstr Emitter::getProperty(chstr name, bool* property_exists)
 	{
-		this->affectors += affector;
-		this->registeredAffectors += affector;
+		if (property_exists != NULL)
+		{
+			*property_exists = true;
+		}
+		if (name == "name")		return this->getName();
+		if (name == "type")
+		{
+			Type value = this->getType();
+			TRY_GET_TYPE(value, Point);
+			TRY_GET_TYPE(value, Box);
+			TRY_GET_TYPE(value, HollowBox);
+			TRY_GET_TYPE(value, Sphere);
+			TRY_GET_TYPE(value, HollowSphere);
+			TRY_GET_TYPE(value, Cylinder);
+			TRY_GET_TYPE(value, HollowCylinder);
+			TRY_GET_TYPE(value, Circle);
+			TRY_GET_TYPE(value, Ring);
+			return "";
+		}
+		if (name == "dimensions")		return gvec3_to_str(this->getDimensions());
+		return ActiveObject::getProperty(name, property_exists);
 	}
-	
-	void Emitter::unregisterAffector(Affector* affector)
+
+	bool Emitter::setProperty(chstr name, chstr value)
 	{
-		this->affectors -= affector;
-		this->registeredAffectors -= affector;
-	}
-	
-	void Emitter::registerTexture(april::Texture* texture)
-	{
-		if (this->texture == NULL)
+		if		(name == "name")		this->setName(value);
+		else if	(name == "type")
 		{
-			this->texture = texture;
+			TRY_SET_TYPE(value, Point);
+			TRY_SET_TYPE(value, Box);
+			TRY_SET_TYPE(value, HollowBox);
+			TRY_SET_TYPE(value, Sphere);
+			TRY_SET_TYPE(value, HollowSphere);
+			TRY_SET_TYPE(value, Cylinder);
+			TRY_SET_TYPE(value, HollowCylinder);
+			TRY_SET_TYPE(value, Circle);
+			TRY_SET_TYPE(value, Ring);
 		}
-		if (this->registeredTexture == NULL)
+		else if	(name == "dimensions")		this->setDimensions(str_to_gvec3(value));
+		else if	(name == "blend_mode")
 		{
-			this->registeredTexture = texture;
+			if		(value == "default")		this->setBlendMode(april::DEFAULT);
+			else if	(value == "alpha_blend")	this->setBlendMode(april::ALPHA_BLEND);
+			else if	(value == "add")			this->setBlendMode(april::ADD);
+			else if	(value == "subtract")		this->setBlendMode(april::SUBTRACT);
 		}
-	}
-	
-	void Emitter::unregisterTexture(april::Texture* texture)
-	{
-		if (this->texture == texture)
-		{
-			this->texture = NULL;
-		}
-		if (this->registeredTexture == texture)
-		{
-			this->registeredTexture = NULL;
-		}
-	}
-	
-	Affector* Emitter::getAffector(chstr name)
-	{
-		foreach (Affector*, it, this->affectors)
-		{
-			if ((*it)->getName() == name)
-			{
-				return (*it);
-			}
-		}
-		return NULL;
+		else if	(name == "emission_rate")	this->setEmissionRate(value);
+		else if	(name == "limit")			this->setLimit(value);
+		else if	(name == "life")			this->setLife(value);
+		else if	(name == "size")			this->setSize(value);
+		else if	(name == "scale")			this->setScale(value);
+		else if	(name == "speed")			this->setSpeed(value);
+		else if	(name == "angle")			this->setAngle(value);
+		else return ActiveObject::setProperty(name, value);
+		return true;
 	}
 
 	void Emitter::_createNewParticle()
 	{
+		//this->_pos = 
 		switch (this->type)
 		{
 			case Point:
@@ -288,6 +326,10 @@ namespace aprilparticle
 				this->_pos = this->position;
 				break;
 		}
+		if (this->system != NULL)
+		{
+			this->_pos += this->system->getPosition();
+		}
 		this->_particle = new Particle(this->_pos, this->direction, RANDOMIZE(Life), gvec2(RANDOMIZE(Size.x), RANDOMIZE(Size.y)),
 			RANDOMIZE(Scale), RANDOMIZE(Speed), RANDOMIZE(Angle));
 		this->particles += this->_particle;
@@ -328,17 +370,17 @@ namespace aprilparticle
 		}
 		// create new particles
 		this->timer += k;
-		if (this->emissionRate > 0.0f)
+		if (this->enabled && this->emissionRate > 0.0f)
 		{
 			this->_cs = 1.0f / this->emissionRate;
 			this->_quota = (int)(this->timer * this->emissionRate);
-			if (this->_alive >= this->particleLimit)
+			if (this->_alive >= this->limit)
 			{
 				this->timer = 0.0f;
 			}
-			else if (this->timer > this->_cs && this->_alive < this->particleLimit)
+			else if (this->timer > this->_cs && this->_alive < this->limit)
 			{
-				this->_quota = hmin(this->_quota, (int)(this->particleLimit - this->_alive));
+				this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
 				for (int i = 0; i < this->_quota; i++)
 				{
 					this->_createNewParticle();
@@ -348,14 +390,14 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(gvec3 point, gvec3 up, gvec3 offset)
+	void Emitter::draw(gvec3 point, gvec3 up)
 	{
 		this->_i = 0;
 		foreach_q (Particle*, it, this->particles)
 		{
 			if (!(*it)->isDead())
 			{
-				this->_billboard.lookAt((*it)->position + offset, point - ((*it)->position + offset), up);
+				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
 				v[0].set(-(*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
 				v[1].set((*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
 				v[2].set(-(*it)->size.x * (*it)->scale * 0.5f, (*it)->size.y * (*it)->scale * 0.5f, 0.0f);

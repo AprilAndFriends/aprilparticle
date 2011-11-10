@@ -29,18 +29,13 @@ namespace aprilparticle
 		class aprilparticleExport Attractor : public Affector
 		{
 		public:
-			Attractor();
-			Attractor(gvec3 position, float radius);
+			Attractor(chstr name = "");
+			Attractor(gvec3 position, float radius, chstr name = "");
 			~Attractor();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
+			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(float, radius, Radius);
-			float getX() { return this->position.x; }
-			void setX(float value) { this->position.x = value; }
-			float getY() { return this->position.y; }
-			void setY(float value) { this->position.y = value; }
-			float getZ() { return this->position.z; }
-			void setZ(float value) { this->position.z = value; }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

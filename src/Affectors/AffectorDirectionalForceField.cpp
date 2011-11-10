@@ -14,6 +14,7 @@
 #include <gtypes/Vector3.h>
 
 #include "AffectorDirectionalForceField.h"
+#include "aprilparticle.h"
 #include "Particle.h"
 
 #define VERTEX_COUNT 91 // you can't touch this
@@ -49,14 +50,14 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		DirectionalForceField::DirectionalForceField() : Affector()
+		DirectionalForceField::DirectionalForceField(chstr name) : Affector(name)
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->direction = gvec3(0.0f, 0.0f, 1.0f);
 			this->force = 0.0f;
 		}
 		
-		DirectionalForceField::DirectionalForceField(gvec3 position, gvec3 direction, float force)
+		DirectionalForceField::DirectionalForceField(gvec3 position, gvec3 direction, float force, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->direction = direction;
@@ -73,25 +74,17 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "x")		return this->getX();
-			if (name == "y")		return this->getY();
-			if (name == "z")		return this->getZ();
-			if (name == "dir_x")	return this->getDirectionX();
-			if (name == "dir_y")	return this->getDirectionY();
-			if (name == "dir_z")	return this->getDirectionZ();
-			if (name == "force")	return this->getForce();
+			if (name == "position")		return gvec3_to_str(this->getPosition());
+			if (name == "direction")	return gvec3_to_str(this->getDirection());
+			if (name == "force")		return this->getForce();
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool DirectionalForceField::setProperty(chstr name, chstr value)
 		{
-			if		(name == "x")		this->setX(value);
-			else if	(name == "y")		this->setY(value);
-			else if	(name == "z")		this->setZ(value);
-			else if	(name == "dir_x")	this->setDirectionX(value);
-			else if	(name == "dir_y")	this->setDirectionY(value);
-			else if	(name == "dir_z")	this->setDirectionZ(value);
-			else if	(name == "force")	this->setForce(value);
+			if		(name == "position")	this->setPosition(str_to_gvec3(value));
+			else if	(name == "direction")	this->setDirection(str_to_gvec3(value));
+			else if	(name == "force")		this->setForce(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}

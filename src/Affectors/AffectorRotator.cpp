@@ -15,7 +15,12 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		Rotator::Rotator(float rotationSpeed) : Affector()
+		Rotator::Rotator(chstr name) : Affector(name)
+		{
+			this->rotationSpeed = 1.0f;
+		}
+
+		Rotator::Rotator(float rotationSpeed, chstr name) : Affector(name)
 		{
 			this->rotationSpeed = rotationSpeed;
 		}
@@ -31,13 +36,13 @@ namespace aprilparticle
 				*property_exists = true;
 			}
 			if (name == "rotation_speed")	return this->getRotationSpeed();
-			return Rotator::getProperty(name, property_exists);
+			return Affector::getProperty(name, property_exists);
 		}
 
 		bool Rotator::setProperty(chstr name, chstr value)
 		{
 			if (name == "rotation_speed")	this->setRotationSpeed(value);
-			else return Rotator::setProperty(name, value);
+			else return Affector::setProperty(name, value);
 			return true;
 		}
 

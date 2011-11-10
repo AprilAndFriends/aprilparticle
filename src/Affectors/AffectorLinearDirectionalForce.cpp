@@ -15,7 +15,13 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		LinearDirectionalForce::LinearDirectionalForce(gvec3 direction, float force) : Affector()
+		LinearDirectionalForce::LinearDirectionalForce(chstr name) : Affector(name)
+		{
+			this->direction.set(0.0f, -1.0f, 0.0f);
+			this->force = 0.001f;
+		}
+
+		LinearDirectionalForce::LinearDirectionalForce(gvec3 direction, float force, chstr name) : Affector(name)
 		{
 			this->direction = direction;
 			this->force = force;

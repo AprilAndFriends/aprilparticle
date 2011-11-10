@@ -13,6 +13,7 @@
 #include <gtypes/Matrix3.h>
 
 #include "AffectorSwirl.h"
+#include "aprilparticle.h"
 #include "Particle.h"
 
 namespace aprilparticle
@@ -21,7 +22,7 @@ namespace aprilparticle
 	{
 		gmat3 rotation;
 
-		Swirl::Swirl() : Affector()
+		Swirl::Swirl(chstr name) : Affector(name)
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->up = gvec3(0.0f, 1.0f, 0.0f);
@@ -30,13 +31,13 @@ namespace aprilparticle
 			this->setClockwise(true);
 		}
 
-		Swirl::Swirl(gvec3 position, gvec3 up, float force, float range)
+		Swirl::Swirl(gvec3 position, gvec3 up, float force, float range, bool clockwise, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->up = up;
 			this->force = force;
 			this->range = range;
-			this->setClockwise(true);
+			this->setClockwise(clockwise);
 		}
 		
 		Swirl::~Swirl()
@@ -59,12 +60,8 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "x")			return this->getX();
-			if (name == "y")			return this->getY();
-			if (name == "z")			return this->getZ();
-			if (name == "up_x")			return this->getUpX();
-			if (name == "up_y")			return this->getUpY();
-			if (name == "up_z")			return this->getUpZ();
+			if (name == "position")		return gvec3_to_str(this->getPosition());
+			if (name == "up")			return gvec3_to_str(this->getUp());
 			if (name == "force")		return this->getForce();
 			if (name == "range")		return this->getRange();
 			if (name == "clockwise")	return this->getClockwise();
@@ -73,12 +70,8 @@ namespace aprilparticle
 
 		bool Swirl::setProperty(chstr name, chstr value)
 		{
-			if		(name == "x")			this->setX(value);
-			else if	(name == "y")			this->setY(value);
-			else if	(name == "z")			this->setZ(value);
-			else if	(name == "up_x")		this->setUpX(value);
-			else if	(name == "up_y")		this->setUpY(value);
-			else if	(name == "up_z")		this->setUpZ(value);
+			if		(name == "position")	this->setPosition(str_to_gvec3(value));
+			else if	(name == "up")			this->setUp(str_to_gvec3(value));
 			else if	(name == "force")		this->setForce(value);
 			else if	(name == "range")		this->setRange(value);
 			else if	(name == "clockwise")	this->setClockwise(value);

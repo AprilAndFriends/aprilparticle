@@ -18,19 +18,19 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		ColorChanger::ColorChanger() : Affector()
+		ColorChanger::ColorChanger(chstr name) : Affector(name)
 		{
 			this->startColor = APRIL_COLOR_WHITE;
 			this->endColor = april::Color(APRIL_COLOR_WHITE, 0);
 		}
 		
-		ColorChanger::ColorChanger(april::Color endColor)
+		ColorChanger::ColorChanger(april::Color endColor, chstr name) : Affector(name)
 		{
 			this->startColor = APRIL_COLOR_WHITE;
 			this->endColor = endColor;
 		}
 		
-		ColorChanger::ColorChanger(april::Color startColor, april::Color endColor)
+		ColorChanger::ColorChanger(april::Color startColor, april::Color endColor, chstr name) : Affector(name)
 		{
 			this->startColor = startColor;
 			this->endColor = endColor;

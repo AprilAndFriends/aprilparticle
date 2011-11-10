@@ -18,6 +18,7 @@
 #include <april/Color.h>
 #include <hltypes/harray.h>
 #include <hltypes/hmap.h>
+#include <hltypes/hstring.h>
 #include <hltypes/util.h>
 
 #include "Affector.h"
@@ -31,15 +32,16 @@ namespace aprilparticle
 		class aprilparticleExport MultiColorChanger : public Affector
 		{
 		public:
-			MultiColorChanger();
-			MultiColorChanger(hmap<float, april::Color> timeColors);
+			MultiColorChanger(chstr name = "");
+			MultiColorChanger(hmap<float, april::Color> colorTimings, chstr name = "");
 			~MultiColorChanger();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<april::Color>, colors, Colors);
-			void setColorTimings(hmap<float, april::Color> timeColors);
-			void setColorTimings(chstr timeColors);
+			void setColorTimings(hmap<float, april::Color> value);
+			void setColorTimings(chstr value);
 
+			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
 			void addColorTiming(float time, april::Color color);

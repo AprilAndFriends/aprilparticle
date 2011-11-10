@@ -10,18 +10,20 @@
 
 #include <april/Color.h>
 #include <hltypes/hmap.h>
+#include <hltypes/harray.h>
+#include <hltypes/hstring.h>
 
 #include "AffectorMultiColorChanger.h"
+#include "aprilparticle.h"
 #include "Particle.h"
 
-#define ENTRY_SEPARATOR ","
-#define VALUE_SEPARATOR ":"
+#define KEYVALUE_SEPARATOR ":"
 
 namespace aprilparticle
 {
 	namespace Affectors
 	{
-		MultiColorChanger::MultiColorChanger() : Affector()
+		MultiColorChanger::MultiColorChanger(chstr name) : Affector(name)
 		{
 			this->times += 0.0f;
 			this->colors += APRIL_COLOR_WHITE;
@@ -30,40 +32,40 @@ namespace aprilparticle
 			this->_size = 1;
 		}
 		
-		MultiColorChanger::MultiColorChanger(hmap<float, april::Color> timeColors)
+		MultiColorChanger::MultiColorChanger(hmap<float, april::Color> colorTimings, chstr name) : Affector(name)
 		{
-			this->setColorTimings(timeColors);
+			this->setColorTimings(colorTimings);
 		}
 
 		MultiColorChanger::~MultiColorChanger()
 		{
 		}
 
-		void MultiColorChanger::setColorTimings(hmap<float, april::Color> timeColors)
+		void MultiColorChanger::setColorTimings(hmap<float, april::Color> value)
 		{
 			this->colors.clear();
-			this->times = timeColors.keys().sorted();
+			this->times = value.keys().sorted();
 			foreach (float, it, this->times)
 			{
-				this->colors += timeColors[*it];
+				this->colors += value[*it];
 			}
 			this->_size = this->times.size() - 1;
 		}
 		
-		void MultiColorChanger::setColorTimings(chstr timeColors)
+		void MultiColorChanger::setColorTimings(chstr value)
 		{
-			harray<hstr> entries = timeColors.split(ENTRY_SEPARATOR);
+			harray<hstr> entries = value.split(APRILPARTICLE_VALUE_SEPARATOR);
 			harray<hstr> data;
-			hmap<float, april::Color> timeColorData;
+			hmap<float, april::Color> colorTimings;
 			foreach (hstr, it, entries)
 			{
-				data = (*it).split(VALUE_SEPARATOR);
+				data = (*it).split(KEYVALUE_SEPARATOR);
 				if (data.size() == 2)
 				{
-					timeColorData[(float)data[0]] = april::Color(data[1]);
+					colorTimings[(float)data[0]] = april::Color(data[1]);
 				}
 			}
-			this->setColorTimings(timeColorData);
+			this->setColorTimings(colorTimings);
 		}
 		
 		void MultiColorChanger::addColorTiming(float time, april::Color color)
@@ -79,6 +81,24 @@ namespace aprilparticle
 			this->times.insert_at(this->_i, time);
 			this->colors.insert_at(this->_i, color);
 			this->_size++;
+		}
+
+		hstr MultiColorChanger::getProperty(chstr name, bool* property_exists)
+		{
+			if (property_exists != NULL)
+			{
+				*property_exists = true;
+			}
+			if (name == "color_timings")
+			{
+				harray<hstr> result;
+				for (int i = 0; i < this->times.size(); i++)
+				{
+					result += hsprintf("%f" KEYVALUE_SEPARATOR "%s", this->times[i], this->colors[i].hex());
+				}
+				return result.join(APRILPARTICLE_VALUE_SEPARATOR);
+			}
+			return Affector::getProperty(name, property_exists);
 		}
 
 		bool MultiColorChanger::setProperty(chstr name, chstr value)
@@ -106,7 +126,7 @@ namespace aprilparticle
 			}
 			else
 			{
-				particle->color = this->colors[this->_i];
+				particle->color = this->colors.last();
 			}
 		}
 		

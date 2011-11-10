@@ -14,9 +14,9 @@
 
 namespace aprilparticle
 {
-	Affector::Affector()
+	Affector::Affector(chstr name)
 	{
-		this->name = generateName("Affector");
+		this->name = (name == "" ? generateName("Affector") : name);
 	}
 
 	Affector::~Affector()
@@ -29,7 +29,7 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "name") return getName();
+		if (name == "name")	return this->getName();
 		if (property_exists != NULL)
 		{
 			*property_exists = false;
@@ -39,7 +39,7 @@ namespace aprilparticle
 	
 	bool Affector::setProperty(chstr name, chstr value)
 	{
-		if (name == "name")	setName(value);
+		if (name == "name")	this->setName(value);
 		else return false;
 		return true;
 	}

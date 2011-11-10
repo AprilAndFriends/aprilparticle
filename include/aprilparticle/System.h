@@ -17,16 +17,22 @@
 
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
-#include <hltypes/hlist.h>
+#include <hltypes/harray.h>
 #include <hltypes/hmap.h>
+#include <hltypes/hstring.h>
 #include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
-#include "Space3DObject.h"
+#include "ActiveObject.h"
 
 namespace april
 {
 	class Texture;
+}
+
+namespace hlxml
+{
+	struct Node;
 }
 
 namespace aprilparticle
@@ -34,54 +40,43 @@ namespace aprilparticle
 	class Affector;
 	class Emitter;
 
-	class aprilparticleExport System
+	class aprilparticleExport System : public ActiveObject
 	{
 	public:
 		System(chstr filename = "", chstr name = "");
 		~System();
 
 		HL_DEFINE_GET(hstr, filename, Filename);
-		HL_DEFINE_GETSET(hstr, name, Name);
-		HL_DEFINE_GETSET(gvec3, position, Position);
-		void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-		/*// TODO - delete?
-		float getX() { return this->position.x; }
-		void setX(float value) { this->position.x = value; }
-		float getY() { return this->position.y; }
-		void setY(float value) { this->position.y = value; }
-		float getZ() { return this->position.z; }
-		void setZ(float value) { this->position.z = value; }
-		*/
 		
-		void registerEmitter(Emitter* emitter);
-		void unregisterEmitter(Emitter* emitter);
-		void registerAffector(Affector* affector);
-		void unregisterAffector(Affector* affector);
-		void registerTexture(april::Texture* texture);
-		void unregisterTexture(april::Texture* texture);
+		bool registerEmitter(Emitter* emitter);
+		bool unregisterEmitter(Emitter* emitter);
+		bool registerAffector(Affector* affector);
+		bool unregisterAffector(Affector* affector);
+		bool registerTexture(april::Texture* texture, chstr name = "");
+		bool unregisterTexture(chstr name);
+		bool unregisterTexture(april::Texture* texture);
 		Emitter* getEmitter(chstr name);
-		Affector* getAffector(chstr name);
-		template <class T>
-		T* getAffector(chstr name)
-		{
-			return dynamic_cast<T*>(this->getAffector(name));
-		}
+		april::Texture* getTexture(chstr name);
 		
 		void load();
 		void update(float k);
-		void draw(gvec3 point, gvec3 up);
+		void draw(gvec3 point);
 		
 	protected:
 		hstr filename;
-		hstr name;
-		gvec3 position;
+		bool loaded;
 		harray<Emitter*> emitters;
-		harray<Affector*> affectors;
-		harray<april::Texture*> textures;
+		hmap<hstr, april::Texture*> textures;
+
+		void _loadEmitter(hlxml::Node* root);
+		void _loadAffector(hlxml::Node* root, Emitter* emitter = NULL);
+		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
 
 	private:
-		gvec3 _position;
-		hmap<april::Texture*, int> _textures;
+		// TODO
+		//gvec3 _position;
+		hmap<Emitter*, harray<hstr>> _mappedAffectors;
+		hmap<Emitter*, hstr> _mappedTextures;
 		
 	};
 }

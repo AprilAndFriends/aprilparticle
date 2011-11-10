@@ -28,7 +28,8 @@ namespace aprilparticle
 		class aprilparticleExport Rotator : public Affector
 		{
 		public:
-			Rotator(float rotationSpeed = 1.0f);
+			Rotator(chstr name = "");
+			Rotator(float rotationSpeed, chstr name = "");
 			~Rotator();
 
 			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);

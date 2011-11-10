@@ -30,8 +30,8 @@ namespace aprilparticle
 		class aprilparticleExport Swirl : public Affector
 		{
 		public:
-			Swirl();
-			Swirl(gvec3 position, gvec3 up, float range, float force);
+			Swirl(chstr name = "");
+			Swirl(gvec3 position, gvec3 up, float force, float range, bool clockwise, chstr name = "");
 			~Swirl();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
