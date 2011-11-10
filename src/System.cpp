@@ -75,6 +75,39 @@ namespace aprilparticle
 		this->textures -= texture;
 	}
 
+	Emitter* System::getEmitter(chstr name)
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			if ((*it)->getName() == name)
+			{
+				return (*it);
+			}
+		}
+		return NULL;
+	}
+
+	Affector* System::getAffector(chstr name)
+	{
+		foreach (Affector*, it, this->affectors)
+		{
+			if ((*it)->getName() == name)
+			{
+				return (*it);
+			}
+		}
+		Affector* affector;
+		foreach (Emitter*, it, this->emitters)
+		{
+			affector = (*it)->getAffector(name);
+			if (affector != NULL)
+			{
+				return affector;
+			}
+		}
+		return NULL;
+	}
+
 	void System::load()
 	{
 		if (this->filename == "")

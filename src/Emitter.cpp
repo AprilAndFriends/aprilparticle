@@ -48,6 +48,7 @@ namespace aprilparticle
 		this->type = Point;
 		this->blendMode = april::ADD;
 		this->texture = NULL;
+		this->registeredTexture = NULL;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
 	}
@@ -65,6 +66,10 @@ namespace aprilparticle
 		foreach (Affector*, it, this->registeredAffectors)
 		{
 			delete (*it);
+		}
+		if (this->registeredTexture != NULL)
+		{
+			delete this->registeredTexture;
 		}
 	}
 
@@ -177,6 +182,42 @@ namespace aprilparticle
 		this->registeredAffectors -= affector;
 	}
 	
+	void Emitter::registerTexture(april::Texture* texture)
+	{
+		if (this->texture == NULL)
+		{
+			this->texture = texture;
+		}
+		if (this->registeredTexture == NULL)
+		{
+			this->registeredTexture = texture;
+		}
+	}
+	
+	void Emitter::unregisterTexture(april::Texture* texture)
+	{
+		if (this->texture == texture)
+		{
+			this->texture = NULL;
+		}
+		if (this->registeredTexture == texture)
+		{
+			this->registeredTexture = NULL;
+		}
+	}
+	
+	Affector* Emitter::getAffector(chstr name)
+	{
+		foreach (Affector*, it, this->affectors)
+		{
+			if ((*it)->getName() == name)
+			{
+				return (*it);
+			}
+		}
+		return NULL;
+	}
+
 	void Emitter::_createNewParticle()
 	{
 		switch (this->type)

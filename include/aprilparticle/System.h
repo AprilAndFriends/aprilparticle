@@ -59,7 +59,14 @@ namespace aprilparticle
 		void unregisterAffector(Affector* affector);
 		void registerTexture(april::Texture* texture);
 		void unregisterTexture(april::Texture* texture);
-
+		Emitter* getEmitter(chstr name);
+		Affector* getAffector(chstr name);
+		template <class T>
+		T* getAffector(chstr name)
+		{
+			return dynamic_cast<T*>(this->getAffector(name));
+		}
+		
 		void load();
 		void update(float k);
 		void draw(gvec3 point, gvec3 up);

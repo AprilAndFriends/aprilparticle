@@ -57,6 +57,7 @@ namespace aprilparticle
 			float particleLife = 1.0f, float emissionRate = 60.0f, unsigned int max = 256);
 		~Emitter();
 
+		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
 		HL_DEFINE_GETSET(float, minLife, MinLife);
@@ -92,6 +93,14 @@ namespace aprilparticle
 		void removeAffector(Affector* affector);
 		void registerAffector(Affector* affector);
 		void unregisterAffector(Affector* affector);
+		void registerTexture(april::Texture* texture);
+		void unregisterTexture(april::Texture* texture);
+		Affector* getAffector(chstr name);
+		template <class T>
+		T* getAffector(chstr name)
+		{
+			return dynamic_cast<T*>(this->getAffector(name));
+		}
 
 		void update(float k);
 		
@@ -99,6 +108,7 @@ namespace aprilparticle
 		void drawAffectors(); // usually only used for debug purposes
 		
 	protected:
+		hstr name;
 		float timer;
 		gvec3 dimensions;
 		float minLife;
@@ -116,6 +126,7 @@ namespace aprilparticle
 		Type type;
 		april::BlendMode blendMode;
 		april::Texture* texture;
+		april::Texture* registeredTexture;
 		hdeque<Particle*> particles;
 		harray<Affector*> affectors;
 		harray<Affector*> registeredAffectors;
