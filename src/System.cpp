@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -222,11 +222,13 @@ namespace aprilparticle
 			TRY_LOAD_AFFECTOR(affector, type, Attractor);
 			TRY_LOAD_AFFECTOR(affector, type, CallbackAffector);
 			TRY_LOAD_AFFECTOR(affector, type, ColorChanger);
-			TRY_LOAD_AFFECTOR(affector, type, DirectionalForceField);
-			TRY_LOAD_AFFECTOR(affector, type, LinearDirectionalForce);
-			TRY_LOAD_AFFECTOR(affector, type, MultiColorChanger);
+			TRY_LOAD_AFFECTOR(affector, type, ColorMultiChanger);
+			TRY_LOAD_AFFECTOR(affector, type, Evolutor);
+			TRY_LOAD_AFFECTOR(affector, type, ForceField);
+			TRY_LOAD_AFFECTOR(affector, type, LinearForce);
+			TRY_LOAD_AFFECTOR(affector, type, Resizer);
 			TRY_LOAD_AFFECTOR(affector, type, Rotator);
-			TRY_LOAD_AFFECTOR(affector, type, Swirl);
+			TRY_LOAD_AFFECTOR(affector, type, Scaler);
 			if (affector != NULL)
 			{
 				foreach_xmlproperty (prop, root)

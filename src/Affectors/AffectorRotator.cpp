@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 

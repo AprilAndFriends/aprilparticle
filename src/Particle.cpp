@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -21,6 +21,7 @@ namespace aprilparticle
 	{
 		this->timer = 0.0f;
 		this->life = 1.0f;
+		this->size.set(1.0f, 1.0f);
 		this->scale = 1.0f;
 		this->speed = 0.0f;
 		this->angle = 0.0f;

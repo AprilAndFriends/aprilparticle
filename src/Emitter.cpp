@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -25,7 +25,8 @@
 #include "Util.h"
 
 #define DATA_SEPARATOR " "
-#define RANDOMIZE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
+#define RAND_FLOAT_RANGE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
+#define RAND_GVEC2_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
 #define TRY_GET_TYPE(value, name) if (value == name) return #name;
 
@@ -330,8 +331,8 @@ namespace aprilparticle
 		{
 			this->_pos += this->system->getPosition();
 		}
-		this->_particle = new Particle(this->_pos, this->direction, RANDOMIZE(Life), gvec2(RANDOMIZE(Size.x), RANDOMIZE(Size.y)),
-			RANDOMIZE(Scale), RANDOMIZE(Speed), RANDOMIZE(Angle));
+		this->_particle = new Particle(this->_pos, this->direction, RAND_FLOAT_RANGE(Life), RAND_GVEC2_RANGE(Size),
+			RAND_FLOAT_RANGE(Scale), RAND_FLOAT_RANGE(Speed), RAND_FLOAT_RANGE(Angle));
 		this->particles += this->_particle;
 		foreach (Affector*, it, this->affectors)
 		{

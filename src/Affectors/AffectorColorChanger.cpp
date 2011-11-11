@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -62,7 +62,7 @@ namespace aprilparticle
 		void ColorChanger::update(Particle* particle, float k)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
-			particle->color = this->startColor * this->_ratio + this->endColor * (1.0f - this->_ratio);
+			particle->color = this->startColor * (1.0f - this->_ratio) + this->endColor * this->_ratio;
 		}
 
 	}

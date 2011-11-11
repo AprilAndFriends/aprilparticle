@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -18,10 +18,12 @@
 #include "AffectorAttractor.h"
 #include "AffectorCallbackAffector.h"
 #include "AffectorColorChanger.h"
-#include "AffectorDirectionalForceField.h"
-#include "AffectorLinearDirectionalForce.h"
-#include "AffectorMultiColorChanger.h"
+#include "AffectorEvolutor.h"
+#include "AffectorColorMultiChanger.h"
+#include "AffectorForceField.h"
+#include "AffectorLinearForce.h"
+#include "AffectorResizer.h"
 #include "AffectorRotator.h"
-#include "AffectorSwirl.h"
+#include "AffectorScaler.h"
 
 #endif

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -33,11 +33,13 @@ namespace aprilparticle
 		class Attractor;
 		class CallbackAffector;
 		class ColorChanger;
-		class DirectionalForceField;
-		class LinearDirectionalForce;
-		class MultiColorChanger;
+		class ColorMultiChanger;
+		class Evolutor;
+		class ForceField;
+		class LinearForce;
+		class Resizer;
 		class Rotator;
-		class Swirl;
+		class Scaler;
 	}
 
 	class aprilparticleExport Particle : public Space3DObject
@@ -48,11 +50,13 @@ namespace aprilparticle
 		friend class Affectors::Attractor;
 		friend class Affectors::CallbackAffector;
 		friend class Affectors::ColorChanger;
-		friend class Affectors::DirectionalForceField;
-		friend class Affectors::LinearDirectionalForce;
-		friend class Affectors::MultiColorChanger;
+		friend class Affectors::ColorMultiChanger;
+		friend class Affectors::Evolutor;
+		friend class Affectors::ForceField;
+		friend class Affectors::LinearForce;
+		friend class Affectors::Resizer;
 		friend class Affectors::Rotator;
-		friend class Affectors::Swirl;
+		friend class Affectors::Scaler;
 
 		Particle();
 		Particle(gvec3 position, gvec3 direction = gvec3(0.0f, 1.0f, 0.0f), float life = 1.0f, gvec2 size = gvec2(1.0f, 1.0f), float scale = 1.0f, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);

@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -10,12 +9,13 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents an attractor affector.
+/// Represents a resizing affector.
 
-#ifndef APRILPARTICLE_ATTRACTOR_H
-#define APRILPARTICLE_ATTRACTOR_H
+#ifndef APRILPARTICLE_RESIZER_H
+#define APRILPARTICLE_RESIZER_H
 
-#include <gtypes/Vector3.h>
+#include <gtypes/Vector2.h>
+#include <hltypes/hstring.h>
 #include <hltypes/util.h>
 
 #include "Affector.h"
@@ -26,16 +26,17 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Attractor : public Affector
+		class aprilparticleExport Resizer : public Affector
 		{
 		public:
-			Attractor(chstr name = "");
-			Attractor(gvec3 position, float radius, chstr name = "");
-			~Attractor();
+			Resizer(chstr name = "");
+			Resizer(gvec2 startSize, gvec2 endSize, chstr name = "");
+			~Resizer();
 
-			HL_DEFINE_GETSET(gvec3, position, Position);
-			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-			HL_DEFINE_GETSET(float, radius, Radius);
+			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
+			void setStartSize(float x, float y) { this->startSize.set(x, y); }
+			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
+			void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
@@ -43,12 +44,11 @@ namespace aprilparticle
 			void update(Particle* particle, float k);
 
 		protected:
-			gvec3 position;
-			float radius;
+			gvec2 startSize;
+			gvec2 endSize;
 
 		private:
-			gvec3 _direction;
-			float _squaredLength;
+			float _ratio;
 
 		};
 	};

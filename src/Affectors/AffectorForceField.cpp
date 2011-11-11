@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -13,7 +13,7 @@
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
 
-#include "AffectorDirectionalForceField.h"
+#include "AffectorForceField.h"
 #include "aprilparticle.h"
 #include "Particle.h"
 
@@ -30,7 +30,7 @@ namespace aprilparticle
 	gvec3 vt;
 	gvec3 wt;
 
-	void initDirectionalForceField()
+	void initForceField()
 	{
 		for (int i = 0; i < VERTEX_COUNT; i++)
 		{
@@ -50,25 +50,25 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		DirectionalForceField::DirectionalForceField(chstr name) : Affector(name)
+		ForceField::ForceField(chstr name) : Affector(name)
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->direction = gvec3(0.0f, 0.0f, 1.0f);
 			this->force = 0.0f;
 		}
 		
-		DirectionalForceField::DirectionalForceField(gvec3 position, gvec3 direction, float force, chstr name) : Affector(name)
+		ForceField::ForceField(gvec3 position, gvec3 direction, float force, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->direction = direction;
 			this->force = force;
 		}
 
-		DirectionalForceField::~DirectionalForceField()
+		ForceField::~ForceField()
 		{
 		}
 		
-		hstr DirectionalForceField::getProperty(chstr name, bool* property_exists)
+		hstr ForceField::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)
 			{
@@ -80,7 +80,7 @@ namespace aprilparticle
 			return Affector::getProperty(name, property_exists);
 		}
 
-		bool DirectionalForceField::setProperty(chstr name, chstr value)
+		bool ForceField::setProperty(chstr name, chstr value)
 		{
 			if		(name == "position")	this->setPosition(str_to_gvec3(value));
 			else if	(name == "direction")	this->setDirection(str_to_gvec3(value));
@@ -89,14 +89,14 @@ namespace aprilparticle
 			return true;
 		}
 
-		void DirectionalForceField::update(Particle* particle, float k)
+		void ForceField::update(Particle* particle, float k)
 		{
 			this->_length = (particle->position - this->position).length();
-			particle->position += this->direction * (this->force - this->_length / this->force) *
-				(this->force / (this->_length * this->_length * particle->direction.length() + 1.0f) - particle->speed) * k;
+			particle->position += this->direction * (((this->force * this->force - this->_length) /
+				(this->_length * this->_length * particle->direction.length() + 1.0f) - particle->speed) * k);
 		}
 		
-		void DirectionalForceField::draw()
+		void ForceField::draw()
 		{
 			for (int i = 0; i < VERTEX_COUNT; i++)
 			{

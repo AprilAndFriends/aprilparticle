@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -10,10 +10,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a directional force field affector.
+/// Represents a force field affector.
 
-#ifndef APRILPARTICLE_DIRECTIONAL_FORCE_FIELD_H
-#define APRILPARTICLE_DIRECTIONAL_FORCE_FIELD_H
+#ifndef APRILPARTICLE_FORCE_FIELD_H
+#define APRILPARTICLE_FORCE_FIELD_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
@@ -26,15 +26,17 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport DirectionalForceField : public Affector
+		class aprilparticleExport ForceField : public Affector
 		{
 		public:
-			DirectionalForceField(chstr name = "");
-			DirectionalForceField(gvec3 position, gvec3 direction, float force, chstr name = "");
-			~DirectionalForceField();
+			ForceField(chstr name = "");
+			ForceField(gvec3 position, gvec3 direction, float force, chstr name = "");
+			~ForceField();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
+			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
+			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 			HL_DEFINE_GETSET(float, force, Force);
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);

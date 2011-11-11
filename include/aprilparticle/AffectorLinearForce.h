@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -10,10 +10,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a linear directional force affector.
+/// Represents a linear force affector.
 
-#ifndef APRILPARTICLE_LINEAR_DIRECTIONAL_FORCE_H
-#define APRILPARTICLE_LINEAR_DIRECTIONAL_FORCE_H
+#ifndef APRILPARTICLE_LINEAR_FORCE_H
+#define APRILPARTICLE_LINEAR_FORCE_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
@@ -26,21 +26,16 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport LinearDirectionalForce : public Affector
+		class aprilparticleExport LinearForce : public Affector
 		{
 		public:
-			LinearDirectionalForce(chstr name = "");
-			LinearDirectionalForce(gvec3 direction, float force, chstr name = "");
-			~LinearDirectionalForce();
+			LinearForce(chstr name = "");
+			LinearForce(gvec3 direction, float force, chstr name = "");
+			~LinearForce();
 			
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
+			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 			HL_DEFINE_GETSET(float, force, Force);
-			float getDirectionX() { return this->direction.x; }
-			void setDirectionX(float value) { this->direction.x = value; }
-			float getDirectionY() { return this->direction.y; }
-			void setDirectionY(float value) { this->direction.y = value; }
-			float getDirectionZ() { return this->direction.z; }
-			void setDirectionZ(float value) { this->direction.z = value; }
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

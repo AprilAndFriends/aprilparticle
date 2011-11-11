@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -10,10 +10,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a swirler affector.
+/// Represents an evolution affector.
 
-#ifndef APRILPARTICLE_SWIRL_H
-#define APRILPARTICLE_SWIRL_H
+#ifndef APRILPARTICLE_EVOLUTOR_H
+#define APRILPARTICLE_EVOLUTOR_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
@@ -27,29 +27,19 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Swirl : public Affector
+		class aprilparticleExport Evolutor : public Affector
 		{
 		public:
-			Swirl(chstr name = "");
-			Swirl(gvec3 position, gvec3 up, float force, float range, bool clockwise, chstr name = "");
-			~Swirl();
+			Evolutor(chstr name = "");
+			Evolutor(gvec3 position, gvec3 axis, float force, float range, bool clockwise, chstr name = "");
+			~Evolutor();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
-			HL_DEFINE_GETSET(gvec3, up, Up);
+			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
+			HL_DEFINE_GETSET(gvec3, axis, Axis);
+			void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
 			HL_DEFINE_GETSET(float, force, Force);
 			HL_DEFINE_GETSET(float, range, Range);
-			float getX() { return this->position.x; }
-			void setX(float value) { this->position.x = value; }
-			float getY() { return this->position.y; }
-			void setY(float value) { this->position.y = value; }
-			float getZ() { return this->position.z; }
-			void setZ(float value) { this->position.z = value; }
-			float getUpX() { return this->up.x; }
-			void setUpX(float value) { this->up.x = value; }
-			float getUpY() { return this->up.y; }
-			void setUpY(float value) { this->up.y = value; }
-			float getUpZ() { return this->up.z; }
-			void setUpZ(float value) { this->up.z = value; }
 			bool getClockwise();
 			void setClockwise(bool value);
 			
@@ -60,7 +50,7 @@ namespace aprilparticle
 
 		protected:
 			gvec3 position;
-			gvec3 up;
+			gvec3 axis;
 			float force;
 			float range;
 			float angle;

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -36,8 +36,8 @@ namespace aprilparticle
 			~ColorChanger();
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
-			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
 			void setStartColor(chstr value) { this->startColor.set(value); }
+			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
 			void setEndColor(chstr value) { this->endColor.set(value); }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);

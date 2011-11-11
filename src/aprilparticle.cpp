@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -23,11 +23,11 @@ namespace aprilparticle
 	}
 	void (*g_logFunction)(chstr) = aprilparticle_writelog;
 	
-	extern void initDirectionalForceField();
+	extern void initForceField();
     void init()
     {
 		log("initializing AprilParticle");
-		initDirectionalForceField(); // so we can shoot the bad guys
+		initForceField(); // so we can shoot the bad guys
     }
     
     void destroy()

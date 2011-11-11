@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -10,10 +10,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a multi-color affector.
+/// Represents a color multi-changer.
 
-#ifndef APRILPARTICLE_MULTI_COLOR_CHANGER_H
-#define APRILPARTICLE_MULTI_COLOR_CHANGER_H
+#ifndef APRILPARTICLE_COLOR_MULTI_CHANGER_H
+#define APRILPARTICLE_COLOR_MULTI_CHANGER_H
 
 #include <april/Color.h>
 #include <hltypes/harray.h>
@@ -29,12 +29,12 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport MultiColorChanger : public Affector
+		class aprilparticleExport ColorMultiChanger : public Affector
 		{
 		public:
-			MultiColorChanger(chstr name = "");
-			MultiColorChanger(hmap<float, april::Color> colorTimings, chstr name = "");
-			~MultiColorChanger();
+			ColorMultiChanger(chstr name = "");
+			ColorMultiChanger(hmap<float, april::Color> colorTimings, chstr name = "");
+			~ColorMultiChanger();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<april::Color>, colors, Colors);
@@ -47,7 +47,6 @@ namespace aprilparticle
 			void addColorTiming(float time, april::Color color);
 			
 			void update(Particle* emitter, float k);
-			void draw();
 			
 		protected:
 			harray<float> times;

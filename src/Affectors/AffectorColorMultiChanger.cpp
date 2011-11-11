@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.2
+/// @version 1.3
 /// 
 /// @section LICENSE
 /// 
@@ -13,7 +13,7 @@
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
-#include "AffectorMultiColorChanger.h"
+#include "AffectorColorMultiChanger.h"
 #include "aprilparticle.h"
 #include "Particle.h"
 
@@ -23,7 +23,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		MultiColorChanger::MultiColorChanger(chstr name) : Affector(name)
+		ColorMultiChanger::ColorMultiChanger(chstr name) : Affector(name)
 		{
 			this->times += 0.0f;
 			this->colors += APRIL_COLOR_WHITE;
@@ -32,16 +32,16 @@ namespace aprilparticle
 			this->_size = 1;
 		}
 		
-		MultiColorChanger::MultiColorChanger(hmap<float, april::Color> colorTimings, chstr name) : Affector(name)
+		ColorMultiChanger::ColorMultiChanger(hmap<float, april::Color> colorTimings, chstr name) : Affector(name)
 		{
 			this->setColorTimings(colorTimings);
 		}
 
-		MultiColorChanger::~MultiColorChanger()
+		ColorMultiChanger::~ColorMultiChanger()
 		{
 		}
 
-		void MultiColorChanger::setColorTimings(hmap<float, april::Color> value)
+		void ColorMultiChanger::setColorTimings(hmap<float, april::Color> value)
 		{
 			this->colors.clear();
 			this->times = value.keys().sorted();
@@ -52,7 +52,7 @@ namespace aprilparticle
 			this->_size = this->times.size() - 1;
 		}
 		
-		void MultiColorChanger::setColorTimings(chstr value)
+		void ColorMultiChanger::setColorTimings(chstr value)
 		{
 			harray<hstr> entries = value.split(APRILPARTICLE_VALUE_SEPARATOR);
 			harray<hstr> data;
@@ -68,7 +68,7 @@ namespace aprilparticle
 			this->setColorTimings(colorTimings);
 		}
 		
-		void MultiColorChanger::addColorTiming(float time, april::Color color)
+		void ColorMultiChanger::addColorTiming(float time, april::Color color)
 		{
 			time = hclamp(time, 0.0f, 1.0f);
 			for (this->_i = 0; this->_i < this->times.size(); this->_i++)
@@ -83,7 +83,7 @@ namespace aprilparticle
 			this->_size++;
 		}
 
-		hstr MultiColorChanger::getProperty(chstr name, bool* property_exists)
+		hstr ColorMultiChanger::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)
 			{
@@ -101,14 +101,14 @@ namespace aprilparticle
 			return Affector::getProperty(name, property_exists);
 		}
 
-		bool MultiColorChanger::setProperty(chstr name, chstr value)
+		bool ColorMultiChanger::setProperty(chstr name, chstr value)
 		{
 			if (name == "color_timings")	this->setColorTimings(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
-		void MultiColorChanger::update(Particle* particle, float k)
+		void ColorMultiChanger::update(Particle* particle, float k)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			this->_size = this->times.size() - 1;
@@ -130,10 +130,6 @@ namespace aprilparticle
 			}
 		}
 		
-		void MultiColorChanger::draw()
-		{
-		}
-
 	}
 
 }

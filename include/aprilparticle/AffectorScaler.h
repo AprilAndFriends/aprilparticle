@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -10,10 +9,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a rotation affector.
+/// Represents a scale affector.
 
-#ifndef APRILPARTICLE_ROTATOR_H
-#define APRILPARTICLE_ROTATOR_H
+#ifndef APRILPARTICLE_SCALER_H
+#define APRILPARTICLE_SCALER_H
 
 #include <hltypes/util.h>
 
@@ -25,22 +24,27 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Rotator : public Affector
+		class aprilparticleExport Scaler : public Affector
 		{
 		public:
-			Rotator(chstr name = "");
-			Rotator(float rotationSpeed, chstr name = "");
-			~Rotator();
+			Scaler(chstr name = "");
+			Scaler(float startScale, float endScale, chstr name = "");
+			~Scaler();
 
-			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
-				
+			HL_DEFINE_GETSET(float, startScale, StartScale);
+			HL_DEFINE_GETSET(float, endScale, EndScale);
+			
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
 			void update(Particle* particle, float k);
 
 		protected:
-			float rotationSpeed;
+			float startScale;
+			float endScale;
+
+		private:
+			float _ratio;
 
 		};
 	};

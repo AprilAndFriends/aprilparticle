@@ -219,15 +219,23 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorDirectionalForceField.cpp"
+					RelativePath=".\src\Affectors\AffectorColorMultiChanger.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorLinearDirectionalForce.cpp"
+					RelativePath=".\src\Affectors\AffectorEvolutor.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorMultiColorChanger.cpp"
+					RelativePath=".\src\Affectors\AffectorForceField.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorLinearForce.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorResizer.cpp"
 					>
 				</File>
 				<File
@@ -235,7 +243,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorSwirl.cpp"
+					RelativePath=".\src\Affectors\AffectorScaler.cpp"
 					>
 				</File>
 			</Filter>
@@ -301,15 +309,23 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorDirectionalForceField.h"
+					RelativePath=".\include\aprilparticle\AffectorColorMultiChanger.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorLinearDirectionalForce.h"
+					RelativePath=".\include\aprilparticle\AffectorEvolutor.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorMultiColorChanger.h"
+					RelativePath=".\include\aprilparticle\AffectorForceField.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorLinearForce.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorResizer.h"
 					>
 				</File>
 				<File
@@ -317,7 +333,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorSwirl.h"
+					RelativePath=".\include\aprilparticle\AffectorScaler.h"
 					>
 				</File>
 			</Filter>
