@@ -23,10 +23,13 @@
 namespace aprilparticle
 {
 	class Particle;
+	class System;
 
 	class aprilparticleExport Affector
 	{
 	public:
+		friend class System;
+
 		Affector(chstr name = "");
 		virtual ~Affector();
 
@@ -39,6 +42,9 @@ namespace aprilparticle
 
 	protected:
 		hstr name;
+		System* system;
+
+		void _setSystem(System* value) { this->system = value; }
 
 	};
 }

@@ -15,6 +15,7 @@
 #include "AffectorEvolutor.h"
 #include "aprilparticle.h"
 #include "Particle.h"
+#include "System.h"
 
 namespace aprilparticle
 {
@@ -26,17 +27,17 @@ namespace aprilparticle
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->axis = gvec3(0.0f, 1.0f, 0.0f);
-			this->force = 1.0f;
-			this->range = 1.0f;
+			this->radius = 1.0f;
+			this->evolutionSpeed = 1.0f;
 			this->setClockwise(true);
 		}
 
-		Evolutor::Evolutor(gvec3 position, gvec3 axis, float force, float range, bool clockwise, chstr name) : Affector(name)
+		Evolutor::Evolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->axis = axis;
-			this->force = force;
-			this->range = range;
+			this->radius = radius;
+			this->evolutionSpeed = evolutionSpeed;
 			this->setClockwise(clockwise);
 		}
 		
@@ -44,7 +45,7 @@ namespace aprilparticle
 		{
 		}
 		
-		bool Evolutor::getClockwise()
+		bool Evolutor::isClockwise()
 		{
 			return (this->angle >= 0.0f);
 		}
@@ -60,33 +61,34 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "position")		return gvec3_to_str(this->getPosition());
-			if (name == "axis")			return gvec3_to_str(this->getAxis());
-			if (name == "force")		return this->getForce();
-			if (name == "range")		return this->getRange();
-			if (name == "clockwise")	return this->getClockwise();
+			if (name == "position")			return gvec3_to_str(this->getPosition());
+			if (name == "axis")				return gvec3_to_str(this->getAxis());
+			if (name == "radius")			return this->getRadius();
+			if (name == "evolution_speed")	return this->getEvolutionSpeed();
+			if (name == "clockwise")		return this->isClockwise();
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool Evolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(str_to_gvec3(value));
-			else if	(name == "axis")		this->setAxis(str_to_gvec3(value));
-			else if	(name == "force")		this->setForce(value);
-			else if	(name == "range")		this->setRange(value);
-			else if	(name == "clockwise")	this->setClockwise(value);
+			if		(name == "position")		this->setPosition(str_to_gvec3(value));
+			else if	(name == "axis")			this->setAxis(str_to_gvec3(value));
+			else if	(name == "radius")			this->setRadius(value);
+			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
+			else if	(name == "clockwise")		this->setClockwise(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
 		void Evolutor::update(Particle* particle, float k)
 		{
-			this->_direction = particle->position - this->position;
+			this->_position = this->position + this->system->getPosition();
+			this->_direction = particle->position - this->_position;
 			this->_squaredLength = this->_direction.squaredLength();
-			if (this->_squaredLength < this->range * this->range * 0.25f)
+			if (this->_squaredLength < this->radius * this->radius)
 			{
-				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->range) * this->force * k * this->angle);
-				particle->position = this->position + _rotation * this->_direction;
+				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * this->evolutionSpeed * k * this->angle);
+				particle->position = this->_position + _rotation * this->_direction;
 			}
 		}
 

@@ -105,9 +105,9 @@ void setupFlame()
 	aprilparticle::Affectors::ColorMultiChanger* colorChanger = new aprilparticle::Affectors::ColorMultiChanger();
 	flame->registerAffector(colorChanger);
 	emitter->addAffector(colorChanger);
-	aprilparticle::Affectors::LinearForce* linearforce = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, 1.0f, 0.0f), 24.0f);
-	flame->registerAffector(linearforce);
-	emitter->addAffector(linearforce);
+	aprilparticle::Affectors::LinearForce* linearForce = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, 1.0f, 0.0f), 18.0f);
+	flame->registerAffector(linearForce);
+	emitter->addAffector(linearForce);
 	aprilparticle::Affectors::Rotator* rotator = new aprilparticle::Affectors::Rotator(50.0f);
 	flame->registerAffector(rotator);
 	emitter->addAffector(rotator);
@@ -149,9 +149,9 @@ void setupBubbles()
 	aprilparticle::Affectors::ColorMultiChanger* colorChanger = new aprilparticle::Affectors::ColorMultiChanger();
 	bubbles->registerAffector(colorChanger);
 	emitter->addAffector(colorChanger);
-	aprilparticle::Affectors::ForceField* directionalForce = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
-	bubbles->registerAffector(directionalForce);
-	emitter->addAffector(directionalForce);
+	aprilparticle::Affectors::ForceField* forceField = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 1.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 4.0f);
+	bubbles->registerAffector(forceField);
+	emitter->addAffector(forceField);
 
 	emitter->setType(aprilparticle::Emitter::Cylinder);
 	emitter->setDimensions(5.0f, 4.0f, 5.0f);
@@ -163,7 +163,7 @@ void setupBubbles()
 
 	hmap<float, april::Color> colors;
 	colors[0.0f] = april::Color(0xFFFFFF00);
-	colors[0.04f] = april::Color(0xFFFFFFFF);
+	colors[0.05f] = april::Color(0xFFFFFFFF);
 	colors[0.995f] = april::Color(0xFFFFFFFF);
 	colors[1.0f] = april::Color(0xFFFFFF00);
 	colorChanger->setColorTimings(colors);
@@ -178,10 +178,10 @@ void setupVortex()
 	// textures
 	emitter->setTexture(redParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Evolutor* swirl = new aprilparticle::Affectors::Evolutor(gvec3(10.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 0.2f, 8.0f, true);
-	vortex->registerAffector(swirl);
-	emitter->addAffector(swirl);
-	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 2.0f);
+	aprilparticle::Affectors::Evolutor* evolutor = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f, true);
+	vortex->registerAffector(evolutor);
+	emitter->addAffector(evolutor);
+	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 2.0f);
 	vortex->registerAffector(attractor);
 	emitter->addAffector(attractor);
 
@@ -235,29 +235,29 @@ void setupQuazar()
 	// textures
 	april::Texture* blueParticle = april::rendersys->loadTexture("../media/blue_particle.png");
 	quazar->registerTexture(blueParticle);
+	discEmitter->setTexture(greenParticle); // texture is shared among several particle systems
 	jetTopEmitter->setTexture(blueParticle);
 	jetBottomEmitter->setTexture(blueParticle);
-	discEmitter->setTexture(greenParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), 2.0f);
+	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 2.0f);
 	quazar->registerAffector(gravity);
 	discEmitter->addAffector(gravity);
-	aprilparticle::Affectors::Evolutor* spin = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 10.0f), gvec3(1.0f, 0.0f, 0.0f), 0.1f, 8.0f, true);
+	aprilparticle::Affectors::Evolutor* spin = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.1f, true);
 	quazar->registerAffector(spin);
 	discEmitter->addAffector(spin);
 	aprilparticle::Affectors::LinearForce* top = new aprilparticle::Affectors::LinearForce(gvec3(1.0f, 0.0f, 0.0f), 24.0f);
 	quazar->registerAffector(top);
 	jetTopEmitter->addAffector(top);
-	aprilparticle::Affectors::Attractor* attractionPointTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 10.0f), 6.0f);
-	quazar->registerAffector(attractionPointTop);
-	jetTopEmitter->addAffector(attractionPointTop);
+	aprilparticle::Affectors::Attractor* attractorTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 6.0f);
+	quazar->registerAffector(attractorTop);
+	jetTopEmitter->addAffector(attractorTop);
 	aprilparticle::Affectors::LinearForce* bottom = new aprilparticle::Affectors::LinearForce(gvec3(-1.0f, 0.0f, 0.0f), 24.0f);
 	quazar->registerAffector(bottom);
 	jetBottomEmitter->addAffector(bottom);
-	aprilparticle::Affectors::Attractor* attractionPointBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 10.0f), 6.0f);
-	quazar->registerAffector(attractionPointBottom);
-	jetBottomEmitter->addAffector(attractionPointBottom);
-	aprilparticle::Affectors::Attractor* inverseGravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 10.0f), -4.0f);
+	aprilparticle::Affectors::Attractor* attractorBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 6.0f);
+	quazar->registerAffector(attractorBottom);
+	jetBottomEmitter->addAffector(attractorBottom);
+	aprilparticle::Affectors::Attractor* inverseGravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), -4.0f);
 	quazar->registerAffector(inverseGravity);
 	jetTopEmitter->addAffector(inverseGravity); // affector is shared among several emitters
 	jetBottomEmitter->addAffector(inverseGravity); // affector is shared among several emitters
@@ -305,21 +305,21 @@ void setupTwirl()
 	twirl->registerAffector(wind);
 	left->addAffector(wind); // affector is shared among several emitters
 	right->addAffector(wind); // affector is shared among several emitters
-	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, -10.0f), 7.0f);
+	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 7.0f);
 	twirl->registerAffector(gravity);
 	left->addAffector(gravity); // affector is shared among several emitters
 	right->addAffector(gravity); // affector is shared among several emitters
 	// affectors that are being manipulated
-	aprilparticle::Affectors::ForceField* force1 = new aprilparticle::Affectors::ForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(0.0f, 0.0f, 1.0f), 4.0f, AFFECTOR_FORCE_1);
+	aprilparticle::Affectors::ForceField* force1 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_1);
 	twirl->registerAffector(force1);
 	left->addAffector(force1);
-	aprilparticle::Affectors::ForceField* force2 = new aprilparticle::Affectors::ForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_2);
+	aprilparticle::Affectors::ForceField* force2 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_2);
 	twirl->registerAffector(force2);
 	left->addAffector(force2);
-	aprilparticle::Affectors::ForceField* force3 = new aprilparticle::Affectors::ForceField(gvec3(10.0f, 0.0f, -10.0f), gvec3(1.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_3);
+	aprilparticle::Affectors::ForceField* force3 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_3);
 	twirl->registerAffector(force3);
 	right->addAffector(force3);
-	aprilparticle::Affectors::ForceField* force4 = new aprilparticle::Affectors::ForceField(gvec3(10.0f, 4.0f, -10.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_4);
+	aprilparticle::Affectors::ForceField* force4 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), gvec3(0.0f, 0.0f, 0.0f), 4.0f, AFFECTOR_FORCE_4);
 	twirl->registerAffector(force4);
 	right->addAffector(force4);
 
@@ -330,14 +330,14 @@ void setupTwirl()
 	left->setEmissionRate(100.0f);
 	left->setLimit(600);
 	left->setLife(6.0f);
-	left->setSizeRange(gvec2(0.1f, 0.1f), gvec2(0.4f, 0.4f));
+	left->setScaleRange(0.1f, 0.4f);
 	
 	right->setType(aprilparticle::Emitter::Point);
 	right->setBlendMode(april::ADD);
 	right->setEmissionRate(100.0f);
 	right->setLimit(600);
 	right->setLife(6.0f);
-	right->setSizeRange(gvec2(0.1f, 0.1f), gvec2(0.4f, 0.4f));
+	right->setScaleRange(0.1f, 0.4f);
 }
 
 void april_init(const harray<hstr>& args)

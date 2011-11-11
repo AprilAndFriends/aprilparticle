@@ -65,29 +65,23 @@ bool render(float k)
 	drawGrid();
 	
 	flame->update(k);
-	/*
 	bubbles->update(k);
 	vortex->update(k);
 	rain->update(k);
 	quazar->update(k);
 	twirl->update(k);
-	*/
 	
 	flame->draw(pos);
-	/*
 	bubbles->draw(pos);
 	vortex->draw(pos);
 	rain->draw(pos);
 	quazar->draw(pos);
 	twirl->draw(pos);
-	*/
 	
-	/*
 	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(angle * 0.06666667f), 0.0f, cos(angle * 0.03333333f)));
 	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(angle * 0.06666667f), sin(angle * 0.03333333f), 0.0f));
 	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(angle * 0.03333333f), 0.0f, sin(angle * 0.06666667f)));
 	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(angle * 0.03333333f), sin(angle * 0.06666667f), 0.0f));
-	*/
 	
 	return true;
 }
@@ -150,7 +144,6 @@ void april_init(const harray<hstr>& args)
 	// setting up every system
 	flame = new aprilparticle::System("../media/flame.particle");
 	flame->load();
-	/*
 	bubbles = new aprilparticle::System("../media/bubbles.particle");
 	bubbles->load();
 	vortex = new aprilparticle::System("../media/vortex.particle");
@@ -161,7 +154,6 @@ void april_init(const harray<hstr>& args)
 	quazar->load();
 	twirl = new aprilparticle::System("../media/twirl.particle");
 	twirl->load();
-	*/
 }
 
 void april_destroy()

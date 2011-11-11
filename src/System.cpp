@@ -17,6 +17,7 @@
 #include <hlxml/Property.h>
 
 #include "Affectors.h"
+#include "aprilparticle.h"
 #include "Emitter.h"
 #include "System.h"
 #include "Util.h"
@@ -80,6 +81,7 @@ namespace aprilparticle
 			return false;
 		}
 		this->affectors += affector;
+		affector->_setSystem(this);
 		return true;
 	}
 
@@ -90,6 +92,7 @@ namespace aprilparticle
 			return false;
 		}
 		this->affectors -= affector;
+		affector->_setSystem(NULL);
 		return true;
 	}
 
@@ -147,6 +150,7 @@ namespace aprilparticle
 		{
 			return;
 		}
+		aprilparticle::log("loading " + this->filename);
 		this->loaded = true;
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
@@ -154,10 +158,8 @@ namespace aprilparticle
 		{
 			if (*node == "Properties")
 			{
-				printf("Properties\n");
 				foreach_xmlproperty (prop, node)
 				{
-					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
 					this->setProperty(prop->name(), prop->value());
 				}
 			}
@@ -191,11 +193,9 @@ namespace aprilparticle
 
 	void System::_loadEmitter(hlxml::Node* root)
 	{
-		printf("Emitter\n");
 		Emitter* emitter = new Emitter();
 		foreach_xmlproperty (prop, root)
 		{
-			printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
 			emitter->setProperty(prop->name(), prop->value());
 		}
 		foreach_xmlnode (node, root)
@@ -214,7 +214,6 @@ namespace aprilparticle
 
 	void System::_loadAffector(hlxml::Node* root, Emitter* emitter)
 	{
-		printf("Affector\n");
 		Affector* affector = NULL;
 		if (root->pexists("type"))
 		{
@@ -233,7 +232,6 @@ namespace aprilparticle
 			{
 				foreach_xmlproperty (prop, root)
 				{
-					printf("\t%s : %s\n", prop->name().c_str(), prop->value().c_str());
 					affector->setProperty(prop->name(), prop->value());
 				}
 				this->registerAffector(affector);
@@ -255,7 +253,6 @@ namespace aprilparticle
 
 	void System::_loadTexture(hlxml::Node* root, Emitter* emitter)
 	{
-		printf("Texture\n");
 		april::Texture* texture = NULL;
 		if (root->pexists("filename"))
 		{

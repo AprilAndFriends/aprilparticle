@@ -17,6 +17,7 @@ namespace aprilparticle
 	Affector::Affector(chstr name)
 	{
 		this->name = (name == "" ? generateName("Affector") : name);
+		this->system = NULL;
 	}
 
 	Affector::~Affector()

@@ -16,6 +16,7 @@
 #include "AffectorForceField.h"
 #include "aprilparticle.h"
 #include "Particle.h"
+#include "System.h"
 
 #define VERTEX_COUNT 91 // you can't touch this
 
@@ -34,12 +35,9 @@ namespace aprilparticle
 	{
 		for (int i = 0; i < VERTEX_COUNT; i++)
 		{
-			ut.x = sin(i * 0.069777f);
-			ut.y = cos(i * 0.069777f);
-			vt.y = cos(i * 0.069777f);
-			vt.z = sin(i * 0.069777f);
-			wt.x = cos(i * 0.069777f);
-			wt.z = sin(i * 0.069777f);
+			ut.set(sin(i * 0.069777f), cos(i * 0.069777f), 0.0f);
+			vt.set(0.0f, cos(i * 0.069777f), sin(i * 0.069777f));
+			wt.set(cos(i * 0.069777f), 0.0f, sin(i * 0.069777f));
 			u[i].color = 0xFFFFFFFF;
 			v[i].color = 0xFFFFFFFF;
 			w[i].color = 0xFFFFFFFF;
@@ -91,7 +89,7 @@ namespace aprilparticle
 
 		void ForceField::update(Particle* particle, float k)
 		{
-			this->_length = (particle->position - this->position).length();
+			this->_length = (particle->position - (this->position + this->system->getPosition())).length();
 			particle->position += this->direction * (((this->force * this->force - this->_length) /
 				(this->_length * this->_length * particle->direction.length() + 1.0f) - particle->speed) * k);
 		}
@@ -100,12 +98,12 @@ namespace aprilparticle
 		{
 			for (int i = 0; i < VERTEX_COUNT; i++)
 			{
-				u[i] = this->position + ut * this->force;
-				v[i] = this->position + vt * this->force;
-				w[i] = this->position + wt * this->force;
+				u[i] = this->position + this->system->getPosition() + ut * this->force;
+				v[i] = this->position + this->system->getPosition() + vt * this->force;
+				w[i] = this->position + this->system->getPosition() + wt * this->force;
 			}
-			arrow[0] = this->position;
-			arrow[1] = this->position + this->direction * this->force;
+			arrow[0] = this->position + this->system->getPosition();
+			arrow[1] = this->position + this->system->getPosition() + this->direction * this->force;
 			april::rendersys->render(april::LineStrip, u, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, v, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, w, VERTEX_COUNT);
