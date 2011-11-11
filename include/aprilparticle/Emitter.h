@@ -103,6 +103,7 @@ namespace aprilparticle
 		void update(float k);
 		
 		void draw(gvec3 point, gvec3 up);
+		void draw2D();
 		void drawAffectors(); // usually only used for debug purposes
 		
 	protected:
@@ -144,6 +145,8 @@ namespace aprilparticle
 		gmat4 _billboard;
 		gmat3 _rot;
 		int _i;
+		float _w;
+		float _h;
 		unsigned int _color;
 		
 		void _setupTriangleBatch();

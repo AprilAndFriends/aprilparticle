@@ -24,7 +24,7 @@
 #include "System.h"
 #include "Util.h"
 
-#define DATA_SEPARATOR " "
+#define RANGE_SEPARATOR ";"
 #define RAND_FLOAT_RANGE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
 #define RAND_GVEC2_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
@@ -102,25 +102,25 @@ namespace aprilparticle
 
 	void Emitter::setLife(chstr value)
 	{
-		harray<hstr> data = value.split(DATA_SEPARATOR);
+		harray<hstr> data = value.split(RANGE_SEPARATOR);
 		this->setLifeRange(data.first(), data.last());
 	}
 
 	void Emitter::setSize(chstr value)
 	{
-		harray<hstr> data = value.split(DATA_SEPARATOR);
+		harray<hstr> data = value.split(RANGE_SEPARATOR);
 		this->setSizeRange(str_to_gvec2(data.first()), str_to_gvec2(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
 	{
-		harray<hstr> data = value.split(DATA_SEPARATOR);
+		harray<hstr> data = value.split(RANGE_SEPARATOR);
 		this->setScaleRange(data.first(), data.last());
 	}
 
 	void Emitter::setSpeed(chstr value)
 	{
-		harray<hstr> data = value.split(DATA_SEPARATOR);
+		harray<hstr> data = value.split(RANGE_SEPARATOR);
 		this->setSpeedRange(data.first(), data.last());
 	}
 
@@ -416,6 +416,44 @@ namespace aprilparticle
 				v[2] = this->_billboard * v[2];
 				v[3] = this->_billboard * v[3];
 			
+				this->_color = (unsigned int)(*it)->color;
+				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				
+			}
+		}
+		if (this->texture != NULL)
+		{
+			april::rendersys->setTexture(this->texture);
+		}
+		april::rendersys->setBlendMode(this->blendMode);
+		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+	}
+	
+	void Emitter::draw2D()
+	{
+		this->_i = 0;
+		this->_w = (float)this->texture->getWidth();
+		this->_h = (float)this->texture->getHeight();
+		foreach_q (Particle*, it, this->particles)
+		{
+			if (!(*it)->isDead())
+			{
+				v[0].set((*it)->position.x - (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y - (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
+				v[1].set((*it)->position.x + (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y - (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
+				v[2].set((*it)->position.x - (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y + (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
+				v[3].set((*it)->position.x + (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y + (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
+				
+				this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+				v[0] = this->_rot * v[0];
+				v[1] = this->_rot * v[1];
+				v[2] = this->_rot * v[2];
+				v[3] = this->_rot * v[3];
+				
 				this->_color = (unsigned int)(*it)->color;
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;

@@ -285,4 +285,12 @@ namespace aprilparticle
 		}
 	}
 
+	void System::draw2D()
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			(*it)->draw2D();
+		}
+	}
+
 }

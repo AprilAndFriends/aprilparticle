@@ -61,6 +61,7 @@ namespace aprilparticle
 		void load();
 		void update(float k);
 		void draw(gvec3 point);
+		void draw2D();
 		
 	protected:
 		hstr filename;
