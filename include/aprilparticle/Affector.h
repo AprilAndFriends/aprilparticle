@@ -15,6 +15,7 @@
 #ifndef APRILPARTICLE_AFFECTOR_H
 #define APRILPARTICLE_AFFECTOR_H
 
+#include <gtypes/Vector3.h>
 #include <hltypes/hstring.h>
 #include <hltypes/util.h>
 
@@ -35,7 +36,7 @@ namespace aprilparticle
 
 		HL_DEFINE_GETSET(hstr, name, Name);
 				
-		virtual void update(Particle* particle, float k) { }
+		virtual void update(Particle* particle, float k, gvec3& movement) { }
 		virtual void draw() { }
 		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
 		virtual bool setProperty(chstr name, chstr value);

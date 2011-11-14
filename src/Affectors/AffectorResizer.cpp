@@ -50,7 +50,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Resizer::update(Particle* particle, float k)
+		void Resizer::update(Particle* particle, float k, gvec3& movement)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			particle->size = this->startSize * (1.0f - this->_ratio) + this->endSize * this->_ratio;

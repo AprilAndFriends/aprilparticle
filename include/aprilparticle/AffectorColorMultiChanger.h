@@ -16,6 +16,7 @@
 #define APRILPARTICLE_COLOR_MULTI_CHANGER_H
 
 #include <april/Color.h>
+#include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
@@ -46,7 +47,7 @@ namespace aprilparticle
 
 			void addColorTiming(float time, april::Color color);
 			
-			void update(Particle* emitter, float k);
+			void update(Particle* emitter, float k, gvec3& movement);
 			
 		protected:
 			harray<float> times;

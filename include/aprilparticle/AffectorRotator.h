@@ -37,7 +37,7 @@ namespace aprilparticle
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float k);
+			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
 			float rotationSpeed;

@@ -19,7 +19,7 @@ namespace aprilparticle
 		LinearForce::LinearForce(chstr name) : Affector(name)
 		{
 			this->direction.set(0.0f, -1.0f, 0.0f);
-			this->force = 1.0f;
+			this->force = 0.0f;
 		}
 
 		LinearForce::LinearForce(gvec3 direction, float force, chstr name) : Affector(name)
@@ -51,13 +51,13 @@ namespace aprilparticle
 			return true;
 		}
 
-		void LinearForce::update(Particle* particle, float k)
+		void LinearForce::update(Particle* particle, float k, gvec3& movement)
 		{
 			if (this->force != 0.0f)
 			{
-				particle->speed += this->force * k * 0.001f;
+				particle->speed += this->force * k;
 			}
-			particle->position += this->direction * (particle->speed * particle->direction.length());
+			movement += this->direction * (particle->speed * k);
 		}
 
 	}

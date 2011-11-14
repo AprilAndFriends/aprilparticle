@@ -14,6 +14,7 @@
 #ifndef APRILPARTICLE_SCALER_H
 #define APRILPARTICLE_SCALER_H
 
+#include <gtypes/Vector3.h>
 #include <hltypes/util.h>
 
 #include "Affector.h"
@@ -37,7 +38,7 @@ namespace aprilparticle
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float k);
+			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
 			float startScale;

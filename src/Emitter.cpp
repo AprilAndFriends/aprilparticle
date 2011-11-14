@@ -214,8 +214,6 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, HollowSphere);
 			TRY_GET_TYPE(value, Cylinder);
 			TRY_GET_TYPE(value, HollowCylinder);
-			TRY_GET_TYPE(value, Circle);
-			TRY_GET_TYPE(value, Ring);
 			return "";
 		}
 		if (name == "dimensions")		return gvec3_to_str(this->getDimensions());
@@ -234,8 +232,6 @@ namespace aprilparticle
 			TRY_SET_TYPE(value, HollowSphere);
 			TRY_SET_TYPE(value, Cylinder);
 			TRY_SET_TYPE(value, HollowCylinder);
-			TRY_SET_TYPE(value, Circle);
-			TRY_SET_TYPE(value, Ring);
 		}
 		else if	(name == "dimensions")		this->setDimensions(str_to_gvec3(value));
 		else if	(name == "blend_mode")
@@ -258,75 +254,61 @@ namespace aprilparticle
 
 	void Emitter::_createNewParticle()
 	{
-		//this->_pos = 
 		switch (this->type)
 		{
 			case Point:
-				this->_pos = this->position;
+				this->_pos.set(0.0f, 0.0f, 0.0f);
 				break;
 			case Box:
-				this->_pos.x = this->position.x + hrandf(1.0f) * this->dimensions.x - this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + hrandf(1.0f) * this->dimensions.z - this->dimensions.z * 0.5f;
+				this->_pos.x = this->dimensions.x * hrandf(-0.5f, 0.5f);
+				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+				this->_pos.z = this->dimensions.z * hrandf(-0.5f, 0.5f);
 				break;
 			case HollowBox:
-				this->_pos.x = this->position.x + hrand(2) * this->dimensions.x - this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + hrand(2) * this->dimensions.y - this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + hrand(2) * this->dimensions.z - this->dimensions.z * 0.5f;
+				this->_pos.x = this->dimensions.x * 0.5f - this->dimensions.x * hrand(2);
+				this->_pos.y = this->dimensions.y * 0.5f - this->dimensions.y * hrand(2);
+				this->_pos.z = this->dimensions.z * 0.5f - this->dimensions.z * hrand(2);
 				break;
 			case Sphere:
-				// TODO
 				this->_rho = hrandf(1.0f);
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
 				this->_S = this->_rho * sin(this->_phi);
 
-				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + this->_S * sin(this->_theta) * this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
+				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+				this->_pos.y = this->dimensions.y * 0.5f * this->_S * sin(this->_theta);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_S * cos(this->_theta);
 				break;
 			case HollowSphere:
-				// TODO
 				this->_rho = 1.0f;
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
 				this->_S = this->_rho * sin(this->_phi);
 
-				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + this->_S * sin(this->_theta) * this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
+				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+				this->_pos.y = this->dimensions.y * 0.5f * this->_S * sin(this->_theta);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_S * cos(this->_theta);
 				break;
 			case Cylinder:
-				// TODO
 				this->_rho = hrandf(1.0f);
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
-				this->_S = this->_rho * sin(this->_phi);
-					
-				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
+				
+				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
 				break;
 			case HollowCylinder:
-				// TODO
 				this->_rho = 1.0f;
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
-				this->_S = this->_rho * sin(this->_phi);
-					
-				this->_pos.x = this->position.x + this->_S * cos(this->_theta) * this->dimensions.x * 0.5f;
-				this->_pos.y = this->position.y + hrandf(1.0f) * this->dimensions.y - this->dimensions.y * 0.5f;
-				this->_pos.z = this->position.z + this->_rho * cos(this->_phi) * this->dimensions.z * 0.5f;
-				break;
-			case Circle:
-				// TODO
-				this->_pos = this->position;
-				break;
-			case Ring:
-				// TODO
-				this->_pos = this->position;
+				
+				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
 				break;
 		}
+		this->_pos += this->position;
 		if (this->system != NULL)
 		{
 			this->_pos += this->system->getPosition();
@@ -336,7 +318,7 @@ namespace aprilparticle
 		this->particles += this->_particle;
 		foreach (Affector*, it, this->affectors)
 		{
-			(*it)->update(this->_particle, 0.0f);
+			(*it)->update(this->_particle, 0.0f, this->_movement);
 		}
 	}
 	
@@ -349,14 +331,13 @@ namespace aprilparticle
 			(*it)->timer += k;
 			if (!(*it)->isDead())
 			{
+				this->_movement.set(0.0f, 0.0f, 0.0f);
 				foreach (Affector*, it2, this->affectors)
 				{
-					(*it2)->update((*it), k);
+					(*it2)->update((*it), k, this->_movement);
 				}
-				if (!(*it)->isDead())
-				{
-					this->_alive++;
-				}
+				(*it)->position += this->_movement;
+				this->_alive++;
 			}
 		}
 		// remove all expired particles
@@ -396,7 +377,7 @@ namespace aprilparticle
 		this->_i = 0;
 		foreach_q (Particle*, it, this->particles)
 		{
-			if (!(*it)->isDead())
+			if (!(*it)->isDead() && (*it)->color.a > 0)
 			{
 				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
 				v[0].set(-(*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
@@ -423,7 +404,6 @@ namespace aprilparticle
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
-				
 			}
 		}
 		if (this->texture != NULL)

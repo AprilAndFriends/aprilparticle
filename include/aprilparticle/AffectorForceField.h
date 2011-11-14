@@ -30,29 +30,30 @@ namespace aprilparticle
 		{
 		public:
 			ForceField(chstr name = "");
-			ForceField(gvec3 position, gvec3 direction, float force, chstr name = "");
+			ForceField(gvec3 position, gvec3 direction, float radius, chstr name = "");
 			~ForceField();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
-			HL_DEFINE_GETSET(float, force, Force);
+			HL_DEFINE_GETSET(float, radius, Radius);
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* article, float k);
+			void update(Particle* article, float k, gvec3& movement);
 			void draw();
 
 		protected:
 			gvec3 position;
 			gvec3 direction;
-			float force;
+			float radius;
 
 		private:
-			float _length;
-
+			float _factor;
+			float _squaredLength;
+			
 		};
 	};
 }

@@ -80,15 +80,15 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Evolutor::update(Particle* particle, float k)
+		void Evolutor::update(Particle* particle, float k, gvec3& movement)
 		{
 			this->_position = this->position + this->system->getPosition();
 			this->_direction = particle->position - this->_position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)
 			{
-				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * this->evolutionSpeed * k * this->angle);
-				particle->position = this->_position + _rotation * this->_direction;
+				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * this->evolutionSpeed * this->angle * k);
+				movement += this->_position + _rotation * this->_direction - particle->position;
 			}
 		}
 

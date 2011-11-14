@@ -22,11 +22,15 @@ namespace aprilparticle
 	{
 		Attractor::Attractor(chstr name) : Affector(name)
 		{
+			this->position.set(0.0f, 0.0f, 0.0f);
+			this->radius = 10.0f;
+			this->force = 1.0f;
 		}
 		
-		Attractor::Attractor(gvec3 position, float force, chstr name) : Affector(name)
+		Attractor::Attractor(gvec3 position, float radius, float force, chstr name) : Affector(name)
 		{
 			this->position = position;
+			this->radius = radius;
 			this->force = force;
 		}
 
@@ -41,6 +45,7 @@ namespace aprilparticle
 				*property_exists = true;
 			}
 			if (name == "position")		return gvec3_to_str(this->getPosition());
+			if (name == "radius")		return this->getRadius();
 			if (name == "force")		return this->getForce();
 			return Affector::getProperty(name, property_exists);
 		}
@@ -48,18 +53,20 @@ namespace aprilparticle
 		bool Attractor::setProperty(chstr name, chstr value)
 		{
 			if		(name == "position")	this->setPosition(str_to_gvec3(value));
+			else if	(name == "radius")		this->setRadius(value);
 			else if	(name == "force")		this->setForce(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
-		void Attractor::update(Particle* particle, float k)
+		void Attractor::update(Particle* particle, float k, gvec3& movement)
 		{
 			this->_direction = this->position + this->system->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();
-			if (this->_squaredLength > 0.02f)
+			if (is_inside(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{
-				particle->position += this->_direction * (((this->force * this->force - sqrt(this->_squaredLength)) / (this->force * (this->_squaredLength + 1.0f))) * k);
+				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
+				movement += this->_direction.normalized() * (this->force * this->_factor * this->_factor * k);
 			}
 		}
 

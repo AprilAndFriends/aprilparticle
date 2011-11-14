@@ -108,7 +108,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ColorMultiChanger::update(Particle* particle, float k)
+		void ColorMultiChanger::update(Particle* particle, float k, gvec3& movement)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			this->_size = this->times.size() - 1;

@@ -49,9 +49,7 @@ namespace aprilparticle
 			Sphere,
 			HollowSphere,
 			Cylinder,
-			HollowCylinder,
-			Circle,
-			Ring
+			HollowCylinder
 		};
 	
 		friend class System;
@@ -133,6 +131,7 @@ namespace aprilparticle
 
 	private:
 		april::ColoredTexturedVertex* _triangleBatch;
+		gvec3 _movement;
 		gvec3 _pos;
 		float _rho;
 		float _phi;

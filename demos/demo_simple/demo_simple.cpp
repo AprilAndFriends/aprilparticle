@@ -25,6 +25,7 @@ aprilparticle::System* vortex = NULL;
 aprilparticle::System* rain = NULL;
 aprilparticle::System* quazar = NULL;
 aprilparticle::System* twirl = NULL;
+aprilparticle::System* milkyWay = NULL;
 
 april::ColoredVertex grid[44];
 
@@ -70,6 +71,7 @@ bool render(float k)
 	rain->update(k);
 	quazar->update(k);
 	twirl->update(k);
+	milkyWay->update(k);
 	
 	flame->draw(pos);
 	bubbles->draw(pos);
@@ -77,11 +79,12 @@ bool render(float k)
 	rain->draw(pos);
 	quazar->draw(pos);
 	twirl->draw(pos);
+	milkyWay->draw(pos);
 	
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(angle * 0.06666667f), 0.0f, cos(angle * 0.03333333f)));
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(angle * 0.06666667f), sin(angle * 0.03333333f), 0.0f));
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(angle * 0.03333333f), 0.0f, sin(angle * 0.06666667f)));
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(angle * 0.03333333f), sin(angle * 0.06666667f), 0.0f));
+	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(angle * 0.06666667f), 0.0f, cos(angle * 0.03333333f)) * 10.0f);
+	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(angle * 0.06666667f), sin(angle * 0.03333333f), 0.0f) * 10.0f);
+	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(angle * 0.03333333f), 0.0f, sin(angle * 0.06666667f)) * 10.0f);
+	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(angle * 0.03333333f), sin(angle * 0.06666667f), 0.0f) * 10.0f);
 	
 	return true;
 }
@@ -154,6 +157,8 @@ void april_init(const harray<hstr>& args)
 	quazar->load();
 	twirl = new aprilparticle::System("../media/twirl.particle");
 	twirl->load();
+	milkyWay = new aprilparticle::System("../media/milkyWay.particle");
+	milkyWay->load();
 }
 
 void april_destroy()
@@ -164,6 +169,7 @@ void april_destroy()
 	delete rain;
 	delete quazar;
 	delete twirl;
+	delete milkyWay;
 	aprilparticle::destroy();
 	april::destroy();
 }

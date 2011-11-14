@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -29,16 +28,16 @@ namespace aprilparticle
 		{
 		public:
 			CallbackAffector(chstr name = "");
-			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float), chstr name = "");
+			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3&), chstr name = "");
 			~CallbackAffector();
 
-			void (*getAffectionCallback())(CallbackAffector*, Particle*, float) { return this->affectionCallback; }
-			void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float)) { this->affectionCallback = value; }
+			void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3&) { return this->affectionCallback; }
+			void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float, gvec3&)) { this->affectionCallback = value; }
 				
-			void update(Particle* particle, float k);
+			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
-			void (*affectionCallback)(CallbackAffector*, Particle*, float);
+			void (*affectionCallback)(CallbackAffector*, Particle*, float, gvec3&);
 
 		};
 	};

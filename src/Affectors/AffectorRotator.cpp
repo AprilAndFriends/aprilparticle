@@ -46,7 +46,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Rotator::update(Particle* particle, float k)
+		void Rotator::update(Particle* particle, float k, gvec3& movement)
 		{
 			particle->angle += this->rotationSpeed * k;
 		}

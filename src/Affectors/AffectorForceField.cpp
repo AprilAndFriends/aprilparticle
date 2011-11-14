@@ -12,6 +12,7 @@
 
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/util.h>
 
 #include "AffectorForceField.h"
 #include "aprilparticle.h"
@@ -52,14 +53,14 @@ namespace aprilparticle
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->direction = gvec3(0.0f, 0.0f, 1.0f);
-			this->force = 0.0f;
+			this->radius = 10.0f;
 		}
 		
-		ForceField::ForceField(gvec3 position, gvec3 direction, float force, chstr name) : Affector(name)
+		ForceField::ForceField(gvec3 position, gvec3 direction, float radius, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->direction = direction;
-			this->force = force;
+			this->radius = radius;
 		}
 
 		ForceField::~ForceField()
@@ -74,7 +75,7 @@ namespace aprilparticle
 			}
 			if (name == "position")		return gvec3_to_str(this->getPosition());
 			if (name == "direction")	return gvec3_to_str(this->getDirection());
-			if (name == "force")		return this->getForce();
+			if (name == "radius")		return this->getRadius();
 			return Affector::getProperty(name, property_exists);
 		}
 
@@ -82,28 +83,32 @@ namespace aprilparticle
 		{
 			if		(name == "position")	this->setPosition(str_to_gvec3(value));
 			else if	(name == "direction")	this->setDirection(str_to_gvec3(value));
-			else if	(name == "force")		this->setForce(value);
+			else if	(name == "radius")		this->setRadius(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
-		void ForceField::update(Particle* particle, float k)
+		void ForceField::update(Particle* particle, float k, gvec3& movement)
 		{
-			this->_length = (particle->position - (this->position + this->system->getPosition())).length();
-			particle->position += this->direction * (((this->force * this->force - this->_length) /
-				(this->_length * this->_length * particle->direction.length() + 1.0f) - particle->speed) * k);
+			this->_squaredLength = (this->position + this->system->getPosition() - particle->position).squaredLength();
+			if (this->_squaredLength <= this->radius * this->radius)
+			{
+				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
+				movement += this->direction * (this->_factor * this->_factor * k);
+			}
 		}
 		
 		void ForceField::draw()
 		{
+			float length = this->direction.length();
 			for (int i = 0; i < VERTEX_COUNT; i++)
 			{
-				u[i] = this->position + this->system->getPosition() + ut * this->force;
-				v[i] = this->position + this->system->getPosition() + vt * this->force;
-				w[i] = this->position + this->system->getPosition() + wt * this->force;
+				u[i] = this->position + this->system->getPosition() + ut * length;
+				v[i] = this->position + this->system->getPosition() + vt * length;
+				w[i] = this->position + this->system->getPosition() + wt * length;
 			}
 			arrow[0] = this->position + this->system->getPosition();
-			arrow[1] = this->position + this->system->getPosition() + this->direction * this->force;
+			arrow[1] = this->position + this->system->getPosition() + this->direction;
 			april::rendersys->render(april::LineStrip, u, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, v, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, w, VERTEX_COUNT);
