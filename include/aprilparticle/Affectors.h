@@ -18,11 +18,11 @@
 #include "AffectorAttractor.h"
 #include "AffectorCallbackAffector.h"
 #include "AffectorColorChanger.h"
-#include "AffectorEvolutor.h"
 #include "AffectorColorMultiChanger.h"
 #include "AffectorForceField.h"
 #include "AffectorLinearForce.h"
 #include "AffectorResizer.h"
+#include "AffectorRevolutor.h"
 #include "AffectorRotator.h"
 #include "AffectorScaler.h"
 

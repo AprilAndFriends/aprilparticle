@@ -183,9 +183,9 @@ void setupVortex()
 	// textures
 	emitter->setTexture(redParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Evolutor* evolutor = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f, true);
-	vortex->registerAffector(evolutor);
-	emitter->addAffector(evolutor);
+	aprilparticle::Affectors::Revolutor* revolutor = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.2f, true);
+	vortex->registerAffector(revolutor);
+	emitter->addAffector(revolutor);
 	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f);
 	vortex->registerAffector(attractor);
 	emitter->addAffector(attractor);
@@ -246,7 +246,7 @@ void setupQuazar()
 	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f);
 	quazar->registerAffector(gravity);
 	discEmitter->addAffector(gravity);
-	aprilparticle::Affectors::Evolutor* spin = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.2f, true);
+	aprilparticle::Affectors::Revolutor* spin = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(1.0f, 0.0f, 0.0f), 8.0f, 0.2f, true);
 	quazar->registerAffector(spin);
 	discEmitter->addAffector(spin);
 	aprilparticle::Affectors::LinearForce* top = new aprilparticle::Affectors::LinearForce(gvec3(2.0f, 0.0f, 0.0f), 0.5f);
@@ -366,7 +366,7 @@ void setupMilkyWay()
 	emitter3->setTexture(blueParticle); // texture is shared among several particle systems
 	emitter4->setTexture(blueParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Evolutor* evolutor = new aprilparticle::Affectors::Evolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.4f, false);
+	aprilparticle::Affectors::Revolutor* evolutor = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f), 8.0f, 0.4f, false);
 	milkyWay->registerAffector(evolutor);
 	emitter1->addAffector(evolutor);
 	emitter2->addAffector(evolutor);

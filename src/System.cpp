@@ -222,10 +222,10 @@ namespace aprilparticle
 			TRY_LOAD_AFFECTOR(affector, type, CallbackAffector);
 			TRY_LOAD_AFFECTOR(affector, type, ColorChanger);
 			TRY_LOAD_AFFECTOR(affector, type, ColorMultiChanger);
-			TRY_LOAD_AFFECTOR(affector, type, Evolutor);
 			TRY_LOAD_AFFECTOR(affector, type, ForceField);
 			TRY_LOAD_AFFECTOR(affector, type, LinearForce);
 			TRY_LOAD_AFFECTOR(affector, type, Resizer);
+			TRY_LOAD_AFFECTOR(affector, type, Revolutor);
 			TRY_LOAD_AFFECTOR(affector, type, Rotator);
 			TRY_LOAD_AFFECTOR(affector, type, Scaler);
 			if (affector != NULL)

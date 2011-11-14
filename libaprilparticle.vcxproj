@@ -105,7 +105,7 @@
     <ClInclude Include="include\aprilparticle\AffectorCallbackAffector.h" />
     <ClInclude Include="include\aprilparticle\AffectorColorChanger.h" />
     <ClInclude Include="include\aprilparticle\AffectorColorMultiChanger.h" />
-    <ClInclude Include="include\aprilparticle\AffectorEvolutor.h" />
+    <ClInclude Include="include\aprilparticle\AffectorRevolutor.h" />
     <ClInclude Include="include\aprilparticle\AffectorForceField.h" />
     <ClInclude Include="include\aprilparticle\AffectorLinearForce.h" />
     <ClInclude Include="include\aprilparticle\AffectorResizer.h" />
@@ -127,7 +127,7 @@
     <ClCompile Include="src\Affectors\AffectorCallbackAffector.cpp" />
     <ClCompile Include="src\Affectors\AffectorColorChanger.cpp" />
     <ClCompile Include="src\Affectors\AffectorColorMultiChanger.cpp" />
-    <ClCompile Include="src\Affectors\AffectorEvolutor.cpp" />
+    <ClCompile Include="src\Affectors\AffectorRevolutor.cpp" />
     <ClCompile Include="src\Affectors\AffectorForceField.cpp" />
     <ClCompile Include="src\Affectors\AffectorLinearForce.cpp" />
     <ClCompile Include="src\Affectors\AffectorResizer.cpp" />

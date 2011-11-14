@@ -27,12 +27,12 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Evolutor : public Affector
+		class aprilparticleExport Revolutor : public Affector
 		{
 		public:
-			Evolutor(chstr name = "");
-			Evolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name = "");
-			~Evolutor();
+			Revolutor(chstr name = "");
+			Revolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name = "");
+			~Revolutor();
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }

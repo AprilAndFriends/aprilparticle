@@ -34,7 +34,7 @@ namespace aprilparticle
 		class CallbackAffector;
 		class ColorChanger;
 		class ColorMultiChanger;
-		class Evolutor;
+		class Revolutor;
 		class ForceField;
 		class LinearForce;
 		class Resizer;
@@ -51,7 +51,7 @@ namespace aprilparticle
 		friend class Affectors::CallbackAffector;
 		friend class Affectors::ColorChanger;
 		friend class Affectors::ColorMultiChanger;
-		friend class Affectors::Evolutor;
+		friend class Affectors::Revolutor;
 		friend class Affectors::ForceField;
 		friend class Affectors::LinearForce;
 		friend class Affectors::Resizer;

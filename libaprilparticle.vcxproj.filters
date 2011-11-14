@@ -60,9 +60,6 @@
     <ClInclude Include="include\aprilparticle\AffectorColorMultiChanger.h">
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
-    <ClInclude Include="include\aprilparticle\AffectorEvolutor.h">
-      <Filter>Header Files\Affectors</Filter>
-    </ClInclude>
     <ClInclude Include="include\aprilparticle\AffectorForceField.h">
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
     <ClInclude Include="include\aprilparticle\AffectorScaler.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\AffectorRevolutor.h">
       <Filter>Header Files\Affectors</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,9 +116,6 @@
     <ClCompile Include="src\Affectors\AffectorColorMultiChanger.cpp">
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
-    <ClCompile Include="src\Affectors\AffectorEvolutor.cpp">
-      <Filter>Source Files\Affectors</Filter>
-    </ClCompile>
     <ClCompile Include="src\Affectors\AffectorForceField.cpp">
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
     <ClCompile Include="src\Affectors\AffectorScaler.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Affectors\AffectorRevolutor.cpp">
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
   </ItemGroup>

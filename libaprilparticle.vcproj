@@ -223,10 +223,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorEvolutor.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\Affectors\AffectorForceField.cpp"
 					>
 				</File>
@@ -236,6 +232,10 @@
 				</File>
 				<File
 					RelativePath=".\src\Affectors\AffectorResizer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorRevolutor.cpp"
 					>
 				</File>
 				<File
@@ -313,10 +313,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorEvolutor.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\aprilparticle\AffectorForceField.h"
 					>
 				</File>
@@ -326,6 +322,10 @@
 				</File>
 				<File
 					RelativePath=".\include\aprilparticle\AffectorResizer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorRevolutor.h"
 					>
 				</File>
 				<File

@@ -12,7 +12,7 @@
 
 #include <gtypes/Matrix3.h>
 
-#include "AffectorEvolutor.h"
+#include "AffectorRevolutor.h"
 #include "aprilparticle.h"
 #include "Particle.h"
 #include "System.h"
@@ -23,7 +23,7 @@ namespace aprilparticle
 	{
 		gmat3 _rotation;
 
-		Evolutor::Evolutor(chstr name) : Affector(name)
+		Revolutor::Revolutor(chstr name) : Affector(name)
 		{
 			this->position = gvec3(0.0f, 0.0f, 0.0f);
 			this->axis = gvec3(0.0f, 1.0f, 0.0f);
@@ -32,7 +32,7 @@ namespace aprilparticle
 			this->setClockwise(true);
 		}
 
-		Evolutor::Evolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name) : Affector(name)
+		Revolutor::Revolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->axis = axis;
@@ -41,21 +41,21 @@ namespace aprilparticle
 			this->setClockwise(clockwise);
 		}
 		
-		Evolutor::~Evolutor()
+		Revolutor::~Revolutor()
 		{
 		}
 		
-		bool Evolutor::isClockwise()
+		bool Revolutor::isClockwise()
 		{
 			return (this->angle >= 0.0f);
 		}
 
-		void Evolutor::setClockwise(bool value)
+		void Revolutor::setClockwise(bool value)
 		{
 			this->angle = (value ? -360.0f : 360.0f);
 		}
 
-		hstr Evolutor::getProperty(chstr name, bool* property_exists)
+		hstr Revolutor::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)
 			{
@@ -69,7 +69,7 @@ namespace aprilparticle
 			return Affector::getProperty(name, property_exists);
 		}
 
-		bool Evolutor::setProperty(chstr name, chstr value)
+		bool Revolutor::setProperty(chstr name, chstr value)
 		{
 			if		(name == "position")		this->setPosition(str_to_gvec3(value));
 			else if	(name == "axis")			this->setAxis(str_to_gvec3(value));
@@ -80,7 +80,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Evolutor::update(Particle* particle, float k, gvec3& movement)
+		void Revolutor::update(Particle* particle, float k, gvec3& movement)
 		{
 			this->_position = this->position + this->system->getPosition();
 			this->_direction = particle->position - this->_position;
