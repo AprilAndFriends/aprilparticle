@@ -33,6 +33,7 @@ namespace aprilparticle
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name)
 	{
 		this->filename = filename;
+		this->direction.set(0.0f, 1.0f, 0.0f);
 		this->loaded = false;
 	}
 	
