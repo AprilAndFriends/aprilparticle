@@ -29,6 +29,12 @@
 #define RAND_GVEC2_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
 #define TRY_GET_TYPE(value, name) if (value == name) return #name;
+#define GET_FLOAT_RANGE(name) (this->getMin ## name() != this->getMax ## name() ? \
+	hsprintf("%f" RANGE_SEPARATOR "%f", this->getMin ## name(), this->getMax ## name()) : \
+	this->getMin ## name())
+#define GET_GVEC2_RANGE(name) (this->getMin ## name() != this->getMax ## name() ? \
+	hsprintf("%s" RANGE_SEPARATOR "%s", gvec2_to_str(this->getMin ## name()).c_str(), gvec2_to_str(this->getMax ## name()).c_str()) : \
+	gvec2_to_str(this->getMin ## name()).c_str())
 
 namespace aprilparticle
 {
@@ -36,11 +42,17 @@ namespace aprilparticle
 
 	Emitter::Emitter(chstr name) : ActiveObject(name == "" ? generateName("Emitter") : name)
 	{
-		this->timer = 0.0f;
+		this->emissionTimer = 0.0f;
+		this->time = 0.0f;
 		this->type = Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::DEFAULT;
 		this->emissionRate = emissionRate;
+		this->duration = -1.0f;
+		this->delay = 0.0f;
+		this->loopDelay = 0.0f;
+		this->loops = -1;
+		this->currentLoop = 0;
 		this->limit = 10;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
@@ -203,7 +215,7 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "name")		return this->getName();
+		if (name == "name")				return this->getName();
 		if (name == "type")
 		{
 			Type value = this->getType();
@@ -217,6 +229,26 @@ namespace aprilparticle
 			return "";
 		}
 		if (name == "dimensions")		return gvec3_to_str(this->getDimensions());
+		if (name == "blend_mode")
+		{
+			april::BlendMode mode = this->getBlendMode();
+			if		(mode == april::DEFAULT)		return "default";
+			else if	(mode == april::ALPHA_BLEND)	return "alpha_blend";
+			else if	(mode == april::ADD)			return "add";
+			else if	(mode == april::SUBTRACT)		return "subtract";
+			return "unknown";
+		}
+		if (name == "emission_rate")	return this->getEmissionRate();
+		if (name == "duration")			return this->getDuration();
+		if (name == "delay")			return this->getDelay();
+		if (name == "loop_delay")		return this->getLoopDelay();
+		if (name == "loops")			return this->getLoops();
+		if (name == "limit")			return this->getLimit();
+		if (name == "life")				return GET_FLOAT_RANGE(Life);
+		if (name == "size")				return GET_GVEC2_RANGE(Size);
+		if (name == "scale")			return GET_FLOAT_RANGE(Scale);
+		if (name == "speed")			return GET_FLOAT_RANGE(Speed);
+		if (name == "angle")			return GET_FLOAT_RANGE(Angle);
 		return ActiveObject::getProperty(name, property_exists);
 	}
 
@@ -243,6 +275,10 @@ namespace aprilparticle
 		}
 		else if	(name == "emission_rate")	this->setEmissionRate(value);
 		else if	(name == "limit")			this->setLimit(value);
+		else if	(name == "duration")		this->setDuration(value);
+		else if	(name == "delay")			this->setDelay(value);
+		else if	(name == "loop_delay")		this->setLoopDelay(value);
+		else if	(name == "loops")			this->setLoops(value);
 		else if	(name == "life")			this->setLife(value);
 		else if	(name == "size")			this->setSize(value);
 		else if	(name == "scale")			this->setScale(value);
@@ -324,6 +360,50 @@ namespace aprilparticle
 	
 	void Emitter::update(float k)
 	{
+		if (!this->enabled)
+		{
+			return;
+		}
+		// check delay
+		this->time += k;
+		if (this->delay > 0.0f)
+		{
+			if (this->time <= this->delay)
+			{
+				return;
+			}
+			this->time -= this->delay;
+			this->delay = 0.0f;
+			k = hmin(k, this->time);
+		}
+		// check duration and looping setup
+		this->_expired = false;
+		if (this->duration > 0.0f && this->time >= this->duration)
+		{
+			if (this->loopDelay > 0.0f)
+			{
+				if (this->time >= this->duration + this->loopDelay)
+				{
+					while (this->time >= this->duration + this->loopDelay)
+					{
+						this->time -= this->duration + this->loopDelay;
+						this->currentLoop++;
+					}
+				}
+				if (this->time >= this->duration)
+				{
+					this->_expired = true;
+				}
+			}
+			else
+			{
+				while (this->time >= this->duration)
+				{
+					this->time -= this->duration;
+					this->currentLoop++;
+				}
+			}
+		}
 		// first update all particles
 		this->_alive = 0;
 		foreach_q (Particle*, it, this->particles)
@@ -350,30 +430,39 @@ namespace aprilparticle
 			delete this->particles.front();
 			this->particles.pop_front();
 		}
+		// check repetition loops
+		if (this->_expired || this->loops > 0 && this->currentLoop >= this->loops)
+		{
+			return;
+		}
+		this->emissionTimer += k;
 		// create new particles
-		this->timer += k;
-		if (this->enabled && this->emissionRate > 0.0f)
+		if (this->emissionRate > 0.0f)
 		{
 			this->_cs = 1.0f / this->emissionRate;
-			this->_quota = (int)(this->timer * this->emissionRate);
+			this->_quota = (int)(this->emissionTimer * this->emissionRate);
 			if (this->_alive >= this->limit)
 			{
-				this->timer = 0.0f;
+				this->emissionTimer = 0.0f;
 			}
-			else if (this->timer > this->_cs && this->_alive < this->limit)
+			else if (this->emissionTimer > this->_cs && this->_alive < this->limit)
 			{
 				this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
 				for (int i = 0; i < this->_quota; i++)
 				{
 					this->_createNewParticle();
 				}
-				this->timer = 0.0f;
+				this->emissionTimer = 0.0f;
 			}
 		}
 	}
 	
 	void Emitter::draw(gvec3 point, gvec3 up)
 	{
+		if (!this->visible)
+		{
+			return;
+		}
 		this->_i = 0;
 		foreach_q (Particle*, it, this->particles)
 		{

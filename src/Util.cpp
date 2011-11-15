@@ -19,7 +19,7 @@ namespace aprilparticle
 		static hmap<hstr, int> counters;
 		int count = counters[prefix] + 1;
 		counters[prefix] = count;
-		return prefix + hstr(count);
+		return prefix + "_" + hstr(count);
 	}
 	
 }

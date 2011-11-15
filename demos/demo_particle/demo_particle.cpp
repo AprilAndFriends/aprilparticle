@@ -164,6 +164,10 @@ void setupBubbles()
 	emitter->setEmissionRate(50.0f);
 	emitter->setLimit(300);
 	emitter->setLife(6.0f);
+	emitter->setDuration(2.0f);
+	emitter->setDelay(1.0f);
+	emitter->setLoopDelay(2.0f);
+	emitter->setLoops(3);
 	emitter->setSizeRange(gvec2(0.4f, 0.4f), gvec2(0.8f, 0.8f));
 
 	hmap<float, april::Color> colors;

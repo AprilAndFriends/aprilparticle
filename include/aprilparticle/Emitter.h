@@ -61,7 +61,12 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
 		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
-		HL_DEFINE_SET(float, emissionRate, EmissionRate);
+		HL_DEFINE_GETSET(float, emissionRate, EmissionRate);
+		HL_DEFINE_GETSET(float, duration, Duration);
+		HL_DEFINE_GETSET(float, delay, Delay);
+		HL_DEFINE_GETSET(float, loopDelay, LoopDelay);
+		HL_DEFINE_GETSET(int, loops, Loops);
+		HL_DEFINE_GET(int, limit, Limit);
 		void setLimit(int value);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
@@ -105,11 +110,17 @@ namespace aprilparticle
 		void drawAffectors(); // usually only used for debug purposes
 		
 	protected:
-		float timer;
+		float emissionTimer;
+		float time;
 		Type type;
 		gvec3 dimensions;
 		april::BlendMode blendMode;
 		float emissionRate;
+		float duration;
+		float delay;
+		float loopDelay;
+		int loops;
+		int currentLoop;
 		int limit;
 		float minLife;
 		float maxLife;
@@ -140,6 +151,7 @@ namespace aprilparticle
 		float _cs;
 		int _quota;
 		int _alive;
+		bool _expired;
 		Particle* _particle;
 		gmat4 _billboard;
 		gmat3 _rot;
