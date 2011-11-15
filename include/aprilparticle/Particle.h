@@ -59,7 +59,7 @@ namespace aprilparticle
 		friend class Affectors::Scaler;
 
 		Particle();
-		Particle(gvec3 position, gvec3 direction = gvec3(0.0f, 1.0f, 0.0f), float life = 1.0f, gvec2 size = gvec2(1.0f, 1.0f), float scale = 1.0f, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
+		Particle(gvec3 position, float life = 1.0f, gvec2 size = gvec2(1.0f, 1.0f), float scale = 1.0f, float speed = 0.0f, float angle = 0.0f, april::Color color = APRIL_COLOR_WHITE);
 		virtual ~Particle();
 
 		HL_DEFINE_GETSET(float, life, Life);

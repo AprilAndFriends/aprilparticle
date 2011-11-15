@@ -16,10 +16,9 @@
 
 namespace aprilparticle
 {
-	Space3DObject::Space3DObject(gvec3 position, gvec3 direction)
+	Space3DObject::Space3DObject(gvec3 position)
 	{
 		this->position = position;
-		this->direction = direction;
 	}
 	
 	Space3DObject::~Space3DObject()
@@ -33,7 +32,6 @@ namespace aprilparticle
 			*property_exists = true;
 		}
 		if (name == "position")		return gvec3_to_str(this->getPosition());
-		if (name == "direction")	return gvec3_to_str(this->getDirection());
 		if (property_exists != NULL)
 		{
 			*property_exists = false;
@@ -44,7 +42,6 @@ namespace aprilparticle
 	bool Space3DObject::setProperty(chstr name, chstr value)
 	{
 		if		(name == "position")	this->setPosition(str_to_gvec3(value));
-		else if	(name == "direction")	this->setDirection(str_to_gvec3(value));
 		else return false;
 		return true;
 	}

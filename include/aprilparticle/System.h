@@ -47,6 +47,8 @@ namespace aprilparticle
 		~System();
 
 		HL_DEFINE_GET(hstr, filename, Filename);
+		HL_DEFINE_GETSET(gvec3, direction, Direction);
+		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 		
 		bool registerEmitter(Emitter* emitter);
 		bool unregisterEmitter(Emitter* emitter);
@@ -57,7 +59,11 @@ namespace aprilparticle
 		bool unregisterTexture(april::Texture* texture);
 		Emitter* getEmitter(chstr name);
 		april::Texture* getTexture(chstr name);
+		bool isExpired();
 		
+		hstr getProperty(chstr name, bool* property_exists = NULL);
+		bool setProperty(chstr name, chstr value);
+
 		void load();
 		void update(float k);
 		void draw(gvec3 point);
@@ -66,6 +72,7 @@ namespace aprilparticle
 	protected:
 		hstr filename;
 		bool loaded;
+		gvec3 direction;
 		harray<Emitter*> emitters;
 		hmap<hstr, april::Texture*> textures;
 
@@ -74,8 +81,6 @@ namespace aprilparticle
 		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
 
 	private:
-		// TODO
-		//gvec3 _position;
 		hmap<Emitter*, harray<hstr>> _mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures;
 		

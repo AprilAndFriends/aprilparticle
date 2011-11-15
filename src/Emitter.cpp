@@ -82,6 +82,33 @@ namespace aprilparticle
 		}
 	}
 
+	void Emitter::setLimit(int value)
+	{
+		if (this->limit != value)
+		{
+			this->limit = value;
+			this->_setupTriangleBatch();
+		}
+	}
+
+	void Emitter::_setupTriangleBatch()
+	{
+		if (this->_triangleBatch != NULL)
+		{
+			delete [] this->_triangleBatch;
+		}
+		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
+		for (this->_i = 0; this->_i < this->limit; this->_i++)
+		{
+			this->_triangleBatch[this->_i * 6 + 0].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 1.0f;
+			this->_triangleBatch[this->_i * 6 + 1].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 1.0f;
+			this->_triangleBatch[this->_i * 6 + 2].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 2].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 3].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 3].v = 1.0f;
+			this->_triangleBatch[this->_i * 6 + 4].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 4].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 5].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 5].v = 0.0f;
+		}
+	}
+
 	void Emitter::setLife(float value)
 	{
 		this->minLife = value;
@@ -142,31 +169,9 @@ namespace aprilparticle
 		this->setAngleRange(data.first(), data.last());
 	}
 
-	void Emitter::setLimit(int value)
+	bool Emitter::isExpired()
 	{
-		if (this->limit != value)
-		{
-			this->limit = value;
-			this->_setupTriangleBatch();
-		}
-	}
-
-	void Emitter::_setupTriangleBatch()
-	{
-		if (this->_triangleBatch != NULL)
-		{
-			delete [] this->_triangleBatch;
-		}
-		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
-		for (this->_i = 0; this->_i < this->limit; this->_i++)
-		{
-			this->_triangleBatch[this->_i * 6 + 0].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 1].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 2].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 2].v = 0.0f;
-			this->_triangleBatch[this->_i * 6 + 3].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 3].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 4].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 4].v = 0.0f;
-			this->_triangleBatch[this->_i * 6 + 5].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 5].v = 0.0f;
-		}
+		return (this->loops > 0 && this->currentLoop >= this->loops && this->particles.size() == 0);
 	}
 
 	void Emitter::setLifeRange(float min, float max)
@@ -236,7 +241,7 @@ namespace aprilparticle
 			else if	(mode == april::ALPHA_BLEND)	return "alpha_blend";
 			else if	(mode == april::ADD)			return "add";
 			else if	(mode == april::SUBTRACT)		return "subtract";
-			return "unknown";
+			return "";
 		}
 		if (name == "emission_rate")	return this->getEmissionRate();
 		if (name == "duration")			return this->getDuration();
@@ -349,7 +354,7 @@ namespace aprilparticle
 		{
 			this->_pos += this->system->getPosition();
 		}
-		this->_particle = new Particle(this->_pos, this->direction, RAND_FLOAT_RANGE(Life), RAND_GVEC2_RANGE(Size),
+		this->_particle = new Particle(this->_pos, RAND_FLOAT_RANGE(Life), RAND_GVEC2_RANGE(Size),
 			RAND_FLOAT_RANGE(Scale), RAND_FLOAT_RANGE(Speed), RAND_FLOAT_RANGE(Angle));
 		this->particles += this->_particle;
 		foreach (Affector*, it, this->affectors)

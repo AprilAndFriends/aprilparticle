@@ -25,20 +25,17 @@ namespace aprilparticle
 	class aprilparticleExport Space3DObject
 	{
 	public:
-		Space3DObject(gvec3 position = gvec3(0.0f, 0.0f, 0.0f), gvec3 direction = gvec3(0.0f, 1.0f, 0.0f));
+		Space3DObject(gvec3 position = gvec3(0.0f, 0.0f, 0.0f));
 		virtual ~Space3DObject();
 
 		HL_DEFINE_GETSET(gvec3, position, Position);
-		HL_DEFINE_GETSET(gvec3, direction, Direction);
 		void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 
 		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
 		virtual bool setProperty(chstr name, chstr value);
 
 	protected:
 		gvec3 position;
-		gvec3 direction;
 
 	};
 }

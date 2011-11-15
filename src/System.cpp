@@ -144,6 +144,18 @@ namespace aprilparticle
 		return this->textures.try_get_by_key(name, NULL);
 	}
 
+	bool System::isExpired()
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			if (!(*it)->isExpired())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	void System::load()
 	{
 		if (this->filename == "" || this->loaded)
@@ -176,16 +188,34 @@ namespace aprilparticle
 				this->_loadTexture(node);
 			}
 		}
+		Affector* affector;
 		foreach_map (Emitter*, harray<hstr>, it, this->_mappedAffectors)
 		{
 			foreach (hstr, it2, it->second)
 			{
-				it->first->addAffector(this->getAffector(*it2));
+				affector = this->getAffector(*it2);
+				if (affector != NULL)
+				{
+					it->first->addAffector(affector);
+				}
+				else
+				{
+					throw hl_exception("Error! Affector reference '" + (*it2) + "' does not exist");
+				}
 			}
 		}
+		april::Texture* texture;
 		foreach_map (Emitter*, hstr, it, this->_mappedTextures)
 		{
-			it->first->setTexture(this->getTexture(it->second));
+			texture = this->getTexture(it->second);
+			if (texture != NULL)
+			{
+				it->first->setTexture(texture);
+			}
+			else
+			{
+				throw hl_exception("Error! Texture reference '" + it->second + "' does not exist");
+			}
 		}
 		this->_mappedAffectors.clear();
 		this->_mappedTextures.clear();
@@ -240,6 +270,10 @@ namespace aprilparticle
 					emitter->addAffector(affector);
 				}
 			}
+			else
+			{
+				throw hl_exception("Error! Affector type '" + type + " does not exist");
+			}
 		}
 		else if (emitter != NULL && root->pexists("reference"))
 		{
@@ -269,27 +303,53 @@ namespace aprilparticle
 		}
 	}
 
+	hstr System::getProperty(chstr name, bool* property_exists)
+	{
+		if (property_exists != NULL)
+		{
+			*property_exists = true;
+		}
+		if (name == "direction")	return gvec3_to_str(this->getDirection());
+		return ActiveObject::getProperty(name, property_exists);
+	}
+
+	bool System::setProperty(chstr name, chstr value)
+	{
+		if (name == "direction")	this->setDirection(str_to_gvec3(value));
+		else return ActiveObject::setProperty(name, value);
+		return true;
+	}
+
 	void System::update(float k)
 	{
-		foreach (Emitter*, it, this->emitters)
+		if (this->enabled)
 		{
-			(*it)->update(k);
+			foreach (Emitter*, it, this->emitters)
+			{
+				(*it)->update(k);
+			}
 		}
 	}
 
 	void System::draw(gvec3 point)
 	{
-		foreach (Emitter*, it, this->emitters)
+		if (this->visible)
 		{
-			(*it)->draw(point, this->direction);
+			foreach (Emitter*, it, this->emitters)
+			{
+				(*it)->draw(point, this->direction);
+			}
 		}
 	}
 
 	void System::draw2D()
 	{
-		foreach (Emitter*, it, this->emitters)
+		if (this->visible)
 		{
-			(*it)->draw2D();
+			foreach (Emitter*, it, this->emitters)
+			{
+				(*it)->draw2D();
+			}
 		}
 	}
 

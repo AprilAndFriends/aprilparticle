@@ -91,6 +91,7 @@ namespace aprilparticle
 		void setScale(chstr value);
 		void setSpeed(chstr value);
 		void setAngle(chstr value);
+		bool isExpired();
 
 		void setLifeRange(float min, float max);
 		void setSizeRange(gvec2 min, gvec2 max);
@@ -103,6 +104,7 @@ namespace aprilparticle
 
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);
+
 		void update(float k);
 		
 		void draw(gvec3 point, gvec3 up);

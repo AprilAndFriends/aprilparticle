@@ -28,8 +28,8 @@ namespace aprilparticle
 		this->color = APRIL_COLOR_WHITE;
 	}
 	
-	Particle::Particle(gvec3 position, gvec3 direction, float life, gvec2 size, float scale, float speed,
-		float angle, april::Color color) : Space3DObject(position, direction)
+	Particle::Particle(gvec3 position, float life, gvec2 size, float scale, float speed,
+		float angle, april::Color color) : Space3DObject(position)
 	{
 		this->timer = 0.0f;
 		this->life = life;
