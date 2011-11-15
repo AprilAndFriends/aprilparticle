@@ -505,7 +505,10 @@ namespace aprilparticle
 			april::rendersys->setTexture(this->texture);
 		}
 		april::rendersys->setBlendMode(this->blendMode);
-		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+		if (this->_i > 0)
+		{
+			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+		}
 	}
 	
 	void Emitter::draw2D()
@@ -543,7 +546,10 @@ namespace aprilparticle
 			april::rendersys->setTexture(this->texture);
 		}
 		april::rendersys->setBlendMode(this->blendMode);
-		april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+		if (this->_i > 0)
+		{
+			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+		}
 	}
 	
 	void Emitter::drawAffectors()
