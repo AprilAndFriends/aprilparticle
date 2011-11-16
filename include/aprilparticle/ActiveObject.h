@@ -14,6 +14,7 @@
 #ifndef APRILPARTICLE_ACTIVE_OBJECT_H
 #define APRILPARTICLE_ACTIVE_OBJECT_H
 
+#include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 #include <hltypes/util.h>
 
@@ -33,6 +34,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_ISSET(bool, visible, Visible);
 		HL_DEFINE_ISSET(bool, enabled, Enabled);
+		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);

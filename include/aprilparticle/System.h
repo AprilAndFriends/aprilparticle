@@ -49,6 +49,7 @@ namespace aprilparticle
 		HL_DEFINE_GET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(gvec3, direction, Direction);
 		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
+		HL_DEFINE_GET(harray<Emitter*>, emitters, Emitters);
 		
 		bool registerEmitter(Emitter* emitter);
 		bool unregisterEmitter(Emitter* emitter);

@@ -78,7 +78,6 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, maxSpeed, MaxSpeed);
 		HL_DEFINE_GETSET(float, minAngle, MinAngle);
 		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
-		// TODO - change access through textureFilename
 		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 		void setLife(float value);
