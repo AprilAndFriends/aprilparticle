@@ -15,6 +15,7 @@
 #ifndef APRILPARTICLE_EMITTER_H
 #define APRILPARTICLE_EMITTER_H
 
+#include <april/Color.h>
 #include <april/RenderSystem.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Matrix4.h>
@@ -108,9 +109,10 @@ namespace aprilparticle
 		void reset();
 		void update(float k);
 		
-		void draw(gvec3 point, gvec3 up);
+		void draw(gvec3 point, gvec3 up); // is the only 3D drawing method
 		void draw(gvec2 offset = gvec2());
-		void drawAffectors(); // usually only used for debug purposes
+		void draw(gvec2 offset, april::Color color);
+		void drawAffectors(); // usually only used for debug purposes, 3D
 		
 	protected:
 		float emissionTimer;

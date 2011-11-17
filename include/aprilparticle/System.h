@@ -15,6 +15,7 @@
 #ifndef APRILPARTICLE_SYSTEM_H
 #define APRILPARTICLE_SYSTEM_H
 
+#include <april/Color.h>
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -70,8 +71,8 @@ namespace aprilparticle
 		void load();
 		void update(float k);
 		void finish();
-		void draw(gvec3 point);
-		void draw(gvec2 offset = gvec2());
+		void draw(gvec3 point); // is the only 3D drawing method
+		void draw(gvec2 offset = gvec2(), april::Color color = APRIL_COLOR_WHITE);
 		
 	protected:
 		hstr filename;

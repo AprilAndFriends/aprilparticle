@@ -8,6 +8,7 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
+#include <april/Color.h>
 #include <april/Texture.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/hlist.h>
@@ -367,13 +368,23 @@ namespace aprilparticle
 		}
 	}
 
-	void System::draw(gvec2 offset)
+	void System::draw(gvec2 offset, april::Color color)
 	{
 		if (this->visible)
 		{
-			foreach (Emitter*, it, this->emitters)
+			if (color == APRIL_COLOR_WHITE)
 			{
-				(*it)->draw(offset);
+				foreach (Emitter*, it, this->emitters)
+				{
+					(*it)->draw(offset);
+				}
+			}
+			else
+			{
+				foreach (Emitter*, it, this->emitters)
+				{
+					(*it)->draw(offset, color);
+				}
 			}
 		}
 	}

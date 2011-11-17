@@ -10,6 +10,7 @@
 
 #include <math.h>
 
+#include <april/Color.h>
 #include <gtypes/Constants.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Matrix4.h>
@@ -374,6 +375,7 @@ namespace aprilparticle
 		this->emissionTimer = 0.0f;
 		this->loopTimer = 0.0f;
 		this->time = 0.0f;
+		this->currentLoop = 0;
 		this->running = true;
 		foreach_q (Particle*, it, this->particles)
 		{
@@ -575,6 +577,60 @@ namespace aprilparticle
 				}
 				
 				this->_color = (unsigned int)(*it)->color;
+				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
+				
+			}
+		}
+		if (this->texture != NULL)
+		{
+			april::rendersys->setTexture(this->texture);
+		}
+		april::rendersys->setBlendMode(this->blendMode);
+		if (this->_i > 0)
+		{
+			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
+		}
+	}
+	
+	void Emitter::draw(gvec2 offset, april::Color color)
+	{
+		this->_i = 0;
+		this->_w = (float)this->texture->getWidth();
+		this->_h = (float)this->texture->getHeight();
+		foreach_q (Particle*, it, this->particles)
+		{
+			if (!(*it)->isDead())
+			{
+				this->_xSize = (*it)->size.x * this->_w * (*it)->scale * 0.5f;
+				this->_ySize = (*it)->size.y * this->_h * (*it)->scale * 0.5f;
+				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
+				v[1].set(this->_xSize, -this->_ySize, 0.0f);
+				v[2].set(-this->_xSize, this->_ySize, 0.0f);
+				v[3].set(this->_xSize, this->_ySize, 0.0f);
+
+				this->_offset.set((*it)->position.x + offset.x, (*it)->position.y + offset.y, 0.0f);
+				if ((*it)->angle != 0.0f)
+				{
+					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+					v[0] = this->_rot * v[0] + this->_offset;
+					v[1] = this->_rot * v[1] + this->_offset;
+					v[2] = this->_rot * v[2] + this->_offset;
+					v[3] = this->_rot * v[3] + this->_offset;
+				}
+				else
+				{
+					v[0] += this->_offset;
+					v[1] += this->_offset;
+					v[2] += this->_offset;
+					v[3] += this->_offset;
+				}
+				
+				this->_color = (unsigned int)((*it)->color * color);
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
