@@ -501,21 +501,18 @@ namespace aprilparticle
 		{
 			if (!(*it)->isDead() && (*it)->color.a > 0)
 			{
-				this->_xSize = (*it)->size.x * this->_w * (*it)->scale * 0.5f;
-				this->_ySize = (*it)->size.y * this->_h * (*it)->scale * 0.5f;
+				this->_xSize = (*it)->size.x * (*it)->scale * 0.5f;
+				this->_ySize = (*it)->size.y * (*it)->scale * 0.5f;
 				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
-				
-				if ((*it)->angle != 0.0f)
-				{
-					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
-					v[0] = this->_rot * v[0];
-					v[1] = this->_rot * v[1];
-					v[2] = this->_rot * v[2];
-					v[3] = this->_rot * v[3];
-				}
+			
+				this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+				v[0] = this->_rot * v[0];
+				v[1] = this->_rot * v[1];
+				v[2] = this->_rot * v[2];
+				v[3] = this->_rot * v[3];
 			
 				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
 				this->_billboard.inverse();
