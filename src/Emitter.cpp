@@ -43,7 +43,9 @@ namespace aprilparticle
 	Emitter::Emitter(chstr name) : ActiveObject(name == "" ? generateName("Emitter") : name)
 	{
 		this->emissionTimer = 0.0f;
+		this->loopTimer = 0.0f;
 		this->time = 0.0f;
+		this->running = true;
 		this->type = Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::DEFAULT;
@@ -171,7 +173,7 @@ namespace aprilparticle
 
 	bool Emitter::isExpired()
 	{
-		return (this->loops > 0 && this->currentLoop >= this->loops && this->particles.size() == 0);
+		return (!this->running && this->particles.size() == 0);
 	}
 
 	void Emitter::setLifeRange(float min, float max)
@@ -354,13 +356,30 @@ namespace aprilparticle
 		{
 			this->_pos += this->system->getPosition();
 		}
-		this->_particle = new Particle(this->_pos, RAND_FLOAT_RANGE(Life), RAND_GVEC2_RANGE(Size),
-			RAND_FLOAT_RANGE(Scale), RAND_FLOAT_RANGE(Speed), RAND_FLOAT_RANGE(Angle));
+		this->_particle = new Particle(this->_pos);
+		this->_particle->life = RAND_FLOAT_RANGE(Life);
+		this->_particle->size = RAND_GVEC2_RANGE(Size);
+		this->_particle->scale = RAND_FLOAT_RANGE(Scale);
+		this->_particle->speed = RAND_FLOAT_RANGE(Speed);
+		this->_particle->angle = RAND_FLOAT_RANGE(Angle);
 		this->particles += this->_particle;
 		foreach (Affector*, it, this->affectors)
 		{
 			(*it)->update(this->_particle, 0.0f, this->_movement);
 		}
+	}
+
+	void Emitter::reset()
+	{
+		this->emissionTimer = 0.0f;
+		this->loopTimer = 0.0f;
+		this->time = 0.0f;
+		this->running = true;
+		foreach_q (Particle*, it, this->particles)
+		{
+			delete (*it);
+		}
+		this->particles.clear();
 	}
 	
 	void Emitter::update(float k)
@@ -371,41 +390,47 @@ namespace aprilparticle
 		}
 		// check delay
 		this->time += k;
+		this->loopTimer += k;
 		if (this->delay > 0.0f)
 		{
 			if (this->time <= this->delay)
 			{
 				return;
 			}
-			this->time -= this->delay;
-			this->delay = 0.0f;
-			k = hmin(k, this->time);
+			if (this->time - k < this->delay)
+			{
+				this->loopTimer -= this->delay;
+				k = hmin(k, this->loopTimer);
+			}
 		}
 		// check duration and looping setup
-		this->_expired = false;
-		if (this->duration > 0.0f && this->time >= this->duration)
+		if (this->running)
 		{
-			if (this->loopDelay > 0.0f)
+			this->_expired = false;
+			if (this->duration > 0.0f && this->loopTimer >= this->duration)
 			{
-				if (this->time >= this->duration + this->loopDelay)
+				if (this->loopDelay > 0.0f)
 				{
-					while (this->time >= this->duration + this->loopDelay)
+					if (this->loopTimer >= this->duration + this->loopDelay)
 					{
-						this->time -= this->duration + this->loopDelay;
-						this->currentLoop++;
+						while (this->loopTimer >= this->duration + this->loopDelay)
+						{
+							this->loopTimer -= this->duration + this->loopDelay;
+							this->currentLoop++;
+						}
+					}
+					if (this->loopTimer >= this->duration)
+					{
+						this->_expired = true;
 					}
 				}
-				if (this->time >= this->duration)
+				else
 				{
-					this->_expired = true;
-				}
-			}
-			else
-			{
-				while (this->time >= this->duration)
-				{
-					this->time -= this->duration;
-					this->currentLoop++;
+					while (this->loopTimer >= this->duration)
+					{
+						this->loopTimer -= this->duration;
+						this->currentLoop++;
+					}
 				}
 			}
 		}
@@ -436,28 +461,31 @@ namespace aprilparticle
 			this->particles.pop_front();
 		}
 		// check repetition loops
-		if (this->_expired || this->loops > 0 && this->currentLoop >= this->loops)
+		if (this->loops > 0 && this->currentLoop >= this->loops)
 		{
-			return;
+			this->running = false;
 		}
-		this->emissionTimer += k;
-		// create new particles
-		if (this->emissionRate > 0.0f)
+		if (this->running && !this->_expired)
 		{
-			this->_cs = 1.0f / this->emissionRate;
-			this->_quota = (int)(this->emissionTimer * this->emissionRate);
-			if (this->_alive >= this->limit)
+			this->emissionTimer += k;
+			// create new particles
+			if (this->emissionRate > 0.0f)
 			{
-				this->emissionTimer = 0.0f;
-			}
-			else if (this->emissionTimer > this->_cs && this->_alive < this->limit)
-			{
-				this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
-				for (int i = 0; i < this->_quota; i++)
+				this->_cs = 1.0f / this->emissionRate;
+				this->_quota = (int)(this->emissionTimer * this->emissionRate);
+				if (this->_alive >= this->limit)
 				{
-					this->_createNewParticle();
+					this->emissionTimer = 0.0f;
 				}
-				this->emissionTimer = 0.0f;
+				else if (this->emissionTimer > this->_cs && this->_alive < this->limit)
+				{
+					this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
+					for (int i = 0; i < this->_quota; i++)
+					{
+						this->_createNewParticle();
+					}
+					this->emissionTimer = 0.0f;
+				}
 			}
 		}
 	}
@@ -473,18 +501,23 @@ namespace aprilparticle
 		{
 			if (!(*it)->isDead() && (*it)->color.a > 0)
 			{
+				this->_xSize = (*it)->size.x * this->_w * (*it)->scale * 0.5f;
+				this->_ySize = (*it)->size.y * this->_h * (*it)->scale * 0.5f;
+				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
+				v[1].set(this->_xSize, -this->_ySize, 0.0f);
+				v[2].set(-this->_xSize, this->_ySize, 0.0f);
+				v[3].set(this->_xSize, this->_ySize, 0.0f);
+				
+				if ((*it)->angle != 0.0f)
+				{
+					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+					v[0] = this->_rot * v[0];
+					v[1] = this->_rot * v[1];
+					v[2] = this->_rot * v[2];
+					v[3] = this->_rot * v[3];
+				}
+			
 				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
-				v[0].set(-(*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
-				v[1].set((*it)->size.x * (*it)->scale * 0.5f, -(*it)->size.y * (*it)->scale * 0.5f, 0.0f);
-				v[2].set(-(*it)->size.x * (*it)->scale * 0.5f, (*it)->size.y * (*it)->scale * 0.5f, 0.0f);
-				v[3].set((*it)->size.x * (*it)->scale * 0.5f, (*it)->size.y * (*it)->scale * 0.5f, 0.0f);
-			
-				this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
-				v[0] = this->_rot * v[0];
-				v[1] = this->_rot * v[1];
-				v[2] = this->_rot * v[2];
-				v[3] = this->_rot * v[3];
-			
 				this->_billboard.inverse();
 				v[0] = this->_billboard * v[0];
 				v[1] = this->_billboard * v[1];
@@ -511,7 +544,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw2D()
+	void Emitter::draw(gvec2 offset)
 	{
 		this->_i = 0;
 		this->_w = (float)this->texture->getWidth();
@@ -520,16 +553,29 @@ namespace aprilparticle
 		{
 			if (!(*it)->isDead())
 			{
-				v[0].set((*it)->position.x - (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y - (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
-				v[1].set((*it)->position.x + (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y - (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
-				v[2].set((*it)->position.x - (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y + (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
-				v[3].set((*it)->position.x + (*it)->size.x * this->_w * (*it)->scale * 0.5f, (*it)->position.y + (*it)->size.y * this->_h * (*it)->scale * 0.5f, 0.0f);
-				
-				this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
-				v[0] = this->_rot * v[0];
-				v[1] = this->_rot * v[1];
-				v[2] = this->_rot * v[2];
-				v[3] = this->_rot * v[3];
+				this->_xSize = (*it)->size.x * this->_w * (*it)->scale * 0.5f;
+				this->_ySize = (*it)->size.y * this->_h * (*it)->scale * 0.5f;
+				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
+				v[1].set(this->_xSize, -this->_ySize, 0.0f);
+				v[2].set(-this->_xSize, this->_ySize, 0.0f);
+				v[3].set(this->_xSize, this->_ySize, 0.0f);
+
+				this->_offset.set((*it)->position.x + offset.x, (*it)->position.y + offset.y, 0.0f);
+				if ((*it)->angle != 0.0f)
+				{
+					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+					v[0] = this->_rot * v[0] + this->_offset;
+					v[1] = this->_rot * v[1] + this->_offset;
+					v[2] = this->_rot * v[2] + this->_offset;
+					v[3] = this->_rot * v[3] + this->_offset;
+				}
+				else
+				{
+					v[0] += this->_offset;
+					v[1] += this->_offset;
+					v[2] += this->_offset;
+					v[3] += this->_offset;
+				}
 				
 				this->_color = (unsigned int)(*it)->color;
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;

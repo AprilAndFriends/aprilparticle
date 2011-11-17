@@ -17,7 +17,7 @@
 
 namespace aprilparticle
 {
-	Particle::Particle() : Space3DObject()
+	Particle::Particle(gvec3 position) : Space3DObject(position)
 	{
 		this->timer = 0.0f;
 		this->life = 1.0f;
@@ -26,18 +26,6 @@ namespace aprilparticle
 		this->speed = 0.0f;
 		this->angle = 0.0f;
 		this->color = APRIL_COLOR_WHITE;
-	}
-	
-	Particle::Particle(gvec3 position, float life, gvec2 size, float scale, float speed,
-		float angle, april::Color color) : Space3DObject(position)
-	{
-		this->timer = 0.0f;
-		this->life = life;
-		this->size = size;
-		this->scale = scale;
-		this->speed = speed;
-		this->angle = angle;
-		this->color = color;
 	}
 	
 	Particle::~Particle()

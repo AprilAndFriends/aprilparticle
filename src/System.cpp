@@ -53,6 +53,18 @@ namespace aprilparticle
 		}
 	}
 	
+	bool System::isRunning()
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			if ((*it)->isRunning())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	bool System::registerEmitter(Emitter* emitter)
 	{
 		if (this->emitters.contains(emitter))
@@ -155,6 +167,31 @@ namespace aprilparticle
 			}
 		}
 		return true;
+	}
+
+	hstr System::getProperty(chstr name, bool* property_exists)
+	{
+		if (property_exists != NULL)
+		{
+			*property_exists = true;
+		}
+		if (name == "direction")	return gvec3_to_str(this->getDirection());
+		return ActiveObject::getProperty(name, property_exists);
+	}
+
+	bool System::setProperty(chstr name, chstr value)
+	{
+		if (name == "direction")	this->setDirection(str_to_gvec3(value));
+		else return ActiveObject::setProperty(name, value);
+		return true;
+	}
+
+	void System::reset()
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			(*it)->reset();
+		}
 	}
 
 	void System::load()
@@ -300,23 +337,6 @@ namespace aprilparticle
 		}
 	}
 
-	hstr System::getProperty(chstr name, bool* property_exists)
-	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
-		if (name == "direction")	return gvec3_to_str(this->getDirection());
-		return ActiveObject::getProperty(name, property_exists);
-	}
-
-	bool System::setProperty(chstr name, chstr value)
-	{
-		if (name == "direction")	this->setDirection(str_to_gvec3(value));
-		else return ActiveObject::setProperty(name, value);
-		return true;
-	}
-
 	void System::update(float k)
 	{
 		if (this->enabled)
@@ -325,6 +345,14 @@ namespace aprilparticle
 			{
 				(*it)->update(k);
 			}
+		}
+	}
+
+	void System::finish()
+	{
+		foreach (Emitter*, it, this->emitters)
+		{
+			(*it)->setRunning(false);
 		}
 	}
 
@@ -339,13 +367,13 @@ namespace aprilparticle
 		}
 	}
 
-	void System::draw2D()
+	void System::draw(gvec2 offset)
 	{
 		if (this->visible)
 		{
 			foreach (Emitter*, it, this->emitters)
 			{
-				(*it)->draw2D();
+				(*it)->draw(offset);
 			}
 		}
 	}

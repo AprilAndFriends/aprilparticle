@@ -46,6 +46,7 @@ namespace aprilparticle
 		System(chstr filename = "", chstr name = "");
 		~System();
 
+		bool isRunning();
 		HL_DEFINE_GET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(gvec3, direction, Direction);
 		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
@@ -65,10 +66,12 @@ namespace aprilparticle
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);
 
+		void reset();
 		void load();
 		void update(float k);
+		void finish();
 		void draw(gvec3 point);
-		void draw2D();
+		void draw(gvec2 offset = gvec2());
 		
 	protected:
 		hstr filename;

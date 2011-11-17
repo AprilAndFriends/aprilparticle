@@ -57,6 +57,7 @@ namespace aprilparticle
 		Emitter(chstr name = "");
 		~Emitter();
 
+		HL_DEFINE_ISSET(bool, running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
@@ -104,15 +105,18 @@ namespace aprilparticle
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);
 
+		void reset();
 		void update(float k);
 		
 		void draw(gvec3 point, gvec3 up);
-		void draw2D();
+		void draw(gvec2 offset = gvec2());
 		void drawAffectors(); // usually only used for debug purposes
 		
 	protected:
 		float emissionTimer;
+		float loopTimer;
 		float time;
+		bool running;
 		Type type;
 		gvec3 dimensions;
 		april::BlendMode blendMode;
@@ -156,6 +160,9 @@ namespace aprilparticle
 		Particle* _particle;
 		gmat4 _billboard;
 		gmat3 _rot;
+		gvec3 _offset;
+		float _xSize;
+		float _ySize;
 		int _i;
 		float _w;
 		float _h;
