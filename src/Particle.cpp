@@ -21,7 +21,7 @@ namespace aprilparticle
 	{
 		this->timer = 0.0f;
 		this->life = 1.0f;
-		this->direction.set(0.0f, 0.0f, 0.0f);
+		this->position.set(0.0f, 0.0f, 0.0f);
 		this->direction.set(0.0f, 0.0f, 0.0f);
 		this->size.set(1.0f, 1.0f);
 		this->scale = 1.0f;

@@ -51,6 +51,7 @@ namespace aprilparticle
 		this->loopDelay = 0.0f;
 		this->loops = -1;
 		this->currentLoop = 0;
+		this->alive = 0;
 		this->limit = 10;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
@@ -165,6 +166,11 @@ namespace aprilparticle
 	{
 		harray<hstr> data = value.split(APRILPARTICLE_VALUE_SEPARATOR);
 		this->setAngleRange(data.first(), data.last());
+	}
+
+	int Emitter::getParticleCount()
+	{
+		return this->alive;
 	}
 
 	bool Emitter::isExpired()
@@ -354,17 +360,18 @@ namespace aprilparticle
 		}
 		this->_particle = new Particle();
 		this->_particle->life = RAND_RANGE(Life);
+		this->_particle->position = this->_pos;
 		this->_particle->direction = RAND_RANGE(Direction);
 		this->_particle->size = RAND_RANGE(Size);
 		this->_particle->scale = RAND_RANGE(Scale);
 		this->_particle->angle = RAND_RANGE(Angle);
-		this->particles += this->_particle;
 		this->_movement.set(0.0f, 0.0f, 0.0f);
 		foreach (Affector*, it, this->affectors)
 		{
 			(*it)->update(this->_particle, k, this->_movement);
 		}
-		this->_particle->position = this->_pos + this->_movement + this->_particle->direction * k;
+		this->_particle->position += this->_movement + this->_particle->direction * k;
+		this->particles += this->_particle;
 	}
 
 	void Emitter::reset()
@@ -434,7 +441,7 @@ namespace aprilparticle
 			}
 		}
 		// first update all particles
-		this->_alive = 0;
+		this->alive = 0;
 		foreach_q (Particle*, it, this->particles)
 		{
 			(*it)->timer += k;
@@ -446,7 +453,7 @@ namespace aprilparticle
 					(*it2)->update((*it), k, this->_movement);
 				}
 				(*it)->position += this->_movement + (*it)->direction * k;
-				this->_alive++;
+				this->alive++;
 			}
 		}
 		// remove all expired particles
@@ -472,16 +479,16 @@ namespace aprilparticle
 			{
 				this->_cs = 1.0f / this->emissionRate;
 				this->_quota = (int)(this->emissionTimer * this->emissionRate);
-				if (this->_alive >= this->limit)
+				if (this->alive >= this->limit)
 				{
 					this->emissionTimer = 0.0f;
 				}
-				else if (this->emissionTimer > this->_cs && this->_alive < this->limit)
+				else if (this->emissionTimer > this->_cs && this->alive < this->limit)
 				{
-					this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
+					this->_quota = hmin(this->_quota, (int)(this->limit - this->alive));
 					for (int i = 0; i < this->_quota; i++)
 					{
-						this->_createNewParticle(i * k / this->_quota);
+						this->_createNewParticle(k * i / this->_quota);
 					}
 					this->emissionTimer = 0.0f;
 				}

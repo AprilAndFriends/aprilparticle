@@ -158,6 +158,16 @@ namespace aprilparticle
 		return this->textures.try_get_by_key(name, NULL);
 	}
 
+	int System::getParticleCount()
+	{
+		int count = 0;
+		foreach (Emitter*, it, this->emitters)
+		{
+			count += (*it)->getParticleCount();
+		}
+		return count;
+	}
+
 	bool System::isExpired()
 	{
 		foreach (Emitter*, it, this->emitters)

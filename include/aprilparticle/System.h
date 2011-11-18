@@ -62,6 +62,7 @@ namespace aprilparticle
 		bool unregisterTexture(april::Texture* texture);
 		Emitter* getEmitter(chstr name);
 		april::Texture* getTexture(chstr name);
+		int getParticleCount();
 		bool isExpired();
 		
 		hstr getProperty(chstr name, bool* property_exists = NULL);

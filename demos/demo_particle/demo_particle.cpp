@@ -62,6 +62,25 @@ bool render(float k)
 	static float angle = 0.0f;
 	angle += k * 90.0f;
     
+	if (hmodf(angle - k * 90.0f, 90.0f) > hmodf(angle, 90.0f))
+	{
+		harray<int> counts;
+		counts += flame->getParticleCount();
+		counts += bubbles->getParticleCount();
+		counts += vortex->getParticleCount();
+		counts += rain->getParticleCount();
+		counts += quazar->getParticleCount();
+		counts += twirl->getParticleCount();
+		counts += milkyWay->getParticleCount();
+		int count = 0;
+		foreach (int, it, counts)
+		{
+			count += (*it);
+		}
+		counts += count;
+		printf("Particles: %s\n", counts.cast<hstr>().join(" ").c_str());
+	}
+    
 	april::rendersys->setPerspective(60.0f, screen.x / screen.y, 0.1f, 100.0f);
 	
 	gvec3 pos(0.0f, 18.0f, 25.0f);

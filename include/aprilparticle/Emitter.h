@@ -92,6 +92,7 @@ namespace aprilparticle
 		void setSize(chstr value);
 		void setScale(chstr value);
 		void setAngle(chstr value);
+		int getParticleCount();
 		bool isExpired();
 
 		void setLifeRange(float min, float max);
@@ -128,6 +129,7 @@ namespace aprilparticle
 		float loopDelay;
 		int loops;
 		int currentLoop;
+		int alive;
 		int limit;
 		float minLife;
 		float maxLife;
@@ -157,7 +159,6 @@ namespace aprilparticle
 		float _S;
 		float _cs;
 		int _quota;
-		int _alive;
 		bool _expired;
 		Particle* _particle;
 		gmat4 _billboard;
