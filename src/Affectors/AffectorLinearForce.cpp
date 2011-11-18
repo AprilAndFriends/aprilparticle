@@ -9,8 +9,8 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include "AffectorLinearForce.h"
-#include "aprilparticle.h"
 #include "Particle.h"
+#include "Util.h"
 
 namespace aprilparticle
 {
@@ -19,13 +19,11 @@ namespace aprilparticle
 		LinearForce::LinearForce(chstr name) : Affector(name)
 		{
 			this->direction.set(0.0f, -1.0f, 0.0f);
-			this->force = 0.0f;
 		}
 
-		LinearForce::LinearForce(gvec3 direction, float force, chstr name) : Affector(name)
+		LinearForce::LinearForce(gvec3 direction, chstr name) : Affector(name)
 		{
 			this->direction = direction;
-			this->force = force;
 		}
 
 		LinearForce::~LinearForce()
@@ -39,25 +37,19 @@ namespace aprilparticle
 				*property_exists = true;
 			}
 			if (name == "direction")	return gvec3_to_str(this->getDirection());
-			if (name == "force")		return this->getForce();
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool LinearForce::setProperty(chstr name, chstr value)
 		{
 			if		(name == "direction")	this->setDirection(str_to_gvec3(value));
-			else if	(name == "force")		this->setForce(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
 		void LinearForce::update(Particle* particle, float k, gvec3& movement)
 		{
-			if (this->force != 0.0f)
-			{
-				particle->speed += this->force * k;
-			}
-			movement += this->direction * (particle->speed * k);
+			particle->direction += this->direction * k;
 		}
 
 	}

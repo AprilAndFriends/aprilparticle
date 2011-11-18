@@ -14,13 +14,12 @@
 #ifndef APRILPARTICLE_H
 #define APRILPARTICLE_H
 
-#include <gtypes/Vector2.h>
-#include <gtypes/Vector3.h>
 #include <hltypes/hstring.h>
 
 #include "aprilparticleExport.h"
 
 #define APRILPARTICLE_VALUE_SEPARATOR ","
+#define APRILPARTICLE_RANGE_SEPARATOR ";"
 
 namespace aprilparticle
 {
@@ -28,10 +27,6 @@ namespace aprilparticle
     aprilparticleFnExport void destroy();
 	aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
 	aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
-	aprilparticleFnExport hstr gvec2_to_str(gvec2 vector);
-	aprilparticleFnExport hstr gvec3_to_str(gvec3 vector);
-	aprilparticleFnExport gvec2 str_to_gvec2(chstr string);
-	aprilparticleFnExport gvec3 str_to_gvec3(chstr string);
 
 };
 

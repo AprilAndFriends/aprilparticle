@@ -25,17 +25,12 @@
 #include "System.h"
 #include "Util.h"
 
-#define RANGE_SEPARATOR ";"
-#define RAND_FLOAT_RANGE(name) (this->min ## name < this->max ## name ? hrandf(this->min ## name, this->max ## name) : this->min ## name)
-#define RAND_GVEC2_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
+#define RAND_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
 #define TRY_GET_TYPE(value, name) if (value == name) return #name;
-#define GET_FLOAT_RANGE(name) (this->getMin ## name() != this->getMax ## name() ? \
-	hsprintf("%f" RANGE_SEPARATOR "%f", this->getMin ## name(), this->getMax ## name()) : \
-	this->getMin ## name())
-#define GET_GVEC2_RANGE(name) (this->getMin ## name() != this->getMax ## name() ? \
-	hsprintf("%s" RANGE_SEPARATOR "%s", gvec2_to_str(this->getMin ## name()).c_str(), gvec2_to_str(this->getMax ## name()).c_str()) : \
-	gvec2_to_str(this->getMin ## name()).c_str())
+#define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
+	hsprintf("%s" APRILPARTICLE_RANGE_SEPARATOR "%s", func(this->getMin ## name()).c_str(), func(this->getMax ## name()).c_str()) : \
+	func(this->getMin ## name()).c_str())
 
 namespace aprilparticle
 {
@@ -59,12 +54,12 @@ namespace aprilparticle
 		this->limit = 10;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
+		this->minDirection.set(0.0f, 0.0f, 0.0f);
+		this->maxDirection.set(0.0f, 0.0f, 0.0f);
 		this->minSize.set(1.0f, 1.0f);
 		this->maxSize.set(1.0f, 1.0f);
 		this->minScale = 1.0f;
 		this->maxScale = 1.0f;
-		this->minSpeed = 0.0f;
-		this->maxSpeed = 0.0f;
 		this->minAngle = 0.0f;
 		this->maxAngle = 0.0f;
 		this->texture = NULL;
@@ -118,6 +113,12 @@ namespace aprilparticle
 		this->maxLife = value;
 	}
 
+	void Emitter::setDirection(gvec3 value)
+	{
+		this->minDirection = value;
+		this->maxDirection = value;
+	}
+
 	void Emitter::setSize(gvec2 value)
 	{
 		this->minSize = value;
@@ -130,12 +131,6 @@ namespace aprilparticle
 		this->maxScale = value;
 	}
 
-	void Emitter::setSpeed(float value)
-	{
-		this->minSpeed = value;
-		this->maxSpeed = value;
-	}
-
 	void Emitter::setAngle(float value)
 	{
 		this->minAngle = value;
@@ -144,26 +139,26 @@ namespace aprilparticle
 
 	void Emitter::setLife(chstr value)
 	{
-		harray<hstr> data = value.split(RANGE_SEPARATOR);
+		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
 		this->setLifeRange(data.first(), data.last());
+	}
+
+	void Emitter::setDirection(chstr value)
+	{
+		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		this->setDirectionRange(str_to_gvec3(data.first()), str_to_gvec3(data.last()));
 	}
 
 	void Emitter::setSize(chstr value)
 	{
-		harray<hstr> data = value.split(RANGE_SEPARATOR);
+		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
 		this->setSizeRange(str_to_gvec2(data.first()), str_to_gvec2(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
 	{
-		harray<hstr> data = value.split(RANGE_SEPARATOR);
+		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
 		this->setScaleRange(data.first(), data.last());
-	}
-
-	void Emitter::setSpeed(chstr value)
-	{
-		harray<hstr> data = value.split(RANGE_SEPARATOR);
-		this->setSpeedRange(data.first(), data.last());
 	}
 
 	void Emitter::setAngle(chstr value)
@@ -183,6 +178,12 @@ namespace aprilparticle
 		this->maxLife = max;
 	}
 
+	void Emitter::setDirectionRange(gvec3 min, gvec3 max)
+	{
+		this->minDirection = min;
+		this->maxDirection = max;
+	}
+
 	void Emitter::setSizeRange(gvec2 min, gvec2 max)
 	{
 		this->minSize = min;
@@ -193,12 +194,6 @@ namespace aprilparticle
 	{
 		this->minScale = min;
 		this->maxScale = max;
-	}
-
-	void Emitter::setSpeedRange(float min, float max)
-	{
-		this->minSpeed = min;
-		this->maxSpeed = max;
 	}
 
 	void Emitter::setAngleRange(float min, float max)
@@ -252,11 +247,11 @@ namespace aprilparticle
 		if (name == "loop_delay")		return this->getLoopDelay();
 		if (name == "loops")			return this->getLoops();
 		if (name == "limit")			return this->getLimit();
-		if (name == "life")				return GET_FLOAT_RANGE(Life);
-		if (name == "size")				return GET_GVEC2_RANGE(Size);
-		if (name == "scale")			return GET_FLOAT_RANGE(Scale);
-		if (name == "speed")			return GET_FLOAT_RANGE(Speed);
-		if (name == "angle")			return GET_FLOAT_RANGE(Angle);
+		if (name == "life")				return GET_RANGE(Life, hstr);
+		if (name == "direction")		return GET_RANGE(Direction, gvec3_to_str);
+		if (name == "size")				return GET_RANGE(Size, gvec2_to_str);
+		if (name == "scale")			return GET_RANGE(Scale, hstr);
+		if (name == "angle")			return GET_RANGE(Angle, hstr);
 		return ActiveObject::getProperty(name, property_exists);
 	}
 
@@ -288,15 +283,15 @@ namespace aprilparticle
 		else if	(name == "loop_delay")		this->setLoopDelay(value);
 		else if	(name == "loops")			this->setLoops(value);
 		else if	(name == "life")			this->setLife(value);
+		else if	(name == "direction")		this->setDirection(value);
 		else if	(name == "size")			this->setSize(value);
 		else if	(name == "scale")			this->setScale(value);
-		else if	(name == "speed")			this->setSpeed(value);
 		else if	(name == "angle")			this->setAngle(value);
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}
 
-	void Emitter::_createNewParticle()
+	void Emitter::_createNewParticle(float k)
 	{
 		switch (this->type)
 		{
@@ -357,17 +352,19 @@ namespace aprilparticle
 		{
 			this->_pos += this->system->getPosition();
 		}
-		this->_particle = new Particle(this->_pos);
-		this->_particle->life = RAND_FLOAT_RANGE(Life);
-		this->_particle->size = RAND_GVEC2_RANGE(Size);
-		this->_particle->scale = RAND_FLOAT_RANGE(Scale);
-		this->_particle->speed = RAND_FLOAT_RANGE(Speed);
-		this->_particle->angle = RAND_FLOAT_RANGE(Angle);
+		this->_particle = new Particle();
+		this->_particle->life = RAND_RANGE(Life);
+		this->_particle->direction = RAND_RANGE(Direction);
+		this->_particle->size = RAND_RANGE(Size);
+		this->_particle->scale = RAND_RANGE(Scale);
+		this->_particle->angle = RAND_RANGE(Angle);
 		this->particles += this->_particle;
+		this->_movement.set(0.0f, 0.0f, 0.0f);
 		foreach (Affector*, it, this->affectors)
 		{
-			(*it)->update(this->_particle, 0.0f, this->_movement);
+			(*it)->update(this->_particle, k, this->_movement);
 		}
+		this->_particle->position = this->_pos + this->_movement + this->_particle->direction * k;
 	}
 
 	void Emitter::reset()
@@ -448,7 +445,7 @@ namespace aprilparticle
 				{
 					(*it2)->update((*it), k, this->_movement);
 				}
-				(*it)->position += this->_movement;
+				(*it)->position += this->_movement + (*it)->direction * k;
 				this->_alive++;
 			}
 		}
@@ -484,7 +481,7 @@ namespace aprilparticle
 					this->_quota = hmin(this->_quota, (int)(this->limit - this->_alive));
 					for (int i = 0; i < this->_quota; i++)
 					{
-						this->_createNewParticle();
+						this->_createNewParticle(i * k / this->_quota);
 					}
 					this->emissionTimer = 0.0f;
 				}

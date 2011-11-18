@@ -18,7 +18,7 @@
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
 
-#include "Affector.h"
+#include "AffectorSpace.h"
 
 namespace aprilparticle
 {
@@ -26,16 +26,13 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Attractor : public Affector
+		class aprilparticleExport Attractor : public Space
 		{
 		public:
 			Attractor(chstr name = "");
 			Attractor(gvec3 position, float radius, float force, chstr name = "");
 			~Attractor();
 
-			HL_DEFINE_GETSET(gvec3, position, Position);
-			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-			HL_DEFINE_GETSET(float, radius, Radius);
 			HL_DEFINE_GETSET(float, force, Force);
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
@@ -44,8 +41,6 @@ namespace aprilparticle
 			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
-			gvec3 position;
-			float radius;
 			float force;
 
 		private:

@@ -12,25 +12,21 @@
 #include <hltypes/hstring.h>
 
 #include "AffectorAttractor.h"
-#include "aprilparticle.h"
 #include "Particle.h"
 #include "System.h"
+#include "Util.h"
 
 namespace aprilparticle
 {
 	namespace Affectors
 	{
-		Attractor::Attractor(chstr name) : Affector(name)
+		Attractor::Attractor(chstr name) : Space(name)
 		{
-			this->position.set(0.0f, 0.0f, 0.0f);
-			this->radius = 10.0f;
 			this->force = 1.0f;
 		}
 		
-		Attractor::Attractor(gvec3 position, float radius, float force, chstr name) : Affector(name)
+		Attractor::Attractor(gvec3 position, float radius, float force, chstr name) : Space(position, radius, name)
 		{
-			this->position = position;
-			this->radius = radius;
 			this->force = force;
 		}
 
@@ -44,18 +40,14 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "position")		return gvec3_to_str(this->getPosition());
-			if (name == "radius")		return this->getRadius();
-			if (name == "force")		return this->getForce();
-			return Affector::getProperty(name, property_exists);
+			if (name == "force")	return this->getForce();
+			return Space::getProperty(name, property_exists);
 		}
 
 		bool Attractor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(str_to_gvec3(value));
-			else if	(name == "radius")		this->setRadius(value);
-			else if	(name == "force")		this->setForce(value);
-			else return Affector::setProperty(name, value);
+			if		(name == "force")	this->setForce(value);
+			else return Space::setProperty(name, value);
 			return true;
 		}
 

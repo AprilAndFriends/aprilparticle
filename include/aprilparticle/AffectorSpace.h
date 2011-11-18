@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -10,10 +9,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a linear force affector.
+/// Represents an Space with a position in 3D space.
 
-#ifndef APRILPARTICLE_LINEAR_FORCE_H
-#define APRILPARTICLE_LINEAR_FORCE_H
+#ifndef APRILPARTICLE_Space_H
+#define APRILPARTICLE_Space_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
@@ -26,24 +25,24 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport LinearForce : public Affector
+		class aprilparticleExport Space : public Affector
 		{
 		public:
-			LinearForce(chstr name = "");
-			LinearForce(gvec3 direction, chstr name = "");
-			~LinearForce();
-			
-			HL_DEFINE_GETSET(gvec3, direction, Direction);
-			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
+			Space(chstr name = "");
+			Space(gvec3 position, float space, chstr name = "");
+			~Space();
 
+			HL_DEFINE_GETSET(gvec3, position, Position);
+			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
+			HL_DEFINE_GETSET(float, radius, Radius);
+				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float k, gvec3& movement);
-
 		protected:
-			gvec3 direction;
-	
+			gvec3 position;
+			float radius;
+
 		};
 	};
 }

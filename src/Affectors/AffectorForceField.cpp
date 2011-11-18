@@ -15,9 +15,9 @@
 #include <hltypes/util.h>
 
 #include "AffectorForceField.h"
-#include "aprilparticle.h"
 #include "Particle.h"
 #include "System.h"
+#include "Util.h"
 
 #define VERTEX_COUNT 91 // you can't touch this
 
@@ -49,18 +49,14 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		ForceField::ForceField(chstr name) : Affector(name)
+		ForceField::ForceField(chstr name) : Space(name)
 		{
-			this->position = gvec3(0.0f, 0.0f, 0.0f);
-			this->direction = gvec3(0.0f, 0.0f, 1.0f);
-			this->radius = 10.0f;
+			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
-		ForceField::ForceField(gvec3 position, gvec3 direction, float radius, chstr name) : Affector(name)
+		ForceField::ForceField(gvec3 position, float radius, gvec3 direction, chstr name) : Space(position, radius, name)
 		{
-			this->position = position;
 			this->direction = direction;
-			this->radius = radius;
 		}
 
 		ForceField::~ForceField()
@@ -73,18 +69,14 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "position")		return gvec3_to_str(this->getPosition());
 			if (name == "direction")	return gvec3_to_str(this->getDirection());
-			if (name == "radius")		return this->getRadius();
-			return Affector::getProperty(name, property_exists);
+			return Space::getProperty(name, property_exists);
 		}
 
 		bool ForceField::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(str_to_gvec3(value));
-			else if	(name == "direction")	this->setDirection(str_to_gvec3(value));
-			else if	(name == "radius")		this->setRadius(value);
-			else return Affector::setProperty(name, value);
+			if		(name == "direction")	this->setDirection(str_to_gvec3(value));
+			else return Space::setProperty(name, value);
 			return true;
 		}
 

@@ -188,10 +188,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Space3DObject.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\System.cpp"
 				>
 			</File>
@@ -228,6 +224,10 @@
 				</File>
 				<File
 					RelativePath=".\src\Affectors\AffectorLinearForce.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorSpace.cpp"
 					>
 				</File>
 				<File
@@ -278,10 +278,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\aprilparticle\Space3DObject.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\aprilparticle\System.h"
 				>
 			</File>
@@ -318,6 +314,10 @@
 				</File>
 				<File
 					RelativePath=".\include\aprilparticle\AffectorLinearForce.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorSpace.h"
 					>
 				</File>
 				<File

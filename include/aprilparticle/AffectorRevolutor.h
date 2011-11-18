@@ -18,7 +18,7 @@
 #include <gtypes/Vector3.h>
 #include <hltypes/util.h>
 
-#include "Affector.h"
+#include "AffectorSpace.h"
 #include "aprilparticleExport.h"
 
 namespace aprilparticle
@@ -27,18 +27,15 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport Revolutor : public Affector
+		class aprilparticleExport Revolutor : public Space
 		{
 		public:
 			Revolutor(chstr name = "");
-			Revolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name = "");
+			Revolutor(gvec3 position, float radius, gvec3 axis, float evolutionSpeed, bool clockwise, chstr name = "");
 			~Revolutor();
 
-			HL_DEFINE_GETSET(gvec3, position, Position);
-			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(gvec3, axis, Axis);
 			void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
-			HL_DEFINE_GETSET(float, radius, Radius);
 			HL_DEFINE_GETSET(float, evolutionSpeed, EvolutionSpeed);
 			bool isClockwise();
 			void setClockwise(bool value);
@@ -49,9 +46,7 @@ namespace aprilparticle
 			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
-			gvec3 position;
 			gvec3 axis;
-			float radius;
 			float evolutionSpeed;
 			float angle;
 

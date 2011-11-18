@@ -15,6 +15,9 @@
 #define APRILPARTICLE_CALLBACK_AFFECTOR_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/hmap.h>
+#include <hltypes/hstring.h>
+#include <hltypes/util.h>
 
 #include "Affector.h"
 
@@ -34,9 +37,13 @@ namespace aprilparticle
 			void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3&) { return this->affectionCallback; }
 			void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float, gvec3&)) { this->affectionCallback = value; }
 				
+			hstr getProperty(chstr name, bool* property_exists = NULL);
+			bool setProperty(chstr name, chstr value);
+
 			void update(Particle* particle, float k, gvec3& movement);
 
 		protected:
+			hmap<hstr, hstr> properties;
 			void (*affectionCallback)(CallbackAffector*, Particle*, float, gvec3&);
 
 		};

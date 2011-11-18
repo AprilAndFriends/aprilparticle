@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -29,6 +28,25 @@ namespace aprilparticle
 		{
 		}
 		
+		hstr CallbackAffector::getProperty(chstr name, bool* property_exists)
+		{
+			if (property_exists != NULL)
+			{
+				*property_exists = true;
+			}
+			if (this->properties.has_key(name))	return this->properties[name];
+			return Affector::getProperty(name, property_exists);
+		}
+
+		bool CallbackAffector::setProperty(chstr name, chstr value)
+		{
+			if (!Affector::setProperty(name, value))
+			{
+				this->properties[name] = value;
+			}
+			return true;
+		}
+
 		void CallbackAffector::update(Particle* particle, float k, gvec3& movement)
 		{
 			if (this->affectionCallback != NULL)

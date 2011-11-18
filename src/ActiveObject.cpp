@@ -13,13 +13,15 @@
 
 #include "ActiveObject.h"
 #include "Affector.h"
+#include "aprilparticle.h"
 #include "Util.h"
 
 namespace aprilparticle
 {
-	ActiveObject::ActiveObject(chstr name) : Space3DObject()
+	ActiveObject::ActiveObject(chstr name)
 	{
 		this->name = (name == "" ? generateName("ActiveObject") : name);
+		this->position.set(0.0f, 0.0f, 0.0f);
 		this->visible = true;
 		this->enabled = true;
 	}
@@ -34,18 +36,29 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "name")		return getName();
-		if (name == "visible")	return isVisible();
-		if (name == "enabled")	return isEnabled();
-		return Space3DObject::getProperty(name, property_exists);
+		if (name == "name")		return this->getName();
+		if (name == "position")	return gvec3_to_str(this->getPosition());
+		if (name == "visible")	return this->isVisible();
+		if (name == "enabled")	return this->isEnabled();
+		if (property_exists != NULL)
+		{
+			*property_exists = false;
+		}
+		return "";
+		return "";
 	}
 	
 	bool ActiveObject::setProperty(chstr name, chstr value)
 	{
-		if (name == "name")			setName(value);
-		else if (name == "visible")	setVisible(value);
-		else if (name == "enabled")	setEnabled(value);
-		else return Space3DObject::setProperty(name, value);
+		if		(name == "name")		this->setName(value);
+		else if	(name == "position")	this->setPosition(str_to_gvec3(value));
+		else if	(name == "visible")		this->setVisible(value);
+		else if	(name == "enabled")		this->setEnabled(value);
+		else
+		{
+			aprilparticle::log("WARNING! Property '" + name + "' does not exist in " + this->name + "!");
+			return false;
+		}
 		return true;
 	}
 

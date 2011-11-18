@@ -10,6 +10,7 @@
 #include <hltypes/hstring.h>
 
 #include "Affector.h"
+#include "aprilparticle.h"
 #include "Util.h"
 
 namespace aprilparticle
@@ -40,8 +41,13 @@ namespace aprilparticle
 	
 	bool Affector::setProperty(chstr name, chstr value)
 	{
-		if (name == "name")	this->setName(value);
-		else return false;
+		if		(name == "name")	this->setName(value);
+		else if	(name == "type")	; // type is not set here but during Affector creation
+		else
+		{
+			aprilparticle::log("WARNING! Affector property '" + name + "' does not exist!");
+			return false;
+		}
 		return true;
 	}
 

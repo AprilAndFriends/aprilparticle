@@ -49,8 +49,8 @@ namespace aprilparticle
 
 		bool isRunning();
 		HL_DEFINE_GET(hstr, filename, Filename);
-		HL_DEFINE_GETSET(gvec3, direction, Direction);
-		void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
+		HL_DEFINE_GETSET(gvec3, up, Up);
+		void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GET(harray<Emitter*>, emitters, Emitters);
 		
 		bool registerEmitter(Emitter* emitter);
@@ -76,8 +76,8 @@ namespace aprilparticle
 		
 	protected:
 		hstr filename;
+		gvec3 up;
 		bool loaded;
-		gvec3 direction;
 		harray<Emitter*> emitters;
 		hmap<hstr, april::Texture*> textures;
 

@@ -34,7 +34,7 @@ namespace aprilparticle
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name)
 	{
 		this->filename = filename;
-		this->direction.set(0.0f, 1.0f, 0.0f);
+		this->up.set(0.0f, 1.0f, 0.0f);
 		this->loaded = false;
 	}
 	
@@ -176,13 +176,13 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "direction")	return gvec3_to_str(this->getDirection());
+		if (name == "up")	return gvec3_to_str(this->getUp());
 		return ActiveObject::getProperty(name, property_exists);
 	}
 
 	bool System::setProperty(chstr name, chstr value)
 	{
-		if (name == "direction")	this->setDirection(str_to_gvec3(value));
+		if		(name == "up")	this->setUp(str_to_gvec3(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}
@@ -205,16 +205,13 @@ namespace aprilparticle
 		this->loaded = true;
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
+		foreach_xmlproperty (prop, root)
+		{
+			this->setProperty(prop->name(), prop->value());
+		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Properties")
-			{
-				foreach_xmlproperty (prop, node)
-				{
-					this->setProperty(prop->name(), prop->value());
-				}
-			}
-			else if (*node == "Emitter")
+			if (*node == "Emitter")
 			{
 				this->_loadEmitter(node);
 			}
@@ -363,7 +360,7 @@ namespace aprilparticle
 		{
 			foreach (Emitter*, it, this->emitters)
 			{
-				(*it)->draw(point, this->direction);
+				(*it)->draw(point, this->up);
 			}
 		}
 	}

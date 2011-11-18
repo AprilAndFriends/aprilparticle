@@ -19,19 +19,20 @@
 #include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
-#include "Space3DObject.h"
 
 namespace aprilparticle
 {
 	class Affector;
 
-	class aprilparticleExport ActiveObject : public Space3DObject
+	class aprilparticleExport ActiveObject
 	{
 	public:
 		ActiveObject(chstr name = "");
-		~ActiveObject();
+		virtual ~ActiveObject();
 
 		HL_DEFINE_GETSET(hstr, name, Name);
+		HL_DEFINE_GETSET(gvec3, position, Position);
+		void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 		HL_DEFINE_ISSET(bool, visible, Visible);
 		HL_DEFINE_ISSET(bool, enabled, Enabled);
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
@@ -48,6 +49,7 @@ namespace aprilparticle
 
 	protected:
 		hstr name;
+		gvec3 position;
 		bool visible;
 		bool enabled;
 		harray<Affector*> affectors;

@@ -72,32 +72,32 @@ namespace aprilparticle
 		void setLimit(int value);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
+		HL_DEFINE_GETSET(gvec3, minDirection, MinDirection);
+		HL_DEFINE_GETSET(gvec3, maxDirection, MaxDirection);
 		HL_DEFINE_GETSET(gvec2, minSize, MinSize);
 		HL_DEFINE_GETSET(gvec2, maxSize, MaxSize);
 		HL_DEFINE_GETSET(float, minScale, MinScale);
 		HL_DEFINE_GETSET(float, maxScale, MaxScale);
-		HL_DEFINE_GETSET(float, minSpeed, MinSpeed);
-		HL_DEFINE_GETSET(float, maxSpeed, MaxSpeed);
 		HL_DEFINE_GETSET(float, minAngle, MinAngle);
 		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
 		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 		void setLife(float value);
+		void setDirection(gvec3 value);
 		void setSize(gvec2 value);
 		void setScale(float value);
-		void setSpeed(float value);
 		void setAngle(float value);
 		void setLife(chstr value);
+		void setDirection(chstr value);
 		void setSize(chstr value);
 		void setScale(chstr value);
-		void setSpeed(chstr value);
 		void setAngle(chstr value);
 		bool isExpired();
 
 		void setLifeRange(float min, float max);
+		void setDirectionRange(gvec3 min, gvec3 max);
 		void setSizeRange(gvec2 min, gvec2 max);
 		void setScaleRange(float min, float max);
-		void setSpeedRange(float min, float max);
 		void setAngleRange(float min, float max);
 
 		void addAffector(Affector* affector);
@@ -131,12 +131,12 @@ namespace aprilparticle
 		int limit;
 		float minLife;
 		float maxLife;
+		gvec3 minDirection;
+		gvec3 maxDirection;
 		gvec2 minSize;
 		gvec2 maxSize;
 		float minScale;
 		float maxScale;
-		float minSpeed;
-		float maxSpeed;
 		float minAngle;
 		float maxAngle;
 		april::Texture* texture;
@@ -144,7 +144,7 @@ namespace aprilparticle
 		hdeque<Particle*> particles;
 		System* system;
 
-		void _createNewParticle();
+		void _createNewParticle(float k);
 		void _setSystem(System* value) { this->system = value; }
 
 	private:

@@ -13,9 +13,9 @@
 #include <gtypes/Matrix3.h>
 
 #include "AffectorRevolutor.h"
-#include "aprilparticle.h"
 #include "Particle.h"
 #include "System.h"
+#include "Util.h"
 
 namespace aprilparticle
 {
@@ -23,20 +23,16 @@ namespace aprilparticle
 	{
 		gmat3 _rotation;
 
-		Revolutor::Revolutor(chstr name) : Affector(name)
+		Revolutor::Revolutor(chstr name) : Space(name)
 		{
-			this->position = gvec3(0.0f, 0.0f, 0.0f);
-			this->axis = gvec3(0.0f, 1.0f, 0.0f);
-			this->radius = 1.0f;
+			this->axis.set(0.0f, 1.0f, 0.0f);
 			this->evolutionSpeed = 1.0f;
 			this->setClockwise(true);
 		}
 
-		Revolutor::Revolutor(gvec3 position, gvec3 axis, float radius, float evolutionSpeed, bool clockwise, chstr name) : Affector(name)
+		Revolutor::Revolutor(gvec3 position, float radius, gvec3 axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
 		{
-			this->position = position;
 			this->axis = axis;
-			this->radius = radius;
 			this->evolutionSpeed = evolutionSpeed;
 			this->setClockwise(clockwise);
 		}
@@ -61,22 +57,18 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "position")			return gvec3_to_str(this->getPosition());
 			if (name == "axis")				return gvec3_to_str(this->getAxis());
-			if (name == "radius")			return this->getRadius();
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
-			return Affector::getProperty(name, property_exists);
+			return Space::getProperty(name, property_exists);
 		}
 
 		bool Revolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")		this->setPosition(str_to_gvec3(value));
-			else if	(name == "axis")			this->setAxis(str_to_gvec3(value));
-			else if	(name == "radius")			this->setRadius(value);
+			if		(name == "axis")			this->setAxis(str_to_gvec3(value));
 			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
 			else if	(name == "clockwise")		this->setClockwise(value);
-			else return Affector::setProperty(name, value);
+			else return Space::setProperty(name, value);
 			return true;
 		}
 

@@ -21,7 +21,6 @@
 #include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
-#include "Space3DObject.h"
 
 namespace aprilparticle
 {
@@ -42,7 +41,7 @@ namespace aprilparticle
 		class Scaler;
 	}
 
-	class aprilparticleExport Particle : public Space3DObject
+	class aprilparticleExport Particle
 	{
 	public:
 		friend class Affector;
@@ -58,13 +57,14 @@ namespace aprilparticle
 		friend class Affectors::Rotator;
 		friend class Affectors::Scaler;
 
-		Particle(gvec3 position);
+		Particle();
 		virtual ~Particle();
 
 		HL_DEFINE_GETSET(float, life, Life);
+		HL_DEFINE_GETSET(gvec3, position, Position);
+		HL_DEFINE_GETSET(gvec3, direction, Direction);
 		HL_DEFINE_GETSET(gvec2, size, Size);
 		HL_DEFINE_GETSET(float, scale, Scale);
-		HL_DEFINE_GETSET(float, speed, Speed);
 		HL_DEFINE_GETSET(float, angle, Angle);
 		HL_DEFINE_GETSET(april::Color, color, Color);
 
@@ -74,9 +74,10 @@ namespace aprilparticle
 	protected:
 		float timer;
 		float life;
+		gvec3 position;
+		gvec3 direction;
 		gvec2 size;
 		float scale;
-		float speed;
 		float angle;
 		april::Color color;
 
