@@ -21,9 +21,9 @@
 
 gvec2 screen(1024.0f, 768.0f);
 
-april::Texture* redParticle;
-april::Texture* greenParticle;
-april::Texture* blueParticle;
+april::Texture* redParticle = NULL;
+april::Texture* greenParticle = NULL;
+april::Texture* blueParticle = NULL;
 
 aprilparticle::System* flame = NULL;
 aprilparticle::System* bubbles = NULL;
@@ -125,7 +125,7 @@ void setupFlame()
 	flame->registerTexture(fire);
 	emitter->setTexture(fire);
 	// affectors
-	aprilparticle::Affectors::ColorMultiChanger* colorChanger = new aprilparticle::Affectors::ColorMultiChanger();
+	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	flame->registerAffector(colorChanger);
 	emitter->addAffector(colorChanger);
 	aprilparticle::Affectors::LinearForce* linearForce = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, 0.5f, 0.0f));
@@ -150,13 +150,13 @@ void setupFlame()
 	emitter->setSizeRange(gvec2(2.4f, 2.4f), gvec2(4.4f, 4.4f));
 	emitter->setAngleRange(0.0f, 360.0f);
 
-	hmap<float, april::Color> colors;
-	colors[0.0f] = april::Color(0xFF000000);
-	colors[0.1f] = april::Color(0xFF6432F3);
-	colors[0.4f] = april::Color(0xFF7F3FAF);
-	colors[0.75f] = april::Color(0x7F7F7FAF);
-	colors[1.0f] = april::Color(0x7F7F7F00);
-	colorChanger->setColorTimings(colors);
+	hmap<float, april::Color> timings;
+	timings[0.0f] = april::Color(0xFF000000);
+	timings[0.1f] = april::Color(0xFF6432F3);
+	timings[0.4f] = april::Color(0xFF7F3FAF);
+	timings[0.75f] = april::Color(0x7F7F7FAF);
+	timings[1.0f] = april::Color(0x7F7F7F00);
+	colorChanger->setTimings(timings);
 }
 
 void setupBubbles()
@@ -170,9 +170,12 @@ void setupBubbles()
 	bubbles->registerTexture(bubble);
 	emitter->setTexture(bubble);
 	// affectors
-	aprilparticle::Affectors::ColorMultiChanger* colorChanger = new aprilparticle::Affectors::ColorMultiChanger();
+	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	bubbles->registerAffector(colorChanger);
 	emitter->addAffector(colorChanger);
+	aprilparticle::Affectors::ResizerTimed* resizer = new aprilparticle::Affectors::ResizerTimed();
+	bubbles->registerAffector(resizer);
+	emitter->addAffector(resizer);
 	aprilparticle::Affectors::ForceField* forceField = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 1.0f, 0.0f), 10.0f, gvec3(0.0f, 5.0f, 0.0f));
 	bubbles->registerAffector(forceField);
 	emitter->addAffector(forceField);
@@ -187,12 +190,25 @@ void setupBubbles()
 	emitter->setDelay(1.0f);
 	emitter->setLoopDelay(2.0f);
 	emitter->setLoops(3);
-	emitter->setSizeRange(gvec2(0.4f, 0.4f), gvec2(0.8f, 0.8f));
+	emitter->setScaleRange(0.4f, 0.8f);
 
-	hmap<float, april::Color> colors;
-	colors[0.995f] = april::Color(0xFFFFFFFF);
-	colors[1.0f] = april::Color(0xFFFFFF00);
-	colorChanger->setColorTimings(colors);
+	hmap<float, april::Color> timings1;
+	timings1[0.99f] = april::Color(0xFFFFFFFF);
+	timings1[1.0f] = april::Color(0xFFFFFF00);
+	colorChanger->setTimings(timings1);
+
+	hmap<float, gvec2> timings2;
+	timings2[0.0f] = gvec2(1.0f, 1.0f);
+	timings2[0.05f] = gvec2(1.0f, 1.6f);
+	timings2[0.1f] = gvec2(1.6f, 1.0f);
+	timings2[0.15f] = gvec2(1.0f, 1.4f);
+	timings2[0.2f] = gvec2(1.4f, 1.0f);
+	timings2[0.25f] = gvec2(1.0f, 1.2f);
+	timings2[0.3f] = gvec2(1.2f, 1.0f);
+	timings2[0.35f] = gvec2(1.0f, 1.0f);
+	timings2[0.99f] = gvec2(1.0f, 1.0f);
+	timings2[1.0f] = gvec2(1.75f, 1.75f);
+	resizer->setTimings(timings2);
 }
 
 void setupVortex()

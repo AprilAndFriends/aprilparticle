@@ -28,17 +28,17 @@ namespace aprilparticle
 	
 	hstr gvec2_to_hstr(gvec2 vector)
 	{
-		return hsprintf("%f" APRILPARTICLE_VALUE_SEPARATOR "%f", vector.x, vector.y);
+		return hsprintf("%f" APRILPARTICLE_VECTOR_SEPARATOR "%f", vector.x, vector.y);
 	}
 
 	hstr gvec3_to_hstr(gvec3 vector)
 	{
-		return hsprintf("%f" APRILPARTICLE_VALUE_SEPARATOR "%f" APRILPARTICLE_VALUE_SEPARATOR "%f", vector.x, vector.y, vector.z);
+		return hsprintf("%f" APRILPARTICLE_VECTOR_SEPARATOR "%f" APRILPARTICLE_VECTOR_SEPARATOR "%f", vector.x, vector.y, vector.z);
 	}
 
 	gvec2 hstr_to_gvec2(chstr string)
 	{
-		harray<hstr> data = string.split(APRILPARTICLE_VALUE_SEPARATOR);
+		harray<hstr> data = string.split(APRILPARTICLE_VECTOR_SEPARATOR);
 		if (data.size() != 2)
 		{
 			throw hl_exception("Error! Cannot convert string '" + string + "' to gtypes::Vector2.");
@@ -48,7 +48,7 @@ namespace aprilparticle
 
 	gvec3 hstr_to_gvec3(chstr string)
 	{
-		harray<hstr> data = string.split(APRILPARTICLE_VALUE_SEPARATOR);
+		harray<hstr> data = string.split(APRILPARTICLE_VECTOR_SEPARATOR);
 		if (data.size() != 3)
 		{
 			throw hl_exception("Error! Cannot convert string '" + string + "' to gtypes::Vector3.");

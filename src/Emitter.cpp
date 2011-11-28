@@ -157,7 +157,7 @@ namespace aprilparticle
 
 	void Emitter::setAngle(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_VALUE_SEPARATOR);
+		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
 		this->setAngleRange(data.first(), data.last());
 	}
 

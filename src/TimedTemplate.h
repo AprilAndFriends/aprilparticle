@@ -50,7 +50,7 @@
 	{ \
 		result += hsprintf("%f" APRILPARTICLE_TIMING_SEPARATOR "%s", this->times[i], (prefix(this->name[i])suffix).c_str()); \
 	} \
-	return result.join(APRILPARTICLE_VALUE_SEPARATOR);
+	return result.join(APRILPARTICLE_VECTOR_SEPARATOR);
 
 #define TIMED_TEMPLATE_ADD_TIMING(name, value) \
 	time = hclamp(time, 0.0f, 1.0f); \
@@ -67,7 +67,7 @@
 
 #define TIMED_TEMPLATE_UPDATE(particle, var, name) \
 	this->_ratio = particle->getLifeProgressRatio(); \
-	if (this->_ratio < this->times.first()) \
+	if (this->_ratio <= this->times.first()) \
 	{ \
 		particle->var = this->name.first(); \
 	} \
