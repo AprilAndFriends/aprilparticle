@@ -23,11 +23,13 @@ namespace aprilparticle
 		Attractor::Attractor(chstr name) : Space(name)
 		{
 			this->force = 1.0f;
+			this->exponent = 2.0f;
 		}
 		
-		Attractor::Attractor(gvec3 position, float radius, float force, chstr name) : Space(position, radius, name)
+		Attractor::Attractor(gvec3 position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
 		{
 			this->force = force;
+			this->exponent = exponent;
 		}
 
 		Attractor::~Attractor()
@@ -41,12 +43,14 @@ namespace aprilparticle
 				*property_exists = true;
 			}
 			if (name == "force")	return this->getForce();
+			if (name == "exponent")	return this->getExponent();
 			return Space::getProperty(name, property_exists);
 		}
 
 		bool Attractor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "force")	this->setForce(value);
+			if		(name == "force")		this->setForce(value);
+			else if	(name == "exponent")	this->setExponent(value);
 			else return Space::setProperty(name, value);
 			return true;
 		}
@@ -58,7 +62,18 @@ namespace aprilparticle
 			if (is_inside(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{
 				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
-				movement += this->_direction.normalized() * (this->force * this->_factor * this->_factor * k);
+				if (this->exponent != 1.0f)
+				{
+					if (this->exponent == (int)this->exponent)
+					{
+						this->_factor = pow(this->_factor, (int)this->exponent);
+					}
+					else
+					{
+						this->_factor = pow(this->_factor, this->exponent);
+					}
+				}
+				movement += this->_direction.normalized() * (RAND_RANGE(Randomness) * this->force * this->_factor * k);
 			}
 		}
 

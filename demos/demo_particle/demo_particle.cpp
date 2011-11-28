@@ -207,7 +207,7 @@ void setupVortex()
 	aprilparticle::Affectors::Revolutor* revolutor = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, gvec3(0.0f, 1.0f, 0.0f), 0.2f, true);
 	vortex->registerAffector(revolutor);
 	emitter->addAffector(revolutor);
-	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f);
+	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f, 2.0f);
 	vortex->registerAffector(attractor);
 	emitter->addAffector(attractor);
 
@@ -264,7 +264,7 @@ void setupQuazar()
 	jetTopEmitter->setTexture(blueParticle); // texture is shared among several particle systems
 	jetBottomEmitter->setTexture(blueParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f);
+	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f, 2.0f);
 	quazar->registerAffector(gravity);
 	discEmitter->addAffector(gravity);
 	aprilparticle::Affectors::Revolutor* spin = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, gvec3(1.0f, 0.0f, 0.0f), 0.2f, true);
@@ -273,16 +273,16 @@ void setupQuazar()
 	aprilparticle::Affectors::LinearForce* top = new aprilparticle::Affectors::LinearForce(gvec3(1.0f, 0.0f, 0.0f));
 	quazar->registerAffector(top);
 	jetTopEmitter->addAffector(top);
-	aprilparticle::Affectors::Attractor* attractorTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 15.0f, 4.0f);
+	aprilparticle::Affectors::Attractor* attractorTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
 	quazar->registerAffector(attractorTop);
 	jetTopEmitter->addAffector(attractorTop);
 	aprilparticle::Affectors::LinearForce* bottom = new aprilparticle::Affectors::LinearForce(gvec3(-1.0f, 0.0f, 0.0f));
 	quazar->registerAffector(bottom);
 	jetBottomEmitter->addAffector(bottom);
-	aprilparticle::Affectors::Attractor* attractorBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f);
+	aprilparticle::Affectors::Attractor* attractorBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
 	quazar->registerAffector(attractorBottom);
 	jetBottomEmitter->addAffector(attractorBottom);
-	aprilparticle::Affectors::Attractor* inverseGravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 6.0f, -4.0f);
+	aprilparticle::Affectors::Attractor* inverseGravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 6.0f, -4.0f, 2.0f);
 	quazar->registerAffector(inverseGravity);
 	jetTopEmitter->addAffector(inverseGravity); // affector is shared among several emitters
 	jetBottomEmitter->addAffector(inverseGravity); // affector is shared among several emitters
@@ -328,7 +328,7 @@ void setupTwirl()
 	left->setTexture(redParticle); // texture is shared among several particle systems
 	right->setTexture(greenParticle); // texture is shared among several particle systems
 	// affectors
-	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f);
+	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
 	twirl->registerAffector(gravity);
 	left->addAffector(gravity); // affector is shared among several emitters
 	right->addAffector(gravity); // affector is shared among several emitters
@@ -389,7 +389,7 @@ void setupMilkyWay()
 	emitter2->addAffector(evolutor);
 	emitter3->addAffector(evolutor);
 	emitter4->addAffector(evolutor);
-	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, 5.0f);
+	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, 5.0f, 2.0f);
 	milkyWay->registerAffector(attractor);
 	emitter1->addAffector(attractor);
 	emitter2->addAffector(attractor);

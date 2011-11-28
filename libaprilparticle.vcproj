@@ -215,7 +215,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorColorMultiChanger.cpp"
+					RelativePath=".\src\Affectors\AffectorColorChangerTimed.cpp"
 					>
 				</File>
 				<File
@@ -227,11 +227,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorSpace.cpp"
+					RelativePath=".\src\Affectors\AffectorResizer.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\Affectors\AffectorResizer.cpp"
+					RelativePath=".\src\Affectors\AffectorResizerTimed.cpp"
 					>
 				</File>
 				<File
@@ -244,6 +244,14 @@
 				</File>
 				<File
 					RelativePath=".\src\Affectors\AffectorScaler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorScalerTimed.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Affectors\AffectorSpace.cpp"
 					>
 				</File>
 			</Filter>
@@ -282,6 +290,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\TimedTemplate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Util.h"
 				>
 			</File>
@@ -305,7 +317,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorColorMultiChanger.h"
+					RelativePath=".\include\aprilparticle\AffectorColorChangerTimed.h"
 					>
 				</File>
 				<File
@@ -317,11 +329,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorSpace.h"
+					RelativePath=".\include\aprilparticle\AffectorResizer.h"
 					>
 				</File>
 				<File
-					RelativePath=".\include\aprilparticle\AffectorResizer.h"
+					RelativePath=".\include\aprilparticle\AffectorResizerTimed.h"
 					>
 				</File>
 				<File
@@ -334,6 +346,14 @@
 				</File>
 				<File
 					RelativePath=".\include\aprilparticle\AffectorScaler.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorScalerTimed.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\aprilparticle\AffectorSpace.h"
 					>
 				</File>
 			</Filter>

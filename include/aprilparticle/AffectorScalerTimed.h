@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.3
 /// 
@@ -10,10 +9,10 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Represents a color multi-changer.
+/// Represents a scaler with timed values.
 
-#ifndef APRILPARTICLE_COLOR_MULTI_CHANGER_H
-#define APRILPARTICLE_COLOR_MULTI_CHANGER_H
+#ifndef APRILPARTICLE_SCALER_TIMED_H
+#define APRILPARTICLE_SCALER_TIMED_H
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
@@ -30,28 +29,28 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		class aprilparticleExport ColorMultiChanger : public Affector
+		class aprilparticleExport ScalerTimed : public Affector
 		{
 		public:
-			ColorMultiChanger(chstr name = "");
-			ColorMultiChanger(hmap<float, april::Color> colorTimings, chstr name = "");
-			~ColorMultiChanger();
+			ScalerTimed(chstr name = "");
+			ScalerTimed(hmap<float, float> timings, chstr name = "");
+			~ScalerTimed();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
-			HL_DEFINE_GET(harray<april::Color>, colors, Colors);
-			void setColorTimings(hmap<float, april::Color> value);
-			void setColorTimings(chstr value);
+			HL_DEFINE_GET(harray<float>, scales, Scales);
+			void setTimings(hmap<float, float> value);
+			void setTimings(chstr value);
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void addColorTiming(float time, april::Color color);
+			void addTiming(float time, float scale);
 			
 			void update(Particle* emitter, float k, gvec3& movement);
 			
 		protected:
 			harray<float> times;
-			harray<april::Color> colors;
+			harray<float> scales;
 
 		private:
 			float _ratio;

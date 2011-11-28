@@ -20,6 +20,7 @@
 
 #define APRILPARTICLE_VALUE_SEPARATOR ","
 #define APRILPARTICLE_RANGE_SEPARATOR ";"
+#define APRILPARTICLE_TIMING_SEPARATOR ":"
 
 namespace aprilparticle
 {

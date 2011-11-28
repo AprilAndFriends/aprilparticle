@@ -39,14 +39,14 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "position")	return gvec3_to_str(this->getPosition());
+			if (name == "position")	return gvec3_to_hstr(this->getPosition());
 			if (name == "radius")	return this->getRadius();
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool Space::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(str_to_gvec3(value));
+			if		(name == "position")	this->setPosition(hstr_to_gvec3(value));
 			else if	(name == "radius")		this->setRadius(value);
 			else return Affector::setProperty(name, value);
 			return true;

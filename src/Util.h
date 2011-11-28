@@ -18,13 +18,20 @@
 #include <gtypes/Vector3.h>
 #include <hltypes/hstring.h>
 
+#define RAND_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
+#define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
+#define TRY_GET_TYPE(value, name) if (value == name) return #name;
+#define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
+	hsprintf("%s" APRILPARTICLE_RANGE_SEPARATOR "%s", func(this->getMin ## name()).c_str(), func(this->getMax ## name()).c_str()) : \
+	func(this->getMin ## name()).c_str())
+
 namespace aprilparticle
 {
 	hstr generateName(chstr prefix);
-	hstr gvec2_to_str(gvec2 vector);
-	hstr gvec3_to_str(gvec3 vector);
-	gvec2 str_to_gvec2(chstr string);
-	gvec3 str_to_gvec3(chstr string);
+	hstr gvec2_to_hstr(gvec2 vector);
+	hstr gvec3_to_hstr(gvec3 vector);
+	gvec2 hstr_to_gvec2(chstr string);
+	gvec3 hstr_to_gvec3(chstr string);
 	
 }
 

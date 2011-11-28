@@ -104,7 +104,9 @@
     <ClInclude Include="include\aprilparticle\AffectorAttractor.h" />
     <ClInclude Include="include\aprilparticle\AffectorCallbackAffector.h" />
     <ClInclude Include="include\aprilparticle\AffectorColorChanger.h" />
-    <ClInclude Include="include\aprilparticle\AffectorColorMultiChanger.h" />
+    <ClInclude Include="include\aprilparticle\AffectorColorChangerTimed.h" />
+    <ClInclude Include="include\aprilparticle\AffectorResizerTimed.h" />
+    <ClInclude Include="include\aprilparticle\AffectorScalerTimed.h" />
     <ClInclude Include="include\aprilparticle\AffectorSpace.h" />
     <ClInclude Include="include\aprilparticle\AffectorRevolutor.h" />
     <ClInclude Include="include\aprilparticle\AffectorForceField.h" />
@@ -118,6 +120,7 @@
     <ClInclude Include="include\aprilparticle\Emitter.h" />
     <ClInclude Include="include\aprilparticle\Particle.h" />
     <ClInclude Include="include\aprilparticle\System.h" />
+    <ClInclude Include="src\TimedTemplate.h" />
     <ClInclude Include="src\Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +129,9 @@
     <ClCompile Include="src\Affectors\AffectorAttractor.cpp" />
     <ClCompile Include="src\Affectors\AffectorCallbackAffector.cpp" />
     <ClCompile Include="src\Affectors\AffectorColorChanger.cpp" />
-    <ClCompile Include="src\Affectors\AffectorColorMultiChanger.cpp" />
+    <ClCompile Include="src\Affectors\AffectorColorChangerTimed.cpp" />
+    <ClCompile Include="src\Affectors\AffectorResizerTimed.cpp" />
+    <ClCompile Include="src\Affectors\AffectorScalerTimed.cpp" />
     <ClCompile Include="src\Affectors\AffectorSpace.cpp" />
     <ClCompile Include="src\Affectors\AffectorRevolutor.cpp" />
     <ClCompile Include="src\Affectors\AffectorForceField.cpp" />

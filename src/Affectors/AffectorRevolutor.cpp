@@ -57,7 +57,7 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "axis")				return gvec3_to_str(this->getAxis());
+			if (name == "axis")				return gvec3_to_hstr(this->getAxis());
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
 			return Space::getProperty(name, property_exists);
@@ -65,7 +65,7 @@ namespace aprilparticle
 
 		bool Revolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "axis")			this->setAxis(str_to_gvec3(value));
+			if		(name == "axis")			this->setAxis(hstr_to_gvec3(value));
 			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
 			else if	(name == "clockwise")		this->setClockwise(value);
 			else return Space::setProperty(name, value);
@@ -79,7 +79,7 @@ namespace aprilparticle
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)
 			{
-				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * this->evolutionSpeed * this->angle * k);
+				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * RAND_RANGE(Randomness) * this->evolutionSpeed * this->angle * k);
 				movement += this->_position + _rotation * this->_direction - particle->position;
 			}
 		}

@@ -37,15 +37,15 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "start_size")	return gvec2_to_str(this->getStartSize());
-			if (name == "end_size")		return gvec2_to_str(this->getEndSize());
+			if (name == "start_size")	return gvec2_to_hstr(this->getStartSize());
+			if (name == "end_size")		return gvec2_to_hstr(this->getEndSize());
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool Resizer::setProperty(chstr name, chstr value)
 		{
-			if		(name == "start_size")	this->setStartSize(str_to_gvec2(value));
-			else if	(name == "end_size")	this->setEndSize(str_to_gvec2(value));
+			if		(name == "start_size")	this->setStartSize(hstr_to_gvec2(value));
+			else if	(name == "end_size")	this->setEndSize(hstr_to_gvec2(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}

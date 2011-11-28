@@ -8,8 +8,9 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#include "Particle.h"
 #include "AffectorRotator.h"
+#include "Particle.h"
+#include "Util.h"
 
 namespace aprilparticle
 {
@@ -48,7 +49,7 @@ namespace aprilparticle
 
 		void Rotator::update(Particle* particle, float k, gvec3& movement)
 		{
-			particle->angle += this->rotationSpeed * k;
+			particle->angle += RAND_RANGE(Randomness) * this->rotationSpeed * k;
 		}
 
 	}

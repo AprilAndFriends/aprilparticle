@@ -35,6 +35,13 @@ namespace aprilparticle
 		virtual ~Affector();
 
 		HL_DEFINE_GETSET(hstr, name, Name);
+		HL_DEFINE_GETSET(float, minRandomness, MinRandomness);
+		HL_DEFINE_GETSET(float, maxRandomness, MaxRandomness);
+		HL_DEFINE_GETSET(gvec3, chaoticity, Chaoticity);
+		void setRandomness(float value);
+		void setRandomness(chstr value);
+
+		void setRandomnessRange(float min, float max);
 				
 		virtual void update(Particle* particle, float k, gvec3& movement) { }
 		virtual void draw() { }
@@ -43,6 +50,9 @@ namespace aprilparticle
 
 	protected:
 		hstr name;
+		float minRandomness;
+		float maxRandomness;
+		gvec3 chaoticity;
 		System* system;
 
 		void _setSystem(System* value) { this->system = value; }

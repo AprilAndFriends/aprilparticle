@@ -36,20 +36,20 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "direction")	return gvec3_to_str(this->getDirection());
+			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
 			return Affector::getProperty(name, property_exists);
 		}
 
 		bool LinearForce::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(str_to_gvec3(value));
+			if		(name == "direction")	this->setDirection(hstr_to_gvec3(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}
 
 		void LinearForce::update(Particle* particle, float k, gvec3& movement)
 		{
-			particle->direction += this->direction * k;
+			particle->direction += this->direction * (RAND_RANGE(Randomness) * k);
 		}
 
 	}

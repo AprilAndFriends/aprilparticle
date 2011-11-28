@@ -69,13 +69,13 @@ namespace aprilparticle
 			{
 				*property_exists = true;
 			}
-			if (name == "direction")	return gvec3_to_str(this->getDirection());
+			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
 			return Space::getProperty(name, property_exists);
 		}
 
 		bool ForceField::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(str_to_gvec3(value));
+			if		(name == "direction")	this->setDirection(hstr_to_gvec3(value));
 			else return Space::setProperty(name, value);
 			return true;
 		}
@@ -86,7 +86,7 @@ namespace aprilparticle
 			if (this->_squaredLength <= this->radius * this->radius)
 			{
 				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
-				movement += this->direction * (this->_factor * this->_factor * k);
+				movement += this->direction * (RAND_RANGE(Randomness) * this->_factor * this->_factor * k);
 			}
 		}
 		

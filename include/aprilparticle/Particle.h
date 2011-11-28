@@ -32,13 +32,15 @@ namespace aprilparticle
 		class Attractor;
 		class CallbackAffector;
 		class ColorChanger;
-		class ColorMultiChanger;
+		class ColorChangerTimed;
 		class Revolutor;
 		class ForceField;
 		class LinearForce;
 		class Resizer;
+		class ResizerTimed;
 		class Rotator;
 		class Scaler;
+		class ScalerTimed;
 	}
 
 	class aprilparticleExport Particle
@@ -49,13 +51,15 @@ namespace aprilparticle
 		friend class Affectors::Attractor;
 		friend class Affectors::CallbackAffector;
 		friend class Affectors::ColorChanger;
-		friend class Affectors::ColorMultiChanger;
+		friend class Affectors::ColorChangerTimed;
 		friend class Affectors::Revolutor;
 		friend class Affectors::ForceField;
 		friend class Affectors::LinearForce;
 		friend class Affectors::Resizer;
+		friend class Affectors::ResizerTimed;
 		friend class Affectors::Rotator;
 		friend class Affectors::Scaler;
+		friend class Affectors::ScalerTimed;
 
 		Particle();
 		virtual ~Particle();

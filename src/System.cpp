@@ -23,10 +23,22 @@
 #include "System.h"
 #include "Util.h"
 
-#define TRY_LOAD_AFFECTOR(affector, type, name) \
+#define TRY_LOAD_AFFECTOR_N(affector, type, name) \
 	if (type == #name) \
 	{ \
 		affector = new Affectors::name(); \
+	}
+#define TRY_LOAD_AFFECTOR_T(affector, type, name, node) \
+	if (type == #name) \
+	{ \
+		if (!node->pexists("timings")) \
+		{ \
+			affector = new Affectors::name(); \
+		} \
+		else \
+		{ \
+			affector = new Affectors::name ## Timed(); \
+		} \
 	}
 
 namespace aprilparticle
@@ -186,13 +198,13 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "up")	return gvec3_to_str(this->getUp());
+		if (name == "up")	return gvec3_to_hstr(this->getUp());
 		return ActiveObject::getProperty(name, property_exists);
 	}
 
 	bool System::setProperty(chstr name, chstr value)
 	{
-		if		(name == "up")	this->setUp(str_to_gvec3(value));
+		if		(name == "up")	this->setUp(hstr_to_gvec3(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}
@@ -288,16 +300,16 @@ namespace aprilparticle
 		if (root->pexists("type"))
 		{
 			hstr type = root->pstr("type");
-			TRY_LOAD_AFFECTOR(affector, type, Attractor);
-			TRY_LOAD_AFFECTOR(affector, type, CallbackAffector);
-			TRY_LOAD_AFFECTOR(affector, type, ColorChanger);
-			TRY_LOAD_AFFECTOR(affector, type, ColorMultiChanger);
-			TRY_LOAD_AFFECTOR(affector, type, ForceField);
-			TRY_LOAD_AFFECTOR(affector, type, LinearForce);
-			TRY_LOAD_AFFECTOR(affector, type, Resizer);
-			TRY_LOAD_AFFECTOR(affector, type, Revolutor);
-			TRY_LOAD_AFFECTOR(affector, type, Rotator);
-			TRY_LOAD_AFFECTOR(affector, type, Scaler);
+			TRY_LOAD_AFFECTOR_N(affector, type, Attractor);
+			TRY_LOAD_AFFECTOR_N(affector, type, CallbackAffector);
+			TRY_LOAD_AFFECTOR_N(affector, type, ForceField);
+			TRY_LOAD_AFFECTOR_N(affector, type, LinearForce);
+			TRY_LOAD_AFFECTOR_N(affector, type, Revolutor);
+			TRY_LOAD_AFFECTOR_N(affector, type, Rotator);
+			// these affectors supports timed values
+			TRY_LOAD_AFFECTOR_T(affector, type, ColorChanger, root);
+			TRY_LOAD_AFFECTOR_T(affector, type, Resizer, root);
+			TRY_LOAD_AFFECTOR_T(affector, type, Scaler, root);
 			if (affector == NULL)
 			{
 				throw hl_exception("Error! Affector type '" + type + " does not exist!");

@@ -30,10 +30,11 @@ namespace aprilparticle
 		{
 		public:
 			Attractor(chstr name = "");
-			Attractor(gvec3 position, float radius, float force, chstr name = "");
+			Attractor(gvec3 position, float radius, float force, float exponent, chstr name = "");
 			~Attractor();
 
 			HL_DEFINE_GETSET(float, force, Force);
+			HL_DEFINE_GETSET(float, exponent, Exponent);
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
@@ -42,6 +43,7 @@ namespace aprilparticle
 
 		protected:
 			float force;
+			float exponent;
 
 		private:
 			gvec3 _direction;

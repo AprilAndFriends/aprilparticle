@@ -26,17 +26,17 @@ namespace aprilparticle
 		return prefix + "_" + hstr(count);
 	}
 	
-	hstr gvec2_to_str(gvec2 vector)
+	hstr gvec2_to_hstr(gvec2 vector)
 	{
 		return hsprintf("%f" APRILPARTICLE_VALUE_SEPARATOR "%f", vector.x, vector.y);
 	}
 
-	hstr gvec3_to_str(gvec3 vector)
+	hstr gvec3_to_hstr(gvec3 vector)
 	{
 		return hsprintf("%f" APRILPARTICLE_VALUE_SEPARATOR "%f" APRILPARTICLE_VALUE_SEPARATOR "%f", vector.x, vector.y, vector.z);
 	}
 
-	gvec2 str_to_gvec2(chstr string)
+	gvec2 hstr_to_gvec2(chstr string)
 	{
 		harray<hstr> data = string.split(APRILPARTICLE_VALUE_SEPARATOR);
 		if (data.size() != 2)
@@ -46,7 +46,7 @@ namespace aprilparticle
 		return gvec2(data[0], data[1]);
 	}
 
-	gvec3 str_to_gvec3(chstr string)
+	gvec3 hstr_to_gvec3(chstr string)
 	{
 		harray<hstr> data = string.split(APRILPARTICLE_VALUE_SEPARATOR);
 		if (data.size() != 3)

@@ -37,7 +37,7 @@ namespace aprilparticle
 			*property_exists = true;
 		}
 		if (name == "name")		return this->getName();
-		if (name == "position")	return gvec3_to_str(this->getPosition());
+		if (name == "position")	return gvec3_to_hstr(this->getPosition());
 		if (name == "visible")	return this->isVisible();
 		if (name == "enabled")	return this->isEnabled();
 		if (property_exists != NULL)
@@ -51,7 +51,7 @@ namespace aprilparticle
 	bool ActiveObject::setProperty(chstr name, chstr value)
 	{
 		if		(name == "name")		this->setName(value);
-		else if	(name == "position")	this->setPosition(str_to_gvec3(value));
+		else if	(name == "position")	this->setPosition(hstr_to_gvec3(value));
 		else if	(name == "visible")		this->setVisible(value);
 		else if	(name == "enabled")		this->setEnabled(value);
 		else

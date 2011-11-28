@@ -25,13 +25,6 @@
 #include "System.h"
 #include "Util.h"
 
-#define RAND_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
-#define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
-#define TRY_GET_TYPE(value, name) if (value == name) return #name;
-#define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
-	hsprintf("%s" APRILPARTICLE_RANGE_SEPARATOR "%s", func(this->getMin ## name()).c_str(), func(this->getMax ## name()).c_str()) : \
-	func(this->getMin ## name()).c_str())
-
 namespace aprilparticle
 {
 	gvec3 v[4]; // optimization
@@ -147,13 +140,13 @@ namespace aprilparticle
 	void Emitter::setDirection(chstr value)
 	{
 		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
-		this->setDirectionRange(str_to_gvec3(data.first()), str_to_gvec3(data.last()));
+		this->setDirectionRange(hstr_to_gvec3(data.first()), hstr_to_gvec3(data.last()));
 	}
 
 	void Emitter::setSize(chstr value)
 	{
 		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
-		this->setSizeRange(str_to_gvec2(data.first()), str_to_gvec2(data.last()));
+		this->setSizeRange(hstr_to_gvec2(data.first()), hstr_to_gvec2(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
@@ -237,7 +230,7 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, HollowCylinder);
 			return "";
 		}
-		if (name == "dimensions")		return gvec3_to_str(this->getDimensions());
+		if (name == "dimensions")		return gvec3_to_hstr(this->getDimensions());
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
@@ -254,8 +247,8 @@ namespace aprilparticle
 		if (name == "loops")			return this->getLoops();
 		if (name == "limit")			return this->getLimit();
 		if (name == "life")				return GET_RANGE(Life, hstr);
-		if (name == "direction")		return GET_RANGE(Direction, gvec3_to_str);
-		if (name == "size")				return GET_RANGE(Size, gvec2_to_str);
+		if (name == "direction")		return GET_RANGE(Direction, gvec3_to_hstr);
+		if (name == "size")				return GET_RANGE(Size, gvec2_to_hstr);
 		if (name == "scale")			return GET_RANGE(Scale, hstr);
 		if (name == "angle")			return GET_RANGE(Angle, hstr);
 		return ActiveObject::getProperty(name, property_exists);
@@ -274,7 +267,7 @@ namespace aprilparticle
 			TRY_SET_TYPE(value, Cylinder);
 			TRY_SET_TYPE(value, HollowCylinder);
 		}
-		else if	(name == "dimensions")		this->setDimensions(str_to_gvec3(value));
+		else if	(name == "dimensions")		this->setDimensions(hstr_to_gvec3(value));
 		else if	(name == "blend_mode")
 		{
 			if		(value == "default")		this->setBlendMode(april::DEFAULT);
