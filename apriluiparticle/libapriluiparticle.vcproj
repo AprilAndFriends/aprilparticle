@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include/apriluiparticle;../include;../../hltypes/include;../../gtypes/include;../../aprilui/include;../../aprilparticle/include"
+				AdditionalIncludeDirectories="include/apriluiparticle;../include;../../hltypes/include;../../gtypes/include;../../april/include;../../aprilui/include;../../aprilparticle/include"
 				PreprocessorDefinitions="_WIN32;_DEBUG;APRILUIPARTICLE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libhltypes.lib libgtypes.lib libaprilui.lib libaprilparticle.lib"
+				AdditionalDependencies="libhltypes.lib libgtypes.lib libapril.lib libaprilui.lib libaprilparticle.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				AdditionalLibraryDirectories="$(SolutionDir)bin"
 				GenerateDebugInformation="true"
@@ -116,7 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="include/apriluiparticle;../include;../../hltypes/include;../../gtypes/include;../../aprilui/include;../../aprilparticle/include"
+				AdditionalIncludeDirectories="include/apriluiparticle;../include;../../hltypes/include;../../gtypes/include;../../april/include;../../aprilui/include;../../aprilparticle/include"
 				PreprocessorDefinitions="_WIN32;APRILUIPARTICLE_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -136,7 +136,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libhltypes.lib libgtypes.lib libaprilui.lib libaprilparticle.lib"
+				AdditionalDependencies="libhltypes.lib libgtypes.lib libapril.lib libaprilui.lib libaprilparticle.lib"
 				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(SolutionDir)bin"
@@ -179,11 +179,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\Particle.cpp"
+				RelativePath=".\src\apriluiparticle.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\apriluiparticle.cpp"
+				RelativePath=".\src\Particle.cpp"
 				>
 			</File>
 		</Filter>
@@ -193,15 +193,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\include\apriluiparticle\Particle.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\apriluiparticle\apriluiparticle.h"
 				>
 			</File>
 			<File
 				RelativePath=".\include\apriluiparticle\apriluiparticleExport.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\apriluiparticle\Particle.h"
 				>
 			</File>
 		</Filter>
