@@ -113,20 +113,18 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
-  <Dependencies Name="Release">
-    <Project Name="libapril"/>
-    <Project Name="libaprilutil"/>
-    <Project Name="libaprilparticle"/>
-    <Project Name="demo_particle"/>
-    <Project Name="libgtypes"/>
-    <Project Name="libhltypes"/>
-  </Dependencies>
   <Dependencies Name="Debug">
     <Project Name="libgtypes"/>
     <Project Name="libhltypes"/>
     <Project Name="libapril"/>
-    <Project Name="libaprilutil"/>
     <Project Name="libaprilparticle"/>
     <Project Name="demo_particle"/>
+  </Dependencies>
+  <Dependencies Name="Release">
+    <Project Name="libapril"/>
+    <Project Name="libaprilparticle"/>
+    <Project Name="demo_particle"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libhltypes"/>
   </Dependencies>
 </CodeLite_Project>

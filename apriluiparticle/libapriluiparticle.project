@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="libapriluiparticle" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00030001N0005Debug0000000000000001N0011Linux_Debug0000000000000001N0013Release_Win32000000000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="src/Particle.cpp"/>
+    <File Name="fileproperties.rc"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="include/apriluiparticle/Particle.h"/>
+    <File Name="include/apriluiparticle/apriluiparticleExport.h"/>
+    <File Name="include/apriluiparticle/apriluiparticleExport.h"/>
+  </VirtualDirectory>
+  <Dependencies Name="Linux_Debug">
+    <Project Name="libhltypes"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libaprilui"/>
+    <Project Name="libaprilparticle"/>
+  </Dependencies>
+  <Settings Type="Dynamic Library">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+        <IncludePath Value="./include"/>
+        <IncludePath Value="./include/apriluiparticle"/>
+        <IncludePath Value="../include"/>
+        <IncludePath Value="../../hltypes/include"/>
+        <IncludePath Value="../../gtypes/include"/>
+        <IncludePath Value="../../aprilui/include"/>
+        <IncludePath Value="../../aprilparticle/include"/>
+        <Preprocessor Value="APRILUIPARTICLE_EXPORTS"/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="../lib"/>
+        <LibraryPath Value="../../hltypes/bin/$(ConfigurationName)"/>
+        <LibraryPath Value="../../gtypes/bin/$(ConfigurationName)"/>
+        <LibraryPath Value="../../aprilui/bin/$(ConfigurationName)"/>
+        <LibraryPath Value="../../aprilparticle/bin/$(ConfigurationName)"/>
+        <LibraryPath Value="../bin"/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
+        <Preprocessor Value="_WIN32"/>
+        <Preprocessor Value="_DEBUG"/>
+      </Compiler>
+      <Linker Options="" Required="yes">
+        <Library Value="libhltypes_d"/>
+        <Library Value="libgtypes_d"/>
+        <Library Value="libaprilui_d"/>
+        <Library Value="libaprilparticle_d"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)_d.dll" IntermediateDirectory="../bin/apriluiparticle/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release_Win32" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="">
+        <Preprocessor Value="_WIN32"/>
+      </Compiler>
+      <Linker Options="-O2" Required="yes">
+        <Library Value="libhltypes"/>
+        <Library Value="libgtypes"/>
+        <Library Value="libaprilui"/>
+        <Library Value="libaprilparticle"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="../bin/apriluiparticle/$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Debug">
+    <Project Name="libhltypes"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libaprilui"/>
+    <Project Name="libaprilparticle"/>
+  </Dependencies>
+  <Dependencies Name="Release_Win32">
+    <Project Name="libhltypes"/>
+    <Project Name="libgtypes"/>
+    <Project Name="libaprilui"/>
+    <Project Name="libaprilparticle"/>
+  </Dependencies>
+</CodeLite_Project>
