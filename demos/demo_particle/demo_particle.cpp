@@ -246,7 +246,7 @@ void setupRain()
 	rain->registerEmitter(emitter);
 	// textures
 	april::Texture* rainDrop = april::rendersys->loadTexture("../media/rain_drop.png");
-	bubbles->registerTexture(rainDrop);
+	rain->registerTexture(rainDrop);
 	emitter->setTexture(rainDrop);
 	// making the emitter responsible for these affectors
 	aprilparticle::Affectors::LinearForce* gravity = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, -0.5f, 0.0f));

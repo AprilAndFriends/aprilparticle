@@ -92,12 +92,12 @@ namespace aprilparticle
 		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
 		for (this->_i = 0; this->_i < this->limit; this->_i++)
 		{
-			this->_triangleBatch[this->_i * 6 + 0].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 1].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 2].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 2].v = 0.0f;
-			this->_triangleBatch[this->_i * 6 + 3].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 3].v = 1.0f;
-			this->_triangleBatch[this->_i * 6 + 4].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 4].v = 0.0f;
-			this->_triangleBatch[this->_i * 6 + 5].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 5].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 0].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 1].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 2].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 2].v = 1.0f;
+			this->_triangleBatch[this->_i * 6 + 3].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 3].v = 0.0f;
+			this->_triangleBatch[this->_i * 6 + 4].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 4].v = 1.0f;
+			this->_triangleBatch[this->_i * 6 + 5].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 5].v = 1.0f;
 		}
 	}
 
@@ -506,14 +506,14 @@ namespace aprilparticle
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
-			
-				this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+				
+				this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, (*it)->angle);
 				v[0] = this->_rot * v[0];
 				v[1] = this->_rot * v[1];
 				v[2] = this->_rot * v[2];
 				v[3] = this->_rot * v[3];
 			
-				this->_billboard.lookAt((*it)->position, point - (*it)->position, up);
+				this->_billboard.lookAt((*it)->position, point - (*it)->position, -up);
 				this->_billboard.inverse();
 				v[0] = this->_billboard * v[0];
 				v[1] = this->_billboard * v[1];
@@ -529,13 +529,10 @@ namespace aprilparticle
 				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 			}
 		}
-		if (this->texture != NULL)
-		{
-			april::rendersys->setTexture(this->texture);
-		}
-		april::rendersys->setBlendMode(this->blendMode);
 		if (this->_i > 0)
 		{
+			april::rendersys->setTexture(this->texture);
+			april::rendersys->setBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}
@@ -559,7 +556,7 @@ namespace aprilparticle
 				this->_offset.set((*it)->position.x + offset.x, (*it)->position.y + offset.y, 0.0f);
 				if ((*it)->angle != 0.0f)
 				{
-					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, (*it)->angle);
+					this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, (*it)->angle);
 					v[0] = this->_rot * v[0] + this->_offset;
 					v[1] = this->_rot * v[1] + this->_offset;
 					v[2] = this->_rot * v[2] + this->_offset;
@@ -583,13 +580,10 @@ namespace aprilparticle
 				
 			}
 		}
-		if (this->texture != NULL)
-		{
-			april::rendersys->setTexture(this->texture);
-		}
-		april::rendersys->setBlendMode(this->blendMode);
 		if (this->_i > 0)
 		{
+			april::rendersys->setTexture(this->texture);
+			april::rendersys->setBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}
@@ -637,13 +631,10 @@ namespace aprilparticle
 				
 			}
 		}
-		if (this->texture != NULL)
-		{
-			april::rendersys->setTexture(this->texture);
-		}
-		april::rendersys->setBlendMode(this->blendMode);
 		if (this->_i > 0)
 		{
+			april::rendersys->setTexture(this->texture);
+			april::rendersys->setBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}

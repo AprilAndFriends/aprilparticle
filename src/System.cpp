@@ -227,9 +227,14 @@ namespace aprilparticle
 		this->loaded = true;
 		hlxml::Document newDoc(filename);
 		hlxml::Node* root = newDoc.root();
+		this->name = "";
 		foreach_xmlproperty (prop, root)
 		{
 			this->setProperty(prop->name(), prop->value());
+		}
+		if (this->name == "")
+		{
+			this->name = this->filename.rsplit('.', -1, true).first();
 		}
 		foreach_xmlnode (node, root)
 		{
