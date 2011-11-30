@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="libapriluiparticle"
-	ProjectGUID="{B3E8DF67-FEE1-4660-902C-3D31D1F0735F}"
+	ProjectGUID="{CE9C3635-54D9-41BF-96CC-D06B967C5A51}"
 	RootNamespace="apriluiparticle"
 	TargetFrameworkVersion="196613"
 	>
