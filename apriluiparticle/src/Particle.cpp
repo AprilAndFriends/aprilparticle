@@ -81,6 +81,7 @@ namespace apriluiparticle
 				this->system->setPosition(this->systemPosition.x - position.x, this->systemPosition.y - position.y, this->systemPosition.z);
 				this->system->draw(position, april::Color(this->getColor(), this->getDerivedAlpha()));
 			}
+			april::rendersys->setBlendMode(april::DEFAULT);
 		}
 		aprilui::Object::OnDraw();
 	}
