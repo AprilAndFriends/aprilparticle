@@ -22,8 +22,8 @@
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
 #define TRY_GET_TYPE(value, name) if (value == name) return #name;
 #define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
-	hsprintf("%s" APRILPARTICLE_RANGE_SEPARATOR "%s", func(this->getMin ## name()).c_str(), func(this->getMax ## name()).c_str()) : \
-	func(this->getMin ## name()).c_str())
+	func(this->getMin ## name()) + APRILPARTICLE_RANGE_SEPARATOR + func(this->getMax ## name()) : \
+	func(this->getMin ## name()))
 
 namespace aprilparticle
 {
