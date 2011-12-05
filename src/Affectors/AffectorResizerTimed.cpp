@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.4
 /// 
@@ -25,7 +24,7 @@ namespace aprilparticle
 	{
 		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
 		{
-			TIMED_TEMPLATE_INIT(sizes, gvec2(1.0f, 1.0f), gvec2(0.0f, 0.0f));
+			TIMED_TEMPLATE_INIT(gvec2(1.0f, 1.0f), gvec2(0.0f, 0.0f));
 		}
 		
 		ResizerTimed::ResizerTimed(hmap<float, gvec2> timings, chstr name) : Affector(name)
@@ -39,7 +38,7 @@ namespace aprilparticle
 
 		void ResizerTimed::setTimings(hmap<float, gvec2> value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS(sizes);
+			TIMED_TEMPLATE_SET_TIMINGS;
 		}
 		
 		void ResizerTimed::setTimings(chstr value)
@@ -47,9 +46,9 @@ namespace aprilparticle
 			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2, hstr_to_gvec2);
 		}
 		
-		void ResizerTimed::addTiming(float time, gvec2 size)
+		void ResizerTimed::addTiming(float time, gvec2 value)
 		{
-			TIMED_TEMPLATE_ADD_TIMING(sizes, size);
+			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
 		hstr ResizerTimed::getProperty(chstr name, bool* property_exists)
@@ -60,7 +59,7 @@ namespace aprilparticle
 			}
 			if (name == "timings")
 			{
-				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(sizes, gvec2_to_hstr, ); // conversion using gvec2_to_hstr prefix
+				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(gvec2_to_hstr, ); // conversion using gvec2_to_hstr prefix
 			}
 			return Affector::getProperty(name, property_exists);
 		}
@@ -74,7 +73,7 @@ namespace aprilparticle
 
 		void ResizerTimed::update(Particle* particle, float k, gvec3& movement)
 		{
-			TIMED_TEMPLATE_UPDATE(particle, size, sizes);
+			TIMED_TEMPLATE_UPDATE(particle, size);
 		}
 		
 	}

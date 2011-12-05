@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.4
 /// 
@@ -38,20 +37,20 @@ namespace aprilparticle
 			~ColorChangerTimed();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
-			HL_DEFINE_GET(harray<april::Color>, colors, Colors);
+			HL_DEFINE_GET(harray<april::Color>, values, Values);
 			void setTimings(hmap<float, april::Color> value);
 			void setTimings(chstr value);
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void addTiming(float time, april::Color color);
+			void addTiming(float time, april::Color value);
 			
 			void update(Particle* emitter, float k, gvec3& movement);
 			
 		protected:
 			harray<float> times;
-			harray<april::Color> colors;
+			harray<april::Color> values;
 
 		private:
 			float _ratio;

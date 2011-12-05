@@ -23,7 +23,7 @@ namespace aprilparticle
 	{
 		ColorChangerTimed::ColorChangerTimed(chstr name) : Affector(name)
 		{
-			TIMED_TEMPLATE_INIT(colors, APRIL_COLOR_WHITE, april::Color(APRIL_COLOR_WHITE, 0));
+			TIMED_TEMPLATE_INIT(APRIL_COLOR_WHITE, april::Color(APRIL_COLOR_WHITE, 0));
 		}
 		
 		ColorChangerTimed::ColorChangerTimed(hmap<float, april::Color> timings, chstr name) : Affector(name)
@@ -37,7 +37,7 @@ namespace aprilparticle
 
 		void ColorChangerTimed::setTimings(hmap<float, april::Color> value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS(colors);
+			TIMED_TEMPLATE_SET_TIMINGS;
 		}
 		
 		void ColorChangerTimed::setTimings(chstr value)
@@ -45,9 +45,9 @@ namespace aprilparticle
 			TIMED_TEMPLATE_SET_TIMINGS_STRING(april::Color, april::Color);
 		}
 		
-		void ColorChangerTimed::addTiming(float time, april::Color color)
+		void ColorChangerTimed::addTiming(float time, april::Color value)
 		{
-			TIMED_TEMPLATE_ADD_TIMING(colors, color);
+			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
 		hstr ColorChangerTimed::getProperty(chstr name, bool* property_exists)
@@ -58,7 +58,7 @@ namespace aprilparticle
 			}
 			if (name == "timings")
 			{
-				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(colors, , .hex()); // conversion using .hex() suffix
+				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(, .hex()); // conversion using .hex() suffix
 			}
 			return Affector::getProperty(name, property_exists);
 		}
@@ -72,7 +72,7 @@ namespace aprilparticle
 
 		void ColorChangerTimed::update(Particle* particle, float k, gvec3& movement)
 		{
-			TIMED_TEMPLATE_UPDATE(particle, color, colors);
+			TIMED_TEMPLATE_UPDATE(particle, color);
 		}
 		
 	}

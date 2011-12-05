@@ -22,7 +22,7 @@ namespace aprilparticle
 	{
 		ScalerTimed::ScalerTimed(chstr name) : Affector(name)
 		{
-			TIMED_TEMPLATE_INIT(scales, 1.0f, 0.0f);
+			TIMED_TEMPLATE_INIT(1.0f, 0.0f);
 		}
 		
 		ScalerTimed::ScalerTimed(hmap<float, float> timings, chstr name) : Affector(name)
@@ -36,7 +36,7 @@ namespace aprilparticle
 
 		void ScalerTimed::setTimings(hmap<float, float> value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS(scales);
+			TIMED_TEMPLATE_SET_TIMINGS;
 		}
 		
 		void ScalerTimed::setTimings(chstr value)
@@ -44,9 +44,9 @@ namespace aprilparticle
 			TIMED_TEMPLATE_SET_TIMINGS_STRING(float, ); // no special constructor needed for "float"
 		}
 		
-		void ScalerTimed::addTiming(float time, float scale)
+		void ScalerTimed::addTiming(float time, float value)
 		{
-			TIMED_TEMPLATE_ADD_TIMING(scales, scale);
+			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
 		hstr ScalerTimed::getProperty(chstr name, bool* property_exists)
@@ -57,7 +57,7 @@ namespace aprilparticle
 			}
 			if (name == "timings")
 			{
-				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(scales, hstr, ); // conversion using hstr prefix
+				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(hstr, ); // conversion using hstr prefix
 			}
 			return Affector::getProperty(name, property_exists);
 		}
@@ -71,7 +71,7 @@ namespace aprilparticle
 
 		void ScalerTimed::update(Particle* particle, float k, gvec3& movement)
 		{
-			TIMED_TEMPLATE_UPDATE(particle, scale, scales);
+			TIMED_TEMPLATE_UPDATE(particle, scale);
 		}
 		
 	}

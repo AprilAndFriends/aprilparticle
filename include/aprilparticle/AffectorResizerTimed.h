@@ -1,5 +1,4 @@
 /// @file
-/// @author  Domagoj Cerjan
 /// @author  Boris Mikic
 /// @version 1.4
 /// 
@@ -38,20 +37,20 @@ namespace aprilparticle
 			~ResizerTimed();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
-			HL_DEFINE_GET(harray<gvec2>, sizes, Sizes);
+			HL_DEFINE_GET(harray<gvec2>, values, Values);
 			void setTimings(hmap<float, gvec2> value);
 			void setTimings(chstr value);
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void addTiming(float time, gvec2 size);
+			void addTiming(float time, gvec2 value);
 			
 			void update(Particle* emitter, float k, gvec3& movement);
 			
 		protected:
 			harray<float> times;
-			harray<gvec2> sizes;
+			harray<gvec2> values;
 
 		private:
 			float _ratio;

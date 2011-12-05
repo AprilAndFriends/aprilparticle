@@ -37,20 +37,20 @@ namespace aprilparticle
 			~ScalerTimed();
 
 			HL_DEFINE_GET(harray<float>, times, Times);
-			HL_DEFINE_GET(harray<float>, scales, Scales);
+			HL_DEFINE_GET(harray<float>, values, Values);
 			void setTimings(hmap<float, float> value);
 			void setTimings(chstr value);
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void addTiming(float time, float scale);
+			void addTiming(float time, float value);
 			
 			void update(Particle* emitter, float k, gvec3& movement);
 			
 		protected:
 			harray<float> times;
-			harray<float> scales;
+			harray<float> values;
 
 		private:
 			float _ratio;
