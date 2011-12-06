@@ -1,0 +1,447 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; };
+		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; };
+		C9255A12148E30C30019ED23 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0F148E30C30019ED23 /* Particle.h */; };
+		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
+		C9255A16148E30D20019ED23 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
+		C9EF00F6148E321B00B80144 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F1148E321B00B80144 /* april.framework */; };
+		C9EF00F7148E321B00B80144 /* aprilparticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F2148E321B00B80144 /* aprilparticle.framework */; };
+		C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F3148E321B00B80144 /* aprilui.framework */; };
+		C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F4148E321B00B80144 /* gtypes.framework */; };
+		C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F5148E321B00B80144 /* hltypes.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C9255A0D148E30C30019ED23 /* apriluiparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticle.h; path = include/apriluiparticle/apriluiparticle.h; sourceTree = SOURCE_ROOT; };
+		C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleExport.h; path = include/apriluiparticle/apriluiparticleExport.h; sourceTree = SOURCE_ROOT; };
+		C9255A0F148E30C30019ED23 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/apriluiparticle/Particle.h; sourceTree = SOURCE_ROOT; };
+		C9255A13148E30D20019ED23 /* apriluiparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticle.cpp; path = src/apriluiparticle.cpp; sourceTree = SOURCE_ROOT; };
+		C9255A14148E30D20019ED23 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = src/Particle.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF8457148D03DC00B64799 /* apriluiparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = apriluiparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9EF00F1148E321B00B80144 /* april.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = april.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/april.framework"; sourceTree = "<group>"; };
+		C9EF00F2148E321B00B80144 /* aprilparticle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilparticle.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilparticle.framework"; sourceTree = "<group>"; };
+		C9EF00F3148E321B00B80144 /* aprilui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilui.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilui.framework"; sourceTree = "<group>"; };
+		C9EF00F4148E321B00B80144 /* gtypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/gtypes.framework"; sourceTree = "<group>"; };
+		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9DF8453148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9EF00F6148E321B00B80144 /* april.framework in Frameworks */,
+				C9EF00F7148E321B00B80144 /* aprilparticle.framework in Frameworks */,
+				C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */,
+				C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */,
+				C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C9DF844B148D03DB00B64799 = {
+			isa = PBXGroup;
+			children = (
+				C9EF00F1148E321B00B80144 /* april.framework */,
+				C9EF00F2148E321B00B80144 /* aprilparticle.framework */,
+				C9EF00F3148E321B00B80144 /* aprilui.framework */,
+				C9EF00F4148E321B00B80144 /* gtypes.framework */,
+				C9EF00F5148E321B00B80144 /* hltypes.framework */,
+				C9DF8481148D049500B64799 /* Info.plist */,
+				C9DF8475148D041D00B64799 /* include */,
+				C9DF8460148D03DC00B64799 /* src */,
+				C9DF8459148D03DC00B64799 /* Frameworks */,
+				C9DF8458148D03DC00B64799 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9DF8458148D03DC00B64799 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF8457148D03DC00B64799 /* apriluiparticle.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9DF8459148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9DF8460148D03DC00B64799 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C9255A13148E30D20019ED23 /* apriluiparticle.cpp */,
+				C9255A14148E30D20019ED23 /* Particle.cpp */,
+			);
+			name = src;
+			path = apriluiparticle;
+			sourceTree = "<group>";
+		};
+		C9DF8475148D041D00B64799 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C9255A0D148E30C30019ED23 /* apriluiparticle.h */,
+				C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */,
+				C9255A0F148E30C30019ED23 /* Particle.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C9DF8506148D0ADA00B64799 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */,
+				C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */,
+				C9255A12148E30C30019ED23 /* Particle.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C9DF8456148D03DC00B64799 /* apriluiparticle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */;
+			buildPhases = (
+				C9DF8452148D03DC00B64799 /* Sources */,
+				C9DF8453148D03DC00B64799 /* Frameworks */,
+				C9DF8506148D0ADA00B64799 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = apriluiparticle;
+			productName = apriluiparticle;
+			productReference = C9DF8457148D03DC00B64799 /* apriluiparticle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9DF844D148D03DB00B64799 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "libapriluiparticle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C9DF844B148D03DB00B64799;
+			productRefGroup = C9DF8458148D03DC00B64799 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9DF8456148D03DC00B64799 /* apriluiparticle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9DF8452148D03DC00B64799 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */,
+				C9255A16148E30D20019ED23 /* Particle.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C9DF846A148D03DC00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C9DF846B148D03DC00B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C9DF846D148D03DC00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+					"\"$(SRCROOT)/../../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.4;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		C9DF846E148D03DC00B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+					"\"$(SRCROOT)/../../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.4;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		C9DF8483148D04FE00B64799 /* Debug-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = "Debug-LLVM";
+		};
+		C9DF8484148D04FE00B64799 /* Debug-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+					"\"$(SRCROOT)/../../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "Debug-LLVM";
+		};
+		C9DF8485148D050500B64799 /* Release-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = "Release-LLVM";
+		};
+		C9DF8486148D050500B64799 /* Release-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+					"\"$(SRCROOT)/../../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "Release-LLVM";
+		};
+		C9DF8489148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = "App Store";
+		};
+		C9DF848A148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+					"\"$(SRCROOT)/../../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "App Store";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "libapriluiparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF846A148D03DC00B64799 /* Debug */,
+				C9DF8483148D04FE00B64799 /* Debug-LLVM */,
+				C9DF846B148D03DC00B64799 /* Release */,
+				C9DF8485148D050500B64799 /* Release-LLVM */,
+				C9DF8489148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF846D148D03DC00B64799 /* Debug */,
+				C9DF8484148D04FE00B64799 /* Debug-LLVM */,
+				C9DF846E148D03DC00B64799 /* Release */,
+				C9DF8486148D050500B64799 /* Release-LLVM */,
+				C9DF848A148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9DF844D148D03DB00B64799 /* Project object */;
+}

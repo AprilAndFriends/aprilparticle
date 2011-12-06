@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9DF84A2148D057600B64799 /* ActiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848B148D057600B64799 /* ActiveObject.cpp */; };
+		C9DF84A3148D057600B64799 /* Affector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848D148D057600B64799 /* Affector.cpp */; };
+		C9DF84A4148D057600B64799 /* AffectorAttractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848E148D057600B64799 /* AffectorAttractor.cpp */; };
+		C9DF84A5148D057600B64799 /* AffectorCallbackAffector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848F148D057600B64799 /* AffectorCallbackAffector.cpp */; };
+		C9DF84A6148D057600B64799 /* AffectorColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8490148D057600B64799 /* AffectorColorChanger.cpp */; };
+		C9DF84A7148D057600B64799 /* AffectorColorChangerTimed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8491148D057600B64799 /* AffectorColorChangerTimed.cpp */; };
+		C9DF84A8148D057600B64799 /* AffectorForceField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8492148D057600B64799 /* AffectorForceField.cpp */; };
+		C9DF84A9148D057600B64799 /* AffectorLinearForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8493148D057600B64799 /* AffectorLinearForce.cpp */; };
+		C9DF84AA148D057600B64799 /* AffectorResizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8494148D057600B64799 /* AffectorResizer.cpp */; };
+		C9DF84AB148D057600B64799 /* AffectorResizerTimed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8495148D057600B64799 /* AffectorResizerTimed.cpp */; };
+		C9DF84AC148D057600B64799 /* AffectorRevolutor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8496148D057600B64799 /* AffectorRevolutor.cpp */; };
+		C9DF84AD148D057600B64799 /* AffectorRotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8497148D057600B64799 /* AffectorRotator.cpp */; };
+		C9DF84AE148D057600B64799 /* AffectorScaler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8498148D057600B64799 /* AffectorScaler.cpp */; };
+		C9DF84AF148D057600B64799 /* AffectorScalerTimed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF8499148D057600B64799 /* AffectorScalerTimed.cpp */; };
+		C9DF84B0148D057600B64799 /* AffectorSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849A148D057600B64799 /* AffectorSpace.cpp */; };
+		C9DF84B1148D057600B64799 /* aprilparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849B148D057600B64799 /* aprilparticle.cpp */; };
+		C9DF84B2148D057600B64799 /* Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849C148D057600B64799 /* Emitter.cpp */; };
+		C9DF84B3148D057600B64799 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849D148D057600B64799 /* Particle.cpp */; };
+		C9DF84B4148D057600B64799 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849E148D057600B64799 /* System.cpp */; };
+		C9DF84B6148D057600B64799 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF84A0148D057600B64799 /* Util.cpp */; };
+		C9DF8508148D0AE500B64799 /* ActiveObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84B8148D058B00B64799 /* ActiveObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8509148D0AE500B64799 /* Affector.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84B9148D058B00B64799 /* Affector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850A148D0AE500B64799 /* AffectorAttractor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BA148D058B00B64799 /* AffectorAttractor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850B148D0AE500B64799 /* AffectorCallbackAffector.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BB148D058B00B64799 /* AffectorCallbackAffector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850C148D0AE500B64799 /* AffectorColorChanger.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BC148D058B00B64799 /* AffectorColorChanger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850D148D0AE500B64799 /* AffectorColorChangerTimed.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BD148D058B00B64799 /* AffectorColorChangerTimed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850E148D0AE500B64799 /* AffectorForceField.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BE148D058B00B64799 /* AffectorForceField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF850F148D0AE500B64799 /* AffectorLinearForce.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84BF148D058B00B64799 /* AffectorLinearForce.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8510148D0AE500B64799 /* AffectorResizer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C0148D058B00B64799 /* AffectorResizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8511148D0AE500B64799 /* AffectorResizerTimed.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C1148D058B00B64799 /* AffectorResizerTimed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8512148D0AE500B64799 /* AffectorRevolutor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C2148D058B00B64799 /* AffectorRevolutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8513148D0AE500B64799 /* AffectorRotator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C3148D058B00B64799 /* AffectorRotator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8514148D0AE500B64799 /* Affectors.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C4148D058B00B64799 /* Affectors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8515148D0AE500B64799 /* AffectorScaler.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C5148D058B00B64799 /* AffectorScaler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8516148D0AE500B64799 /* AffectorScalerTimed.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C6148D058B00B64799 /* AffectorScalerTimed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8517148D0AE500B64799 /* AffectorSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C7148D058B00B64799 /* AffectorSpace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8518148D0AE500B64799 /* aprilparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C8148D058B00B64799 /* aprilparticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8519148D0AE500B64799 /* aprilparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84C9148D058B00B64799 /* aprilparticleExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF851A148D0AE500B64799 /* Emitter.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84CA148D058B00B64799 /* Emitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF851B148D0AE500B64799 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84CB148D058B00B64799 /* Particle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF851C148D0AE500B64799 /* System.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DF84CC148D058B00B64799 /* System.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9DF8523148D0D2F00B64799 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF851F148D0D2F00B64799 /* april.framework */; };
+		C9DF8524148D0D2F00B64799 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8520148D0D2F00B64799 /* gtypes.framework */; };
+		C9DF8525148D0D2F00B64799 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8521148D0D2F00B64799 /* hltypes.framework */; };
+		C9DF8526148D0D2F00B64799 /* hlxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8522148D0D2F00B64799 /* hlxml.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C9DF8457148D03DC00B64799 /* aprilparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = aprilparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9DF848B148D057600B64799 /* ActiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActiveObject.cpp; path = src/ActiveObject.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF848D148D057600B64799 /* Affector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Affector.cpp; sourceTree = "<group>"; };
+		C9DF848E148D057600B64799 /* AffectorAttractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorAttractor.cpp; sourceTree = "<group>"; };
+		C9DF848F148D057600B64799 /* AffectorCallbackAffector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorCallbackAffector.cpp; sourceTree = "<group>"; };
+		C9DF8490148D057600B64799 /* AffectorColorChanger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorColorChanger.cpp; sourceTree = "<group>"; };
+		C9DF8491148D057600B64799 /* AffectorColorChangerTimed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorColorChangerTimed.cpp; sourceTree = "<group>"; };
+		C9DF8492148D057600B64799 /* AffectorForceField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorForceField.cpp; sourceTree = "<group>"; };
+		C9DF8493148D057600B64799 /* AffectorLinearForce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorLinearForce.cpp; sourceTree = "<group>"; };
+		C9DF8494148D057600B64799 /* AffectorResizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorResizer.cpp; sourceTree = "<group>"; };
+		C9DF8495148D057600B64799 /* AffectorResizerTimed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorResizerTimed.cpp; sourceTree = "<group>"; };
+		C9DF8496148D057600B64799 /* AffectorRevolutor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorRevolutor.cpp; sourceTree = "<group>"; };
+		C9DF8497148D057600B64799 /* AffectorRotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorRotator.cpp; sourceTree = "<group>"; };
+		C9DF8498148D057600B64799 /* AffectorScaler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorScaler.cpp; sourceTree = "<group>"; };
+		C9DF8499148D057600B64799 /* AffectorScalerTimed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorScalerTimed.cpp; sourceTree = "<group>"; };
+		C9DF849A148D057600B64799 /* AffectorSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffectorSpace.cpp; sourceTree = "<group>"; };
+		C9DF849B148D057600B64799 /* aprilparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = aprilparticle.cpp; path = src/aprilparticle.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF849C148D057600B64799 /* Emitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Emitter.cpp; path = src/Emitter.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF849D148D057600B64799 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = src/Particle.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF849E148D057600B64799 /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = System.cpp; path = src/System.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF849F148D057600B64799 /* TimedTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimedTemplate.h; path = src/TimedTemplate.h; sourceTree = SOURCE_ROOT; };
+		C9DF84A0148D057600B64799 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = src/Util.cpp; sourceTree = SOURCE_ROOT; };
+		C9DF84A1148D057600B64799 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = src/Util.h; sourceTree = SOURCE_ROOT; };
+		C9DF84B8148D058B00B64799 /* ActiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveObject.h; path = include/aprilparticle/ActiveObject.h; sourceTree = "<group>"; };
+		C9DF84B9148D058B00B64799 /* Affector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Affector.h; path = include/aprilparticle/Affector.h; sourceTree = "<group>"; };
+		C9DF84BA148D058B00B64799 /* AffectorAttractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorAttractor.h; path = include/aprilparticle/AffectorAttractor.h; sourceTree = "<group>"; };
+		C9DF84BB148D058B00B64799 /* AffectorCallbackAffector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorCallbackAffector.h; path = include/aprilparticle/AffectorCallbackAffector.h; sourceTree = "<group>"; };
+		C9DF84BC148D058B00B64799 /* AffectorColorChanger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorColorChanger.h; path = include/aprilparticle/AffectorColorChanger.h; sourceTree = "<group>"; };
+		C9DF84BD148D058B00B64799 /* AffectorColorChangerTimed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorColorChangerTimed.h; path = include/aprilparticle/AffectorColorChangerTimed.h; sourceTree = "<group>"; };
+		C9DF84BE148D058B00B64799 /* AffectorForceField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorForceField.h; path = include/aprilparticle/AffectorForceField.h; sourceTree = "<group>"; };
+		C9DF84BF148D058B00B64799 /* AffectorLinearForce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorLinearForce.h; path = include/aprilparticle/AffectorLinearForce.h; sourceTree = "<group>"; };
+		C9DF84C0148D058B00B64799 /* AffectorResizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorResizer.h; path = include/aprilparticle/AffectorResizer.h; sourceTree = "<group>"; };
+		C9DF84C1148D058B00B64799 /* AffectorResizerTimed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorResizerTimed.h; path = include/aprilparticle/AffectorResizerTimed.h; sourceTree = "<group>"; };
+		C9DF84C2148D058B00B64799 /* AffectorRevolutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorRevolutor.h; path = include/aprilparticle/AffectorRevolutor.h; sourceTree = "<group>"; };
+		C9DF84C3148D058B00B64799 /* AffectorRotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorRotator.h; path = include/aprilparticle/AffectorRotator.h; sourceTree = "<group>"; };
+		C9DF84C4148D058B00B64799 /* Affectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Affectors.h; path = include/aprilparticle/Affectors.h; sourceTree = "<group>"; };
+		C9DF84C5148D058B00B64799 /* AffectorScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorScaler.h; path = include/aprilparticle/AffectorScaler.h; sourceTree = "<group>"; };
+		C9DF84C6148D058B00B64799 /* AffectorScalerTimed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorScalerTimed.h; path = include/aprilparticle/AffectorScalerTimed.h; sourceTree = "<group>"; };
+		C9DF84C7148D058B00B64799 /* AffectorSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorSpace.h; path = include/aprilparticle/AffectorSpace.h; sourceTree = "<group>"; };
+		C9DF84C8148D058B00B64799 /* aprilparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aprilparticle.h; path = include/aprilparticle/aprilparticle.h; sourceTree = "<group>"; };
+		C9DF84C9148D058B00B64799 /* aprilparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aprilparticleExport.h; path = include/aprilparticle/aprilparticleExport.h; sourceTree = "<group>"; };
+		C9DF84CA148D058B00B64799 /* Emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Emitter.h; path = include/aprilparticle/Emitter.h; sourceTree = "<group>"; };
+		C9DF84CB148D058B00B64799 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/aprilparticle/Particle.h; sourceTree = "<group>"; };
+		C9DF84CC148D058B00B64799 /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = System.h; path = include/aprilparticle/System.h; sourceTree = "<group>"; };
+		C9DF851F148D0D2F00B64799 /* april.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = april.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/april.framework"; sourceTree = "<group>"; };
+		C9DF8520148D0D2F00B64799 /* gtypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtypes.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/gtypes.framework"; sourceTree = "<group>"; };
+		C9DF8521148D0D2F00B64799 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
+		C9DF8522148D0D2F00B64799 /* hlxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hlxml.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/hlxml.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9DF8453148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9DF8523148D0D2F00B64799 /* april.framework in Frameworks */,
+				C9DF8524148D0D2F00B64799 /* gtypes.framework in Frameworks */,
+				C9DF8525148D0D2F00B64799 /* hltypes.framework in Frameworks */,
+				C9DF8526148D0D2F00B64799 /* hlxml.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C9DF844B148D03DB00B64799 = {
+			isa = PBXGroup;
+			children = (
+				C9DF8481148D049500B64799 /* Info.plist */,
+				C9DF8475148D041D00B64799 /* include */,
+				C9DF8460148D03DC00B64799 /* src */,
+				C9DF8459148D03DC00B64799 /* Frameworks */,
+				C9DF8458148D03DC00B64799 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9DF8458148D03DC00B64799 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF8457148D03DC00B64799 /* aprilparticle.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9DF8459148D03DC00B64799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF851F148D0D2F00B64799 /* april.framework */,
+				C9DF8520148D0D2F00B64799 /* gtypes.framework */,
+				C9DF8521148D0D2F00B64799 /* hltypes.framework */,
+				C9DF8522148D0D2F00B64799 /* hlxml.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9DF8460148D03DC00B64799 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF848B148D057600B64799 /* ActiveObject.cpp */,
+				C9DF848C148D057600B64799 /* Affectors */,
+				C9DF849B148D057600B64799 /* aprilparticle.cpp */,
+				C9DF849C148D057600B64799 /* Emitter.cpp */,
+				C9DF849D148D057600B64799 /* Particle.cpp */,
+				C9DF849E148D057600B64799 /* System.cpp */,
+				C9DF849F148D057600B64799 /* TimedTemplate.h */,
+				C9DF84A0148D057600B64799 /* Util.cpp */,
+				C9DF84A1148D057600B64799 /* Util.h */,
+			);
+			name = src;
+			path = aprilparticle;
+			sourceTree = "<group>";
+		};
+		C9DF8475148D041D00B64799 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF84B8148D058B00B64799 /* ActiveObject.h */,
+				C9DF84B9148D058B00B64799 /* Affector.h */,
+				C9DF84BA148D058B00B64799 /* AffectorAttractor.h */,
+				C9DF84BB148D058B00B64799 /* AffectorCallbackAffector.h */,
+				C9DF84BC148D058B00B64799 /* AffectorColorChanger.h */,
+				C9DF84BD148D058B00B64799 /* AffectorColorChangerTimed.h */,
+				C9DF84BE148D058B00B64799 /* AffectorForceField.h */,
+				C9DF84BF148D058B00B64799 /* AffectorLinearForce.h */,
+				C9DF84C0148D058B00B64799 /* AffectorResizer.h */,
+				C9DF84C1148D058B00B64799 /* AffectorResizerTimed.h */,
+				C9DF84C2148D058B00B64799 /* AffectorRevolutor.h */,
+				C9DF84C3148D058B00B64799 /* AffectorRotator.h */,
+				C9DF84C4148D058B00B64799 /* Affectors.h */,
+				C9DF84C5148D058B00B64799 /* AffectorScaler.h */,
+				C9DF84C6148D058B00B64799 /* AffectorScalerTimed.h */,
+				C9DF84C7148D058B00B64799 /* AffectorSpace.h */,
+				C9DF84C8148D058B00B64799 /* aprilparticle.h */,
+				C9DF84C9148D058B00B64799 /* aprilparticleExport.h */,
+				C9DF84CA148D058B00B64799 /* Emitter.h */,
+				C9DF84CB148D058B00B64799 /* Particle.h */,
+				C9DF84CC148D058B00B64799 /* System.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		C9DF848C148D057600B64799 /* Affectors */ = {
+			isa = PBXGroup;
+			children = (
+				C9DF848D148D057600B64799 /* Affector.cpp */,
+				C9DF848E148D057600B64799 /* AffectorAttractor.cpp */,
+				C9DF848F148D057600B64799 /* AffectorCallbackAffector.cpp */,
+				C9DF8490148D057600B64799 /* AffectorColorChanger.cpp */,
+				C9DF8491148D057600B64799 /* AffectorColorChangerTimed.cpp */,
+				C9DF8492148D057600B64799 /* AffectorForceField.cpp */,
+				C9DF8493148D057600B64799 /* AffectorLinearForce.cpp */,
+				C9DF8494148D057600B64799 /* AffectorResizer.cpp */,
+				C9DF8495148D057600B64799 /* AffectorResizerTimed.cpp */,
+				C9DF8496148D057600B64799 /* AffectorRevolutor.cpp */,
+				C9DF8497148D057600B64799 /* AffectorRotator.cpp */,
+				C9DF8498148D057600B64799 /* AffectorScaler.cpp */,
+				C9DF8499148D057600B64799 /* AffectorScalerTimed.cpp */,
+				C9DF849A148D057600B64799 /* AffectorSpace.cpp */,
+			);
+			name = Affectors;
+			path = src/Affectors;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C9DF8506148D0ADA00B64799 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9DF8508148D0AE500B64799 /* ActiveObject.h in Headers */,
+				C9DF8509148D0AE500B64799 /* Affector.h in Headers */,
+				C9DF850A148D0AE500B64799 /* AffectorAttractor.h in Headers */,
+				C9DF850B148D0AE500B64799 /* AffectorCallbackAffector.h in Headers */,
+				C9DF850C148D0AE500B64799 /* AffectorColorChanger.h in Headers */,
+				C9DF850D148D0AE500B64799 /* AffectorColorChangerTimed.h in Headers */,
+				C9DF850E148D0AE500B64799 /* AffectorForceField.h in Headers */,
+				C9DF850F148D0AE500B64799 /* AffectorLinearForce.h in Headers */,
+				C9DF8510148D0AE500B64799 /* AffectorResizer.h in Headers */,
+				C9DF8511148D0AE500B64799 /* AffectorResizerTimed.h in Headers */,
+				C9DF8512148D0AE500B64799 /* AffectorRevolutor.h in Headers */,
+				C9DF8513148D0AE500B64799 /* AffectorRotator.h in Headers */,
+				C9DF8514148D0AE500B64799 /* Affectors.h in Headers */,
+				C9DF8515148D0AE500B64799 /* AffectorScaler.h in Headers */,
+				C9DF8516148D0AE500B64799 /* AffectorScalerTimed.h in Headers */,
+				C9DF8517148D0AE500B64799 /* AffectorSpace.h in Headers */,
+				C9DF8518148D0AE500B64799 /* aprilparticle.h in Headers */,
+				C9DF8519148D0AE500B64799 /* aprilparticleExport.h in Headers */,
+				C9DF851A148D0AE500B64799 /* Emitter.h in Headers */,
+				C9DF851B148D0AE500B64799 /* Particle.h in Headers */,
+				C9DF851C148D0AE500B64799 /* System.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C9DF8456148D03DC00B64799 /* aprilparticle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */;
+			buildPhases = (
+				C9DF8452148D03DC00B64799 /* Sources */,
+				C9DF8453148D03DC00B64799 /* Frameworks */,
+				C9DF8506148D0ADA00B64799 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = aprilparticle;
+			productName = aprilparticle;
+			productReference = C9DF8457148D03DC00B64799 /* aprilparticle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9DF844D148D03DB00B64799 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "aprilparticle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C9DF844B148D03DB00B64799;
+			productRefGroup = C9DF8458148D03DC00B64799 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9DF8456148D03DC00B64799 /* aprilparticle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9DF8452148D03DC00B64799 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9DF84A2148D057600B64799 /* ActiveObject.cpp in Sources */,
+				C9DF84A3148D057600B64799 /* Affector.cpp in Sources */,
+				C9DF84A4148D057600B64799 /* AffectorAttractor.cpp in Sources */,
+				C9DF84A5148D057600B64799 /* AffectorCallbackAffector.cpp in Sources */,
+				C9DF84A6148D057600B64799 /* AffectorColorChanger.cpp in Sources */,
+				C9DF84A7148D057600B64799 /* AffectorColorChangerTimed.cpp in Sources */,
+				C9DF84A8148D057600B64799 /* AffectorForceField.cpp in Sources */,
+				C9DF84A9148D057600B64799 /* AffectorLinearForce.cpp in Sources */,
+				C9DF84AA148D057600B64799 /* AffectorResizer.cpp in Sources */,
+				C9DF84AB148D057600B64799 /* AffectorResizerTimed.cpp in Sources */,
+				C9DF84AC148D057600B64799 /* AffectorRevolutor.cpp in Sources */,
+				C9DF84AD148D057600B64799 /* AffectorRotator.cpp in Sources */,
+				C9DF84AE148D057600B64799 /* AffectorScaler.cpp in Sources */,
+				C9DF84AF148D057600B64799 /* AffectorScalerTimed.cpp in Sources */,
+				C9DF84B0148D057600B64799 /* AffectorSpace.cpp in Sources */,
+				C9DF84B1148D057600B64799 /* aprilparticle.cpp in Sources */,
+				C9DF84B2148D057600B64799 /* Emitter.cpp in Sources */,
+				C9DF84B3148D057600B64799 /* Particle.cpp in Sources */,
+				C9DF84B4148D057600B64799 /* System.cpp in Sources */,
+				C9DF84B6148D057600B64799 /* Util.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C9DF846A148D03DC00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C9DF846B148D03DC00B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C9DF846D148D03DC00B64799 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.4;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		C9DF846E148D03DC00B64799 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.4;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		C9DF8483148D04FE00B64799 /* Debug-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = "Debug-LLVM";
+		};
+		C9DF8484148D04FE00B64799 /* Debug-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "Debug-LLVM";
+		};
+		C9DF8485148D050500B64799 /* Release-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = "Release-LLVM";
+		};
+		C9DF8486148D050500B64799 /* Release-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "Release-LLVM";
+		};
+		C9DF8489148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = "App Store";
+		};
+		C9DF848A148D051B00B64799 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../__build__/angels/Build/Products/Debug-LLVM\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 ppc";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = "App Store";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "aprilparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF846A148D03DC00B64799 /* Debug */,
+				C9DF8483148D04FE00B64799 /* Debug-LLVM */,
+				C9DF846B148D03DC00B64799 /* Release */,
+				C9DF8485148D050500B64799 /* Release-LLVM */,
+				C9DF8489148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9DF846D148D03DC00B64799 /* Debug */,
+				C9DF8484148D04FE00B64799 /* Debug-LLVM */,
+				C9DF846E148D03DC00B64799 /* Release */,
+				C9DF8486148D050500B64799 /* Release-LLVM */,
+				C9DF848A148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9DF844D148D03DB00B64799 /* Project object */;
+}

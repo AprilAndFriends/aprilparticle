@@ -87,7 +87,7 @@ namespace aprilparticle
 		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
 
 	private:
-		hmap<Emitter*, harray<hstr>> _mappedAffectors;
+		hmap<Emitter*, harray<hstr> > _mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures;
 		
 	};

@@ -27,7 +27,7 @@
 
 namespace aprilparticle
 {
-	gvec3 v[4]; // optimization
+	static gvec3 v[4]; // optimization
 
 	Emitter::Emitter(chstr name) : ActiveObject(name == "" ? generateName("Emitter") : name)
 	{
