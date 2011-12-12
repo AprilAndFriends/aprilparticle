@@ -73,13 +73,13 @@ namespace apriluiparticle
 			this->system->setVisible(this->isVisible());
 			if (!this->globalSpace)
 			{
-				this->system->draw(gvec2(), april::Color(this->getColor(), this->getDerivedAlpha()));
+				this->system->draw(gvec2(), this->_getDrawColor());
 			}
 			else
 			{
 				gvec2 position = this->initialPosition - this->getPosition();
 				this->system->setPosition(this->systemPosition.x - position.x, this->systemPosition.y - position.y, this->systemPosition.z);
-				this->system->draw(position, april::Color(this->getColor(), this->getDerivedAlpha()));
+				this->system->draw(position, this->_getDrawColor());
 			}
 			april::rendersys->setBlendMode(april::DEFAULT);
 		}
