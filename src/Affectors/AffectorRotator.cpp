@@ -30,6 +30,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* Rotator::createInstance(chstr name)
+		{
+			return new Rotator(name);
+		}
+
 		hstr Rotator::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

@@ -35,6 +35,7 @@ namespace aprilparticle
 			ColorChangerTimed(chstr name = "");
 			ColorChangerTimed(hmap<float, april::Color> timings, chstr name = "");
 			~ColorChangerTimed();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<april::Color>, values, Values);

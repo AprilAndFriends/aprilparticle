@@ -34,6 +34,11 @@ namespace aprilparticle
 		{
 		}
 
+		Affector* ScalerTimed::createInstance(chstr name)
+		{
+			return new ScalerTimed(name);
+		}
+
 		void ScalerTimed::setTimings(hmap<float, float> value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;

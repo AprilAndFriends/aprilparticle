@@ -33,6 +33,7 @@ namespace aprilparticle
 			Revolutor(chstr name = "");
 			Revolutor(gvec3 position, float radius, gvec3 axis, float evolutionSpeed, bool clockwise, chstr name = "");
 			~Revolutor();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec3, axis, Axis);
 			void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }

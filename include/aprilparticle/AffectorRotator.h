@@ -31,6 +31,7 @@ namespace aprilparticle
 			Rotator(chstr name = "");
 			Rotator(float rotationSpeed, chstr name = "");
 			~Rotator();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
 				

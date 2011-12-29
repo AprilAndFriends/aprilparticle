@@ -23,24 +23,6 @@
 #include "System.h"
 #include "Util.h"
 
-#define TRY_LOAD_AFFECTOR_N(affector, type, name) \
-	if (type == #name) \
-	{ \
-		affector = new Affectors::name(); \
-	}
-#define TRY_LOAD_AFFECTOR_T(affector, type, name, node) \
-	if (type == #name) \
-	{ \
-		if (!node->pexists("timings")) \
-		{ \
-			affector = new Affectors::name(); \
-		} \
-		else \
-		{ \
-			affector = new Affectors::name ## Timed(); \
-		} \
-	}
-
 namespace aprilparticle
 {
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name)
@@ -305,16 +287,11 @@ namespace aprilparticle
 		if (root->pexists("type"))
 		{
 			hstr type = root->pstr("type");
-			TRY_LOAD_AFFECTOR_N(affector, type, Attractor);
-			TRY_LOAD_AFFECTOR_N(affector, type, CallbackAffector);
-			TRY_LOAD_AFFECTOR_N(affector, type, ForceField);
-			TRY_LOAD_AFFECTOR_N(affector, type, LinearForce);
-			TRY_LOAD_AFFECTOR_N(affector, type, Revolutor);
-			TRY_LOAD_AFFECTOR_N(affector, type, Rotator);
-			// these affectors supports timed values
-			TRY_LOAD_AFFECTOR_T(affector, type, ColorChanger, root);
-			TRY_LOAD_AFFECTOR_T(affector, type, Resizer, root);
-			TRY_LOAD_AFFECTOR_T(affector, type, Scaler, root);
+			if (root->pexists("timings"))
+			{
+				type += "Timed";
+			}
+			affector = createAffector(type, root->pstr("name", ""));
 			if (affector == NULL)
 			{
 				throw hl_exception("Error! Affector type '" + type + " does not exist!");

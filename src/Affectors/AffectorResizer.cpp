@@ -31,6 +31,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* Resizer::createInstance(chstr name)
+		{
+			return new Resizer(name);
+		}
+
 		hstr Resizer::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

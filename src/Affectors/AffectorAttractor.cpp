@@ -36,6 +36,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* Attractor::createInstance(chstr name)
+		{
+			return new Attractor(name);
+		}
+
 		hstr Attractor::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

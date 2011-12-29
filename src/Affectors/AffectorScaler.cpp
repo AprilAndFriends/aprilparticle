@@ -30,6 +30,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* Scaler::createInstance(chstr name)
+		{
+			return new Scaler(name);
+		}
+
 		hstr Scaler::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

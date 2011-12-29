@@ -8,12 +8,18 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include <hltypes/exception.h>
+#include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
+#include "Affectors.h"
 #include "aprilparticle.h"
+
+#define REGISTER_AFFECTOR_TYPE(name) aprilparticle::registerAffectorFactory(#name, &Affectors::name::createInstance)
 
 namespace aprilparticle
 {
+	hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
+
 	void aprilparticle_writelog(chstr message)
 	{
 		printf("%s\n", message.c_str());
@@ -25,6 +31,18 @@ namespace aprilparticle
     {
 		log("initializing AprilParticle");
 		initForceField(); // so we can shoot the bad guys
+		REGISTER_AFFECTOR_TYPE(Attractor);
+		REGISTER_AFFECTOR_TYPE(CallbackAffector);
+		REGISTER_AFFECTOR_TYPE(ColorChanger);
+		REGISTER_AFFECTOR_TYPE(ColorChangerTimed);
+		REGISTER_AFFECTOR_TYPE(ForceField);
+		REGISTER_AFFECTOR_TYPE(LinearForce);
+		REGISTER_AFFECTOR_TYPE(Resizer);
+		REGISTER_AFFECTOR_TYPE(ResizerTimed);
+		REGISTER_AFFECTOR_TYPE(Revolutor);
+		REGISTER_AFFECTOR_TYPE(Rotator);
+		REGISTER_AFFECTOR_TYPE(Scaler);
+		REGISTER_AFFECTOR_TYPE(ScalerTimed);
     }
     
     void destroy()
@@ -42,4 +60,22 @@ namespace aprilparticle
 		g_logFunction(prefix + message);
 	}
 	
+	void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr))
+	{
+		if (gAffectorFactories.has_key(typeName))
+		{
+			throw hl_exception("Error! Affector Factory '" + typeName + "' already exists!");
+		}
+		gAffectorFactories[typeName] = factory;
+	}
+
+	Affector* createAffector(chstr typeName, chstr name)
+	{
+		if (gAffectorFactories.has_key(typeName))
+		{
+			return (*gAffectorFactories[typeName])(name);
+		}
+		return NULL;
+	}
+
 }

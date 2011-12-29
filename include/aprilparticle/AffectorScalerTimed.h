@@ -35,6 +35,7 @@ namespace aprilparticle
 			ScalerTimed(chstr name = "");
 			ScalerTimed(hmap<float, float> timings, chstr name = "");
 			~ScalerTimed();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<float>, values, Values);

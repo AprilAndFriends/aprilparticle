@@ -36,6 +36,11 @@ namespace aprilparticle
 		{
 		}
 
+		Affector* ResizerTimed::createInstance(chstr name)
+		{
+			return new ResizerTimed(name);
+		}
+
 		void ResizerTimed::setTimings(hmap<float, gvec2> value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;

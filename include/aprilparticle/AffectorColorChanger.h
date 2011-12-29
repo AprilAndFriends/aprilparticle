@@ -35,6 +35,7 @@ namespace aprilparticle
 			ColorChanger(april::Color endColor, chstr name = "");
 			ColorChanger(april::Color startColor, april::Color endColor, chstr name = "");
 			~ColorChanger();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
 			void setStartColor(chstr value) { this->startColor.set(value); }

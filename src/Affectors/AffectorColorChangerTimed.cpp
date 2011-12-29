@@ -35,6 +35,11 @@ namespace aprilparticle
 		{
 		}
 
+		Affector* ColorChangerTimed::createInstance(chstr name)
+		{
+			return new ColorChangerTimed(name);
+		}
+
 		void ColorChangerTimed::setTimings(hmap<float, april::Color> value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;

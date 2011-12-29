@@ -23,13 +23,19 @@
 #define APRILPARTICLE_RANGE_SEPARATOR ";"
 #define APRILPARTICLE_TIMING_SEPARATOR ":"
 
+#define APRILPARTICLE_REGISTER_AFFECTOR_TYPE(name) aprilparticle::registerAffectorFactory(#name, &name::createInstance)
+
 namespace aprilparticle
 {
+	class Affector;
+
     aprilparticleFnExport void init();
     aprilparticleFnExport void destroy();
 	aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
 	aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
-
+	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
+	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
+	
 };
 
 #endif

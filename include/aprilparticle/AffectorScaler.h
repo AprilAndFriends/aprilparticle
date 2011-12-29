@@ -31,6 +31,7 @@ namespace aprilparticle
 			Scaler(chstr name = "");
 			Scaler(float startScale, float endScale, chstr name = "");
 			~Scaler();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(float, startScale, StartScale);
 			HL_DEFINE_GETSET(float, endScale, EndScale);

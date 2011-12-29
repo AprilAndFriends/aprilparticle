@@ -40,6 +40,11 @@ namespace aprilparticle
 		{
 		}
 	
+		Affector* ColorChanger::createInstance(chstr name)
+		{
+			return new ColorChanger(name);
+		}
+
 		hstr ColorChanger::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

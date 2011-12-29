@@ -32,6 +32,7 @@ namespace aprilparticle
 			Attractor(chstr name = "");
 			Attractor(gvec3 position, float radius, float force, float exponent, chstr name = "");
 			~Attractor();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(float, force, Force);
 			HL_DEFINE_GETSET(float, exponent, Exponent);

@@ -28,6 +28,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* CallbackAffector::createInstance(chstr name)
+		{
+			return new CallbackAffector(name);
+		}
+
 		hstr CallbackAffector::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

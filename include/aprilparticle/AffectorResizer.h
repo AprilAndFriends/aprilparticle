@@ -32,6 +32,7 @@ namespace aprilparticle
 			Resizer(chstr name = "");
 			Resizer(gvec2 startSize, gvec2 endSize, chstr name = "");
 			~Resizer();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
 			void setStartSize(float x, float y) { this->startSize.set(x, y); }

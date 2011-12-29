@@ -35,6 +35,7 @@ namespace aprilparticle
 			ResizerTimed(chstr name = "");
 			ResizerTimed(hmap<float, gvec2> timings, chstr name = "");
 			~ResizerTimed();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<gvec2>, values, Values);

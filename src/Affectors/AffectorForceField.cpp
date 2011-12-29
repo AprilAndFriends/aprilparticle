@@ -63,6 +63,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* ForceField::createInstance(chstr name)
+		{
+			return new ForceField(name);
+		}
+
 		hstr ForceField::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

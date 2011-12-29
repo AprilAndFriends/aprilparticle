@@ -30,6 +30,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* LinearForce::createInstance(chstr name)
+		{
+			return new LinearForce(name);
+		}
+
 		hstr LinearForce::getProperty(chstr name, bool* property_exists)
 		{
 			if (property_exists != NULL)

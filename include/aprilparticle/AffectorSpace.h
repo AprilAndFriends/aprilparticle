@@ -31,6 +31,7 @@ namespace aprilparticle
 			Space(chstr name = "");
 			Space(gvec3 position, float space, chstr name = "");
 			~Space();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			void setPosition(float x, float y, float z) { this->position.set(x, y, z); }

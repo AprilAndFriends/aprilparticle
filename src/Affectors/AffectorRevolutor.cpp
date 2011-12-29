@@ -41,6 +41,11 @@ namespace aprilparticle
 		{
 		}
 		
+		Affector* Revolutor::createInstance(chstr name)
+		{
+			return new Revolutor(name);
+		}
+
 		bool Revolutor::isClockwise()
 		{
 			return (this->angle >= 0.0f);

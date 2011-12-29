@@ -32,6 +32,7 @@ namespace aprilparticle
 			ForceField(chstr name = "");
 			ForceField(gvec3 position, float radius, gvec3 direction, chstr name = "");
 			~ForceField();
+			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
