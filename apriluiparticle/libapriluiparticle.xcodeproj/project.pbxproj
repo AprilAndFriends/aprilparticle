@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; };
-		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; };
-		C9255A12148E30C30019ED23 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0F148E30C30019ED23 /* Particle.h */; };
+		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9255A12148E30C30019ED23 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0F148E30C30019ED23 /* Particle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
 		C9255A16148E30D20019ED23 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
 		C9EF00F6148E321B00B80144 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F1148E321B00B80144 /* april.framework */; };
