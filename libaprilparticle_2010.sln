@@ -84,10 +84,10 @@ Global
 		{F82C40A4-77A0-4649-98A8-AD63FD8EEA8B}.win32_Debug|Win32.Build.0 = win32_Debug|Win32
 		{F82C40A4-77A0-4649-98A8-AD63FD8EEA8B}.win32_Release|Win32.ActiveCfg = win32_Release|Win32
 		{F82C40A4-77A0-4649-98A8-AD63FD8EEA8B}.win32_Release|Win32.Build.0 = win32_Release|Win32
-		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Debug|Win32.ActiveCfg = win32_Debug|Win32
-		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Debug|Win32.Build.0 = win32_Debug|Win32
-		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Release|Win32.ActiveCfg = win32_Release|Win32
-		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Release|Win32.Build.0 = win32_Release|Win32
+		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Debug|Win32.ActiveCfg = win32_LibXml2_Debug|Win32
+		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Debug|Win32.Build.0 = win32_LibXml2_Debug|Win32
+		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Release|Win32.ActiveCfg = win32_LibXml2_Release|Win32
+		{601BCB9E-AAF2-412E-8AEB-9FC77D0505D8}.win32_Release|Win32.Build.0 = win32_LibXml2_Release|Win32
 		{A1E808A0-FE36-47FE-9E3B-CF195EA31F0A}.win32_Debug|Win32.ActiveCfg = win32_Debug|Win32
 		{A1E808A0-FE36-47FE-9E3B-CF195EA31F0A}.win32_Debug|Win32.Build.0 = win32_Debug|Win32
 		{A1E808A0-FE36-47FE-9E3B-CF195EA31F0A}.win32_Release|Win32.ActiveCfg = win32_Release|Win32
