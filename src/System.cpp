@@ -186,7 +186,7 @@ namespace aprilparticle
 
 	bool System::setProperty(chstr name, chstr value)
 	{
-		if		(name == "up")	this->setUp(hstr_to_gvec3(value));
+		if (name == "up")	this->setUp(hstr_to_gvec3(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}
@@ -207,8 +207,8 @@ namespace aprilparticle
 		}
 		aprilparticle::log("loading " + this->filename);
 		this->loaded = true;
-		hlxml::Document newDoc(filename);
-		hlxml::Node* root = newDoc.root();
+		hlxml::Document* newDoc = hlxml::open(filename);
+		hlxml::Node* root = newDoc->root();
 		this->name = "";
 		foreach_xmlproperty (prop, root)
 		{
@@ -258,6 +258,7 @@ namespace aprilparticle
 		}
 		this->_mappedAffectors.clear();
 		this->_mappedTextures.clear();
+		hlxml::close(newDoc);
 	}
 
 	void System::_loadEmitter(hlxml::Node* root)
