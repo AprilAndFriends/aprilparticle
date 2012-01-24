@@ -15,7 +15,7 @@
 #ifndef APRILPARTICLE_ROTATOR_H
 #define APRILPARTICLE_ROTATOR_H
 
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "Affector.h"
 

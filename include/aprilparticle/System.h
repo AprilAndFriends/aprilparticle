@@ -19,9 +19,9 @@
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
+#include <hltypes/hltypesUtil.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
-#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 #include "ActiveObject.h"

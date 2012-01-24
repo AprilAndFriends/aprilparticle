@@ -16,8 +16,8 @@
 #define APRILPARTICLE_AFFECTOR_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
-#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 

@@ -16,7 +16,7 @@
 #define APRILPARTICLE_EVOLUTOR_H
 
 #include <gtypes/Vector3.h>
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "AffectorSpace.h"
 #include "aprilparticleExport.h"

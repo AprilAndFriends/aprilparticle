@@ -16,7 +16,7 @@
 #include <gtypes/Matrix4.h>
 #include <gtypes/Vector2.h>
 #include <hltypes/hdeque.h>
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "Affector.h"
 #include "aprilparticle.h"

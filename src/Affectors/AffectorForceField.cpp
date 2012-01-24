@@ -12,7 +12,7 @@
 
 #include <april/RenderSystem.h>
 #include <gtypes/Vector3.h>
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "AffectorForceField.h"
 #include "Particle.h"

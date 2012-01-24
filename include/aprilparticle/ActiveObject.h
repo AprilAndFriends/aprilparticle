@@ -15,8 +15,8 @@
 #define APRILPARTICLE_ACTIVE_OBJECT_H
 
 #include <hltypes/harray.h>
+#include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
-#include <hltypes/util.h>
 
 #include "aprilparticleExport.h"
 

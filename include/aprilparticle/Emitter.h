@@ -23,7 +23,7 @@
 #include <gtypes/Vector3.h>
 #include <hltypes/hdeque.h>
 #include <hltypes/hlist.h>
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "aprilparticleExport.h"
 #include "ActiveObject.h"

@@ -15,8 +15,8 @@
 #define APRILPARTICLE_RESIZER_H
 
 #include <gtypes/Vector2.h>
+#include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
-#include <hltypes/util.h>
 
 #include "Affector.h"
 

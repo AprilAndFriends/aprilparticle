@@ -15,7 +15,7 @@
 #define APRILPARTICLE_SCALER_H
 
 #include <gtypes/Vector3.h>
-#include <hltypes/util.h>
+#include <hltypes/hltypesUtil.h>
 
 #include "Affector.h"
 

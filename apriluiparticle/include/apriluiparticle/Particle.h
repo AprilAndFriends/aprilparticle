@@ -18,8 +18,8 @@
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
-#include <hltypes/util.h>
 
 #include "apriluiparticleExport.h"
 
