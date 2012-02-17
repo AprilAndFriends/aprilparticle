@@ -55,7 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C9DF8457148D03DC00B64799 /* aprilparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = aprilparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF8457148D03DC00B64799 /* libaprilparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libaprilparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9DF848B148D057600B64799 /* ActiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActiveObject.cpp; path = src/ActiveObject.cpp; sourceTree = SOURCE_ROOT; };
 		C9DF848D148D057600B64799 /* Affector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Affector.cpp; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		C9DF8458148D03DC00B64799 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9DF8457148D03DC00B64799 /* aprilparticle.framework */,
+				C9DF8457148D03DC00B64799 /* libaprilparticle.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,9 +252,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C9DF8456148D03DC00B64799 /* aprilparticle */ = {
+		C9DF8456148D03DC00B64799 /* libaprilparticle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libaprilparticle" */;
 			buildPhases = (
 				C9DF8452148D03DC00B64799 /* Sources */,
 				C9DF8453148D03DC00B64799 /* Frameworks */,
@@ -264,9 +264,9 @@
 			);
 			dependencies = (
 			);
-			name = aprilparticle;
+			name = libaprilparticle;
 			productName = aprilparticle;
-			productReference = C9DF8457148D03DC00B64799 /* aprilparticle.framework */;
+			productReference = C9DF8457148D03DC00B64799 /* libaprilparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9DF8456148D03DC00B64799 /* aprilparticle */,
+				C9DF8456148D03DC00B64799 /* libaprilparticle */,
 			);
 		};
 /* End PBXProject section */
@@ -331,6 +331,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -345,9 +346,19 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../hltypes/include",
+					"${SRCROOT}/../gtypes/include",
+					"${SRCROOT}/../hltypes/hlxml/include",
+					"${SRCROOT}/../atres/include",
+					"${SRCROOT}/../april/include",
+					/usr/include/libxml2,
+					"${SRCROOT}/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
 			name = Debug;
 		};
@@ -358,6 +369,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -365,8 +377,18 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../hltypes/include",
+					"${SRCROOT}/../gtypes/include",
+					"${SRCROOT}/../hltypes/hlxml/include",
+					"${SRCROOT}/../atres/include",
+					"${SRCROOT}/../april/include",
+					/usr/include/libxml2,
+					"${SRCROOT}/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
 			name = Release;
 		};
@@ -426,6 +448,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -440,9 +463,19 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../hltypes/include",
+					"${SRCROOT}/../gtypes/include",
+					"${SRCROOT}/../hltypes/hlxml/include",
+					"${SRCROOT}/../atres/include",
+					"${SRCROOT}/../april/include",
+					/usr/include/libxml2,
+					"${SRCROOT}/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
 			name = "Debug-LLVM";
 		};
@@ -478,6 +511,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -485,8 +519,18 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../hltypes/include",
+					"${SRCROOT}/../gtypes/include",
+					"${SRCROOT}/../hltypes/hlxml/include",
+					"${SRCROOT}/../atres/include",
+					"${SRCROOT}/../april/include",
+					/usr/include/libxml2,
+					"${SRCROOT}/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
 			name = "Release-LLVM";
 		};
@@ -522,6 +566,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -529,8 +574,18 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../hltypes/include",
+					"${SRCROOT}/../gtypes/include",
+					"${SRCROOT}/../hltypes/hlxml/include",
+					"${SRCROOT}/../atres/include",
+					"${SRCROOT}/../april/include",
+					/usr/include/libxml2,
+					"${SRCROOT}/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
 			name = "App Store";
 		};
@@ -574,7 +629,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */ = {
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libaprilparticle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9DF846D148D03DC00B64799 /* Debug */,

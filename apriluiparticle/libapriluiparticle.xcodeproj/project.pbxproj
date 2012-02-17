@@ -12,8 +12,8 @@
 		C9255A12148E30C30019ED23 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0F148E30C30019ED23 /* Particle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
 		C9255A16148E30D20019ED23 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
+		C9C9F54F14EE599C00B1DB1F /* libaprilparticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9F54E14EE599C00B1DB1F /* libaprilparticle.framework */; };
 		C9EF00F6148E321B00B80144 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F1148E321B00B80144 /* april.framework */; };
-		C9EF00F7148E321B00B80144 /* aprilparticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F2148E321B00B80144 /* aprilparticle.framework */; };
 		C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F3148E321B00B80144 /* aprilui.framework */; };
 		C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F4148E321B00B80144 /* gtypes.framework */; };
 		C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F5148E321B00B80144 /* hltypes.framework */; };
@@ -25,10 +25,10 @@
 		C9255A0F148E30C30019ED23 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/apriluiparticle/Particle.h; sourceTree = SOURCE_ROOT; };
 		C9255A13148E30D20019ED23 /* apriluiparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticle.cpp; path = src/apriluiparticle.cpp; sourceTree = SOURCE_ROOT; };
 		C9255A14148E30D20019ED23 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = src/Particle.cpp; sourceTree = SOURCE_ROOT; };
-		C9DF8457148D03DC00B64799 /* apriluiparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = apriluiparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9C9F54E14EE599C00B1DB1F /* libaprilparticle.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = libaprilparticle.framework; path = ../build/Release/libaprilparticle.framework; sourceTree = "<group>"; };
+		C9DF8457148D03DC00B64799 /* libapriluiparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libapriluiparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9EF00F1148E321B00B80144 /* april.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = april.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/april.framework"; sourceTree = "<group>"; };
-		C9EF00F2148E321B00B80144 /* aprilparticle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilparticle.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilparticle.framework"; sourceTree = "<group>"; };
 		C9EF00F3148E321B00B80144 /* aprilui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilui.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilui.framework"; sourceTree = "<group>"; };
 		C9EF00F4148E321B00B80144 /* gtypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/gtypes.framework"; sourceTree = "<group>"; };
 		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
@@ -39,8 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9C9F54F14EE599C00B1DB1F /* libaprilparticle.framework in Frameworks */,
 				C9EF00F6148E321B00B80144 /* april.framework in Frameworks */,
-				C9EF00F7148E321B00B80144 /* aprilparticle.framework in Frameworks */,
 				C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */,
 				C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */,
 				C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */,
@@ -53,11 +53,6 @@
 		C9DF844B148D03DB00B64799 = {
 			isa = PBXGroup;
 			children = (
-				C9EF00F1148E321B00B80144 /* april.framework */,
-				C9EF00F2148E321B00B80144 /* aprilparticle.framework */,
-				C9EF00F3148E321B00B80144 /* aprilui.framework */,
-				C9EF00F4148E321B00B80144 /* gtypes.framework */,
-				C9EF00F5148E321B00B80144 /* hltypes.framework */,
 				C9DF8481148D049500B64799 /* Info.plist */,
 				C9DF8475148D041D00B64799 /* include */,
 				C9DF8460148D03DC00B64799 /* src */,
@@ -69,7 +64,7 @@
 		C9DF8458148D03DC00B64799 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9DF8457148D03DC00B64799 /* apriluiparticle.framework */,
+				C9DF8457148D03DC00B64799 /* libapriluiparticle.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +72,11 @@
 		C9DF8459148D03DC00B64799 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9F54E14EE599C00B1DB1F /* libaprilparticle.framework */,
+				C9EF00F1148E321B00B80144 /* april.framework */,
+				C9EF00F3148E321B00B80144 /* aprilui.framework */,
+				C9EF00F4148E321B00B80144 /* gtypes.framework */,
+				C9EF00F5148E321B00B80144 /* hltypes.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,9 +117,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C9DF8456148D03DC00B64799 /* apriluiparticle */ = {
+		C9DF8456148D03DC00B64799 /* libapriluiparticle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libapriluiparticle" */;
 			buildPhases = (
 				C9DF8452148D03DC00B64799 /* Sources */,
 				C9DF8453148D03DC00B64799 /* Frameworks */,
@@ -129,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = apriluiparticle;
+			name = libapriluiparticle;
 			productName = apriluiparticle;
-			productReference = C9DF8457148D03DC00B64799 /* apriluiparticle.framework */;
+			productReference = C9DF8457148D03DC00B64799 /* libapriluiparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9DF8456148D03DC00B64799 /* apriluiparticle */,
+				C9DF8456148D03DC00B64799 /* libapriluiparticle */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +192,14 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -212,6 +220,14 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -229,7 +245,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -253,7 +268,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -285,6 +299,14 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -303,7 +325,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -329,6 +350,14 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -346,7 +375,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -372,6 +400,14 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../../hltypes/include",
+					"${SRCROOT}/../../gtypes/include",
+					"${SRCROOT}/../../hltypes/hlxml/include",
+					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/include",
+					"${SRCROOT}/../include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
@@ -389,7 +425,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
@@ -416,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */ = {
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libapriluiparticle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9DF846D148D03DC00B64799 /* Debug */,
