@@ -18,7 +18,7 @@
 
 namespace aprilparticle
 {
-	hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
+	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 
 	void aprilparticle_writelog(chstr message)
 	{
@@ -77,5 +77,4 @@ namespace aprilparticle
 		}
 		return NULL;
 	}
-
 }

@@ -55,7 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C9DF8457148D03DC00B64799 /* libaprilparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libaprilparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF8457148D03DC00B64799 /* aprilparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = aprilparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9DF848B148D057600B64799 /* ActiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActiveObject.cpp; path = src/ActiveObject.cpp; sourceTree = SOURCE_ROOT; };
 		C9DF848D148D057600B64799 /* Affector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Affector.cpp; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		C9DF8458148D03DC00B64799 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9DF8457148D03DC00B64799 /* libaprilparticle.framework */,
+				C9DF8457148D03DC00B64799 /* aprilparticle.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -266,7 +266,7 @@
 			);
 			name = libaprilparticle;
 			productName = aprilparticle;
-			productReference = C9DF8457148D03DC00B64799 /* libaprilparticle.framework */;
+			productReference = C9DF8457148D03DC00B64799 /* aprilparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -409,7 +409,7 @@
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 ppc";
@@ -434,7 +434,7 @@
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 ppc";
@@ -496,7 +496,7 @@
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 ppc";
@@ -551,7 +551,7 @@
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 ppc";
@@ -606,7 +606,7 @@
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "i386 x86_64 ppc";
