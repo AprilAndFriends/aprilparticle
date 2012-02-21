@@ -1,3 +1,19 @@
+/// @file
+/// @author  Boris Mikic
+/// @version 1.4
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
+#ifdef _ANDROID
+#define APRIL_ANDROID_PACKAGE_NAME "com/example/aprilparticle/demoAprilUi"
+#define RESOURCE_PATH "./"
+#else
+#define RESOURCE_PATH "../media/"
+#endif
+
 #include <stdio.h>
 
 #ifdef __APPLE__
@@ -19,14 +35,19 @@
 #include <atres/Renderer.h>
 #include <gtypes/Vector2.h>
 
-grect screen(0, 0, 800, 600);
+grect drawRect(0.0f, 0.0f, 800.0f, 600.0f);
+#ifndef _ANDROID
+grect viewport = drawRect;
+#else
+grect viewport(0.0f, 0.0f, 480.0f, 320.0f);
+#endif
 
 aprilui::Dataset* dataset;
 
 bool update(float k)
 {
 	april::rendersys->clear();
-	april::rendersys->setOrthoProjection(screen);
+	april::rendersys->setOrthoProjection(drawRect);
 	aprilui::updateCursorPosition();
 	dataset->update(k);
 	dataset->getObject("root")->draw();
@@ -93,7 +114,7 @@ void april_init(const harray<hstr>& args)
 	{
 		april::init();
 		april::createRenderSystem("");
-		april::createRenderTarget((int)screen.w, (int)screen.h, false, "demo_aprilui");
+		april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "demo_aprilui");
 		atres::init();
 		aprilui::init();
 		aprilparticle::init();
@@ -102,12 +123,11 @@ void april_init(const harray<hstr>& args)
 		april::rendersys->getWindow()->setMouseCallbacks(&aprilui::onMouseDown, &aprilui::onMouseUp, &aprilui::onMouseMove);
 		april::rendersys->getWindow()->setKeyboardCallbacks(&onKeyDown, &aprilui::onKeyUp, &aprilui::onChar);
 		apriluiparticle::setDefaultPath("");
-		dataset = new aprilui::Dataset("../media/demo_aprilui.datadef");
+		dataset = new aprilui::Dataset(RESOURCE_PATH "demo_aprilui.dts");
 		dataset->load();
 #ifdef _DEBUG
 		//aprilui::setDebugMode(true);
 #endif
-		april::rendersys->getWindow()->enterMainLoop();
 	}
 	catch (aprilui::_GenericException e)
 	{
@@ -121,8 +141,8 @@ void april_destroy()
 	{
 		delete dataset;
 		apriluiparticle::destroy();
-		aprilui::destroy();
 		aprilparticle::destroy();
+		aprilui::destroy();
 		atres::destroy();
 		april::destroy();
 	}

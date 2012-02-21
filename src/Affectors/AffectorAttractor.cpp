@@ -12,9 +12,9 @@
 #include <hltypes/hstring.h>
 
 #include "AffectorAttractor.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "System.h"
-#include "Util.h"
 
 namespace aprilparticle
 {

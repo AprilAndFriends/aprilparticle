@@ -4,10 +4,24 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{5f48441c-9d1f-4f48-b19f-c63b64992961}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AndroidApk">
+      <UniqueIdentifier>{280c0a1d-4bda-45a3-a9fd-8367a6337a51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="demo_particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="android\AndroidManifest.xml">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="android\build.xml">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="android\src\DemoParticle.java">
+      <Filter>AndroidApk</Filter>
+    </None>
   </ItemGroup>
 </Project>

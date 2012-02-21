@@ -14,7 +14,7 @@
 #include "ActiveObject.h"
 #include "Affector.h"
 #include "aprilparticle.h"
-#include "Util.h"
+#include "aprilparticleUtil.h"
 
 namespace aprilparticle
 {

@@ -1,3 +1,19 @@
+/// @file
+/// @author  Boris Mikic
+/// @version 1.4
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
+#ifdef _ANDROID
+#define APRIL_ANDROID_PACKAGE_NAME "com/example/aprilparticle/demoParticle"
+#define RESOURCE_PATH "./"
+#else
+#define RESOURCE_PATH "../media/"
+#endif
+
 #include <math.h>
 
 #include <april/main.h>
@@ -19,7 +35,12 @@
 #define AFFECTOR_FORCE_3 "force3"
 #define AFFECTOR_FORCE_4 "force4"
 
-gvec2 screen(1024.0f, 768.0f);
+grect drawRect(0.0f, 0.0f, 1024.0f, 768.0f);
+#ifndef _ANDROID
+grect viewport = drawRect;
+#else
+grect viewport(0.0f, 0.0f, 480.0f, 320.0f);
+#endif
 
 april::Texture* redParticle = NULL;
 april::Texture* greenParticle = NULL;
@@ -41,13 +62,13 @@ void setupGrid(float spacing)
 	for (float s = -5 * spacing; s <= 5 * spacing; i++, s += spacing)
 	{
 		grid[i * 4 + 0].set(-5 * spacing, 0.0f, s);
-		grid[i * 4 + 0].color = 0x777777FF;
+		grid[i * 4 + 0].color = 0xFFFFFFFF;
 		grid[i * 4 + 1].set(5 * spacing, 0.0f, s);
-		grid[i * 4 + 1].color = 0x777777FF;
+		grid[i * 4 + 1].color = 0xFFFFFFFF;
 		grid[i * 4 + 2].set(s, 0.0f, -5 * spacing);
-		grid[i * 4 + 2].color = 0x777777FF;
+		grid[i * 4 + 2].color = 0xFFFFFFFF;
 		grid[i * 4 + 3].set(s, 0.0f, 5 * spacing);
-		grid[i * 4 + 3].color = 0x777777FF;
+		grid[i * 4 + 3].color = 0xFFFFFFFF;
 	}
 }
 
@@ -81,7 +102,7 @@ bool render(float k)
 		printf("Particles: %s\n", counts.cast<hstr>().join(" ").c_str());
 	}
     
-	april::rendersys->setPerspective(60.0f, screen.x / screen.y, 0.1f, 100.0f);
+	april::rendersys->setPerspective(60.0f, drawRect.getAspect(), 0.1f, 100.0f);
 	
 	gvec3 pos(0.0f, 18.0f, 25.0f);
 	gmat3 rot;
@@ -121,7 +142,7 @@ void setupFlame()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	flame->registerEmitter(emitter);
 	// textures
-	april::Texture* fire = april::rendersys->loadTexture("../media/fire_particle.png");
+	april::Texture* fire = april::rendersys->loadTexture(RESOURCE_PATH "fire_particle");
 	flame->registerTexture(fire);
 	emitter->setTexture(fire);
 	// affectors
@@ -145,7 +166,7 @@ void setupFlame()
 	emitter->setBlendMode(april::ADD);
 	emitter->setEmissionRate(32.0f);
 	emitter->setLimit(128);
-	emitter->setPreUpdate(5);
+	emitter->setPreUpdate(5.0f);
 	emitter->setLife(4.0f);
 	emitter->setDirection(gvec3(0.0f, 0.5f, 0.0f));
 	emitter->setSizeRange(gvec2(2.4f, 2.4f), gvec2(4.4f, 4.4f));
@@ -167,7 +188,7 @@ void setupBubbles()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	bubbles->registerEmitter(emitter);
 	// textures
-	april::Texture* bubble = april::rendersys->loadTexture("../media/bubble.png");
+	april::Texture* bubble = april::rendersys->loadTexture(RESOURCE_PATH "bubble");
 	bubbles->registerTexture(bubble);
 	emitter->setTexture(bubble);
 	// affectors
@@ -246,7 +267,7 @@ void setupRain()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	rain->registerEmitter(emitter);
 	// textures
-	april::Texture* rainDrop = april::rendersys->loadTexture("../media/rain_drop.png");
+	april::Texture* rainDrop = april::rendersys->loadTexture(RESOURCE_PATH "rain_drop");
 	rain->registerTexture(rainDrop);
 	emitter->setTexture(rainDrop);
 	// making the emitter responsible for these affectors
@@ -503,14 +524,14 @@ void april_init(const harray<hstr>& args)
 #endif
 	april::init();
 	april::createRenderSystem("");
-	april::createRenderTarget((int)screen.x, (int)screen.y, false, "AprilParticle Demo");
+	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle Demo");
 	aprilparticle::init();
 	april::rendersys->getWindow()->setUpdateCallback(render);
 	setupGrid(2.0f);
 	// textures used by more than one system
-	redParticle = april::rendersys->loadTexture("../media/red_particle.png");
-	greenParticle = april::rendersys->loadTexture("../media/green_particle.png");
-	blueParticle = april::rendersys->loadTexture("../media/blue_particle.png");
+	redParticle = april::rendersys->loadTexture(RESOURCE_PATH "red_particle");
+	greenParticle = april::rendersys->loadTexture(RESOURCE_PATH "green_particle");
+	blueParticle = april::rendersys->loadTexture(RESOURCE_PATH "blue_particle");
 	// setting up every system
 	setupFlame();
 	setupBubbles();

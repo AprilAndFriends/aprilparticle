@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<DataDefinition>
+<Dataset>
 
 	<Object type="Container" name="root" x="0" y="0" w="800" h="600">
 		<Object type="ColoredQuad" name="background" color="000000" x="0" y="0" w="800" h="600"/>
@@ -9,4 +9,4 @@
 		<Object type="Particle" name="moon" filename="gui_moon.particle" x="100" y="500"/>
 	</Object>
 	
-</DataDefinition>
+</Dataset>

@@ -1,3 +1,19 @@
+/// @file
+/// @author  Boris Mikic
+/// @version 1.4
+/// 
+/// @section LICENSE
+/// 
+/// This program is free software; you can redistribute it and/or modify it under
+/// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
+
+#ifdef _ANDROID
+#define APRIL_ANDROID_PACKAGE_NAME "com/example/aprilparticle/demoSimple"
+#define RESOURCE_PATH "./"
+#else
+#define RESOURCE_PATH "../media/"
+#endif
+
 #include <april/main.h>
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
@@ -17,7 +33,12 @@
 #define AFFECTOR_FORCE_3 "force3"
 #define AFFECTOR_FORCE_4 "force4"
 
-gvec2 screen(1024.0f, 768.0f);
+grect drawRect(0.0f, 0.0f, 1024.0f, 768.0f);
+#ifndef _ANDROID
+grect viewport = drawRect;
+#else
+grect viewport(0.0f, 0.0f, 480.0f, 320.0f);
+#endif
 
 aprilparticle::System* flame = NULL;
 aprilparticle::System* bubbles = NULL;
@@ -35,13 +56,13 @@ void setupGrid(float spacing)
 	for (float s = -5 * spacing; s <= 5 * spacing; i++, s += spacing)
 	{
 		grid[i * 4 + 0].set(-5 * spacing, 0.0f, s);
-		grid[i * 4 + 0].color = 0x777777FF;
+		grid[i * 4 + 0].color = 0xFFFFFFFF;
 		grid[i * 4 + 1].set(5 * spacing, 0.0f, s);
-		grid[i * 4 + 1].color = 0x777777FF;
+		grid[i * 4 + 1].color = 0xFFFFFFFF;
 		grid[i * 4 + 2].set(s, 0.0f, -5 * spacing);
-		grid[i * 4 + 2].color = 0x777777FF;
+		grid[i * 4 + 2].color = 0xFFFFFFFF;
 		grid[i * 4 + 3].set(s, 0.0f, 5 * spacing);
-		grid[i * 4 + 3].color = 0x777777FF;
+		grid[i * 4 + 3].color = 0xFFFFFFFF;
 	}
 }
 
@@ -75,7 +96,7 @@ bool render(float k)
 		printf("Particles: %s\n", counts.cast<hstr>().join(" ").c_str());
 	}
     
-	april::rendersys->setPerspective(60.0f, screen.x / screen.y, 0.1f, 100.0f);
+	april::rendersys->setPerspective(60.0f, drawRect.getAspect(), 0.1f, 100.0f);
 	
 	gvec3 pos(0.0f, 18.0f, 25.0f);
 	gmat3 rot;
@@ -159,24 +180,24 @@ void april_init(const harray<hstr>& args)
 #endif
 	april::init();
 	april::createRenderSystem("");
-	april::createRenderTarget((int)screen.x, (int)screen.y, false, "AprilParticle XML Demo");
+	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle XML Demo");
 	aprilparticle::init();
 	april::rendersys->getWindow()->setUpdateCallback(render);
 	setupGrid(2.0f);
 	// setting up every system
-	flame = new aprilparticle::System("../media/flame.particle");
+	flame = new aprilparticle::System(RESOURCE_PATH "flame.particle");
 	flame->load();
-	bubbles = new aprilparticle::System("../media/bubbles.particle");
+	bubbles = new aprilparticle::System(RESOURCE_PATH "bubbles.particle");
 	bubbles->load();
-	vortex = new aprilparticle::System("../media/vortex.particle");
+	vortex = new aprilparticle::System(RESOURCE_PATH "vortex.particle");
 	vortex->load();
-	rain = new aprilparticle::System("../media/rain.particle");
+	rain = new aprilparticle::System(RESOURCE_PATH "rain.particle");
 	rain->load();
-	quazar = new aprilparticle::System("../media/quazar.particle");
+	quazar = new aprilparticle::System(RESOURCE_PATH "quazar.particle");
 	quazar->load();
-	twirl = new aprilparticle::System("../media/twirl.particle");
+	twirl = new aprilparticle::System(RESOURCE_PATH "twirl.particle");
 	twirl->load();
-	milkyWay = new aprilparticle::System("../media/milkyWay.particle");
+	milkyWay = new aprilparticle::System(RESOURCE_PATH "milkyWay.particle");
 	milkyWay->load();
 }
 

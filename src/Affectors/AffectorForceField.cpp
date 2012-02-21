@@ -15,9 +15,9 @@
 #include <hltypes/hltypesUtil.h>
 
 #include "AffectorForceField.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "System.h"
-#include "Util.h"
 
 #define VERTEX_COUNT 91 // you can't touch this
 

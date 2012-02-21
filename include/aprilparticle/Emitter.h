@@ -159,7 +159,7 @@ namespace aprilparticle
 		float _rho;
 		float _phi;
 		float _theta;
-		float _S;
+		float _angle;
 		float _cs;
 		int _quota;
 		bool _expired;

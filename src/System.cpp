@@ -19,9 +19,9 @@
 
 #include "Affectors.h"
 #include "aprilparticle.h"
+#include "aprilparticleUtil.h"
 #include "Emitter.h"
 #include "System.h"
-#include "Util.h"
 
 namespace aprilparticle
 {
@@ -201,14 +201,14 @@ namespace aprilparticle
 
 	void System::load()
 	{
+		aprilparticle::log("loading " + this->filename);
 		if (this->filename == "" || this->loaded)
 		{
 			return;
 		}
-		aprilparticle::log("loading " + this->filename);
 		this->loaded = true;
-		hlxml::Document* newDoc = hlxml::open(filename);
-		hlxml::Node* root = newDoc->root();
+		hlxml::Document* doc = hlxml::open(filename);
+		hlxml::Node* root = doc->root();
 		this->name = "";
 		foreach_xmlproperty (prop, root)
 		{
@@ -258,7 +258,7 @@ namespace aprilparticle
 		}
 		this->_mappedAffectors.clear();
 		this->_mappedTextures.clear();
-		hlxml::close(newDoc);
+		hlxml::close(doc);
 	}
 
 	void System::_loadEmitter(hlxml::Node* root)

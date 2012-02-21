@@ -20,10 +20,10 @@
 
 #include "Affector.h"
 #include "aprilparticle.h"
+#include "aprilparticleUtil.h"
 #include "Emitter.h"
 #include "Particle.h"
 #include "System.h"
-#include "Util.h"
 
 namespace aprilparticle
 {
@@ -315,21 +315,21 @@ namespace aprilparticle
 				this->_rho = hrandf(1.0f);
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
-				this->_S = this->_rho * sin(this->_phi);
+				this->_angle = this->_rho * sin(this->_phi);
 
 				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * 0.5f * this->_S * sin(this->_theta);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_S * cos(this->_theta);
+				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
 				break;
 			case HollowSphere:
 				this->_rho = 1.0f;
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
-				this->_S = this->_rho * sin(this->_phi);
+				this->_angle = this->_rho * sin(this->_phi);
 
 				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * 0.5f * this->_S * sin(this->_theta);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_S * cos(this->_theta);
+				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
+				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
 				break;
 			case Cylinder:
 				this->_rho = hrandf(1.0f);

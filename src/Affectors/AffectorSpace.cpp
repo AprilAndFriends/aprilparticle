@@ -11,7 +11,7 @@
 #include <hltypes/hstring.h>
 
 #include "AffectorSpace.h"
-#include "Util.h"
+#include "aprilparticleUtil.h"
 
 namespace aprilparticle
 {

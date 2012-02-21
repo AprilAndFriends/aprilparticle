@@ -14,9 +14,9 @@
 
 #include "AffectorResizerTimed.h"
 #include "aprilparticle.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "TimedTemplate.h"
-#include "Util.h"
 
 namespace aprilparticle
 {

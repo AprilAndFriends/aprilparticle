@@ -7,6 +7,10 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
+#ifdef _ANDROID
+#include <android/log.h>
+#endif
+
 #include <aprilui/aprilui.h>
 #include <hltypes/exception.h>
 #include <hltypes/hstring.h>
@@ -21,7 +25,11 @@ namespace apriluiparticle
 
 	void apriluiparticle_writelog(chstr message)
 	{
+#ifndef _ANDROID
 		printf("%s\n", message.c_str());
+#else
+		__android_log_print(ANDROID_LOG_INFO, "april", "%s", message.c_str());
+#endif
 	}
 	void (*g_logFunction)(chstr) = apriluiparticle_writelog;
 	

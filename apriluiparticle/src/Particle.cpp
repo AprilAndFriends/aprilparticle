@@ -108,7 +108,18 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		hstr filepath = normalize_path(this->getDataset()->_getFilePath() + "/" + apriluiparticle::getDefaultPath() + "/" + this->filename);
+		hstr filepath = this->filename;
+		hstr defaultPath = apriluiparticle::getDefaultPath();
+		if (defaultPath != "")
+		{
+			filepath = defaultPath + "/" + filepath;
+		}
+		hstr datasetPath = this->getDataset()->_getFilePath();
+		if (datasetPath != "")
+		{
+			filepath = datasetPath + "/" + filepath;
+		}
+		filepath = normalize_path(filepath);
 		this->system = new aprilparticle::System(filepath);
 		this->system->load();
 		this->systemPosition = this->system->getPosition();

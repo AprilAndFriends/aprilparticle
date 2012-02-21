@@ -9,8 +9,8 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include "AffectorLinearForce.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
-#include "Util.h"
 
 namespace aprilparticle
 {

@@ -192,7 +192,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Util.cpp"
+				RelativePath=".\src\aprilparticleUtil.cpp"
 				>
 			</File>
 			<Filter
@@ -294,7 +294,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Util.h"
+				RelativePath=".\src\aprilparticleUtil.h"
 				>
 			</File>
 			<Filter

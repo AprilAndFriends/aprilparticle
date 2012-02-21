@@ -30,9 +30,6 @@
     <ClInclude Include="include\aprilparticle\aprilparticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\aprilparticle\Emitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,15 +84,15 @@
     <ClInclude Include="src\TimedTemplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\aprilparticleUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\aprilparticle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Emitter.cpp">
@@ -149,10 +146,13 @@
     <ClCompile Include="src\Affectors\AffectorScalerTimed.cpp">
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
+    <ClCompile Include="src\aprilparticleUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="fileproperties.rc">
+    <None Include="fileproperties.rc">
       <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    </None>
   </ItemGroup>
 </Project>

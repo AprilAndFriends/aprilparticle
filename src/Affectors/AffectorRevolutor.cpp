@@ -13,9 +13,9 @@
 #include <gtypes/Matrix3.h>
 
 #include "AffectorRevolutor.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "System.h"
-#include "Util.h"
 
 namespace aprilparticle
 {
