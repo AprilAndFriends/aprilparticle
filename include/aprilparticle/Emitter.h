@@ -70,6 +70,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(int, loops, Loops);
 		HL_DEFINE_GET(int, limit, Limit);
 		void setLimit(int value);
+		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
 		HL_DEFINE_GETSET(gvec3, minDirection, MinDirection);
@@ -131,6 +132,7 @@ namespace aprilparticle
 		int currentLoop;
 		int alive;
 		int limit;
+		float preUpdate;
 		float minLife;
 		float maxLife;
 		gvec3 minDirection;
@@ -145,6 +147,7 @@ namespace aprilparticle
 		harray<Affector*> affectors;
 		hdeque<Particle*> particles;
 		System* system;
+		bool started;
 
 		void _createNewParticle(float k);
 		void _setSystem(System* value) { this->system = value; }

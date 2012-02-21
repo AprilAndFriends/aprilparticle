@@ -145,6 +145,7 @@ void setupFlame()
 	emitter->setBlendMode(april::ADD);
 	emitter->setEmissionRate(32.0f);
 	emitter->setLimit(128);
+	emitter->setPreUpdate(5);
 	emitter->setLife(4.0f);
 	emitter->setDirection(gvec3(0.0f, 0.5f, 0.0f));
 	emitter->setSizeRange(gvec2(2.4f, 2.4f), gvec2(4.4f, 4.4f));

@@ -46,6 +46,7 @@ namespace aprilparticle
 		this->currentLoop = 0;
 		this->alive = 0;
 		this->limit = 10;
+		this->preUpdate = 0.0f;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
 		this->minDirection.set(0.0f, 0.0f, 0.0f);
@@ -60,6 +61,7 @@ namespace aprilparticle
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
 		this->system = NULL;
+		this->started = false;
 	}
 
 	Emitter::~Emitter()
@@ -246,6 +248,7 @@ namespace aprilparticle
 		if (name == "loop_delay")		return this->getLoopDelay();
 		if (name == "loops")			return this->getLoops();
 		if (name == "limit")			return this->getLimit();
+		if (name == "pre_update")		return this->getPreUpdate();
 		if (name == "life")				return GET_RANGE(Life, hstr);
 		if (name == "direction")		return GET_RANGE(Direction, gvec3_to_hstr);
 		if (name == "size")				return GET_RANGE(Size, gvec2_to_hstr);
@@ -281,6 +284,7 @@ namespace aprilparticle
 		else if	(name == "delay")			this->setDelay(value);
 		else if	(name == "loop_delay")		this->setLoopDelay(value);
 		else if	(name == "loops")			this->setLoops(value);
+		else if	(name == "pre_update")		this->setPreUpdate(value);
 		else if	(name == "life")			this->setLife(value);
 		else if	(name == "direction")		this->setDirection(value);
 		else if	(name == "size")			this->setSize(value);
@@ -386,6 +390,18 @@ namespace aprilparticle
 		if (!this->enabled)
 		{
 			return;
+		}
+		if (!this->started)
+		{
+			this->started = true;
+			if (this->preUpdate > 0.0f)
+			{
+				int count = (int)(this->preUpdate / 0.1f);
+				for (int i = 0; i < count; i++)
+				{
+					this->update(0.1f);
+				}
+			}
 		}
 		// check delay
 		this->time += k;
