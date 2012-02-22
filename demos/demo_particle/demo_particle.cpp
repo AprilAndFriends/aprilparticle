@@ -8,7 +8,6 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #ifdef _ANDROID
-#define APRIL_ANDROID_PACKAGE_NAME "com/example/aprilparticle/demoParticle"
 #define RESOURCE_PATH "./"
 #else
 #define RESOURCE_PATH "../media/"
