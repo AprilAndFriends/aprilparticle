@@ -56,6 +56,7 @@ namespace aprilparticle
     void destroy()
     {
 		log("destroying AprilParticle");
+		gAffectorFactories.clear();
     }
 
 	void setLogFunction(void (*fnptr)(chstr))
