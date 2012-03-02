@@ -71,7 +71,7 @@ namespace aprilparticle
 				{
 					if (this->exponent == (int)this->exponent)
 					{
-						this->_factor = pow(this->_factor, (int)this->exponent);
+						this->_factor = pow(this->_factor, (int) this->exponent);
 					}
 					else
 					{

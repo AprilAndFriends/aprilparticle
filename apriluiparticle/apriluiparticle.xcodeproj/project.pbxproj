@@ -17,6 +17,9 @@
 		C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F3148E321B00B80144 /* aprilui.framework */; };
 		C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F4148E321B00B80144 /* gtypes.framework */; };
 		C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F5148E321B00B80144 /* hltypes.framework */; };
+		C9FB78441501070B008B2B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FB78431501070B008B2B48 /* Foundation.framework */; };
+		C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
+		C9FB785315010773008B2B48 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,8 @@
 		C9EF00F3148E321B00B80144 /* aprilui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilui.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/aprilui.framework"; sourceTree = "<group>"; };
 		C9EF00F4148E321B00B80144 /* gtypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/gtypes.framework"; sourceTree = "<group>"; };
 		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
+		C9FB78421501070B008B2B48 /* libapriluiparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapriluiparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FB78431501070B008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +49,14 @@
 				C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */,
 				C9EF00F9148E321B00B80144 /* gtypes.framework in Frameworks */,
 				C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FB783F1501070B008B2B48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FB78441501070B008B2B48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				C9DF8457148D03DC00B64799 /* apriluiparticle.framework */,
+				C9FB78421501070B008B2B48 /* libapriluiparticle.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +91,7 @@
 				C9EF00F3148E321B00B80144 /* aprilui.framework */,
 				C9EF00F4148E321B00B80144 /* gtypes.framework */,
 				C9EF00F5148E321B00B80144 /* hltypes.framework */,
+				C9FB78431501070B008B2B48 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,6 +149,22 @@
 			productReference = C9DF8457148D03DC00B64799 /* apriluiparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C9FB78411501070B008B2B48 /* libapriluiparticle-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "libapriluiparticle-ios" */;
+			buildPhases = (
+				C9FB783E1501070B008B2B48 /* Sources */,
+				C9FB783F1501070B008B2B48 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libapriluiparticle-ios";
+			productName = "libapriluiparticle-ios";
+			productReference = C9FB78421501070B008B2B48 /* libapriluiparticle.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -142,7 +173,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "libapriluiparticle" */;
+			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -155,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				C9DF8456148D03DC00B64799 /* libapriluiparticle */,
+				C9FB78411501070B008B2B48 /* libapriluiparticle-ios */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +198,15 @@
 			files = (
 				C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */,
 				C9255A16148E30D20019ED23 /* Particle.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FB783E1501070B008B2B48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */,
+				C9FB785315010773008B2B48 /* Particle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,9 +228,9 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -197,6 +238,7 @@
 					"${SRCROOT}/../../gtypes/include",
 					"${SRCROOT}/../../hltypes/hlxml/include",
 					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
 					"${SRCROOT}/include",
 					"${SRCROOT}/../include",
 				);
@@ -215,9 +257,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -225,6 +267,7 @@
 					"${SRCROOT}/../../gtypes/include",
 					"${SRCROOT}/../../hltypes/hlxml/include",
 					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
 					"${SRCROOT}/include",
 					"${SRCROOT}/../include",
 				);
@@ -294,9 +337,9 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -304,6 +347,7 @@
 					"${SRCROOT}/../../gtypes/include",
 					"${SRCROOT}/../../hltypes/hlxml/include",
 					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
 					"${SRCROOT}/include",
 					"${SRCROOT}/../include",
 				);
@@ -345,9 +389,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -355,6 +399,7 @@
 					"${SRCROOT}/../../gtypes/include",
 					"${SRCROOT}/../../hltypes/hlxml/include",
 					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
 					"${SRCROOT}/include",
 					"${SRCROOT}/../include",
 				);
@@ -395,9 +440,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -405,6 +450,7 @@
 					"${SRCROOT}/../../gtypes/include",
 					"${SRCROOT}/../../hltypes/hlxml/include",
 					"${SRCROOT}/../../april/include",
+					"${SRCROOT}/../../aprilui/include",
 					"${SRCROOT}/include",
 					"${SRCROOT}/../include",
 				);
@@ -436,10 +482,113 @@
 			};
 			name = "App Store";
 		};
+		C9FB784B1501070B008B2B48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				DSTROOT = /tmp/libapriluiparticle_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = apriluiparticle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C9FB784C1501070B008B2B48 /* Debug-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				DSTROOT = /tmp/libapriluiparticle_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = apriluiparticle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = "Debug-LLVM";
+		};
+		C9FB784D1501070B008B2B48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				DSTROOT = /tmp/libapriluiparticle_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = apriluiparticle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C9FB784E1501070B008B2B48 /* Release-LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				DSTROOT = /tmp/libapriluiparticle_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = "";
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = apriluiparticle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-LLVM";
+		};
+		C9FB784F1501070B008B2B48 /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				DSTROOT = /tmp/libapriluiparticle_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = apriluiparticle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "libapriluiparticle" */ = {
+		C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9DF846A148D03DC00B64799 /* Debug */,
@@ -459,6 +608,18 @@
 				C9DF846E148D03DC00B64799 /* Release */,
 				C9DF8486148D050500B64799 /* Release-LLVM */,
 				C9DF848A148D051B00B64799 /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "libapriluiparticle-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9FB784B1501070B008B2B48 /* Debug */,
+				C9FB784C1501070B008B2B48 /* Debug-LLVM */,
+				C9FB784D1501070B008B2B48 /* Release */,
+				C9FB784E1501070B008B2B48 /* Release-LLVM */,
+				C9FB784F1501070B008B2B48 /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
