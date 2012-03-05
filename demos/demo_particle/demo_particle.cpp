@@ -15,6 +15,7 @@
 
 #include <math.h>
 
+#include <april/april.h>
 #include <april/main.h>
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
