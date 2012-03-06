@@ -294,9 +294,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C9DF8456148D03DC00B64799 /* libaprilparticle */ = {
+		C9DF8456148D03DC00B64799 /* aprilparticle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libaprilparticle" */;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */;
 			buildPhases = (
 				C9DF8452148D03DC00B64799 /* Sources */,
 				C9DF8453148D03DC00B64799 /* Frameworks */,
@@ -306,14 +306,14 @@
 			);
 			dependencies = (
 			);
-			name = libaprilparticle;
+			name = aprilparticle;
 			productName = aprilparticle;
 			productReference = C9DF8457148D03DC00B64799 /* aprilparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C9FB7819150105EF008B2B48 /* libaprilparticle-ios */ = {
+		C9FB7819150105EF008B2B48 /* aprilparticle (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9FB7828150105EF008B2B48 /* Build configuration list for PBXNativeTarget "libaprilparticle-ios" */;
+			buildConfigurationList = C9FB7828150105EF008B2B48 /* Build configuration list for PBXNativeTarget "aprilparticle (iOS)" */;
 			buildPhases = (
 				C9FB7816150105EF008B2B48 /* Sources */,
 				C9FB7817150105EF008B2B48 /* Frameworks */,
@@ -323,7 +323,7 @@
 			);
 			dependencies = (
 			);
-			name = "libaprilparticle-ios";
+			name = "aprilparticle (iOS)";
 			productName = "libaprilparticle-ios";
 			productReference = C9FB781A150105EF008B2B48 /* libaprilparticle.a */;
 			productType = "com.apple.product-type.library.static";
@@ -348,8 +348,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9DF8456148D03DC00B64799 /* libaprilparticle */,
-				C9FB7819150105EF008B2B48 /* libaprilparticle-ios */,
+				C9DF8456148D03DC00B64799 /* aprilparticle */,
+				C9FB7819150105EF008B2B48 /* aprilparticle (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -829,7 +829,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libaprilparticle" */ = {
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "aprilparticle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9DF846D148D03DC00B64799 /* Debug */,
@@ -841,7 +841,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9FB7828150105EF008B2B48 /* Build configuration list for PBXNativeTarget "libaprilparticle-ios" */ = {
+		C9FB7828150105EF008B2B48 /* Build configuration list for PBXNativeTarget "aprilparticle (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9FB7823150105EF008B2B48 /* Debug */,
@@ -851,6 +851,7 @@
 				C9FB7827150105EF008B2B48 /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

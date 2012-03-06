@@ -132,9 +132,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C9DF8456148D03DC00B64799 /* libapriluiparticle */ = {
+		C9DF8456148D03DC00B64799 /* apriluiparticle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libapriluiparticle" */;
+			buildConfigurationList = C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */;
 			buildPhases = (
 				C9DF8452148D03DC00B64799 /* Sources */,
 				C9DF8453148D03DC00B64799 /* Frameworks */,
@@ -144,14 +144,14 @@
 			);
 			dependencies = (
 			);
-			name = libapriluiparticle;
+			name = apriluiparticle;
 			productName = apriluiparticle;
 			productReference = C9DF8457148D03DC00B64799 /* apriluiparticle.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C9FB78411501070B008B2B48 /* libapriluiparticle-ios */ = {
+		C9FB78411501070B008B2B48 /* apriluiparticle (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "libapriluiparticle-ios" */;
+			buildConfigurationList = C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "apriluiparticle (iOS)" */;
 			buildPhases = (
 				C9FB783E1501070B008B2B48 /* Sources */,
 				C9FB783F1501070B008B2B48 /* Frameworks */,
@@ -160,7 +160,7 @@
 			);
 			dependencies = (
 			);
-			name = "libapriluiparticle-ios";
+			name = "apriluiparticle (iOS)";
 			productName = "libapriluiparticle-ios";
 			productReference = C9FB78421501070B008B2B48 /* libapriluiparticle.a */;
 			productType = "com.apple.product-type.library.static";
@@ -185,8 +185,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9DF8456148D03DC00B64799 /* libapriluiparticle */,
-				C9FB78411501070B008B2B48 /* libapriluiparticle-ios */,
+				C9DF8456148D03DC00B64799 /* apriluiparticle */,
+				C9FB78411501070B008B2B48 /* apriluiparticle (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -600,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "libapriluiparticle" */ = {
+		C9DF846C148D03DC00B64799 /* Build configuration list for PBXNativeTarget "apriluiparticle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9DF846D148D03DC00B64799 /* Debug */,
@@ -612,7 +612,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "libapriluiparticle-ios" */ = {
+		C9FB78501501070B008B2B48 /* Build configuration list for PBXNativeTarget "apriluiparticle (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9FB784B1501070B008B2B48 /* Debug */,
