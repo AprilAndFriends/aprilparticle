@@ -92,7 +92,7 @@ namespace aprilparticle
 			delete [] this->_triangleBatch;
 		}
 		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
-		for (this->_i = 0; this->_i < this->limit; this->_i++)
+		for_iterx (this->_i, 0, this->limit)
 		{
 			this->_triangleBatch[this->_i * 6 + 0].u = 0.0f;		this->_triangleBatch[this->_i * 6 + 0].v = 0.0f;
 			this->_triangleBatch[this->_i * 6 + 1].u = 1.0f;		this->_triangleBatch[this->_i * 6 + 1].v = 0.0f;
@@ -397,7 +397,7 @@ namespace aprilparticle
 			if (this->preUpdate > 0.0f)
 			{
 				int count = (int)(this->preUpdate / 0.1f);
-				for (int i = 0; i < count; i++)
+				for_iter (i, 0, count)
 				{
 					this->update(0.1f);
 				}
@@ -495,7 +495,7 @@ namespace aprilparticle
 				else if (this->emissionTimer > this->_cs && this->alive < this->limit)
 				{
 					this->_quota = hmin(this->_quota, (int)(this->limit - this->alive));
-					for (int i = 0; i < this->_quota; i++)
+					for_iter (i, 0, this->_quota)
 					{
 						this->_createNewParticle(k * i / this->_quota);
 					}

@@ -34,7 +34,7 @@ namespace aprilparticle
 
 	void initForceField()
 	{
-		for (int i = 0; i < VERTEX_COUNT; i++)
+		for_iter (i, 0, VERTEX_COUNT)
 		{
 			ut.set(sin(i * 0.069777f), cos(i * 0.069777f), 0.0f);
 			vt.set(0.0f, cos(i * 0.069777f), sin(i * 0.069777f));
@@ -98,7 +98,7 @@ namespace aprilparticle
 		void ForceField::draw()
 		{
 			float length = this->direction.length();
-			for (int i = 0; i < VERTEX_COUNT; i++)
+			for_iter (i, 0, VERTEX_COUNT)
 			{
 				u[i] = this->position + this->system->getPosition() + ut * length;
 				v[i] = this->position + this->system->getPosition() + vt * length;

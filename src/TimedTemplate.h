@@ -55,7 +55,7 @@
 
 #define TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(prefix, suffix) \
 	harray<hstr> result; \
-	for (int i = 0; i < this->times.size(); i++) \
+	for_iter (i, 0, this->times.size()) \
 	{ \
 		result += hsprintf("%f" APRILPARTICLE_TIMING_SEPARATOR "%s", this->times[i], (prefix(this->values[i])suffix).c_str()); \
 	} \
@@ -63,7 +63,7 @@
 
 #define TIMED_TEMPLATE_ADD_TIMING \
 	time = hclamp(time, 0.0f, 1.0f); \
-	for (this->_i = 0; this->_i < this->times.size(); this->_i++) \
+	for_iterx (this->_i, 0, this->times.size()) \
 	{ \
 		if (time > this->times[this->_i]) \
 		{ \
@@ -86,7 +86,7 @@
 	} \
 	else \
 	{ \
-		for (this->_i = 0; this->_i < this->_size; this->_i++) \
+		for_iterx (this->_i, 0, this->_size) \
 		{ \
 			if (is_inside(this->_ratio, this->times[this->_i], this->times[this->_i + 1])) \
 			{ \
