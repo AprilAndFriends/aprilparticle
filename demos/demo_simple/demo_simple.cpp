@@ -182,7 +182,7 @@ void april_init(const harray<hstr>& args)
 	april::createRenderSystem("");
 	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle XML Demo");
 	aprilparticle::init();
-	april::rendersys->getWindow()->setUpdateCallback(render);
+	april::window->setUpdateCallback(render);
 	setupGrid(2.0f);
 	// setting up every system
 	flame = new aprilparticle::System(RESOURCE_PATH "flame.particle");

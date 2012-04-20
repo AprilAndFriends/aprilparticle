@@ -119,9 +119,9 @@ void april_init(const harray<hstr>& args)
 		aprilui::init();
 		aprilparticle::init();
 		apriluiparticle::init();
-		april::rendersys->getWindow()->setUpdateCallback(&update);
-		april::rendersys->getWindow()->setMouseCallbacks(&aprilui::onMouseDown, &aprilui::onMouseUp, &aprilui::onMouseMove);
-		april::rendersys->getWindow()->setKeyboardCallbacks(&onKeyDown, &aprilui::onKeyUp, &aprilui::onChar);
+		april::window->setUpdateCallback(&update);
+		april::window->setMouseCallbacks(&aprilui::onMouseDown, &aprilui::onMouseUp, &aprilui::onMouseMove);
+		april::window->setKeyboardCallbacks(&onKeyDown, &aprilui::onKeyUp, &aprilui::onChar);
 		apriluiparticle::setDefaultPath("");
 		dataset = new aprilui::Dataset(RESOURCE_PATH "demo_aprilui.dts");
 		dataset->load();

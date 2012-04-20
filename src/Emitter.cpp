@@ -316,7 +316,7 @@ namespace aprilparticle
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
 				this->_angle = this->_rho * sin(this->_phi);
-
+				
 				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
 				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
 				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
@@ -326,7 +326,7 @@ namespace aprilparticle
 				this->_phi = hrandf((float)G_PIx2);
 				this->_theta = hrandf((float)G_PI);
 				this->_angle = this->_rho * sin(this->_phi);
-
+				
 				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
 				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
 				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
@@ -384,7 +384,7 @@ namespace aprilparticle
 		}
 		this->particles.clear();
 	}
-	
+
 	void Emitter::update(float k)
 	{
 		if (!this->enabled)
@@ -466,14 +466,21 @@ namespace aprilparticle
 			}
 		}
 		// remove all expired particles
-		while (this->particles.size() > 0)
+		if (this->particles.size() > 0)
 		{
-			if (!this->particles.front()->isDead())
+			int i;
+			for_iterx (i, 0, this->particles.size())
 			{
-				break;
+				if (!this->particles[i]->isDead())
+				{
+					break;
+				}
+				delete this->particles[i];
 			}
-			delete this->particles.front();
-			this->particles.pop_front();
+			if (i > 0)
+			{
+				this->particles.pop_front(i);
+			}
 		}
 		// check repetition loops
 		if (this->loops > 0 && this->currentLoop >= this->loops)

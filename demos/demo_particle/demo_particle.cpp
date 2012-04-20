@@ -526,7 +526,7 @@ void april_init(const harray<hstr>& args)
 	april::createRenderSystem("");
 	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle Demo");
 	aprilparticle::init();
-	april::rendersys->getWindow()->setUpdateCallback(render);
+	april::window->setUpdateCallback(render);
 	setupGrid(2.0f);
 	// textures used by more than one system
 	redParticle = april::rendersys->loadTexture(RESOURCE_PATH "red_particle");
