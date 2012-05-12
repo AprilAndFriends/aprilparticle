@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="libaprilparticle"
 	ProjectGUID="{DD3683D5-541E-4C9D-9E90-2AF08BDD8DD4}"
 	RootNamespace="libaprilparticle"
@@ -138,6 +138,8 @@
 				AdditionalDependencies="libapril.lib libgtypes.lib libhltypes.lib libhlxml.lib"
 				OutputFile="$(OutDir)$(ProjectName).dll"
 				AdditionalLibraryDirectories="$(SolutionDir)bin\$(PlatformName)"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -180,6 +182,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\aprilparticleUtil.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Emitter.cpp"
 				>
 			</File>
@@ -189,10 +195,6 @@
 			</File>
 			<File
 				RelativePath=".\src\System.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\aprilparticleUtil.cpp"
 				>
 			</File>
 			<Filter
@@ -278,6 +280,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\aprilparticleUtil.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\aprilparticle\Emitter.h"
 				>
 			</File>
@@ -291,10 +297,6 @@
 			</File>
 			<File
 				RelativePath=".\src\TimedTemplate.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\aprilparticleUtil.h"
 				>
 			</File>
 			<Filter
