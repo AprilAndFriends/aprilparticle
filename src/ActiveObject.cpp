@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.42
 /// 
 /// @section LICENSE
 /// 
@@ -42,9 +42,9 @@ namespace aprilparticle
 		if (name == "enabled")	return this->isEnabled();
 		if (property_exists != NULL)
 		{
+			aprilparticle::log("Warning! Property '" + name + "' does not exist in " + this->name + "!");
 			*property_exists = false;
 		}
-		return "";
 		return "";
 	}
 	
@@ -56,7 +56,7 @@ namespace aprilparticle
 		else if	(name == "enabled")		this->setEnabled(value);
 		else
 		{
-			aprilparticle::log("WARNING! Property '" + name + "' does not exist in " + this->name + "!");
+			aprilparticle::log("Warning! Property '" + name + "' does not exist in " + this->name + "!");
 			return false;
 		}
 		return true;

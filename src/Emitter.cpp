@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.42
 /// 
 /// @section LICENSE
 /// 
@@ -263,12 +263,13 @@ namespace aprilparticle
 		else if	(name == "type")
 		{
 			TRY_SET_TYPE(value, Point);
-			TRY_SET_TYPE(value, Box);
-			TRY_SET_TYPE(value, HollowBox);
-			TRY_SET_TYPE(value, Sphere);
-			TRY_SET_TYPE(value, HollowSphere);
-			TRY_SET_TYPE(value, Cylinder);
-			TRY_SET_TYPE(value, HollowCylinder);
+			else TRY_SET_TYPE(value, Box);
+			else TRY_SET_TYPE(value, HollowBox);
+			else TRY_SET_TYPE(value, Sphere);
+			else TRY_SET_TYPE(value, HollowSphere);
+			else TRY_SET_TYPE(value, Cylinder);
+			else TRY_SET_TYPE(value, HollowCylinder);
+			else aprilparticle::log("Warning! Value '" + value + "' does not exist for property '" + name + "' in " + this->name + "!");
 		}
 		else if	(name == "dimensions")		this->setDimensions(hstr_to_gvec3(value));
 		else if	(name == "blend_mode")
@@ -277,6 +278,7 @@ namespace aprilparticle
 			else if	(value == "alpha_blend")	this->setBlendMode(april::ALPHA_BLEND);
 			else if	(value == "add")			this->setBlendMode(april::ADD);
 			else if	(value == "subtract")		this->setBlendMode(april::SUBTRACT);
+			else aprilparticle::log("Warning! Value '" + value + "' does not exist for property '" + name + "' in " + this->name + "!");
 		}
 		else if	(name == "emission_rate")	this->setEmissionRate(value);
 		else if	(name == "limit")			this->setLimit(value);

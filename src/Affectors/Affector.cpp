@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.42
 /// 
 /// @section LICENSE
 /// 
@@ -60,6 +60,7 @@ namespace aprilparticle
 		{
 			*property_exists = false;
 		}
+		aprilparticle::log("Warning! Affector property '" + name + "' does not exist in " + this->name + "!");
 		return "";
 	}
 	
@@ -71,7 +72,7 @@ namespace aprilparticle
 		else if	(name == "type")		; // type is not set here but during Affector creation
 		else
 		{
-			aprilparticle::log("WARNING! Affector property '" + name + "' does not exist!");
+			aprilparticle::log("Warning! Affector property '" + name + "' does not exist in " + this->name + "!");
 			return false;
 		}
 		return true;
