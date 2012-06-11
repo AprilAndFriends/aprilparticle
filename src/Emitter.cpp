@@ -557,7 +557,7 @@ namespace aprilparticle
 		if (this->_i > 0)
 		{
 			april::rendersys->setTexture(this->texture);
-			april::rendersys->setBlendMode(this->blendMode);
+			april::rendersys->setTextureBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}
@@ -607,7 +607,7 @@ namespace aprilparticle
 		if (this->_i > 0)
 		{
 			april::rendersys->setTexture(this->texture);
-			april::rendersys->setBlendMode(this->blendMode);
+			april::rendersys->setTextureBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}
@@ -657,7 +657,7 @@ namespace aprilparticle
 		if (this->_i > 0)
 		{
 			april::rendersys->setTexture(this->texture);
-			april::rendersys->setBlendMode(this->blendMode);
+			april::rendersys->setTextureBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
 		}
 	}
