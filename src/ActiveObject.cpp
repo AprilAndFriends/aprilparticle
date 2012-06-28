@@ -42,7 +42,7 @@ namespace aprilparticle
 		if (name == "enabled")	return this->isEnabled();
 		if (property_exists != NULL)
 		{
-			aprilparticle::log("Warning! Property '" + name + "' does not exist in " + this->name + "!");
+			aprilparticle::log(hsprintf("WARNING: Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
 			*property_exists = false;
 		}
 		return "";
@@ -56,7 +56,7 @@ namespace aprilparticle
 		else if	(name == "enabled")		this->setEnabled(value);
 		else
 		{
-			aprilparticle::log("Warning! Property '" + name + "' does not exist in " + this->name + "!");
+			aprilparticle::log(hsprintf("WARNING: Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
 			return false;
 		}
 		return true;

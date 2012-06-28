@@ -60,7 +60,7 @@ namespace aprilparticle
 		{
 			*property_exists = false;
 		}
-		aprilparticle::log("Warning! Affector property '" + name + "' does not exist in " + this->name + "!");
+		aprilparticle::log(hsprintf("WARNING: Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
 		return "";
 	}
 	
@@ -72,7 +72,7 @@ namespace aprilparticle
 		else if	(name == "type")		; // type is not set here but during Affector creation
 		else
 		{
-			aprilparticle::log("Warning! Affector property '" + name + "' does not exist in " + this->name + "!");
+			aprilparticle::log(hsprintf("WARNING: Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
 			return false;
 		}
 		return true;

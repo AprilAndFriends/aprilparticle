@@ -269,7 +269,7 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, HollowSphere);
 			else TRY_SET_TYPE(value, Cylinder);
 			else TRY_SET_TYPE(value, HollowCylinder);
-			else aprilparticle::log("Warning! Value '" + value + "' does not exist for property '" + name + "' in " + this->name + "!");
+			else aprilparticle::log(hsprintf("WARNING: Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str()));
 		}
 		else if	(name == "dimensions")		this->setDimensions(hstr_to_gvec3(value));
 		else if	(name == "blend_mode")
@@ -278,7 +278,7 @@ namespace aprilparticle
 			else if	(value == "alpha_blend")	this->setBlendMode(april::ALPHA_BLEND);
 			else if	(value == "add")			this->setBlendMode(april::ADD);
 			else if	(value == "subtract")		this->setBlendMode(april::SUBTRACT);
-			else aprilparticle::log("Warning! Value '" + value + "' does not exist for property '" + name + "' in " + this->name + "!");
+			else aprilparticle::log(hsprintf("WARNING: Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str()));
 		}
 		else if	(name == "emission_rate")	this->setEmissionRate(value);
 		else if	(name == "limit")			this->setLimit(value);

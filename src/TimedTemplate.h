@@ -50,7 +50,7 @@
 	{ \
 		this->times.clear(); \
 		this->values.clear(); \
-		aprilparticle::log("Warning! Incorrect usage of 'timings' for Affector!"); \
+		aprilparticle::log("WARNING: Incorrect usage of 'timings' for Affector!"); \
 	}
 
 #define TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(prefix, suffix) \
