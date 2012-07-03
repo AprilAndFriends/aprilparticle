@@ -29,8 +29,8 @@ namespace aprilparticle
 {
 	class Affector;
 
-    aprilparticleFnExport void init();
-    aprilparticleFnExport void destroy();
+	aprilparticleFnExport void init();
+	aprilparticleFnExport void destroy();
 	aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
 	aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));

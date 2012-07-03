@@ -20,8 +20,8 @@
 
 namespace apriluiparticle
 {
-    apriluiparticleFnExport void init();
-    apriluiparticleFnExport void destroy();
+	apriluiparticleFnExport void init();
+	apriluiparticleFnExport void destroy();
 	apriluiparticleFnExport void setLogFunction(void (*fnptr)(chstr));
 	apriluiparticleFnExport void log(chstr message, chstr prefix = "[apriluiparticle] ");
 	apriluiparticleFnExport bool isEnabled();

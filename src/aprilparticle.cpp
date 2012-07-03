@@ -35,8 +35,8 @@ namespace aprilparticle
 	void (*g_logFunction)(chstr) = aprilparticle_writelog;
 	
 	extern void initForceField();
-    void init()
-    {
+	void init()
+	{
 		log("initializing AprilParticle");
 		initForceField(); // so we can shoot the bad guys
 		REGISTER_AFFECTOR_TYPE(Attractor);
@@ -51,13 +51,13 @@ namespace aprilparticle
 		REGISTER_AFFECTOR_TYPE(Rotator);
 		REGISTER_AFFECTOR_TYPE(Scaler);
 		REGISTER_AFFECTOR_TYPE(ScalerTimed);
-    }
-    
-    void destroy()
-    {
+	}
+	
+	void destroy()
+	{
 		log("destroying AprilParticle");
 		gAffectorFactories.clear();
-    }
+	}
 
 	void setLogFunction(void (*fnptr)(chstr))
 	{

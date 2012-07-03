@@ -34,15 +34,15 @@ namespace apriluiparticle
 	void (*g_logFunction)(chstr) = apriluiparticle_writelog;
 	
 	void init()
-    {
+	{
 		log("initializing AprilUIParticle");
 		APRILUI_REGISTER_OBJECT_TYPE(Particle);
-    }
-    
-    void destroy()
-    {
+	}
+	
+	void destroy()
+	{
 		log("destroying AprilUIParticle");
-    }
+	}
 
 	void setLogFunction(void (*fnptr)(chstr))
 	{
