@@ -87,6 +87,9 @@
     <ClInclude Include="src\aprilparticleUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Particle.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
     <ClCompile Include="src\aprilparticleUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

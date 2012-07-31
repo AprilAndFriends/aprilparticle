@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="libaprilparticle"
 	ProjectGUID="{DD3683D5-541E-4C9D-9E90-2AF08BDD8DD4}"
 	RootNamespace="libaprilparticle"
@@ -197,6 +197,10 @@
 				RelativePath=".\src\System.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\Texture.cpp"
+				>
+			</File>
 			<Filter
 				Name="Affectors"
 				>
@@ -293,6 +297,10 @@
 			</File>
 			<File
 				RelativePath=".\include\aprilparticle\System.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\aprilparticle\Texture.h"
 				>
 			</File>
 			<File

@@ -40,6 +40,7 @@ namespace aprilparticle
 {
 	class Affector;
 	class Emitter;
+	class Texture;
 
 	class aprilparticleExport System : public ActiveObject
 	{
@@ -57,11 +58,11 @@ namespace aprilparticle
 		bool unregisterEmitter(Emitter* emitter);
 		bool registerAffector(Affector* affector);
 		bool unregisterAffector(Affector* affector);
-		bool registerTexture(april::Texture* texture, chstr name = "");
+		bool registerTexture(aprilparticle::Texture* texture, chstr name = "");
 		bool unregisterTexture(chstr name);
-		bool unregisterTexture(april::Texture* texture);
+		bool unregisterTexture(aprilparticle::Texture* texture);
 		Emitter* getEmitter(chstr name);
-		april::Texture* getTexture(chstr name);
+		aprilparticle::Texture* getTexture(chstr name);
 		int getParticleCount();
 		bool isExpired();
 		
@@ -80,7 +81,7 @@ namespace aprilparticle
 		gvec3 up;
 		bool loaded;
 		harray<Emitter*> emitters;
-		hmap<hstr, april::Texture*> textures;
+		hmap<hstr, aprilparticle::Texture*> textures;
 
 		void _loadEmitter(hlxml::Node* root);
 		void _loadAffector(hlxml::Node* root, Emitter* emitter = NULL);

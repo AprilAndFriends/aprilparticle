@@ -28,6 +28,7 @@
 namespace aprilparticle
 {
 	class Affector;
+	class Texture;
 
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
@@ -35,6 +36,8 @@ namespace aprilparticle
 	aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
+	aprilparticleFnExport aprilparticle::Texture* loadTexture(chstr filename, bool cached = false);
+	aprilparticleFnExport void clearCache();
 	
 };
 

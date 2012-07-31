@@ -22,6 +22,7 @@
 #include "aprilparticleUtil.h"
 #include "Emitter.h"
 #include "System.h"
+#include "Texture.h"
 
 namespace aprilparticle
 {
@@ -42,9 +43,12 @@ namespace aprilparticle
 		{
 			delete (*it);
 		}
-		foreach_m (april::Texture*, it, this->textures)
+		foreach_m (aprilparticle::Texture*, it, this->textures)
 		{
-			delete it->second;
+			if (!it->second->isCached())
+			{
+				delete it->second;
+			}
 		}
 	}
 	
@@ -104,7 +108,7 @@ namespace aprilparticle
 		return true;
 	}
 
-	bool System::registerTexture(april::Texture* texture, chstr name)
+	bool System::registerTexture(aprilparticle::Texture* texture, chstr name)
 	{
 		hstr newName = (name == "" ? generateName(this->name + "_Texture") : name);
 		if (this->textures.has_key(newName) || this->textures.has_value(texture))
@@ -115,7 +119,7 @@ namespace aprilparticle
 		return true;
 	}
 
-	bool System::unregisterTexture(april::Texture* texture)
+	bool System::unregisterTexture(aprilparticle::Texture* texture)
 	{
 		if (!this->textures.has_value(texture))
 		{
@@ -147,7 +151,7 @@ namespace aprilparticle
 		return NULL;
 	}
 
-	april::Texture* System::getTexture(chstr name)
+	aprilparticle::Texture* System::getTexture(chstr name)
 	{
 		return this->textures.try_get_by_key(name, NULL);
 	}
@@ -246,7 +250,7 @@ namespace aprilparticle
 				it->first->addAffector(affector);
 			}
 		}
-		april::Texture* texture;
+		aprilparticle::Texture* texture;
 		foreach_map (Emitter*, hstr, it, this->_mappedTextures)
 		{
 			texture = this->getTexture(it->second);
@@ -254,7 +258,7 @@ namespace aprilparticle
 			{
 				throw hl_exception("Error! Texture reference '" + it->second + "' does not exist!");
 			}
-			it->first->setTexture(texture);
+			it->first->setTexture(texture->getTexture());
 		}
 		this->_mappedAffectors.clear();
 		this->_mappedTextures.clear();
@@ -319,19 +323,14 @@ namespace aprilparticle
 
 	void System::_loadTexture(hlxml::Node* root, Emitter* emitter)
 	{
-		april::Texture* texture = NULL;
 		if (root->pexists("filename"))
 		{
 			hstr filename = root->pstr("filename");
-			texture = april::rendersys->loadTexture(get_basedir(this->filename) + "/" + filename);
-			if (texture == NULL)
-			{
-				throw hl_exception("Error! Texture file '" + filename + "' does not exist!");
-			}
-			this->registerTexture(texture, (root->pexists("name") ? root->pstr("name") : filename));
+			aprilparticle::Texture* texture = aprilparticle::loadTexture(get_basedir(this->filename) + "/" + filename, root->pbool("cached", false));
+			this->registerTexture(texture, root->pstr("name", filename));
 			if (emitter != NULL)
 			{
-				emitter->setTexture(texture);
+				emitter->setTexture(texture->getTexture());
 			}
 		}
 		else if (emitter != NULL && root->pexists("reference"))

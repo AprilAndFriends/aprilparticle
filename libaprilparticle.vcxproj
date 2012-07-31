@@ -209,6 +209,7 @@
     <ClInclude Include="include\aprilparticle\Emitter.h" />
     <ClInclude Include="include\aprilparticle\Particle.h" />
     <ClInclude Include="include\aprilparticle\System.h" />
+    <ClInclude Include="include\aprilparticle\Texture.h" />
     <ClInclude Include="src\TimedTemplate.h" />
     <ClInclude Include="src\aprilparticleUtil.h" />
   </ItemGroup>
@@ -233,6 +234,7 @@
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\System.cpp" />
     <ClCompile Include="src\aprilparticleUtil.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="fileproperties.rc">

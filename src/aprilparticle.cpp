@@ -11,18 +11,21 @@
 #include <android/log.h>
 #endif
 
+#include <april/RenderSystem.h>
 #include <hltypes/exception.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
 #include "Affectors.h"
 #include "aprilparticle.h"
+#include "Texture.h"
 
 #define REGISTER_AFFECTOR_TYPE(name) aprilparticle::registerAffectorFactory(#name, &Affectors::name::createInstance)
 
 namespace aprilparticle
 {
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
+	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
 
 	void aprilparticle_writelog(chstr message)
 	{
@@ -57,6 +60,11 @@ namespace aprilparticle
 	{
 		log("destroying AprilParticle");
 		gAffectorFactories.clear();
+		foreach_m (aprilparticle::Texture*, it, gTextureCache)
+		{
+			delete it->second;
+		}
+		gTextureCache.clear();
 	}
 
 	void setLogFunction(void (*fnptr)(chstr))
@@ -86,4 +94,35 @@ namespace aprilparticle
 		}
 		return NULL;
 	}
+
+	aprilparticle::Texture* loadTexture(chstr filename, bool cached)
+	{
+		aprilparticle::Texture* texture = NULL;
+		if (gTextureCache.has_key(filename))
+		{
+			texture = gTextureCache[filename];
+		}
+		else
+		{
+			april::Texture* aprilTexture = april::rendersys->loadTexture(filename);
+			if (aprilTexture != NULL)
+			{
+				texture = new aprilparticle::Texture(aprilTexture, cached);
+				if (cached)
+				{
+					gTextureCache[filename] = texture;
+				}
+			}
+		}
+		return texture;
+	}
+
+	void clearCache()
+	{
+		foreach_m (aprilparticle::Texture*, it, gTextureCache)
+		{
+			it->second->getTexture()->unload();
+		}
+	}
+
 }
