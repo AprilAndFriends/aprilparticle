@@ -53,7 +53,6 @@
 		C9DF8524148D0D2F00B64799 /* gtypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8520148D0D2F00B64799 /* gtypes.framework */; };
 		C9DF8525148D0D2F00B64799 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8521148D0D2F00B64799 /* hltypes.framework */; };
 		C9DF8526148D0D2F00B64799 /* hlxml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DF8522148D0D2F00B64799 /* hlxml.framework */; };
-		C9FB781C150105EF008B2B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FB781B150105EF008B2B48 /* Foundation.framework */; };
 		C9FB782A15010655008B2B48 /* Affector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848D148D057600B64799 /* Affector.cpp */; };
 		C9FB782B15010655008B2B48 /* AffectorAttractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848E148D057600B64799 /* AffectorAttractor.cpp */; };
 		C9FB782C15010655008B2B48 /* AffectorCallbackAffector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF848F148D057600B64799 /* AffectorCallbackAffector.cpp */; };
@@ -74,6 +73,9 @@
 		C9FB783B15010655008B2B48 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849D148D057600B64799 /* Particle.cpp */; };
 		C9FB783C15010655008B2B48 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849E148D057600B64799 /* System.cpp */; };
 		C9FB783D15010655008B2B48 /* aprilparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C965F62714F3E7E4009F0EE5 /* aprilparticleUtil.cpp */; };
+		D1CDD35615D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
+		D1CDD35715D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
+		D1CDD35915D112C800C4B579 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = D1CDD35815D112C800C4B579 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		C9DF8522148D0D2F00B64799 /* hlxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hlxml.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/hlxml.framework"; sourceTree = "<group>"; };
 		C9FB781A150105EF008B2B48 /* libaprilparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaprilparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FB781B150105EF008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1CDD35515D112B800C4B579 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = src/Texture.cpp; sourceTree = SOURCE_ROOT; };
+		D1CDD35815D112C800C4B579 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = include/aprilparticle/Texture.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,14 +143,6 @@
 				C9DF8524148D0D2F00B64799 /* gtypes.framework in Frameworks */,
 				C9DF8525148D0D2F00B64799 /* hltypes.framework in Frameworks */,
 				C9DF8526148D0D2F00B64799 /* hlxml.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9FB7817150105EF008B2B48 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9FB781C150105EF008B2B48 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +190,7 @@
 				C9DF849C148D057600B64799 /* Emitter.cpp */,
 				C9DF849D148D057600B64799 /* Particle.cpp */,
 				C9DF849E148D057600B64799 /* System.cpp */,
+				D1CDD35515D112B800C4B579 /* Texture.cpp */,
 				C9DF849F148D057600B64799 /* TimedTemplate.h */,
 				C965F62714F3E7E4009F0EE5 /* aprilparticleUtil.cpp */,
 				C965F62814F3E7E4009F0EE5 /* aprilparticleUtil.h */,
@@ -205,6 +202,7 @@
 		C9DF8475148D041D00B64799 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				D1CDD35815D112C800C4B579 /* Texture.h */,
 				C9DF84B8148D058B00B64799 /* ActiveObject.h */,
 				C9DF84B9148D058B00B64799 /* Affector.h */,
 				C9DF84BA148D058B00B64799 /* AffectorAttractor.h */,
@@ -279,15 +277,9 @@
 				C9DF8519148D0AE500B64799 /* aprilparticleExport.h in Headers */,
 				C9DF851A148D0AE500B64799 /* Emitter.h in Headers */,
 				C9DF851B148D0AE500B64799 /* Particle.h in Headers */,
+				D1CDD35915D112C800C4B579 /* Texture.h in Headers */,
 				C9DF851C148D0AE500B64799 /* System.h in Headers */,
 				C965F62A14F3E7E4009F0EE5 /* aprilparticleUtil.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9FB7818150105EF008B2B48 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,8 +308,6 @@
 			buildConfigurationList = C9FB7828150105EF008B2B48 /* Build configuration list for PBXNativeTarget "aprilparticle (iOS)" */;
 			buildPhases = (
 				C9FB7816150105EF008B2B48 /* Sources */,
-				C9FB7817150105EF008B2B48 /* Frameworks */,
-				C9FB7818150105EF008B2B48 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -379,6 +369,7 @@
 				C9DF84B3148D057600B64799 /* Particle.cpp in Sources */,
 				C9DF84B4148D057600B64799 /* System.cpp in Sources */,
 				C965F62914F3E7E4009F0EE5 /* aprilparticleUtil.cpp in Sources */,
+				D1CDD35615D112B800C4B579 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +397,7 @@
 				C9FB783B15010655008B2B48 /* Particle.cpp in Sources */,
 				C9FB783C15010655008B2B48 /* System.cpp in Sources */,
 				C9FB783D15010655008B2B48 /* aprilparticleUtil.cpp in Sources */,
+				D1CDD35715D112B800C4B579 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
