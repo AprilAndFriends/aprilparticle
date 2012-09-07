@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.42
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -69,7 +69,6 @@ namespace aprilparticle
 		if		(name == "name")		this->setName(value);
 		else if	(name == "randomness")	this->setRandomness(value);
 		//else if	(name == "chaoticity")	this->setChaoticity(hstr_to_gvec3(value));
-		else if	(name == "type")		; // type is not set here but during Affector creation
 		else
 		{
 			aprilparticle::log(hsprintf("WARNING: Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));

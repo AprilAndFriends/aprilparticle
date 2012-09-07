@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -46,6 +46,7 @@ namespace aprilparticle
 	{
 	public:
 		System(chstr filename = "", chstr name = "");
+		System(const System& other);
 		~System();
 
 		bool isRunning();
@@ -58,6 +59,8 @@ namespace aprilparticle
 		bool unregisterEmitter(Emitter* emitter);
 		bool registerAffector(Affector* affector);
 		bool unregisterAffector(Affector* affector);
+		void addAffector(Affector* affector);
+		void removeAffector(Affector* affector);
 		bool registerTexture(aprilparticle::Texture* texture, chstr name = "");
 		bool unregisterTexture(chstr name);
 		bool unregisterTexture(aprilparticle::Texture* texture);
@@ -86,6 +89,8 @@ namespace aprilparticle
 		void _loadEmitter(hlxml::Node* root);
 		void _loadAffector(hlxml::Node* root, Emitter* emitter = NULL);
 		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
+
+		void _assignEmitterData();
 
 	private:
 		hmap<Emitter*, harray<hstr> > _mappedAffectors;

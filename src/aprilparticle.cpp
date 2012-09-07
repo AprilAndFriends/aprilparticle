@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -18,6 +18,7 @@
 
 #include "Affectors.h"
 #include "aprilparticle.h"
+#include "System.h"
 #include "Texture.h"
 
 #define REGISTER_AFFECTOR_TYPE(name) aprilparticle::registerAffectorFactory(#name, &Affectors::name::createInstance)
@@ -26,6 +27,7 @@ namespace aprilparticle
 {
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
+	static hmap<hstr, System*> gSystemCache;
 
 	void aprilparticle_writelog(chstr message)
 	{
@@ -65,6 +67,11 @@ namespace aprilparticle
 			delete it->second;
 		}
 		gTextureCache.clear();
+		foreach_m (aprilparticle::System*, it, gSystemCache)
+		{
+			delete it->second;
+		}
+		gSystemCache.clear();
 	}
 
 	void setLogFunction(void (*fnptr)(chstr))
@@ -107,7 +114,7 @@ namespace aprilparticle
 			april::Texture* aprilTexture = april::rendersys->loadTexture(filename);
 			if (aprilTexture != NULL)
 			{
-				texture = new aprilparticle::Texture(aprilTexture, cached);
+				texture = new aprilparticle::Texture(aprilTexture, filename, cached);
 				if (cached)
 				{
 					gTextureCache[filename] = texture;
@@ -123,6 +130,28 @@ namespace aprilparticle
 		{
 			it->second->getTexture()->unload();
 		}
+		foreach_m (aprilparticle::System*, it, gSystemCache)
+		{
+			delete it->second;
+		}
+		gSystemCache.clear();
+	}
+
+	System* loadSystem(chstr filename, chstr name)
+	{
+		hstr key = name;
+		if (key == "")
+		{
+			key = filename;
+		}
+		aprilparticle::System* system = gSystemCache.try_get_by_key(key, NULL);
+		if (system == NULL)
+		{
+			system = new aprilparticle::System(filename, name);
+			gSystemCache[key] = system;
+		}
+		system->load();
+		return new aprilparticle::System(*system);
 	}
 
 }

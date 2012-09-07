@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -31,6 +31,51 @@ namespace aprilparticle
 		this->filename = filename;
 		this->up.set(0.0f, 1.0f, 0.0f);
 		this->loaded = false;
+	}
+	
+	System::System(const System& other) : ActiveObject(other)
+	{
+		this->filename = other.filename;
+		this->up = other.up;
+		this->loaded = other.loaded;
+		// copy textures
+		hmap<hstr, aprilparticle::Texture*> textures = other.textures;
+		foreach_m (aprilparticle::Texture*, it, textures)
+		{
+			this->registerTexture(aprilparticle::loadTexture(it->second->getFilename(), it->second->isCached()), it->first);
+		}
+		// copy affectors
+		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties = other._affectorProperties;
+		hmap<hstr, hstr> properties;
+		harray<Affector*> affectors = other.affectors;
+		Affector* affector;
+		foreach (Affector*, it, affectors)
+		{
+			properties = _affectorProperties[*it];
+			affector = createAffector(properties["type"], properties["name"]);
+			foreach_m (hstr, it, properties)
+			{
+				if (it->first != "type")
+				{
+					affector->setProperty(it->first, it->second);
+				}
+			}
+			this->registerAffector(affector);
+			this->_affectorProperties[affector] = properties;
+		}
+		// copy emitters
+		harray<Emitter*> emitters = other.emitters;
+		hmap<Emitter*, hstr> _mappedTextures = other._mappedTextures;
+		hmap<Emitter*, harray<hstr> > _mappedAffectors = other._mappedAffectors;
+		Emitter* emitter;
+		foreach (Emitter*, it, emitters)
+		{
+			emitter = new Emitter(*(*it));
+			this->registerEmitter(emitter);
+			this->_mappedTextures[emitter] = _mappedTextures[*it];
+			this->_mappedAffectors[emitter] = _mappedAffectors[*it];
+		}
+		this->_assignEmitterData();
 	}
 	
 	System::~System()
@@ -92,8 +137,7 @@ namespace aprilparticle
 		{
 			return false;
 		}
-		this->affectors += affector;
-		affector->_setSystem(this);
+		this->addAffector(affector);
 		return true;
 	}
 
@@ -103,19 +147,30 @@ namespace aprilparticle
 		{
 			return false;
 		}
-		this->affectors -= affector;
-		affector->_setSystem(NULL);
+		this->removeAffector(affector);
 		return true;
+	}
+
+	void System::addAffector(Affector* affector)
+	{
+		ActiveObject::addAffector(affector);
+		affector->_setSystem(this);
+	}
+
+	void System::removeAffector(Affector* affector)
+	{
+		ActiveObject::removeAffector(affector);
+		affector->_setSystem(NULL);
 	}
 
 	bool System::registerTexture(aprilparticle::Texture* texture, chstr name)
 	{
-		hstr newName = (name == "" ? generateName(this->name + "_Texture") : name);
-		if (this->textures.has_key(newName) || this->textures.has_value(texture))
+		hstr key = (name == "" ? generateName(this->name + "_Texture") : name);
+		if (this->textures.has_key(key) || this->textures.has_value(texture))
 		{
 			return false;
 		}
-		this->textures[newName] = texture;
+		this->textures[key] = texture;
 		return true;
 	}
 
@@ -205,11 +260,12 @@ namespace aprilparticle
 
 	void System::load()
 	{
-		aprilparticle::log("loading " + this->filename);
 		if (this->filename == "" || this->loaded)
 		{
+			aprilparticle::log("already loaded " + this->filename);
 			return;
 		}
+		aprilparticle::log("loading " + this->filename);
 		this->loaded = true;
 		hlxml::Document* doc = hlxml::open(filename);
 		hlxml::Node* root = doc->root();
@@ -237,6 +293,13 @@ namespace aprilparticle
 				this->_loadTexture(node);
 			}
 		}
+		hlxml::close(doc);
+		this->_assignEmitterData();
+	}
+
+	void System::_assignEmitterData()
+	{
+		// assigning emitter data
 		Affector* affector;
 		foreach_map (Emitter*, harray<hstr>, it, this->_mappedAffectors)
 		{
@@ -260,9 +323,6 @@ namespace aprilparticle
 			}
 			it->first->setTexture(texture->getTexture());
 		}
-		this->_mappedAffectors.clear();
-		this->_mappedTextures.clear();
-		hlxml::close(doc);
 	}
 
 	void System::_loadEmitter(hlxml::Node* root)
@@ -289,53 +349,74 @@ namespace aprilparticle
 	void System::_loadAffector(hlxml::Node* root, Emitter* emitter)
 	{
 		Affector* affector = NULL;
+		bool map = false;
+		hstr name = "";
 		if (root->pexists("type"))
 		{
-			hstr type = root->pstr("type");
-			if (root->pexists("timings"))
+			hmap<hstr, hstr> properties;
+			foreach_xmlproperty (prop, root)
+			{
+				properties[prop->name()] = prop->value();
+			}
+			hstr type = properties["type"];
+			if (properties.has_key("timings"))
 			{
 				type += "Timed";
 			}
+			properties["type"] = type;
 			affector = createAffector(type, root->pstr("name", ""));
 			if (affector == NULL)
 			{
 				throw hl_exception("Error! Affector type '" + type + " does not exist!");
 			}
-			foreach_xmlproperty (prop, root)
+			name = affector->getName();
+			properties["name"] = name;
+			this->_affectorProperties[affector] = properties;
+			foreach_m (hstr, it, properties)
 			{
-				affector->setProperty(prop->name(), prop->value());
+				if (it->first != "type")
+				{
+					affector->setProperty(it->first, it->second);
+				}
 			}
 			this->registerAffector(affector);
-			if (emitter != NULL)
-			{
-				emitter->addAffector(affector);
-			}
+			map = true;
 		}
-		else if (emitter != NULL && root->pexists("reference"))
+		else if (root->pexists("reference"))
+		{
+			name = root->pstr("reference");
+			map = true;
+		}
+		if (emitter != NULL && map)
 		{
 			if (!this->_mappedAffectors.has_key(emitter))
 			{
 				this->_mappedAffectors[emitter] = harray<hstr>();
 			}
-			this->_mappedAffectors[emitter] += root->pstr("reference");
+			this->_mappedAffectors[emitter] += name;
 		}
 	}
 
 	void System::_loadTexture(hlxml::Node* root, Emitter* emitter)
 	{
+		bool map = false;
+		hstr name = "";
 		if (root->pexists("filename"))
 		{
 			hstr filename = root->pstr("filename");
+			name = root->pstr("name", filename);
 			aprilparticle::Texture* texture = aprilparticle::loadTexture(get_basedir(this->filename) + "/" + filename, root->pbool("cached", false));
-			this->registerTexture(texture, root->pstr("name", filename));
-			if (emitter != NULL)
-			{
-				emitter->setTexture(texture->getTexture());
-			}
+			this->registerTexture(texture, name);
+			map = true;
 		}
-		else if (emitter != NULL && root->pexists("reference"))
+		else if (root->pexists("reference"))
 		{
-			this->_mappedTextures[emitter] = root->pstr("reference");
+			name = root->pstr("reference");
+			map = true;
+		}
+		if (emitter != NULL && map)
+		{
+			this->_mappedTextures[emitter] = name;
 		}
 	}
 

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.51
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -56,6 +56,7 @@ namespace aprilparticle
 		friend class System;
 
 		Emitter(chstr name = "");
+		Emitter(const Emitter& other);
 		~Emitter();
 
 		HL_DEFINE_ISSET(bool, running, Running);
@@ -83,7 +84,6 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, minAngle, MinAngle);
 		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
 		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
-		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 		void setLife(float value);
 		void setDirection(gvec3 value);
 		void setSize(gvec2 value);
@@ -102,9 +102,6 @@ namespace aprilparticle
 		void setSizeRange(gvec2 min, gvec2 max);
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
-
-		void addAffector(Affector* affector);
-		void removeAffector(Affector* affector);
 
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);
@@ -146,7 +143,6 @@ namespace aprilparticle
 		float minAngle;
 		float maxAngle;
 		april::Texture* texture;
-		harray<Affector*> affectors;
 		hdeque<Particle*> particles;
 		System* system;
 		bool started;

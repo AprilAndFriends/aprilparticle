@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.42
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -26,8 +26,26 @@ namespace aprilparticle
 		this->enabled = true;
 	}
 	
+	ActiveObject::ActiveObject(const ActiveObject& other)
+	{
+		this->name = other.name;
+		this->position = other.position;
+		this->visible = other.visible;
+		this->enabled = other.enabled;
+	}
+	
 	ActiveObject::~ActiveObject()
 	{
+	}
+
+	void ActiveObject::addAffector(Affector* affector)
+	{
+		this->affectors += affector;
+	}
+
+	void ActiveObject::removeAffector(Affector* affector)
+	{
+		this->affectors -= affector;
 	}
 
 	hstr ActiveObject::getProperty(chstr name, bool* property_exists)

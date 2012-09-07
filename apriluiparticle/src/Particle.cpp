@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -8,6 +8,7 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include <april/Color.h>
+#include <aprilparticle/aprilparticle.h>
 #include <aprilparticle/Emitter.h>
 #include <aprilparticle/System.h>
 #include <aprilui/aprilui.h>
@@ -120,8 +121,7 @@ namespace apriluiparticle
 			filepath = datasetPath + "/" + filepath;
 		}
 		filepath = normalize_path(filepath);
-		this->system = new aprilparticle::System(filepath);
-		this->system->load();
+		this->system = aprilparticle::loadSystem(filepath);
 		this->systemPosition = this->system->getPosition();
 		grect rect = this->getRect();
 		if (rect.w > 0.0f || rect.h > 0.0f)

@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.5
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -10,16 +10,18 @@
 #include <april/Texture.h>
 #include <hltypes/hstring.h>
 
+#include "aprilparticle.h"
 #include "Texture.h"
 
 namespace aprilparticle
 {
-	Texture::Texture(april::Texture* texture, bool cached)
+	Texture::Texture(april::Texture* texture, chstr filename, bool cached)
 	{
 		this->texture = texture;
+		this->filename = filename;
 		this->cached = cached;
 	}
-	
+
 	Texture::~Texture()
 	{
 		delete this->texture;

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.51
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -63,6 +63,42 @@ namespace aprilparticle
 		this->_setupTriangleBatch();
 		this->system = NULL;
 		this->started = false;
+	}
+
+	Emitter::Emitter(const Emitter& other) : ActiveObject(other)
+	{
+		this->emissionTimer = other.emissionTimer;
+		this->loopTimer = other.loopTimer;
+		this->time = other.time;
+		this->running = other.running;
+		this->type = other.type;
+		this->dimensions = other.dimensions;
+		this->blendMode = other.blendMode;
+		this->emissionRate = other.emissionRate;
+		this->duration = other.duration;
+		this->delay = other.delay;
+		this->loopDelay = other.loopDelay;
+		this->loops = other.loops;
+		this->currentLoop = other.currentLoop;
+		this->alive = other.alive;
+		this->limit = other.limit;
+		this->preUpdate = other.preUpdate;
+		this->reverseRendering = other.reverseRendering;
+		this->minLife = other.minLife;
+		this->maxLife = other.maxLife;
+		this->minDirection = other.minDirection;
+		this->maxDirection = other.maxDirection;
+		this->minSize = other.minSize;
+		this->maxSize = other.maxSize;
+		this->minScale = other.minScale;
+		this->maxScale = other.maxScale;
+		this->minAngle = other.minAngle;
+		this->maxAngle = other.maxAngle;
+		this->texture = NULL;
+		this->_triangleBatch = NULL;
+		this->_setupTriangleBatch();
+		this->system = NULL;
+		this->started = other.started;
 	}
 
 	Emitter::~Emitter()
@@ -204,16 +240,6 @@ namespace aprilparticle
 		this->maxAngle = max;
 	}
 
-	void Emitter::addAffector(Affector* affector)
-	{
-		this->affectors += affector;
-	}
-	
-	void Emitter::removeAffector(Affector* affector)
-	{
-		this->affectors -= affector;
-	}
-	
 	hstr Emitter::getProperty(chstr name, bool* property_exists)
 	{
 		if (property_exists != NULL)

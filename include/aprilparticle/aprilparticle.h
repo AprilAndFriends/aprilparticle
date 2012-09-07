@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -28,6 +28,7 @@
 namespace aprilparticle
 {
 	class Affector;
+	class System;
 	class Texture;
 
 	aprilparticleFnExport void init();
@@ -38,6 +39,7 @@ namespace aprilparticle
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
 	aprilparticleFnExport aprilparticle::Texture* loadTexture(chstr filename, bool cached = false);
 	aprilparticleFnExport void clearCache();
+	aprilparticleFnExport System* loadSystem(chstr filename, chstr name = "");
 	
 };
 

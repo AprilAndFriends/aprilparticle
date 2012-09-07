@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -16,6 +16,7 @@
 
 #include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
 #include "aprilparticleExport.h"
@@ -28,6 +29,7 @@ namespace aprilparticle
 	{
 	public:
 		ActiveObject(chstr name = "");
+		ActiveObject(const ActiveObject& other);
 		virtual ~ActiveObject();
 
 		HL_DEFINE_GETSET(hstr, name, Name);
@@ -36,6 +38,9 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(bool, visible, Visible);
 		HL_DEFINE_ISSET(bool, enabled, Enabled);
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
+
+		virtual void addAffector(Affector* affector);
+		virtual void removeAffector(Affector* affector);
 
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);
@@ -53,6 +58,8 @@ namespace aprilparticle
 		bool visible;
 		bool enabled;
 		harray<Affector*> affectors;
+
+		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties;
 
 	};
 }

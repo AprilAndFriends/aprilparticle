@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.5
+/// @version 1.6
 /// 
 /// @section LICENSE
 /// 
@@ -28,14 +28,17 @@ namespace aprilparticle
 	class aprilparticleExport Texture
 	{
 	public:
-		Texture(april::Texture* texture, bool cached);
+		Texture(april::Texture* texture, chstr filename, bool cached);
+		Texture(const Texture& other);
 		~Texture();
 
 		HL_DEFINE_GET(april::Texture*, texture, Texture);
+		HL_DEFINE_GET(hstr, filename, Filename);
 		HL_DEFINE_IS(bool, cached, Cached);
 		
 	protected:
 		april::Texture* texture;
+		hstr filename;
 		bool cached;
 		
 	};
