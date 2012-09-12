@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -129,21 +129,22 @@ namespace apriluiparticle
 			harray<aprilparticle::Emitter*> emitters = this->system->getEmitters();
 			if (emitters.size() > 0)
 			{
-				gvec2 rescale(1.0f, 1.0f);
-				gvec3 dimensions = emitters.first()->getDimensions();
-				if (rect.w > 0.0f)
+				gvec3 firstDimensions = emitters.first()->getDimensions();
+				gvec2 rescale = rect.getSize();
+				if (firstDimensions.x > 0.0f)
 				{
-					rescale.x = (dimensions.x > 0.0f ? rect.w / dimensions.x : rect.w);
+					rescale.x = rect.w / firstDimensions.x;
 				}
-				if (rect.h > 0.0f)
+				if (firstDimensions.y > 0.0f)
 				{
-					rescale.y = (dimensions.y > 0.0f ? rect.h / dimensions.y : rect.h);
+					rescale.y = rect.h / firstDimensions.y;
 				}
+				gvec3 dimensions;
 				foreach (aprilparticle::Emitter*, it, emitters)
 				{
 					dimensions = (*it)->getDimensions();
-					dimensions.x = (dimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
-					dimensions.y = (dimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
+					dimensions.x = (firstDimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
+					dimensions.y = (firstDimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
 					(*it)->setDimensions(dimensions);
 				}
 			}
