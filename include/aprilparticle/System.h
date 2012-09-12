@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.61
 /// 
 /// @section LICENSE
 /// 
@@ -54,6 +54,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec3, up, Up);
 		void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GET(harray<Emitter*>, emitters, Emitters);
+		hmap<hstr, aprilparticle::Texture*> getTextures() { return this->textures; }
 		
 		bool registerEmitter(Emitter* emitter);
 		bool unregisterEmitter(Emitter* emitter);

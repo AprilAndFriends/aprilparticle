@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.61
 /// 
 /// @section LICENSE
 /// 
@@ -603,6 +603,7 @@ namespace aprilparticle
 	
 	void Emitter::draw(gvec2 offset)
 	{
+		this->texture->load();
 		this->_w = (float)this->texture->getWidth();
 		this->_h = (float)this->texture->getHeight();
 		this->_pStart = 0;
@@ -663,6 +664,7 @@ namespace aprilparticle
 	
 	void Emitter::draw(gvec2 offset, april::Color color)
 	{
+		this->texture->load();
 		this->_w = (float)this->texture->getWidth();
 		this->_h = (float)this->texture->getHeight();
 		this->_pStart = 0;

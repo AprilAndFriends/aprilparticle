@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.61
 /// 
 /// @section LICENSE
 /// 
@@ -111,7 +111,7 @@ namespace aprilparticle
 		}
 		else
 		{
-			april::Texture* aprilTexture = april::rendersys->loadTexture(filename);
+			april::Texture* aprilTexture = april::rendersys->loadTexture(filename, !cached);
 			if (aprilTexture != NULL)
 			{
 				texture = new aprilparticle::Texture(aprilTexture, filename, cached);
