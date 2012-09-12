@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.63
 /// 
 /// @section LICENSE
 /// 
@@ -63,6 +63,7 @@ namespace apriluiparticle
 		aprilparticle::System* system;
 
 		void _loadParticleSystem();
+		void _resizeSystem();
 
 	};
 }

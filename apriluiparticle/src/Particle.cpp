@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 1.63
 /// 
 /// @section LICENSE
 /// 
@@ -100,6 +100,10 @@ namespace apriluiparticle
 				this->stopSystem();
 			}
 		}
+		else if (name == "Resized")
+		{
+			this->_resizeSystem();
+		}
 		aprilui::Object::notifyEvent(name, params);
 	}
 
@@ -123,31 +127,42 @@ namespace apriluiparticle
 		filepath = normalize_path(filepath);
 		this->system = aprilparticle::loadSystem(filepath);
 		this->systemPosition = this->system->getPosition();
-		grect rect = this->getRect();
-		if (rect.w > 0.0f || rect.h > 0.0f)
+		this->_resizeSystem();
+	}
+
+	void Particle::_resizeSystem()
+	{
+		if (this->system == NULL)
 		{
-			harray<aprilparticle::Emitter*> emitters = this->system->getEmitters();
-			if (emitters.size() > 0)
-			{
-				gvec3 firstDimensions = emitters.first()->getDimensions();
-				gvec2 rescale = rect.getSize();
-				if (firstDimensions.x > 0.0f)
-				{
-					rescale.x = rect.w / firstDimensions.x;
-				}
-				if (firstDimensions.y > 0.0f)
-				{
-					rescale.y = rect.h / firstDimensions.y;
-				}
-				gvec3 dimensions;
-				foreach (aprilparticle::Emitter*, it, emitters)
-				{
-					dimensions = (*it)->getDimensions();
-					dimensions.x = (firstDimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
-					dimensions.y = (firstDimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
-					(*it)->setDimensions(dimensions);
-				}
-			}
+			return;
+		}
+		grect rect = this->getRect();
+		if (rect.w <= 0.0f && rect.h <= 0.0f)
+		{
+			return;
+		}
+		harray<aprilparticle::Emitter*> emitters = this->system->getEmitters();
+		if (emitters.size() == 0)
+		{
+			return;
+		}
+		gvec3 firstDimensions = emitters.first()->getDimensions();
+		gvec2 rescale = rect.getSize();
+		if (firstDimensions.x > 0.0f)
+		{
+			rescale.x = rect.w / firstDimensions.x;
+		}
+		if (firstDimensions.y > 0.0f)
+		{
+			rescale.y = rect.h / firstDimensions.y;
+		}
+		gvec3 dimensions;
+		foreach (aprilparticle::Emitter*, it, emitters)
+		{
+			dimensions = (*it)->getDimensions();
+			dimensions.x = (firstDimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
+			dimensions.y = (firstDimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
+			(*it)->setDimensions(dimensions);
 		}
 	}
 
