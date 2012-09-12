@@ -136,33 +136,40 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		grect rect = this->getRect();
-		if (rect.w <= 0.0f && rect.h <= 0.0f)
-		{
-			return;
-		}
 		harray<aprilparticle::Emitter*> emitters = this->system->getEmitters();
 		if (emitters.size() == 0)
 		{
 			return;
 		}
-		gvec3 firstDimensions = emitters.first()->getDimensions();
-		gvec2 rescale = rect.getSize();
-		if (firstDimensions.x > 0.0f)
-		{
-			rescale.x = rect.w / firstDimensions.x;
-		}
-		if (firstDimensions.y > 0.0f)
-		{
-			rescale.y = rect.h / firstDimensions.y;
-		}
 		gvec3 dimensions;
-		foreach (aprilparticle::Emitter*, it, emitters)
+		gvec3 firstDimensions = emitters.first()->getDimensions();
+		grect rect = this->getRect();
+		gvec2 rescale = rect.getSize();
+		if (rect.w > 0.0f)
 		{
-			dimensions = (*it)->getDimensions();
-			dimensions.x = (firstDimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
-			dimensions.y = (firstDimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
-			(*it)->setDimensions(dimensions);
+			if (firstDimensions.x > 0.0f)
+			{
+				rescale.x = rect.w / firstDimensions.x;
+			}
+			foreach (aprilparticle::Emitter*, it, emitters)
+			{
+				dimensions = (*it)->getDimensions();
+				dimensions.x = (firstDimensions.x > 0.0f ? dimensions.x * rescale.x : rescale.x);
+				(*it)->setDimensions(dimensions);
+			}
+		}
+		if (rect.h > 0.0f)
+		{
+			if (firstDimensions.y > 0.0f)
+			{
+				rescale.y = rect.h / firstDimensions.y;
+			}
+			foreach (aprilparticle::Emitter*, it, emitters)
+			{
+				dimensions = (*it)->getDimensions();
+				dimensions.y = (firstDimensions.y > 0.0f ? dimensions.y * rescale.y : rescale.y);
+				(*it)->setDimensions(dimensions);
+			}
 		}
 	}
 
