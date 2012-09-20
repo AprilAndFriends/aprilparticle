@@ -62,16 +62,16 @@ namespace aprilparticle
 	{
 		log("destroying AprilParticle");
 		gAffectorFactories.clear();
-		foreach_m (aprilparticle::Texture*, it, gTextureCache)
-		{
-			delete it->second;
-		}
-		gTextureCache.clear();
 		foreach_m (aprilparticle::System*, it, gSystemCache)
 		{
 			delete it->second;
 		}
 		gSystemCache.clear();
+		foreach_m (aprilparticle::Texture*, it, gTextureCache)
+		{
+			delete it->second;
+		}
+		gTextureCache.clear();
 	}
 
 	void setLogFunction(void (*fnptr)(chstr))
