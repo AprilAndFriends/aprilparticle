@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="libapriluiparticle"
 	ProjectGUID="{CE9C3635-54D9-41BF-96CC-D06B967C5A51}"
 	RootNamespace="apriluiparticle"
