@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.63
+/// @version 1.64
 /// 
 /// @section LICENSE
 /// 
@@ -61,7 +61,7 @@ namespace apriluiparticle
 	{
 		if (this->system != NULL)
 		{
-			this->system->setEnabled(this->_isDerivedEnabled());
+			this->system->setEnabled(this->isDerivedEnabled());
 			this->system->update(k);
 		}
 		aprilui::Object::update(k);
