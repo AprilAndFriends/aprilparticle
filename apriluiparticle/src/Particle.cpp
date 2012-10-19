@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.64
+/// @version 1.65
 /// 
 /// @section LICENSE
 /// 
@@ -85,6 +85,12 @@ namespace apriluiparticle
 			april::rendersys->setTextureBlendMode(april::DEFAULT);
 		}
 		aprilui::Object::OnDraw();
+		if (aprilui::isDebugEnabled())
+		{
+			grect rect = this->_getDrawRect();
+			april::rendersys->drawFilledRect(rect, april::Color(APRIL_COLOR_YELLOW, 64));
+			april::rendersys->drawRect(rect, april::Color(APRIL_COLOR_BLACK, 64));
+		}
 	}
 
 	void Particle::notifyEvent(chstr name, void* params)
