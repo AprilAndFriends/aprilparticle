@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -50,7 +50,7 @@
 	{ \
 		this->times.clear(); \
 		this->values.clear(); \
-		aprilparticle::log("WARNING: Incorrect usage of 'timings' for Affector!"); \
+		hlog::warn(aprilparticle::logTag, "Incorrect usage of 'timings' for Affector!"); \
 	}
 
 #define TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(prefix, suffix) \

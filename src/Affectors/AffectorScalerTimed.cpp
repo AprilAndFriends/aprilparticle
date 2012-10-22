@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -9,6 +9,7 @@
 
 #include <hltypes/hmap.h>
 #include <hltypes/harray.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
 
 #include "AffectorScalerTimed.h"

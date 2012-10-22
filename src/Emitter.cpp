@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.61
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -16,6 +16,7 @@
 #include <gtypes/Matrix4.h>
 #include <gtypes/Vector2.h>
 #include <hltypes/hdeque.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hltypesUtil.h>
 
 #include "Affector.h"
@@ -297,7 +298,7 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, HollowSphere);
 			else TRY_SET_TYPE(value, Cylinder);
 			else TRY_SET_TYPE(value, HollowCylinder);
-			else aprilparticle::log(hsprintf("WARNING: Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str()));
+			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str());
 		}
 		else if	(name == "dimensions")			this->setDimensions(hstr_to_gvec3(value));
 		else if	(name == "blend_mode")
@@ -306,7 +307,7 @@ namespace aprilparticle
 			else if	(value == "alpha_blend")	this->setBlendMode(april::ALPHA_BLEND);
 			else if	(value == "add")			this->setBlendMode(april::ADD);
 			else if	(value == "subtract")		this->setBlendMode(april::SUBTRACT);
-			else aprilparticle::log(hsprintf("WARNING: Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str()));
+			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str());
 		}
 		else if	(name == "emission_rate")		this->setEmissionRate(value);
 		else if	(name == "limit")				this->setLimit(value);

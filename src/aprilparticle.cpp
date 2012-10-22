@@ -1,18 +1,15 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.61
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#ifdef _ANDROID
-#include <android/log.h>
-#endif
-
 #include <april/RenderSystem.h>
 #include <hltypes/exception.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
@@ -25,24 +22,25 @@
 
 namespace aprilparticle
 {
+	hstr logTag = "aprilparticle";
+
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
 	static hmap<hstr, System*> gSystemCache;
 
-	void aprilparticle_writelog(chstr message)
+	void log(chstr message, chstr prefix) // DEPRECATED
 	{
-#ifndef _ANDROID
-		printf("%s\n", message.c_str());
-#else
-		__android_log_print(ANDROID_LOG_INFO, "aprilparticle", "%s", message.c_str());
-#endif
+		hlog::write(aprilparticle::logTag, message);
 	}
-	void (*g_logFunction)(chstr) = aprilparticle_writelog;
+	
+	void setLogFunction(void (*fnptr)(chstr)) // DEPRECATED
+	{
+	}
 	
 	extern void initForceField();
 	void init()
 	{
-		log("initializing AprilParticle");
+		hlog::write(aprilparticle::logTag, "Initializing AprilParticle.");
 		initForceField(); // so we can shoot the bad guys
 		REGISTER_AFFECTOR_TYPE(Attractor);
 		REGISTER_AFFECTOR_TYPE(CallbackAffector);
@@ -60,7 +58,7 @@ namespace aprilparticle
 	
 	void destroy()
 	{
-		log("destroying AprilParticle");
+		hlog::write(aprilparticle::logTag, "Destroying AprilParticle.");
 		gAffectorFactories.clear();
 		foreach_m (aprilparticle::System*, it, gSystemCache)
 		{
@@ -74,21 +72,11 @@ namespace aprilparticle
 		gTextureCache.clear();
 	}
 
-	void setLogFunction(void (*fnptr)(chstr))
-	{
-		g_logFunction = fnptr;
-	}
-	
-	void log(chstr message, chstr prefix)
-	{
-		g_logFunction(prefix + message);
-	}
-	
 	void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr))
 	{
 		if (gAffectorFactories.has_key(typeName))
 		{
-			throw hl_exception("Error! Affector Factory '" + typeName + "' already exists!");
+			throw hl_exception("ERROR! Affector Factory '" + typeName + "' already exists!");
 		}
 		gAffectorFactories[typeName] = factory;
 	}

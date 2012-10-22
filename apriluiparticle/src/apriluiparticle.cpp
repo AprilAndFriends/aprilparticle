@@ -1,18 +1,15 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.65
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#ifdef _ANDROID
-#include <android/log.h>
-#endif
-
 #include <aprilui/aprilui.h>
 #include <hltypes/exception.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
@@ -20,40 +17,31 @@
 
 namespace apriluiparticle
 {
+	hstr logTag = "apriluiparticle";
+
 	hstr defaultPath = "particles";
 	bool enabled = true;
 
-	void apriluiparticle_writelog(chstr message)
+	void log(chstr message, chstr prefix) // DEPRECATED
 	{
-#ifndef _ANDROID
-		printf("%s\n", message.c_str());
-#else
-		__android_log_print(ANDROID_LOG_INFO, "apriluiparticle", "%s", message.c_str());
-#endif
+		hlog::write(apriluiparticle::logTag, message);
 	}
-	void (*g_logFunction)(chstr) = apriluiparticle_writelog;
+
+	void setLogFunction(void (*fnptr)(chstr)) // DEPRECATED
+	{
+	}
 	
 	void init()
 	{
-		log("initializing AprilUIParticle");
+		hlog::write(apriluiparticle::logTag, "Initializing AprilUIParticle.");
 		APRILUI_REGISTER_OBJECT_TYPE(Particle);
 	}
 	
 	void destroy()
 	{
-		log("destroying AprilUIParticle");
+		hlog::write(apriluiparticle::logTag, "destroying AprilUIParticle.");
 	}
 
-	void setLogFunction(void (*fnptr)(chstr))
-	{
-		g_logFunction = fnptr;
-	}
-	
-	void log(chstr message, chstr prefix)
-	{
-		g_logFunction(prefix + message);
-	}
-	
 	hstr getDefaultPath()
 	{
 		return defaultPath;

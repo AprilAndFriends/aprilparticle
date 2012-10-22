@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -12,6 +12,7 @@
 #include <april/Texture.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/hlist.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
 #include <hlxml/Document.h>
 #include <hlxml/Node.h>
@@ -262,10 +263,10 @@ namespace aprilparticle
 	{
 		if (this->filename == "" || this->loaded)
 		{
-			aprilparticle::log("already loaded " + this->filename);
+			hlog::write(aprilparticle::logTag, "Already loaded: " + this->filename);
 			return;
 		}
-		aprilparticle::log("loading " + this->filename);
+		hlog::write(aprilparticle::logTag, "Loading system: " + this->filename);
 		this->loaded = true;
 		hlxml::Document* doc = hlxml::open(filename);
 		hlxml::Node* root = doc->root();

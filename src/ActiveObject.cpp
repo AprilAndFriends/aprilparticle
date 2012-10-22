@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -9,6 +9,7 @@
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
 
 #include "ActiveObject.h"
@@ -60,7 +61,7 @@ namespace aprilparticle
 		if (name == "enabled")	return this->isEnabled();
 		if (property_exists != NULL)
 		{
-			aprilparticle::log(hsprintf("WARNING: Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
+			hlog::warnf(aprilparticle::logTag, "Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 			*property_exists = false;
 		}
 		return "";
@@ -74,7 +75,7 @@ namespace aprilparticle
 		else if	(name == "enabled")		this->setEnabled(value);
 		else
 		{
-			aprilparticle::log(hsprintf("WARNING: Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
+			hlog::warnf(aprilparticle::logTag, "Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 			return false;
 		}
 		return true;

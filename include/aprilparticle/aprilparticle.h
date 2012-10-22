@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -31,15 +31,18 @@ namespace aprilparticle
 	class System;
 	class Texture;
 
+	extern hstr logTag;
+
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
-	aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
-	aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
 	aprilparticleFnExport aprilparticle::Texture* loadTexture(chstr filename, bool cached = false);
 	aprilparticleFnExport void clearCache();
 	aprilparticleFnExport System* loadSystem(chstr filename, chstr name = "");
+
+	DEPRECATED_ATTRIBUTE aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
+	DEPRECATED_ATTRIBUTE aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
 	
 };
 

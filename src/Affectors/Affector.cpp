@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 1.62
 /// 
 /// @section LICENSE
 /// 
@@ -8,6 +8,7 @@
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
 #include <hltypes/harray.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
 
 #include "Affector.h"
@@ -60,7 +61,7 @@ namespace aprilparticle
 		{
 			*property_exists = false;
 		}
-		aprilparticle::log(hsprintf("WARNING: Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
+		hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 		return "";
 	}
 	
@@ -71,7 +72,7 @@ namespace aprilparticle
 		//else if	(name == "chaoticity")	this->setChaoticity(hstr_to_gvec3(value));
 		else
 		{
-			aprilparticle::log(hsprintf("WARNING: Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str()));
+			hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 			return false;
 		}
 		return true;
