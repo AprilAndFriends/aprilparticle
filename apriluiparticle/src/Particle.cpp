@@ -125,7 +125,7 @@ namespace apriluiparticle
 		{
 			filepath = defaultPath + "/" + filepath;
 		}
-		hstr datasetPath = this->getDataset()->_getFilePath();
+		hstr datasetPath = this->getDataset()->getFilePath();
 		if (datasetPath != "")
 		{
 			filepath = datasetPath + "/" + filepath;
