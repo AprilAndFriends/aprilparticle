@@ -455,7 +455,7 @@ namespace aprilparticle
 	{
 		if (this->visible)
 		{
-			if (color == APRIL_COLOR_WHITE)
+			if (color == april::Color::White)
 			{
 				foreach (Emitter*, it, this->emitters)
 				{

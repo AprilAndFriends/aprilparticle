@@ -26,7 +26,7 @@ namespace aprilparticle
 		this->size.set(1.0f, 1.0f);
 		this->scale = 1.0f;
 		this->angle = 0.0f;
-		this->color = APRIL_COLOR_WHITE;
+		this->color = april::Color::White;
 	}
 	
 	Particle::~Particle()

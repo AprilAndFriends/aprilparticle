@@ -88,8 +88,8 @@ namespace apriluiparticle
 		if (aprilui::isDebugEnabled())
 		{
 			grect rect = this->_getDrawRect();
-			april::rendersys->drawFilledRect(rect, april::Color(APRIL_COLOR_YELLOW, 64));
-			april::rendersys->drawRect(rect, april::Color(APRIL_COLOR_BLACK, 64));
+			april::rendersys->drawFilledRect(rect, april::Color(april::Color::Yellow, 64));
+			april::rendersys->drawRect(rect, april::Color(april::Color::Black, 64));
 		}
 	}
 
