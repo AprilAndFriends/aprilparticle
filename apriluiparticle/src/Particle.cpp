@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.65
+/// @version 1.67
 /// 
 /// @section LICENSE
 /// 
@@ -54,7 +54,10 @@ namespace apriluiparticle
 	{
 		this->filename = filename;
 		this->stopSystem();
-		this->_loadParticleSystem();
+		if (this->filename != "" && apriluiparticle::isEnabled())
+		{
+			this->_loadParticleSystem();
+		}
 	}
 
 	void Particle::update(float k)
