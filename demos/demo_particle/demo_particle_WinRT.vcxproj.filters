@@ -2,10 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{5f48441c-9d1f-4f48-b19f-c63b64992961}</UniqueIdentifier>
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="AndroidApk">
-      <UniqueIdentifier>{280c0a1d-4bda-45a3-a9fd-8367a6337a51}</UniqueIdentifier>
+    <Filter Include="DLLs">
+      <UniqueIdentifier>{b2723e8d-96b8-47f3-b82d-232fef21f0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win8xap">
+      <UniqueIdentifier>{0ea29358-fbd2-4807-a2f0-94fd734f3a6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win8xap\media">
+      <UniqueIdentifier>{54efa6e1-3382-4ddd-9816-22a5b9847916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win8xap\media\assets">
+      <UniqueIdentifier>{2b355d7e-3803-4399-95a9-ddf7211d6321}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -14,14 +24,87 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="android\AndroidManifest.xml">
-      <Filter>AndroidApk</Filter>
+    <None Include="..\..\..\lib\WinRT\libpng.dll">
+      <Filter>DLLs</Filter>
     </None>
-    <None Include="android\build.xml">
-      <Filter>AndroidApk</Filter>
+    <None Include="..\..\..\lib\WinRT\zlib1.dll">
+      <Filter>DLLs</Filter>
     </None>
-    <None Include="android\src\DemoParticle.java">
-      <Filter>AndroidApk</Filter>
+    <None Include="demo_particle_TemporaryKey.pfx">
+      <Filter>Win8xap</Filter>
     </None>
+    <None Include="media\bubbles.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\demo_aprilui.dts">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\flame.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\gui_cannon.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\gui_glow.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\gui_moon.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\gui_rain.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\milkyWay.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\quazar.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\rain.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\twirl.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+    <None Include="media\vortex.particle">
+      <Filter>Win8xap\media</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>Win8xap</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="media\assets\logo_icon.png">
+      <Filter>Win8xap\media\assets</Filter>
+    </Image>
+    <Image Include="media\assets\small_icon.png">
+      <Filter>Win8xap\media\assets</Filter>
+    </Image>
+    <Image Include="media\assets\splash.png">
+      <Filter>Win8xap\media\assets</Filter>
+    </Image>
+    <Image Include="media\assets\store_icon.png">
+      <Filter>Win8xap\media\assets</Filter>
+    </Image>
+    <Image Include="media\blue_particle.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
+    <Image Include="media\bubble.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
+    <Image Include="media\fire_particle.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
+    <Image Include="media\green_particle.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
+    <Image Include="media\rain_drop.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
+    <Image Include="media\red_particle.png">
+      <Filter>Win8xap\media</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -1,16 +1,21 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.7
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#ifdef _ANDROID
-#define RESOURCE_PATH "./"
-#else
+#include <hltypes/hplatform.h>
+#ifndef _ANDROID
+#if !_HL_WINRT
 #define RESOURCE_PATH "../media/"
+#else
+#define RESOURCE_PATH "media/"
+#endif
+#else
+#define RESOURCE_PATH "./"
 #endif
 
 #include <april/april.h>
@@ -178,9 +183,9 @@ void april_init(const harray<hstr>& args)
 		CFRelease(url);
 	}
 #endif
-	april::init();
+	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
 	april::createRenderSystem("");
-	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle XML Demo");
+	april::createWindow((int)viewport.w, (int)viewport.h, false, "AprilParticle XML Demo");
 	aprilparticle::init();
 	april::window->setUpdateCallback(render);
 	setupGrid(2.0f);

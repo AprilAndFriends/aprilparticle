@@ -1,16 +1,21 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.7
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#ifdef _ANDROID
-#define RESOURCE_PATH "./"
-#else
+#include <hltypes/hplatform.h>
+#ifndef _ANDROID
+#if !_HL_WINRT
 #define RESOURCE_PATH "../media/"
+#else
+#define RESOURCE_PATH "media/"
+#endif
+#else
+#define RESOURCE_PATH "./"
 #endif
 
 #include <math.h>
@@ -24,6 +29,7 @@
 #include <aprilparticle/Affectors.h>
 #include <aprilparticle/Emitter.h>
 #include <aprilparticle/System.h>
+#include <aprilparticle/Texture.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -142,9 +148,9 @@ void setupFlame()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	flame->registerEmitter(emitter);
 	// textures
-	april::Texture* fire = april::rendersys->loadTexture(RESOURCE_PATH "fire_particle");
+	aprilparticle::Texture* fire = aprilparticle::loadTexture(RESOURCE_PATH "fire_particle");
 	flame->registerTexture(fire);
-	emitter->setTexture(fire);
+	emitter->setTexture(fire->getTexture());
 	// affectors
 	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	flame->registerAffector(colorChanger);
@@ -188,9 +194,9 @@ void setupBubbles()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	bubbles->registerEmitter(emitter);
 	// textures
-	april::Texture* bubble = april::rendersys->loadTexture(RESOURCE_PATH "bubble");
+	aprilparticle::Texture* bubble = aprilparticle::loadTexture(RESOURCE_PATH "bubble");
 	bubbles->registerTexture(bubble);
-	emitter->setTexture(bubble);
+	emitter->setTexture(bubble->getTexture());
 	// affectors
 	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	bubbles->registerAffector(colorChanger);
@@ -267,9 +273,9 @@ void setupRain()
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
 	rain->registerEmitter(emitter);
 	// textures
-	april::Texture* rainDrop = april::rendersys->loadTexture(RESOURCE_PATH "rain_drop");
+	aprilparticle::Texture* rainDrop = aprilparticle::loadTexture(RESOURCE_PATH "rain_drop");
 	rain->registerTexture(rainDrop);
-	emitter->setTexture(rainDrop);
+	emitter->setTexture(rainDrop->getTexture());
 	// making the emitter responsible for these affectors
 	aprilparticle::Affectors::LinearForce* gravity = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, -0.5f, 0.0f));
 	rain->registerAffector(gravity);
@@ -522,9 +528,9 @@ void april_init(const harray<hstr>& args)
 		CFRelease(url);
 	}
 #endif
-	april::init();
+	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
 	april::createRenderSystem("");
-	april::createRenderTarget((int)viewport.w, (int)viewport.h, false, "AprilParticle Demo");
+	april::createWindow((int)viewport.w, (int)viewport.h, false, "AprilParticle Demo");
 	aprilparticle::init();
 	april::window->setUpdateCallback(render);
 	setupGrid(2.0f);
