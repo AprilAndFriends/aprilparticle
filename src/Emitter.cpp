@@ -39,7 +39,7 @@ namespace aprilparticle
 		this->type = Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::DEFAULT;
-		this->emissionRate = emissionRate;
+		this->emissionRate = 0.0;
 		this->duration = -1.0f;
 		this->delay = 0.0f;
 		this->loopDelay = 0.0f;
