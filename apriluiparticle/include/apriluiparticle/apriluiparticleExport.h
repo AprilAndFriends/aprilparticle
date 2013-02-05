@@ -32,7 +32,7 @@
 			#endif
 		#else
 			#define apriluiparticleExport __attribute__ ((visibility("default")))
-			#define apriluiparticleFnExport
+			#define apriluiparticleFnExport __attribute__ ((visibility("default")))
 		#endif
 	#endif
 	#ifndef DEPRECATED_ATTRIBUTE
