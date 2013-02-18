@@ -24,6 +24,7 @@
 #include <april/main.h>
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
+#include <april/UpdateDelegate.h>
 #include <april/Window.h>
 #include <aprilparticle/aprilparticle.h>
 #include <aprilparticle/Affectors.h>
@@ -41,12 +42,8 @@
 #define AFFECTOR_FORCE_3 "force3"
 #define AFFECTOR_FORCE_4 "force4"
 
-grect drawRect(0.0f, 0.0f, 1024.0f, 768.0f);
-#ifndef _ANDROID
+grect drawRect(0.0f, 0.0f, 800.0f, 600.0f);
 grect viewport = drawRect;
-#else
-grect viewport(0.0f, 0.0f, 480.0f, 320.0f);
-#endif
 
 april::Texture* redParticle = NULL;
 april::Texture* greenParticle = NULL;
@@ -83,63 +80,76 @@ void drawGrid()
 	april::rendersys->render(april::LineList, grid, 44);
 }
 
-bool render(float k)
+class UpdateDelegate : public april::UpdateDelegate
 {
-	april::rendersys->clear(true, false);
-	static float angle = 0.0f;
-	angle += k * 90.0f;
-    
-	if (hmodf(angle - k * 90.0f, 90.0f) > hmodf(angle, 90.0f))
+public:
+	UpdateDelegate::UpdateDelegate() : angle(0.0f), count(0)
 	{
-		harray<int> counts;
-		counts += flame->getParticleCount();
-		counts += bubbles->getParticleCount();
-		counts += vortex->getParticleCount();
-		counts += rain->getParticleCount();
-		counts += quazar->getParticleCount();
-		counts += twirl->getParticleCount();
-		counts += milkyWay->getParticleCount();
-		int count = 0;
-		foreach (int, it, counts)
-		{
-			count += (*it);
-		}
-		counts += count;
-		printf("Particles: %s\n", counts.cast<hstr>().join(" ").c_str());
 	}
+
+	bool onUpdate(float timeSinceLastFrame)
+	{
+		april::rendersys->clear(true, false);
+		this->angle += timeSinceLastFrame * 90.0f;
     
-	april::rendersys->setPerspective(60.0f, drawRect.getAspect(), 0.1f, 100.0f);
+		if (hmodf(this->angle - timeSinceLastFrame * 90.0f, 90.0f) > hmodf(this->angle, 90.0f))
+		{
+			this->counts.clear();
+			this->counts += flame->getParticleCount();
+			this->counts += bubbles->getParticleCount();
+			this->counts += vortex->getParticleCount();
+			this->counts += rain->getParticleCount();
+			this->counts += quazar->getParticleCount();
+			this->counts += twirl->getParticleCount();
+			this->counts += milkyWay->getParticleCount();
+			this->count = 0;
+			foreach (int, it, this->counts)
+			{
+				this->count += (*it);
+			}
+			this->counts += this->count;
+			printf("Particles: %s\n", this->counts.cast<hstr>().join(" ").c_str());
+		}
+    
+		april::rendersys->setPerspective(60.0f, 1 / drawRect.getAspect(), 0.1f, 100.0f);
 	
-	gvec3 pos(0.0f, 18.0f, 25.0f);
-	gmat3 rot;
-	rot.setRotation3D(0.0f, 1.0f, 0.0f, angle * 0.2f);
-	pos = rot * pos;
-	april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
-	drawGrid();
+		gvec3 pos(0.0f, 18.0f, 25.0f);
+		gmat3 rot;
+		rot.setRotation3D(0.0f, 1.0f, 0.0f, this->angle * 0.2f);
+		pos = rot * pos;
+		april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
+		drawGrid();
 	
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(angle * 0.06666667f), 0.0f, cos(angle * 0.03333333f)) * 10.0f);
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(angle * 0.06666667f), sin(angle * 0.03333333f), 0.0f) * 10.0f);
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(angle * 0.03333333f), 0.0f, sin(angle * 0.06666667f)) * 10.0f);
-	twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(angle * 0.03333333f), sin(angle * 0.06666667f), 0.0f) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(this->angle * 0.06666667f), 0.0f, cos(this->angle * 0.03333333f)) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(this->angle * 0.06666667f), sin(this->angle * 0.03333333f), 0.0f) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(this->angle * 0.03333333f), sin(this->angle * 0.06666667f), 0.0f) * 10.0f);
 	
-	flame->update(k);
-	bubbles->update(k);
-	vortex->update(k);
-	rain->update(k);
-	quazar->update(k);
-	twirl->update(k);
-	milkyWay->update(k);
+		flame->update(timeSinceLastFrame);
+		bubbles->update(timeSinceLastFrame);
+		vortex->update(timeSinceLastFrame);
+		rain->update(timeSinceLastFrame);
+		quazar->update(timeSinceLastFrame);
+		twirl->update(timeSinceLastFrame);
+		milkyWay->update(timeSinceLastFrame);
 	
-	flame->draw(pos);
-	bubbles->draw(pos);
-	vortex->draw(pos);
-	rain->draw(pos);
-	quazar->draw(pos);
-	twirl->draw(pos);
-	milkyWay->draw(pos);
+		flame->draw(pos);
+		bubbles->draw(pos);
+		vortex->draw(pos);
+		rain->draw(pos);
+		quazar->draw(pos);
+		twirl->draw(pos);
+		milkyWay->draw(pos);
 	
-	return true;
-}
+		return true;
+	}
+
+protected:
+	float angle;
+	harray<int> counts;
+	int count;
+
+};
 
 void setupFlame()
 {
@@ -479,6 +489,8 @@ void setupMilkyWay()
 	emitter4->setScale(0.25f);
 }
 
+static UpdateDelegate* updateDelegate = NULL;
+
 void april_init(const harray<hstr>& args)
 {
 #ifdef __APPLE__
@@ -493,11 +505,10 @@ void april_init(const harray<hstr>& args)
 
 		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-		
 		// let's hope chdir() will be happy with utf8 encoding
 		const char* cpath = CFStringGetCStringPtr(path, kCFStringEncodingUTF8);
-		char* cpath_alloc = 0;
-		if (!cpath)
+		char* cpath_alloc = NULL;
+		if (cpath == NULL)
 		{
 			// CFStringGetCStringPtr is allowed to return NULL. bummer.
 			// we need to use CFStringGetCString instead.
@@ -515,29 +526,30 @@ void april_init(const harray<hstr>& args)
 		{
 			cpath_alloc[CFStringGetLength(path) - 1] = 0;
 		}
-		
 		// replace pre-.app / with a null character, thus
 		// cutting off .app's name and getting parent of .app.
 		strrchr(cpath_alloc, '/')[0] = 0;
-							   
 		// change current dir using posix api
 		chdir(cpath_alloc);
-		
 		free(cpath_alloc); // even if null, still ok
 		CFRelease(path);
 		CFRelease(url);
 	}
 #endif
+	updateDelegate = new UpdateDelegate();
+#if defined(_ANDROID) || defined(_IOS)
+	drawRect.setSize(april::getSystemInfo().displayResolution);
+#endif
 	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
 	april::createRenderSystem("");
-	april::createWindow((int)viewport.w, (int)viewport.h, false, "AprilParticle Demo");
+	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle Demo");
 	aprilparticle::init();
-	april::window->setUpdateCallback(render);
+	april::window->setUpdateDelegate(updateDelegate);
 	setupGrid(2.0f);
 	// textures used by more than one system
-	redParticle = april::rendersys->loadTexture(RESOURCE_PATH "red_particle");
-	greenParticle = april::rendersys->loadTexture(RESOURCE_PATH "green_particle");
-	blueParticle = april::rendersys->loadTexture(RESOURCE_PATH "blue_particle");
+	redParticle = april::rendersys->createTexture(RESOURCE_PATH "red_particle");
+	greenParticle = april::rendersys->createTexture(RESOURCE_PATH "green_particle");
+	blueParticle = april::rendersys->createTexture(RESOURCE_PATH "blue_particle");
 	// setting up every system
 	setupFlame();
 	setupBubbles();
@@ -562,5 +574,7 @@ void april_destroy()
 	delete blueParticle;
 	aprilparticle::destroy();
 	april::destroy();
+	delete updateDelegate;
+	updateDelegate = NULL;
 }
 
