@@ -99,7 +99,7 @@ namespace aprilparticle
 		}
 		else
 		{
-			april::Texture* aprilTexture = april::rendersys->loadTexture(filename, !cached);
+			april::Texture* aprilTexture = april::rendersys->createTexture(filename, cached);
 			if (aprilTexture != NULL)
 			{
 				texture = new aprilparticle::Texture(aprilTexture, filename, cached);
