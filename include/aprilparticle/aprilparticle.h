@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 1.71
 /// 
 /// @section LICENSE
 /// 
@@ -41,9 +41,6 @@ namespace aprilparticle
 	aprilparticleFnExport void clearCache();
 	aprilparticleFnExport System* loadSystem(chstr filename, chstr name = "");
 
-	DEPRECATED_ATTRIBUTE aprilparticleFnExport void setLogFunction(void (*fnptr)(chstr));
-	DEPRECATED_ATTRIBUTE aprilparticleFnExport void log(chstr message, chstr prefix = "[aprilparticle] ");
-	
 };
 
 #endif

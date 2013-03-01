@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.65
+/// @version 1.71
 /// 
 /// @section LICENSE
 /// 
@@ -28,9 +28,6 @@ namespace apriluiparticle
 	apriluiparticleFnExport void setEnabled(bool value);
 	apriluiparticleFnExport hstr getDefaultPath();
 	apriluiparticleFnExport void setDefaultPath(chstr value);
-
-	DEPRECATED_ATTRIBUTE apriluiparticleFnExport void setLogFunction(void (*fnptr)(chstr));
-	DEPRECATED_ATTRIBUTE apriluiparticleFnExport void log(chstr message, chstr prefix = "[apriluiparticle] ");
 
 };
 

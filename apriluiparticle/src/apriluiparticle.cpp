@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.65
+/// @version 1.71
 /// 
 /// @section LICENSE
 /// 
@@ -22,15 +22,6 @@ namespace apriluiparticle
 	hstr defaultPath = "particles";
 	bool enabled = true;
 
-	void log(chstr message, chstr prefix) // DEPRECATED
-	{
-		hlog::write(apriluiparticle::logTag, message);
-	}
-
-	void setLogFunction(void (*fnptr)(chstr)) // DEPRECATED
-	{
-	}
-	
 	void init()
 	{
 		hlog::write(apriluiparticle::logTag, "Initializing AprilUIParticle.");

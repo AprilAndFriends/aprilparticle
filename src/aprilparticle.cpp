@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 1.71
 /// 
 /// @section LICENSE
 /// 
@@ -28,15 +28,6 @@ namespace aprilparticle
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
 	static hmap<hstr, System*> gSystemCache;
 
-	void log(chstr message, chstr prefix) // DEPRECATED
-	{
-		hlog::write(aprilparticle::logTag, message);
-	}
-	
-	void setLogFunction(void (*fnptr)(chstr)) // DEPRECATED
-	{
-	}
-	
 	extern void initForceField();
 	void init()
 	{

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 1.71
 /// 
 /// @section LICENSE
 /// 
@@ -39,7 +39,7 @@ namespace aprilparticle
 		this->type = Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::DEFAULT;
-		this->emissionRate = 0.0;
+		this->emissionRate = 0.0f;
 		this->duration = -1.0f;
 		this->delay = 0.0f;
 		this->loopDelay = 0.0f;
