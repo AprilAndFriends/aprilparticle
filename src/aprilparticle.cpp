@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.71
+/// @version 1.72
 /// 
 /// @section LICENSE
 /// 
@@ -24,6 +24,7 @@ namespace aprilparticle
 {
 	hstr logTag = "aprilparticle";
 
+	static bool useCache = true;
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
 	static hmap<hstr, System*> gSystemCache;
@@ -33,6 +34,7 @@ namespace aprilparticle
 	{
 		hlog::write(aprilparticle::logTag, "Initializing AprilParticle.");
 		initForceField(); // so we can shoot the bad guys
+		useCache = true;
 		REGISTER_AFFECTOR_TYPE(Attractor);
 		REGISTER_AFFECTOR_TYPE(CallbackAffector);
 		REGISTER_AFFECTOR_TYPE(ColorChanger);
@@ -63,6 +65,16 @@ namespace aprilparticle
 		gTextureCache.clear();
 	}
 
+	bool getUseCache()
+	{
+		return useCache;
+	}
+
+	void setUseCache(bool value)
+	{
+		useCache = value;
+	}
+
 	void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr))
 	{
 		if (gAffectorFactories.has_key(typeName))
@@ -90,6 +102,7 @@ namespace aprilparticle
 		}
 		else
 		{
+			cached &= useCache;
 			april::Texture* aprilTexture = april::rendersys->createTexture(filename, cached);
 			if (aprilTexture != NULL)
 			{
@@ -127,7 +140,10 @@ namespace aprilparticle
 		if (system == NULL)
 		{
 			system = new aprilparticle::System(filename, name);
-			gSystemCache[key] = system;
+			if (useCache)
+			{
+				gSystemCache[key] = system;
+			}
 		}
 		system->load();
 		return new aprilparticle::System(*system);

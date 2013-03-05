@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.71
+/// @version 1.72
 /// 
 /// @section LICENSE
 /// 
@@ -35,6 +35,8 @@ namespace aprilparticle
 
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
+	aprilparticleFnExport bool getUseCache();
+	aprilparticleFnExport void setUseCache(bool value);
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
 	aprilparticleFnExport aprilparticle::Texture* loadTexture(chstr filename, bool cached = false);
