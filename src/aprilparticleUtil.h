@@ -22,7 +22,7 @@
 #define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
 #define TRY_GET_TYPE(value, name) if (value == name) return #name;
 #define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
-	func(this->getMin ## name()) + APRILPARTICLE_RANGE_SEPARATOR + func(this->getMax ## name()) : \
+	func(this->getMin ## name()) + aprilparticle::SeparatorRange + func(this->getMax ## name()) : \
 	func(this->getMin ## name()))
 
 namespace aprilparticle

@@ -173,31 +173,31 @@ namespace aprilparticle
 
 	void Emitter::setLife(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setLifeRange(data.first(), data.last());
 	}
 
 	void Emitter::setDirection(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setDirectionRange(hstr_to_gvec3(data.first()), hstr_to_gvec3(data.last()));
 	}
 
 	void Emitter::setSize(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setSizeRange(hstr_to_gvec2(data.first()), hstr_to_gvec2(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setScaleRange(data.first(), data.last());
 	}
 
 	void Emitter::setAngle(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setAngleRange(data.first(), data.last());
 	}
 

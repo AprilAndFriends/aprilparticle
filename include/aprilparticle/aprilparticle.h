@@ -18,15 +18,15 @@
 
 #include "aprilparticleExport.h"
 
-#define APRILPARTICLE_VALUE_SEPARATOR " "
-#define APRILPARTICLE_VECTOR_SEPARATOR ","
-#define APRILPARTICLE_RANGE_SEPARATOR ";"
-#define APRILPARTICLE_TIMING_SEPARATOR ":"
-
 #define APRILPARTICLE_REGISTER_AFFECTOR_TYPE(name) aprilparticle::registerAffectorFactory(#name, &name::createInstance)
 
 namespace aprilparticle
 {
+	static const char SeparatorValue = ' ';
+	static const char SeparatorVector = ',';
+	static const char SeparatorRange = ';';
+	static const char SeparatorTiming = ':';
+
 	class Affector;
 	class System;
 	class Texture;

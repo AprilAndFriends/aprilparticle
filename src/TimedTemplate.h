@@ -31,12 +31,12 @@
 	this->_size = this->times.size() - 1;
 
 #define TIMED_TEMPLATE_SET_TIMINGS_STRING(type, constructor) \
-	harray<hstr> entries = value.split(APRILPARTICLE_VALUE_SEPARATOR); \
+	harray<hstr> entries = value.split(aprilparticle::SeparatorValue); \
 	harray<hstr> data; \
 	hmap<float, type> timings; \
 	foreach (hstr, it, entries) \
 	{ \
-		data = (*it).split(APRILPARTICLE_TIMING_SEPARATOR); \
+		data = (*it).split(aprilparticle::SeparatorTiming); \
 		if (data.size() == 2) \
 		{ \
 			timings[(float)data[0]] = constructor(data[1]); \
@@ -57,9 +57,9 @@
 	harray<hstr> result; \
 	for_iter (i, 0, this->times.size()) \
 	{ \
-		result += hsprintf("%f" APRILPARTICLE_TIMING_SEPARATOR "%s", this->times[i], (prefix(this->values[i])suffix).c_str()); \
+		result += hsprintf("%f%c%s", this->times[i], aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).c_str()); \
 	} \
-	return result.join(APRILPARTICLE_VECTOR_SEPARATOR);
+	return result.join(aprilparticle::SeparatorVector);
 
 #define TIMED_TEMPLATE_ADD_TIMING \
 	time = hclamp(time, 0.0f, 1.0f); \

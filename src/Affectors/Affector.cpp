@@ -38,7 +38,7 @@ namespace aprilparticle
 
 	void Affector::setRandomness(chstr value)
 	{
-		harray<hstr> data = value.split(APRILPARTICLE_RANGE_SEPARATOR);
+		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
 		this->setRandomnessRange(data.first(), data.last());
 	}
 
