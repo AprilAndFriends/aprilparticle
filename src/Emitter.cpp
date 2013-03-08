@@ -511,7 +511,7 @@ namespace aprilparticle
 			}
 			if (i > 0)
 			{
-				this->particles.pop_front(i);
+				this->particles.remove_first(i);
 			}
 		}
 		// check repetition loops
