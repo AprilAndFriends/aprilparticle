@@ -35,8 +35,8 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_GETSET(gvec3, position, Position);
 		void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
-		HL_DEFINE_ISSET(bool, visible, Visible);
-		HL_DEFINE_ISSET(bool, enabled, Enabled);
+		HL_DEFINE_ISSET(visible, Visible);
+		HL_DEFINE_ISSET(enabled, Enabled);
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 
 		virtual void addAffector(Affector* affector);

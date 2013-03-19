@@ -59,7 +59,7 @@ namespace aprilparticle
 		Emitter(const Emitter& other);
 		~Emitter();
 
-		HL_DEFINE_ISSET(bool, running, Running);
+		HL_DEFINE_ISSET(running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
@@ -72,7 +72,7 @@ namespace aprilparticle
 		HL_DEFINE_GET(int, limit, Limit);
 		void setLimit(int value);
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
-		HL_DEFINE_ISSET(bool, reverseRendering, ReverseRendering);
+		HL_DEFINE_ISSET(reverseRendering, ReverseRendering);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
 		HL_DEFINE_GETSET(gvec3, minDirection, MinDirection);

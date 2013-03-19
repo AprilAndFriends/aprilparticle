@@ -38,7 +38,7 @@ namespace apriluiparticle
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
-		HL_DEFINE_ISSET(bool, globalSpace, GlobalSpace);
+		HL_DEFINE_ISSET(globalSpace, GlobalSpace);
 		HL_DEFINE_GET(aprilparticle::System*, system, System);
 		bool isRunning();
 		bool isExpired();
