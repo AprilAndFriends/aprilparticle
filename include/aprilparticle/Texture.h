@@ -34,7 +34,7 @@ namespace aprilparticle
 
 		HL_DEFINE_GET(april::Texture*, texture, Texture);
 		HL_DEFINE_GET(hstr, filename, Filename);
-		HL_DEFINE_IS(bool, cached, Cached);
+		HL_DEFINE_IS(cached, Cached);
 		
 	protected:
 		april::Texture* texture;
