@@ -88,7 +88,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libhltypes.lib;libgtypes.lib;libapril.lib;libaprilui.lib;libaprilparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
@@ -139,7 +138,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libhltypes.lib;libgtypes.lib;libapril.lib;libaprilui.lib;libaprilparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
