@@ -72,16 +72,17 @@ namespace apriluiparticle
 	
 	void Particle::OnDraw()
 	{
+		grect rect = this->_getDrawRect();
 		if (this->system != NULL)
 		{
 			this->system->setVisible(this->isVisible());
 			if (!this->globalSpace)
 			{
-				this->system->draw(gvec2(), this->_getDrawColor());
+				this->system->draw(rect.getCenter(), this->_getDrawColor());
 			}
 			else
 			{
-				gvec2 position = this->initialPosition - this->getPosition();
+				gvec2 position = this->initialPosition - this->getPosition() + rect.getCenter();
 				this->system->setPosition(this->systemPosition.x - position.x, this->systemPosition.y - position.y, this->systemPosition.z);
 				this->system->draw(position, this->_getDrawColor());
 			}
@@ -90,7 +91,6 @@ namespace apriluiparticle
 		aprilui::Object::OnDraw();
 		if (aprilui::isDebugEnabled())
 		{
-			grect rect = this->_getDrawRect();
 			april::rendersys->drawFilledRect(rect, april::Color(april::Color::Yellow, 32));
 			april::rendersys->drawRect(rect, april::Color(april::Color::Black, 64));
 		}
