@@ -36,7 +36,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EC6F8930-24D3-4722-A4B8-8D56F1698D76}</ProjectGuid>
-    <RootNamespace>libapriluiparticle</RootNamespace>
+    <RootNamespace>apriluiparticle</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="props\v110.default.props" />
