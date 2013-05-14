@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.72
 /// 
 /// @section LICENSE
 /// 
@@ -66,7 +66,7 @@ namespace aprilparticle
 			this->_squaredLength = this->_direction.squaredLength();
 			if (is_inside(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{
-				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
+				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
 				if (this->exponent != 1.0f)
 				{
 					if (this->exponent == (int)this->exponent)

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.72
 /// 
 /// @section LICENSE
 /// 
@@ -84,7 +84,7 @@ namespace aprilparticle
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)
 			{
-				_rotation.setRotation3D(this->axis, (1.0f - sqrt(this->_squaredLength) / this->radius) * RAND_RANGE(Randomness) * this->evolutionSpeed * this->angle * k);
+				_rotation.setRotation3D(this->axis, (1.0f - hsqrt(this->_squaredLength) / this->radius) * RAND_RANGE(Randomness) * this->evolutionSpeed * this->angle * k);
 				movement += this->_position + _rotation * this->_direction - particle->position;
 			}
 		}

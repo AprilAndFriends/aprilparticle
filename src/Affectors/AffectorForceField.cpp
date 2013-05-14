@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 1.72
 /// 
 /// @section LICENSE
 /// 
@@ -90,7 +90,7 @@ namespace aprilparticle
 			this->_squaredLength = (this->position + this->system->getPosition() - particle->position).squaredLength();
 			if (this->_squaredLength <= this->radius * this->radius)
 			{
-				this->_factor = (this->radius - sqrt(this->_squaredLength)) / this->radius;
+				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
 				movement += this->direction * (RAND_RANGE(Randomness) * this->_factor * this->_factor * k);
 			}
 		}
