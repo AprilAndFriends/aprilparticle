@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.72
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -17,20 +17,20 @@
 #include "AffectorForceField.h"
 #include "aprilparticleUtil.h"
 #include "Particle.h"
-#include "System.h"
+#include "Space.h"
 
 #define VERTEX_COUNT 91 // you can't touch this
 
 namespace aprilparticle
 {
 	// optimizations
-	april::ColoredVertex u[VERTEX_COUNT];
-	april::ColoredVertex v[VERTEX_COUNT];
-	april::ColoredVertex w[VERTEX_COUNT];
-	april::ColoredVertex arrow[2];
-	gvec3 ut;
-	gvec3 vt;
-	gvec3 wt;
+	static april::ColoredVertex u[VERTEX_COUNT];
+	static april::ColoredVertex v[VERTEX_COUNT];
+	static april::ColoredVertex w[VERTEX_COUNT];
+	static april::ColoredVertex arrow[2];
+	static gvec3 ut;
+	static gvec3 vt;
+	static gvec3 wt;
 
 	void initForceField()
 	{
@@ -87,7 +87,7 @@ namespace aprilparticle
 
 		void ForceField::update(Particle* particle, float k, gvec3& movement)
 		{
-			this->_squaredLength = (this->position + this->system->getPosition() - particle->position).squaredLength();
+			this->_squaredLength = (this->position + this->space->getPosition() - particle->position).squaredLength();
 			if (this->_squaredLength <= this->radius * this->radius)
 			{
 				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
@@ -97,15 +97,16 @@ namespace aprilparticle
 		
 		void ForceField::draw()
 		{
-			float length = this->direction.length();
+			static float length;
+			length = this->direction.length();
 			for_iter (i, 0, VERTEX_COUNT)
 			{
-				u[i] = this->position + this->system->getPosition() + ut * length;
-				v[i] = this->position + this->system->getPosition() + vt * length;
-				w[i] = this->position + this->system->getPosition() + wt * length;
+				u[i] = this->position + this->space->getPosition() + ut * length;
+				v[i] = this->position + this->space->getPosition() + vt * length;
+				w[i] = this->position + this->space->getPosition() + wt * length;
 			}
-			arrow[0] = this->position + this->system->getPosition();
-			arrow[1] = this->position + this->system->getPosition() + this->direction;
+			arrow[0] = this->position + this->space->getPosition();
+			arrow[1] = this->position + this->space->getPosition() + this->direction;
 			april::rendersys->render(april::LineStrip, u, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, v, VERTEX_COUNT);
 			april::rendersys->render(april::LineStrip, w, VERTEX_COUNT);

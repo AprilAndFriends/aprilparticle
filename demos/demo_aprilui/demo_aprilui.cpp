@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.7
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -124,7 +124,7 @@ void april_init(const harray<hstr>& args)
 	// directory to something sane (e.g. .../Resources/ in the app
 	// bundle).
 	// In this case, we set it to parent of the .app bundle.
-	{	// curly braces in order to localize variables 
+	{
 
 		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
@@ -168,11 +168,12 @@ void april_init(const harray<hstr>& args)
 		drawRect.setSize(april::getSystemInfo().displayResolution);
 #endif
 		april::init(april::RS_DEFAULT, april::WS_DEFAULT);
-		april::createRenderSystem("");
+		april::createRenderSystem();
 		april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle Demo AprilUI");
 		atres::init();
 		aprilui::init();
 		aprilparticle::init();
+		aprilparticle::setUseCache(false);
 		apriluiparticle::init();
 		april::window->setUpdateDelegate(updateDelegate);
 		april::window->setKeyboardDelegate(keyboardDelegate);
@@ -181,7 +182,7 @@ void april_init(const harray<hstr>& args)
 		dataset = new aprilui::Dataset(RESOURCE_PATH "demo_aprilui.dts");
 		dataset->load();
 #ifdef _DEBUG
-		//aprilui::setDebugMode(true);
+		//aprilui::setDebugEnabled(true);
 #endif
 	}
 	catch (aprilui::_GenericException e)

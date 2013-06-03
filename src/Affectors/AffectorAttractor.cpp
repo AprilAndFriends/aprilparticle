@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.72
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,7 @@
 #include "AffectorAttractor.h"
 #include "aprilparticleUtil.h"
 #include "Particle.h"
-#include "System.h"
+#include "Space.h"
 
 namespace aprilparticle
 {
@@ -62,7 +62,7 @@ namespace aprilparticle
 
 		void Attractor::update(Particle* particle, float k, gvec3& movement)
 		{
-			this->_direction = this->position + this->system->getPosition() - particle->position;
+			this->_direction = this->position + this->space->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (is_inside(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{

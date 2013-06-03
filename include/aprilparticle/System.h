@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.61
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -23,8 +23,9 @@
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
 
-#include "aprilparticleExport.h"
 #include "ActiveObject.h"
+#include "AffectorContainer.h"
+#include "aprilparticleExport.h"
 
 namespace april
 {
@@ -40,39 +41,35 @@ namespace aprilparticle
 {
 	class Affector;
 	class Emitter;
+	class Space;
 	class Texture;
 
-	class aprilparticleExport System : public ActiveObject
+	class aprilparticleExport System : public ActiveObject, public AffectorContainer
 	{
 	public:
 		System(chstr filename = "", chstr name = "");
 		System(const System& other);
 		~System();
 
-		bool isRunning();
 		HL_DEFINE_GET(hstr, filename, Filename);
-		HL_DEFINE_GETSET(gvec3, up, Up);
-		void setUp(float x, float y, float z) { this->up.set(x, y, z); }
-		HL_DEFINE_GET(harray<Emitter*>, emitters, Emitters);
-		hmap<hstr, aprilparticle::Texture*> getTextures() { return this->textures; }
-		
-		bool registerEmitter(Emitter* emitter);
-		bool unregisterEmitter(Emitter* emitter);
-		bool registerAffector(Affector* affector);
-		bool unregisterAffector(Affector* affector);
-		void addAffector(Affector* affector);
-		void removeAffector(Affector* affector);
-		bool registerTexture(aprilparticle::Texture* texture, chstr name = "");
-		bool unregisterTexture(chstr name);
-		bool unregisterTexture(aprilparticle::Texture* texture);
-		Emitter* getEmitter(chstr name);
-		aprilparticle::Texture* getTexture(chstr name);
-		int getParticleCount();
+		HL_DEFINE_GET(harray<Space*>, spaces, Spaces);
+		HL_DEFINE_GET2(hmap, hstr, Texture*, textures, Textures);
+		harray<Emitter*> getEmitters();
+		bool isRunning();
 		bool isExpired();
 		
-		hstr getProperty(chstr name, bool* property_exists = NULL);
-		bool setProperty(chstr name, chstr value);
-
+		bool registerSpace(Space* space);
+		bool unregisterSpace(Space* space);
+		bool registerAffector(Affector* affector);
+		bool unregisterAffector(Affector* affector);
+		bool registerTexture(Texture* texture, chstr name = "");
+		bool unregisterTexture(chstr name);
+		bool unregisterTexture(Texture* texture);
+		Space* getSpace(chstr name);
+		Texture* getTexture(chstr name);
+		Emitter* getEmitter(chstr name);
+		int getParticleCount();
+		
 		void reset();
 		void load();
 		void update(float k);
@@ -82,19 +79,20 @@ namespace aprilparticle
 		
 	protected:
 		hstr filename;
-		gvec3 up;
 		bool loaded;
-		harray<Emitter*> emitters;
-		hmap<hstr, aprilparticle::Texture*> textures;
+		harray<Space*> spaces;
+		hmap<hstr, Texture*> textures;
 
-		void _loadEmitter(hlxml::Node* root);
-		void _loadAffector(hlxml::Node* root, Emitter* emitter = NULL);
+		void _loadSpace(hlxml::Node* root);
+		void _loadEmitter(hlxml::Node* root, Space* space);
+		void _loadAffector(hlxml::Node* root, Space* space = NULL);
 		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
 
-		void _assignEmitterData();
+		void _assignObjectData();
 
 	private:
-		hmap<Emitter*, harray<hstr> > _mappedAffectors;
+		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties;
+		hmap<Space*, harray<hstr> > _mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures;
 		
 	};

@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.7
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -29,6 +29,7 @@
 #include <aprilparticle/aprilparticle.h>
 #include <aprilparticle/Affectors.h>
 #include <aprilparticle/Emitter.h>
+#include <aprilparticle/Space.h>
 #include <aprilparticle/System.h>
 #include <aprilparticle/Texture.h>
 #include <gtypes/Matrix3.h>
@@ -54,8 +55,8 @@ aprilparticle::System* bubbles = NULL;
 aprilparticle::System* vortex = NULL;
 aprilparticle::System* rain = NULL;
 aprilparticle::System* quazar = NULL;
-aprilparticle::System* twirl = NULL;
 aprilparticle::System* milkyWay = NULL;
+aprilparticle::System* twirl = NULL;
 
 april::ColoredVertex grid[44];
 
@@ -100,8 +101,8 @@ public:
 			this->counts += vortex->getParticleCount();
 			this->counts += rain->getParticleCount();
 			this->counts += quazar->getParticleCount();
-			this->counts += twirl->getParticleCount();
 			this->counts += milkyWay->getParticleCount();
+			this->counts += twirl->getParticleCount();
 			this->count = 0;
 			foreach (int, it, this->counts)
 			{
@@ -119,7 +120,7 @@ public:
 		pos = rot * pos;
 		april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
 		drawGrid();
-	
+		
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(this->angle * 0.06666667f), 0.0f, cos(this->angle * 0.03333333f)) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(this->angle * 0.06666667f), sin(this->angle * 0.03333333f), 0.0f) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
@@ -130,16 +131,16 @@ public:
 		vortex->update(timeSinceLastFrame);
 		rain->update(timeSinceLastFrame);
 		quazar->update(timeSinceLastFrame);
-		twirl->update(timeSinceLastFrame);
 		milkyWay->update(timeSinceLastFrame);
-	
+		twirl->update(timeSinceLastFrame);
+		
 		flame->draw(pos);
 		bubbles->draw(pos);
 		vortex->draw(pos);
 		rain->draw(pos);
 		quazar->draw(pos);
-		twirl->draw(pos);
 		milkyWay->draw(pos);
+		twirl->draw(pos);
 	
 		return true;
 	}
@@ -154,9 +155,12 @@ protected:
 void setupFlame()
 {
 	flame = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* space = new aprilparticle::Space();
+	flame->registerSpace(space);
 	// emitters
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
-	flame->registerEmitter(emitter);
+	space->registerEmitter(emitter);
 	// textures
 	aprilparticle::Texture* fire = aprilparticle::loadTexture(RESOURCE_PATH "fire_particle");
 	flame->registerTexture(fire);
@@ -164,25 +168,25 @@ void setupFlame()
 	// affectors
 	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	flame->registerAffector(colorChanger);
-	emitter->addAffector(colorChanger);
+	space->addAffector(colorChanger);
 	aprilparticle::Affectors::LinearForce* linearForce = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, 0.5f, 0.0f));
 	flame->registerAffector(linearForce);
-	emitter->addAffector(linearForce);
+	space->addAffector(linearForce);
 	aprilparticle::Affectors::Rotator* rotator = new aprilparticle::Affectors::Rotator(50.0f);
 	flame->registerAffector(rotator);
-	emitter->addAffector(rotator);
+	space->addAffector(rotator);
 	aprilparticle::Affectors::Scaler* scaler = new aprilparticle::Affectors::Scaler(1.0f, 0.5f);
 	flame->registerAffector(scaler);
-	emitter->addAffector(scaler);
+	space->addAffector(scaler);
 
-	flame->setPosition(-10.0f, 0.0f, 0.0f);
-
+	space->setPosition(-10.0f, 0.0f, 0.0f);
+	space->setPreUpdate(5.0f);
+	
 	emitter->setType(aprilparticle::Emitter::HollowSphere);
 	emitter->setDimensions(2.0f, 4.0f, 2.0f);
 	emitter->setBlendMode(april::ADD);
 	emitter->setEmissionRate(32.0f);
 	emitter->setLimit(128);
-	emitter->setPreUpdate(5.0f);
 	emitter->setLife(4.0f);
 	emitter->setDirection(gvec3(0.0f, 0.5f, 0.0f));
 	emitter->setSizeRange(gvec2(2.4f, 2.4f), gvec2(4.4f, 4.4f));
@@ -200,9 +204,12 @@ void setupFlame()
 void setupBubbles()
 {
 	bubbles = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* space = new aprilparticle::Space();
+	bubbles->registerSpace(space);
 	// emitters
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
-	bubbles->registerEmitter(emitter);
+	space->registerEmitter(emitter);
 	// textures
 	aprilparticle::Texture* bubble = aprilparticle::loadTexture(RESOURCE_PATH "bubble");
 	bubbles->registerTexture(bubble);
@@ -210,13 +217,13 @@ void setupBubbles()
 	// affectors
 	aprilparticle::Affectors::ColorChangerTimed* colorChanger = new aprilparticle::Affectors::ColorChangerTimed();
 	bubbles->registerAffector(colorChanger);
-	emitter->addAffector(colorChanger);
+	space->addAffector(colorChanger);
 	aprilparticle::Affectors::ResizerTimed* resizer = new aprilparticle::Affectors::ResizerTimed();
 	bubbles->registerAffector(resizer);
-	emitter->addAffector(resizer);
+	space->addAffector(resizer);
 	aprilparticle::Affectors::ForceField* forceField = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 1.0f, 0.0f), 10.0f, gvec3(0.0f, 5.0f, 0.0f));
 	bubbles->registerAffector(forceField);
-	emitter->addAffector(forceField);
+	space->addAffector(forceField);
 
 	emitter->setType(aprilparticle::Emitter::Cylinder);
 	emitter->setDimensions(5.0f, 4.0f, 5.0f);
@@ -252,20 +259,23 @@ void setupBubbles()
 void setupVortex()
 {
 	vortex = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* space = new aprilparticle::Space();
+	bubbles->registerSpace(space);
 	// emitters
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
-	vortex->registerEmitter(emitter);
+	space->registerEmitter(emitter);
 	// textures
 	emitter->setTexture(redParticle); // texture is shared among several particle systems
 	// affectors
 	aprilparticle::Affectors::Revolutor* revolutor = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, gvec3(0.0f, 1.0f, 0.0f), 0.2f, true);
 	vortex->registerAffector(revolutor);
-	emitter->addAffector(revolutor);
+	space->addAffector(revolutor);
 	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f, 2.0f);
 	vortex->registerAffector(attractor);
-	emitter->addAffector(attractor);
-
-	vortex->setPosition(10.0f, 0.0f, 0.0f);
+	space->addAffector(attractor);
+	
+	space->setPosition(10.0f, 0.0f, 0.0f);
 
 	emitter->setType(aprilparticle::Emitter::Sphere);
 	emitter->setDimensions(8.0f, 0.0f, 8.0f);
@@ -279,9 +289,12 @@ void setupVortex()
 void setupRain()
 {
 	rain = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* space = new aprilparticle::Space();
+	bubbles->registerSpace(space);
 	// emitters
 	aprilparticle::Emitter* emitter = new aprilparticle::Emitter();
-	rain->registerEmitter(emitter);
+	space->registerEmitter(emitter);
 	// textures
 	aprilparticle::Texture* rainDrop = aprilparticle::loadTexture(RESOURCE_PATH "rain_drop");
 	rain->registerTexture(rainDrop);
@@ -289,9 +302,9 @@ void setupRain()
 	// making the emitter responsible for these affectors
 	aprilparticle::Affectors::LinearForce* gravity = new aprilparticle::Affectors::LinearForce(gvec3(0.0f, -0.5f, 0.0f));
 	rain->registerAffector(gravity);
-	emitter->addAffector(gravity);
+	space->addAffector(gravity);
 
-	rain->setPosition(-10.0f, -10.0f, 6.0f);
+	space->setPosition(-10.0f, -10.0f, 6.0f);
 
 	emitter->setType(aprilparticle::Emitter::Box);
 	emitter->setDimensions(6.0f, 0.0f, 6.0f);
@@ -306,13 +319,20 @@ void setupRain()
 void setupQuazar()
 {
 	quazar = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* discSpace = new aprilparticle::Space();
+	quazar->registerSpace(discSpace);
+	aprilparticle::Space* jetTopSpace = new aprilparticle::Space();
+	quazar->registerSpace(jetTopSpace);
+	aprilparticle::Space* jetBottomSpace = new aprilparticle::Space();
+	quazar->registerSpace(jetBottomSpace);
 	// emitters
 	aprilparticle::Emitter* discEmitter = new aprilparticle::Emitter();
-	quazar->registerEmitter(discEmitter);
+	discSpace->registerEmitter(discEmitter);
 	aprilparticle::Emitter* jetTopEmitter = new aprilparticle::Emitter();
-	quazar->registerEmitter(jetTopEmitter);
+	jetTopSpace->registerEmitter(jetTopEmitter);
 	aprilparticle::Emitter* jetBottomEmitter = new aprilparticle::Emitter();
-	quazar->registerEmitter(jetBottomEmitter);
+	jetBottomSpace->registerEmitter(jetBottomEmitter);
 	// textures
 	discEmitter->setTexture(greenParticle); // texture is shared among several particle systems
 	jetTopEmitter->setTexture(blueParticle); // texture is shared among several particle systems
@@ -320,28 +340,30 @@ void setupQuazar()
 	// affectors
 	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 4.0f, 1.0f, 2.0f);
 	quazar->registerAffector(gravity);
-	discEmitter->addAffector(gravity);
+	discSpace->addAffector(gravity);
 	aprilparticle::Affectors::Revolutor* spin = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, gvec3(1.0f, 0.0f, 0.0f), 0.2f, true);
 	quazar->registerAffector(spin);
-	discEmitter->addAffector(spin);
+	discSpace->addAffector(spin);
 	aprilparticle::Affectors::LinearForce* top = new aprilparticle::Affectors::LinearForce(gvec3(1.0f, 0.0f, 0.0f));
 	quazar->registerAffector(top);
-	jetTopEmitter->addAffector(top);
+	jetTopSpace->addAffector(top);
 	aprilparticle::Affectors::Attractor* attractorTop = new aprilparticle::Affectors::Attractor(gvec3(10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
 	quazar->registerAffector(attractorTop);
-	jetTopEmitter->addAffector(attractorTop);
+	jetTopSpace->addAffector(attractorTop);
 	aprilparticle::Affectors::LinearForce* bottom = new aprilparticle::Affectors::LinearForce(gvec3(-1.0f, 0.0f, 0.0f));
 	quazar->registerAffector(bottom);
-	jetBottomEmitter->addAffector(bottom);
+	jetBottomSpace->addAffector(bottom);
 	aprilparticle::Affectors::Attractor* attractorBottom = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
 	quazar->registerAffector(attractorBottom);
-	jetBottomEmitter->addAffector(attractorBottom);
+	jetBottomSpace->addAffector(attractorBottom);
 	aprilparticle::Affectors::Attractor* inverseGravity = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 6.0f, -4.0f, 2.0f);
 	quazar->registerAffector(inverseGravity);
-	jetTopEmitter->addAffector(inverseGravity); // affector is shared among several emitters
-	jetBottomEmitter->addAffector(inverseGravity); // affector is shared among several emitters
+	jetTopSpace->addAffector(inverseGravity); // affector is shared among several emitters
+	jetBottomSpace->addAffector(inverseGravity); // affector is shared among several emitters
 
-	quazar->setPosition(0.0f, 0.0f, 10.0f);
+	discSpace->setPosition(0.0f, 0.0f, 10.0f);
+	jetTopSpace->setPosition(0.0f, 0.0f, 10.0f);
+	jetBottomSpace->setPosition(0.0f, 0.0f, 10.0f);
 
 	discEmitter->setType(aprilparticle::Emitter::HollowSphere);
 	discEmitter->setDimensions(1.0f, 6.0f, 6.0f);
@@ -356,8 +378,8 @@ void setupQuazar()
 	jetTopEmitter->setDimensions(1.0f, 3.0f, 3.0f);
 	jetTopEmitter->setBlendMode(april::ADD);
 	jetTopEmitter->setEmissionRate(100.0f);
-	jetTopEmitter->setLimit(400);
-	jetTopEmitter->setLife(4.0f);
+	jetTopEmitter->setLimit(300);
+	jetTopEmitter->setLife(3.0f);
 	jetTopEmitter->setScale(0.3f);
 	
 	jetBottomEmitter->setType(aprilparticle::Emitter::Sphere);
@@ -365,72 +387,26 @@ void setupQuazar()
 	jetBottomEmitter->setDimensions(1.0f, 3.0f, 3.0f);
 	jetBottomEmitter->setBlendMode(april::ADD);
 	jetBottomEmitter->setEmissionRate(100.0f);
-	jetBottomEmitter->setLimit(400);
-	jetBottomEmitter->setLife(4.0f);
+	jetBottomEmitter->setLimit(300);
+	jetBottomEmitter->setLife(3.0f);
 	jetBottomEmitter->setScale(0.3f);
-}
-
-void setupTwirl()
-{
-	twirl = new aprilparticle::System();
-	// emitters
-	aprilparticle::Emitter* left = new aprilparticle::Emitter();
-	twirl->registerEmitter(left);
-	aprilparticle::Emitter* right = new aprilparticle::Emitter();
-	twirl->registerEmitter(right);
-	// textures
-	left->setTexture(redParticle); // texture is shared among several particle systems
-	right->setTexture(greenParticle); // texture is shared among several particle systems
-	// affectors
-	aprilparticle::Affectors::Attractor* gravity = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
-	twirl->registerAffector(gravity);
-	left->addAffector(gravity); // affector is shared among several emitters
-	right->addAffector(gravity); // affector is shared among several emitters
-	// affectors that are being manipulated
-	aprilparticle::Affectors::ForceField* force1 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), 4.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_1);
-	twirl->registerAffector(force1);
-	left->addAffector(force1);
-	aprilparticle::Affectors::ForceField* force2 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), 4.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_2);
-	twirl->registerAffector(force2);
-	left->addAffector(force2);
-	aprilparticle::Affectors::ForceField* force3 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), 4.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_3);
-	twirl->registerAffector(force3);
-	right->addAffector(force3);
-	aprilparticle::Affectors::ForceField* force4 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), 4.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_4);
-	twirl->registerAffector(force4);
-	right->addAffector(force4);
-
-	twirl->setPosition(10.0f, 0.0f, -10.0f);
-
-	left->setType(aprilparticle::Emitter::Point);
-	left->setBlendMode(april::ADD);
-	left->setEmissionRate(100.0f);
-	left->setLimit(600);
-	left->setLife(6.0f);
-	left->setDirection(gvec3(-0.5f, 0.0f, 0.0f));
-	left->setScaleRange(0.2f, 0.4f);
-	
-	right->setType(aprilparticle::Emitter::Point);
-	right->setBlendMode(april::ADD);
-	right->setEmissionRate(100.0f);
-	right->setLimit(600);
-	right->setLife(6.0f);
-	right->setDirection(gvec3(-0.5f, 0.0f, 0.0f));
-	right->setScaleRange(0.2f, 0.4f);
 }
 
 void setupMilkyWay()
 {
 	milkyWay = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* space = new aprilparticle::Space();
+	milkyWay->registerSpace(space);
 	// emitters
 	aprilparticle::Emitter* emitter1 = new aprilparticle::Emitter();
-	milkyWay->registerEmitter(emitter1);
+	space->registerEmitter(emitter1);
 	aprilparticle::Emitter* emitter2 = new aprilparticle::Emitter();
-	milkyWay->registerEmitter(emitter2);
+	space->registerEmitter(emitter2);
 	aprilparticle::Emitter* emitter3 = new aprilparticle::Emitter();
-	milkyWay->registerEmitter(emitter3);
+	space->registerEmitter(emitter3);
 	aprilparticle::Emitter* emitter4 = new aprilparticle::Emitter();
-	milkyWay->registerEmitter(emitter4);
+	space->registerEmitter(emitter4);
 	// textures
 	emitter1->setTexture(blueParticle); // texture is shared among several particle systems
 	emitter2->setTexture(blueParticle); // texture is shared among several particle systems
@@ -439,18 +415,12 @@ void setupMilkyWay()
 	// affectors
 	aprilparticle::Affectors::Revolutor* evolutor = new aprilparticle::Affectors::Revolutor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, gvec3(0.0f, 1.0f, 0.0f), 0.4f, false);
 	milkyWay->registerAffector(evolutor);
-	emitter1->addAffector(evolutor);
-	emitter2->addAffector(evolutor);
-	emitter3->addAffector(evolutor);
-	emitter4->addAffector(evolutor);
+	space->addAffector(evolutor);
 	aprilparticle::Affectors::Attractor* attractor = new aprilparticle::Affectors::Attractor(gvec3(0.0f, 0.0f, 0.0f), 8.0f, 5.0f, 2.0f);
 	milkyWay->registerAffector(attractor);
-	emitter1->addAffector(attractor);
-	emitter2->addAffector(attractor);
-	emitter3->addAffector(attractor);
-	emitter4->addAffector(attractor);
+	space->addAffector(attractor);
 
-	milkyWay->setPosition(-10.0f, 0.0f, -10.0f);
+	space->setPosition(-10.0f, 0.0f, -10.0f);
 
 	emitter1->setType(aprilparticle::Emitter::Sphere);
 	emitter1->setPosition(4.0f, 0.0f, 0.0f);
@@ -489,6 +459,69 @@ void setupMilkyWay()
 	emitter4->setScale(0.25f);
 }
 
+void setupTwirl()
+{
+	twirl = new aprilparticle::System();
+	// spaces
+	aprilparticle::Space* spaceLeft = new aprilparticle::Space();
+	twirl->registerSpace(spaceLeft);
+	aprilparticle::Space* spaceRight = new aprilparticle::Space();
+	twirl->registerSpace(spaceRight);
+	// emitters
+	aprilparticle::Emitter* left = new aprilparticle::Emitter();
+	spaceLeft->registerEmitter(left);
+	aprilparticle::Emitter* right = new aprilparticle::Emitter();
+	spaceRight->registerEmitter(right);
+	// textures
+	left->setTexture(redParticle); // texture is shared among several particle systems
+	right->setTexture(greenParticle); // texture is shared among several particle systems
+	// affectors
+	aprilparticle::Affectors::Attractor* gravity1 = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 4.0f, 2.0f);
+	twirl->registerAffector(gravity1);
+	spaceLeft->addAffector(gravity1); // affector is shared among several emitters
+	spaceRight->addAffector(gravity1); // affector is shared among several emitters
+	aprilparticle::Affectors::Attractor* gravity2 = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 6.0f, 2.0f);
+	twirl->registerAffector(gravity2);
+	spaceLeft->addAffector(gravity2); // affector is shared among several emitters
+	spaceRight->addAffector(gravity2); // affector is shared among several emitters
+	aprilparticle::Affectors::Attractor* gravity3 = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 6.0f, 2.0f);
+	twirl->registerAffector(gravity3);
+	spaceLeft->addAffector(gravity3); // affector is shared among several emitters
+	spaceRight->addAffector(gravity3); // affector is shared among several emitters
+	// affectors that are being manipulated
+	aprilparticle::Affectors::ForceField* force1 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), 6.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_1);
+	twirl->registerAffector(force1);
+	spaceLeft->addAffector(force1);
+	aprilparticle::Affectors::ForceField* force2 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), 6.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_2);
+	twirl->registerAffector(force2);
+	spaceLeft->addAffector(force2);
+	aprilparticle::Affectors::ForceField* force3 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 0.0f, 0.0f), 6.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_3);
+	twirl->registerAffector(force3);
+	spaceRight->addAffector(force3);
+	aprilparticle::Affectors::ForceField* force4 = new aprilparticle::Affectors::ForceField(gvec3(0.0f, 4.0f, 0.0f), 6.0f, gvec3(0.0f, 0.0f, 0.0f), AFFECTOR_FORCE_4);
+	twirl->registerAffector(force4);
+	spaceRight->addAffector(force4);
+
+	spaceLeft->setPosition(10.0f, 0.0f, -10.0f);
+	spaceRight->setPosition(10.0f, 0.0f, -10.0f);
+
+	left->setType(aprilparticle::Emitter::Point);
+	left->setBlendMode(april::ADD);
+	left->setEmissionRate(100.0f);
+	left->setLimit(600);
+	left->setLife(6.0f);
+	left->setDirection(gvec3(-0.5f, 0.0f, 0.0f));
+	left->setScaleRange(0.3f, 0.5f);
+	
+	right->setType(aprilparticle::Emitter::Point);
+	right->setBlendMode(april::ADD);
+	right->setEmissionRate(100.0f);
+	right->setLimit(600);
+	right->setLife(6.0f);
+	right->setDirection(gvec3(-0.5f, 0.0f, 0.0f));
+	right->setScaleRange(0.3f, 0.5f);
+}
+
 static UpdateDelegate* updateDelegate = NULL;
 
 void april_init(const harray<hstr>& args)
@@ -501,7 +534,7 @@ void april_init(const harray<hstr>& args)
 	// directory to something sane (e.g. .../Resources/ in the app
 	// bundle).
 	// In this case, we set it to parent of the .app bundle.
-	{	// curly braces in order to localize variables 
+	{
 
 		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
@@ -541,7 +574,7 @@ void april_init(const harray<hstr>& args)
 	drawRect.setSize(april::getSystemInfo().displayResolution);
 #endif
 	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
-	april::createRenderSystem("");
+	april::createRenderSystem();
 	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle Demo");
 	aprilparticle::init();
 	april::window->setUpdateDelegate(updateDelegate);
@@ -554,10 +587,10 @@ void april_init(const harray<hstr>& args)
 	setupFlame();
 	setupBubbles();
 	setupVortex();
-	setupQuazar();
 	setupRain();
-	setupTwirl();
+	setupQuazar();
 	setupMilkyWay();
+	setupTwirl();
 }
 
 void april_destroy()
@@ -567,8 +600,8 @@ void april_destroy()
 	delete vortex;
 	delete rain;
 	delete quazar;
-	delete twirl;
 	delete milkyWay;
+	delete twirl;
 	delete redParticle;
 	delete greenParticle;
 	delete blueParticle;

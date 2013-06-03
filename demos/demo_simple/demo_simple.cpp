@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.7
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -47,8 +47,8 @@ aprilparticle::System* bubbles = NULL;
 aprilparticle::System* vortex = NULL;
 aprilparticle::System* rain = NULL;
 aprilparticle::System* quazar = NULL;
-aprilparticle::System* twirl = NULL;
 aprilparticle::System* milkyWay = NULL;
+aprilparticle::System* twirl = NULL;
 
 april::ColoredVertex grid[44];
 
@@ -93,8 +93,8 @@ public:
 			this->counts += vortex->getParticleCount();
 			this->counts += rain->getParticleCount();
 			this->counts += quazar->getParticleCount();
-			this->counts += twirl->getParticleCount();
 			this->counts += milkyWay->getParticleCount();
+			this->counts += twirl->getParticleCount();
 			this->count = 0;
 			foreach (int, it, this->counts)
 			{
@@ -112,28 +112,28 @@ public:
 		pos = rot * pos;
 		april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
 		drawGrid();
-	
+		
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(this->angle * 0.06666667f), 0.0f, cos(this->angle * 0.03333333f)) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(this->angle * 0.06666667f), sin(this->angle * 0.03333333f), 0.0f) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(this->angle * 0.03333333f), sin(this->angle * 0.06666667f), 0.0f) * 10.0f);
-
+		
 		flame->update(timeSinceLastFrame);
 		bubbles->update(timeSinceLastFrame);
 		vortex->update(timeSinceLastFrame);
 		rain->update(timeSinceLastFrame);
 		quazar->update(timeSinceLastFrame);
-		twirl->update(timeSinceLastFrame);
 		milkyWay->update(timeSinceLastFrame);
+		twirl->update(timeSinceLastFrame);
 	
 		flame->draw(pos);
 		bubbles->draw(pos);
 		vortex->draw(pos);
 		rain->draw(pos);
 		quazar->draw(pos);
-		twirl->draw(pos);
 		milkyWay->draw(pos);
-	
+		twirl->draw(pos);
+
 		return true;
 	}
 
@@ -156,7 +156,7 @@ void april_init(const harray<hstr>& args)
 	// directory to something sane (e.g. .../Resources/ in the app
 	// bundle).
 	// In this case, we set it to parent of the .app bundle.
-	{	// curly braces in order to localize variables 
+	{
 
 		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 		CFStringRef path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
@@ -196,7 +196,7 @@ void april_init(const harray<hstr>& args)
 	drawRect.setSize(april::getSystemInfo().displayResolution);
 #endif
 	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
-	april::createRenderSystem("");
+	april::createRenderSystem();
 	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle XML Demo");
 	aprilparticle::init();
 	april::window->setUpdateDelegate(updateDelegate);
@@ -212,10 +212,10 @@ void april_init(const harray<hstr>& args)
 	rain->load();
 	quazar = new aprilparticle::System(RESOURCE_PATH "quazar.particle");
 	quazar->load();
-	twirl = new aprilparticle::System(RESOURCE_PATH "twirl.particle");
-	twirl->load();
 	milkyWay = new aprilparticle::System(RESOURCE_PATH "milkyWay.particle");
 	milkyWay->load();
+	twirl = new aprilparticle::System(RESOURCE_PATH "twirl.particle");
+	twirl->load();
 }
 
 void april_destroy()
@@ -225,8 +225,8 @@ void april_destroy()
 	delete vortex;
 	delete rain;
 	delete quazar;
-	delete twirl;
 	delete milkyWay;
+	delete twirl;
 	aprilparticle::destroy();
 	april::destroy();
 	delete updateDelegate;

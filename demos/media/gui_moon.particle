@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ParticleSystem>
 	
-	<Emitter type="Point" dimensions="16,16,0" blend_mode="add" emission_rate="5" limit="5" life="1">
-		<Affector type="ColorChanger" start_color="FF3F00" end_color="FF3F00"/>
-		<Texture filename="fire_particle"/>
-	</Emitter>
+	<Space>
+		<Emitter type="Point" dimensions="16,16,0" blend_mode="add" emission_rate="50" limit="10" life="1">
+			<Texture filename="fire_particle"/>
+		</Emitter>
+		<Affector type="ColorChanger" timings="0:FFBF5F00 0.1:FFBF5FFF 0.9:FFBF5FFF 1:FFBF5F00"/>
+	</Space>
 	
 </ParticleSystem>

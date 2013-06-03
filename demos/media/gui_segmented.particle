@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleSystem>
+	
+	<Space name="space0">
+		<Emitter name="emitter0" type="Sphere" dimensions="10,10,0" direction="0,-100,0" blend_mode="add" emission_rate="200" limit="500" life="1" scale="0.25">
+			<Texture filename="blue_particle"/>
+		</Emitter>
+		<Affector type="ColorChanger" timings="0:FFFFFF 0.5:FFFFFF 0.75:0000FF 1:0000FF00"/>
+	</Space>
+	<Space name="space1">
+		<Emitter name="emitter1" type="Box" dimensions="20,20,0" direction="0,100,0" blend_mode="add" emission_rate="200" limit="500" life="1" size="0.1,0.1;1,1" scale="0.25">
+			<Texture filename="white_particle"/>
+		</Emitter>
+		<Affector type="LinearForce" direction="0,200,0"/>
+		<Affector type="ColorChanger" timings="0:7F00FF 0.125:7F00FF 0.25:0000FF 0.375:00FFFF 0.5:00FF00 0.625:FFFF00 0.75:FF7F00 0.875:FF0000 1:000000"/>
+	</Space>
+	
+</ParticleSystem>

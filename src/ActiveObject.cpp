@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -22,7 +22,6 @@ namespace aprilparticle
 	ActiveObject::ActiveObject(chstr name)
 	{
 		this->name = (name == "" ? generateName("ActiveObject") : name);
-		this->position.set(0.0f, 0.0f, 0.0f);
 		this->visible = true;
 		this->enabled = true;
 	}
@@ -30,23 +29,12 @@ namespace aprilparticle
 	ActiveObject::ActiveObject(const ActiveObject& other)
 	{
 		this->name = other.name;
-		this->position = other.position;
 		this->visible = other.visible;
 		this->enabled = other.enabled;
 	}
 	
 	ActiveObject::~ActiveObject()
 	{
-	}
-
-	void ActiveObject::addAffector(Affector* affector)
-	{
-		this->affectors += affector;
-	}
-
-	void ActiveObject::removeAffector(Affector* affector)
-	{
-		this->affectors -= affector;
 	}
 
 	hstr ActiveObject::getProperty(chstr name, bool* property_exists)
@@ -56,7 +44,6 @@ namespace aprilparticle
 			*property_exists = true;
 		}
 		if (name == "name")		return this->getName();
-		if (name == "position")	return gvec3_to_hstr(this->getPosition());
 		if (name == "visible")	return this->isVisible();
 		if (name == "enabled")	return this->isEnabled();
 		if (property_exists != NULL)
@@ -70,7 +57,6 @@ namespace aprilparticle
 	bool ActiveObject::setProperty(chstr name, chstr value)
 	{
 		if		(name == "name")		this->setName(value);
-		else if	(name == "position")	this->setPosition(hstr_to_gvec3(value));
 		else if	(name == "visible")		this->setVisible(value);
 		else if	(name == "enabled")		this->setEnabled(value);
 		else
@@ -79,18 +65,6 @@ namespace aprilparticle
 			return false;
 		}
 		return true;
-	}
-
-	Affector* ActiveObject::getAffector(chstr name)
-	{
-		foreach (Affector*, it, this->affectors)
-		{
-			if ((*it)->getName() == name)
-			{
-				return (*it);
-			}
-		}
-		return NULL;
 	}
 
 }

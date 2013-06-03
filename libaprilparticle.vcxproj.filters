@@ -90,6 +90,15 @@
     <ClInclude Include="include\aprilparticle\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\aprilparticle\Space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\SpaceObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\aprilparticle\AffectorContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Particle.cpp">
@@ -153,6 +162,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Space.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpaceObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AffectorContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -24,12 +24,14 @@
 namespace aprilparticle
 {
 	class Particle;
+	class Space;
 	class System;
 
 	class aprilparticleExport Affector
 	{
 	public:
 		friend class System;
+		friend class Space;
 
 		Affector(chstr name = "");
 		virtual ~Affector();
@@ -45,6 +47,7 @@ namespace aprilparticle
 				
 		virtual void update(Particle* particle, float k, gvec3& movement) { }
 		virtual void draw() { }
+
 		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
 		virtual bool setProperty(chstr name, chstr value);
 
@@ -53,9 +56,9 @@ namespace aprilparticle
 		float minRandomness;
 		float maxRandomness;
 		gvec3 chaoticity;
-		System* system;
+		Space* space;
 
-		void _setSystem(System* value) { this->system = value; }
+		void _setSpace(Space* value) { this->space = value; }
 
 	};
 }

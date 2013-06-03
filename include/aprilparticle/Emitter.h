@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.6
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -26,7 +26,7 @@
 #include <hltypes/hltypesUtil.h>
 
 #include "aprilparticleExport.h"
-#include "ActiveObject.h"
+#include "SpaceObject.h"
 
 namespace april
 {
@@ -37,9 +37,9 @@ namespace aprilparticle
 {
 	class Affector;
 	class Particle;
-	class System;
+	class Space;
 
-	class aprilparticleExport Emitter : public ActiveObject
+	class aprilparticleExport Emitter : public SpaceObject
 	{
 	public:
 		enum Type
@@ -53,7 +53,7 @@ namespace aprilparticle
 			HollowCylinder
 		};
 	
-		friend class System;
+		friend class Space;
 
 		Emitter(chstr name = "");
 		Emitter(const Emitter& other);
@@ -71,7 +71,6 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(int, loops, Loops);
 		HL_DEFINE_GET(int, limit, Limit);
 		void setLimit(int value);
-		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_ISSET(reverseRendering, ReverseRendering);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
@@ -94,7 +93,6 @@ namespace aprilparticle
 		void setSize(chstr value);
 		void setScale(chstr value);
 		void setAngle(chstr value);
-		int getParticleCount();
 		bool isExpired();
 
 		void setLifeRange(float min, float max);
@@ -112,7 +110,6 @@ namespace aprilparticle
 		void draw(gvec3 point, gvec3 up); // is the only 3D drawing method
 		void draw(gvec2 offset = gvec2());
 		void draw(gvec2 offset, april::Color color);
-		void drawAffectors(); // usually only used for debug purposes, 3D
 		
 	protected:
 		float emissionTimer;
@@ -130,7 +127,6 @@ namespace aprilparticle
 		int currentLoop;
 		int alive;
 		int limit;
-		float preUpdate;
 		bool reverseRendering;
 		float minLife;
 		float maxLife;
@@ -143,16 +139,14 @@ namespace aprilparticle
 		float minAngle;
 		float maxAngle;
 		april::Texture* texture;
+		Space* space;
 		hdeque<Particle*> particles;
-		System* system;
-		bool started;
 
 		void _createNewParticle(float k);
-		void _setSystem(System* value) { this->system = value; }
+		void _setSpace(Space* value) { this->space = value; }
 
 	private:
 		april::ColoredTexturedVertex* _triangleBatch;
-		gvec3 _movement;
 		gvec3 _pos;
 		float _rho;
 		float _phi;
@@ -161,7 +155,6 @@ namespace aprilparticle
 		float _cs;
 		int _quota;
 		bool _expired;
-		Particle* _particle;
 		gmat4 _billboard;
 		gmat3 _rot;
 		gvec3 _offset;

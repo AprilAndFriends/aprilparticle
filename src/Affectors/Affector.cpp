@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -23,7 +23,7 @@ namespace aprilparticle
 		this->minRandomness = 1.0f;
 		this->maxRandomness = 1.0f;
 		this->chaoticity.set(0.0f, 0.0f, 0.0f);
-		this->system = NULL;
+		this->space = NULL;
 	}
 
 	Affector::~Affector()

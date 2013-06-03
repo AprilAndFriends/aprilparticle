@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ParticleSystem>
 	
-	<Emitter type="Box" position="0,0,0" dimensions="200,10,0" blend_mode="add" emission_rate="500" limit="1000" life="2" direction="0,50,0;0,100,0" size="0.05,0.5">
+	<Space>
+		<Emitter type="Box" dimensions="200,10,0" blend_mode="add" emission_rate="500" limit="1000" life="2" direction="0,50,0;0,100,0" size="0.05,0.5">
+			<Texture filename="rain_drop"/>
+		</Emitter>
 		<Affector type="LinearForce" direction="0,5,0"/>
-		<Texture filename="rain_drop"/>
-	</Emitter>
+		<Affector type="ColorChanger" timings="0:000000 0.1:FFFFFF 0.95:FFFFFF 1:000000"/>
+	</Space>
 	
 </ParticleSystem>

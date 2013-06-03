@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.72
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -15,7 +15,7 @@
 #include "AffectorRevolutor.h"
 #include "aprilparticleUtil.h"
 #include "Particle.h"
-#include "System.h"
+#include "Space.h"
 
 namespace aprilparticle
 {
@@ -79,7 +79,7 @@ namespace aprilparticle
 
 		void Revolutor::update(Particle* particle, float k, gvec3& movement)
 		{
-			this->_position = this->position + this->system->getPosition();
+			this->_position = this->position + this->space->getPosition();
 			this->_direction = particle->position - this->_position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.71
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -25,12 +25,13 @@
 #include "Emitter.h"
 #include "Particle.h"
 #include "System.h"
+#include "Space.h"
 
 namespace aprilparticle
 {
 	static gvec3 v[4]; // optimization
 
-	Emitter::Emitter(chstr name) : ActiveObject(name == "" ? generateName("Emitter") : name)
+	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? generateName("Emitter") : name)
 	{
 		this->emissionTimer = 0.0f;
 		this->loopTimer = 0.0f;
@@ -47,7 +48,6 @@ namespace aprilparticle
 		this->currentLoop = 0;
 		this->alive = 0;
 		this->limit = 10;
-		this->preUpdate = 0.0f;
 		this->reverseRendering = false;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
@@ -62,11 +62,10 @@ namespace aprilparticle
 		this->texture = NULL;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
-		this->system = NULL;
-		this->started = false;
+		this->space = NULL;
 	}
 
-	Emitter::Emitter(const Emitter& other) : ActiveObject(other)
+	Emitter::Emitter(const Emitter& other) : SpaceObject(other)
 	{
 		this->emissionTimer = other.emissionTimer;
 		this->loopTimer = other.loopTimer;
@@ -83,7 +82,6 @@ namespace aprilparticle
 		this->currentLoop = other.currentLoop;
 		this->alive = other.alive;
 		this->limit = other.limit;
-		this->preUpdate = other.preUpdate;
 		this->reverseRendering = other.reverseRendering;
 		this->minLife = other.minLife;
 		this->maxLife = other.maxLife;
@@ -98,8 +96,7 @@ namespace aprilparticle
 		this->texture = NULL;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
-		this->system = NULL;
-		this->started = other.started;
+		this->space = NULL;
 	}
 
 	Emitter::~Emitter()
@@ -107,10 +104,6 @@ namespace aprilparticle
 		if (this->_triangleBatch != NULL)
 		{
 			delete [] this->_triangleBatch;
-		}
-		foreach_q (Particle*, it, this->particles)
-		{
-			delete (*it);
 		}
 	}
 
@@ -201,11 +194,6 @@ namespace aprilparticle
 		this->setAngleRange(data.first(), data.last());
 	}
 
-	int Emitter::getParticleCount()
-	{
-		return this->alive;
-	}
-
 	bool Emitter::isExpired()
 	{
 		return (!this->running && this->particles.size() == 0);
@@ -276,14 +264,13 @@ namespace aprilparticle
 		if (name == "loop_delay")			return this->getLoopDelay();
 		if (name == "loops")				return this->getLoops();
 		if (name == "limit")				return this->getLimit();
-		if (name == "pre_update")			return this->getPreUpdate();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
 		if (name == "direction")			return GET_RANGE(Direction, gvec3_to_hstr);
 		if (name == "size")					return GET_RANGE(Size, gvec2_to_hstr);
 		if (name == "scale")				return GET_RANGE(Scale, hstr);
 		if (name == "angle")				return GET_RANGE(Angle, hstr);
-		return ActiveObject::getProperty(name, property_exists);
+		return SpaceObject::getProperty(name, property_exists);
 	}
 
 	bool Emitter::setProperty(chstr name, chstr value)
@@ -315,14 +302,13 @@ namespace aprilparticle
 		else if	(name == "delay")				this->setDelay(value);
 		else if	(name == "loop_delay")			this->setLoopDelay(value);
 		else if	(name == "loops")				this->setLoops(value);
-		else if	(name == "pre_update")			this->setPreUpdate(value);
 		else if (name == "reverse_rendering")	this->setReverseRendering(value);
 		else if	(name == "life")				this->setLife(value);
 		else if	(name == "direction")			this->setDirection(value);
 		else if	(name == "size")				this->setSize(value);
 		else if	(name == "scale")				this->setScale(value);
 		else if	(name == "angle")				this->setAngle(value);
-		else return ActiveObject::setProperty(name, value);
+		else return SpaceObject::setProperty(name, value);
 		return true;
 	}
 
@@ -383,24 +369,19 @@ namespace aprilparticle
 				break;
 		}
 		this->_pos += this->position;
-		if (this->system != NULL)
+		if (this->space != NULL)
 		{
-			this->_pos += this->system->getPosition();
+			this->_pos += this->space->getPosition();
 		}
-		this->_particle = new Particle();
-		this->_particle->life = RAND_RANGE(Life);
-		this->_particle->position = this->_pos;
-		this->_particle->direction = RAND_RANGE(Direction);
-		this->_particle->size = RAND_RANGE(Size);
-		this->_particle->scale = RAND_RANGE(Scale);
-		this->_particle->angle = RAND_RANGE(Angle);
-		this->_movement.set(0.0f, 0.0f, 0.0f);
-		foreach (Affector*, it, this->affectors)
-		{
-			(*it)->update(this->_particle, k, this->_movement);
-		}
-		this->_particle->position += this->_movement + this->_particle->direction * k;
-		this->particles += this->_particle;
+		this->space->_particle = new Particle();
+		this->space->_particle->life = RAND_RANGE(Life);
+		this->space->_particle->position = this->_pos;
+		this->space->_particle->direction = RAND_RANGE(Direction);
+		this->space->_particle->size = RAND_RANGE(Size);
+		this->space->_particle->scale = RAND_RANGE(Scale);
+		this->space->_particle->angle = RAND_RANGE(Angle);
+		this->particles += this->space->_particle;
+		this->space->_addNewParticle(k);
 	}
 
 	void Emitter::reset()
@@ -410,30 +391,40 @@ namespace aprilparticle
 		this->time = 0.0f;
 		this->currentLoop = 0;
 		this->running = true;
-		foreach_q (Particle*, it, this->particles)
-		{
-			delete (*it);
-		}
 		this->particles.clear();
 	}
 
 	void Emitter::update(float k)
 	{
+		// remove all expired particles
+		if (this->particles.size() > 0)
+		{
+			int i = 0;
+			for_iterx (i, 0, this->particles.size())
+			{
+				if (!this->particles[i]->isDead())
+				{
+					break;
+				}
+				// don't delete any particles, Space takes care of that
+			}
+			if (i > 0)
+			{
+				this->particles.remove_first(i);
+			}
+		}
+		// count alive particles
+		this->alive = 0;
+		foreach_q (Particle*, it, this->particles)
+		{
+			if (!(*it)->isDead())
+			{
+				this->alive++;
+			}
+		}
 		if (!this->enabled)
 		{
 			return;
-		}
-		if (!this->started)
-		{
-			this->started = true;
-			if (this->preUpdate > 0.0f)
-			{
-				int count = (int)(this->preUpdate / 0.1f);
-				for_iter (i, 0, count)
-				{
-					this->update(0.1f);
-				}
-			}
 		}
 		// check delay
 		this->time += k;
@@ -481,39 +472,6 @@ namespace aprilparticle
 				}
 			}
 		}
-		// first update all particles
-		this->alive = 0;
-		foreach_q (Particle*, it, this->particles)
-		{
-			(*it)->timer += k;
-			if (!(*it)->isDead())
-			{
-				this->_movement.set(0.0f, 0.0f, 0.0f);
-				foreach (Affector*, it2, this->affectors)
-				{
-					(*it2)->update((*it), k, this->_movement);
-				}
-				(*it)->position += this->_movement + (*it)->direction * k;
-				this->alive++;
-			}
-		}
-		// remove all expired particles
-		if (this->particles.size() > 0)
-		{
-			int i;
-			for_iterx (i, 0, this->particles.size())
-			{
-				if (!this->particles[i]->isDead())
-				{
-					break;
-				}
-				delete this->particles[i];
-			}
-			if (i > 0)
-			{
-				this->particles.remove_first(i);
-			}
-		}
 		// check repetition loops
 		if (this->loops > 0 && this->currentLoop >= this->loops)
 		{
@@ -534,6 +492,7 @@ namespace aprilparticle
 				else if (this->emissionTimer > this->_cs && this->alive < this->limit)
 				{
 					this->_quota = hmin(this->_quota, (int)(this->limit - this->alive));
+					this->alive += this->_quota;
 					for_iter (i, 0, this->_quota)
 					{
 						this->_createNewParticle(k * i / this->_quota);
@@ -562,30 +521,30 @@ namespace aprilparticle
 		this->_i = 0;
 		for (this->_pI = this->_pStart; this->_pI != this->_pEnd; this->_pI += this->_pStep)
 		{
-			this->_particle = this->particles[this->_pI];
-			if (!this->_particle->isDead() && this->_particle->color.a > 0)
+			this->space->_particle = this->particles[this->_pI];
+			if (!this->space->_particle->isDead() && this->space->_particle->color.a > 0)
 			{
-				this->_xSize = this->_particle->size.x * this->_particle->scale * 0.5f;
-				this->_ySize = this->_particle->size.y * this->_particle->scale * 0.5f;
+				this->_xSize = this->space->_particle->size.x * this->space->_particle->scale * 0.5f;
+				this->_ySize = this->space->_particle->size.y * this->space->_particle->scale * 0.5f;
 				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
 				
-				this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->_particle->angle);
+				this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->space->_particle->angle);
 				v[0] = this->_rot * v[0];
 				v[1] = this->_rot * v[1];
 				v[2] = this->_rot * v[2];
 				v[3] = this->_rot * v[3];
 			
-				this->_billboard.lookAt(this->_particle->position, point - this->_particle->position, -up);
+				this->_billboard.lookAt(this->space->_particle->position, point - this->space->_particle->position, -up);
 				this->_billboard.inverse();
 				v[0] = this->_billboard * v[0];
 				v[1] = this->_billboard * v[1];
 				v[2] = this->_billboard * v[2];
 				v[3] = this->_billboard * v[3];
 			
-				this->_color = (unsigned int)this->_particle->color;
+				this->_color = (unsigned int)this->space->_particle->color;
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
@@ -619,20 +578,20 @@ namespace aprilparticle
 		this->_i = 0;
 		for (this->_pI = this->_pStart; this->_pI != this->_pEnd; this->_pI += this->_pStep)
 		{
-			this->_particle = this->particles[this->_pI];
-			if (!this->_particle->isDead())
+			this->space->_particle = this->particles[this->_pI];
+			if (!this->space->_particle->isDead())
 			{
-				this->_xSize = this->_particle->size.x * this->_w * this->_particle->scale * 0.5f;
-				this->_ySize = this->_particle->size.y * this->_h * this->_particle->scale * 0.5f;
+				this->_xSize = this->space->_particle->size.x * this->_w * this->space->_particle->scale * 0.5f;
+				this->_ySize = this->space->_particle->size.y * this->_h * this->space->_particle->scale * 0.5f;
 				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
 
-				this->_offset.set(this->_particle->position.x + offset.x, this->_particle->position.y + offset.y, 0.0f);
-				if (this->_particle->angle != 0.0f)
+				this->_offset.set(this->space->_particle->position.x + offset.x, this->space->_particle->position.y + offset.y, 0.0f);
+				if (this->space->_particle->angle != 0.0f)
 				{
-					this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->_particle->angle);
+					this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->space->_particle->angle);
 					v[0] = this->_rot * v[0] + this->_offset;
 					v[1] = this->_rot * v[1] + this->_offset;
 					v[2] = this->_rot * v[2] + this->_offset;
@@ -646,7 +605,7 @@ namespace aprilparticle
 					v[3] += this->_offset;
 				}
 				
-				this->_color = (unsigned int)this->_particle->color;
+				this->_color = (unsigned int)this->space->_particle->color;
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
@@ -680,20 +639,20 @@ namespace aprilparticle
 		this->_i = 0;
 		for (this->_pI = this->_pStart; this->_pI != this->_pEnd; this->_pI += this->_pStep)
 		{
-			this->_particle = this->particles[this->_pI];
-			if (!this->_particle->isDead())
+			this->space->_particle = this->particles[this->_pI];
+			if (!this->space->_particle->isDead())
 			{
-				this->_xSize = this->_particle->size.x * this->_w * this->_particle->scale * 0.5f;
-				this->_ySize = this->_particle->size.y * this->_h * this->_particle->scale * 0.5f;
+				this->_xSize = this->space->_particle->size.x * this->_w * this->space->_particle->scale * 0.5f;
+				this->_ySize = this->space->_particle->size.y * this->_h * this->space->_particle->scale * 0.5f;
 				v[0].set(-this->_xSize, -this->_ySize, 0.0f);
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
 
-				this->_offset.set(this->_particle->position.x + offset.x, this->_particle->position.y + offset.y, 0.0f);
-				if (this->_particle->angle != 0.0f)
+				this->_offset.set(this->space->_particle->position.x + offset.x, this->space->_particle->position.y + offset.y, 0.0f);
+				if (this->space->_particle->angle != 0.0f)
 				{
-					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, this->_particle->angle);
+					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, this->space->_particle->angle);
 					v[0] = this->_rot * v[0] + this->_offset;
 					v[1] = this->_rot * v[1] + this->_offset;
 					v[2] = this->_rot * v[2] + this->_offset;
@@ -707,7 +666,7 @@ namespace aprilparticle
 					v[3] += this->_offset;
 				}
 				
-				this->_color = (unsigned int)(this->_particle->color * color);
+				this->_color = (unsigned int)(this->space->_particle->color * color);
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		this->_i++;
@@ -721,14 +680,6 @@ namespace aprilparticle
 			april::rendersys->setTexture(this->texture);
 			april::rendersys->setTextureBlendMode(this->blendMode);
 			april::rendersys->render(april::TriangleList, this->_triangleBatch, this->_i);
-		}
-	}
-	
-	void Emitter::drawAffectors()
-	{
-		foreach (Affector*, it, this->affectors)
-		{
-			(*it)->draw();
 		}
 	}
 	

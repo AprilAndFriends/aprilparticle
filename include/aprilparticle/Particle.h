@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.4
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -26,6 +26,7 @@ namespace aprilparticle
 {
 	class Affector;
 	class Emitter;
+	class Space;
 
 	namespace Affectors
 	{
@@ -48,6 +49,7 @@ namespace aprilparticle
 	public:
 		friend class Affector;
 		friend class Emitter;
+		friend class Space;
 		friend class Affectors::Attractor;
 		friend class Affectors::CallbackAffector;
 		friend class Affectors::ColorChanger;

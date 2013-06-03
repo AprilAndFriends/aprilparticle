@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 1.62
+/// @version 2.0
 /// 
 /// @section LICENSE
 /// 
@@ -22,22 +22,21 @@
 #include "aprilparticle.h"
 #include "aprilparticleUtil.h"
 #include "Emitter.h"
+#include "Space.h"
 #include "System.h"
 #include "Texture.h"
 
 namespace aprilparticle
 {
-	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name)
+	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name), AffectorContainer()
 	{
 		this->filename = filename;
-		this->up.set(0.0f, 1.0f, 0.0f);
 		this->loaded = false;
 	}
 	
-	System::System(const System& other) : ActiveObject(other)
+	System::System(const System& other) : ActiveObject(other), AffectorContainer(other)
 	{
 		this->filename = other.filename;
-		this->up = other.up;
 		this->loaded = other.loaded;
 		// copy textures
 		hmap<hstr, aprilparticle::Texture*> textures = other.textures;
@@ -64,24 +63,33 @@ namespace aprilparticle
 			this->registerAffector(affector);
 			this->_affectorProperties[affector] = properties;
 		}
-		// copy emitters
-		harray<Emitter*> emitters = other.emitters;
+		// copy spaces
+		harray<Space*> spaces = other.spaces;
+		Space* space;
+		hmap<Space*, harray<hstr> > _mappedAffectors = other._mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures = other._mappedTextures;
-		hmap<Emitter*, harray<hstr> > _mappedAffectors = other._mappedAffectors;
+		harray<Emitter*> emitters;
 		Emitter* emitter;
-		foreach (Emitter*, it, emitters)
+		foreach (Space*, it, spaces)
 		{
-			emitter = new Emitter(*(*it));
-			this->registerEmitter(emitter);
-			this->_mappedTextures[emitter] = _mappedTextures[*it];
-			this->_mappedAffectors[emitter] = _mappedAffectors[*it];
+			space = new Space(*(*it));
+			this->registerSpace(space);
+			this->_mappedAffectors[space] = _mappedAffectors[*it];
+			// copy emitters in space
+			emitters = (*it)->getEmitters();
+			foreach (Emitter*, it2, emitters)
+			{
+				emitter = new Emitter(*(*it2));
+				space->registerEmitter(emitter);
+				this->_mappedTextures[emitter] = _mappedTextures[*it2];
+			}
 		}
-		this->_assignEmitterData();
+		this->_assignObjectData();
 	}
 	
 	System::~System()
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			delete (*it);
 		}
@@ -97,10 +105,20 @@ namespace aprilparticle
 			}
 		}
 	}
+
+	harray<Emitter*> System::getEmitters()
+	{
+		harray<Emitter*> emitters;
+		foreach (Space*, it, this->spaces)
+		{
+			emitters += (*it)->getEmitters();
+		}
+		return emitters;
+	}
 	
 	bool System::isRunning()
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			if ((*it)->isRunning())
 			{
@@ -110,58 +128,36 @@ namespace aprilparticle
 		return false;
 	}
 
-	bool System::registerEmitter(Emitter* emitter)
+	bool System::registerSpace(Space* space)
 	{
-		if (this->emitters.contains(emitter))
+		if (this->spaces.contains(space))
 		{
 			return false;
 		}
-		this->emitters += emitter;
-		emitter->_setSystem(this);
+		this->spaces += space;
+		space->_setSystem(this);
 		return true;
 	}
 
-	bool System::unregisterEmitter(Emitter* emitter)
+	bool System::unregisterSpace(Space* space)
 	{
-		if (!this->emitters.contains(emitter))
+		if (!this->spaces.contains(space))
 		{
 			return false;
 		}
-		this->emitters -= emitter;
-		emitter->_setSystem(NULL);
+		this->spaces -= space;
+		space->_setSystem(NULL);
 		return true;
 	}
 
 	bool System::registerAffector(Affector* affector)
 	{
-		if (this->affectors.contains(affector))
-		{
-			return false;
-		}
-		this->addAffector(affector);
-		return true;
+		return this->_addAffector(affector);
 	}
 
 	bool System::unregisterAffector(Affector* affector)
 	{
-		if (!this->affectors.contains(affector))
-		{
-			return false;
-		}
-		this->removeAffector(affector);
-		return true;
-	}
-
-	void System::addAffector(Affector* affector)
-	{
-		ActiveObject::addAffector(affector);
-		affector->_setSystem(this);
-	}
-
-	void System::removeAffector(Affector* affector)
-	{
-		ActiveObject::removeAffector(affector);
-		affector->_setSystem(NULL);
+		return this->_removeAffector(affector);
 	}
 
 	bool System::registerTexture(aprilparticle::Texture* texture, chstr name)
@@ -195,9 +191,9 @@ namespace aprilparticle
 		return true;
 	}
 
-	Emitter* System::getEmitter(chstr name)
+	aprilparticle::Space* System::getSpace(chstr name)
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			if ((*it)->getName() == name)
 			{
@@ -206,16 +202,29 @@ namespace aprilparticle
 		}
 		return NULL;
 	}
-
+	
 	aprilparticle::Texture* System::getTexture(chstr name)
 	{
 		return this->textures.try_get_by_key(name, NULL);
 	}
-
+	
+	aprilparticle::Emitter* System::getEmitter(chstr name)
+	{
+		harray<Emitter*> emitters = this->getEmitters();
+		foreach (Emitter*, it, emitters)
+		{
+			if ((*it)->getName() == name)
+			{
+				return (*it);
+			}
+		}
+		return NULL;
+	}
+	
 	int System::getParticleCount()
 	{
 		int count = 0;
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			count += (*it)->getParticleCount();
 		}
@@ -224,7 +233,7 @@ namespace aprilparticle
 
 	bool System::isExpired()
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			if (!(*it)->isExpired())
 			{
@@ -234,26 +243,9 @@ namespace aprilparticle
 		return true;
 	}
 
-	hstr System::getProperty(chstr name, bool* property_exists)
-	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
-		if (name == "up")	return gvec3_to_hstr(this->getUp());
-		return ActiveObject::getProperty(name, property_exists);
-	}
-
-	bool System::setProperty(chstr name, chstr value)
-	{
-		if (name == "up")	this->setUp(hstr_to_gvec3(value));
-		else return ActiveObject::setProperty(name, value);
-		return true;
-	}
-
 	void System::reset()
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
 			(*it)->reset();
 		}
@@ -281,9 +273,9 @@ namespace aprilparticle
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Emitter")
+			if (*node == "Space")
 			{
-				this->_loadEmitter(node);
+				this->_loadSpace(node);
 			}
 			else if (*node == "Affector")
 			{
@@ -295,14 +287,14 @@ namespace aprilparticle
 			}
 		}
 		hlxml::close(doc);
-		this->_assignEmitterData();
+		this->_assignObjectData();
 	}
 
-	void System::_assignEmitterData()
+	void System::_assignObjectData()
 	{
-		// assigning emitter data
-		Affector* affector;
-		foreach_map (Emitter*, harray<hstr>, it, this->_mappedAffectors)
+		// assigning affectors to spaces
+		Affector* affector = NULL;
+		foreach_map (Space*, harray<hstr>, it, this->_mappedAffectors)
 		{
 			foreach (hstr, it2, it->second)
 			{
@@ -314,7 +306,8 @@ namespace aprilparticle
 				it->first->addAffector(affector);
 			}
 		}
-		aprilparticle::Texture* texture;
+		// assigning textures to emitters
+		aprilparticle::Texture* texture = NULL;
 		foreach_map (Emitter*, hstr, it, this->_mappedTextures)
 		{
 			texture = this->getTexture(it->second);
@@ -326,28 +319,45 @@ namespace aprilparticle
 		}
 	}
 
-	void System::_loadEmitter(hlxml::Node* root)
+	void System::_loadSpace(hlxml::Node* root)
+	{
+		Space* space = new Space();
+		this->registerSpace(space);
+		foreach_xmlproperty (prop, root)
+		{
+			space->setProperty(prop->name(), prop->value());
+		}
+		foreach_xmlnode (node, root)
+		{
+			if (*node == "Emitter")
+			{
+				this->_loadEmitter(node, space);
+			}
+			else if (*node == "Affector")
+			{
+				this->_loadAffector(node, space);
+			}
+		}
+	}
+
+	void System::_loadEmitter(hlxml::Node* root, Space* space)
 	{
 		Emitter* emitter = new Emitter();
+		space->registerEmitter(emitter);
 		foreach_xmlproperty (prop, root)
 		{
 			emitter->setProperty(prop->name(), prop->value());
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Affector")
-			{
-				this->_loadAffector(node, emitter);
-			}
-			else if (*node == "Texture")
+			if (*node == "Texture")
 			{
 				this->_loadTexture(node, emitter);
 			}
 		}
-		this->registerEmitter(emitter);
 	}
 
-	void System::_loadAffector(hlxml::Node* root, Emitter* emitter)
+	void System::_loadAffector(hlxml::Node* root, Space* space)
 	{
 		Affector* affector = NULL;
 		bool map = false;
@@ -370,6 +380,7 @@ namespace aprilparticle
 			{
 				throw hl_exception("Error! Affector type '" + type + " does not exist!");
 			}
+			this->registerAffector(affector);
 			name = affector->getName();
 			properties["name"] = name;
 			this->_affectorProperties[affector] = properties;
@@ -380,7 +391,6 @@ namespace aprilparticle
 					affector->setProperty(it->first, it->second);
 				}
 			}
-			this->registerAffector(affector);
 			map = true;
 		}
 		else if (root->pexists("reference"))
@@ -388,13 +398,13 @@ namespace aprilparticle
 			name = root->pstr("reference");
 			map = true;
 		}
-		if (emitter != NULL && map)
+		if (space != NULL && map)
 		{
-			if (!this->_mappedAffectors.has_key(emitter))
+			if (!this->_mappedAffectors.has_key(space))
 			{
-				this->_mappedAffectors[emitter] = harray<hstr>();
+				this->_mappedAffectors[space] = harray<hstr>();
 			}
-			this->_mappedAffectors[emitter] += name;
+			this->_mappedAffectors[space] += name;
 		}
 	}
 
@@ -425,7 +435,7 @@ namespace aprilparticle
 	{
 		if (this->enabled)
 		{
-			foreach (Emitter*, it, this->emitters)
+			foreach (Space*, it, this->spaces)
 			{
 				(*it)->update(k);
 			}
@@ -434,9 +444,9 @@ namespace aprilparticle
 
 	void System::finish()
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreach (Space*, it, this->spaces)
 		{
-			(*it)->setRunning(false);
+			(*it)->finish();
 		}
 	}
 
@@ -444,9 +454,9 @@ namespace aprilparticle
 	{
 		if (this->visible)
 		{
-			foreach (Emitter*, it, this->emitters)
+			foreach (Space*, it, this->spaces)
 			{
-				(*it)->draw(point, this->up);
+				(*it)->draw(point);
 			}
 		}
 	}
@@ -455,19 +465,9 @@ namespace aprilparticle
 	{
 		if (this->visible)
 		{
-			if (color == april::Color::White)
+			foreach (Space*, it, this->spaces)
 			{
-				foreach (Emitter*, it, this->emitters)
-				{
-					(*it)->draw(offset);
-				}
-			}
-			else
-			{
-				foreach (Emitter*, it, this->emitters)
-				{
-					(*it)->draw(offset, color);
-				}
+				(*it)->draw(offset, color);
 			}
 		}
 	}
