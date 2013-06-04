@@ -32,6 +32,15 @@ namespace apriluiparticle
 	
 	ParticleSpace::~ParticleSpace()
 	{
+		if (this->systemObject != NULL)
+		{
+			if (this->space != NULL)
+			{
+				this->systemObject->_unassignSpaceObjectSpace(this, this->space);
+			}
+			this->systemObject->_unregisterSpaceObject(this);
+			this->systemObject = NULL;
+		}
 	}
 
 	aprilui::Object* ParticleSpace::createInstance(chstr name, grect rect)

@@ -178,6 +178,12 @@ namespace apriluiparticle
 		if (this->system != NULL)
 		{
 			apriluiparticle::resizeEmitters(this->getSize(), this->system->getEmitters());
+			gvec2 size = this->getSize();
+			harray<apriluiparticle::ParticleSpaceBase*> spaceBaseObjects = this->spaceBaseObjects - this->spaceObjects.cast<apriluiparticle::ParticleSpaceBase*>();
+			foreach (apriluiparticle::ParticleSpaceBase*, it, spaceBaseObjects)
+			{
+				(*it)->setSize(size);
+			}
 		}
 	}
 
