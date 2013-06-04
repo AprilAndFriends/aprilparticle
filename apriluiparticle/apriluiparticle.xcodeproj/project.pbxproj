@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9255A12148E30C30019ED23 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0F148E30C30019ED23 /* Particle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
-		C9255A16148E30D20019ED23 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
 		C9E5230614EE74330062A87F /* aprilparticle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E5230514EE74330062A87F /* aprilparticle.framework */; };
 		C9EF00F6148E321B00B80144 /* april.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F1148E321B00B80144 /* april.framework */; };
 		C9EF00F8148E321B00B80144 /* aprilui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F3148E321B00B80144 /* aprilui.framework */; };
@@ -19,15 +17,29 @@
 		C9EF00FA148E321B00B80144 /* hltypes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EF00F5148E321B00B80144 /* hltypes.framework */; };
 		C9FB78441501070B008B2B48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FB78431501070B008B2B48 /* Foundation.framework */; };
 		C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
-		C9FB785315010773008B2B48 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A14148E30D20019ED23 /* Particle.cpp */; };
+		D1EA92C6175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */; };
+		D1EA92C7175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */; };
+		D1EA92C8175DC8E9008F508D /* ParticleAffector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C1175DC8E9008F508D /* ParticleAffector.cpp */; };
+		D1EA92C9175DC8E9008F508D /* ParticleAffector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C1175DC8E9008F508D /* ParticleAffector.cpp */; };
+		D1EA92CA175DC8E9008F508D /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */; };
+		D1EA92CB175DC8E9008F508D /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */; };
+		D1EA92CC175DC8E9008F508D /* ParticleSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */; };
+		D1EA92CD175DC8E9008F508D /* ParticleSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */; };
+		D1EA92CE175DC8E9008F508D /* ParticleSpaceBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C4175DC8E9008F508D /* ParticleSpaceBase.cpp */; };
+		D1EA92CF175DC8E9008F508D /* ParticleSpaceBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C4175DC8E9008F508D /* ParticleSpaceBase.cpp */; };
+		D1EA92D0175DC8E9008F508D /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */; };
+		D1EA92D1175DC8E9008F508D /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */; };
+		D1EA92D7175DC8F7008F508D /* ParticleAffector.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D2175DC8F7008F508D /* ParticleAffector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92D8175DC8F7008F508D /* ParticleEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92D9175DC8F7008F508D /* ParticleSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D4175DC8F7008F508D /* ParticleSpace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92DA175DC8F7008F508D /* ParticleSpaceBase.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D5175DC8F7008F508D /* ParticleSpaceBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92DB175DC8F7008F508D /* ParticleSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92D6175DC8F7008F508D /* ParticleSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C9255A0D148E30C30019ED23 /* apriluiparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticle.h; path = include/apriluiparticle/apriluiparticle.h; sourceTree = SOURCE_ROOT; };
 		C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleExport.h; path = include/apriluiparticle/apriluiparticleExport.h; sourceTree = SOURCE_ROOT; };
-		C9255A0F148E30C30019ED23 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/apriluiparticle/Particle.h; sourceTree = SOURCE_ROOT; };
 		C9255A13148E30D20019ED23 /* apriluiparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticle.cpp; path = src/apriluiparticle.cpp; sourceTree = SOURCE_ROOT; };
-		C9255A14148E30D20019ED23 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = src/Particle.cpp; sourceTree = SOURCE_ROOT; };
 		C9DF8457148D03DC00B64799 /* apriluiparticle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = apriluiparticle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DF8481148D049500B64799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9E5230514EE74330062A87F /* aprilparticle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aprilparticle.framework; path = "../../../__build__/pharaoh/Build/Products/Debug-LLVM/aprilparticle.framework"; sourceTree = "<group>"; };
@@ -37,6 +49,17 @@
 		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
 		C9FB78421501070B008B2B48 /* libapriluiparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapriluiparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FB78431501070B008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticleUtil.cpp; path = src/apriluiparticleUtil.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C1175DC8E9008F508D /* ParticleAffector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleAffector.cpp; path = src/ParticleAffector.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleEmitter.cpp; path = src/ParticleEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSpace.cpp; path = src/ParticleSpace.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C4175DC8E9008F508D /* ParticleSpaceBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSpaceBase.cpp; path = src/ParticleSpaceBase.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSystem.cpp; path = src/ParticleSystem.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92D2175DC8F7008F508D /* ParticleAffector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleAffector.h; path = include/apriluiparticle/ParticleAffector.h; sourceTree = "<group>"; };
+		D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleEmitter.h; path = include/apriluiparticle/ParticleEmitter.h; sourceTree = "<group>"; };
+		D1EA92D4175DC8F7008F508D /* ParticleSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSpace.h; path = include/apriluiparticle/ParticleSpace.h; sourceTree = "<group>"; };
+		D1EA92D5175DC8F7008F508D /* ParticleSpaceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSpaceBase.h; path = include/apriluiparticle/ParticleSpaceBase.h; sourceTree = "<group>"; };
+		D1EA92D6175DC8F7008F508D /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSystem.h; path = include/apriluiparticle/ParticleSystem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +122,13 @@
 		C9DF8460148D03DC00B64799 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D1EA92C0175DC8E9008F508D /* apriluiparticleUtil.cpp */,
+				D1EA92C1175DC8E9008F508D /* ParticleAffector.cpp */,
+				D1EA92C2175DC8E9008F508D /* ParticleEmitter.cpp */,
+				D1EA92C3175DC8E9008F508D /* ParticleSpace.cpp */,
+				D1EA92C4175DC8E9008F508D /* ParticleSpaceBase.cpp */,
+				D1EA92C5175DC8E9008F508D /* ParticleSystem.cpp */,
 				C9255A13148E30D20019ED23 /* apriluiparticle.cpp */,
-				C9255A14148E30D20019ED23 /* Particle.cpp */,
 			);
 			name = src;
 			path = apriluiparticle;
@@ -109,9 +137,13 @@
 		C9DF8475148D041D00B64799 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				D1EA92D2175DC8F7008F508D /* ParticleAffector.h */,
+				D1EA92D3175DC8F7008F508D /* ParticleEmitter.h */,
+				D1EA92D4175DC8F7008F508D /* ParticleSpace.h */,
+				D1EA92D5175DC8F7008F508D /* ParticleSpaceBase.h */,
+				D1EA92D6175DC8F7008F508D /* ParticleSystem.h */,
 				C9255A0D148E30C30019ED23 /* apriluiparticle.h */,
 				C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */,
-				C9255A0F148E30C30019ED23 /* Particle.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -125,7 +157,11 @@
 			files = (
 				C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */,
 				C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */,
-				C9255A12148E30C30019ED23 /* Particle.h in Headers */,
+				D1EA92D7175DC8F7008F508D /* ParticleAffector.h in Headers */,
+				D1EA92D8175DC8F7008F508D /* ParticleEmitter.h in Headers */,
+				D1EA92D9175DC8F7008F508D /* ParticleSpace.h in Headers */,
+				D1EA92DA175DC8F7008F508D /* ParticleSpaceBase.h in Headers */,
+				D1EA92DB175DC8F7008F508D /* ParticleSystem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +233,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */,
-				C9255A16148E30D20019ED23 /* Particle.cpp in Sources */,
+				D1EA92C6175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
+				D1EA92C8175DC8E9008F508D /* ParticleAffector.cpp in Sources */,
+				D1EA92CA175DC8E9008F508D /* ParticleEmitter.cpp in Sources */,
+				D1EA92CC175DC8E9008F508D /* ParticleSpace.cpp in Sources */,
+				D1EA92CE175DC8E9008F508D /* ParticleSpaceBase.cpp in Sources */,
+				D1EA92D0175DC8E9008F508D /* ParticleSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +247,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */,
-				C9FB785315010773008B2B48 /* Particle.cpp in Sources */,
+				D1EA92C7175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
+				D1EA92C9175DC8E9008F508D /* ParticleAffector.cpp in Sources */,
+				D1EA92CB175DC8E9008F508D /* ParticleEmitter.cpp in Sources */,
+				D1EA92CD175DC8E9008F508D /* ParticleSpace.cpp in Sources */,
+				D1EA92CF175DC8E9008F508D /* ParticleSpaceBase.cpp in Sources */,
+				D1EA92D1175DC8E9008F508D /* ParticleSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,6 +76,15 @@
 		D1CDD35615D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
 		D1CDD35715D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
 		D1CDD35915D112C800C4B579 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = D1CDD35815D112C800C4B579 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92B4175DC86F008F508D /* AffectorContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */; };
+		D1EA92B5175DC86F008F508D /* AffectorContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */; };
+		D1EA92B6175DC86F008F508D /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B2175DC86F008F508D /* Space.cpp */; };
+		D1EA92B7175DC86F008F508D /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B2175DC86F008F508D /* Space.cpp */; };
+		D1EA92B8175DC86F008F508D /* SpaceObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B3175DC86F008F508D /* SpaceObject.cpp */; };
+		D1EA92B9175DC86F008F508D /* SpaceObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1EA92B3175DC86F008F508D /* SpaceObject.cpp */; };
+		D1EA92BD175DC883008F508D /* AffectorContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92BA175DC883008F508D /* AffectorContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92BE175DC883008F508D /* Space.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92BB175DC883008F508D /* Space.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1EA92BF175DC883008F508D /* SpaceObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EA92BC175DC883008F508D /* SpaceObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +141,12 @@
 		C9FB781B150105EF008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D1CDD35515D112B800C4B579 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = src/Texture.cpp; sourceTree = SOURCE_ROOT; };
 		D1CDD35815D112C800C4B579 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = include/aprilparticle/Texture.h; sourceTree = "<group>"; };
+		D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AffectorContainer.cpp; path = src/AffectorContainer.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92B2175DC86F008F508D /* Space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Space.cpp; path = src/Space.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92B3175DC86F008F508D /* SpaceObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpaceObject.cpp; path = src/SpaceObject.cpp; sourceTree = SOURCE_ROOT; };
+		D1EA92BA175DC883008F508D /* AffectorContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AffectorContainer.h; path = include/aprilparticle/AffectorContainer.h; sourceTree = "<group>"; };
+		D1EA92BB175DC883008F508D /* Space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Space.h; path = include/aprilparticle/Space.h; sourceTree = "<group>"; };
+		D1EA92BC175DC883008F508D /* SpaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpaceObject.h; path = include/aprilparticle/SpaceObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				C9DF848C148D057600B64799 /* Affectors */,
+				D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */,
+				D1EA92B2175DC86F008F508D /* Space.cpp */,
+				D1EA92B3175DC86F008F508D /* SpaceObject.cpp */,
 				C9DF848B148D057600B64799 /* ActiveObject.cpp */,
 				C9DF849B148D057600B64799 /* aprilparticle.cpp */,
 				C9DF849C148D057600B64799 /* Emitter.cpp */,
@@ -202,6 +220,9 @@
 		C9DF8475148D041D00B64799 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				D1EA92BA175DC883008F508D /* AffectorContainer.h */,
+				D1EA92BB175DC883008F508D /* Space.h */,
+				D1EA92BC175DC883008F508D /* SpaceObject.h */,
 				D1CDD35815D112C800C4B579 /* Texture.h */,
 				C9DF84B8148D058B00B64799 /* ActiveObject.h */,
 				C9DF84B9148D058B00B64799 /* Affector.h */,
@@ -278,6 +299,9 @@
 				C9DF851A148D0AE500B64799 /* Emitter.h in Headers */,
 				C9DF851B148D0AE500B64799 /* Particle.h in Headers */,
 				D1CDD35915D112C800C4B579 /* Texture.h in Headers */,
+				D1EA92BD175DC883008F508D /* AffectorContainer.h in Headers */,
+				D1EA92BE175DC883008F508D /* Space.h in Headers */,
+				D1EA92BF175DC883008F508D /* SpaceObject.h in Headers */,
 				C9DF851C148D0AE500B64799 /* System.h in Headers */,
 				C965F62A14F3E7E4009F0EE5 /* aprilparticleUtil.h in Headers */,
 			);
@@ -370,6 +394,9 @@
 				C9DF84B4148D057600B64799 /* System.cpp in Sources */,
 				C965F62914F3E7E4009F0EE5 /* aprilparticleUtil.cpp in Sources */,
 				D1CDD35615D112B800C4B579 /* Texture.cpp in Sources */,
+				D1EA92B4175DC86F008F508D /* AffectorContainer.cpp in Sources */,
+				D1EA92B6175DC86F008F508D /* Space.cpp in Sources */,
+				D1EA92B8175DC86F008F508D /* SpaceObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +425,9 @@
 				C9FB783C15010655008B2B48 /* System.cpp in Sources */,
 				C9FB783D15010655008B2B48 /* aprilparticleUtil.cpp in Sources */,
 				D1CDD35715D112B800C4B579 /* Texture.cpp in Sources */,
+				D1EA92B5175DC86F008F508D /* AffectorContainer.cpp in Sources */,
+				D1EA92B7175DC86F008F508D /* Space.cpp in Sources */,
+				D1EA92B9175DC86F008F508D /* SpaceObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
