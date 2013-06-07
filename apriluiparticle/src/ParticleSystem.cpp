@@ -133,11 +133,19 @@ namespace apriluiparticle
 	{
 		foreach (apriluiparticle::ParticleSpaceBase*, it, this->spaceBaseObjects)
 		{
-			(*it)->destroyChildren();
-			this->unregisterChild(*it);
-			delete (*it);
+			(*it)->systemObject = NULL;
+			if (this->mChildren.contains(*it))
+			{
+				this->unregisterChild(*it);
+				delete (*it);
+			}
 		}
 		this->spaceBaseObjects.clear();
+		foreach (apriluiparticle::ParticleSpace*, it, this->spaceObjects)
+		{
+			(*it)->_unbind();
+		}
+		this->spaceObjects.clear();
 	}
 
 	void ParticleSystem::_registerSpaceObject(ParticleSpace* spaceObject)
@@ -156,11 +164,8 @@ namespace apriluiparticle
 		{
 			if ((*it)->space == space)
 			{
-				spaceObject->mChildren = (*it)->mChildren;
-				(*it)->mChildren.clear();
 				this->unregisterChild(*it);
 				delete (*it);
-				this->spaceBaseObjects += spaceObject;
 				return;
 			}
 		}
@@ -168,9 +173,7 @@ namespace apriluiparticle
 
 	void ParticleSystem::_unassignSpaceObjectSpace(ParticleSpace* spaceObject, aprilparticle::Space* space)
 	{
-		this->spaceBaseObjects -= spaceObject;
 		this->_createSpaceObject(space);
-		this->spaceBaseObjects.last()->mChildren = spaceObject->mChildren;
 	}
 
 	void ParticleSystem::_resize()
@@ -179,8 +182,7 @@ namespace apriluiparticle
 		{
 			apriluiparticle::resizeEmitters(this->getSize(), this->system->getEmitters());
 			gvec2 size = this->getSize();
-			harray<apriluiparticle::ParticleSpaceBase*> spaceBaseObjects = this->spaceBaseObjects - this->spaceObjects.cast<apriluiparticle::ParticleSpaceBase*>();
-			foreach (apriluiparticle::ParticleSpaceBase*, it, spaceBaseObjects)
+			foreach (apriluiparticle::ParticleSpaceBase*, it, this->spaceBaseObjects)
 			{
 				(*it)->setSize(size);
 			}
@@ -199,6 +201,7 @@ namespace apriluiparticle
 	{
 		if (this->system != NULL)
 		{
+			this->_destroySpaceObjects();
 			delete this->system;
 			this->system = NULL;
 		}

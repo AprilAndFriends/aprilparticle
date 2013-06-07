@@ -25,6 +25,7 @@
 namespace aprilparticle
 {
 	class Emitter;
+	class System;
 }
 
 namespace apriluiparticle
@@ -35,6 +36,8 @@ namespace apriluiparticle
 	class apriluiparticleExport ParticleEmitter : public aprilui::Object
 	{
 	public:
+		friend class ParticleSpace;
+
 		ParticleEmitter(chstr name, grect rect);
 		~ParticleEmitter();
 		static aprilui::Object* createInstance(chstr name, grect rect);

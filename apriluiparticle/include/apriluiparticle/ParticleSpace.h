@@ -52,9 +52,13 @@ namespace apriluiparticle
 	protected:
 		hstr systemObjectName;
 		hstr spaceName;
+		harray<ParticleEmitter*> emitterObjects;
 
 		void _tryFindSystemObject();
 		void _tryFindSpace();
+		void _unbind();
+		void _registerEmitterObject(ParticleEmitter* emitter);
+		void _unregisterEmitterObject(ParticleEmitter* emitter);
 		void _resize();
 
 	};

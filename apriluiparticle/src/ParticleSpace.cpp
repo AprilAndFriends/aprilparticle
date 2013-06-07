@@ -21,6 +21,7 @@
 
 #include "apriluiparticle.h"
 #include "apriluiparticleUtil.h"
+#include "ParticleEmitter.h"
 #include "ParticleSpace.h"
 #include "ParticleSystem.h"
 
@@ -40,6 +41,7 @@ namespace apriluiparticle
 			}
 			this->systemObject->_unregisterSpaceObject(this);
 			this->systemObject = NULL;
+			this->space = NULL;
 		}
 	}
 
@@ -98,16 +100,17 @@ namespace apriluiparticle
 		if (this->systemObjectName != "")
 		{
 			this->systemObject = dynamic_cast<ParticleSystem*>(this->mDataset->tryGetObject(this->systemObjectName));
-			if (this->systemObject == NULL)
+			if (this->systemObject != NULL)
+			{
+				this->systemObject->_registerSpaceObject(this);
+			}
+			else
 			{
 				hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': referenced object '%s' not a subclass of ParticleSystem!",
 					this->systemObjectName.c_str(), this->mName.c_str());
 				this->systemObjectName = "";
 				this->spaceName = "";
-			}
-			else
-			{
-				this->systemObject->_registerSpaceObject(this);
+				this->space = NULL;
 			}
 		}
 	}
@@ -134,7 +137,11 @@ namespace apriluiparticle
 		if (this->spaceName != "")
 		{
 			this->space = system->getSpace(this->spaceName);
-			if (this->space == NULL)
+			if (this->space != NULL)
+			{
+				this->systemObject->_assignSpaceObjectSpace(this, this->space);
+			}
+			else
 			{
 				hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': cannot find space '%s' in ParticleSystem '%s'!",
 					this->mName.c_str(), this->spaceName.c_str(), this->systemObject->getName().c_str());
@@ -143,11 +150,27 @@ namespace apriluiparticle
 				this->systemObjectName = "";
 				this->spaceName = "";
 			}
-			else
-			{
-				this->systemObject->_assignSpaceObjectSpace(this, this->space);
-			}
 		}
+	}
+
+	void ParticleSpace::_unbind()
+	{
+		this->systemObject = NULL;
+		this->space = NULL;
+		foreach (ParticleEmitter*, it, this->emitterObjects)
+		{
+			(*it)->emitter = NULL;
+		}
+	}
+
+	void ParticleSpace::_registerEmitterObject(ParticleEmitter* emitter)
+	{
+		this->emitterObjects += emitter;
+	}
+
+	void ParticleSpace::_unregisterEmitterObject(ParticleEmitter* emitter)
+	{
+		this->emitterObjects -= emitter;
 	}
 
 	void ParticleSpace::_resize()

@@ -33,6 +33,12 @@ namespace apriluiparticle
 	
 	ParticleSpaceBase::~ParticleSpaceBase()
 	{
+		if (this->systemObject != NULL)
+		{
+			this->systemObject->spaceBaseObjects -= this;
+			this->systemObject = NULL;
+			this->space = NULL;
+		}
 	}
 
 	aprilui::Object* ParticleSpaceBase::createInstance(chstr name, grect rect)

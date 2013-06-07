@@ -37,6 +37,7 @@ namespace apriluiparticle
 	class apriluiparticleExport ParticleSystem : public aprilui::Object
 	{
 	public:
+		friend class ParticleSpaceBase;
 		friend class ParticleSpace;
 
 		ParticleSystem(chstr name, grect rect);

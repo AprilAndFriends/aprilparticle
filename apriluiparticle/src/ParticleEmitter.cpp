@@ -37,6 +37,12 @@ namespace apriluiparticle
 	
 	ParticleEmitter::~ParticleEmitter()
 	{
+		if (this->spaceObject != NULL)
+		{
+			this->spaceObject->_unregisterEmitterObject(this);
+			this->spaceObject = NULL;
+			this->emitter = NULL;
+		}
 	}
 
 	aprilui::Object* ParticleEmitter::createInstance(chstr name, grect rect)
@@ -93,15 +99,24 @@ namespace apriluiparticle
 		{
 			return;
 		}
+		if (this->spaceObject != NULL)
+		{
+			this->spaceObject->_unregisterEmitterObject(this);
+		}
 		if (this->spaceObjectName != "")
 		{
 			this->spaceObject = dynamic_cast<ParticleSpace*>(this->mDataset->tryGetObject(this->spaceObjectName));
-			if (this->spaceObject == NULL)
+			if (this->spaceObject != NULL)
+			{
+				this->spaceObject->_registerEmitterObject(this);
+			}
+			else
 			{
 				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': referenced object '%s' not a subclass of ParticleSpace!",
 					this->spaceObjectName.c_str(), this->mName.c_str());
 				this->spaceObjectName = "";
 				this->emitterName = "";
+				this->emitter = NULL;
 			}
 		}
 	}
@@ -115,11 +130,13 @@ namespace apriluiparticle
 		ParticleSystem* systemObject = this->spaceObject->systemObject;
 		if (systemObject == NULL)
 		{
+			this->emitter = NULL;
 			return;
 		}
 		aprilparticle::System* system = this->spaceObject->systemObject->getSystem();
 		if (system == NULL)
 		{
+			this->emitter = NULL;
 			return;
 		}
 		if (this->emitter != NULL && this->emitter->getName() == this->emitterName)
@@ -129,15 +146,7 @@ namespace apriluiparticle
 		if (this->emitterName != "")
 		{
 			this->emitter = system->getEmitter(this->emitterName);
-			if (this->emitter == NULL)
-			{
-				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find space '%s' in ParticleSpace '%s'!",
-					this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
-				this->spaceObject = NULL;
-				this->spaceObjectName = "";
-				this->emitterName = "";
-			}
-			else
+			if (this->emitter != NULL)
 			{
 				this->initialPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter());
 				this->emitterPosition.set(this->initialPosition.x, this->initialPosition.y, 0.0f);
@@ -149,6 +158,15 @@ namespace apriluiparticle
 				this->emitterMaxDirection = this->emitter->getMaxDirection();
 				this->emitterMinSize = this->emitter->getMinSize();
 				this->emitterMaxSize = this->emitter->getMaxSize();
+			}
+			else
+			{
+				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find space '%s' in ParticleSpace '%s'!",
+					this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
+				this->spaceObject->_unregisterEmitterObject(this);
+				this->spaceObject = NULL;
+				this->spaceObjectName = "";
+				this->emitterName = "";
 			}
 		}
 	}

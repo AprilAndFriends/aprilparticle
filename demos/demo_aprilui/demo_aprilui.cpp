@@ -38,6 +38,7 @@
 #include <aprilui/Objects.h>
 #include <aprilparticle/aprilparticle.h>
 #include <apriluiparticle/apriluiparticle.h>
+#include <apriluiparticle/ParticleSystem.h>
 #include <atres/atres.h>
 #include <atres/FontResourceBitmap.h>
 #include <atres/Renderer.h>
@@ -50,8 +51,19 @@ aprilui::Dataset* dataset;
 
 class UpdateDelegate : public april::UpdateDelegate
 {
+public:
+	UpdateDelegate()
+	{
+		this->firstFrame = true;
+	}
+	
 	bool onUpdate(float timeSinceLastFrame)
 	{
+		if (this->firstFrame)
+		{
+			timeSinceLastFrame = 0.0f;
+			this->firstFrame = false;
+		}
 		april::rendersys->clear();
 		april::rendersys->setOrthoProjection(drawRect);
 		aprilui::updateCursorPosition();
@@ -60,12 +72,16 @@ class UpdateDelegate : public april::UpdateDelegate
 		return true;
 	}
 
+protected:
+	bool firstFrame;
+
 };
 
 class KeyboardDelegate : public april::KeyboardDelegate
 {
 	void onKeyDown(april::Key keycode)
 	{
+		apriluiparticle::ParticleSystem* particle;
 		if (keycode == april::AK_RETURN)
 		{
 			dataset->unload();
