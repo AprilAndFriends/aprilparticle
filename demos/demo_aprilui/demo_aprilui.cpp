@@ -81,7 +81,6 @@ class KeyboardDelegate : public april::KeyboardDelegate
 {
 	void onKeyDown(april::Key keycode)
 	{
-		apriluiparticle::ParticleSystem* particle;
 		if (keycode == april::AK_RETURN)
 		{
 			dataset->unload();
