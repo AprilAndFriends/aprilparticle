@@ -161,7 +161,7 @@ namespace apriluiparticle
 			}
 			else
 			{
-				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find space '%s' in ParticleSpace '%s'!",
+				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find emitter '%s' in ParticleSpace '%s'!",
 					this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
 				this->spaceObject->_unregisterEmitterObject(this);
 				this->spaceObject = NULL;
