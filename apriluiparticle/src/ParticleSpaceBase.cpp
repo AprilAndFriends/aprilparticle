@@ -29,6 +29,7 @@ namespace apriluiparticle
 	{
 		this->systemObject = NULL;
 		this->space = NULL;
+		this->_reset();
 	}
 	
 	ParticleSpaceBase::~ParticleSpaceBase()
@@ -54,7 +55,7 @@ namespace apriluiparticle
 
 	void ParticleSpaceBase::update(float k)
 	{
-		if (this->space != NULL)
+		if (this->space != NULL && !this->_firstFrame)
 		{
 			this->space->setEnabled(this->isDerivedEnabled());
 			this->space->update(k);
@@ -66,11 +67,23 @@ namespace apriluiparticle
 	{
 		if (this->space != NULL)
 		{
-			this->space->setVisible(this->isVisible());
-			this->space->draw(this->_getDrawRect().getCenter(), this->_getDrawColor());
-			april::rendersys->setTextureBlendMode(april::DEFAULT);
+			if (!this->_firstFrame)
+			{
+				this->space->setVisible(this->isVisible());
+				this->space->draw(this->_getDrawRect().getCenter(), this->_getDrawColor());
+				april::rendersys->setTextureBlendMode(april::DEFAULT);
+			}
+			else
+			{
+				this->_firstFrame = false;
+			}
 		}
 		aprilui::Object::OnDraw();
+	}
+
+	void ParticleSpaceBase::_reset()
+	{
+		this->_firstFrame = true;
 	}
 
 }

@@ -93,6 +93,7 @@ namespace apriluiparticle
 		{
 			return;
 		}
+		this->_reset();
 		if (this->systemObject != NULL)
 		{
 			if (this->space != NULL)
@@ -134,6 +135,7 @@ namespace apriluiparticle
 		{
 			return;
 		}
+		this->_reset();
 		if (this->space != NULL)
 		{
 			this->systemObject->_unassignSpaceObjectSpace(this, this->space);

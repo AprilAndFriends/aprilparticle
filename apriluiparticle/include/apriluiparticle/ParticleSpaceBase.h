@@ -50,6 +50,11 @@ namespace apriluiparticle
 
 		void _setSystemSpace(ParticleSystem* systemObject, aprilparticle::Space* space);
 
+		void _reset();
+
+	private:
+		bool _firstFrame; // required due to a system incompatibility between AprilUI and AprilParticle
+
 	};
 }
 

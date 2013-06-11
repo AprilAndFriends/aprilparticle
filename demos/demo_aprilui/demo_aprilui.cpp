@@ -86,14 +86,20 @@ class KeyboardDelegate : public april::KeyboardDelegate
 			dataset->unload();
 			dataset->load();
 		}
+		else if (keycode == april::AK_BACK)
+		{
+			apriluiparticle::ParticleSystem* particle = dataset->getObject<apriluiparticle::ParticleSystem*>("segmented");
+			particle->stopSystem();
+			particle->load(particle->getFilename());
+		}
 		aprilui::onKeyDown(keycode);
 	}
-
+	
 	void onKeyUp(april::Key keyCode)
 	{
 		aprilui::onKeyUp(keyCode);
 	}
-
+	
 	void onChar(unsigned int charCode)
 	{
 		aprilui::onChar(charCode);
