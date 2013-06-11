@@ -66,6 +66,7 @@ namespace apriluiparticle
 
 		void _tryFindSpaceObject();
 		void _tryFindEmitter();
+		void _unbind();
 
 	};
 }

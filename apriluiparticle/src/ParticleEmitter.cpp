@@ -189,5 +189,11 @@ namespace apriluiparticle
 		else return aprilui::Object::setProperty(name, value);
 		return true;
 	}
+	
+	void ParticleEmitter::_unbind()
+	{
+		this->spaceObject = NULL;
+		this->emitter = NULL;
+	}
 
 }

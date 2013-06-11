@@ -33,6 +33,10 @@ namespace apriluiparticle
 	
 	ParticleSpace::~ParticleSpace()
 	{
+		foreach (ParticleEmitter*, it, this->emitterObjects)
+		{
+			(*it)->_unbind();
+		}
 		if (this->systemObject != NULL)
 		{
 			if (this->space != NULL)

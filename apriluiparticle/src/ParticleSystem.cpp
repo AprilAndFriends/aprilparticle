@@ -199,9 +199,9 @@ namespace apriluiparticle
 
 	void ParticleSystem::stopSystem()
 	{
+		this->_destroySpaceObjects();
 		if (this->system != NULL)
 		{
-			this->_destroySpaceObjects();
 			delete this->system;
 			this->system = NULL;
 		}
