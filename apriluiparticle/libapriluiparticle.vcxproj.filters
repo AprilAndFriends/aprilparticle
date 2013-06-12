@@ -29,7 +29,10 @@
     <ClCompile Include="src\apriluiparticleUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParticleSpaceBase.cpp">
+    <ClCompile Include="src\Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParticleBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,7 +55,10 @@
     <ClInclude Include="src\apriluiparticleUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\apriluiparticle\ParticleSpaceBase.h">
+    <ClInclude Include="include\apriluiparticle\Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\apriluiparticle\ParticleBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

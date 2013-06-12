@@ -13,6 +13,7 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
+#include "Particle.h"
 #include "ParticleEmitter.h"
 #include "ParticleSpace.h"
 #include "ParticleSystem.h"
@@ -27,6 +28,7 @@ namespace apriluiparticle
 	void init()
 	{
 		hlog::write(apriluiparticle::logTag, "Initializing AprilUIParticle.");
+		APRILUI_REGISTER_OBJECT_TYPE(Particle);
 		APRILUI_REGISTER_OBJECT_TYPE(ParticleEmitter);
 		APRILUI_REGISTER_OBJECT_TYPE(ParticleSpace);
 		APRILUI_REGISTER_OBJECT_TYPE(ParticleSystem);

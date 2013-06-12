@@ -31,7 +31,6 @@ namespace aprilparticle
 namespace apriluiparticle
 {
 	class ParticleSpace;
-	class ParticleSystem;
 
 	class apriluiparticleExport ParticleEmitter : public aprilui::Object
 	{
@@ -64,6 +63,8 @@ namespace apriluiparticle
 		gvec2 emitterMinSize;
 		gvec2 emitterMaxSize;
 
+		void _updateEmitterData();
+		void _updateBindings();
 		void _tryFindSpaceObject();
 		void _tryFindEmitter();
 		void _unbind();

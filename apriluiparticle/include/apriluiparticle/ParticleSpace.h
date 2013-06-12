@@ -14,6 +14,7 @@
 #ifndef APRILUIPARTICLE_PARTICLE_SPACE_H
 #define APRILUIPARTICLE_PARTICLE_SPACE_H
 
+#include <aprilui/Object.h>
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
@@ -21,14 +22,19 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticleExport.h"
-#include "ParticleSpaceBase.h"
+
+namespace aprilparticle
+{
+	class Space;
+	class System;
+}
 
 namespace apriluiparticle
 {
 	class ParticleEmitter;
 	class ParticleSystem;
 
-	class apriluiparticleExport ParticleSpace : public ParticleSpaceBase
+	class apriluiparticleExport ParticleSpace : public aprilui::Object
 	{
 	public:
 		friend class ParticleEmitter;
@@ -50,15 +56,18 @@ namespace apriluiparticle
 		bool setProperty(chstr name, chstr value);
 		
 	protected:
+		ParticleSystem* systemObject;
+		aprilparticle::Space* space;
 		hstr systemObjectName;
 		hstr spaceName;
 		harray<ParticleEmitter*> emitterObjects;
 
+		void _updateBindings();
 		void _tryFindSystemObject();
 		void _tryFindSpace();
-		void _unbind();
 		void _registerEmitterObject(ParticleEmitter* emitter);
 		void _unregisterEmitterObject(ParticleEmitter* emitter);
+		void _unbind();
 		void _resize();
 
 	};

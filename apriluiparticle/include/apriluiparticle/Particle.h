@@ -11,8 +11,8 @@
 /// 
 /// Represents a GUI object that controls a particle system.
 
-#ifndef APRILUIPARTICLE_PARTICLE_SYSTEM_H
-#define APRILUIPARTICLE_PARTICLE_SYSTEM_H
+#ifndef APRILUIPARTICLE_PARTICLE_H
+#define APRILUIPARTICLE_PARTICLE_H
 
 #include <aprilui/Object.h>
 #include <gtypes/Rectangle.h>
@@ -24,31 +24,18 @@
 #include "apriluiparticleExport.h"
 #include "ParticleBase.h"
 
-namespace aprilparticle
-{
-	class Space;
-}
-
 namespace apriluiparticle
 {
-	class ParticleSpace;
-
-	class apriluiparticleExport ParticleSystem : public ParticleBase
+	class apriluiparticleExport Particle : public ParticleBase
 	{
 	public:
-		friend class ParticleSpace;
-
-		ParticleSystem(chstr name, grect rect);
-		~ParticleSystem();
+		Particle(chstr name, grect rect);
+		~Particle();
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
-		void stopSystem();
+		void update(float k);
 
-	protected:
-		harray<ParticleSpace*> spaceObjects;
-
-		void _registerSpaceObject(ParticleSpace* spaceObject);
-		void _unregisterSpaceObject(ParticleSpace* spaceObject);
+		void OnDraw();
 
 	};
 }

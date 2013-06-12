@@ -71,7 +71,7 @@ public:
 		dataset->getObject("root")->draw();
 		return true;
 	}
-
+	
 protected:
 	bool firstFrame;
 

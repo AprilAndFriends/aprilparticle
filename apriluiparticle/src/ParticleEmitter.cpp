@@ -7,17 +7,15 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://www.opensource.org/licenses/bsd-license.php
 
-#include <april/Color.h>
 #include <aprilparticle/aprilparticle.h>
 #include <aprilparticle/Emitter.h>
-#include <aprilparticle/Space.h>
 #include <aprilparticle/System.h>
 #include <aprilui/aprilui.h>
 #include <aprilui/Dataset.h>
-#include <gtypes/Matrix3.h>
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
@@ -40,8 +38,6 @@ namespace apriluiparticle
 		if (this->spaceObject != NULL)
 		{
 			this->spaceObject->_unregisterEmitterObject(this);
-			this->spaceObject = NULL;
-			this->emitter = NULL;
 		}
 	}
 
@@ -53,7 +49,7 @@ namespace apriluiparticle
 	void ParticleEmitter::update(float k)
 	{
 		this->_tryFindSpaceObject();
-		this->_tryFindEmitter();
+		this->_updateBindings();
 		if (this->emitter != NULL)
 		{
 			this->emitter->setEnabled(this->isDerivedEnabled());
@@ -63,23 +59,10 @@ namespace apriluiparticle
 
 	void ParticleEmitter::OnDraw()
 	{
-		this->_tryFindSpaceObject();
-		this->_tryFindEmitter();
 		aprilui::Object::OnDraw();
 		if (this->spaceObject != NULL && this->emitter != NULL)
 		{
-			gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter()) - this->initialPosition - this->spaceObject->_getDrawRect().getSize() * 0.5f;
-			this->emitter->setPosition(this->emitterPosition + gvec3(newPosition.x, newPosition.y, 0.0f));
-			float angle = this->initialAngle - this->_getDerivedAngle();
-			gvec2 newMinDirection = gvec2(this->emitterMinDirection.x, this->emitterMinDirection.y).rotated(angle);
-			gvec2 newMaxDirection = gvec2(this->emitterMaxDirection.x, this->emitterMaxDirection.y).rotated(angle);
-			this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
-			this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
-			this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
-			this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
-			gvec2 scale = this->getDerivedScale() / this->spaceObject->getDerivedScale();
-			this->emitter->setMinSize(this->emitterMinSize * scale);
-			this->emitter->setMinSize(this->emitterMaxSize * scale);
+			this->_updateEmitterData();
 		}
 		if (aprilui::isDebugEnabled())
 		{
@@ -89,10 +72,32 @@ namespace apriluiparticle
 		}
 	}
 
+	void ParticleEmitter::_updateEmitterData()
+	{
+		gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter()) - this->initialPosition - this->spaceObject->_getDrawRect().getSize() * 0.5f;
+		this->emitter->setPosition(this->emitterPosition + gvec3(newPosition.x, newPosition.y, 0.0f));
+		float angle = this->initialAngle - this->_getDerivedAngle();
+		gvec2 newMinDirection = gvec2(this->emitterMinDirection.x, this->emitterMinDirection.y).rotated(angle);
+		gvec2 newMaxDirection = gvec2(this->emitterMaxDirection.x, this->emitterMaxDirection.y).rotated(angle);
+		this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
+		this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
+		this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
+		this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
+		gvec2 scale = this->getDerivedScale() / this->spaceObject->getDerivedScale();
+		this->emitter->setMinSize(this->emitterMinSize * scale);
+		this->emitter->setMinSize(this->emitterMaxSize * scale);
+	}
+
+	void ParticleEmitter::_updateBindings()
+	{
+		this->_tryFindEmitter();
+	}
+
 	void ParticleEmitter::_tryFindSpaceObject()
 	{
 		if (this->mDataset == NULL)
 		{
+			this->spaceObject = NULL;
 			return;
 		}
 		if (this->spaceObject != NULL && this->spaceObject->getName() == this->spaceObjectName)
@@ -103,38 +108,29 @@ namespace apriluiparticle
 		{
 			this->spaceObject->_unregisterEmitterObject(this);
 		}
-		if (this->spaceObjectName != "")
+		this->spaceObject = NULL;
+		this->emitter = NULL;
+		if (this->spaceObjectName == "")
 		{
-			this->spaceObject = dynamic_cast<ParticleSpace*>(this->mDataset->tryGetObject(this->spaceObjectName));
-			if (this->spaceObject != NULL)
-			{
-				this->spaceObject->_registerEmitterObject(this);
-			}
-			else
-			{
-				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': referenced object '%s' not a subclass of ParticleSpace!",
-					this->spaceObjectName.c_str(), this->mName.c_str());
-				this->spaceObjectName = "";
-				this->emitterName = "";
-				this->emitter = NULL;
-			}
+			return;
+		}
+		this->spaceObject = dynamic_cast<ParticleSpace*>(this->mDataset->tryGetObject(this->spaceObjectName));
+		if (this->spaceObject != NULL)
+		{
+			this->spaceObject->_registerEmitterObject(this);
+		}
+		else
+		{
+			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': referenced object '%s' not a subclass of ParticleSpace!",
+				this->spaceObjectName.c_str(), this->mName.c_str());
+			this->spaceObjectName = "";
+			this->emitterName = "";
 		}
 	}
 
 	void ParticleEmitter::_tryFindEmitter()
 	{
 		if (this->spaceObject == NULL)
-		{
-			return;
-		}
-		ParticleSystem* systemObject = this->spaceObject->systemObject;
-		if (systemObject == NULL)
-		{
-			this->emitter = NULL;
-			return;
-		}
-		aprilparticle::System* system = this->spaceObject->systemObject->getSystem();
-		if (system == NULL)
 		{
 			this->emitter = NULL;
 			return;
@@ -143,31 +139,42 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		if (this->emitterName != "")
+		this->emitter = NULL;
+		if (this->emitterName == "")
 		{
-			this->emitter = system->getEmitter(this->emitterName);
-			if (this->emitter != NULL)
-			{
-				this->initialPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter());
-				this->emitterPosition.set(this->initialPosition.x, this->initialPosition.y, 0.0f);
-				this->emitter->setPosition(this->emitterPosition);
-				apriluiparticle::resizeEmitter(this->getSize(), this->emitter);
-				this->initialAngle = this->_getDerivedAngle();
-				this->emitterPosition = this->emitter->getPosition();
-				this->emitterMinDirection = this->emitter->getMinDirection();
-				this->emitterMaxDirection = this->emitter->getMaxDirection();
-				this->emitterMinSize = this->emitter->getMinSize();
-				this->emitterMaxSize = this->emitter->getMaxSize();
-			}
-			else
-			{
-				hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find emitter '%s' in ParticleSpace '%s'!",
-					this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
-				this->spaceObject->_unregisterEmitterObject(this);
-				this->spaceObject = NULL;
-				this->spaceObjectName = "";
-				this->emitterName = "";
-			}
+			return;
+		}
+		ParticleSystem* systemObject = this->spaceObject->systemObject;
+		if (systemObject == NULL)
+		{
+			return;
+		}
+		aprilparticle::System* system = systemObject->getSystem();
+		if (system == NULL)
+		{
+			return;
+		}
+		this->emitter = system->getEmitter(this->emitterName);
+		if (this->emitter != NULL)
+		{
+			this->initialPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter());
+			this->emitterPosition.set(this->initialPosition.x, this->initialPosition.y, 0.0f);
+			this->emitter->setPosition(this->emitterPosition);
+			apriluiparticle::resizeEmitter(this->getSize(), this->emitter);
+			this->initialAngle = this->_getDerivedAngle();
+			this->emitterPosition = this->emitter->getPosition();
+			this->emitterMinDirection = this->emitter->getMinDirection();
+			this->emitterMaxDirection = this->emitter->getMaxDirection();
+			this->emitterMinSize = this->emitter->getMinSize();
+			this->emitterMaxSize = this->emitter->getMaxSize();
+			this->_updateEmitterData();
+		}
+		else
+		{
+			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find emitter '%s' in ParticleSpace '%s'!",
+				this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
+			this->spaceObjectName = "";
+			this->emitterName = "";
 		}
 	}
 
@@ -192,7 +199,6 @@ namespace apriluiparticle
 	
 	void ParticleEmitter::_unbind()
 	{
-		this->spaceObject = NULL;
 		this->emitter = NULL;
 	}
 
