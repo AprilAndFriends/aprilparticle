@@ -84,7 +84,6 @@
     <ClCompile Include="src\apriluiparticle.cpp" />
     <ClCompile Include="src\apriluiparticleUtil.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
-    <ClCompile Include="src\ParticleAffector.cpp" />
     <ClCompile Include="src\ParticleSpace.cpp" />
     <ClCompile Include="src\ParticleSpaceBase.cpp" />
     <ClCompile Include="src\ParticleSystem.cpp" />
@@ -93,7 +92,6 @@
     <ClInclude Include="include\apriluiparticle\apriluiparticle.h" />
     <ClInclude Include="include\apriluiparticle\apriluiparticleExport.h" />
     <ClInclude Include="include\apriluiparticle\ParticleEmitter.h" />
-    <ClInclude Include="include\apriluiparticle\ParticleAffector.h" />
     <ClInclude Include="include\apriluiparticle\ParticleSpace.h" />
     <ClInclude Include="include\apriluiparticle\ParticleSpaceBase.h" />
     <ClInclude Include="include\apriluiparticle\ParticleSystem.h" />
