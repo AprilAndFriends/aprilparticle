@@ -35,6 +35,7 @@ namespace apriluiparticle
 	{
 		if (this->system != NULL)
 		{
+			this->system->setEnabled(this->isDerivedEnabled());
 			this->system->update(k);
 		}
 		ParticleBase::update(k);
@@ -45,7 +46,6 @@ namespace apriluiparticle
 		grect rect = this->_getDrawRect();
 		if (this->system != NULL)
 		{
-			this->system->setEnabled(this->isDerivedEnabled());
 			this->system->setVisible(this->isVisible());
 			this->system->draw(rect.getCenter(), this->_getDrawColor());
 			april::rendersys->setTextureBlendMode(april::DEFAULT);
