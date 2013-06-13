@@ -177,6 +177,15 @@ namespace apriluiparticle
 			this->emitterName = "";
 		}
 	}
+	
+	void ParticleEmitter::notifyEvent(chstr name, void* params)
+	{
+		if (name == "OnEnableChanged" && this->emitter != NULL)
+		{
+			this->emitter->setEnabled(this->isDerivedEnabled());
+		}
+		Object::notifyEvent(name, params);
+	}
 
 	hstr ParticleEmitter::getProperty(chstr name, bool* property_exists)
 	{
