@@ -45,6 +45,7 @@ namespace apriluiparticle
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
+		HL_DEFINE_GETSET(hstr, filepath, Filepath);
 		HL_DEFINE_GET(aprilparticle::System*, system, System);
 		bool isRunning();
 		bool isExpired();
@@ -61,6 +62,7 @@ namespace apriluiparticle
 		
 	protected:
 		hstr filename;
+		hstr filepath;
 		aprilparticle::System* system;
 
 		aprilparticle::System** _getSystemPtr() { return &this->system; }

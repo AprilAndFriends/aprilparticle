@@ -55,7 +55,7 @@ namespace apriluiparticle
 	{
 		this->filename = filename;
 		this->stopSystem();
-		if (this->filename != "" && apriluiparticle::isEnabled())
+		if ((this->filename != "" || this->filepath != "") && apriluiparticle::isEnabled())
 		{
 			this->_load();
 		}
@@ -65,7 +65,7 @@ namespace apriluiparticle
 	{	
 		if (name == "SettingsChanged")
 		{
-			if (this->filename != "" && apriluiparticle::isEnabled())
+			if ((this->filename != "" || this->filepath != "") && apriluiparticle::isEnabled())
 			{
 				this->_load();
 			}
@@ -87,11 +87,15 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		hstr filepath = this->filename;
-		hstr defaultPath = apriluiparticle::getDefaultPath();
-		if (defaultPath != "")
+		hstr filepath = this->filepath;
+		if (filepath == "") // if no forced file path exists
 		{
-			filepath = defaultPath + "/" + filepath;
+			filepath = this->filename;
+			hstr defaultPath = apriluiparticle::getDefaultPath();
+			if (defaultPath != "")
+			{
+				filepath = defaultPath + "/" + filepath;
+			}
 		}
 		hstr datasetPath = this->getDataset()->getFilePath();
 		if (datasetPath != "")
@@ -142,7 +146,8 @@ namespace apriluiparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "filename")		return this->getFilename();
+		if (name == "filename")	return this->getFilename();
+		if (name == "filepath")	return this->getFilepath();
 		return aprilui::Object::getProperty(name, property_exists);
 	}
 
@@ -151,6 +156,13 @@ namespace apriluiparticle
 		if		(name == "filename")
 		{
 			this->setFilename(value);
+			this->setFilepath("");
+			this->notifyEvent("SettingsChanged", NULL);
+		}
+		else if	(name == "filepath")
+		{
+			this->setFilepath(value);
+			this->setFilename("");
 			this->notifyEvent("SettingsChanged", NULL);
 		}
 		else return aprilui::Object::setProperty(name, value);
