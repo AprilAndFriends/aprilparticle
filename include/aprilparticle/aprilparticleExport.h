@@ -15,7 +15,7 @@
 #ifndef APRILPARTICLE_EXPORT_H
 #define APRILPARTICLE_EXPORT_H
 
-	#ifdef _STATICLIB
+	#ifdef _LIB
 		#define aprilparticleExport
 		#define aprilparticleFnExport
 	#else
