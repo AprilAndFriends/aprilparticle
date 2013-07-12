@@ -479,11 +479,11 @@ void setupTwirl()
 	twirl->registerAffector(gravity1);
 	spaceLeft->addAffector(gravity1); // affector is shared among several emitters
 	spaceRight->addAffector(gravity1); // affector is shared among several emitters
-	aprilparticle::Affectors::Attractor* gravity2 = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 6.0f, 2.0f);
+	aprilparticle::Affectors::Attractor* gravity2 = new aprilparticle::Affectors::Attractor(gvec3(-5.0f, 0.0f, 5.0f), 25.0f, 6.0f, 2.0f);
 	twirl->registerAffector(gravity2);
 	spaceLeft->addAffector(gravity2); // affector is shared among several emitters
 	spaceRight->addAffector(gravity2); // affector is shared among several emitters
-	aprilparticle::Affectors::Attractor* gravity3 = new aprilparticle::Affectors::Attractor(gvec3(-10.0f, 0.0f, 0.0f), 15.0f, 6.0f, 2.0f);
+	aprilparticle::Affectors::Attractor* gravity3 = new aprilparticle::Affectors::Attractor(gvec3(-5.0f, 0.0f, -5.0f), 25.0f, 6.0f, 2.0f);
 	twirl->registerAffector(gravity3);
 	spaceLeft->addAffector(gravity3); // affector is shared among several emitters
 	spaceRight->addAffector(gravity3); // affector is shared among several emitters
