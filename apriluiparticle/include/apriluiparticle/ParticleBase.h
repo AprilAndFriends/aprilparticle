@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.01
 /// 
 /// @section LICENSE
 /// 
@@ -55,7 +55,7 @@ namespace apriluiparticle
 		void load(chstr filename);
 		void finishSystem();
 		virtual void stopSystem();
-		void resetSystem();
+		virtual void resetSystem();
 		
 		hstr getProperty(chstr name, bool* property_exists = NULL);
 		bool setProperty(chstr name, chstr value);

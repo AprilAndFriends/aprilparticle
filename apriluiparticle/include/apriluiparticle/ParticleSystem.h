@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.01
 /// 
 /// @section LICENSE
 /// 
@@ -43,6 +43,7 @@ namespace apriluiparticle
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
 		void stopSystem();
+		void resetSystem();
 
 	protected:
 		harray<ParticleSpace*> spaceObjects;

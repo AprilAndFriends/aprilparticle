@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.01
 /// 
 /// @section LICENSE
 /// 
@@ -149,6 +149,8 @@ namespace aprilparticle
 			delete (*it);
 		}
 		this->particles.clear();
+		this->alive = 0;
+		this->started = false;
 		foreach (Emitter*, it, this->emitters)
 		{
 			(*it)->reset();

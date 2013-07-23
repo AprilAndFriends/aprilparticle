@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.01
 /// 
 /// @section LICENSE
 /// 
@@ -391,6 +391,7 @@ namespace aprilparticle
 		this->time = 0.0f;
 		this->currentLoop = 0;
 		this->running = true;
+		this->alive = 0;
 		this->particles.clear();
 	}
 

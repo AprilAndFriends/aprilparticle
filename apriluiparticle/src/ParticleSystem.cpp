@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.01
 /// 
 /// @section LICENSE
 /// 
@@ -56,6 +56,18 @@ namespace apriluiparticle
 			}
 		}
 		ParticleBase::stopSystem();
+	}
+
+	void ParticleSystem::resetSystem()
+	{
+		if (this->system != NULL)
+		{
+			foreach (ParticleSpace*, it, this->spaceObjects)
+			{
+				(*it)->_unbind();
+			}
+		}
+		ParticleBase::resetSystem();
 	}
 	
 }
