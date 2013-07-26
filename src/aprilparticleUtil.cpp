@@ -41,7 +41,7 @@ namespace aprilparticle
 		harray<hstr> data = string.split(aprilparticle::SeparatorVector);
 		if (data.size() != 2)
 		{
-			throw hl_exception("Error! Cannot convert string '" + string + "' to gtypes::Vector2.");
+			throw hl_exception("Cannot convert string '" + string + "' to gtypes::Vector2.");
 		}
 		return gvec2(data[0], data[1]);
 	}
@@ -51,7 +51,7 @@ namespace aprilparticle
 		harray<hstr> data = string.split(aprilparticle::SeparatorVector);
 		if (data.size() != 3)
 		{
-			throw hl_exception("Error! Cannot convert string '" + string + "' to gtypes::Vector3.");
+			throw hl_exception("Cannot convert string '" + string + "' to gtypes::Vector3.");
 		}
 		return gvec3(data[0], data[1], data[2]);
 	}

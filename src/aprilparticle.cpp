@@ -79,7 +79,7 @@ namespace aprilparticle
 	{
 		if (gAffectorFactories.has_key(typeName))
 		{
-			throw hl_exception("ERROR! Affector Factory '" + typeName + "' already exists!");
+			throw hl_exception("Affector Factory '" + typeName + "' already exists!");
 		}
 		gAffectorFactories[typeName] = factory;
 	}
