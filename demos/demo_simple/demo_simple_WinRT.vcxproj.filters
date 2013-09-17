@@ -82,12 +82,6 @@
     <None Include="TemporaryKey.pfx">
       <Filter>winrt</Filter>
     </None>
-    <None Include="media\texts\de\demo.loc">
-      <Filter>winrt\media\assets\texts\de</Filter>
-    </None>
-    <None Include="media\texts\en\demo.loc">
-      <Filter>winrt\media\assets\texts\en</Filter>
-    </None>
     <None Include="media\bubbles.particle">
       <Filter>winrt\media</Filter>
     </None>

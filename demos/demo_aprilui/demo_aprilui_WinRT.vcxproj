@@ -106,83 +106,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="demo_aprilui.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="media\blue_particle.png" />
-    <Image Include="media\bubble.png" />
-    <Image Include="media\fire_particle.png" />
-    <Image Include="media\green_particle.png" />
-    <Image Include="media\rain_drop.png" />
-    <Image Include="media\red_particle.png" />
-    <Image Include="media\white_particle.png" />
-    <None Include="media\bubbles.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\demo_aprilui.dts">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\flame.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\gui_cannon.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\gui_glow.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\gui_moon.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\gui_rain.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\gui_segmented.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\milkyWay.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\quazar.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\rain.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\texts\de\demo.loc">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\texts\en\demo.loc">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\twirl.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\vortex.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="TemporaryKey.pfx" />
-    <Image Include="media\assets\icon.png" />
-    <Image Include="media\assets\tile-medium.png" />
-    <Image Include="media\assets\tile-small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="media\assets\logo_icon.png" />
-    <Image Include="media\assets\small_icon.png" />
-    <Image Include="media\assets\splash.png" />
-    <Image Include="media\assets\store_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="WMAppManifest.xml">
-      <SubType>Designer</SubType>
-    </Xml>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\aprilui\libaprilui_WinRT.vcxproj">
       <Project>{56ff74d1-34d0-4ddb-8b89-f6f9200842b8}</Project>
       <CopyLocal>false</CopyLocal>
@@ -272,8 +195,79 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="demo_aprilui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="media\assets\icon.png" />
+    <Image Include="media\assets\tile-medium.png" />
+    <Image Include="media\assets\tile-small.png" />
+    <Image Include="media\assets\logo_icon.png" />
+    <Image Include="media\assets\small_icon.png" />
+    <Image Include="media\assets\splash.png" />
+    <Image Include="media\assets\store_icon.png" />
+    <Image Include="media\blue_particle.png" />
+    <Image Include="media\bubble.png" />
+    <Image Include="media\fire_particle.png" />
+    <Image Include="media\green_particle.png" />
+    <Image Include="media\rain_drop.png" />
+    <Image Include="media\red_particle.png" />
+    <Image Include="media\white_particle.png" />
+    <None Include="media\bubbles.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\demo_aprilui.dts">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\flame.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_cannon.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_glow.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_moon.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_rain.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_segmented.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\milkyWay.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\quazar.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\rain.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\texts\de\demo.loc">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\texts\en\demo.loc">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\twirl.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\vortex.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="TemporaryKey.pfx" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Xml Include="WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
+  <Import Condition="'$(PlatformToolset)'=='v110_wp80'" Project="$(MSBuildExtensionsPath)\Microsoft\WindowsPhone\v$(TargetPlatformVersion)\Microsoft.Cpp.WindowsPhone.$(TargetPlatformVersion).targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
