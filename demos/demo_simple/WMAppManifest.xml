@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="en" />
   </Languages>
-  <App xmlns="" ProductID="{e0e4d21b-ece1-40f9-8335-ed9000e4c2fd}" Title="Demo Simple" RuntimeType="Modern Native" Version="2.5.0.0" Genre="apps.game" Author="AprilParticle" Description="Demo Simple" Publisher="AprilParticle" PublisherID="{016db639-0f24-4f88-8062-7ceb291b9cfd}">
+  <App xmlns="" ProductID="{89E408DE-E78D-40AD-9EB4-3A816BE4F1CF}" Title="Demo Simple" RuntimeType="Modern Native" Version="2.5.0.0" Genre="apps.game" Author="AprilParticle" Description="Demo Simple" Publisher="AprilParticle" PublisherID="{016db639-0f24-4f88-8062-7ceb291b9cfd}">
     <IconPath IsRelative="true" IsResource="false">media\assets\icon.png</IconPath>
     <Capabilities>
     </Capabilities>
