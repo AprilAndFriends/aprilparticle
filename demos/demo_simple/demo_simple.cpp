@@ -19,6 +19,7 @@
 
 #include <april/april.h>
 #include <april/main.h>
+#include <april/Platform.h>
 #include <april/RenderSystem.h>
 #include <april/Timer.h>
 #include <april/UpdateDelegate.h>
@@ -75,7 +76,7 @@ void drawGrid()
 class UpdateDelegate : public april::UpdateDelegate
 {
 public:
-	UpdateDelegate::UpdateDelegate() : angle(0.0f), count(0)
+	UpdateDelegate() : angle(0.0f), count(0)
 	{
 	}
 

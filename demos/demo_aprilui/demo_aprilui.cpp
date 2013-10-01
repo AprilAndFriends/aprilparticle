@@ -27,6 +27,7 @@
 #include <april/KeyboardDelegate.h>
 #include <april/main.h>
 #include <april/MouseDelegate.h>
+#include <april/Platform.h>
 #include <april/RenderSystem.h>
 #include <april/UpdateDelegate.h>
 #include <april/Window.h>
