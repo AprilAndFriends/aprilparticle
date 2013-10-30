@@ -540,7 +540,7 @@
 					/usr/include/libxml2,
 					"${SRCROOT}/include",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
@@ -562,7 +562,6 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -598,7 +597,7 @@
 					/usr/include/libxml2,
 					"${SRCROOT}/include",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
@@ -618,7 +617,6 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -654,7 +652,7 @@
 					/usr/include/libxml2,
 					"${SRCROOT}/include",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../hltypes/include ${SRCROOT}/../gtypes/include ${SRCROOT}/../hltypes/hlxml/include ${SRCROOT}/../april/include ${SRCROOT}/include";
 			};
@@ -674,7 +672,6 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
