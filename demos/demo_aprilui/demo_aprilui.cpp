@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.03
 /// 
 /// @section LICENSE
 /// 
@@ -44,10 +44,12 @@
 #include <atres/Renderer.h>
 #include <gtypes/Vector2.h>
 
+#define LOG_TAG "demo_aprilui"
+
 grect drawRect(0.0f, 0.0f, 800.0f, 600.0f);
 grect viewport = drawRect;
 
-aprilui::Dataset* dataset;
+aprilui::Dataset* dataset = NULL;
 
 class UpdateDelegate : public april::UpdateDelegate
 {
@@ -206,9 +208,9 @@ void april_init(const harray<hstr>& args)
 		//aprilui::setDebugEnabled(true);
 #endif
 	}
-	catch (aprilui::_GenericException e)
+	catch (hltypes::exception& e)
 	{
-		printf("%s\n", e.getType().c_str());
+		hlog::error(LOG_TAG, e.getMessage());
 	}
 }
 
@@ -223,9 +225,9 @@ void april_destroy()
 		atres::destroy();
 		april::destroy();
 	}
-	catch (aprilui::_GenericException e)
+	catch (hltypes::exception& e)
 	{
-		printf("%s\n", e.getType().c_str());
+		hlog::error(LOG_TAG, e.getMessage());
 	}
 	delete updateDelegate;
 	updateDelegate = NULL;

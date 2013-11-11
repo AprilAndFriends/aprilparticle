@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.02
+/// @version 2.03
 /// 
 /// @section LICENSE
 /// 
@@ -667,7 +667,7 @@ namespace aprilparticle
 				this->_offset.set(this->space->_particle->position.x + offset.x, this->space->_particle->position.y + offset.y, 0.0f);
 				if (this->space->_particle->angle != 0.0f)
 				{
-					this->_rot.setRotation3D(0.0f, 0.0f, 1.0f, this->space->_particle->angle);
+					this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->space->_particle->angle);
 					v[0] = this->_rot * v[0] + this->_offset;
 					v[1] = this->_rot * v[1] + this->_offset;
 					v[2] = this->_rot * v[2] + this->_offset;
