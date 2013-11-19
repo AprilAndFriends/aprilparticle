@@ -17,6 +17,7 @@
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/hdir.h>
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
@@ -102,7 +103,7 @@ namespace apriluiparticle
 		{
 			filepath = datasetPath + "/" + filepath;
 		}
-		filepath = normalize_path(filepath);
+		filepath = hdir::normalize(filepath);
 		this->system = aprilparticle::loadSystem(filepath);
 		this->_resize();
 	}

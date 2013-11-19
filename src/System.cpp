@@ -11,6 +11,7 @@
 #include <april/Color.h>
 #include <april/Texture.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/hdir.h>
 #include <hltypes/hlist.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
@@ -416,7 +417,7 @@ namespace aprilparticle
 		{
 			hstr filename = root->pstr("filename");
 			name = root->pstr("name", filename);
-			aprilparticle::Texture* texture = aprilparticle::loadTexture(get_basedir(this->filename) + "/" + filename, root->pbool("cached", false));
+			aprilparticle::Texture* texture = aprilparticle::loadTexture(hdir::basedir(this->filename) + "/" + filename, root->pbool("cached", false));
 			this->registerTexture(texture, name);
 			map = true;
 		}
