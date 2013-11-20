@@ -109,8 +109,11 @@ namespace aprilparticle
 		void reset();
 		void update(float k);
 		
-		void draw(gvec3 point, gvec3 up); // is the only 3D drawing method
+		/// @note Not thread-safe!
+		void draw(gvec3 point, gvec3 up); // the only 3D drawing method
+		/// @note Not thread-safe!
 		void draw(gvec2 offset = gvec2());
+		/// @note Not thread-safe!
 		void draw(gvec2 offset, april::Color color);
 		
 	protected:
