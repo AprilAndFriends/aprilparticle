@@ -105,6 +105,41 @@
       <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugP8|Win32'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseP8|Win32'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseP8|ARM'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\aprilui\libaprilui_WinRT.vcxproj">
       <Project>{56ff74d1-34d0-4ddb-8b89-f6f9200842b8}</Project>
@@ -244,12 +279,6 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="media\rain.particle">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\texts\de\demo.loc">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="media\texts\en\demo.loc">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="media\twirl.particle">
