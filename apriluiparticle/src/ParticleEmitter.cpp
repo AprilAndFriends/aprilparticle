@@ -95,7 +95,7 @@ namespace apriluiparticle
 
 	void ParticleEmitter::_tryFindSpaceObject()
 	{
-		if (this->mDataset == NULL)
+		if (this->dataset == NULL)
 		{
 			this->spaceObject = NULL;
 			return;
@@ -114,7 +114,7 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		this->spaceObject = dynamic_cast<ParticleSpace*>(this->mDataset->tryGetObject(this->spaceObjectName));
+		this->spaceObject = dynamic_cast<ParticleSpace*>(this->dataset->tryGetObject(this->spaceObjectName));
 		if (this->spaceObject != NULL)
 		{
 			this->spaceObject->_registerEmitterObject(this);
@@ -122,7 +122,7 @@ namespace apriluiparticle
 		else
 		{
 			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': referenced object '%s' not a subclass of ParticleSpace!",
-				this->spaceObjectName.c_str(), this->mName.c_str());
+				this->spaceObjectName.c_str(), this->name.c_str());
 			this->spaceObjectName = "";
 			this->emitterName = "";
 		}
@@ -172,7 +172,7 @@ namespace apriluiparticle
 		else
 		{
 			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find emitter '%s' in ParticleSpace '%s'!",
-				this->mName.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
+				this->name.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
 			this->spaceObjectName = "";
 			this->emitterName = "";
 		}

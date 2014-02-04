@@ -92,7 +92,7 @@ namespace apriluiparticle
 
 	void ParticleSpace::_tryFindSystemObject()
 	{
-		if (this->mDataset == NULL)
+		if (this->dataset == NULL)
 		{
 			this->systemObject = NULL;
 			return;
@@ -107,7 +107,7 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		this->systemObject = dynamic_cast<ParticleSystem*>(this->mDataset->tryGetObject(this->systemObjectName));
+		this->systemObject = dynamic_cast<ParticleSystem*>(this->dataset->tryGetObject(this->systemObjectName));
 		if (this->systemObject != NULL)
 		{
 			this->systemObject->_registerSpaceObject(this);
@@ -115,7 +115,7 @@ namespace apriluiparticle
 		else
 		{
 			hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': referenced object '%s' not a subclass of ParticleSystem!",
-				this->systemObjectName.c_str(), this->mName.c_str());
+				this->systemObjectName.c_str(), this->name.c_str());
 			this->systemObjectName = "";
 			this->spaceName = "";
 		}
@@ -146,7 +146,7 @@ namespace apriluiparticle
 		if (this->space == NULL)
 		{
 			hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': cannot find space '%s' in ParticleSystem '%s'!",
-				this->mName.c_str(), this->spaceName.c_str(), this->systemObject->getName().c_str());
+				this->name.c_str(), this->spaceName.c_str(), this->systemObject->getName().c_str());
 			this->spaceName = "";
 		}
 	}
