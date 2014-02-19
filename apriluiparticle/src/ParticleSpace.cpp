@@ -73,7 +73,7 @@ namespace apriluiparticle
 		{
 			this->space->setVisible(this->isVisible());
 			this->space->draw(this->_getDrawRect().getCenter(), this->_getDrawColor());
-			april::rendersys->setTextureBlendMode(april::DEFAULT);
+			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		aprilui::Object::OnDraw();
 		if (aprilui::isDebugEnabled())
