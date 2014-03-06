@@ -95,13 +95,13 @@ namespace apriluiparticle
 			hstr defaultPath = apriluiparticle::getDefaultPath();
 			if (defaultPath != "")
 			{
-				filepath = defaultPath + "/" + filepath;
+				filepath = hdir::join_path(defaultPath, filepath, false);
 			}
 		}
 		hstr datasetPath = this->getDataset()->getFilePath();
 		if (datasetPath != "")
 		{
-			filepath = datasetPath + "/" + filepath;
+			filepath = hdir::join_path(datasetPath, filepath, false);
 		}
 		filepath = hdir::normalize(filepath);
 		this->system = aprilparticle::loadSystem(filepath);

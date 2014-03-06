@@ -417,7 +417,7 @@ namespace aprilparticle
 		{
 			hstr filename = root->pstr("filename");
 			name = root->pstr("name", filename);
-			aprilparticle::Texture* texture = aprilparticle::loadTexture(hdir::basedir(this->filename) + "/" + filename, root->pbool("cached", false));
+			aprilparticle::Texture* texture = aprilparticle::loadTexture(hdir::join_path(hdir::basedir(this->filename), filename, false), root->pbool("cached", false));
 			this->registerTexture(texture, name);
 			map = true;
 		}
