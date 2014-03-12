@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.03
+/// @version 2.04
 /// 
 /// @section LICENSE
 /// 
@@ -41,7 +41,7 @@ namespace aprilparticle
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::BM_DEFAULT;
 		this->colorMode = april::CM_DEFAULT;
-		this->colorModeAlpha = 255;
+		this->colorModeFactor = 1.0f;
 		this->emissionRate = 0.0f;
 		this->duration = -1.0f;
 		this->delay = 0.0f;
@@ -77,7 +77,7 @@ namespace aprilparticle
 		this->dimensions = other.dimensions;
 		this->blendMode = other.blendMode;
 		this->colorMode = other.colorMode;
-		this->colorModeAlpha = other.colorModeAlpha;
+		this->colorModeFactor = other.colorModeFactor;
 		this->emissionRate = other.emissionRate;
 		this->duration = other.duration;
 		this->delay = other.delay;
@@ -272,7 +272,7 @@ namespace aprilparticle
 			else if	(mode == april::CM_ALPHA_MAP)	return "alpha_map";
 			return "";
 		}
-		if (name == "color_mode_alpha")		return this->getColorModeAlpha();
+		if (name == "color_mode_factor")	return this->getColorModeFactor();
 		if (name == "emission_rate")		return this->getEmissionRate();
 		if (name == "duration")				return this->getDuration();
 		if (name == "delay")				return this->getDelay();
@@ -320,7 +320,7 @@ namespace aprilparticle
 			else if	(value == "alpha_map")		this->setColorMode(april::CM_ALPHA_MAP);
 			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str());
 		}
-		else if	(name == "color_mode_alpha")	this->setColorModeAlpha(value);
+		else if	(name == "color_mode_factor")	this->setColorModeFactor(value);
 		else if	(name == "emission_rate")		this->setEmissionRate(value);
 		else if	(name == "limit")				this->setLimit(value);
 		else if	(name == "duration")			this->setDuration(value);
@@ -583,7 +583,7 @@ namespace aprilparticle
 		{
 			april::rendersys->setTexture(this->texture);
 			april::rendersys->setTextureBlendMode(this->blendMode);
-			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeAlpha);
+			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeFactor);
 			april::rendersys->render(april::RO_TRIANGLE_LIST, this->_triangleBatch, this->_i);
 		}
 	}
@@ -645,7 +645,7 @@ namespace aprilparticle
 		{
 			april::rendersys->setTexture(this->texture);
 			april::rendersys->setTextureBlendMode(this->blendMode);
-			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeAlpha);
+			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeFactor);
 			april::rendersys->render(april::RO_TRIANGLE_LIST, this->_triangleBatch, this->_i);
 		}
 	}
@@ -707,7 +707,7 @@ namespace aprilparticle
 		{
 			april::rendersys->setTexture(this->texture);
 			april::rendersys->setTextureBlendMode(this->blendMode);
-			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeAlpha);
+			april::rendersys->setTextureColorMode(this->colorMode, this->colorModeFactor);
 			april::rendersys->render(april::RO_TRIANGLE_LIST, this->_triangleBatch, this->_i);
 		}
 	}

@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.02
+/// @version 2.04
 /// 
 /// @section LICENSE
 /// 
@@ -65,7 +65,7 @@ namespace aprilparticle
 		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
 		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
 		HL_DEFINE_GETSET(april::ColorMode, colorMode, ColorMode);
-		HL_DEFINE_GETSET(int, colorModeAlpha, ColorModeAlpha);
+		HL_DEFINE_GETSET(float, colorModeFactor, ColorModeFactor);
 		HL_DEFINE_GETSET(float, emissionRate, EmissionRate);
 		HL_DEFINE_GETSET(float, duration, Duration);
 		HL_DEFINE_GETSET(float, delay, Delay);
@@ -125,7 +125,7 @@ namespace aprilparticle
 		gvec3 dimensions;
 		april::BlendMode blendMode;
 		april::ColorMode colorMode;
-		int colorModeAlpha;
+		float colorModeFactor;
 		float emissionRate;
 		float duration;
 		float delay;

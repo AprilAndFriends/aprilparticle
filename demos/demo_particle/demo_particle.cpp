@@ -78,7 +78,7 @@ void setupGrid(float spacing)
 
 void drawGrid()
 {
-	april::rendersys->render(april::LineList, grid, 44);
+	april::rendersys->render(april::RO_LINE_LIST, grid, 44);
 }
 
 class UpdateDelegate : public april::UpdateDelegate
@@ -184,7 +184,7 @@ void setupFlame()
 	
 	emitter->setType(aprilparticle::Emitter::HollowSphere);
 	emitter->setDimensions(2.0f, 4.0f, 2.0f);
-	emitter->setBlendMode(april::ADD);
+	emitter->setBlendMode(april::BM_ADD);
 	emitter->setEmissionRate(32.0f);
 	emitter->setLimit(128);
 	emitter->setLife(4.0f);
@@ -227,7 +227,7 @@ void setupBubbles()
 
 	emitter->setType(aprilparticle::Emitter::Cylinder);
 	emitter->setDimensions(5.0f, 4.0f, 5.0f);
-	emitter->setBlendMode(april::DEFAULT);
+	emitter->setBlendMode(april::BM_DEFAULT);
 	emitter->setEmissionRate(50.0f);
 	emitter->setLimit(300);
 	emitter->setLife(6.0f);
@@ -279,7 +279,7 @@ void setupVortex()
 
 	emitter->setType(aprilparticle::Emitter::Sphere);
 	emitter->setDimensions(8.0f, 0.0f, 8.0f);
-	emitter->setBlendMode(april::ADD);
+	emitter->setBlendMode(april::BM_ADD);
 	emitter->setEmissionRate(200.0f);
 	emitter->setLimit(800);
 	emitter->setLife(2.0f);
@@ -308,7 +308,7 @@ void setupRain()
 
 	emitter->setType(aprilparticle::Emitter::Box);
 	emitter->setDimensions(6.0f, 0.0f, 6.0f);
-	emitter->setBlendMode(april::ADD);
+	emitter->setBlendMode(april::BM_ADD);
 	emitter->setEmissionRate(60.0f);
 	emitter->setLimit(240);
 	emitter->setLife(4.0f);
@@ -367,7 +367,7 @@ void setupQuazar()
 
 	discEmitter->setType(aprilparticle::Emitter::HollowSphere);
 	discEmitter->setDimensions(1.0f, 6.0f, 6.0f);
-	discEmitter->setBlendMode(april::ADD);
+	discEmitter->setBlendMode(april::BM_ADD);
 	discEmitter->setEmissionRate(120.0f);
 	discEmitter->setLimit(360);
 	discEmitter->setLife(3.0f);
@@ -376,7 +376,7 @@ void setupQuazar()
 	jetTopEmitter->setType(aprilparticle::Emitter::Sphere);
 	jetTopEmitter->setPosition(0.5f, 0.0f, 0.0f);
 	jetTopEmitter->setDimensions(1.0f, 3.0f, 3.0f);
-	jetTopEmitter->setBlendMode(april::ADD);
+	jetTopEmitter->setBlendMode(april::BM_ADD);
 	jetTopEmitter->setEmissionRate(100.0f);
 	jetTopEmitter->setLimit(300);
 	jetTopEmitter->setLife(3.0f);
@@ -385,7 +385,7 @@ void setupQuazar()
 	jetBottomEmitter->setType(aprilparticle::Emitter::Sphere);
 	jetBottomEmitter->setPosition(-0.5f, 0.0f, 0.0f);
 	jetBottomEmitter->setDimensions(1.0f, 3.0f, 3.0f);
-	jetBottomEmitter->setBlendMode(april::ADD);
+	jetBottomEmitter->setBlendMode(april::BM_ADD);
 	jetBottomEmitter->setEmissionRate(100.0f);
 	jetBottomEmitter->setLimit(300);
 	jetBottomEmitter->setLife(3.0f);
@@ -425,7 +425,7 @@ void setupMilkyWay()
 	emitter1->setType(aprilparticle::Emitter::Sphere);
 	emitter1->setPosition(4.0f, 0.0f, 0.0f);
 	emitter1->setDimensions(2.0f, 0.2f, 2.0f);
-	emitter1->setBlendMode(april::ADD);
+	emitter1->setBlendMode(april::BM_ADD);
 	emitter1->setEmissionRate(200.0f);
 	emitter1->setLimit(400);
 	emitter1->setLife(2.0f);
@@ -434,7 +434,7 @@ void setupMilkyWay()
 	emitter2->setType(aprilparticle::Emitter::Sphere);
 	emitter2->setPosition(-4.0f, 0.0f, 0.0f);
 	emitter2->setDimensions(2.0f, 0.2f, 2.0f);
-	emitter2->setBlendMode(april::ADD);
+	emitter2->setBlendMode(april::BM_ADD);
 	emitter2->setEmissionRate(200.0f);
 	emitter2->setLimit(400);
 	emitter2->setLife(2.0f);
@@ -443,7 +443,7 @@ void setupMilkyWay()
 	emitter3->setType(aprilparticle::Emitter::Sphere);
 	emitter3->setPosition(0.0f, 0.0f, 4.0f);
 	emitter3->setDimensions(0.5f, 0.1f, 0.5f);
-	emitter3->setBlendMode(april::ADD);
+	emitter3->setBlendMode(april::BM_ADD);
 	emitter3->setEmissionRate(50.0f);
 	emitter3->setLimit(75);
 	emitter3->setLife(1.5f);
@@ -452,7 +452,7 @@ void setupMilkyWay()
 	emitter4->setType(aprilparticle::Emitter::Sphere);
 	emitter4->setPosition(0.0f, 0.0f, -4.0f);
 	emitter4->setDimensions(0.5f, 0.1f, 0.5f);
-	emitter4->setBlendMode(april::ADD);
+	emitter4->setBlendMode(april::BM_ADD);
 	emitter4->setEmissionRate(50.0f);
 	emitter4->setLimit(75);
 	emitter4->setLife(1.5f);
@@ -506,7 +506,7 @@ void setupTwirl()
 	spaceRight->setPosition(10.0f, 0.0f, -10.0f);
 
 	left->setType(aprilparticle::Emitter::Point);
-	left->setBlendMode(april::ADD);
+	left->setBlendMode(april::BM_ADD);
 	left->setEmissionRate(100.0f);
 	left->setLimit(600);
 	left->setLife(6.0f);
@@ -514,7 +514,7 @@ void setupTwirl()
 	left->setScaleRange(0.3f, 0.5f);
 	
 	right->setType(aprilparticle::Emitter::Point);
-	right->setBlendMode(april::ADD);
+	right->setBlendMode(april::BM_ADD);
 	right->setEmissionRate(100.0f);
 	right->setLimit(600);
 	right->setLife(6.0f);
@@ -580,9 +580,9 @@ void april_init(const harray<hstr>& args)
 	april::window->setUpdateDelegate(updateDelegate);
 	setupGrid(2.0f);
 	// textures used by more than one system
-	redParticle = april::rendersys->createTexture(RESOURCE_PATH "red_particle");
-	greenParticle = april::rendersys->createTexture(RESOURCE_PATH "green_particle");
-	blueParticle = april::rendersys->createTexture(RESOURCE_PATH "blue_particle");
+	redParticle = april::rendersys->createTextureFromResource(RESOURCE_PATH "red_particle");
+	greenParticle = april::rendersys->createTextureFromResource(RESOURCE_PATH "green_particle");
+	blueParticle = april::rendersys->createTextureFromResource(RESOURCE_PATH "blue_particle");
 	// setting up every system
 	setupFlame();
 	setupBubbles();
