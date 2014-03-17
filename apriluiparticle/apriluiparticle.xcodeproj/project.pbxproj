@@ -56,6 +56,8 @@
 		C9EF00F5148E321B00B80144 /* hltypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hltypes.framework; path = "../../__build__/angels/Build/Products/Debug-LLVM/hltypes.framework"; sourceTree = "<group>"; };
 		C9FB78421501070B008B2B48 /* libapriluiparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapriluiparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FB78431501070B008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1358BBF18D7772500A36FDC /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = iOS.xcconfig; path = xcconfig/iOS.xcconfig; sourceTree = "<group>"; };
+		D1358BC018D7772500A36FDC /* Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Mac.xcconfig; path = xcconfig/Mac.xcconfig; sourceTree = "<group>"; };
 		D157EB621768B1250026F625 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Particle.h; path = include/apriluiparticle/Particle.h; sourceTree = "<group>"; };
 		D157EB631768B1250026F625 /* ParticleBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleBase.h; path = include/apriluiparticle/ParticleBase.h; sourceTree = "<group>"; };
 		D157EB661768B1390026F625 /* apriluiparticleUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleUtil.h; path = src/apriluiparticleUtil.h; sourceTree = SOURCE_ROOT; };
@@ -90,7 +92,7 @@
 		C9DF844B148D03DB00B64799 = {
 			isa = PBXGroup;
 			children = (
-				C9DF8481148D049500B64799 /* Info.plist */,
+				D1358BBE18D776F600A36FDC /* config */,
 				C9DF8475148D041D00B64799 /* include */,
 				C9DF8460148D03DC00B64799 /* src */,
 				C9DF8459148D03DC00B64799 /* Frameworks */,
@@ -149,6 +151,16 @@
 				C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */,
 			);
 			name = include;
+			sourceTree = "<group>";
+		};
+		D1358BBE18D776F600A36FDC /* config */ = {
+			isa = PBXGroup;
+			children = (
+				D1358BBF18D7772500A36FDC /* iOS.xcconfig */,
+				D1358BC018D7772500A36FDC /* Mac.xcconfig */,
+				C9DF8481148D049500B64799 /* Info.plist */,
+			);
+			name = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +344,7 @@
 		};
 		C9DF8484148D04FE00B64799 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -384,6 +397,7 @@
 		};
 		C9DF8486148D050500B64799 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -435,6 +449,7 @@
 		};
 		C9DF848A148D051B00B64799 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -455,6 +470,7 @@
 		};
 		C9FB784C1501070B008B2B48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;
@@ -466,7 +482,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SDKROOT = iphoneos;
@@ -476,6 +491,7 @@
 		};
 		C9FB784E1501070B008B2B48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;
@@ -487,7 +503,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SDKROOT = iphoneos;
@@ -498,6 +513,7 @@
 		};
 		C9FB784F1501070B008B2B48 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;
@@ -509,7 +525,6 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SDKROOT = iphoneos;
@@ -520,6 +535,7 @@
 		};
 		D1F27B92177A307000E5C131 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;
@@ -539,6 +555,7 @@
 		};
 		D1F27B94177A307000E5C131 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;
@@ -559,6 +576,7 @@
 		};
 		D1F27B95177A307000E5C131 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libapriluiparticle_ios.dst;

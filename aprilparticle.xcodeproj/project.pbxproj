@@ -163,6 +163,8 @@
 		C9DF8522148D0D2F00B64799 /* hlxml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = hlxml.framework; path = "../__build__/angels/Build/Products/Debug-LLVM/hlxml.framework"; sourceTree = "<group>"; };
 		C9FB781A150105EF008B2B48 /* libaprilparticle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaprilparticle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FB781B150105EF008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1358BBC18D776D700A36FDC /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = iOS.xcconfig; path = xcconfig/iOS.xcconfig; sourceTree = "<group>"; };
+		D1358BBD18D776D700A36FDC /* Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Mac.xcconfig; path = xcconfig/Mac.xcconfig; sourceTree = "<group>"; };
 		D1CDD35515D112B800C4B579 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = src/Texture.cpp; sourceTree = SOURCE_ROOT; };
 		D1CDD35815D112C800C4B579 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = include/aprilparticle/Texture.h; sourceTree = "<group>"; };
 		D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AffectorContainer.cpp; path = src/AffectorContainer.cpp; sourceTree = SOURCE_ROOT; };
@@ -192,7 +194,7 @@
 		C9DF844B148D03DB00B64799 = {
 			isa = PBXGroup;
 			children = (
-				C9DF8481148D049500B64799 /* Info.plist */,
+				D1358BBB18D776CB00A36FDC /* config */,
 				C9DF8475148D041D00B64799 /* include */,
 				C9DF8460148D03DC00B64799 /* src */,
 				C9DF8459148D03DC00B64799 /* Frameworks */,
@@ -296,6 +298,16 @@
 			name = Affectors;
 			path = src/Affectors;
 			sourceTree = SOURCE_ROOT;
+		};
+		D1358BBB18D776CB00A36FDC /* config */ = {
+			isa = PBXGroup;
+			children = (
+				D1358BBC18D776D700A36FDC /* iOS.xcconfig */,
+				D1358BBD18D776D700A36FDC /* Mac.xcconfig */,
+				C9DF8481148D049500B64799 /* Info.plist */,
+			);
+			name = config;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -549,6 +561,7 @@
 		};
 		C9DF8484148D04FE00B64799 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -605,6 +618,7 @@
 		};
 		C9DF8486148D050500B64799 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -660,6 +674,7 @@
 		};
 		C9DF848A148D051B00B64799 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -682,6 +697,7 @@
 		};
 		C9FB7824150105EF008B2B48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBC18D776D700A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
@@ -695,7 +711,6 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = iphoneos;
@@ -705,6 +720,7 @@
 		};
 		C9FB7826150105EF008B2B48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBC18D776D700A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
@@ -718,7 +734,6 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = iphoneos;
@@ -729,6 +744,7 @@
 		};
 		C9FB7827150105EF008B2B48 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBC18D776D700A36FDC /* iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
@@ -742,7 +758,6 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = aprilparticle;
 				SDKROOT = iphoneos;
@@ -753,6 +768,7 @@
 		};
 		D1F27B80177A302100E5C131 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
@@ -774,6 +790,7 @@
 		};
 		D1F27B82177A302100E5C131 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
@@ -796,6 +813,7 @@
 		};
 		D1F27B83177A302100E5C131 /* App Store */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1358BBD18D776D700A36FDC /* Mac.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/libaprilparticle_ios.dst;
