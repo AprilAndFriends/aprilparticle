@@ -72,7 +72,7 @@
 	} \
 	this->times.insert_at(this->_i, time); \
 	this->values.insert_at(this->_i, value); \
-	this->_size++;
+	++this->_size;
 
 #define TIMED_TEMPLATE_UPDATE(particle, var) \
 	if (this->times.size() == 0) \

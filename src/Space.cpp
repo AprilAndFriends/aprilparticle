@@ -197,7 +197,7 @@ namespace aprilparticle
 					(*it2)->update((*it), k, this->_movement);
 				}
 				(*it)->position += this->_movement + (*it)->direction * k;
-				this->alive++;
+				++this->alive;
 			}
 		}
 		// updated emitters (create new particles as well)
@@ -276,7 +276,7 @@ namespace aprilparticle
 	void Space::_addNewParticle(float k)
 	{
 		this->particles += this->_particle;
-		this->alive++;
+		++this->alive;
 		this->_movement.set(0.0f, 0.0f, 0.0f);
 		foreach (Affector*, it, this->affectors)
 		{
