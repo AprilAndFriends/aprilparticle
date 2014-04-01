@@ -439,7 +439,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
@@ -456,7 +455,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
@@ -473,7 +471,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
@@ -490,7 +487,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
@@ -507,7 +503,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
@@ -524,7 +519,6 @@
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 			};
