@@ -43,7 +43,7 @@ namespace aprilparticle
 		{
 			throw hl_exception("Cannot convert string '" + string + "' to gtypes::Vector2.");
 		}
-		return gvec2(data[0], data[1]);
+		return gvec2(data[0].trim(), data[1].trim());
 	}
 
 	gvec3 hstr_to_gvec3(chstr string)
@@ -53,7 +53,7 @@ namespace aprilparticle
 		{
 			throw hl_exception("Cannot convert string '" + string + "' to gtypes::Vector3.");
 		}
-		return gvec3(data[0], data[1], data[2]);
+		return gvec3(data[0].trim(), data[1].trim(), data[2].trim());
 	}
 
 }
