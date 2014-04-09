@@ -18,6 +18,8 @@
 #include "Particle.h"
 #include "Space.h"
 
+#define PRE_UPDATE_TIME_STEP 0.05f
+
 namespace aprilparticle
 {
 	Space::Space(chstr name) : SpaceObject(name == "" ? generateName("Space") : name), AffectorContainer(), _lastTimeFraction(0.0f)
@@ -194,11 +196,11 @@ namespace aprilparticle
 				int count = (int)(this->preUpdate * 10.0f);
 				for_iter (i, 0, count)
 				{
-					this->update(0.1f);
+					this->update(PRE_UPDATE_TIME_STEP);
 				}
 				if (this->preUpdate != (float)count)
 				{
-					float remaining = hmodf(this->preUpdate, 0.1f);
+					float remaining = hmodf(this->preUpdate, PRE_UPDATE_TIME_STEP);
 					if (remaining > 0.0f)
 					{
 						this->update(remaining);
