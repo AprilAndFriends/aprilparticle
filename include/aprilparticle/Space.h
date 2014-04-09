@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.0
+/// @version 2.1
 /// 
 /// @section LICENSE
 /// 
@@ -41,6 +41,7 @@ namespace aprilparticle
 		~Space();
 
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
+		HL_DEFINE_GETSET(float, fixedTimeStep, FixedTimeStep);
 		HL_DEFINE_GETSET(gvec3, up, Up);
 		void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GETSET(harray<Emitter*>, emitters, Emitters);
@@ -67,6 +68,7 @@ namespace aprilparticle
 
 	protected:
 		float preUpdate;
+		float fixedTimeStep;
 		gvec3 up;
 		System* system;
 		harray<Emitter*> emitters;
@@ -76,11 +78,14 @@ namespace aprilparticle
 
 		void _setSystem(System* value) { this->system = value; }
 
+		void _updateInternal(float k);
+
 		void _addNewParticle(float k);
 
 	private:
 		gvec3 _movement;
 		Particle* _particle;
+		float _lastTimeFraction;
 
 	};
 }

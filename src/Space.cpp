@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.01
+/// @version 2.1
 /// 
 /// @section LICENSE
 /// 
@@ -20,18 +20,21 @@
 
 namespace aprilparticle
 {
-	Space::Space(chstr name) : SpaceObject(name == "" ? generateName("Space") : name), AffectorContainer()
+	Space::Space(chstr name) : SpaceObject(name == "" ? generateName("Space") : name), AffectorContainer(), _lastTimeFraction(0.0f)
 	{
 		this->preUpdate = 0.0f;
+		this->fixedTimeStep = 0.0f;
 		this->up.set(0.0f, 1.0f, 0.0f);
 		this->alive = 0;
 		this->started = false;
 		this->system = NULL;
+		
 	}
 
-	Space::Space(const Space& other) : SpaceObject(other), AffectorContainer(other)
+	Space::Space(const Space& other) : SpaceObject(other), AffectorContainer(other), _lastTimeFraction(0.0f)
 	{
 		this->preUpdate = other.preUpdate;
+		this->fixedTimeStep = other.fixedTimeStep;
 		this->up = other.up;
 		this->alive = 0;
 		this->started = other.started;
@@ -129,15 +132,17 @@ namespace aprilparticle
 		{
 			*property_exists = true;
 		}
-		if (name == "pre_update")	return this->getPreUpdate();
-		if (name == "up")			return gvec3_to_hstr(this->getUp());
+		if (name == "pre_update")		return this->getPreUpdate();
+		if (name == "fixed_time_step")	return this->getFixedTimeStep();
+		if (name == "up")				return gvec3_to_hstr(this->getUp());
 		return SpaceObject::getProperty(name, property_exists);
 	}
 
 	bool Space::setProperty(chstr name, chstr value)
 	{
-		if (name == "pre_update")	this->setPreUpdate(value);
-		else if (name == "up")		this->setUp(hstr_to_gvec3(value));
+		if		(name == "pre_update")		this->setPreUpdate(value);
+		else if	(name == "fixed_time_step")	this->setFixedTimeStep(value);
+		else if	(name == "up")				this->setUp(hstr_to_gvec3(value));
 		else return SpaceObject::setProperty(name, value);
 		return true;
 	}
@@ -163,6 +168,24 @@ namespace aprilparticle
 		{
 			return;
 		}
+		if (this->fixedTimeStep <= 0.0f)
+		{
+			this->_updateInternal(k);
+		}
+		else
+		{
+			float time = k + this->_lastTimeFraction;
+			int steps = (int)(time / this->fixedTimeStep);
+			this->_lastTimeFraction = time - steps * this->fixedTimeStep;
+			for_iter (i, 0, steps)
+			{
+				this->_updateInternal(this->fixedTimeStep);
+			}
+		}
+	}
+
+	void Space::_updateInternal(float k)
+	{
 		if (!this->started)
 		{
 			this->started = true;
