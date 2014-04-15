@@ -38,9 +38,9 @@ namespace aprilparticle
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
-			void setStartColor(chstr value) { this->startColor.set(value); }
+			inline void setStartColor(chstr value) { this->startColor.set(value); }
 			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
-			void setEndColor(chstr value) { this->endColor.set(value); }
+			inline void setEndColor(chstr value) { this->endColor.set(value); }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

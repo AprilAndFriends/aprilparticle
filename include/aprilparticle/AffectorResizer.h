@@ -35,9 +35,9 @@ namespace aprilparticle
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
-			void setStartSize(float x, float y) { this->startSize.set(x, y); }
+			inline void setStartSize(float x, float y) { this->startSize.set(x, y); }
 			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
-			void setEndSize(float x, float y) { this->endSize.set(x, y); }
+			inline void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

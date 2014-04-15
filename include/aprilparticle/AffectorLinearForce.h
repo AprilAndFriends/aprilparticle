@@ -35,7 +35,7 @@ namespace aprilparticle
 			static Affector* createInstance(chstr name = "");
 			
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
-			void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
+			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);

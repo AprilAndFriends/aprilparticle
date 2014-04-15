@@ -65,7 +65,7 @@ namespace apriluiparticle
 		hstr filepath;
 		aprilparticle::System* system;
 
-		aprilparticle::System** _getSystemPtr() { return &this->system; }
+		inline aprilparticle::System** _getSystemPtr() { return &this->system; }
 
 		virtual void _load();
 		virtual void _resize();

@@ -43,7 +43,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_GETSET(float, fixedTimeStep, FixedTimeStep);
 		HL_DEFINE_GETSET(gvec3, up, Up);
-		void setUp(float x, float y, float z) { this->up.set(x, y, z); }
+		inline void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GETSET(harray<Emitter*>, emitters, Emitters);
 		bool isRunning();
 		bool isExpired();
@@ -76,7 +76,7 @@ namespace aprilparticle
 		int alive;
 		bool started;
 
-		void _setSystem(System* value) { this->system = value; }
+		inline void _setSystem(System* value) { this->system = value; }
 
 		void _updateInternal(float k);
 

@@ -36,7 +36,7 @@ namespace aprilparticle
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(gvec3, axis, Axis);
-			void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
+			inline void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
 			HL_DEFINE_GETSET(float, evolutionSpeed, EvolutionSpeed);
 			bool isClockwise();
 			void setClockwise(bool value);

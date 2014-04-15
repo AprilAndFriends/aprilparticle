@@ -45,8 +45,8 @@ namespace aprilparticle
 
 		void setRandomnessRange(float min, float max);
 				
-		virtual void update(Particle* particle, float k, gvec3& movement) { }
-		virtual void draw() { }
+		inline virtual void update(Particle* particle, float k, gvec3& movement) { }
+		inline virtual void draw() { }
 
 		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
 		virtual bool setProperty(chstr name, chstr value);
@@ -58,7 +58,7 @@ namespace aprilparticle
 		gvec3 chaoticity;
 		Space* space;
 
-		void _setSpace(Space* value) { this->space = value; }
+		inline void _setSpace(Space* value) { this->space = value; }
 
 	};
 }

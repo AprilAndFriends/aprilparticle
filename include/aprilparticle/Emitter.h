@@ -62,7 +62,7 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
-		void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
+		inline void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
 		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
 		HL_DEFINE_GETSET(april::ColorMode, colorMode, ColorMode);
 		HL_DEFINE_GETSET(float, colorModeFactor, ColorModeFactor);
@@ -150,7 +150,7 @@ namespace aprilparticle
 		hdeque<Particle*> particles;
 
 		void _createNewParticle(float k);
-		void _setSpace(Space* value) { this->space = value; }
+		inline void _setSpace(Space* value) { this->space = value; }
 
 	private:
 		april::ColoredTexturedVertex* _triangleBatch;

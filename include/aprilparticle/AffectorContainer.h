@@ -35,7 +35,7 @@ namespace aprilparticle
 
 		Affector* getAffector(chstr name);
 		template <class T>
-		T* getAffector(chstr name)
+		inline T* getAffector(chstr name)
 		{
 			return dynamic_cast<T*>(this->getAffector(name));
 		}
