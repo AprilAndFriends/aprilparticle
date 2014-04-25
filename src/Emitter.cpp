@@ -256,20 +256,20 @@ namespace aprilparticle
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
-			if		(mode == april::BM_DEFAULT)		return "default";
-			else if	(mode == april::BM_ALPHA)		return "alpha";
-			else if	(mode == april::BM_ADD)			return "add";
-			else if	(mode == april::BM_SUBTRACT)	return "subtract";
-			else if	(mode == april::BM_OVERWRITE)	return "overwrite";
+			if (mode == april::BM_DEFAULT)		return "default";
+			if (mode == april::BM_ALPHA)		return "alpha";
+			if (mode == april::BM_ADD)			return "add";
+			if (mode == april::BM_SUBTRACT)		return "subtract";
+			if (mode == april::BM_OVERWRITE)	return "overwrite";
 			return "";
 		}
 		if (name == "color_mode")
 		{
 			april::ColorMode mode = this->getColorMode();
-			if		(mode == april::CM_DEFAULT)		return "default";
-			else if	(mode == april::CM_MULTIPLY)	return "multiply";
-			else if	(mode == april::CM_LERP)		return "lerp";
-			else if	(mode == april::CM_ALPHA_MAP)	return "alpha_map";
+			if (mode == april::CM_DEFAULT)		return "default";
+			if (mode == april::CM_MULTIPLY)		return "multiply";
+			if (mode == april::CM_LERP)			return "lerp";
+			if (mode == april::CM_ALPHA_MAP)	return "alpha_map";
 			return "";
 		}
 		if (name == "color_mode_factor")	return this->getColorModeFactor();
