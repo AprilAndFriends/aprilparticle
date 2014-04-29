@@ -77,14 +77,14 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Revolutor::update(Particle* particle, float k, gvec3& movement)
+		void Revolutor::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			this->_position = this->position + this->space->getPosition();
 			this->_direction = particle->position - this->_position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)
 			{
-				_rotation.setRotation3D(this->axis, (1.0f - hsqrt(this->_squaredLength) / this->radius) * RAND_RANGE(Randomness) * this->evolutionSpeed * this->angle * k);
+				_rotation.setRotation3D(this->axis, (1.0f - hsqrt(this->_squaredLength) / this->radius) * RAND_RANGE(Randomness) * this->evolutionSpeed * this->angle * timeDelta);
 				movement += this->_position + _rotation * this->_direction - particle->position;
 			}
 		}

@@ -49,7 +49,7 @@ namespace apriluiparticle
 
 		void notifyEvent(chstr name, void* params);
 
-		void update(float k);
+		void update(float timeDelta);
 		void OnDraw();
 		
 		hstr getProperty(chstr name, bool* property_exists = NULL);

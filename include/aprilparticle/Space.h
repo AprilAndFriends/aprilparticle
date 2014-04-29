@@ -50,7 +50,7 @@ namespace aprilparticle
 		int getParticleCount();
 
 		void reset();
-		void update(float k);
+		void update(float timeDelta);
 		void finish();
 		void draw(gvec3 point); // is the only 3D drawing method
 		void draw(gvec2 offset, april::Color color = april::Color::White);
@@ -78,9 +78,9 @@ namespace aprilparticle
 
 		inline void _setSystem(System* value) { this->system = value; }
 
-		void _updateInternal(float k);
+		void _updateInternal(float timeDelta);
 
-		void _addNewParticle(float k);
+		void _addNewParticle(float timeDelta);
 
 	private:
 		gvec3 _movement;

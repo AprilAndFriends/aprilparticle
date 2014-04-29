@@ -52,7 +52,7 @@ namespace apriluiparticle
 		return new ParticleSpace(name, rect);
 	}
 
-	void ParticleSpace::update(float k)
+	void ParticleSpace::update(float timeDelta)
 	{
 		this->_updateBindings();
 		foreach (apriluiparticle::ParticleEmitter*, it, this->emitterObjects)
@@ -62,9 +62,9 @@ namespace apriluiparticle
 		if (this->space != NULL)
 		{
 			this->space->setEnabled(this->isDerivedEnabled());
-			this->space->update(k);
+			this->space->update(timeDelta);
 		}
-		aprilui::Object::update(k);
+		aprilui::Object::update(timeDelta);
 	}
 
 	void ParticleSpace::OnDraw()

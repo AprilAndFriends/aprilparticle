@@ -54,7 +54,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Scaler::update(Particle* particle, float k, gvec3& movement)
+		void Scaler::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			particle->scale = this->startScale * (1.0f - this->_ratio) + this->endScale * this->_ratio;

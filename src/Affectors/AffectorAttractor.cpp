@@ -60,7 +60,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Attractor::update(Particle* particle, float k, gvec3& movement)
+		void Attractor::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			this->_direction = this->position + this->space->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();
@@ -78,7 +78,7 @@ namespace aprilparticle
 						this->_factor = pow(this->_factor, this->exponent);
 					}
 				}
-				movement += this->_direction.normalized() * (RAND_RANGE(Randomness) * this->force * this->_factor * k);
+				movement += this->_direction.normalized() * (RAND_RANGE(Randomness) * this->force * this->_factor * timeDelta);
 			}
 		}
 

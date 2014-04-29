@@ -76,7 +76,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ColorChangerTimed::update(Particle* particle, float k, gvec3& movement)
+		void ColorChangerTimed::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			TIMED_TEMPLATE_UPDATE(particle, color);
 		}

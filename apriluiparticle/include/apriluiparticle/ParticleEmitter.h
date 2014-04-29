@@ -44,7 +44,7 @@ namespace apriluiparticle
 		HL_DEFINE_GETSET(hstr, spaceObjectName, SpaceObjectName);
 		HL_DEFINE_GETSET(hstr, emitterName, EmitterName);
 
-		void update(float k);
+		void update(float timeDelta);
 		void OnDraw();
 		
 		void notifyEvent(chstr name, void* params);

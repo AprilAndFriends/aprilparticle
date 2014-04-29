@@ -52,9 +52,9 @@ namespace aprilparticle
 			return true;
 		}
 
-		void LinearForce::update(Particle* particle, float k, gvec3& movement)
+		void LinearForce::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
-			particle->direction += this->direction * (RAND_RANGE(Randomness) * k);
+			particle->direction += this->direction * (RAND_RANGE(Randomness) * timeDelta);
 		}
 
 	}

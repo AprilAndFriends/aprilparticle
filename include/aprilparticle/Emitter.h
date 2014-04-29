@@ -107,7 +107,7 @@ namespace aprilparticle
 		bool setProperty(chstr name, chstr value);
 
 		void reset();
-		void update(float k);
+		void update(float timeDelta);
 		
 		/// @note Not thread-safe!
 		void draw(gvec3 point, gvec3 up); // the only 3D drawing method
@@ -149,7 +149,7 @@ namespace aprilparticle
 		Space* space;
 		hdeque<Particle*> particles;
 
-		void _createNewParticle(float k);
+		void _createNewParticle(float timeDelta);
 		inline void _setSpace(Space* value) { this->space = value; }
 
 	private:

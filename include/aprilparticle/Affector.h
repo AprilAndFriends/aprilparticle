@@ -45,7 +45,7 @@ namespace aprilparticle
 
 		void setRandomnessRange(float min, float max);
 				
-		inline virtual void update(Particle* particle, float k, gvec3& movement) { }
+		inline virtual void update(Particle* particle, float timeDelta, gvec3& movement) { }
 		inline virtual void draw() { }
 
 		virtual hstr getProperty(chstr name, bool* property_exists = NULL);

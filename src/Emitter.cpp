@@ -337,7 +337,7 @@ namespace aprilparticle
 		return true;
 	}
 
-	void Emitter::_createNewParticle(float k)
+	void Emitter::_createNewParticle(float timeDelta)
 	{
 		switch (this->type)
 		{
@@ -406,7 +406,7 @@ namespace aprilparticle
 		this->space->_particle->scale = RAND_RANGE(Scale);
 		this->space->_particle->angle = RAND_RANGE(Angle);
 		this->particles += this->space->_particle;
-		this->space->_addNewParticle(k);
+		this->space->_addNewParticle(timeDelta);
 	}
 
 	void Emitter::reset()
@@ -420,7 +420,7 @@ namespace aprilparticle
 		this->particles.clear();
 	}
 
-	void Emitter::update(float k)
+	void Emitter::update(float timeDelta)
 	{
 		// remove all expired particles
 		if (this->particles.size() > 0)
@@ -453,18 +453,18 @@ namespace aprilparticle
 			return;
 		}
 		// check delay
-		this->time += k;
-		this->loopTimer += k;
+		this->time += timeDelta;
+		this->loopTimer += timeDelta;
 		if (this->delay > 0.0f)
 		{
 			if (this->time <= this->delay)
 			{
 				return;
 			}
-			if (this->time - k < this->delay)
+			if (this->time - timeDelta < this->delay)
 			{
 				this->loopTimer -= this->delay;
-				k = hmin(k, this->loopTimer);
+				timeDelta = hmin(timeDelta, this->loopTimer);
 			}
 		}
 		// check duration and looping setup
@@ -505,7 +505,7 @@ namespace aprilparticle
 		}
 		if (this->running && !this->_expired)
 		{
-			this->emissionTimer += k;
+			this->emissionTimer += timeDelta;
 			// create new particles
 			if (this->emissionRate > 0.0f)
 			{
@@ -521,7 +521,7 @@ namespace aprilparticle
 					this->alive += this->_quota;
 					for_iter (i, 0, this->_quota)
 					{
-						this->_createNewParticle(k * i / this->_quota);
+						this->_createNewParticle(timeDelta * i / this->_quota);
 					}
 					this->emissionTimer = 0.0f;
 				}

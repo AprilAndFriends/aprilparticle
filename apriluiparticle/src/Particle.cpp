@@ -31,14 +31,14 @@ namespace apriluiparticle
 		return new Particle(name, rect);
 	}
 
-	void Particle::update(float k)
+	void Particle::update(float timeDelta)
 	{
 		if (this->system != NULL)
 		{
 			this->system->setEnabled(this->isDerivedEnabled());
-			this->system->update(k);
+			this->system->update(timeDelta);
 		}
-		ParticleBase::update(k);
+		ParticleBase::update(timeDelta);
 	}
 
 	void Particle::OnDraw()

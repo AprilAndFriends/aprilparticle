@@ -33,7 +33,7 @@ namespace apriluiparticle
 		~Particle();
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
-		void update(float k);
+		void update(float timeDelta);
 
 		void OnDraw();
 

@@ -77,7 +77,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ResizerTimed::update(Particle* particle, float k, gvec3& movement)
+		void ResizerTimed::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			TIMED_TEMPLATE_UPDATE(particle, size);
 		}

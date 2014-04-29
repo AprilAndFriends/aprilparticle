@@ -40,7 +40,7 @@ namespace aprilparticle
 			hstr getProperty(chstr name, bool* property_exists = NULL);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* article, float k, gvec3& movement);
+			void update(Particle* article, float timeDelta, gvec3& movement);
 			void draw();
 
 		protected:

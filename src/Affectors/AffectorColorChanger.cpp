@@ -64,7 +64,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ColorChanger::update(Particle* particle, float k, gvec3& movement)
+		void ColorChanger::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			particle->color = this->startColor * (1.0f - this->_ratio) + this->endColor * this->_ratio;

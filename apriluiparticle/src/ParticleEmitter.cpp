@@ -46,7 +46,7 @@ namespace apriluiparticle
 		return new ParticleEmitter(name, rect);
 	}
 
-	void ParticleEmitter::update(float k)
+	void ParticleEmitter::update(float timeDelta)
 	{
 		this->_tryFindSpaceObject();
 		this->_updateBindings();
@@ -54,7 +54,7 @@ namespace apriluiparticle
 		{
 			this->emitter->setEnabled(this->isDerivedEnabled());
 		}
-		aprilui::Object::update(k);
+		aprilui::Object::update(timeDelta);
 	}
 
 	void ParticleEmitter::OnDraw()

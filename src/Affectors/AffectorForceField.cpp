@@ -85,13 +85,13 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ForceField::update(Particle* particle, float k, gvec3& movement)
+		void ForceField::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			this->_squaredLength = (this->position + this->space->getPosition() - particle->position).squaredLength();
 			if (this->_squaredLength <= this->radius * this->radius)
 			{
 				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
-				movement += this->direction * (RAND_RANGE(Randomness) * this->_factor * this->_factor * k);
+				movement += this->direction * (RAND_RANGE(Randomness) * this->_factor * this->_factor * timeDelta);
 			}
 		}
 		

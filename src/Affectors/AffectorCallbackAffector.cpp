@@ -52,11 +52,11 @@ namespace aprilparticle
 			return true;
 		}
 
-		void CallbackAffector::update(Particle* particle, float k, gvec3& movement)
+		void CallbackAffector::update(Particle* particle, float timeDelta, gvec3& movement)
 		{
 			if (this->affectionCallback != NULL)
 			{
-				(*this->affectionCallback)(this, particle, k, movement);
+				(*this->affectionCallback)(this, particle, timeDelta, movement);
 			}
 		}
 

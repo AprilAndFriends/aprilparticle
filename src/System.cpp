@@ -432,13 +432,13 @@ namespace aprilparticle
 		}
 	}
 
-	void System::update(float k)
+	void System::update(float timeDelta)
 	{
 		if (this->enabled)
 		{
 			foreach (Space*, it, this->spaces)
 			{
-				(*it)->update(k);
+				(*it)->update(timeDelta);
 			}
 		}
 	}
