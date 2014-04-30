@@ -1,6 +1,6 @@
-package com.example.aprilparticle.android.demoParticle;
+package com.aprilparticle.demoParticle;
 
-public class DemoParticle extends com.googlecode.april.android.Activity
+public class DemoParticle extends com.april.Activity
 {
 	static
 	{
@@ -11,7 +11,7 @@ public class DemoParticle extends com.googlecode.april.android.Activity
 	protected void onCreate(android.os.Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		this.forceArchivePath(com.googlecode.april.android.NativeInterface.ApkPath); // forces APK as archive file
+		this.forceArchivePath(com.april.NativeInterface.ApkPath); // forces APK as archive file
 	}
 	
 }
