@@ -46,6 +46,14 @@ namespace apriluiparticle
 		return new ParticleEmitter(name, rect);
 	}
 
+	void ParticleEmitter::resetEmitter()
+	{
+		if (this->emitter != NULL)
+		{
+			this->emitter->reset();
+		}
+	}
+
 	void ParticleEmitter::update(float timeDelta)
 	{
 		this->_tryFindSpaceObject();

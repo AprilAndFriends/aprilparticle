@@ -416,8 +416,6 @@ namespace aprilparticle
 		this->time = 0.0f;
 		this->currentLoop = 0;
 		this->running = true;
-		this->alive = 0;
-		this->particles.clear();
 	}
 
 	void Emitter::update(float timeDelta)
