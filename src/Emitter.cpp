@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -604,7 +604,7 @@ namespace aprilparticle
 		for (this->_pI = this->_pStart; this->_pI != this->_pEnd; this->_pI += this->_pStep)
 		{
 			this->space->_particle = this->particles[this->_pI];
-			if (!this->space->_particle->isDead())
+			if (!this->space->_particle->isDead() && this->space->_particle->color.a > 0)
 			{
 				this->_xSize = this->space->_particle->size.x * this->_w * this->space->_particle->scale * 0.5f;
 				this->_ySize = this->space->_particle->size.y * this->_h * this->space->_particle->scale * 0.5f;
@@ -650,6 +650,10 @@ namespace aprilparticle
 	
 	void Emitter::draw(gvec2 offset, april::Color color)
 	{
+		if (color.a == 0)
+		{
+			return;
+		}
 		this->texture->load();
 		this->_w = (float)this->texture->getWidth();
 		this->_h = (float)this->texture->getHeight();
@@ -666,7 +670,7 @@ namespace aprilparticle
 		for (this->_pI = this->_pStart; this->_pI != this->_pEnd; this->_pI += this->_pStep)
 		{
 			this->space->_particle = this->particles[this->_pI];
-			if (!this->space->_particle->isDead())
+			if (!this->space->_particle->isDead() && this->space->_particle->color.a > 0)
 			{
 				this->_xSize = this->space->_particle->size.x * this->_w * this->space->_particle->scale * 0.5f;
 				this->_ySize = this->space->_particle->size.y * this->_h * this->space->_particle->scale * 0.5f;

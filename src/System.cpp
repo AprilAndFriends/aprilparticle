@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -464,7 +464,7 @@ namespace aprilparticle
 
 	void System::draw(gvec2 offset, april::Color color)
 	{
-		if (this->visible)
+		if (this->visible && color.a > 0)
 		{
 			foreach (Space*, it, this->spaces)
 			{

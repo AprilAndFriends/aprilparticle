@@ -1,6 +1,6 @@
 /// @file
 /// @author  Boris Mikic
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -36,6 +36,7 @@ namespace apriluiparticle
 		if (this->system != NULL)
 		{
 			this->system->setEnabled(this->isDerivedEnabled());
+			this->system->setVisible(this->isDerivedVisible());
 			this->system->update(timeDelta);
 		}
 		ParticleBase::update(timeDelta);
@@ -46,7 +47,8 @@ namespace apriluiparticle
 		grect rect = this->_getDrawRect();
 		if (this->system != NULL)
 		{
-			this->system->setVisible(this->isVisible());
+			this->system->setEnabled(this->isDerivedEnabled());
+			this->system->setVisible(this->isDerivedVisible());
 			this->system->draw(rect.getCenter(), this->_getDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
