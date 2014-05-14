@@ -418,6 +418,12 @@ namespace aprilparticle
 		this->running = true;
 	}
 
+	void Emitter::clearParticles()
+	{
+		this->alive = 0;
+		this->particles.clear();
+	}
+
 	void Emitter::update(float timeDelta)
 	{
 		// remove all expired particles

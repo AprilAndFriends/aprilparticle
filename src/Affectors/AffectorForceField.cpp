@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -94,11 +94,11 @@ namespace aprilparticle
 				movement += this->direction * (RAND_RANGE(Randomness) * this->_factor * this->_factor * timeDelta);
 			}
 		}
-		
+
+		// TODO - test
 		void ForceField::draw()
 		{
-			static float length;
-			length = this->direction.length();
+			float length = this->direction.length();
 			for_iter (i, 0, VERTEX_COUNT)
 			{
 				u[i] = this->position + this->space->getPosition() + ut * length;

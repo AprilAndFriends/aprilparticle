@@ -161,6 +161,7 @@ namespace aprilparticle
 		foreach (Emitter*, it, this->emitters)
 		{
 			(*it)->reset();
+			(*it)->clearParticles();
 		}
 	}
 

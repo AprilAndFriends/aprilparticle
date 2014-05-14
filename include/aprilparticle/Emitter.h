@@ -1,7 +1,7 @@
 /// @file
 /// @author  Domagoj Cerjan
 /// @author  Boris Mikic
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -107,15 +107,16 @@ namespace aprilparticle
 		bool setProperty(chstr name, chstr value);
 
 		void reset();
+		void clearParticles();
 		void update(float timeDelta);
-		
+
 		/// @note Not thread-safe!
 		void draw(gvec3 point, gvec3 up); // the only 3D drawing method
 		/// @note Not thread-safe!
 		void draw(gvec2 offset = gvec2());
 		/// @note Not thread-safe!
 		void draw(gvec2 offset, april::Color color);
-		
+
 	protected:
 		float emissionTimer;
 		float loopTimer;
@@ -175,7 +176,7 @@ namespace aprilparticle
 		int _pEnd;
 		int _pStep;
 		int _pI;
-		
+
 		void _setupTriangleBatch();
 
 	};
