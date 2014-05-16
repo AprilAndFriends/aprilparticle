@@ -100,7 +100,7 @@ namespace aprilparticle
 		}
 		foreach_m (aprilparticle::Texture*, it, this->textures)
 		{
-			if (!it->second->isCached())
+			if (it->second != NULL && !it->second->isCached())
 			{
 				delete it->second;
 			}
