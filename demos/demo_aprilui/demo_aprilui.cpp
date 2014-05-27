@@ -8,7 +8,7 @@
 
 #ifndef _ANDROID
 #ifndef _WINRT
-#define RESOURCE_PATH "../media/"
+#define RESOURCE_PATH "../../demos/media/"
 #else
 #define RESOURCE_PATH "media/"
 #endif
@@ -39,7 +39,6 @@
 #include <apriluiparticle/apriluiparticle.h>
 #include <apriluiparticle/ParticleSystem.h>
 #include <atres/atres.h>
-#include <atres/FontResourceBitmap.h>
 #include <atres/Renderer.h>
 #include <gtypes/Vector2.h>
 

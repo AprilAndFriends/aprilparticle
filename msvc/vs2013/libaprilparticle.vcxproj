@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Win32">
+      <Configuration>DebugS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Win32">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Android">
+      <Configuration>Debug</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Android">
+      <Configuration>DebugS</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android">
+      <Configuration>Release</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Android">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Android-x86">
+      <Configuration>Debug</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Android-x86">
+      <Configuration>DebugS</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android-x86">
+      <Configuration>Release</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Android-x86">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AEE6186A-6335-4EC4-9356-BE34B6BED1D8}</ProjectGuid>
+    <RootNamespace>aprilparticle</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="props\default.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2013\props-generic\platform-$(Platform).props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2013\props-generic\configurations.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2013\props-generic\build-defaults.props" />
+  <Import Project="props\configuration.props" />
+  <ItemGroup>
+    <ClInclude Include="..\..\include\aprilparticle\ActiveObject.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Affector.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorAttractor.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorCallbackAffector.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorColorChanger.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorColorChangerTimed.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorContainer.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorResizerTimed.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorScalerTimed.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorSpace.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorRevolutor.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorForceField.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorLinearForce.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorResizer.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorRotator.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Affectors.h" />
+    <ClInclude Include="..\..\include\aprilparticle\AffectorScaler.h" />
+    <ClInclude Include="..\..\include\aprilparticle\aprilparticle.h" />
+    <ClInclude Include="..\..\include\aprilparticle\aprilparticleExport.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Emitter.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Particle.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Space.h" />
+    <ClInclude Include="..\..\include\aprilparticle\SpaceObject.h" />
+    <ClInclude Include="..\..\include\aprilparticle\System.h" />
+    <ClInclude Include="..\..\include\aprilparticle\Texture.h" />
+    <ClInclude Include="..\..\src\TimedTemplate.h" />
+    <ClInclude Include="..\..\src\aprilparticleUtil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ActiveObject.cpp" />
+    <ClCompile Include="..\..\src\AffectorContainer.cpp" />
+    <ClCompile Include="..\..\src\Affectors\Affector.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorAttractor.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorCallbackAffector.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorColorChanger.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorColorChangerTimed.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorResizerTimed.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorScalerTimed.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorSpace.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorRevolutor.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorForceField.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorLinearForce.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorResizer.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorRotator.cpp" />
+    <ClCompile Include="..\..\src\Affectors\AffectorScaler.cpp" />
+    <ClCompile Include="..\..\src\aprilparticle.cpp" />
+    <ClCompile Include="..\..\src\Emitter.cpp" />
+    <ClCompile Include="..\..\src\Particle.cpp" />
+    <ClCompile Include="..\..\src\Space.cpp" />
+    <ClCompile Include="..\..\src\SpaceObject.cpp" />
+    <ClCompile Include="..\..\src\System.cpp" />
+    <ClCompile Include="..\..\src\aprilparticleUtil.cpp" />
+    <ClCompile Include="..\..\src\Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\april\msvc\vs2013\libapril.vcxproj">
+      <Project>{2d053cda-686b-4b36-80eb-1da5f0cef8f9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\gtypes\msvc\vs2013\libgtypes.vcxproj">
+      <Project>{9c043b29-db40-48d5-97d8-1bc44128e3ba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\hltypes\hlxml\msvc\vs2013\libhlxml.vcxproj">
+      <Project>{601bcb9e-aaf2-412e-8aeb-9fc77d0505d8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\hltypes\msvc\vs2013\libhltypes.vcxproj">
+      <Project>{e4d373bf-e227-48b9-99e6-84987e8674ec}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
