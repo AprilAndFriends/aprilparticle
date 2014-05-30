@@ -7,7 +7,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
     <Link>
-      <AdditionalDependencies>libhltypes.lib;libgtypes.lib;libapril.lib;libaprilparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libhltypes.lib;libgtypes.lib;libapril.lib;libhlxml.lib;libaprilparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -18,10 +18,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='Android' or '$(Platform)'=='Android-x86'">
     <Link>
-      <AdditionalDependencies>-llibaprilparticle;-lapril;-lhltypes;-lgtypes;-ljpeg;-lpng;-lzip;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>-laprilparticle;-lhlxml;-lapril;-lhltypes;-lgtypes;-ljpeg;-lpng;-lzip;-ltinyxml;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <AntBuild>
-      <AntBuildPath>$(ProjectDir)android</AntBuildPath>
+      <AntBuildPath>$(ProjectDir)..\..\demos\$(ProjectName)\android</AntBuildPath>
     </AntBuild>
   </ItemDefinitionGroup>
 </Project>
