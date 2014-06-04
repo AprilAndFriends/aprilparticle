@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4a55d3f3-c7b4-4efc-8594-67e7793a86bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{2ea3ceae-d6a6-4098-af99-320b39318901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ea35aa3f-5f7e-4d21-a430-652ce0e87d4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Affectors">
+      <UniqueIdentifier>{8acda455-49a5-4d55-86fe-06ca87140284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Affectors">
+      <UniqueIdentifier>{ed5dc7d7-a3be-49a3-9a29-6332c2e4fce0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\aprilparticle\Affectors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\aprilparticleExport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\aprilparticle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\Emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\ActiveObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\Affector.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorAttractor.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorCallbackAffector.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorColorChanger.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorForceField.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorLinearForce.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorResizer.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorRotator.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorScaler.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorRevolutor.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorSpace.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorColorChangerTimed.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorResizerTimed.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorScalerTimed.h">
+      <Filter>Header Files\Affectors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TimedTemplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\aprilparticleUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\Space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\SpaceObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aprilparticle\AffectorContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aprilparticle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ActiveObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\Affector.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorAttractor.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorCallbackAffector.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorColorChanger.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorForceField.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorLinearForce.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorResizer.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorRotator.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorScaler.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorRevolutor.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorSpace.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorColorChangerTimed.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorResizerTimed.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Affectors\AffectorScalerTimed.cpp">
+      <Filter>Source Files\Affectors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aprilparticleUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Space.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SpaceObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AffectorContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\fileproperties.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

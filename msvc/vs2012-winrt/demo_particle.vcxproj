@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Win32">
+      <Configuration>DebugS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Win32">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|ARM">
+      <Configuration>DebugS</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|ARM">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F82C40A4-77A0-4649-98A8-AD63FD8EEA8B}</ProjectGuid>
+    <RootNamespace>demo_particle</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.0</ApplicationTypeRevision>
+    <AppContainerApplication>true</AppContainerApplication>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="props-demos\default.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2012-winrt\props-generic\platform-$(Platform).props" />
+  <Import Project="props-demos\configurations.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2012-winrt\props-generic\build-defaults.props" />
+  <Import Project="props-demos\build-defaults.props" />
+  <Import Project="props-demos\configuration.props" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugS|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseS|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\demos\demo_particle\demo_particle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="media\assets\icon.png" />
+    <Image Include="media\assets\tile-medium.png" />
+    <Image Include="media\assets\tile-small.png" />
+    <Image Include="media\assets\logo_icon.png" />
+    <Image Include="media\assets\small_icon.png" />
+    <Image Include="media\assets\splash.png" />
+    <Image Include="media\assets\store_icon.png" />
+    <Image Include="media\blue_particle.png" />
+    <Image Include="media\bubble.png" />
+    <Image Include="media\fire_particle.png" />
+    <Image Include="media\green_particle.png" />
+    <Image Include="media\rain_drop.png" />
+    <Image Include="media\red_particle.png" />
+    <Image Include="media\white_particle.png" />
+    <None Include="media\bubbles.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\demo_aprilui.dts">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\flame.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_cannon.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_glow.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_moon.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_rain.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_segmented.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\milkyWay.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\quazar.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\rain.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\twirl.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\vortex.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="..\..\demos\demo_particle\TemporaryKey.pfx" />
+    <AppxManifest Include="..\..\demos\demo_particle\Package-vs2012.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
