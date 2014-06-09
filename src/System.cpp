@@ -259,8 +259,8 @@ namespace aprilparticle
 		}
 		hlog::write(aprilparticle::logTag, "Loading system: " + this->filename);
 		this->loaded = true;
-		hlxml::Document* doc = hlxml::open(filename);
-		hlxml::Node* root = doc->root();
+		hlxml::Document doc(filename);
+		hlxml::Node* root = doc.root();
 		this->name = "";
 		foreach_xmlproperty (prop, root)
 		{
@@ -285,7 +285,6 @@ namespace aprilparticle
 				this->_loadTexture(node);
 			}
 		}
-		hlxml::close(doc);
 		this->_assignObjectData();
 	}
 
