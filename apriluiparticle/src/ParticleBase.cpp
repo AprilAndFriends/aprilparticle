@@ -26,6 +26,8 @@
 
 namespace apriluiparticle
 {
+	harray<aprilui::PropertyDescription> ParticleBase::_propertyDescriptions;
+
 	ParticleBase::ParticleBase(chstr name, grect rect) : aprilui::Object(name, rect)
 	{
 		this->system = NULL;

@@ -25,6 +25,8 @@
 
 namespace apriluiparticle
 {
+	harray<aprilui::PropertyDescription> ParticleEmitter::_propertyDescriptions;
+
 	ParticleEmitter::ParticleEmitter(chstr name, grect rect) : aprilui::Object(name, rect)
 	{
 		this->spaceObject = NULL;
