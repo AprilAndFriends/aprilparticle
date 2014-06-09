@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -49,6 +49,16 @@ namespace apriluiparticle
 	aprilui::Object* ParticleSpace::createInstance(chstr name, grect rect)
 	{
 		return new ParticleSpace(name, rect);
+	}
+
+	harray<aprilui::PropertyDescription> ParticleSpace::getPropertyDescriptions()
+	{
+		if (ParticleSpace::_propertyDescriptions.size() == 0)
+		{
+			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::TYPE_STRING);
+			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::TYPE_STRING);
+		}
+		return (aprilui::Object::getPropertyDescriptions() + ParticleSpace::_propertyDescriptions);
 	}
 
 	void ParticleSpace::update(float timeDelta)

@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -43,6 +43,16 @@ namespace apriluiparticle
 	aprilui::Object* ParticleEmitter::createInstance(chstr name, grect rect)
 	{
 		return new ParticleEmitter(name, rect);
+	}
+
+	harray<aprilui::PropertyDescription> ParticleEmitter::getPropertyDescriptions()
+	{
+		if (ParticleEmitter::_propertyDescriptions.size() == 0)
+		{
+			ParticleEmitter::_propertyDescriptions += aprilui::PropertyDescription("space_object", aprilui::PropertyDescription::TYPE_STRING);
+			ParticleEmitter::_propertyDescriptions += aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::TYPE_STRING);
+		}
+		return (aprilui::Object::getPropertyDescriptions() + ParticleEmitter::_propertyDescriptions);
 	}
 
 	void ParticleEmitter::resetEmitter()

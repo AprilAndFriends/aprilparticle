@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -49,6 +49,16 @@ namespace apriluiparticle
 	bool ParticleBase::isExpired()
 	{
 		return (this->system != NULL && this->system->isExpired());
+	}
+
+	harray<aprilui::PropertyDescription> ParticleBase::getPropertyDescriptions()
+	{
+		if (ParticleBase::_propertyDescriptions.size() == 0)
+		{
+			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::TYPE_STRING);
+			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::TYPE_STRING);
+		}
+		return (aprilui::Object::getPropertyDescriptions() + ParticleBase::_propertyDescriptions);
 	}
 
 	void ParticleBase::load(chstr filename)

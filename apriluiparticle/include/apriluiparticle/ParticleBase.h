@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -49,6 +49,8 @@ namespace apriluiparticle
 		bool isRunning();
 		bool isExpired();
 		
+		harray<aprilui::PropertyDescription> getPropertyDescriptions();
+
 		void notifyEvent(chstr name, void* params);
 
 		void load(chstr filename);
@@ -68,6 +70,9 @@ namespace apriluiparticle
 
 		virtual void _load();
 		virtual void _resize();
+
+	private:
+		static harray<aprilui::PropertyDescription> _propertyDescriptions;
 
 	};
 }

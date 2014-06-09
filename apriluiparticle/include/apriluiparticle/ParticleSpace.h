@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.11
 /// 
 /// @section LICENSE
 /// 
@@ -46,6 +46,8 @@ namespace apriluiparticle
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
 		HL_DEFINE_GETSET(hstr, spaceName, SpaceName);
 
+		harray<aprilui::PropertyDescription> getPropertyDescriptions();
+
 		void notifyEvent(chstr name, void* params);
 
 		void update(float timeDelta);
@@ -68,6 +70,9 @@ namespace apriluiparticle
 		void _unregisterEmitterObject(ParticleEmitter* emitter);
 		void _unbind();
 		void _resize();
+
+	private:
+		static harray<aprilui::PropertyDescription> _propertyDescriptions;
 
 	};
 }
