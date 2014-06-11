@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,6 +14,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> Resizer::_propertyDescriptions;
+
 		Resizer::Resizer(chstr name) : Affector(name)
 		{
 			this->startSize.set(1.0f, 1.0f);
@@ -33,6 +35,16 @@ namespace aprilparticle
 		Affector* Resizer::createInstance(chstr name)
 		{
 			return new Resizer(name);
+		}
+
+		harray<PropertyDescription> Resizer::getPropertyDescriptions()
+		{
+			if (Resizer::_propertyDescriptions.size() == 0)
+			{
+				Resizer::_propertyDescriptions += PropertyDescription("start_size", PropertyDescription::GVEC2);
+				Resizer::_propertyDescriptions += PropertyDescription("end_size", PropertyDescription::GVEC2);
+			}
+			return (Affector::getPropertyDescriptions() + Resizer::_propertyDescriptions);
 		}
 
 		hstr Resizer::getProperty(chstr name)

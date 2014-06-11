@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -28,6 +28,8 @@
 namespace aprilparticle
 {
 	static gvec3 v[4]; // optimization
+
+	harray<PropertyDescription> Emitter::_propertyDescriptions;
 
 	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? generateName("Emitter") : name)
 	{
@@ -116,6 +118,32 @@ namespace aprilparticle
 			this->limit = value;
 			this->_setupTriangleBatch();
 		}
+	}
+
+	harray<PropertyDescription> Emitter::getPropertyDescriptions()
+	{
+		if (Emitter::_propertyDescriptions.size() == 0)
+		{
+			Emitter::_propertyDescriptions += PropertyDescription("name", PropertyDescription::STRING);
+			Emitter::_propertyDescriptions += PropertyDescription("type", PropertyDescription::ENUM);
+			Emitter::_propertyDescriptions += PropertyDescription("dimensions", PropertyDescription::GVEC3);
+			Emitter::_propertyDescriptions += PropertyDescription("blend_mode", PropertyDescription::ENUM);
+			Emitter::_propertyDescriptions += PropertyDescription("color_mode", PropertyDescription::ENUM);
+			Emitter::_propertyDescriptions += PropertyDescription("color_mode_factor", PropertyDescription::FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("emission_rate", PropertyDescription::FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("duration", PropertyDescription::FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("delay", PropertyDescription::FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("loop_delay", PropertyDescription::FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("loops", PropertyDescription::INT);
+			Emitter::_propertyDescriptions += PropertyDescription("limit", PropertyDescription::INT);
+			Emitter::_propertyDescriptions += PropertyDescription("reverse_rendering", PropertyDescription::BOOL);
+			Emitter::_propertyDescriptions += PropertyDescription("life", PropertyDescription::RANGE_FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::RANGE_GVEC3);
+			Emitter::_propertyDescriptions += PropertyDescription("size", PropertyDescription::RANGE_GVEC2);
+			Emitter::_propertyDescriptions += PropertyDescription("scale", PropertyDescription::RANGE_FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("angle", PropertyDescription::RANGE_FLOAT);
+		}
+		return (SpaceObject::getPropertyDescriptions() + Emitter::_propertyDescriptions);
 	}
 
 	void Emitter::_setupTriangleBatch()

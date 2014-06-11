@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,9 @@
 #define APRILPARTICLE_LINEAR_FORCE_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hstring.h>
 
 #include "Affector.h"
 
@@ -35,6 +37,8 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -43,6 +47,9 @@ namespace aprilparticle
 		protected:
 			gvec3 direction;
 	
+		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 		};
 	};
 }

@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,6 +14,7 @@
 #define APRILPARTICLE_CALLBACK_AFFECTOR_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>

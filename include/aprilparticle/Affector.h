@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -18,6 +18,7 @@
 #include <hltypes/hstring.h>
 
 #include "aprilparticleExport.h"
+#include "PropertyDescription.h"
 
 namespace aprilparticle
 {
@@ -42,6 +43,8 @@ namespace aprilparticle
 		void setRandomness(chstr value);
 
 		void setRandomnessRange(float min, float max);
+
+		virtual harray<PropertyDescription> getPropertyDescriptions();
 				
 		inline virtual void update(Particle* particle, float timeDelta, gvec3& movement) { }
 		inline virtual void draw() { }
@@ -57,6 +60,9 @@ namespace aprilparticle
 		Space* space;
 
 		inline void _setSpace(Space* value) { this->space = value; }
+
+	private:
+		static harray<PropertyDescription> _propertyDescriptions;
 
 	};
 }

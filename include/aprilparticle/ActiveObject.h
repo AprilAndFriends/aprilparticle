@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -17,6 +17,7 @@
 #include <hltypes/hstring.h>
 
 #include "aprilparticleExport.h"
+#include "PropertyDescription.h"
 
 namespace aprilparticle
 {
@@ -33,6 +34,9 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(visible, Visible);
 		HL_DEFINE_ISSET(enabled, Enabled);
 
+		virtual harray<PropertyDescription> getPropertyDescriptions();
+		bool hasProperty(chstr name);
+
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
@@ -41,6 +45,8 @@ namespace aprilparticle
 		bool visible;
 		bool enabled;
 
+	private:
+		static harray<PropertyDescription> _propertyDescriptions;
 
 	};
 }

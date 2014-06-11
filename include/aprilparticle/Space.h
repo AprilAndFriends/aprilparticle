@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -48,6 +48,8 @@ namespace aprilparticle
 		bool isExpired();
 		int getParticleCount();
 
+		harray<PropertyDescription> getPropertyDescriptions();
+
 		void reset();
 		void update(float timeDelta);
 		void finish();
@@ -82,6 +84,8 @@ namespace aprilparticle
 		void _addNewParticle(float timeDelta);
 
 	private:
+		static harray<PropertyDescription> _propertyDescriptions;
+
 		gvec3 _movement;
 		Particle* _particle;
 		float _lastTimeFraction;

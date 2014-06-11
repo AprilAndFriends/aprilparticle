@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -16,6 +16,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> ColorChanger::_propertyDescriptions;
+
 		ColorChanger::ColorChanger(chstr name) : Affector(name)
 		{
 			this->startColor = april::Color::White;
@@ -41,6 +43,16 @@ namespace aprilparticle
 		Affector* ColorChanger::createInstance(chstr name)
 		{
 			return new ColorChanger(name);
+		}
+
+		harray<PropertyDescription> ColorChanger::getPropertyDescriptions()
+		{
+			if (ColorChanger::_propertyDescriptions.size() == 0)
+			{
+				ColorChanger::_propertyDescriptions += PropertyDescription("start_color", PropertyDescription::HEXCOLOR);
+				ColorChanger::_propertyDescriptions += PropertyDescription("end_color", PropertyDescription::HEXCOLOR);
+			}
+			return (Affector::getPropertyDescriptions() + ColorChanger::_propertyDescriptions);
 		}
 
 		hstr ColorChanger::getProperty(chstr name)

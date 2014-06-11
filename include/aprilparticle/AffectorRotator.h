@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -33,6 +33,8 @@ namespace aprilparticle
 
 			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
 				
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -40,6 +42,9 @@ namespace aprilparticle
 
 		protected:
 			float rotationSpeed;
+
+		private:
+			static harray<PropertyDescription> _propertyDescriptions;
 
 		};
 	};

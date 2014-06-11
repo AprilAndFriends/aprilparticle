@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -101,6 +101,8 @@ namespace aprilparticle
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
 
+		harray<PropertyDescription> getPropertyDescriptions();
+
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
@@ -152,6 +154,8 @@ namespace aprilparticle
 		inline void _setSpace(Space* value) { this->space = value; }
 
 	private:
+		static harray<PropertyDescription> _propertyDescriptions;
+
 		april::ColoredTexturedVertex* _triangleBatch;
 		gvec3 _pos;
 		float _rho;

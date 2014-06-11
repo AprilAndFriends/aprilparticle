@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,6 +14,7 @@
 #define APRILPARTICLE_RESIZER_H
 
 #include <gtypes/Vector2.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
 
@@ -38,6 +39,8 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
 			inline void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -48,6 +51,8 @@ namespace aprilparticle
 			gvec2 endSize;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			float _ratio;
 
 		};

@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,9 @@
 #define APRILPARTICLE_EVOLUTOR_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hstring.h>
 
 #include "AffectorSpace.h"
 #include "aprilparticleExport.h"
@@ -39,6 +41,8 @@ namespace aprilparticle
 			bool isClockwise();
 			void setClockwise(bool value);
 			
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -50,6 +54,8 @@ namespace aprilparticle
 			float angle;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			gvec3 _position;
 			gvec3 _direction;
 			float _squaredLength;

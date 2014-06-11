@@ -6,24 +6,21 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
-#include <april/Texture.h>
 #include <hltypes/hstring.h>
 
 #include "aprilparticle.h"
-#include "Texture.h"
+#include "PropertyDescription.h"
 
 namespace aprilparticle
 {
-	Texture::Texture(april::Texture* texture, chstr filename, bool cached)
+	PropertyDescription::PropertyDescription(chstr name, PropertyType type)
 	{
-		this->texture = texture;
-		this->filename = filename;
-		this->cached = cached;
+		this->name = name;
+		this->type = type;
 	}
 
-	Texture::~Texture()
+	PropertyDescription::~PropertyDescription()
 	{
-		delete this->texture;
 	}
-	
+
 }

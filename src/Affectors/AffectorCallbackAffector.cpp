@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -34,7 +34,10 @@ namespace aprilparticle
 
 		hstr CallbackAffector::getProperty(chstr name)
 		{
-			if (this->properties.has_key(name))	return this->properties[name];
+			if (this->properties.has_key(name))
+			{
+				return this->properties[name];
+			}
 			return Affector::getProperty(name);
 		}
 

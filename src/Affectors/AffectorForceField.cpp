@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -47,6 +47,8 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
+		harray<PropertyDescription> ForceField::_propertyDescriptions;
+
 		ForceField::ForceField(chstr name) : Space(name)
 		{
 			this->direction.set(0.0f, 0.0f, 1.0f);
@@ -64,6 +66,15 @@ namespace aprilparticle
 		Affector* ForceField::createInstance(chstr name)
 		{
 			return new ForceField(name);
+		}
+
+		harray<PropertyDescription> ForceField::getPropertyDescriptions()
+		{
+			if (ForceField::_propertyDescriptions.size() == 0)
+			{
+				ForceField::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::GVEC3);
+			}
+			return (Space::getPropertyDescriptions() + ForceField::_propertyDescriptions);
 		}
 
 		hstr ForceField::getProperty(chstr name)

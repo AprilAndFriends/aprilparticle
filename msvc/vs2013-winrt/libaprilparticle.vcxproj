@@ -71,6 +71,7 @@
     <ClInclude Include="..\..\include\aprilparticle\aprilparticleExport.h" />
     <ClInclude Include="..\..\include\aprilparticle\Emitter.h" />
     <ClInclude Include="..\..\include\aprilparticle\Particle.h" />
+    <ClInclude Include="..\..\include\aprilparticle\PropertyDescription.h" />
     <ClInclude Include="..\..\include\aprilparticle\Space.h" />
     <ClInclude Include="..\..\include\aprilparticle\SpaceObject.h" />
     <ClInclude Include="..\..\include\aprilparticle\System.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="..\..\src\aprilparticle.cpp" />
     <ClCompile Include="..\..\src\Emitter.cpp" />
     <ClCompile Include="..\..\src\Particle.cpp" />
+    <ClCompile Include="..\..\src\PropertyDescription.cpp" />
     <ClCompile Include="..\..\src\Space.cpp" />
     <ClCompile Include="..\..\src\SpaceObject.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />

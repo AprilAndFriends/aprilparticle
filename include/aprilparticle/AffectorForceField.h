@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,9 @@
 #define APRILPARTICLE_FORCE_FIELD_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hstring.h>
 
 #include "AffectorSpace.h"
 
@@ -35,6 +37,8 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 				
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -45,6 +49,8 @@ namespace aprilparticle
 			gvec3 direction;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			float _factor;
 			float _squaredLength;
 			

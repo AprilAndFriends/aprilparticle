@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -33,11 +33,16 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec3, position, Position);
 		inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 
+		harray<PropertyDescription> getPropertyDescriptions();
+
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 	protected:
 		gvec3 position;
+
+	private:
+		static harray<PropertyDescription> _propertyDescriptions;
 
 	};
 }

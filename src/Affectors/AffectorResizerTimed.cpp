@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -22,6 +22,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> ResizerTimed::_propertyDescriptions;
+
 		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
 		{
 			TIMED_TEMPLATE_INIT(gvec2(1.0f, 1.0f), gvec2(0.0f, 0.0f));
@@ -55,6 +57,8 @@ namespace aprilparticle
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
+
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ResizerTimed, Affector, GVEC2);
 
 		hstr ResizerTimed::getProperty(chstr name)
 		{

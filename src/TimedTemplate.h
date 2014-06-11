@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -72,6 +72,16 @@
 	this->times.insert_at(this->_i, time); \
 	this->values.insert_at(this->_i, value); \
 	++this->_size;
+
+#define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \
+	harray<PropertyDescription> classe::getPropertyDescriptions() \
+	{ \
+		if (classe::_propertyDescriptions.size() == 0) \
+		{ \
+			classe::_propertyDescriptions += PropertyDescription("timings", PropertyDescription::TIMING_ ## type); \
+		} \
+		return (superclasse::getPropertyDescriptions() + classe::_propertyDescriptions); \
+	}
 
 #define TIMED_TEMPLATE_UPDATE(particle, var) \
 	if (this->times.size() == 0) \

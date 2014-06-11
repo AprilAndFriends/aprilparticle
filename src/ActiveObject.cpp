@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -18,6 +18,8 @@
 
 namespace aprilparticle
 {
+	harray<PropertyDescription> ActiveObject::_propertyDescriptions;
+
 	ActiveObject::ActiveObject(chstr name)
 	{
 		this->name = (name == "" ? generateName("ActiveObject") : name);
@@ -34,6 +36,30 @@ namespace aprilparticle
 	
 	ActiveObject::~ActiveObject()
 	{
+	}
+
+	harray<PropertyDescription> ActiveObject::getPropertyDescriptions()
+	{
+		if (ActiveObject::_propertyDescriptions.size() == 0)
+		{
+			ActiveObject::_propertyDescriptions += PropertyDescription("name", PropertyDescription::STRING);
+			ActiveObject::_propertyDescriptions += PropertyDescription("visible", PropertyDescription::BOOL);
+			ActiveObject::_propertyDescriptions += PropertyDescription("enabled", PropertyDescription::BOOL);
+		}
+		return ActiveObject::_propertyDescriptions;
+	}
+
+	bool ActiveObject::hasProperty(chstr name)
+	{
+		harray<PropertyDescription> properties = this->getPropertyDescriptions();
+		foreach (PropertyDescription, it, properties)
+		{
+			if ((*it).getName() == name)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	hstr ActiveObject::getProperty(chstr name)

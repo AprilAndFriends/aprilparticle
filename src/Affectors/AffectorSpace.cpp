@@ -1,11 +1,12 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
 #include "AffectorSpace.h"
@@ -15,6 +16,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> Space::_propertyDescriptions;
+
 		Space::Space(chstr name) : Affector(name)
 		{
 			this->position.set(0.0f, 0.0f, 0.0f);
@@ -31,6 +34,16 @@ namespace aprilparticle
 		{
 		}
 		
+		harray<PropertyDescription> Space::getPropertyDescriptions()
+		{
+			if (Space::_propertyDescriptions.size() == 0)
+			{
+				Space::_propertyDescriptions += PropertyDescription("position", PropertyDescription::GVEC3);
+				Space::_propertyDescriptions += PropertyDescription("radius", PropertyDescription::FLOAT);
+			}
+			return (Affector::getPropertyDescriptions() + Space::_propertyDescriptions);
+		}
+
 		hstr Space::getProperty(chstr name)
 		{
 			if (name == "position")	return gvec3_to_hstr(this->getPosition());

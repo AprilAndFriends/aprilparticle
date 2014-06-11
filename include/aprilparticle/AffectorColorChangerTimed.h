@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -41,6 +41,8 @@ namespace aprilparticle
 			void setTimings(hmap<float, april::Color> value);
 			void setTimings(chstr value);
 
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -53,6 +55,8 @@ namespace aprilparticle
 			harray<april::Color> values;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			float _ratio;
 			int _i;
 			int _size;

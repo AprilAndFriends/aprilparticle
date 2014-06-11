@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,9 @@
 #define APRILPARTICLE_SCALER_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hstring.h>
 
 #include "Affector.h"
 
@@ -35,6 +37,8 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(float, startScale, StartScale);
 			HL_DEFINE_GETSET(float, endScale, EndScale);
 			
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -45,6 +49,8 @@ namespace aprilparticle
 			float endScale;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			float _ratio;
 
 		};

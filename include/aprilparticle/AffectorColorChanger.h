@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -15,6 +15,7 @@
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
 
@@ -36,10 +37,10 @@ namespace aprilparticle
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
-			inline void setStartColor(chstr value) { this->startColor.set(value); }
 			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
-			inline void setEndColor(chstr value) { this->endColor.set(value); }
 				
+			harray<PropertyDescription> getPropertyDescriptions();
+
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
@@ -50,6 +51,8 @@ namespace aprilparticle
 			april::Color endColor;
 
 		private:
+			static harray<PropertyDescription> _propertyDescriptions;
+
 			float _ratio;
 
 		};

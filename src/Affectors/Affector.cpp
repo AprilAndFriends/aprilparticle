@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -16,6 +16,8 @@
 
 namespace aprilparticle
 {
+	harray<PropertyDescription> Affector::_propertyDescriptions;
+
 	Affector::Affector(chstr name)
 	{
 		this->name = (name == "" ? generateName("Affector") : name);
@@ -47,11 +49,20 @@ namespace aprilparticle
 		this->maxRandomness = max;
 	}
 
+	harray<PropertyDescription> Affector::getPropertyDescriptions()
+	{
+		if (Affector::_propertyDescriptions.size() == 0)
+		{
+			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::STRING);
+			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::RANGE_FLOAT);
+		}
+		return Affector::_propertyDescriptions;
+	}
+
 	hstr Affector::getProperty(chstr name)
 	{
 		if (name == "name")			return this->getName();
 		if (name == "randomness")	return GET_RANGE(Randomness, hstr);
-		//if (name == "chaoticity")	return gvec3_to_hstr(this->getChaoticity());
 		hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 		return "";
 	}
@@ -60,7 +71,6 @@ namespace aprilparticle
 	{
 		if		(name == "name")		this->setName(value);
 		else if	(name == "randomness")	this->setRandomness(value);
-		//else if	(name == "chaoticity")	this->setChaoticity(hstr_to_gvec3(value));
 		else
 		{
 			hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());

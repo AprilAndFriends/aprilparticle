@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -19,7 +19,9 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		gmat3 _rotation;
+		static gmat3 _rotation;
+
+		harray<PropertyDescription> Revolutor::_propertyDescriptions;
 
 		Revolutor::Revolutor(chstr name) : Space(name)
 		{
@@ -52,6 +54,17 @@ namespace aprilparticle
 		void Revolutor::setClockwise(bool value)
 		{
 			this->angle = (value ? -360.0f : 360.0f);
+		}
+
+		harray<PropertyDescription> Revolutor::getPropertyDescriptions()
+		{
+			if (Revolutor::_propertyDescriptions.size() == 0)
+			{
+				Revolutor::_propertyDescriptions += PropertyDescription("axis", PropertyDescription::GVEC3);
+				Revolutor::_propertyDescriptions += PropertyDescription("evolution_speed", PropertyDescription::FLOAT);
+				Revolutor::_propertyDescriptions += PropertyDescription("clockwise", PropertyDescription::BOOL);
+			}
+			return (Space::getPropertyDescriptions() + Revolutor::_propertyDescriptions);
 		}
 
 		hstr Revolutor::getProperty(chstr name)

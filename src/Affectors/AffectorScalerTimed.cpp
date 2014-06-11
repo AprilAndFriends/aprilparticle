@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -20,6 +20,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> ScalerTimed::_propertyDescriptions;
+
 		ScalerTimed::ScalerTimed(chstr name) : Affector(name)
 		{
 			TIMED_TEMPLATE_INIT(1.0f, 0.0f);
@@ -53,6 +55,8 @@ namespace aprilparticle
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
+
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ScalerTimed, Affector, FLOAT);
 
 		hstr ScalerTimed::getProperty(chstr name)
 		{

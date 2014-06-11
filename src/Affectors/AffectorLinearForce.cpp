@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,6 +14,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> LinearForce::_propertyDescriptions;
+
 		LinearForce::LinearForce(chstr name) : Affector(name)
 		{
 			this->direction.set(0.0f, -1.0f, 0.0f);
@@ -31,6 +33,15 @@ namespace aprilparticle
 		Affector* LinearForce::createInstance(chstr name)
 		{
 			return new LinearForce(name);
+		}
+
+		harray<PropertyDescription> LinearForce::getPropertyDescriptions()
+		{
+			if (LinearForce::_propertyDescriptions.size() == 0)
+			{
+				LinearForce::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::GVEC3);
+			}
+			return (Affector::getPropertyDescriptions() + LinearForce::_propertyDescriptions);
 		}
 
 		hstr LinearForce::getProperty(chstr name)

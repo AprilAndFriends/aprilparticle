@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -18,6 +18,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> Attractor::_propertyDescriptions;
+
 		Attractor::Attractor(chstr name) : Space(name)
 		{
 			this->force = 1.0f;
@@ -37,6 +39,16 @@ namespace aprilparticle
 		Affector* Attractor::createInstance(chstr name)
 		{
 			return new Attractor(name);
+		}
+
+		harray<PropertyDescription> Attractor::getPropertyDescriptions()
+		{
+			if (Attractor::_propertyDescriptions.size() == 0)
+			{
+				Attractor::_propertyDescriptions += PropertyDescription("force", PropertyDescription::FLOAT);
+				Attractor::_propertyDescriptions += PropertyDescription("exponent", PropertyDescription::FLOAT);
+			}
+			return (Space::getPropertyDescriptions() + Attractor::_propertyDescriptions);
 		}
 
 		hstr Attractor::getProperty(chstr name)

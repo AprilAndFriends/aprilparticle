@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,6 +21,8 @@
 
 namespace aprilparticle
 {
+	harray<PropertyDescription> Space::_propertyDescriptions;
+
 	Space::Space(chstr name) : SpaceObject(name == "" ? generateName("Space") : name), AffectorContainer(), _lastTimeFraction(0.0f)
 	{
 		this->preUpdate = 0.0f;
@@ -81,6 +83,17 @@ namespace aprilparticle
 	int Space::getParticleCount()
 	{
 		return this->alive;
+	}
+
+	harray<PropertyDescription> Space::getPropertyDescriptions()
+	{
+		if (Space::_propertyDescriptions.size() == 0)
+		{
+			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::FLOAT);
+			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::FLOAT);
+			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::GVEC3);
+		}
+		return (SpaceObject::getPropertyDescriptions() + Space::_propertyDescriptions);
 	}
 
 	bool Space::registerEmitter(Emitter* emitter)

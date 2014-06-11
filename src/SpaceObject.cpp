@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -18,6 +18,8 @@
 
 namespace aprilparticle
 {
+	harray<PropertyDescription> SpaceObject::_propertyDescriptions;
+
 	SpaceObject::SpaceObject(chstr name) : ActiveObject(name == "" ? generateName("SpaceObject") : name)
 	{
 		this->position.set(0.0f, 0.0f, 0.0f);
@@ -30,6 +32,15 @@ namespace aprilparticle
 	
 	SpaceObject::~SpaceObject()
 	{
+	}
+
+	harray<PropertyDescription> SpaceObject::getPropertyDescriptions()
+	{
+		if (SpaceObject::_propertyDescriptions.size() == 0)
+		{
+			SpaceObject::_propertyDescriptions += PropertyDescription("position", PropertyDescription::GVEC3);
+		}
+		return (ActiveObject::getPropertyDescriptions() + SpaceObject::_propertyDescriptions);
 	}
 
 	hstr SpaceObject::getProperty(chstr name)

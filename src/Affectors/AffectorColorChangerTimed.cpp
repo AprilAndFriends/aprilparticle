@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,6 +21,8 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
+		harray<PropertyDescription> ColorChangerTimed::_propertyDescriptions;
+
 		ColorChangerTimed::ColorChangerTimed(chstr name) : Affector(name)
 		{
 			TIMED_TEMPLATE_INIT(april::Color::White, april::Color::Blank);
@@ -54,6 +56,8 @@ namespace aprilparticle
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
+
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ColorChangerTimed, Affector, HEXCOLOR);
 
 		hstr ColorChangerTimed::getProperty(chstr name)
 		{

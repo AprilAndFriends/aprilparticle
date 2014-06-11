@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -14,7 +14,9 @@
 #define APRILPARTICLE_Space_H
 
 #include <gtypes/Vector3.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
+#include <hltypes/hstring.h>
 
 #include "Affector.h"
 
@@ -35,13 +37,18 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(float, radius, Radius);
-				
+
+			harray<PropertyDescription> getPropertyDescriptions();
+			
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
 		protected:
 			gvec3 position;
 			float radius;
+
+		private:
+			static harray<PropertyDescription> _propertyDescriptions;
 
 		};
 	};
