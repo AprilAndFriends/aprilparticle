@@ -57,8 +57,8 @@ namespace apriluiparticle
 	{
 		if (ParticleBase::_propertyDescriptions.size() == 0)
 		{
-			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::TYPE_STRING);
-			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::TYPE_STRING);
+			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::STRING);
+			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::STRING);
 		}
 		return (aprilui::Object::getPropertyDescriptions() + ParticleBase::_propertyDescriptions);
 	}

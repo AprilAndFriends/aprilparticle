@@ -57,8 +57,8 @@ namespace apriluiparticle
 	{
 		if (ParticleSpace::_propertyDescriptions.size() == 0)
 		{
-			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::TYPE_STRING);
-			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::TYPE_STRING);
+			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::STRING);
+			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::STRING);
 		}
 		return (aprilui::Object::getPropertyDescriptions() + ParticleSpace::_propertyDescriptions);
 	}
