@@ -39,15 +39,11 @@ namespace aprilparticle
 			return new Attractor(name);
 		}
 
-		hstr Attractor::getProperty(chstr name, bool* property_exists)
+		hstr Attractor::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "force")	return this->getForce();
 			if (name == "exponent")	return this->getExponent();
-			return Space::getProperty(name, property_exists);
+			return Space::getProperty(name);
 		}
 
 		bool Attractor::setProperty(chstr name, chstr value)

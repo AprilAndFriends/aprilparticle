@@ -33,14 +33,10 @@ namespace aprilparticle
 			return new LinearForce(name);
 		}
 
-		hstr LinearForce::getProperty(chstr name, bool* property_exists)
+		hstr LinearForce::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool LinearForce::setProperty(chstr name, chstr value)

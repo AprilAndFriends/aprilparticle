@@ -33,14 +33,10 @@ namespace aprilparticle
 			return new Rotator(name);
 		}
 
-		hstr Rotator::getProperty(chstr name, bool* property_exists)
+		hstr Rotator::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "rotation_speed")	return this->getRotationSpeed();
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool Rotator::setProperty(chstr name, chstr value)

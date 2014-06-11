@@ -33,7 +33,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec3, position, Position);
 		inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 	protected:

@@ -54,16 +54,12 @@ namespace aprilparticle
 			this->angle = (value ? -360.0f : 360.0f);
 		}
 
-		hstr Revolutor::getProperty(chstr name, bool* property_exists)
+		hstr Revolutor::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "axis")				return gvec3_to_hstr(this->getAxis());
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
-			return Space::getProperty(name, property_exists);
+			return Space::getProperty(name);
 		}
 
 		bool Revolutor::setProperty(chstr name, chstr value)

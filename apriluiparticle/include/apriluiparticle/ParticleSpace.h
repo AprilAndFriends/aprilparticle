@@ -53,7 +53,7 @@ namespace apriluiparticle
 		void update(float timeDelta);
 		void OnDraw();
 		
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 		
 	protected:

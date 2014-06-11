@@ -101,7 +101,7 @@ namespace aprilparticle
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
 
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 		void reset();

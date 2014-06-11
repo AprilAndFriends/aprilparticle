@@ -41,7 +41,7 @@ namespace aprilparticle
 			void setTimings(hmap<float, april::Color> value);
 			void setTimings(chstr value);
 
-			hstr getProperty(chstr name, bool* property_exists = NULL);
+			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
 			void addTiming(float time, april::Color value);

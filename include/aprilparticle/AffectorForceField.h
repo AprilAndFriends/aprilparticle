@@ -35,7 +35,7 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 				
-			hstr getProperty(chstr name, bool* property_exists = NULL);
+			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
 			void update(Particle* article, float timeDelta, gvec3& movement);

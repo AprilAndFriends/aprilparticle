@@ -198,15 +198,11 @@ namespace apriluiparticle
 		}
 	}
 
-	hstr ParticleSpace::getProperty(chstr name, bool* property_exists)
+	hstr ParticleSpace::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "system_object")	return this->getSystemObjectName();
 		if (name == "space")			return this->getSpaceName();
-		return aprilui::Object::getProperty(name, property_exists);
+		return aprilui::Object::getProperty(name);
 	}
 
 	bool ParticleSpace::setProperty(chstr name, chstr value)

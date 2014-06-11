@@ -36,20 +36,11 @@ namespace aprilparticle
 	{
 	}
 
-	hstr ActiveObject::getProperty(chstr name, bool* property_exists)
+	hstr ActiveObject::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "name")		return this->getName();
 		if (name == "visible")	return this->isVisible();
 		if (name == "enabled")	return this->isEnabled();
-		if (property_exists != NULL)
-		{
-			hlog::warnf(aprilparticle::logTag, "Property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
-			*property_exists = false;
-		}
 		return "";
 	}
 	

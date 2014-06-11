@@ -231,12 +231,8 @@ namespace aprilparticle
 		this->maxAngle = max;
 	}
 
-	hstr Emitter::getProperty(chstr name, bool* property_exists)
+	hstr Emitter::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "name")					return this->getName();
 		if (name == "type")
 		{
@@ -283,7 +279,7 @@ namespace aprilparticle
 		if (name == "size")					return GET_RANGE(Size, gvec2_to_hstr);
 		if (name == "scale")				return GET_RANGE(Scale, hstr);
 		if (name == "angle")				return GET_RANGE(Angle, hstr);
-		return SpaceObject::getProperty(name, property_exists);
+		return SpaceObject::getProperty(name);
 	}
 
 	bool Emitter::setProperty(chstr name, chstr value)

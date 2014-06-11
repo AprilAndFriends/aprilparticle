@@ -46,7 +46,7 @@ namespace aprilparticle
 		inline virtual void update(Particle* particle, float timeDelta, gvec3& movement) { }
 		inline virtual void draw() { }
 
-		virtual hstr getProperty(chstr name, bool* property_exists = NULL);
+		virtual hstr getProperty(chstr name);
 		virtual bool setProperty(chstr name, chstr value);
 
 	protected:

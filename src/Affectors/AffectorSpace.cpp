@@ -31,15 +31,11 @@ namespace aprilparticle
 		{
 		}
 		
-		hstr Space::getProperty(chstr name, bool* property_exists)
+		hstr Space::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "position")	return gvec3_to_hstr(this->getPosition());
 			if (name == "radius")	return this->getRadius();
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool Space::setProperty(chstr name, chstr value)

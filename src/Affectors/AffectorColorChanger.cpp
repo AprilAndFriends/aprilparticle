@@ -43,15 +43,11 @@ namespace aprilparticle
 			return new ColorChanger(name);
 		}
 
-		hstr ColorChanger::getProperty(chstr name, bool* property_exists)
+		hstr ColorChanger::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "start_color")	return this->getStartColor().hex();
 			if (name == "end_color")	return this->getEndColor().hex();
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool ColorChanger::setProperty(chstr name, chstr value)

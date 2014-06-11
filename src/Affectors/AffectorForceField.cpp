@@ -66,14 +66,10 @@ namespace aprilparticle
 			return new ForceField(name);
 		}
 
-		hstr ForceField::getProperty(chstr name, bool* property_exists)
+		hstr ForceField::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
-			return Space::getProperty(name, property_exists);
+			return Space::getProperty(name);
 		}
 
 		bool ForceField::setProperty(chstr name, chstr value)

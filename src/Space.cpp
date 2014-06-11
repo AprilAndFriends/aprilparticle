@@ -127,16 +127,12 @@ namespace aprilparticle
 		return NULL;
 	}
 
-	hstr Space::getProperty(chstr name, bool* property_exists)
+	hstr Space::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "pre_update")		return this->getPreUpdate();
 		if (name == "fixed_time_step")	return this->getFixedTimeStep();
 		if (name == "up")				return gvec3_to_hstr(this->getUp());
-		return SpaceObject::getProperty(name, property_exists);
+		return SpaceObject::getProperty(name);
 	}
 
 	bool Space::setProperty(chstr name, chstr value)

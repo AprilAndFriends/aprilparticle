@@ -36,7 +36,7 @@ namespace aprilparticle
 			inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(float, radius, Radius);
 				
-			hstr getProperty(chstr name, bool* property_exists = NULL);
+			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
 		protected:

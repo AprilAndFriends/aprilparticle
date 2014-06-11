@@ -37,7 +37,7 @@ namespace aprilparticle
 			inline void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3&) { return this->affectionCallback; }
 			inline void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float, gvec3&)) { this->affectionCallback = value; }
 				
-			hstr getProperty(chstr name, bool* property_exists = NULL);
+			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
 			void update(Particle* particle, float timeDelta, gvec3& movement);

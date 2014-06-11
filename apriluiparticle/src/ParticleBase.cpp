@@ -152,15 +152,11 @@ namespace apriluiparticle
 		}
 	}
 	
-	hstr ParticleBase::getProperty(chstr name, bool* property_exists)
+	hstr ParticleBase::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "filename")	return this->getFilename();
 		if (name == "filepath")	return this->getFilepath();
-		return aprilui::Object::getProperty(name, property_exists);
+		return aprilui::Object::getProperty(name);
 	}
 
 	bool ParticleBase::setProperty(chstr name, chstr value)

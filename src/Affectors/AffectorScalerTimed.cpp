@@ -54,17 +54,13 @@ namespace aprilparticle
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
-		hstr ScalerTimed::getProperty(chstr name, bool* property_exists)
+		hstr ScalerTimed::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "timings")
 			{
 				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(hstr, ); // conversion using hstr prefix
 			}
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool ScalerTimed::setProperty(chstr name, chstr value)

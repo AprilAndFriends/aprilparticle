@@ -32,14 +32,10 @@ namespace aprilparticle
 			return new CallbackAffector(name);
 		}
 
-		hstr CallbackAffector::getProperty(chstr name, bool* property_exists)
+		hstr CallbackAffector::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (this->properties.has_key(name))	return this->properties[name];
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool CallbackAffector::setProperty(chstr name, chstr value)

@@ -34,15 +34,11 @@ namespace aprilparticle
 			return new Scaler(name);
 		}
 
-		hstr Scaler::getProperty(chstr name, bool* property_exists)
+		hstr Scaler::getProperty(chstr name)
 		{
-			if (property_exists != NULL)
-			{
-				*property_exists = true;
-			}
 			if (name == "start_scale")	return this->getStartScale();
 			if (name == "end_scale")	return this->getEndScale();
-			return Affector::getProperty(name, property_exists);
+			return Affector::getProperty(name);
 		}
 
 		bool Scaler::setProperty(chstr name, chstr value)

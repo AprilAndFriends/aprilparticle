@@ -54,7 +54,7 @@ namespace aprilparticle
 		void draw(gvec3 point); // is the only 3D drawing method
 		void draw(gvec2 offset, april::Color color = april::Color::White);
 
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 		bool registerEmitter(Emitter* emitter);

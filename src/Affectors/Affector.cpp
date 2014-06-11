@@ -47,19 +47,11 @@ namespace aprilparticle
 		this->maxRandomness = max;
 	}
 
-	hstr Affector::getProperty(chstr name, bool* property_exists)
+	hstr Affector::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "name")			return this->getName();
 		if (name == "randomness")	return GET_RANGE(Randomness, hstr);
 		//if (name == "chaoticity")	return gvec3_to_hstr(this->getChaoticity());
-		if (property_exists != NULL)
-		{
-			*property_exists = false;
-		}
 		hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.c_str(), this->name.c_str());
 		return "";
 	}

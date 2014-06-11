@@ -33,7 +33,7 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(visible, Visible);
 		HL_DEFINE_ISSET(enabled, Enabled);
 
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 	protected:

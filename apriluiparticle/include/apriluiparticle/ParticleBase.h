@@ -58,7 +58,7 @@ namespace apriluiparticle
 		virtual void stopSystem();
 		virtual void resetSystem();
 		
-		hstr getProperty(chstr name, bool* property_exists = NULL);
+		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 		
 	protected:

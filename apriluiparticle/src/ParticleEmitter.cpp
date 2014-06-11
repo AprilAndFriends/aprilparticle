@@ -206,15 +206,11 @@ namespace apriluiparticle
 		Object::notifyEvent(name, params);
 	}
 
-	hstr ParticleEmitter::getProperty(chstr name, bool* property_exists)
+	hstr ParticleEmitter::getProperty(chstr name)
 	{
-		if (property_exists != NULL)
-		{
-			*property_exists = true;
-		}
 		if (name == "space_object")	return this->getSpaceObjectName();
 		if (name == "emitter")		return this->getEmitterName();
-		return aprilui::Object::getProperty(name, property_exists);
+		return aprilui::Object::getProperty(name);
 	}
 
 	bool ParticleEmitter::setProperty(chstr name, chstr value)
