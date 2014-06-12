@@ -73,6 +73,10 @@
 		C9FB783B15010655008B2B48 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849D148D057600B64799 /* Particle.cpp */; };
 		C9FB783C15010655008B2B48 /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9DF849E148D057600B64799 /* System.cpp */; };
 		C9FB783D15010655008B2B48 /* aprilparticleUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C965F62714F3E7E4009F0EE5 /* aprilparticleUtil.cpp */; };
+		D17CCC9F19488CCE00366C6E /* PropertyDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D17CCC9E19488CCE00366C6E /* PropertyDescription.cpp */; };
+		D17CCCA019488CCE00366C6E /* PropertyDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D17CCC9E19488CCE00366C6E /* PropertyDescription.cpp */; };
+		D17CCCA119488CCE00366C6E /* PropertyDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D17CCC9E19488CCE00366C6E /* PropertyDescription.cpp */; };
+		D17CCCA319488CDE00366C6E /* PropertyDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = D17CCCA219488CDE00366C6E /* PropertyDescription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1CDD35615D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
 		D1CDD35715D112B800C4B579 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1CDD35515D112B800C4B579 /* Texture.cpp */; };
 		D1CDD35915D112C800C4B579 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = D1CDD35815D112C800C4B579 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,6 +169,8 @@
 		C9FB781B150105EF008B2B48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D1358BBC18D776D700A36FDC /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = iOS.xcconfig; path = xcconfig/iOS.xcconfig; sourceTree = "<group>"; };
 		D1358BBD18D776D700A36FDC /* Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Mac.xcconfig; path = xcconfig/Mac.xcconfig; sourceTree = "<group>"; };
+		D17CCC9E19488CCE00366C6E /* PropertyDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyDescription.cpp; path = src/PropertyDescription.cpp; sourceTree = SOURCE_ROOT; };
+		D17CCCA219488CDE00366C6E /* PropertyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyDescription.h; path = include/aprilparticle/PropertyDescription.h; sourceTree = "<group>"; };
 		D1CDD35515D112B800C4B579 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = src/Texture.cpp; sourceTree = SOURCE_ROOT; };
 		D1CDD35815D112C800C4B579 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = include/aprilparticle/Texture.h; sourceTree = "<group>"; };
 		D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AffectorContainer.cpp; path = src/AffectorContainer.cpp; sourceTree = SOURCE_ROOT; };
@@ -228,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				C9DF848C148D057600B64799 /* Affectors */,
+				D17CCC9E19488CCE00366C6E /* PropertyDescription.cpp */,
 				D1EA92B1175DC86F008F508D /* AffectorContainer.cpp */,
 				D1EA92B2175DC86F008F508D /* Space.cpp */,
 				D1EA92B3175DC86F008F508D /* SpaceObject.cpp */,
@@ -248,6 +255,7 @@
 		C9DF8475148D041D00B64799 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				D17CCCA219488CDE00366C6E /* PropertyDescription.h */,
 				D1EA92BA175DC883008F508D /* AffectorContainer.h */,
 				D1EA92BB175DC883008F508D /* Space.h */,
 				D1EA92BC175DC883008F508D /* SpaceObject.h */,
@@ -336,6 +344,7 @@
 				C9DF8519148D0AE500B64799 /* aprilparticleExport.h in Headers */,
 				C9DF851A148D0AE500B64799 /* Emitter.h in Headers */,
 				C9DF851B148D0AE500B64799 /* Particle.h in Headers */,
+				D17CCCA319488CDE00366C6E /* PropertyDescription.h in Headers */,
 				D1CDD35915D112C800C4B579 /* Texture.h in Headers */,
 				D1EA92BD175DC883008F508D /* AffectorContainer.h in Headers */,
 				D1EA92BE175DC883008F508D /* Space.h in Headers */,
@@ -442,6 +451,7 @@
 				C9DF84AE148D057600B64799 /* AffectorScaler.cpp in Sources */,
 				C9DF84AF148D057600B64799 /* AffectorScalerTimed.cpp in Sources */,
 				C9DF84B0148D057600B64799 /* AffectorSpace.cpp in Sources */,
+				D17CCC9F19488CCE00366C6E /* PropertyDescription.cpp in Sources */,
 				C9DF84B1148D057600B64799 /* aprilparticle.cpp in Sources */,
 				C9DF84B2148D057600B64799 /* Emitter.cpp in Sources */,
 				C9DF84B3148D057600B64799 /* Particle.cpp in Sources */,
@@ -473,6 +483,7 @@
 				C9FB783615010655008B2B48 /* AffectorScalerTimed.cpp in Sources */,
 				C9FB783715010655008B2B48 /* AffectorSpace.cpp in Sources */,
 				C9FB783815010655008B2B48 /* ActiveObject.cpp in Sources */,
+				D17CCCA119488CCE00366C6E /* PropertyDescription.cpp in Sources */,
 				C9FB783915010655008B2B48 /* aprilparticle.cpp in Sources */,
 				C9FB783A15010655008B2B48 /* Emitter.cpp in Sources */,
 				C9FB783B15010655008B2B48 /* Particle.cpp in Sources */,
@@ -504,6 +515,7 @@
 				D1F27B72177A302100E5C131 /* AffectorScalerTimed.cpp in Sources */,
 				D1F27B73177A302100E5C131 /* AffectorSpace.cpp in Sources */,
 				D1F27B74177A302100E5C131 /* ActiveObject.cpp in Sources */,
+				D17CCCA019488CCE00366C6E /* PropertyDescription.cpp in Sources */,
 				D1F27B75177A302100E5C131 /* aprilparticle.cpp in Sources */,
 				D1F27B76177A302100E5C131 /* Emitter.cpp in Sources */,
 				D1F27B77177A302100E5C131 /* Particle.cpp in Sources */,
