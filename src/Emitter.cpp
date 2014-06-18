@@ -31,7 +31,7 @@ namespace aprilparticle
 
 	harray<PropertyDescription> Emitter::_propertyDescriptions;
 
-	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? generateName("Emitter") : name)
+	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? april::generateName("Emitter") : name)
 	{
 		this->emissionTimer = 0.0f;
 		this->loopTimer = 0.0f;

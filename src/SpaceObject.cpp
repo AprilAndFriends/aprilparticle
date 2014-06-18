@@ -10,7 +10,7 @@
 #include <hltypes/harray.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
-
+#include <april/aprilUtil.h>
 #include "SpaceObject.h"
 #include "Affector.h"
 #include "aprilparticle.h"
@@ -20,7 +20,7 @@ namespace aprilparticle
 {
 	harray<PropertyDescription> SpaceObject::_propertyDescriptions;
 
-	SpaceObject::SpaceObject(chstr name) : ActiveObject(name == "" ? generateName("SpaceObject") : name)
+	SpaceObject::SpaceObject(chstr name) : ActiveObject(name == "" ? april::generateName("SpaceObject") : name)
 	{
 		this->position.set(0.0f, 0.0f, 0.0f);
 	}

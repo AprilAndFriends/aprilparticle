@@ -27,7 +27,7 @@
 
 namespace aprilparticle
 {
-	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? generateName("System") : name), AffectorContainer()
+	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? april::generateName("System") : name), AffectorContainer()
 	{
 		this->filename = filename;
 		this->loaded = false;
@@ -161,7 +161,7 @@ namespace aprilparticle
 
 	bool System::registerTexture(aprilparticle::Texture* texture, chstr name)
 	{
-		hstr key = (name == "" ? generateName(this->name + "_Texture") : name);
+		hstr key = (name == "" ? april::generateName(this->name + "_Texture") : name);
 		if (this->textures.has_key(key) || this->textures.has_value(texture))
 		{
 			return false;

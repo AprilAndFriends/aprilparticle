@@ -15,14 +15,6 @@
 
 namespace apriluiparticle
 {
-	hstr generateName(chstr prefix)
-	{
-		static hmap<hstr, int> counters;
-		int count = counters[prefix] + 1;
-		counters[prefix] = count;
-		return prefix + hstr(count);
-	}
-	
 	void resizeEmitter(gvec2 size, aprilparticle::Emitter* emitter)
 	{
 		if (emitter == NULL)

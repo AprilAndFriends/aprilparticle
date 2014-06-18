@@ -9,7 +9,7 @@
 #include <hltypes/harray.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
-
+#include <april/aprilUtil.h>
 #include "Affector.h"
 #include "aprilparticle.h"
 #include "aprilparticleUtil.h"
@@ -20,7 +20,7 @@ namespace aprilparticle
 
 	Affector::Affector(chstr name)
 	{
-		this->name = (name == "" ? generateName("Affector") : name);
+		this->name = (name == "" ? april::generateName("Affector") : name);
 		this->minRandomness = 1.0f;
 		this->maxRandomness = 1.0f;
 		this->chaoticity.set(0.0f, 0.0f, 0.0f);

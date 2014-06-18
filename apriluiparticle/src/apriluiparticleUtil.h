@@ -25,7 +25,6 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
-	hstr generateName(chstr prefix);
 	void resizeEmitter(gvec2 size, aprilparticle::Emitter* emitter);
 	void resizeEmitters(gvec2 size, harray<aprilparticle::Emitter*> emitters);
 	

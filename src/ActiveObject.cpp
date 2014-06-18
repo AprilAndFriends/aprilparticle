@@ -10,7 +10,7 @@
 #include <hltypes/harray.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
-
+#include <april/aprilUtil.h>
 #include "ActiveObject.h"
 #include "Affector.h"
 #include "aprilparticle.h"
@@ -22,7 +22,7 @@ namespace aprilparticle
 
 	ActiveObject::ActiveObject(chstr name)
 	{
-		this->name = (name == "" ? generateName("ActiveObject") : name);
+		this->name = (name == "" ? april::generateName("ActiveObject") : name);
 		this->visible = true;
 		this->enabled = true;
 	}

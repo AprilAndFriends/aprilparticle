@@ -26,7 +26,6 @@
 
 namespace aprilparticle
 {
-	hstr generateName(chstr prefix);
 	hstr gvec2_to_hstr(gvec2 vector);
 	hstr gvec3_to_hstr(gvec3 vector);
 	gvec2 hstr_to_gvec2(chstr string);
