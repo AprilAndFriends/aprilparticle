@@ -30,6 +30,8 @@ namespace apriluiparticle
 	public:
 		Particle(chstr name, grect rect);
 		~Particle();
+		hstr getClassName() const { return "Particle"; }
+
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
 		void update(float timeDelta);

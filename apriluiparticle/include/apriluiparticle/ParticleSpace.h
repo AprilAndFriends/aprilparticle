@@ -41,6 +41,8 @@ namespace apriluiparticle
 
 		ParticleSpace(chstr name, grect rect);
 		~ParticleSpace();
+		hstr getClassName() const { return "ParticleSpace"; }
+
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
