@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.12
 /// 
 /// @section LICENSE
 /// 
@@ -31,6 +31,7 @@ namespace apriluiparticle
 	ParticleBase::ParticleBase(chstr name, grect rect) : aprilui::Object(name, rect)
 	{
 		this->system = NULL;
+		this->alwaysEnabled = false;
 	}
 	
 	ParticleBase::~ParticleBase()
@@ -59,6 +60,7 @@ namespace apriluiparticle
 		{
 			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::STRING);
 			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::STRING);
+			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::BOOL);
 		}
 		return (aprilui::Object::getPropertyDescriptions() + ParticleBase::_propertyDescriptions);
 	}
@@ -67,7 +69,7 @@ namespace apriluiparticle
 	{
 		this->filename = filename;
 		this->stopSystem();
-		if ((this->filename != "" || this->filepath != "") && apriluiparticle::isEnabled())
+		if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
 		{
 			this->_load();
 		}
@@ -77,7 +79,7 @@ namespace apriluiparticle
 	{	
 		if (name == "SettingsChanged")
 		{
-			if ((this->filename != "" || this->filepath != "") && apriluiparticle::isEnabled())
+			if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
 			{
 				this->_load();
 			}
@@ -154,8 +156,9 @@ namespace apriluiparticle
 	
 	hstr ParticleBase::getProperty(chstr name)
 	{
-		if (name == "filename")	return this->getFilename();
-		if (name == "filepath")	return this->getFilepath();
+		if (name == "filename")			return this->getFilename();
+		if (name == "filepath")			return this->getFilepath();
+		if (name == "always_enabled")	return this->isAlwaysEnabled();
 		return aprilui::Object::getProperty(name);
 	}
 
@@ -173,6 +176,7 @@ namespace apriluiparticle
 			this->setFilename("");
 			this->notifyEvent("SettingsChanged", NULL);
 		}
+		else if	(name == "always_enabled")	this->setAlwaysEnabled(value);
 		else return aprilui::Object::setProperty(name, value);
 		return true;
 	}

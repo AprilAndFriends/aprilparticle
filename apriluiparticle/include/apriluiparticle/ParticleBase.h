@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.12
 /// 
 /// @section LICENSE
 /// 
@@ -47,6 +47,7 @@ namespace apriluiparticle
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);
+		HL_DEFINE_ISSET(alwaysEnabled, AlwaysEnabled);
 		HL_DEFINE_GET(aprilparticle::System*, system, System);
 		bool isRunning();
 		bool isExpired();
@@ -66,6 +67,7 @@ namespace apriluiparticle
 	protected:
 		hstr filename;
 		hstr filepath;
+		bool alwaysEnabled;
 		aprilparticle::System* system;
 
 		inline aprilparticle::System** _getSystemPtr() { return &this->system; }
