@@ -35,29 +35,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F82C40A4-77A0-4649-98A8-AD63FD8EEA8B}</ProjectGuid>
-    <RootNamespace>demo_particle</RootNamespace>
+    <ProjectGuid>{111EAE9A-B087-4A6D-A9FA-6301DD2B85BD}</ProjectGuid>
+    <RootNamespace>demo_aprilui</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
-    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationType>Windows Phone</ApplicationType>
     <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
     <AppContainerApplication>true</AppContainerApplication>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="props-demos\default.props" />
-  <Import Project="..\..\..\hltypes\msvc\vs2013-winrt\props-generic\platform-$(Platform).props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2013-winp8\props-generic\platform-$(Platform).props" />
   <Import Project="props-demos\configurations.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Import Project="..\..\..\hltypes\msvc\vs2013-winrt\props-generic\build-defaults.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2013-winp8\props-generic\build-defaults.props" />
   <Import Project="props-demos\build-defaults.props" />
   <Import Project="props-demos\configuration.props" />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugS|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtinyxml.lib;libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseS|Win32'">
@@ -66,11 +71,11 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libtinyxml.lib;libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\demos\demo_particle\demo_particle.cpp" />
+    <ClCompile Include="..\..\demos\demo_aprilui\demo_aprilui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="media\assets\Logo.scale-100.png">
@@ -79,67 +84,34 @@
     <Image Include="media\assets\Logo.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\Logo.scale-180.png">
+    <Image Include="media\assets\Logo.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\Logo.scale-80.png">
+    <Image Include="media\assets\LogoSmallP8.scale-100.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoBig.scale-100.png">
+    <Image Include="media\assets\LogoSmallP8.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoBig.scale-140.png">
+    <Image Include="media\assets\LogoSmallP8.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoBig.scale-180.png">
+    <Image Include="media\assets\LogoTinyP8.scale-100.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoBig.scale-80.png">
+    <Image Include="media\assets\LogoTinyP8.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoSmall.scale-100.png">
+    <Image Include="media\assets\LogoTinyP8.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoSmall.scale-140.png">
+    <Image Include="media\assets\SplashP8.scale-100.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoSmall.scale-180.png">
+    <Image Include="media\assets\SplashP8.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\LogoSmall.scale-80.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.scale-100.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.scale-140.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.scale-180.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.scale-80.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.targetsize-16.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.targetsize-256.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.targetsize-32.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\LogoTiny.targetsize-48.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\Splash.scale-100.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\Splash.scale-140.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\Splash.scale-180.png">
+    <Image Include="media\assets\SplashP8.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="media\assets\StoreLogo.scale-100.png">
@@ -148,7 +120,7 @@
     <Image Include="media\assets\StoreLogo.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\StoreLogo.scale-180.png">
+    <Image Include="media\assets\StoreLogo.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="media\assets\WideLogo.scale-100.png">
@@ -157,10 +129,7 @@
     <Image Include="media\assets\WideLogo.scale-140.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="media\assets\WideLogo.scale-180.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="media\assets\WideLogo.scale-80.png">
+    <Image Include="media\assets\WideLogo.scale-240.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="media\blue_particle.png" />
@@ -209,10 +178,36 @@
     <None Include="media\vortex.particle">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\demos\demo_particle\TemporaryKey.pfx" />
-    <AppxManifest Include="..\..\demos\demo_particle\Package.appxmanifest">
+    <None Include="..\..\demos\demo_aprilui\TemporaryKey.pfx" />
+    <AppxManifest Include="..\..\demos\demo_aprilui\Package-winp8.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\aprilui\msvc\vs2013-winp8\libaprilui.vcxproj">
+      <Project>{56ff74d1-34d0-4ddb-8b89-f6f9200842b8}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\atres\msvc\vs2013-winp8\libatres.vcxproj">
+      <Project>{a1e808a0-fe36-47fe-9e3b-cf195ea31f0a}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\apriluiparticle\msvc\vs2013-winp8\libapriluiparticle.vcxproj">
+      <Project>{ec6f8930-24d3-4722-a4b8-8d56f1698d76}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
