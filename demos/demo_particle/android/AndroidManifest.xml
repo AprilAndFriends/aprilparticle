@@ -9,6 +9,7 @@
 	<uses-feature android:name="android.hardware.screen.landscape"/>
 	
 	<application android:label="Demo Particle"
+			android:icon="@drawable/icon"
 			android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 		<activity android:name=".DemoParticle"
 				android:label="Demo Particle"
