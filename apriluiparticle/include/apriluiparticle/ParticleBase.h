@@ -54,7 +54,8 @@ namespace apriluiparticle
 		
 		harray<aprilui::PropertyDescription> getPropertyDescriptions();
 
-		void notifyEvent(chstr name, void* params);
+		void notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args);
+		void notifyEvent(chstr customType, aprilui::EventArgs* args);
 
 		void load(chstr filename);
 		void finishSystem();

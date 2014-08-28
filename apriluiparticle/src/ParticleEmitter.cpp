@@ -197,13 +197,13 @@ namespace apriluiparticle
 		}
 	}
 	
-	void ParticleEmitter::notifyEvent(chstr name, void* params)
+	void ParticleEmitter::notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args)
 	{
-		if (name == "OnEnableChanged" && this->emitter != NULL)
+		if (type == aprilui::Event::ENABLED_CHANGED && this->emitter != NULL)
 		{
 			this->emitter->setEnabled(this->isDerivedEnabled());
 		}
-		Object::notifyEvent(name, params);
+		Object::notifyEvent(type, args);
 	}
 
 	hstr ParticleEmitter::getProperty(chstr name)

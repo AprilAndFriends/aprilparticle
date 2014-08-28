@@ -50,7 +50,7 @@ namespace apriluiparticle
 
 		harray<aprilui::PropertyDescription> getPropertyDescriptions();
 
-		void notifyEvent(chstr name, void* params);
+		void notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args);
 
 		void update(float timeDelta);
 		void OnDraw();

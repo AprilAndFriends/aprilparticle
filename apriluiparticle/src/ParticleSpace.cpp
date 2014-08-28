@@ -162,13 +162,13 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleSpace::notifyEvent(chstr name, void* params)
+	void ParticleSpace::notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args)
 	{	
-		if (name == "Resized")
+		if (type == aprilui::Event::RESIZED)
 		{
 			this->_resize();
 		}
-		aprilui::Object::notifyEvent(name, params);
+		aprilui::Object::notifyEvent(type, args);
 	}
 
 	void ParticleSpace::_registerEmitterObject(ParticleEmitter* emitter)
