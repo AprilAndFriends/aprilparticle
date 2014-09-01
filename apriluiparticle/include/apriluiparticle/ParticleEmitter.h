@@ -52,7 +52,7 @@ namespace apriluiparticle
 		void update(float timeDelta);
 		void OnDraw();
 		
-		void notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args);
+		void notifyEvent(chstr type, aprilui::EventArgs* args);
 		
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);

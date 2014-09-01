@@ -75,18 +75,13 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleBase::notifyEvent(aprilui::Event::Type type, aprilui::EventArgs* args)
+	void ParticleBase::notifyEvent(chstr type, aprilui::EventArgs* args)
 	{
-		if (type == aprilui::Event::RESIZED)
+		if (type == aprilui::Event::Resized)
 		{
 			this->_resize();
 		}
-		aprilui::Object::notifyEvent(type, args);
-	}
-
-	void ParticleBase::notifyEvent(chstr customType, aprilui::EventArgs* args)
-	{
-		if (customType == "SettingsChanged")
+		else if (type == "SettingsChanged")
 		{
 			if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
 			{
@@ -97,7 +92,7 @@ namespace apriluiparticle
 				this->stopSystem();
 			}
 		}
-		aprilui::Object::notifyEvent(customType, args);
+		aprilui::Object::notifyEvent(type, args);
 	}
 
 	void ParticleBase::_load()
