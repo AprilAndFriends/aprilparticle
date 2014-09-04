@@ -102,7 +102,7 @@ namespace aprilparticle
 		else
 		{
 			cached |= useCache;
-			april::Texture* aprilTexture = april::rendersys->createTextureFromResource(filename, april::Texture::TYPE_IMMUTABLE, cached);
+			april::Texture* aprilTexture = april::rendersys->createTextureFromResource(filename, april::Texture::TYPE_IMMUTABLE, cached ? april::Texture::LOAD_IMMEDIATE : april::Texture::LOAD_ON_DEMAND);
 			if (aprilTexture != NULL)
 			{
 				texture = new aprilparticle::Texture(aprilTexture, filename, cached);
