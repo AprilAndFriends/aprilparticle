@@ -117,6 +117,7 @@ namespace aprilparticle
 
 	void clearCache()
 	{
+		hlog::write(logTag, "clearing cache");
 		foreach_m (aprilparticle::Texture*, it, gTextureCache)
 		{
 			it->second->getTexture()->unload();
