@@ -19,6 +19,7 @@ namespace apriluiparticle
 {
 	Particle::Particle(chstr name, grect rect) : ParticleBase(name, rect)
 	{
+		this->debugColor = april::Color(april::Color::LightPurple, 32);
 	}
 	
 	Particle::~Particle()
@@ -50,11 +51,6 @@ namespace apriluiparticle
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		ParticleBase::OnDraw();
-		if (aprilui::isDebugEnabled())
-		{
-			april::rendersys->drawFilledRect(rect, april::Color(april::Color::Yellow, 32));
-			april::rendersys->drawRect(rect, april::Color(april::Color::Black, 64));
-		}
 	}
 
 }

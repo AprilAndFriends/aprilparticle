@@ -32,6 +32,7 @@ namespace apriluiparticle
 		this->spaceObject = NULL;
 		this->emitter = NULL;
 		this->initialAngle = 0.0f;
+		this->debugColor = april::Color(april::Color::LightNeon, 32);
 	}
 	
 	ParticleEmitter::~ParticleEmitter()
@@ -82,12 +83,6 @@ namespace apriluiparticle
 		if (this->spaceObject != NULL && this->emitter != NULL)
 		{
 			this->_updateEmitterData();
-		}
-		if (aprilui::isDebugEnabled())
-		{
-			grect rect = this->_getDrawRect();
-			april::rendersys->drawFilledRect(rect, april::Color(april::Color::Neon, 32));
-			april::rendersys->drawRect(rect, april::Color(april::Color::Black, 64));
 		}
 	}
 

@@ -33,6 +33,7 @@ namespace apriluiparticle
 	{
 		this->systemObject = NULL;
 		this->space = NULL;
+		this->debugColor = april::Color(april::Color::LightMagenta, 32);
 	}
 	
 	ParticleSpace::~ParticleSpace()
@@ -87,12 +88,6 @@ namespace apriluiparticle
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		aprilui::Object::OnDraw();
-		if (aprilui::isDebugEnabled())
-		{
-			grect rect = this->_getDrawRect();
-			april::rendersys->drawFilledRect(rect, april::Color(april::Color::Orange, 32));
-			april::rendersys->drawRect(rect, april::Color(april::Color::Black, 64));
-		}
 	}
 
 	void ParticleSpace::_updateBindings()
