@@ -38,7 +38,7 @@ namespace apriluiparticle
 
 		ParticleEmitter(chstr name, grect rect);
 		~ParticleEmitter();
-		hstr getClassName() const { return "ParticleEmitter"; }
+		inline hstr getClassName() const { return "ParticleEmitter"; }
 
 		static aprilui::Object* createInstance(chstr name, grect rect);
 

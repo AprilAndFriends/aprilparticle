@@ -41,7 +41,7 @@ namespace apriluiparticle
 
 		ParticleBase(chstr name, grect rect);
 		~ParticleBase();
-		hstr getClassName() const { return "ParticleBase"; }
+		inline hstr getClassName() const { return "ParticleBase"; }
 
 		static aprilui::Object* createInstance(chstr name, grect rect);
 

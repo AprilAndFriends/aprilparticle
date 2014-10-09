@@ -39,7 +39,7 @@ namespace apriluiparticle
 
 		ParticleSystem(chstr name, grect rect);
 		~ParticleSystem();
-		hstr getClassName() const { return "ParticleSystem"; }
+		inline hstr getClassName() const { return "ParticleSystem"; }
 
 		static aprilui::Object* createInstance(chstr name, grect rect);
 
