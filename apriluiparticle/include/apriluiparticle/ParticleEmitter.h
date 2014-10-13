@@ -50,7 +50,6 @@ namespace apriluiparticle
 		void resetEmitter();
 
 		void update(float timeDelta);
-		void OnDraw();
 		
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 		
@@ -69,6 +68,8 @@ namespace apriluiparticle
 		gvec3 emitterMaxDirection;
 		gvec2 emitterMinSize;
 		gvec2 emitterMaxSize;
+
+		void _draw();
 
 		void _updateEmitterData();
 		void _updateBindings();

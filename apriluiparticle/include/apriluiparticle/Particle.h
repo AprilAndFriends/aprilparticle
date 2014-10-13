@@ -36,7 +36,8 @@ namespace apriluiparticle
 
 		void update(float timeDelta);
 
-		void OnDraw();
+	protected:
+		void _draw();
 
 	};
 }

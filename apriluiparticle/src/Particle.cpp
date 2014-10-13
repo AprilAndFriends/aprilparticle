@@ -41,7 +41,7 @@ namespace apriluiparticle
 		ParticleBase::update(timeDelta);
 	}
 
-	void Particle::OnDraw()
+	void Particle::_draw()
 	{
 		grect rect = this->_getDrawRect();
 		if (this->system != NULL)
@@ -50,7 +50,7 @@ namespace apriluiparticle
 			this->system->draw(rect.getCenter(), this->_getDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
-		ParticleBase::OnDraw();
+		ParticleBase::_draw();
 	}
 
 }

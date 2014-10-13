@@ -79,7 +79,7 @@ namespace apriluiparticle
 		aprilui::Object::update(timeDelta);
 	}
 
-	void ParticleSpace::OnDraw()
+	void ParticleSpace::_draw()
 	{
 		if (this->space != NULL)
 		{
@@ -87,7 +87,7 @@ namespace apriluiparticle
 			this->space->draw(this->_getDrawRect().getCenter(), this->_getDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
-		aprilui::Object::OnDraw();
+		aprilui::Object::_draw();
 	}
 
 	void ParticleSpace::_updateBindings()

@@ -77,9 +77,9 @@ namespace apriluiparticle
 		aprilui::Object::update(timeDelta);
 	}
 
-	void ParticleEmitter::OnDraw()
+	void ParticleEmitter::_draw()
 	{
-		aprilui::Object::OnDraw();
+		aprilui::Object::_draw();
 		if (this->spaceObject != NULL && this->emitter != NULL)
 		{
 			this->_updateEmitterData();
