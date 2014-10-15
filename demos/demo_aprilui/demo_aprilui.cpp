@@ -57,17 +57,17 @@ public:
 		this->firstFrame = true;
 	}
 	
-	bool onUpdate(float timeSinceLastFrame)
+	bool onUpdate(float timeDelta)
 	{
 		if (this->firstFrame)
 		{
-			timeSinceLastFrame = 0.0f;
+			timeDelta = 0.0f;
 			this->firstFrame = false;
 		}
 		april::rendersys->clear();
 		april::rendersys->setOrthoProjection(drawRect);
 		aprilui::updateCursorPosition();
-		dataset->update(timeSinceLastFrame);
+		dataset->update(timeDelta);
 		dataset->getObject("root")->draw();
 		return true;
 	}

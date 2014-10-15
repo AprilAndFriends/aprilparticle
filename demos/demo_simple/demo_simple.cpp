@@ -79,12 +79,12 @@ public:
 	{
 	}
 
-	bool onUpdate(float timeSinceLastFrame)
+	bool onUpdate(float timeDelta)
 	{
 		april::rendersys->clear(true, false);
-		this->angle += timeSinceLastFrame * 90.0f;
+		this->angle += timeDelta * 90.0f;
     
-		if (hmodf(this->angle - timeSinceLastFrame * 90.0f, 90.0f) > hmodf(this->angle, 90.0f))
+		if (hmodf(this->angle - timeDelta * 90.0f, 90.0f) > hmodf(this->angle, 90.0f))
 		{
 			this->counts.clear();
 			this->counts += flame->getParticleCount();
@@ -117,13 +117,13 @@ public:
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
 		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(this->angle * 0.03333333f), sin(this->angle * 0.06666667f), 0.0f) * 10.0f);
 		
-		flame->update(timeSinceLastFrame);
-		bubbles->update(timeSinceLastFrame);
-		vortex->update(timeSinceLastFrame);
-		rain->update(timeSinceLastFrame);
-		quazar->update(timeSinceLastFrame);
-		milkyWay->update(timeSinceLastFrame);
-		twirl->update(timeSinceLastFrame);
+		flame->update(timeDelta);
+		bubbles->update(timeDelta);
+		vortex->update(timeDelta);
+		rain->update(timeDelta);
+		quazar->update(timeDelta);
+		milkyWay->update(timeDelta);
+		twirl->update(timeDelta);
 	
 		flame->draw(pos);
 		bubbles->draw(pos);
