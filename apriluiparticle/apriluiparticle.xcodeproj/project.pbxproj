@@ -237,7 +237,7 @@
 		C9DF844D148D03DB00B64799 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */;
 			compatibilityVersion = "Xcode 3.2";
