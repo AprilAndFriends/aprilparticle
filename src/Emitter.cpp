@@ -596,7 +596,7 @@ namespace aprilparticle
 				v[2] = this->_billboard * v[2];
 				v[3] = this->_billboard * v[3];
 			
-				this->_color = (unsigned int)this->space->_particle->color;
+				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
@@ -658,7 +658,7 @@ namespace aprilparticle
 					v[3] += this->_offset;
 				}
 				
-				this->_color = (unsigned int)this->space->_particle->color;
+				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
@@ -724,7 +724,7 @@ namespace aprilparticle
 					v[3] += this->_offset;
 				}
 				
-				this->_color = (unsigned int)(this->space->_particle->color * color);
+				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color * color);
 				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
