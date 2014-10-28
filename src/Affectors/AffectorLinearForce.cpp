@@ -9,6 +9,7 @@
 #include <april/aprilUtil.h>
 
 #include "AffectorLinearForce.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 
 namespace aprilparticle

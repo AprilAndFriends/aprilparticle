@@ -13,6 +13,7 @@
 #include <hltypes/hltypesUtil.h>
 
 #include "AffectorForceField.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "Space.h"
 
