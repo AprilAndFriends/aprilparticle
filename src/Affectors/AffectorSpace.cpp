@@ -6,6 +6,7 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <april/aprilUtil.h>
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
@@ -46,14 +47,14 @@ namespace aprilparticle
 
 		hstr Space::getProperty(chstr name)
 		{
-			if (name == "position")	return gvec3_to_hstr(this->getPosition());
+			if (name == "position")	return april::gvec3ToHstr(this->getPosition());
 			if (name == "radius")	return this->getRadius();
 			return Affector::getProperty(name);
 		}
 
 		bool Space::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(hstr_to_gvec3(value));
+			if		(name == "position")	this->setPosition(april::hstrToGvec3(value));
 			else if	(name == "radius")		this->setRadius(value);
 			else return Affector::setProperty(name, value);
 			return true;

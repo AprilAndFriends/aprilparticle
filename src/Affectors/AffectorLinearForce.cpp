@@ -6,8 +6,9 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <april/aprilUtil.h>
+
 #include "AffectorLinearForce.h"
-#include "aprilparticleUtil.h"
 #include "Particle.h"
 
 namespace aprilparticle
@@ -46,13 +47,13 @@ namespace aprilparticle
 
 		hstr LinearForce::getProperty(chstr name)
 		{
-			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
+			if (name == "direction")	return april::gvec3ToHstr(this->getDirection());
 			return Affector::getProperty(name);
 		}
 
 		bool LinearForce::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(hstr_to_gvec3(value));
+			if		(name == "direction")	this->setDirection(april::hstrToGvec3(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}

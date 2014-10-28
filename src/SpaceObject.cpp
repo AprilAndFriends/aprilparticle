@@ -45,13 +45,13 @@ namespace aprilparticle
 
 	hstr SpaceObject::getProperty(chstr name)
 	{
-		if (name == "position")	return gvec3_to_hstr(this->getPosition());
+		if (name == "position")	return april::gvec3ToHstr(this->getPosition());
 		return ActiveObject::getProperty(name);
 	}
 
 	bool SpaceObject::setProperty(chstr name, chstr value)
 	{
-		if	(name == "position")	this->setPosition(hstr_to_gvec3(value));
+		if	(name == "position")	this->setPosition(april::hstrToGvec3(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}

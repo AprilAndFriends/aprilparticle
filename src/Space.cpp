@@ -144,7 +144,7 @@ namespace aprilparticle
 	{
 		if (name == "pre_update")		return this->getPreUpdate();
 		if (name == "fixed_time_step")	return this->getFixedTimeStep();
-		if (name == "up")				return gvec3_to_hstr(this->getUp());
+		if (name == "up")				return april::gvec3ToHstr(this->getUp());
 		return SpaceObject::getProperty(name);
 	}
 
@@ -152,7 +152,7 @@ namespace aprilparticle
 	{
 		if		(name == "pre_update")		this->setPreUpdate(value);
 		else if	(name == "fixed_time_step")	this->setFixedTimeStep(value);
-		else if	(name == "up")				this->setUp(hstr_to_gvec3(value));
+		else if	(name == "up")				this->setUp(april::hstrToGvec3(value));
 		else return SpaceObject::setProperty(name, value);
 		return true;
 	}

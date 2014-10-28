@@ -6,6 +6,7 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <april/aprilUtil.h>
 #include <gtypes/Vector2.h>
 #include <hltypes/hmap.h>
 #include <hltypes/harray.h>
@@ -50,7 +51,7 @@ namespace aprilparticle
 		
 		void ResizerTimed::setTimings(chstr value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2, hstr_to_gvec2);
+			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2, april::hstrToGvec2);
 		}
 		
 		void ResizerTimed::addTiming(float time, gvec2 value)
@@ -64,7 +65,7 @@ namespace aprilparticle
 		{
 			if (name == "timings")
 			{
-				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(gvec2_to_hstr, ); // conversion using gvec2_to_hstr prefix
+				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(april::gvec2ToHstr, ); // conversion using april::gvec2ToHstr prefix
 			}
 			return Affector::getProperty(name);
 		}

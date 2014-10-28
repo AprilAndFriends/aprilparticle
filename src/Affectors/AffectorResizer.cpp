@@ -6,8 +6,9 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <april/aprilUtil.h>
+
 #include "AffectorResizer.h"
-#include "aprilparticleUtil.h"
 #include "Particle.h"
 
 namespace aprilparticle
@@ -49,15 +50,15 @@ namespace aprilparticle
 
 		hstr Resizer::getProperty(chstr name)
 		{
-			if (name == "start_size")	return gvec2_to_hstr(this->getStartSize());
-			if (name == "end_size")		return gvec2_to_hstr(this->getEndSize());
+			if (name == "start_size")	return april::gvec2ToHstr(this->getStartSize());
+			if (name == "end_size")		return april::gvec2ToHstr(this->getEndSize());
 			return Affector::getProperty(name);
 		}
 
 		bool Resizer::setProperty(chstr name, chstr value)
 		{
-			if		(name == "start_size")	this->setStartSize(hstr_to_gvec2(value));
-			else if	(name == "end_size")	this->setEndSize(hstr_to_gvec2(value));
+			if		(name == "start_size")	this->setStartSize(april::hstrToGvec2(value));
+			else if	(name == "end_size")	this->setEndSize(april::hstrToGvec2(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}

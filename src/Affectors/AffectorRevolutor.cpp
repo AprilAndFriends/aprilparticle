@@ -8,10 +8,10 @@
 
 #include <math.h>
 
+#include <april/aprilUtil.h>
 #include <gtypes/Matrix3.h>
 
 #include "AffectorRevolutor.h"
-#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "Space.h"
 
@@ -69,7 +69,7 @@ namespace aprilparticle
 
 		hstr Revolutor::getProperty(chstr name)
 		{
-			if (name == "axis")				return gvec3_to_hstr(this->getAxis());
+			if (name == "axis")				return april::gvec3ToHstr(this->getAxis());
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
 			return Space::getProperty(name);
@@ -77,7 +77,7 @@ namespace aprilparticle
 
 		bool Revolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "axis")			this->setAxis(hstr_to_gvec3(value));
+			if		(name == "axis")			this->setAxis(april::hstrToGvec3(value));
 			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
 			else if	(name == "clockwise")		this->setClockwise(value);
 			else return Space::setProperty(name, value);

@@ -203,13 +203,13 @@ namespace aprilparticle
 	void Emitter::setDirection(chstr value)
 	{
 		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
-		this->setDirectionRange(hstr_to_gvec3(data.first()), hstr_to_gvec3(data.last()));
+		this->setDirectionRange(april::hstrToGvec3(data.first()), april::hstrToGvec3(data.last()));
 	}
 
 	void Emitter::setSize(chstr value)
 	{
 		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
-		this->setSizeRange(hstr_to_gvec2(data.first()), hstr_to_gvec2(data.last()));
+		this->setSizeRange(april::hstrToGvec2(data.first()), april::hstrToGvec2(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
@@ -274,7 +274,7 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, HollowCylinder);
 			return "";
 		}
-		if (name == "dimensions")			return gvec3_to_hstr(this->getDimensions());
+		if (name == "dimensions")			return april::gvec3ToHstr(this->getDimensions());
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
@@ -303,8 +303,8 @@ namespace aprilparticle
 		if (name == "limit")				return this->getLimit();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
-		if (name == "direction")			return GET_RANGE(Direction, gvec3_to_hstr);
-		if (name == "size")					return GET_RANGE(Size, gvec2_to_hstr);
+		if (name == "direction")			return GET_RANGE(Direction, april::gvec3ToHstr);
+		if (name == "size")					return GET_RANGE(Size, april::gvec2ToHstr);
 		if (name == "scale")				return GET_RANGE(Scale, hstr);
 		if (name == "angle")				return GET_RANGE(Angle, hstr);
 		return SpaceObject::getProperty(name);
@@ -324,7 +324,7 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, HollowCylinder);
 			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.c_str(), name.c_str(), this->name.c_str());
 		}
-		else if	(name == "dimensions")			this->setDimensions(hstr_to_gvec3(value));
+		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3(value));
 		else if	(name == "blend_mode")
 		{
 			if		(value == "default")		this->setBlendMode(april::BM_DEFAULT);

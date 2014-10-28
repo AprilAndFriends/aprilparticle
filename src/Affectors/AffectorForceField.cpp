@@ -13,7 +13,6 @@
 #include <hltypes/hltypesUtil.h>
 
 #include "AffectorForceField.h"
-#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "Space.h"
 
@@ -79,13 +78,13 @@ namespace aprilparticle
 
 		hstr ForceField::getProperty(chstr name)
 		{
-			if (name == "direction")	return gvec3_to_hstr(this->getDirection());
+			if (name == "direction")	return april::gvec3ToHstr(this->getDirection());
 			return Space::getProperty(name);
 		}
 
 		bool ForceField::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(hstr_to_gvec3(value));
+			if		(name == "direction")	this->setDirection(april::hstrToGvec3(value));
 			else return Space::setProperty(name, value);
 			return true;
 		}
