@@ -83,7 +83,7 @@ public:
 	{
 		april::rendersys->clear(true, false);
 		this->angle += timeDelta * 90.0f;
-    
+		
 		if (hmodf(this->angle - timeDelta * 90.0f, 90.0f) > hmodf(this->angle, 90.0f))
 		{
 			this->counts.clear();
@@ -102,9 +102,9 @@ public:
 			this->counts += this->count;
 			printf("Particles: %s\n", this->counts.cast<hstr>().join(" ").c_str());
 		}
-    
+		
 		april::rendersys->setPerspective(60.0f, 1 / drawRect.getAspect(), 0.1f, 100.0f);
-	
+		
 		gvec3 pos(0.0f, 18.0f, 25.0f);
 		gmat3 rot;
 		rot.setRotation3D(0.0f, 1.0f, 0.0f, this->angle * 0.2f);
@@ -124,7 +124,7 @@ public:
 		quazar->update(timeDelta);
 		milkyWay->update(timeDelta);
 		twirl->update(timeDelta);
-	
+		
 		flame->draw(pos);
 		bubbles->draw(pos);
 		vortex->draw(pos);
@@ -132,7 +132,7 @@ public:
 		quazar->draw(pos);
 		milkyWay->draw(pos);
 		twirl->draw(pos);
-
+		
 		return true;
 	}
 
