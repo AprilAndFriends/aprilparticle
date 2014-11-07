@@ -103,7 +103,6 @@
     <ClCompile Include="..\..\src\Space.cpp" />
     <ClCompile Include="..\..\src\SpaceObject.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
-    <ClCompile Include="..\..\src\aprilparticleUtil.cpp" />
     <ClCompile Include="..\..\src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>

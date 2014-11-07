@@ -161,9 +161,6 @@
     <ClCompile Include="..\..\src\Affectors\AffectorScalerTimed.cpp">
       <Filter>Source Files\Affectors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\aprilparticleUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
