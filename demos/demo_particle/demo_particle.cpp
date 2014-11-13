@@ -149,7 +149,7 @@ protected:
 	harray<int> counts;
 	int count;
 
-};
+} updateDelegate;
 
 void setupFlame()
 {
@@ -521,8 +521,6 @@ void setupTwirl()
 	right->setScaleRange(0.3f, 0.5f);
 }
 
-static UpdateDelegate* updateDelegate = NULL;
-
 void april_init(const harray<hstr>& args)
 {
 #ifdef __APPLE__
@@ -568,7 +566,6 @@ void april_init(const harray<hstr>& args)
 		CFRelease(url);
 	}
 #endif
-	updateDelegate = new UpdateDelegate();
 #if defined(_ANDROID) || defined(_IOS)
 	drawRect.setSize(april::getSystemInfo().displayResolution);
 #endif
@@ -576,7 +573,7 @@ void april_init(const harray<hstr>& args)
 	april::createRenderSystem();
 	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle Demo");
 	aprilparticle::init();
-	april::window->setUpdateDelegate(updateDelegate);
+	april::window->setUpdateDelegate(&updateDelegate);
 	setupGrid(2.0f);
 	// textures used by more than one system
 	redParticle = april::rendersys->createTextureFromResource(RESOURCE_PATH "red_particle");
@@ -606,7 +603,5 @@ void april_destroy()
 	delete blueParticle;
 	aprilparticle::destroy();
 	april::destroy();
-	delete updateDelegate;
-	updateDelegate = NULL;
 }
 

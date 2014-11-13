@@ -75,7 +75,7 @@ public:
 protected:
 	bool firstFrame;
 
-};
+} updateDelegate;
 
 class KeyboardDelegate : public april::KeyboardDelegate
 {
@@ -105,7 +105,7 @@ class KeyboardDelegate : public april::KeyboardDelegate
 		aprilui::onChar(charCode);
 	}
 
-};
+} keyboardDelegate;
 
 class MouseDelegate : public april::MouseDelegate
 {
@@ -129,11 +129,7 @@ class MouseDelegate : public april::MouseDelegate
 		aprilui::onMouseScroll(x, y);
 	}
 
-};
-
-static UpdateDelegate* updateDelegate = NULL;
-static KeyboardDelegate* keyboardDelegate = NULL;
-static MouseDelegate* mouseDelegate = NULL;
+} mouseDelegate;
 
 void april_init(const harray<hstr>& args)
 {
@@ -180,9 +176,6 @@ void april_init(const harray<hstr>& args)
 		CFRelease(url);
 	}
 #endif
-	updateDelegate = new UpdateDelegate();
-	keyboardDelegate = new KeyboardDelegate();
-	mouseDelegate = new MouseDelegate();
 	try
 	{
 #if defined(_ANDROID) || defined(_IOS)
@@ -196,9 +189,9 @@ void april_init(const harray<hstr>& args)
 		aprilparticle::init();
 		aprilparticle::setUseCache(false);
 		apriluiparticle::init();
-		april::window->setUpdateDelegate(updateDelegate);
-		april::window->setKeyboardDelegate(keyboardDelegate);
-		april::window->setMouseDelegate(mouseDelegate);
+		april::window->setUpdateDelegate(&updateDelegate);
+		april::window->setKeyboardDelegate(&keyboardDelegate);
+		april::window->setMouseDelegate(&mouseDelegate);
 		apriluiparticle::setDefaultPath("");
 		dataset = new aprilui::Dataset(RESOURCE_PATH "demo_aprilui.dts");
 		dataset->load();
@@ -227,10 +220,4 @@ void april_destroy()
 	{
 		hlog::error(LOG_TAG, e.getMessage());
 	}
-	delete updateDelegate;
-	updateDelegate = NULL;
-	delete keyboardDelegate;
-	keyboardDelegate = NULL;
-	delete mouseDelegate;
-	mouseDelegate = NULL;
 }

@@ -141,9 +141,7 @@ protected:
 	harray<int> counts;
 	int count;
 
-};
-
-static UpdateDelegate* updateDelegate = NULL;
+} updateDelegate;
 
 void april_init(const harray<hstr>& args)
 {
@@ -190,7 +188,6 @@ void april_init(const harray<hstr>& args)
 		CFRelease(url);
 	}
 #endif
-	updateDelegate = new UpdateDelegate();
 #if defined(_ANDROID) || defined(_IOS)
 	drawRect.setSize(april::getSystemInfo().displayResolution);
 #endif
@@ -198,7 +195,7 @@ void april_init(const harray<hstr>& args)
 	april::createRenderSystem();
 	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle XML Demo");
 	aprilparticle::init();
-	april::window->setUpdateDelegate(updateDelegate);
+	april::window->setUpdateDelegate(&updateDelegate);
 	setupGrid(2.0f);
 	// setting up every system
 	flame = new aprilparticle::System(RESOURCE_PATH "flame.particle");
@@ -228,7 +225,5 @@ void april_destroy()
 	delete twirl;
 	aprilparticle::destroy();
 	april::destroy();
-	delete updateDelegate;
-	updateDelegate = NULL;
 }
 
