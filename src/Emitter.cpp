@@ -363,57 +363,57 @@ namespace aprilparticle
 	{
 		switch (this->type)
 		{
-			case Point:
-				this->_pos.set(0.0f, 0.0f, 0.0f);
-				break;
-			case Box:
-				this->_pos.x = this->dimensions.x * hrandf(-0.5f, 0.5f);
-				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
-				this->_pos.z = this->dimensions.z * hrandf(-0.5f, 0.5f);
-				break;
-			case HollowBox:
-				this->_pos.x = this->dimensions.x * 0.5f - this->dimensions.x * hrand(2);
-				this->_pos.y = this->dimensions.y * 0.5f - this->dimensions.y * hrand(2);
-				this->_pos.z = this->dimensions.z * 0.5f - this->dimensions.z * hrand(2);
-				break;
-			case Sphere:
-				this->_rho = hrandf(1.0f);
-				this->_phi = hrandf((float)G_PIx2);
-				this->_theta = hrandf((float)G_PI);
-				this->_angle = this->_rho * sin(this->_phi);
-				
-				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
-				break;
-			case HollowSphere:
-				this->_rho = 1.0f;
-				this->_phi = hrandf((float)G_PIx2);
-				this->_theta = hrandf((float)G_PI);
-				this->_angle = this->_rho * sin(this->_phi);
-				
-				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
-				break;
-			case Cylinder:
-				this->_rho = hrandf(1.0f);
-				this->_phi = hrandf((float)G_PIx2);
-				this->_theta = hrandf((float)G_PI);
-				
-				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
-				break;
-			case HollowCylinder:
-				this->_rho = 1.0f;
-				this->_phi = hrandf((float)G_PIx2);
-				this->_theta = hrandf((float)G_PI);
-				
-				this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
-				this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
-				this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
-				break;
+		case Point:
+			this->_pos.set(0.0f, 0.0f, 0.0f);
+			break;
+		case Box:
+			this->_pos.x = this->dimensions.x * hrandf(-0.5f, 0.5f);
+			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+			this->_pos.z = this->dimensions.z * hrandf(-0.5f, 0.5f);
+			break;
+		case HollowBox:
+			this->_pos.x = this->dimensions.x * 0.5f - this->dimensions.x * hrand(2);
+			this->_pos.y = this->dimensions.y * 0.5f - this->dimensions.y * hrand(2);
+			this->_pos.z = this->dimensions.z * 0.5f - this->dimensions.z * hrand(2);
+			break;
+		case Sphere:
+			this->_rho = hrandf(1.0f);
+			this->_phi = hrandf((float)G_PIx2);
+			this->_theta = hrandf((float)G_PI);
+			this->_angle = this->_rho * sin(this->_phi);
+
+			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
+			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
+			break;
+		case HollowSphere:
+			this->_rho = 1.0f;
+			this->_phi = hrandf((float)G_PIx2);
+			this->_theta = hrandf((float)G_PI);
+			this->_angle = this->_rho * sin(this->_phi);
+
+			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
+			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
+			break;
+		case Cylinder:
+			this->_rho = hrandf(1.0f);
+			this->_phi = hrandf((float)G_PIx2);
+			this->_theta = hrandf((float)G_PI);
+
+			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+			this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
+			break;
+		case HollowCylinder:
+			this->_rho = 1.0f;
+			this->_phi = hrandf((float)G_PIx2);
+			this->_theta = hrandf((float)G_PI);
+
+			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
+			this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
+			break;
 		}
 		this->_pos += this->position;
 		if (this->space != NULL)
