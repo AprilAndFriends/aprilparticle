@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,18 +21,18 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticleExport.h"
-#include "ParticleBase.h"
+#include "Base.h"
 
 namespace apriluiparticle
 {
-	class apriluiparticleExport Particle : public ParticleBase
+	class apriluiparticleExport Particle : public Base
 	{
 	public:
-		Particle(chstr name, grect rect);
+		Particle(chstr name);
 		~Particle();
-		inline hstr getClassName() const { return "Particle"; }
+		inline hstr getClassName() const { return "apriluiparticle.Particle"; }
 
-		static aprilui::Object* createInstance(chstr name, grect rect);
+		static aprilui::Object* createInstance(chstr name);
 
 		void update(float timeDelta);
 

@@ -37,7 +37,7 @@
 #include <aprilui/Objects.h>
 #include <aprilparticle/aprilparticle.h>
 #include <apriluiparticle/apriluiparticle.h>
-#include <apriluiparticle/ParticleSystem.h>
+#include <apriluiparticle/System.h>
 #include <atres/atres.h>
 #include <atres/Renderer.h>
 #include <gtypes/Vector2.h>
@@ -88,7 +88,7 @@ class KeyboardDelegate : public april::KeyboardDelegate
 		}
 		else if (keycode == april::AK_BACK)
 		{
-			apriluiparticle::ParticleSystem* particle = dataset->getObject<apriluiparticle::ParticleSystem*>("segmented");
+			apriluiparticle::System* particle = dataset->getObject<apriluiparticle::System*>("segmented");
 			particle->stopSystem();
 			particle->load(particle->getFilename());
 		}

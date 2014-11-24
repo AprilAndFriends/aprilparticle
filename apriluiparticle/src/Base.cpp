@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.12
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,51 +21,46 @@
 
 #include "apriluiparticle.h"
 #include "apriluiparticleUtil.h"
-#include "ParticleSpace.h"
-#include "ParticleBase.h"
+#include "Base.h"
+#include "Space.h"
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> ParticleBase::_propertyDescriptions;
+	harray<aprilui::PropertyDescription> Base::_propertyDescriptions;
 
-	ParticleBase::ParticleBase(chstr name, grect rect) : aprilui::Object(name, rect)
+	Base::Base(chstr name) : aprilui::Object(name)
 	{
 		this->system = NULL;
 		this->alwaysEnabled = false;
 	}
 	
-	ParticleBase::~ParticleBase()
+	Base::~Base()
 	{
 		this->stopSystem();
 	}
 
-	aprilui::Object* ParticleBase::createInstance(chstr name, grect rect)
-	{
-		return new ParticleBase(name, rect);
-	}
-
-	bool ParticleBase::isRunning()
+	bool Base::isRunning()
 	{
 		return (this->system != NULL && this->system->isRunning());
 	}
 
-	bool ParticleBase::isExpired()
+	bool Base::isExpired()
 	{
 		return (this->system != NULL && this->system->isExpired());
 	}
 
-	harray<aprilui::PropertyDescription> ParticleBase::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Base::getPropertyDescriptions()
 	{
-		if (ParticleBase::_propertyDescriptions.size() == 0)
+		if (Base::_propertyDescriptions.size() == 0)
 		{
-			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::STRING);
-			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::STRING);
-			ParticleBase::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::BOOL);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::STRING);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::STRING);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::BOOL);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + ParticleBase::_propertyDescriptions);
+		return (aprilui::Object::getPropertyDescriptions() + Base::_propertyDescriptions);
 	}
 
-	void ParticleBase::load(chstr filename)
+	void Base::load(chstr filename)
 	{
 		this->filename = filename;
 		this->stopSystem();
@@ -75,7 +70,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleBase::notifyEvent(chstr type, aprilui::EventArgs* args)
+	void Base::notifyEvent(chstr type, aprilui::EventArgs* args)
 	{
 		if (type == aprilui::Event::Resized)
 		{
@@ -95,7 +90,7 @@ namespace apriluiparticle
 		aprilui::Object::notifyEvent(type, args);
 	}
 
-	void ParticleBase::_load()
+	void Base::_load()
 	{
 		if (this->system != NULL)
 		{
@@ -121,7 +116,7 @@ namespace apriluiparticle
 		this->_resize();
 	}
 
-	void ParticleBase::_resize()
+	void Base::_resize()
 	{
 		if (this->system != NULL)
 		{
@@ -129,7 +124,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleBase::finishSystem()
+	void Base::finishSystem()
 	{
 		if (this->system != NULL)
 		{
@@ -137,7 +132,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleBase::stopSystem()
+	void Base::stopSystem()
 	{
 		if (this->system != NULL)
 		{
@@ -146,7 +141,7 @@ namespace apriluiparticle
 		}
 	}
 	
-	void ParticleBase::resetSystem()
+	void Base::resetSystem()
 	{
 		if (this->system != NULL)
 		{
@@ -154,7 +149,7 @@ namespace apriluiparticle
 		}
 	}
 	
-	hstr ParticleBase::getProperty(chstr name)
+	hstr Base::getProperty(chstr name)
 	{
 		if (name == "filename")			return this->getFilename();
 		if (name == "filepath")			return this->getFilepath();
@@ -162,7 +157,7 @@ namespace apriluiparticle
 		return aprilui::Object::getProperty(name);
 	}
 
-	bool ParticleBase::setProperty(chstr name, chstr value)
+	bool Base::setProperty(chstr name, chstr value)
 	{
 		if		(name == "filename")
 		{

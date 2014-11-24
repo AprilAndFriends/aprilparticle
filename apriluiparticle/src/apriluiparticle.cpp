@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -12,10 +12,10 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
+#include "Emitter.h"
 #include "Particle.h"
-#include "ParticleEmitter.h"
-#include "ParticleSpace.h"
-#include "ParticleSystem.h"
+#include "Space.h"
+#include "System.h"
 
 namespace apriluiparticle
 {
@@ -28,9 +28,9 @@ namespace apriluiparticle
 	{
 		hlog::write(apriluiparticle::logTag, "Initializing AprilUIParticle.");
 		APRILUI_REGISTER_OBJECT_TYPE(Particle);
-		APRILUI_REGISTER_OBJECT_TYPE(ParticleEmitter);
-		APRILUI_REGISTER_OBJECT_TYPE(ParticleSpace);
-		APRILUI_REGISTER_OBJECT_TYPE(ParticleSystem);
+		APRILUI_REGISTER_OBJECT_TYPE(Emitter);
+		APRILUI_REGISTER_OBJECT_TYPE(Space);
+		APRILUI_REGISTER_OBJECT_TYPE(System);
 	}
 	
 	void destroy()

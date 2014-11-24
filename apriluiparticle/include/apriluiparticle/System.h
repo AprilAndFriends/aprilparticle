@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.1
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,7 +21,7 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticleExport.h"
-#include "ParticleBase.h"
+#include "Base.h"
 
 namespace aprilparticle
 {
@@ -30,27 +30,27 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
-	class ParticleSpace;
+	class Space;
 
-	class apriluiparticleExport ParticleSystem : public ParticleBase
+	class apriluiparticleExport System : public Base
 	{
 	public:
-		friend class ParticleSpace;
+		friend class Space;
 
-		ParticleSystem(chstr name, grect rect);
-		~ParticleSystem();
-		inline hstr getClassName() const { return "ParticleSystem"; }
+		System(chstr name);
+		~System();
+		inline hstr getClassName() const { return "apriluiparticle.System"; }
 
-		static aprilui::Object* createInstance(chstr name, grect rect);
+		static aprilui::Object* createInstance(chstr name);
 
 		void stopSystem();
 		void resetSystem();
 
 	protected:
-		harray<ParticleSpace*> spaceObjects;
+		harray<Space*> spaceObjects;
 
-		void _registerSpaceObject(ParticleSpace* spaceObject);
-		void _unregisterSpaceObject(ParticleSpace* spaceObject);
+		void _registerSpaceObject(Space* spaceObject);
+		void _unregisterSpaceObject(Space* spaceObject);
 
 	};
 }

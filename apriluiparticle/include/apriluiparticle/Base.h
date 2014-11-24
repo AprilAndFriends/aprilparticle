@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.12
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -30,20 +30,16 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
-	class ParticleSpaceBase;
-	class ParticleSpace;
+	class Space;
 
-	class apriluiparticleExport ParticleBase : public aprilui::Object
+	class apriluiparticleExport Base : public aprilui::Object
 	{
 	public:
-		friend class ParticleSpaceBase;
-		friend class ParticleSpace;
+		friend class Space;
 
-		ParticleBase(chstr name, grect rect);
-		~ParticleBase();
-		inline hstr getClassName() const { return "ParticleBase"; }
-
-		static aprilui::Object* createInstance(chstr name, grect rect);
+		Base(chstr name);
+		~Base();
+		inline hstr getClassName() const { return "apriluiparticle.Base"; }
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);

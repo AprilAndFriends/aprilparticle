@@ -17,13 +17,13 @@
     <ClCompile Include="..\..\src\apriluiparticle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ParticleEmitter.cpp">
+    <ClCompile Include="..\..\src\Emitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ParticleSpace.cpp">
+    <ClCompile Include="..\..\src\Space.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ParticleSystem.cpp">
+    <ClCompile Include="..\..\src\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\apriluiparticleUtil.cpp">
@@ -32,7 +32,7 @@
     <ClCompile Include="..\..\src\Particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ParticleBase.cpp">
+    <ClCompile Include="..\..\src\Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,13 +43,13 @@
     <ClInclude Include="..\..\include\apriluiparticle\apriluiparticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\apriluiparticle\ParticleEmitter.h">
+    <ClInclude Include="..\..\include\apriluiparticle\Emitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\apriluiparticle\ParticleSpace.h">
+    <ClInclude Include="..\..\include\apriluiparticle\Space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\apriluiparticle\ParticleSystem.h">
+    <ClInclude Include="..\..\include\apriluiparticle\System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\apriluiparticleUtil.h">
@@ -58,7 +58,7 @@
     <ClInclude Include="..\..\include\apriluiparticle\Particle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\apriluiparticle\ParticleBase.h">
+    <ClInclude Include="..\..\include\apriluiparticle\Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

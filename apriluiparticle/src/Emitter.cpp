@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -19,15 +19,15 @@
 
 #include "apriluiparticle.h"
 #include "apriluiparticleUtil.h"
-#include "ParticleEmitter.h"
-#include "ParticleSpace.h"
-#include "ParticleSystem.h"
+#include "Emitter.h"
+#include "Space.h"
+#include "System.h"
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> ParticleEmitter::_propertyDescriptions;
+	harray<aprilui::PropertyDescription> Emitter::_propertyDescriptions;
 
-	ParticleEmitter::ParticleEmitter(chstr name, grect rect) : aprilui::Object(name, rect)
+	Emitter::Emitter(chstr name) : aprilui::Object(name)
 	{
 		this->spaceObject = NULL;
 		this->emitter = NULL;
@@ -35,7 +35,7 @@ namespace apriluiparticle
 		this->debugColor = april::Color(april::Color::LightNeon, 32);
 	}
 	
-	ParticleEmitter::~ParticleEmitter()
+	Emitter::~Emitter()
 	{
 		if (this->spaceObject != NULL)
 		{
@@ -43,22 +43,22 @@ namespace apriluiparticle
 		}
 	}
 
-	aprilui::Object* ParticleEmitter::createInstance(chstr name, grect rect)
+	aprilui::Object* Emitter::createInstance(chstr name)
 	{
-		return new ParticleEmitter(name, rect);
+		return new Emitter(name);
 	}
 
-	harray<aprilui::PropertyDescription> ParticleEmitter::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Emitter::getPropertyDescriptions()
 	{
-		if (ParticleEmitter::_propertyDescriptions.size() == 0)
+		if (Emitter::_propertyDescriptions.size() == 0)
 		{
-			ParticleEmitter::_propertyDescriptions += aprilui::PropertyDescription("space_object", aprilui::PropertyDescription::STRING);
-			ParticleEmitter::_propertyDescriptions += aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::STRING);
+			Emitter::_propertyDescriptions += aprilui::PropertyDescription("space_object", aprilui::PropertyDescription::STRING);
+			Emitter::_propertyDescriptions += aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::STRING);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + ParticleEmitter::_propertyDescriptions);
+		return (aprilui::Object::getPropertyDescriptions() + Emitter::_propertyDescriptions);
 	}
 
-	void ParticleEmitter::resetEmitter()
+	void Emitter::resetEmitter()
 	{
 		if (this->emitter != NULL)
 		{
@@ -66,7 +66,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleEmitter::update(float timeDelta)
+	void Emitter::update(float timeDelta)
 	{
 		this->_tryFindSpaceObject();
 		this->_updateBindings();
@@ -77,7 +77,7 @@ namespace apriluiparticle
 		aprilui::Object::update(timeDelta);
 	}
 
-	void ParticleEmitter::_draw()
+	void Emitter::_draw()
 	{
 		aprilui::Object::_draw();
 		if (this->spaceObject != NULL && this->emitter != NULL)
@@ -86,7 +86,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void ParticleEmitter::_updateEmitterData()
+	void Emitter::_updateEmitterData()
 	{
 		gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter()) - this->initialPosition - this->spaceObject->_getDrawRect().getSize() * 0.5f;
 		this->emitter->setPosition(this->emitterPosition + gvec3(newPosition.x, newPosition.y, 0.0f));
@@ -102,12 +102,12 @@ namespace apriluiparticle
 		this->emitter->setMinSize(this->emitterMaxSize * scale);
 	}
 
-	void ParticleEmitter::_updateBindings()
+	void Emitter::_updateBindings()
 	{
 		this->_tryFindEmitter();
 	}
 
-	void ParticleEmitter::_tryFindSpaceObject()
+	void Emitter::_tryFindSpaceObject()
 	{
 		if (this->dataset == NULL)
 		{
@@ -128,21 +128,21 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		this->spaceObject = dynamic_cast<ParticleSpace*>(this->dataset->tryGetObject(this->spaceObjectName));
+		this->spaceObject = dynamic_cast<Space*>(this->dataset->tryGetObject(this->spaceObjectName));
 		if (this->spaceObject != NULL)
 		{
 			this->spaceObject->_registerEmitterObject(this);
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': referenced object '%s' not a subclass of ParticleSpace!",
+			hlog::warnf(apriluiparticle::logTag, "Emitter '%s': referenced object '%s' not a subclass of Space!",
 				this->spaceObjectName.c_str(), this->name.c_str());
 			this->spaceObjectName = "";
 			this->emitterName = "";
 		}
 	}
 
-	void ParticleEmitter::_tryFindEmitter()
+	void Emitter::_tryFindEmitter()
 	{
 		if (this->spaceObject == NULL)
 		{
@@ -158,7 +158,7 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		ParticleSystem* systemObject = this->spaceObject->systemObject;
+		System* systemObject = this->spaceObject->systemObject;
 		if (systemObject == NULL)
 		{
 			return;
@@ -185,14 +185,14 @@ namespace apriluiparticle
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "ParticleEmitter '%s': cannot find emitter '%s' in ParticleSpace '%s'!",
+			hlog::warnf(apriluiparticle::logTag, "Emitter '%s': cannot find emitter '%s' in Space '%s'!",
 				this->name.c_str(), this->emitterName.c_str(), this->spaceObject->getName().c_str());
 			this->spaceObjectName = "";
 			this->emitterName = "";
 		}
 	}
 	
-	void ParticleEmitter::notifyEvent(chstr type, aprilui::EventArgs* args)
+	void Emitter::notifyEvent(chstr type, aprilui::EventArgs* args)
 	{
 		if (type == aprilui::Event::EnabledChanged && this->emitter != NULL)
 		{
@@ -201,14 +201,14 @@ namespace apriluiparticle
 		Object::notifyEvent(type, args);
 	}
 
-	hstr ParticleEmitter::getProperty(chstr name)
+	hstr Emitter::getProperty(chstr name)
 	{
 		if (name == "space_object")	return this->getSpaceObjectName();
 		if (name == "emitter")		return this->getEmitterName();
 		return aprilui::Object::getProperty(name);
 	}
 
-	bool ParticleEmitter::setProperty(chstr name, chstr value)
+	bool Emitter::setProperty(chstr name, chstr value)
 	{
 		if (name == "space_object")	this->setSpaceObjectName(value);
 		else if (name == "emitter")	this->setEmitterName(value);
@@ -216,7 +216,7 @@ namespace apriluiparticle
 		return true;
 	}
 	
-	void ParticleEmitter::_unbind()
+	void Emitter::_unbind()
 	{
 		this->emitter = NULL;
 	}

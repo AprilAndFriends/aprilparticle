@@ -3,22 +3,22 @@
 
 	<Object type="Container" name="root" x="0" y="0" w="800" h="600">
 		<Object type="ColoredQuad" name="background" color="000000" x="0" y="0" w="800" h="600"/>
-		<Object type="Particle" name="rain" filename="gui_rain.particle" x="100" y="100"/>
-		<Object type="Particle" name="moon" filename="gui_moon.particle" x="100" y="500"/>
-		<Object type="Particle" name="glow" filename="gui_glow.particle" x="350" y="150" w="100" h="5"/>
-		<Object type="Particle" name="cannon" filename="gui_cannon.particle" x="700" y="500"/>
+		<Object type="apriluiparticle.Particle" name="rain" filename="gui_rain.particle" x="100" y="100"/>
+		<Object type="apriluiparticle.Particle" name="moon" filename="gui_moon.particle" x="100" y="500"/>
+		<Object type="apriluiparticle.Particle" name="glow" filename="gui_glow.particle" x="350" y="150" w="100" h="5"/>
+		<Object type="apriluiparticle.Particle" name="cannon" filename="gui_cannon.particle" x="700" y="500"/>
 		
-		<Object type="ParticleSystem" name="segmented" filename="gui_segmented.particle" x="350" y="350" w="50" h="50"/>
+		<Object type="apriluiparticle.System" name="segmented" filename="gui_segmented.particle" x="350" y="350" w="50" h="50"/>
 		
-		<Object type="ParticleSpace" name="space0" system_object="segmented" space="space0" x="350" y="350" w="50" h="50"/>
-		<Object type="ParticleSpace" name="space1" system_object="segmented" space="space1" x="350" y="350" w="50" h="50"/>
+		<Object type="apriluiparticle.Space" name="space0" system_object="segmented" space="space0" x="350" y="350" w="50" h="50"/>
+		<Object type="apriluiparticle.Space" name="space1" system_object="segmented" space="space1" x="350" y="350" w="50" h="50"/>
 		<Object type="Container" name="container" x="350" y="350" w="50" h="50">
-			<Object type="ParticleEmitter" name="emitter1" space_object="space1" emitter="emitter1" x="15" y="30" w="20" h="20"/>
+			<Object type="apriluiparticle.Emitter" name="emitter1" space_object="space1" emitter="emitter1" x="15" y="30" w="20" h="20"/>
 			<Animator type="MoverX" function="sine" periods="-1" amplitude="50" speed="0.5"/>
 			<Animator type="MoverY" function="sine" periods="-1" amplitude="50" timer="0.25"/>
 			<Animator type="Rotator" function="sine" periods="-1" amplitude="90" speed="0.5" offset="0"/>
 		</Object>
-		<Object type="ParticleEmitter" name="emitter0" space_object="space0" emitter="emitter0" x="370" y="370" w="10" h="10">
+		<Object type="apriluiparticle.Emitter" name="emitter0" space_object="space0" emitter="emitter0" x="370" y="370" w="10" h="10">
 			<Animator type="Rotator" function="sine" periods="-1" amplitude="50" speed="0.5" timer="1"/>
 			<Animator type="ScalerX" function="sine" periods="-1" amplitude="1.5" offset="2.5"/>
 			<Animator type="ScalerY" function="sine" periods="-1" amplitude="1.5" offset="2.5"/>

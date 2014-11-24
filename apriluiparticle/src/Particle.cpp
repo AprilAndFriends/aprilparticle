@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -17,7 +17,7 @@
 
 namespace apriluiparticle
 {
-	Particle::Particle(chstr name, grect rect) : ParticleBase(name, rect)
+	Particle::Particle(chstr name) : Base(name)
 	{
 		this->debugColor = april::Color(april::Color::LightPurple, 32);
 	}
@@ -26,9 +26,9 @@ namespace apriluiparticle
 	{
 	}
 
-	aprilui::Object* Particle::createInstance(chstr name, grect rect)
+	aprilui::Object* Particle::createInstance(chstr name)
 	{
-		return new Particle(name, rect);
+		return new Particle(name);
 	}
 
 	void Particle::update(float timeDelta)
@@ -38,7 +38,7 @@ namespace apriluiparticle
 			this->system->setEnabled(this->isDerivedEnabled());
 			this->system->update(timeDelta);
 		}
-		ParticleBase::update(timeDelta);
+		Base::update(timeDelta);
 	}
 
 	void Particle::_draw()
@@ -50,7 +50,7 @@ namespace apriluiparticle
 			this->system->draw(rect.getCenter(), this->_getDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
-		ParticleBase::_draw();
+		Base::_draw();
 	}
 
 }

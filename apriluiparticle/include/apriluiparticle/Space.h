@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -30,20 +30,20 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
-	class ParticleEmitter;
-	class ParticleSystem;
+	class Emitter;
+	class System;
 
-	class apriluiparticleExport ParticleSpace : public aprilui::Object
+	class apriluiparticleExport Space : public aprilui::Object
 	{
 	public:
-		friend class ParticleEmitter;
-		friend class ParticleSystem;
+		friend class Emitter;
+		friend class System;
 
-		ParticleSpace(chstr name, grect rect);
-		~ParticleSpace();
-		inline hstr getClassName() const { return "ParticleSpace"; }
+		Space(chstr name);
+		~Space();
+		inline hstr getClassName() const { return "apriluiparticle.Space"; }
 
-		static aprilui::Object* createInstance(chstr name, grect rect);
+		static aprilui::Object* createInstance(chstr name);
 
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
 		HL_DEFINE_GETSET(hstr, spaceName, SpaceName);
@@ -58,19 +58,19 @@ namespace apriluiparticle
 		bool setProperty(chstr name, chstr value);
 		
 	protected:
-		ParticleSystem* systemObject;
+		System* systemObject;
 		aprilparticle::Space* space;
 		hstr systemObjectName;
 		hstr spaceName;
-		harray<ParticleEmitter*> emitterObjects;
+		harray<Emitter*> emitterObjects;
 
 		void _draw();
 
 		void _updateBindings();
 		void _tryFindSystemObject();
 		void _tryFindSpace();
-		void _registerEmitterObject(ParticleEmitter* emitter);
-		void _unregisterEmitterObject(ParticleEmitter* emitter);
+		void _registerEmitterObject(Emitter* emitter);
+		void _unregisterEmitterObject(Emitter* emitter);
 		void _unbind();
 		void _resize();
 

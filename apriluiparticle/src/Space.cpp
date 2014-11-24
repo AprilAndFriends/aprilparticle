@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.11
+/// @version 2.2
 /// 
 /// @section LICENSE
 /// 
@@ -21,53 +21,53 @@
 
 #include "apriluiparticle.h"
 #include "apriluiparticleUtil.h"
-#include "ParticleEmitter.h"
-#include "ParticleSpace.h"
-#include "ParticleSystem.h"
+#include "Emitter.h"
+#include "Space.h"
+#include "System.h"
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> ParticleSpace::_propertyDescriptions;
+	harray<aprilui::PropertyDescription> Space::_propertyDescriptions;
 
-	ParticleSpace::ParticleSpace(chstr name, grect rect) : aprilui::Object(name, rect)
+	Space::Space(chstr name) : aprilui::Object(name)
 	{
 		this->systemObject = NULL;
 		this->space = NULL;
 		this->debugColor = april::Color(april::Color::LightMagenta, 32);
 	}
 	
-	ParticleSpace::~ParticleSpace()
+	Space::~Space()
 	{
 		if (this->systemObject != NULL)
 		{
 			this->systemObject->_unregisterSpaceObject(this);
 		}
-		foreach (apriluiparticle::ParticleEmitter*, it, this->emitterObjects)
+		foreach (apriluiparticle::Emitter*, it, this->emitterObjects)
 		{
 			(*it)->_unbind();
 			(*it)->spaceObject = NULL;
 		}
 	}
 
-	aprilui::Object* ParticleSpace::createInstance(chstr name, grect rect)
+	aprilui::Object* Space::createInstance(chstr name)
 	{
-		return new ParticleSpace(name, rect);
+		return new Space(name);
 	}
 
-	harray<aprilui::PropertyDescription> ParticleSpace::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Space::getPropertyDescriptions()
 	{
-		if (ParticleSpace::_propertyDescriptions.size() == 0)
+		if (Space::_propertyDescriptions.size() == 0)
 		{
-			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::STRING);
-			ParticleSpace::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::STRING);
+			Space::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::STRING);
+			Space::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::STRING);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + ParticleSpace::_propertyDescriptions);
+		return (aprilui::Object::getPropertyDescriptions() + Space::_propertyDescriptions);
 	}
 
-	void ParticleSpace::update(float timeDelta)
+	void Space::update(float timeDelta)
 	{
 		this->_updateBindings();
-		foreach (apriluiparticle::ParticleEmitter*, it, this->emitterObjects)
+		foreach (apriluiparticle::Emitter*, it, this->emitterObjects)
 		{
 			(*it)->_updateBindings();
 		}
@@ -79,7 +79,7 @@ namespace apriluiparticle
 		aprilui::Object::update(timeDelta);
 	}
 
-	void ParticleSpace::_draw()
+	void Space::_draw()
 	{
 		if (this->space != NULL)
 		{
@@ -90,13 +90,13 @@ namespace apriluiparticle
 		aprilui::Object::_draw();
 	}
 
-	void ParticleSpace::_updateBindings()
+	void Space::_updateBindings()
 	{
 		this->_tryFindSystemObject();
 		this->_tryFindSpace();
 	}
 
-	void ParticleSpace::_tryFindSystemObject()
+	void Space::_tryFindSystemObject()
 	{
 		if (this->dataset == NULL)
 		{
@@ -113,21 +113,21 @@ namespace apriluiparticle
 		{
 			return;
 		}
-		this->systemObject = dynamic_cast<ParticleSystem*>(this->dataset->tryGetObject(this->systemObjectName));
+		this->systemObject = dynamic_cast<System*>(this->dataset->tryGetObject(this->systemObjectName));
 		if (this->systemObject != NULL)
 		{
 			this->systemObject->_registerSpaceObject(this);
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': referenced object '%s' not a subclass of ParticleSystem!",
+			hlog::warnf(apriluiparticle::logTag, "Space '%s': referenced object '%s' not a subclass of ParticleSystem!",
 				this->systemObjectName.c_str(), this->name.c_str());
 			this->systemObjectName = "";
 			this->spaceName = "";
 		}
 	}
 
-	void ParticleSpace::_tryFindSpace()
+	void Space::_tryFindSpace()
 	{
 		if (this->systemObject == NULL)
 		{
@@ -151,13 +151,13 @@ namespace apriluiparticle
 		this->space = system->getSpace(this->spaceName);
 		if (this->space == NULL)
 		{
-			hlog::warnf(apriluiparticle::logTag, "ParticleSpace '%s': cannot find space '%s' in ParticleSystem '%s'!",
+			hlog::warnf(apriluiparticle::logTag, "Space '%s': cannot find space '%s' in ParticleSystem '%s'!",
 				this->name.c_str(), this->spaceName.c_str(), this->systemObject->getName().c_str());
 			this->spaceName = "";
 		}
 	}
 
-	void ParticleSpace::notifyEvent(chstr type, aprilui::EventArgs* args)
+	void Space::notifyEvent(chstr type, aprilui::EventArgs* args)
 	{	
 		if (type == aprilui::Event::Resized)
 		{
@@ -166,26 +166,26 @@ namespace apriluiparticle
 		aprilui::Object::notifyEvent(type, args);
 	}
 
-	void ParticleSpace::_registerEmitterObject(ParticleEmitter* emitter)
+	void Space::_registerEmitterObject(Emitter* emitter)
 	{
 		this->emitterObjects += emitter;
 	}
 
-	void ParticleSpace::_unregisterEmitterObject(ParticleEmitter* emitter)
+	void Space::_unregisterEmitterObject(Emitter* emitter)
 	{
 		this->emitterObjects -= emitter;
 	}
 
-	void ParticleSpace::_unbind()
+	void Space::_unbind()
 	{
 		this->space = NULL;
-		foreach (apriluiparticle::ParticleEmitter*, it, this->emitterObjects)
+		foreach (apriluiparticle::Emitter*, it, this->emitterObjects)
 		{
 			(*it)->_unbind();
 		}
 	}
 	
-	void ParticleSpace::_resize()
+	void Space::_resize()
 	{
 		if (this->space != NULL)
 		{
@@ -193,14 +193,14 @@ namespace apriluiparticle
 		}
 	}
 
-	hstr ParticleSpace::getProperty(chstr name)
+	hstr Space::getProperty(chstr name)
 	{
 		if (name == "system_object")	return this->getSystemObjectName();
 		if (name == "space")			return this->getSpaceName();
 		return aprilui::Object::getProperty(name);
 	}
 
-	bool ParticleSpace::setProperty(chstr name, chstr value)
+	bool Space::setProperty(chstr name, chstr value)
 	{
 		if (name == "system_object")	this->setSystemObjectName(value);
 		else if (name == "space")		this->setSpaceName(value);
