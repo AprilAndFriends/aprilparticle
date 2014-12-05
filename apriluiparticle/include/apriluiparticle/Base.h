@@ -10,8 +10,8 @@
 /// 
 /// Represents a GUI object that controls a particle system.
 
-#ifndef APRILUIPARTICLE_PARTICLE_BASE_H
-#define APRILUIPARTICLE_PARTICLE_BASE_H
+#ifndef APRILUIPARTICLE_BASE_H
+#define APRILUIPARTICLE_BASE_H
 
 #include <aprilui/Object.h>
 #include <gtypes/Rectangle.h>
@@ -34,6 +34,7 @@ namespace apriluiparticle
 
 	class apriluiparticleExport Base : public aprilui::Object
 	{
+		APRILUI_CLONEABLE(Base);
 	public:
 		friend class Space;
 

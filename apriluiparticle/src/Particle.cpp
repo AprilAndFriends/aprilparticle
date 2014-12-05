@@ -21,7 +21,11 @@ namespace apriluiparticle
 	{
 		this->debugColor = april::Color(april::Color::LightPurple, 32);
 	}
-	
+
+	Particle::Particle(const Particle& other) : Base(other)
+	{
+	}
+
 	Particle::~Particle()
 	{
 	}

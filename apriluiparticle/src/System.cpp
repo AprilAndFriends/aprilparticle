@@ -21,6 +21,10 @@ namespace apriluiparticle
 	{
 	}
 	
+	System::System(const System& other) : Base(other)
+	{
+	}
+
 	System::~System()
 	{
 		foreach (apriluiparticle::Space*, it, this->spaceObjects)

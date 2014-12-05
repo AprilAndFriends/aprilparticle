@@ -33,6 +33,7 @@ namespace apriluiparticle
 
 	class apriluiparticleExport Emitter : public aprilui::Object
 	{
+		APRILUI_CLONEABLE(Emitter);
 	public:
 		friend class Space;
 

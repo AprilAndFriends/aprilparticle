@@ -27,6 +27,7 @@ namespace apriluiparticle
 {
 	class apriluiparticleExport Particle : public Base
 	{
+		APRILUI_CLONEABLE(Particle);
 	public:
 		Particle(chstr name);
 		~Particle();

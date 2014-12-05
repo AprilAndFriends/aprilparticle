@@ -35,6 +35,21 @@ namespace apriluiparticle
 		this->debugColor = april::Color(april::Color::LightNeon, 32);
 	}
 	
+	Emitter::Emitter(const Emitter& other) : aprilui::Object(other)
+	{
+		this->spaceObject = NULL;
+		this->emitter = NULL;
+		this->spaceObjectName = other.spaceObjectName;
+		this->emitterName = other.emitterName;
+		this->initialPosition = other.initialPosition;
+		this->initialAngle = other.initialAngle;
+		this->emitterPosition = other.emitterPosition;
+		this->emitterMinDirection = other.emitterMinDirection;
+		this->emitterMaxDirection = other.emitterMaxDirection;
+		this->emitterMinSize = other.emitterMinSize;
+		this->emitterMaxSize = other.emitterMaxSize;
+	}
+
 	Emitter::~Emitter()
 	{
 		if (this->spaceObject != NULL)

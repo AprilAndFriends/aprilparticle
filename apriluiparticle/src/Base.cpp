@@ -34,6 +34,14 @@ namespace apriluiparticle
 		this->alwaysEnabled = false;
 	}
 	
+	Base::Base(const Base& other) : aprilui::Object(other)
+	{
+		this->filename = other.filename;
+		this->filepath = other.filepath;
+		this->alwaysEnabled = other.alwaysEnabled;
+		this->system = new aprilparticle::System(*other.system); // make a clone
+	}
+
 	Base::~Base()
 	{
 		this->stopSystem();
