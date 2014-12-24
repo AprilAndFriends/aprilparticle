@@ -107,7 +107,7 @@ namespace aprilparticle
 	{
 		if (this->_triangleBatch != NULL)
 		{
-			delete [] this->_triangleBatch;
+			delete[] this->_triangleBatch;
 		}
 	}
 
@@ -150,7 +150,7 @@ namespace aprilparticle
 	{
 		if (this->_triangleBatch != NULL)
 		{
-			delete [] this->_triangleBatch;
+			delete[] this->_triangleBatch;
 		}
 		this->_triangleBatch = new april::ColoredTexturedVertex[this->limit * 6];
 		for_iterx (this->_i, 0, this->limit)
