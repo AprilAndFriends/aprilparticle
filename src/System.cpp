@@ -299,7 +299,7 @@ namespace aprilparticle
 				affector = this->getAffector(*it2);
 				if (affector == NULL)
 				{
-					throw hl_exception("Affector reference '" + (*it2) + "' does not exist!");
+					throw Exception("Affector reference '" + (*it2) + "' does not exist!");
 				}
 				it->first->addAffector(affector);
 			}
@@ -311,7 +311,7 @@ namespace aprilparticle
 			texture = this->getTexture(it->second);
 			if (texture == NULL)
 			{
-				throw hl_exception("Texture reference '" + it->second + "' does not exist!");
+				throw Exception("Texture reference '" + it->second + "' does not exist!");
 			}
 			it->first->setTexture(texture->getTexture());
 		}
@@ -376,7 +376,7 @@ namespace aprilparticle
 			affector = createAffector(type, root->pstr("name", ""));
 			if (affector == NULL)
 			{
-				throw hl_exception("Affector type '" + type + " does not exist!");
+				throw Exception("Affector type '" + type + " does not exist!");
 			}
 			this->registerAffector(affector);
 			name = affector->getName();
