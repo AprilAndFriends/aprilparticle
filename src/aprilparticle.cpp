@@ -7,7 +7,7 @@
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
 #include <april/RenderSystem.h>
-#include <hltypes/exception.h>
+#include <hltypes/hexception.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
