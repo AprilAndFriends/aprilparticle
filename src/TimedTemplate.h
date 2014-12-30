@@ -97,7 +97,7 @@
 	{ \
 		for_iterx (this->_i, 0, this->_size) \
 		{ \
-			if (is_between_ei(this->_ratio, this->times[this->_i], this->times[this->_i + 1])) \
+			if (hbetweenEI(this->_ratio, this->times[this->_i], this->times[this->_i + 1])) \
 			{ \
 				break; \
 			} \

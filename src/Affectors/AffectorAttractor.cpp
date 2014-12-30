@@ -70,7 +70,7 @@ namespace aprilparticle
 		{
 			this->_direction = this->position + this->space->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();
-			if (is_between_ei(this->_squaredLength, 0.02f, this->radius * this->radius))
+			if (hbetweenEI(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{
 				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
 				if (this->exponent != 1.0f)
