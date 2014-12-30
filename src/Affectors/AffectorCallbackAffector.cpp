@@ -34,7 +34,7 @@ namespace aprilparticle
 
 		hstr CallbackAffector::getProperty(chstr name)
 		{
-			if (this->properties.has_key(name))
+			if (this->properties.hasKey(name))
 			{
 				return this->properties[name];
 			}

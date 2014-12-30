@@ -162,7 +162,7 @@ namespace aprilparticle
 	bool System::registerTexture(aprilparticle::Texture* texture, chstr name)
 	{
 		hstr key = (name == "" ? april::generateName(this->name + "_Texture") : name);
-		if (this->textures.has_key(key) || this->textures.has_value(texture))
+		if (this->textures.hasKey(key) || this->textures.hasValue(texture))
 		{
 			return false;
 		}
@@ -172,21 +172,21 @@ namespace aprilparticle
 
 	bool System::unregisterTexture(aprilparticle::Texture* texture)
 	{
-		if (!this->textures.has_value(texture))
+		if (!this->textures.hasValue(texture))
 		{
 			return false;
 		}
-		this->textures.remove_value(texture);
+		this->textures.removeValue(texture);
 		return true;
 	}
 
 	bool System::unregisterTexture(chstr name)
 	{
-		if (!this->textures.has_key(name))
+		if (!this->textures.hasKey(name))
 		{
 			return false;
 		}
-		this->textures.remove_key(name);
+		this->textures.removeKey(name);
 		return true;
 	}
 
@@ -204,7 +204,7 @@ namespace aprilparticle
 	
 	aprilparticle::Texture* System::getTexture(chstr name)
 	{
-		return this->textures.try_get_by_key(name, NULL);
+		return this->textures.tryGet(name, NULL);
 	}
 	
 	aprilparticle::Emitter* System::getEmitter(chstr name)
@@ -368,7 +368,7 @@ namespace aprilparticle
 				properties[prop->name()] = prop->value();
 			}
 			hstr type = properties["type"];
-			if (properties.has_key("timings"))
+			if (properties.hasKey("timings"))
 			{
 				type += "Timed";
 			}
@@ -398,7 +398,7 @@ namespace aprilparticle
 		}
 		if (space != NULL && map)
 		{
-			if (!this->_mappedAffectors.has_key(space))
+			if (!this->_mappedAffectors.hasKey(space))
 			{
 				this->_mappedAffectors[space] = harray<hstr>();
 			}

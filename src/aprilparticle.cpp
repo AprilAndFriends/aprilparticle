@@ -76,7 +76,7 @@ namespace aprilparticle
 
 	void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr))
 	{
-		if (gAffectorFactories.has_key(typeName))
+		if (gAffectorFactories.hasKey(typeName))
 		{
 			throw Exception("Affector Factory '" + typeName + "' already exists!");
 		}
@@ -85,7 +85,7 @@ namespace aprilparticle
 
 	Affector* createAffector(chstr typeName, chstr name)
 	{
-		if (gAffectorFactories.has_key(typeName))
+		if (gAffectorFactories.hasKey(typeName))
 		{
 			return (*gAffectorFactories[typeName])(name);
 		}
@@ -95,7 +95,7 @@ namespace aprilparticle
 	aprilparticle::Texture* loadTexture(chstr filename, bool cached)
 	{
 		aprilparticle::Texture* texture = NULL;
-		if (gTextureCache.has_key(filename))
+		if (gTextureCache.hasKey(filename))
 		{
 			texture = gTextureCache[filename];
 		}
@@ -136,7 +136,7 @@ namespace aprilparticle
 		{
 			key = filename;
 		}
-		aprilparticle::System* system = gSystemCache.try_get_by_key(key, NULL);
+		aprilparticle::System* system = gSystemCache.tryGet(key, NULL);
 		if (system == NULL)
 		{
 			system = new aprilparticle::System(filename, name);
