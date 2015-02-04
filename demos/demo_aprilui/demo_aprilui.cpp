@@ -199,7 +199,7 @@ void april_init(const harray<hstr>& args)
 		//aprilui::setDebugEnabled(true);
 #endif
 	}
-	catch (hltypes::exception& e)
+	catch (hexception& e)
 	{
 		hlog::error(LOG_TAG, e.getMessage());
 	}
@@ -216,7 +216,7 @@ void april_destroy()
 		atres::destroy();
 		april::destroy();
 	}
-	catch (hltypes::exception& e)
+	catch (hexception& e)
 	{
 		hlog::error(LOG_TAG, e.getMessage());
 	}
