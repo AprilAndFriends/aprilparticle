@@ -56,7 +56,7 @@
 	harray<hstr> result; \
 	for_iter (i, 0, this->times.size()) \
 	{ \
-		result += hsprintf("%f%c%s", this->times[i], aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).c_str()); \
+		result += hsprintf("%f%c%s", this->times[i], aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).cStr()); \
 	} \
 	return result.join(aprilparticle::SeparatorVector);
 
