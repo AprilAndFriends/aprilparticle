@@ -100,7 +100,7 @@ public:
 				this->count += (*it);
 			}
 			this->counts += this->count;
-			printf("Particles: %s\n", this->counts.cast<hstr>().join(" ").c_str());
+			printf("Particles: %s\n", this->counts.cast<hstr>().join(" ").cStr());
 		}
 		
 		april::rendersys->setPerspective(60.0f, 1 / drawRect.getAspect(), 0.1f, 100.0f);
@@ -193,7 +193,9 @@ void april_init(const harray<hstr>& args)
 #endif
 	april::init(april::RS_DEFAULT, april::WS_DEFAULT);
 	april::createRenderSystem();
-	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle XML Demo");
+	april::Window::Options options;
+	options.fpsCounter = true;
+	april::createWindow((int)drawRect.w, (int)drawRect.h, false, "AprilParticle XML Demo", options);
 	aprilparticle::init();
 	april::window->setUpdateDelegate(&updateDelegate);
 	setupGrid(2.0f);
