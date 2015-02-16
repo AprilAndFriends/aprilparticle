@@ -467,7 +467,7 @@ namespace aprilparticle
 		}
 		// count alive particles
 		this->alive = 0;
-		foreach_q (Particle*, it, this->particles)
+		foreach (Particle*, it, this->particles)
 		{
 			if (!(*it)->isDead())
 			{

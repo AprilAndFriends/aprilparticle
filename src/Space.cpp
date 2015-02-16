@@ -50,7 +50,7 @@ namespace aprilparticle
 		{
 			delete (*it);
 		}
-		foreach_q (Particle*, it, this->particles)
+		foreach (Particle*, it, this->particles)
 		{
 			delete (*it);
 		}
@@ -159,7 +159,7 @@ namespace aprilparticle
 
 	void Space::reset()
 	{
-		foreach_q (Particle*, it, this->particles)
+		foreach (Particle*, it, this->particles)
 		{
 			delete (*it);
 		}
@@ -219,7 +219,7 @@ namespace aprilparticle
 		}
 		// update all particles
 		this->alive = 0;
-		foreach_q (Particle*, it, this->particles)
+		foreach (Particle*, it, this->particles)
 		{
 			(*it)->timer += timeDelta;
 			if (!(*it)->isDead())

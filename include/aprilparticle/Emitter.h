@@ -19,8 +19,7 @@
 #include <gtypes/Matrix4.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
-#include <hltypes/hdeque.h>
-#include <hltypes/hlist.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
 
 #include "aprilparticleExport.h"
@@ -148,7 +147,7 @@ namespace aprilparticle
 		float maxAngle;
 		april::Texture* texture;
 		Space* space;
-		hdeque<Particle*> particles;
+		harray<Particle*> particles;
 
 		void _createNewParticle(float timeDelta);
 		inline void _setSpace(Space* value) { this->space = value; }

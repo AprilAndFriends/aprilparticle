@@ -16,7 +16,7 @@
 #include <april/Color.h>
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
-#include <hltypes/hdeque.h>
+#include <hltypes/harray.h>
 #include <hltypes/hltypesUtil.h>
 
 #include "SpaceObject.h"
@@ -73,7 +73,7 @@ namespace aprilparticle
 		gvec3 up;
 		System* system;
 		harray<Emitter*> emitters;
-		hdeque<Particle*> particles;
+		harray<Particle*> particles;
 		int alive;
 		bool started;
 
