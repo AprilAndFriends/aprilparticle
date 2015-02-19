@@ -64,7 +64,7 @@ namespace aprilparticle
 		gTextureCache.clear();
 	}
 
-	bool getUseCache()
+	bool isUseCache()
 	{
 		return useCache;
 	}

@@ -21,8 +21,8 @@ namespace apriluiparticle
 {
 	hstr logTag = "apriluiparticle";
 
-	hstr defaultPath = "particles";
-	bool enabled = true;
+	static hstr defaultPath = "particles";
+	static bool enabled = true;
 
 	void init()
 	{

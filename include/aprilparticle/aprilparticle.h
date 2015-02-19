@@ -34,7 +34,7 @@ namespace aprilparticle
 
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
-	aprilparticleFnExport bool getUseCache();
+	aprilparticleFnExport bool isUseCache();
 	aprilparticleFnExport void setUseCache(bool value);
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
