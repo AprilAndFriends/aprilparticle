@@ -58,7 +58,7 @@
 	{ \
 		result += hsprintf("%f%c%s", this->times[i], aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).cStr()); \
 	} \
-	return result.join(aprilparticle::SeparatorVector);
+	return result.joined(aprilparticle::SeparatorVector);
 
 #define TIMED_TEMPLATE_ADD_TIMING \
 	time = hclamp(time, 0.0f, 1.0f); \
@@ -69,8 +69,8 @@
 			break; \
 		} \
 	} \
-	this->times.insert_at(this->_i, time); \
-	this->values.insert_at(this->_i, value); \
+	this->times.insertAt(this->_i, time); \
+	this->values.insertAt(this->_i, value); \
 	++this->_size;
 
 #define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \

@@ -462,7 +462,7 @@ namespace aprilparticle
 			}
 			if (i > 0)
 			{
-				this->particles.remove_first(i);
+				this->particles.removeFirst(i);
 			}
 		}
 		// count alive particles
