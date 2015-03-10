@@ -28,7 +28,7 @@ namespace aprilparticle
 
 	bool AffectorContainer::_addAffector(Affector* affector)
 	{
-		if (this->affectors.contains(affector))
+		if (this->affectors.has(affector))
 		{
 			return false;
 		}
@@ -38,7 +38,7 @@ namespace aprilparticle
 
 	bool AffectorContainer::_removeAffector(Affector* affector)
 	{
-		if (!this->affectors.contains(affector))
+		if (!this->affectors.has(affector))
 		{
 			return false;
 		}

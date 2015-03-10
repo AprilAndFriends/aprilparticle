@@ -129,7 +129,7 @@ namespace aprilparticle
 
 	bool System::registerSpace(Space* space)
 	{
-		if (this->spaces.contains(space))
+		if (this->spaces.has(space))
 		{
 			return false;
 		}
@@ -140,7 +140,7 @@ namespace aprilparticle
 
 	bool System::unregisterSpace(Space* space)
 	{
-		if (!this->spaces.contains(space))
+		if (!this->spaces.has(space))
 		{
 			return false;
 		}

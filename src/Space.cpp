@@ -98,7 +98,7 @@ namespace aprilparticle
 
 	bool Space::registerEmitter(Emitter* emitter)
 	{
-		if (this->emitters.contains(emitter))
+		if (this->emitters.has(emitter))
 		{
 			return false;
 		}
@@ -109,7 +109,7 @@ namespace aprilparticle
 
 	bool Space::unregisterEmitter(Emitter* emitter)
 	{
-		if (!this->emitters.contains(emitter))
+		if (!this->emitters.has(emitter))
 		{
 			return false;
 		}
