@@ -108,7 +108,7 @@ public:
 				this->count += (*it);
 			}
 			this->counts += this->count;
-			printf("Particles: %s\n", this->counts.cast<hstr>().join(" ").cStr());
+			printf("Particles: %s\n", this->counts.cast<hstr>().joined(' ').cStr());
 		}
 		
 		april::rendersys->setPerspective(60.0f, 1 / drawRect.getAspect(), 0.1f, 100.0f);
