@@ -70,7 +70,7 @@ public:
 		april::rendersys->setOrthoProjection(drawRect);
 		aprilui::updateCursorPosition();
 		dataset->update(timeDelta);
-		dataset->getObject("root")->draw();
+		dataset->draw();
 		return true;
 	}
 	
@@ -191,7 +191,7 @@ void april_init(const harray<hstr>& args)
 		atres::init();
 		aprilui::init();
 		aprilparticle::init();
-		aprilparticle::setUseCache(false);
+		aprilparticle::setUseCache(true);
 		apriluiparticle::init();
 		april::window->setUpdateDelegate(&updateDelegate);
 		april::window->setKeyboardDelegate(&keyboardDelegate);
