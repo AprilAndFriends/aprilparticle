@@ -72,7 +72,7 @@ namespace apriluiparticle
 		return (aprilui::Object::getPropertyDescriptions() + Space::_propertyDescriptions);
 	}
 
-	void Space::update(float timeDelta)
+	void Space::_update(float timeDelta)
 	{
 		this->_updateBindings();
 		foreach (apriluiparticle::Emitter*, it, this->emitterObjects)
@@ -84,7 +84,7 @@ namespace apriluiparticle
 			this->space->setEnabled(this->isDerivedEnabled());
 			this->space->update(timeDelta);
 		}
-		aprilui::Object::update(timeDelta);
+		aprilui::Object::_update(timeDelta);
 	}
 
 	void Space::_draw()

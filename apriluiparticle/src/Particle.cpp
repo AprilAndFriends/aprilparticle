@@ -35,14 +35,14 @@ namespace apriluiparticle
 		return new Particle(name);
 	}
 
-	void Particle::update(float timeDelta)
+	void Particle::_update(float timeDelta)
 	{
 		if (this->system != NULL)
 		{
 			this->system->setEnabled(this->isDerivedEnabled());
 			this->system->update(timeDelta);
 		}
-		Base::update(timeDelta);
+		Base::_update(timeDelta);
 	}
 
 	void Particle::_draw()

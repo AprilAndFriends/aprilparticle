@@ -53,8 +53,6 @@ namespace apriluiparticle
 
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 
-		void update(float timeDelta);
-		
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 		
@@ -65,6 +63,7 @@ namespace apriluiparticle
 		hstr spaceName;
 		harray<Emitter*> emitterObjects;
 
+		void _update(float timeDelta);
 		void _draw();
 
 		void _updateBindings();

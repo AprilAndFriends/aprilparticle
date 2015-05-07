@@ -81,7 +81,7 @@ namespace apriluiparticle
 		}
 	}
 
-	void Emitter::update(float timeDelta)
+	void Emitter::_update(float timeDelta)
 	{
 		this->_tryFindSpaceObject();
 		this->_updateBindings();
@@ -89,7 +89,7 @@ namespace apriluiparticle
 		{
 			this->emitter->setEnabled(this->isDerivedEnabled());
 		}
-		aprilui::Object::update(timeDelta);
+		aprilui::Object::_update(timeDelta);
 	}
 
 	void Emitter::_draw()

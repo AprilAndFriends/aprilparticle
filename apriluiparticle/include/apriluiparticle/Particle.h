@@ -35,9 +35,8 @@ namespace apriluiparticle
 
 		static aprilui::Object* createInstance(chstr name);
 
-		void update(float timeDelta);
-
 	protected:
+		void _update(float timeDelta);
 		void _draw();
 
 	};
