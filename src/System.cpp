@@ -254,10 +254,10 @@ namespace aprilparticle
 	{
 		if (this->filename == "" || this->loaded)
 		{
-			hlog::write(aprilparticle::logTag, "Already loaded: " + this->filename);
+			hlog::write(logTag, "Already loaded: " + this->filename);
 			return;
 		}
-		hlog::write(aprilparticle::logTag, "Loading system: " + this->filename);
+		hlog::write(logTag, "Loading system: " + this->filename);
 		this->loaded = true;
 		hlxml::Document doc(filename);
 		hlxml::Node* root = doc.root();

@@ -31,7 +31,7 @@ namespace aprilparticle
 	extern void initForceField();
 	void init()
 	{
-		hlog::write(aprilparticle::logTag, "Initializing AprilParticle.");
+		hlog::write(logTag, "Initializing AprilParticle.");
 		initForceField(); // so we can shoot the bad guys
 		useCache = true;
 		REGISTER_AFFECTOR_TYPE(Attractor);
@@ -50,7 +50,7 @@ namespace aprilparticle
 	
 	void destroy()
 	{
-		hlog::write(aprilparticle::logTag, "Destroying AprilParticle.");
+		hlog::write(logTag, "Destroying AprilParticle.");
 		gAffectorFactories.clear();
 		foreach_m (aprilparticle::System*, it, gSystemCache)
 		{

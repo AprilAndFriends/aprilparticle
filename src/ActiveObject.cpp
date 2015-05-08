@@ -77,7 +77,7 @@ namespace aprilparticle
 		else if	(name == "enabled")		this->setEnabled(value);
 		else
 		{
-			hlog::warnf(aprilparticle::logTag, "Property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
+			hlog::warnf(logTag, "Property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
 			return false;
 		}
 		return true;

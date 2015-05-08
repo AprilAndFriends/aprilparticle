@@ -150,7 +150,7 @@ namespace apriluiparticle
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "Emitter '%s': referenced object '%s' not a subclass of Space!",
+			hlog::warnf(logTag, "Emitter '%s': referenced object '%s' not a subclass of Space!",
 				this->spaceObjectName.cStr(), this->name.cStr());
 			this->spaceObjectName = "";
 			this->emitterName = "";
@@ -200,7 +200,7 @@ namespace apriluiparticle
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "Emitter '%s': cannot find emitter '%s' in Space '%s'!",
+			hlog::warnf(logTag, "Emitter '%s': cannot find emitter '%s' in Space '%s'!",
 				this->name.cStr(), this->emitterName.cStr(), this->spaceObject->getName().cStr());
 			this->spaceObjectName = "";
 			this->emitterName = "";

@@ -26,7 +26,7 @@ namespace apriluiparticle
 
 	void init()
 	{
-		hlog::write(apriluiparticle::logTag, "Initializing AprilUIParticle.");
+		hlog::write(logTag, "Initializing AprilUIParticle.");
 		APRILUI_REGISTER_OBJECT_TYPE(Particle);
 		APRILUI_REGISTER_OBJECT_TYPE(Emitter);
 		APRILUI_REGISTER_OBJECT_TYPE(Space);
@@ -35,7 +35,7 @@ namespace apriluiparticle
 	
 	void destroy()
 	{
-		hlog::write(apriluiparticle::logTag, "destroying AprilUIParticle.");
+		hlog::write(logTag, "destroying AprilUIParticle.");
 	}
 
 	hstr getDefaultPath()

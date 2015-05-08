@@ -128,7 +128,7 @@ namespace apriluiparticle
 		}
 		else
 		{
-			hlog::warnf(apriluiparticle::logTag, "Space '%s': referenced object '%s' not a subclass of System!",
+			hlog::warnf(logTag, "Space '%s': referenced object '%s' not a subclass of System!",
 				this->systemObjectName.cStr(), this->name.cStr());
 			this->systemObjectName = "";
 			this->spaceName = "";
@@ -159,7 +159,7 @@ namespace apriluiparticle
 		this->space = system->getSpace(this->spaceName);
 		if (this->space == NULL)
 		{
-			hlog::warnf(apriluiparticle::logTag, "Space '%s': cannot find space '%s' in System '%s'!",
+			hlog::warnf(logTag, "Space '%s': cannot find space '%s' in System '%s'!",
 				this->name.cStr(), this->spaceName.cStr(), this->systemObject->getName().cStr());
 			this->spaceName = "";
 		}

@@ -322,7 +322,7 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, HollowSphere);
 			else TRY_SET_TYPE(value, Cylinder);
 			else TRY_SET_TYPE(value, HollowCylinder);
-			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
+			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3(value));
 		else if	(name == "blend_mode")
@@ -332,7 +332,7 @@ namespace aprilparticle
 			else if	(value == "add")			this->setBlendMode(april::BM_ADD);
 			else if	(value == "subtract")		this->setBlendMode(april::BM_SUBTRACT);
 			else if	(value == "overwrite")		this->setBlendMode(april::BM_OVERWRITE);
-			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
+			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "color_mode")
 		{
@@ -340,7 +340,7 @@ namespace aprilparticle
 			else if	(value == "multiply")		this->setColorMode(april::CM_MULTIPLY);
 			else if	(value == "lerp")			this->setColorMode(april::CM_LERP);
 			else if	(value == "alpha_map")		this->setColorMode(april::CM_ALPHA_MAP);
-			else hlog::warnf(aprilparticle::logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
+			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "color_mode_factor")	this->setColorModeFactor(value);
 		else if	(name == "emission_rate")		this->setEmissionRate(value);

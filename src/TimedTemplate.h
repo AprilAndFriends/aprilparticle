@@ -49,7 +49,7 @@
 	{ \
 		this->times.clear(); \
 		this->values.clear(); \
-		hlog::warn(aprilparticle::logTag, "Incorrect usage of 'timings' for Affector!"); \
+		hlog::warn(logTag, "Incorrect usage of 'timings' for Affector!"); \
 	}
 
 #define TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(prefix, suffix) \

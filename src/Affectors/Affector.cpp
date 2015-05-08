@@ -63,7 +63,7 @@ namespace aprilparticle
 	{
 		if (name == "name")			return this->getName();
 		if (name == "randomness")	return GET_RANGE(Randomness, hstr);
-		hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
+		hlog::warnf(logTag, "Affector property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
 		return "";
 	}
 	
@@ -73,7 +73,7 @@ namespace aprilparticle
 		else if	(name == "randomness")	this->setRandomness(value);
 		else
 		{
-			hlog::warnf(aprilparticle::logTag, "Affector property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
+			hlog::warnf(logTag, "Affector property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());
 			return false;
 		}
 		return true;
