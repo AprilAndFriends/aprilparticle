@@ -44,15 +44,17 @@ namespace aprilparticle
 			TIMING_GVEC2
 		};
 
-		PropertyDescription(chstr name, PropertyType type);
+		PropertyDescription(chstr name, PropertyType type, bool arrayData = false);
 		~PropertyDescription();
 
-		HL_DEFINE_GET(PropertyType, type, Type);
 		HL_DEFINE_GET(hstr, name, Name);
+		HL_DEFINE_GET(PropertyType, type, Type);
+		HL_DEFINE_IS(arrayData, ArrayData);
 
 	protected:
 		hstr name;
 		PropertyType type;
+		bool arrayData;
 
 	};
 

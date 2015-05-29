@@ -13,10 +13,11 @@
 
 namespace aprilparticle
 {
-	PropertyDescription::PropertyDescription(chstr name, PropertyType type)
+	PropertyDescription::PropertyDescription(chstr name, PropertyType type, bool arrayData)
 	{
 		this->name = name;
 		this->type = type;
+		this->arrayData = arrayData;
 	}
 
 	PropertyDescription::~PropertyDescription()
