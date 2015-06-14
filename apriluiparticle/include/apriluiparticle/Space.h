@@ -46,6 +46,8 @@ namespace apriluiparticle
 
 		static aprilui::Object* createInstance(chstr name);
 
+		HL_DEFINE_GET(System*, systemObject, SystemObject);
+		HL_DEFINE_GET(harray<Emitter*>, emitterObjects, EmitterObjects);
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
 		HL_DEFINE_GETSET(hstr, spaceName, SpaceName);
 
@@ -58,10 +60,10 @@ namespace apriluiparticle
 		
 	protected:
 		System* systemObject;
+		harray<Emitter*> emitterObjects;
 		aprilparticle::Space* space;
 		hstr systemObjectName;
 		hstr spaceName;
-		harray<Emitter*> emitterObjects;
 
 		void _update(float timeDelta);
 		void _draw();

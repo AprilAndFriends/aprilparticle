@@ -44,6 +44,9 @@ namespace apriluiparticle
 
 		static aprilui::Object* createInstance(chstr name);
 
+		HL_DEFINE_GET(harray<Space*>, spaceObjects, SpaceObjects);
+		harray<Emitter*> getEmitterObjects();
+
 		void stopSystem();
 		void resetSystem();
 

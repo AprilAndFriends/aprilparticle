@@ -39,6 +39,16 @@ namespace apriluiparticle
 		return new System(name);
 	}
 
+	harray<Emitter*> System::getEmitterObjects()
+	{
+		harray<Emitter*> result;
+		foreach (Space*, it, this->spaceObjects)
+		{
+			result += (*it)->getEmitterObjects();
+		}
+		return result;
+	}
+
 	void System::_registerSpaceObject(Space* spaceObject)
 	{
 		this->spaceObjects += spaceObject;
