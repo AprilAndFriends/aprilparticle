@@ -30,6 +30,7 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
+	class Emitter;
 	class Space;
 
 	class apriluiparticleExport System : public Base
