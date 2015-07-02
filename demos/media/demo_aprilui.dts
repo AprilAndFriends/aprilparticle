@@ -2,7 +2,7 @@
 <Dataset>
 
 	<Object type="Container" name="root" x="0" y="0" w="800" h="600">
-		<Object type="ColoredQuad" name="background" color="000000" x="0" y="0" w="800" h="600"/>
+		<Object type="FilledRect" name="background" color="000000" x="0" y="0" w="800" h="600"/>
 		<Object type="apriluiparticle.Particle" name="rain" filename="gui_rain.particle" x="100" y="100"/>
 		<Object type="apriluiparticle.Particle" name="moon" filename="gui_moon.particle" x="100" y="500"/>
 		<Object type="apriluiparticle.Particle" name="glow" filename="gui_glow.particle" x="350" y="150" w="100" h="5"/>
