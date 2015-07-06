@@ -27,6 +27,16 @@
 
 namespace aprilparticle
 {
+	static bool _filter_isRunning(Space* space)
+	{
+		return space->isRunning();
+	}
+
+	static bool _filter_isExpired(Space* space)
+	{
+		return space->isExpired();
+	}
+
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? april::generateName("System") : name), AffectorContainer()
 	{
 		this->filename = filename;
@@ -117,14 +127,7 @@ namespace aprilparticle
 	
 	bool System::isRunning()
 	{
-		foreach (Space*, it, this->spaces)
-		{
-			if ((*it)->isRunning())
-			{
-				return true;
-			}
-		}
-		return false;
+		return this->spaces.matchesAny(&_filter_isRunning);
 	}
 
 	bool System::registerSpace(Space* space)
@@ -232,14 +235,7 @@ namespace aprilparticle
 
 	bool System::isExpired()
 	{
-		foreach (Space*, it, this->spaces)
-		{
-			if (!(*it)->isExpired())
-			{
-				return false;
-			}
-		}
-		return true;
+		return this->spaces.matchesAll(&_filter_isExpired);
 	}
 
 	void System::reset()

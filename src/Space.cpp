@@ -21,6 +21,16 @@
 
 namespace aprilparticle
 {
+	static bool _filter_isRunning(Emitter* emitter)
+	{
+		return emitter->isRunning();
+	}
+
+	static bool _filter_isExpired(Emitter* emitter)
+	{
+		return emitter->isExpired();
+	}
+
 	harray<PropertyDescription> Space::_propertyDescriptions;
 
 	Space::Space(chstr name) : SpaceObject(name == "" ? april::generateName("Space") : name), AffectorContainer(), _lastTimeFraction(0.0f)
@@ -58,26 +68,12 @@ namespace aprilparticle
 
 	bool Space::isRunning()
 	{
-		foreach (Emitter*, it, this->emitters)
-		{
-			if ((*it)->isRunning())
-			{
-				return true;
-			}
-		}
-		return false;
+		return this->emitters.matchesAny(&_filter_isRunning);
 	}
 
 	bool Space::isExpired()
 	{
-		foreach (Emitter*, it, this->emitters)
-		{
-			if (!(*it)->isExpired())
-			{
-				return false;
-			}
-		}
-		return true;
+		return this->emitters.matchesAll(&_filter_isExpired);
 	}
 
 	int Space::getParticleCount()
