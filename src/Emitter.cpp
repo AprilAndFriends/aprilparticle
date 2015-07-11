@@ -535,20 +535,20 @@ namespace aprilparticle
 			// create new particles
 			if (this->emissionRate > 0.0f)
 			{
-				this->_cs = 1.0f / this->emissionRate;
+				this->_emissionTime = 1.0f / this->emissionRate;
 				this->_quota = (int)(this->emissionTimer * this->emissionRate);
-				if (this->alive >= this->limit)
+				if (this->alive < this->limit && this->emissionTimer >= this->_emissionTime)
 				{
-					this->emissionTimer = 0.0f;
-				}
-				else if (this->emissionTimer > this->_cs && this->alive < this->limit)
-				{
-					this->_quota = hmin(this->_quota, (int)(this->limit - this->alive));
-					this->alive += this->_quota;
-					for_iter (i, 0, this->_quota)
+					this->_fullQuota = hmin(this->_quota, (int)(this->limit - this->alive));
+					this->alive += this->_fullQuota;
+					for_iter (i, 0, this->_fullQuota)
 					{
 						this->_createNewParticle(timeDelta * i / this->_quota);
 					}
+					this->emissionTimer -= (this->_fullQuota * this->_emissionTime);
+				}
+				if (this->alive >= this->limit)
+				{
 					this->emissionTimer = 0.0f;
 				}
 			}

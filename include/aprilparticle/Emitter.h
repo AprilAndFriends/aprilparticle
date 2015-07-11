@@ -161,8 +161,9 @@ namespace aprilparticle
 		float _phi;
 		float _theta;
 		float _angle;
-		float _cs;
+		float _emissionTime;
 		int _quota;
+		int _fullQuota;
 		bool _expired;
 		gmat4 _billboard;
 		gmat3 _rot;
