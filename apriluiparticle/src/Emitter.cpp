@@ -103,7 +103,7 @@ namespace apriluiparticle
 
 	void Emitter::_updateEmitterData()
 	{
-		gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter()) - this->initialPosition - this->spaceObject->_getDrawRect().getSize() * 0.5f;
+		gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedCenter()) - this->initialPosition - this->spaceObject->_makeDrawRect().getSize() * 0.5f;
 		this->emitter->setPosition(this->emitterPosition + gvec3(newPosition.x, newPosition.y, 0.0f));
 		float angle = this->initialAngle - this->_getDerivedAngle();
 		gvec2 newMinDirection = gvec2(this->emitterMinDirection.x, this->emitterMinDirection.y).rotated(angle);

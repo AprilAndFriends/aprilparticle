@@ -92,7 +92,7 @@ namespace apriluiparticle
 		if (this->space != NULL)
 		{
 			this->space->setVisible(this->isVisible());
-			this->space->draw(this->_getDrawRect().getCenter(), this->_getDrawColor());
+			this->space->draw(this->_makeDrawRect().getCenter(), this->_makeDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		aprilui::Object::_draw();

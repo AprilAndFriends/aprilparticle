@@ -47,11 +47,11 @@ namespace apriluiparticle
 
 	void Particle::_draw()
 	{
-		grect rect = this->_getDrawRect();
+		grect rect = this->_makeDrawRect();
 		if (this->system != NULL)
 		{
 			this->system->setVisible(this->isDerivedVisible());
-			this->system->draw(rect.getCenter(), this->_getDrawColor());
+			this->system->draw(rect.getCenter(), this->_makeDrawColor());
 			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		Base::_draw();
