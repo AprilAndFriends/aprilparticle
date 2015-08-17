@@ -237,7 +237,7 @@
 		C9DF844D148D03DB00B64799 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = C9DF8450148D03DB00B64799 /* Build configuration list for PBXProject "apriluiparticle" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -342,6 +342,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.lib${PRODUCT_NAME:rfc1034Identifier}";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -379,6 +380,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.lib${PRODUCT_NAME:rfc1034Identifier}";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -416,6 +418,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = Info.plist;
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sourceforge.lib${PRODUCT_NAME:rfc1034Identifier}";
 				PRODUCT_NAME = apriluiparticle;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
