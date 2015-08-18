@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Win32">
+      <Configuration>DebugS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Win32">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Android">
+      <Configuration>Debug</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Android">
+      <Configuration>DebugS</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android">
+      <Configuration>Release</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Android">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Android-x86">
+      <Configuration>Debug</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugS|Android-x86">
+      <Configuration>DebugS</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android-x86">
+      <Configuration>Release</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseS|Android-x86">
+      <Configuration>ReleaseS</Configuration>
+      <Platform>Android-x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{111EAE9A-B087-4A6D-A9FA-6301DD2B85BD}</ProjectGuid>
+    <RootNamespace>demo_aprilui</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="props-demos\default.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2015\props-generic\platform-$(Platform).props" />
+  <Import Project="props-demos\configurations.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\..\hltypes\msvc\vs2015\props-generic\build-defaults.props" />
+  <Import Project="props-demos\build-defaults.props" />
+  <Import Project="props-demos\configuration.props" />
+  <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
+    <Link>
+      <AdditionalDependencies>libatres.lib;libaprilui.lib;libapriluiparticle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)'=='Android' or '$(Platform)'=='Android-86'">
+    <Link>
+      <AdditionalDependencies>-lapriluiparticle;-laprilui;-latres;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugS|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libtinyxml.lib;libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseS|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libtinyxml.lib;libpng.lib;libjpeg.lib;zlib1.lib;d3d9.lib;winmm.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\demos\demo_aprilui\demo_aprilui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\aprilui\msvc\vs2015\libaprilui.vcxproj">
+      <Project>{56ff74d1-34d0-4ddb-8b89-f6f9200842b8}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\atres\msvc\vs2015\libatres.vcxproj">
+      <Project>{a1e808a0-fe36-47fe-9e3b-cf195ea31f0a}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\apriluiparticle\msvc\vs2015\libapriluiparticle.vcxproj">
+      <Project>{ec6f8930-24d3-4722-a4b8-8d56f1698d76}</Project>
+      <CopyLocal>false</CopyLocal>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
