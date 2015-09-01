@@ -33,7 +33,7 @@ namespace aprilparticle
 		HL_DEFINE_GET(harray<Affector*>, affectors, Affectors);
 
 		Affector* getAffector(chstr name);
-		template <class T>
+		template <typename T>
 		inline T* getAffector(chstr name)
 		{
 			return dynamic_cast<T*>(this->getAffector(name));
