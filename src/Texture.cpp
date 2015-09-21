@@ -6,6 +6,7 @@
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <april/RenderSystem.h>
 #include <april/Texture.h>
 #include <hltypes/hstring.h>
 
@@ -23,7 +24,7 @@ namespace aprilparticle
 
 	Texture::~Texture()
 	{
-		delete this->texture;
+		april::rendersys->destroyTexture(this->texture);
 	}
 	
 }
