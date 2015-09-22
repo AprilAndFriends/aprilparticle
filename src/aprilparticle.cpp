@@ -11,6 +11,7 @@
 #include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
 #include <hltypes/hstring.h>
+#include <hltypes/hversion.h>
 
 #include "Affectors.h"
 #include "aprilparticle.h"
@@ -23,6 +24,8 @@ namespace aprilparticle
 {
 	hstr logTag = "aprilparticle";
 
+	static hversion version(2, 2, 0);
+
 	static bool useCache = true;
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
@@ -31,8 +34,8 @@ namespace aprilparticle
 	extern void initForceField();
 	void init()
 	{
-		hlog::write(logTag, "Initializing AprilParticle.");
-		initForceField(); // so we can shoot the bad guys
+		hlog::write(logTag, "Initializing AprilParticle: " + version.toString());
+		initForceField();
 		useCache = true;
 		REGISTER_AFFECTOR_TYPE(Attractor);
 		REGISTER_AFFECTOR_TYPE(CallbackAffector);

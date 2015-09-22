@@ -10,6 +10,7 @@
 #include <hltypes/hexception.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hstring.h>
+#include <hltypes/hversion.h>
 
 #include "apriluiparticle.h"
 #include "Emitter.h"
@@ -21,12 +22,14 @@ namespace apriluiparticle
 {
 	hstr logTag = "apriluiparticle";
 
+	static hversion version(2, 2, 0);
+
 	static hstr defaultPath = "particles";
 	static bool enabled = true;
 
 	void init()
 	{
-		hlog::write(logTag, "Initializing AprilUIParticle.");
+		hlog::write(logTag, "Initializing AprilUIParticle: " + version.toString());
 		APRILUI_REGISTER_OBJECT_TYPE(Particle);
 		APRILUI_REGISTER_OBJECT_TYPE(Emitter);
 		APRILUI_REGISTER_OBJECT_TYPE(Space);
