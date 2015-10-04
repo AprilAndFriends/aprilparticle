@@ -151,7 +151,7 @@ namespace apriluiparticle
 		else
 		{
 			hlog::warnf(logTag, "Emitter '%s': referenced object '%s' not a subclass of Space!",
-				this->spaceObjectName.cStr(), this->name.cStr());
+				this->name.cStr(), this->spaceObjectName.cStr());
 			this->spaceObjectName = "";
 			this->emitterName = "";
 		}
