@@ -602,9 +602,12 @@ void april_destroy()
 	delete quazar;
 	delete milkyWay;
 	delete twirl;
-	delete redParticle;
-	delete greenParticle;
-	delete blueParticle;
+	april::rendersys->destroyTexture(redParticle);
+	redParticle = NULL;
+	april::rendersys->destroyTexture(greenParticle);
+	greenParticle = NULL;
+	april::rendersys->destroyTexture(blueParticle);
+	blueParticle = NULL;
 	aprilparticle::destroy();
 	april::destroy();
 }
