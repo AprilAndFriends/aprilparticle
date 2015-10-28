@@ -277,7 +277,7 @@ namespace aprilparticle
 	{
 		if (this->visible && color.a > 0)
 		{
-			if (color == april::Color::White)
+			if (color == april::Color::White) // optimization
 			{
 				foreach (Emitter*, it, this->emitters)
 				{

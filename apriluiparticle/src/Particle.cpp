@@ -52,7 +52,6 @@ namespace apriluiparticle
 		{
 			this->system->setVisible(this->isDerivedVisible());
 			this->system->draw(rect.getCenter(), this->_makeDrawColor());
-			april::rendersys->setTextureBlendMode(april::BM_DEFAULT);
 		}
 		Base::_draw();
 	}
