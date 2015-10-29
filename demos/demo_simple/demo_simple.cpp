@@ -83,7 +83,7 @@ public:
 
 	bool onUpdate(float timeDelta)
 	{
-		april::rendersys->clear(true, false);
+		april::rendersys->clear();
 		this->angle += timeDelta * 90.0f;
 		
 		if (hmodf(this->angle - timeDelta * 90.0f, 90.0f) > hmodf(this->angle, 90.0f))
