@@ -104,11 +104,14 @@ namespace aprilparticle
 		void ForceField::draw()
 		{
 			float length = this->direction.length();
+			gvec3 uVector = this->position + this->space->getPosition() + ut * length;
+			gvec3 vVector = this->position + this->space->getPosition() + vt * length;
+			gvec3 wVector = this->position + this->space->getPosition() + wt * length;
 			for_iter (i, 0, VERTEX_COUNT)
 			{
-				u[i] = this->position + this->space->getPosition() + ut * length;
-				v[i] = this->position + this->space->getPosition() + vt * length;
-				w[i] = this->position + this->space->getPosition() + wt * length;
+				u[i] = uVector;
+				v[i] = vVector;
+				w[i] = wVector;
 			}
 			arrow[0] = this->position + this->space->getPosition();
 			arrow[1] = this->position + this->space->getPosition() + this->direction;
