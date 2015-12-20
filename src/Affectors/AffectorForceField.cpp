@@ -109,12 +109,12 @@ namespace aprilparticle
 			gvec3 wVector = this->position + this->space->getPosition() + wt * length;
 			for_iter (i, 0, VERTEX_COUNT)
 			{
-				u[i] = uVector;
-				v[i] = vVector;
-				w[i] = wVector;
+				u[i].set(uVector);
+				v[i].set(vVector);
+				w[i].set(wVector);
 			}
-			arrow[0] = this->position + this->space->getPosition();
-			arrow[1] = this->position + this->space->getPosition() + this->direction;
+			arrow[0].set(this->position + this->space->getPosition());
+			arrow[1].set(this->position + this->space->getPosition() + this->direction);
 			april::rendersys->render(april::RO_LINE_STRIP, u, VERTEX_COUNT);
 			april::rendersys->render(april::RO_LINE_STRIP, v, VERTEX_COUNT);
 			april::rendersys->render(april::RO_LINE_STRIP, w, VERTEX_COUNT);

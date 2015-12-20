@@ -597,12 +597,12 @@ namespace aprilparticle
 				v[3] = this->_billboard * v[3];
 			
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
-				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[3]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 			}
 		}
 		if (this->_i > 0)
@@ -659,12 +659,12 @@ namespace aprilparticle
 				}
 				
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
-				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[3]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 			}
 		}
 		if (this->_i > 0)
@@ -725,12 +725,12 @@ namespace aprilparticle
 				}
 				
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color * color);
-				this->_triangleBatch[this->_i] = v[0];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[1];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[2];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
-				this->_triangleBatch[this->_i] = v[3];	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[2]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
+				this->_triangleBatch[this->_i].set(v[3]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 			}
 		}
 		if (this->_i > 0)
