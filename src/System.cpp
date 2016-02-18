@@ -15,7 +15,6 @@
 #include <hltypes/hmap.h>
 #include <hlxml/Document.h>
 #include <hlxml/Node.h>
-#include <hlxml/Property.h>
 
 #include "Affectors.h"
 #include "aprilparticle.h"
@@ -175,22 +174,12 @@ namespace aprilparticle
 
 	bool System::unregisterTexture(aprilparticle::Texture* texture)
 	{
-		if (!this->textures.hasValue(texture))
-		{
-			return false;
-		}
-		this->textures.removeValue(texture);
-		return true;
+		return this->textures.removeValue(texture);
 	}
 
 	bool System::unregisterTexture(chstr name)
 	{
-		if (!this->textures.hasKey(name))
-		{
-			return false;
-		}
-		this->textures.removeKey(name);
-		return true;
+		return this->textures.removeKey(name);
 	}
 
 	aprilparticle::Space* System::getSpace(chstr name)
@@ -258,9 +247,9 @@ namespace aprilparticle
 		hlxml::Document doc(filename);
 		hlxml::Node* root = doc.root();
 		this->name = "";
-		foreach_xmlproperty (prop, root)
+		foreach_m (hstr, it, root->properties)
 		{
-			this->setProperty(prop->name(), prop->value());
+			this->setProperty(it->first, it->second);
 		}
 		if (this->name == "")
 		{
@@ -268,15 +257,15 @@ namespace aprilparticle
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Space")
+			if (node->value == "Space")
 			{
 				this->_loadSpace(node);
 			}
-			else if (*node == "Affector")
+			else if (node->value == "Affector")
 			{
 				this->_loadAffector(node);
 			}
-			else if (*node == "Texture")
+			else if (node->value == "Texture")
 			{
 				this->_loadTexture(node);
 			}
@@ -317,17 +306,17 @@ namespace aprilparticle
 	{
 		Space* space = new Space();
 		this->registerSpace(space);
-		foreach_xmlproperty (prop, root)
+		foreach_m (hstr, it, root->properties)
 		{
-			space->setProperty(prop->name(), prop->value());
+			space->setProperty(it->first, it->second);
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Emitter")
+			if (node->value == "Emitter")
 			{
 				this->_loadEmitter(node, space);
 			}
-			else if (*node == "Affector")
+			else if (node->value == "Affector")
 			{
 				this->_loadAffector(node, space);
 			}
@@ -338,13 +327,13 @@ namespace aprilparticle
 	{
 		Emitter* emitter = new Emitter();
 		space->registerEmitter(emitter);
-		foreach_xmlproperty (prop, root)
+		foreach_m (hstr, it, root->properties)
 		{
-			emitter->setProperty(prop->name(), prop->value());
+			emitter->setProperty(it->first, it->second);
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (*node == "Texture")
+			if (node->value == "Texture")
 			{
 				this->_loadTexture(node, emitter);
 			}
@@ -358,17 +347,13 @@ namespace aprilparticle
 		hstr name = "";
 		if (root->pexists("type"))
 		{
-			hmap<hstr, hstr> properties;
-			foreach_xmlproperty (prop, root)
-			{
-				properties[prop->name()] = prop->value();
-			}
+			hmap<hstr, hstr> properties = root->properties;
 			hstr type = properties["type"];
 			if (properties.hasKey("timings"))
 			{
 				type += "Timed";
+				properties["type"] = type;
 			}
-			properties["type"] = type;
 			affector = createAffector(type, root->pstr("name", ""));
 			if (affector == NULL)
 			{
@@ -378,12 +363,10 @@ namespace aprilparticle
 			name = affector->getName();
 			properties["name"] = name;
 			this->_affectorProperties[affector] = properties;
+			properties.removeKey("type");
 			foreach_m (hstr, it, properties)
 			{
-				if (it->first != "type")
-				{
-					affector->setProperty(it->first, it->second);
-				}
+				affector->setProperty(it->first, it->second);
 			}
 			map = true;
 		}
