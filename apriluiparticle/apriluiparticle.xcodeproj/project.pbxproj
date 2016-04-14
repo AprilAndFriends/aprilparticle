@@ -308,6 +308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -335,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
@@ -373,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -410,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -473,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MAC,
@@ -489,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MAC,
@@ -505,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BC018D7772500A36FDC /* Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MAC,
