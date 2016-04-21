@@ -43,7 +43,32 @@
 		D1F27B8C177A307000E5C131 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D157EB671768B1390026F625 /* Particle.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B48F0F501CC7AD740091D11F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9C04D7314BAEB2A005BD333;
+			remoteInfo = liteser;
+		};
+		B48F0F521CC7AD740091D11F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9C04D7414BAEB2A005BD333;
+			remoteInfo = "liteser (iOS)";
+		};
+		B48F0F541CC7AD740091D11F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B40183E71BA976AF007314AC;
+			remoteInfo = "liteser (Mac)";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = liteser.xcodeproj; path = ../../liteser/liteser.xcodeproj; sourceTree = "<group>"; };
 		C9255A0D148E30C30019ED23 /* apriluiparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticle.h; path = include/apriluiparticle/apriluiparticle.h; sourceTree = SOURCE_ROOT; };
 		C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleExport.h; path = include/apriluiparticle/apriluiparticleExport.h; sourceTree = SOURCE_ROOT; };
 		C9255A13148E30D20019ED23 /* apriluiparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = apriluiparticle.cpp; path = src/apriluiparticle.cpp; sourceTree = SOURCE_ROOT; };
@@ -89,9 +114,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B48F0F4B1CC7AD740091D11F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B48F0F511CC7AD740091D11F /* liteser.framework */,
+				B48F0F531CC7AD740091D11F /* libliteser.a */,
+				B48F0F551CC7AD740091D11F /* libliteser.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C9DF844B148D03DB00B64799 = {
 			isa = PBXGroup;
 			children = (
+				B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */,
 				D1358BBE18D776F600A36FDC /* config */,
 				C9DF8475148D041D00B64799 /* include */,
 				C9DF8460148D03DC00B64799 /* src */,
@@ -249,6 +285,12 @@
 			mainGroup = C9DF844B148D03DB00B64799;
 			productRefGroup = C9DF8458148D03DC00B64799 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B48F0F4B1CC7AD740091D11F /* Products */;
+					ProjectRef = B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C9DF8456148D03DC00B64799 /* apriluiparticle */,
@@ -257,6 +299,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B48F0F511CC7AD740091D11F /* liteser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = liteser.framework;
+			remoteRef = B48F0F501CC7AD740091D11F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B48F0F531CC7AD740091D11F /* libliteser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libliteser.a;
+			remoteRef = B48F0F521CC7AD740091D11F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B48F0F551CC7AD740091D11F /* libliteser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libliteser.a;
+			remoteRef = B48F0F541CC7AD740091D11F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9DF8452148D03DC00B64799 /* Sources */ = {
