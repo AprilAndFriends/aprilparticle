@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -22,7 +22,7 @@ namespace apriluiparticle
 {
 	hstr logTag = "apriluiparticle";
 
-	static hversion version(2, 2, 0);
+	static hversion version(2, 3, 0);
 
 	static hstr defaultPath = "particles";
 	static bool enabled = true;

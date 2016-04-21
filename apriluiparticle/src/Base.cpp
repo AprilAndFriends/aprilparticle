@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -22,6 +22,7 @@
 #include "apriluiparticle.h"
 #include "apriluiparticleUtil.h"
 #include "Base.h"
+#include "Event.h"
 #include "Space.h"
 
 namespace apriluiparticle
@@ -68,23 +69,13 @@ namespace apriluiparticle
 		return (aprilui::Object::getPropertyDescriptions() + Base::_propertyDescriptions);
 	}
 
-	void Base::load(chstr filename)
-	{
-		this->filename = filename;
-		this->stopSystem();
-		if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
-		{
-			this->_load();
-		}
-	}
-
 	void Base::notifyEvent(chstr type, aprilui::EventArgs* args)
 	{
 		if (type == aprilui::Event::Resized)
 		{
 			this->_resize();
 		}
-		else if (type == "SettingsChanged")
+		else if (type == Event::ParticleSettingsChanged)
 		{
 			if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
 			{
@@ -96,6 +87,16 @@ namespace apriluiparticle
 			}
 		}
 		aprilui::Object::notifyEvent(type, args);
+	}
+
+	void Base::load(chstr filename)
+	{
+		this->filename = filename;
+		this->stopSystem();
+		if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
+		{
+			this->_load();
+		}
 	}
 
 	void Base::_load()
@@ -171,13 +172,13 @@ namespace apriluiparticle
 		{
 			this->setFilename(value);
 			this->setFilepath("");
-			this->notifyEvent("SettingsChanged", NULL);
+			this->notifyEvent(Event::ParticleSettingsChanged, NULL);
 		}
 		else if	(name == "filepath")
 		{
 			this->setFilepath(value);
 			this->setFilename("");
-			this->notifyEvent("SettingsChanged", NULL);
+			this->notifyEvent(Event::ParticleSettingsChanged, NULL);
 		}
 		else if	(name == "always_enabled")	this->setAlwaysEnabled(value);
 		else return aprilui::Object::setProperty(name, value);

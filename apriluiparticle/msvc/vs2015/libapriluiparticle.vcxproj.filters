@@ -35,6 +35,9 @@
     <ClCompile Include="..\..\src\Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\apriluiparticle\apriluiparticleExport.h">
@@ -59,6 +62,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\apriluiparticle\Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\apriluiparticle\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

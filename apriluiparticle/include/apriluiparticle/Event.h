@@ -8,25 +8,29 @@
 /// 
 /// @section DESCRIPTION
 /// 
-/// Defines utility functions used internally.
+/// Defines an event.
 
-#ifndef APRILUIPARTICLE_UTIL_H
-#define APRILUIPARTICLE_UTIL_H
+#ifndef APRILUIPARTICLE_EVENT_H
+#define APRILUIPARTICLE_EVENT_H
 
-#include <gtypes/Vector2.h>
 #include <hltypes/hstring.h>
 
 #include "apriluiparticleExport.h"
 
-namespace aprilparticle
-{
-	class Emitter;
-}
-
 namespace apriluiparticle
 {
-	void resizeEmitter(gvec2 size, aprilparticle::Emitter* emitter);
-	void resizeEmitters(gvec2 size, harray<aprilparticle::Emitter*> emitters);
-	
+	class apriluiparticleExport Event
+	{
+	public:
+		static hstr ParticleSettingsChanged;
+		static hstr ParticleSystemExpired;
+
+	private:
+		Event();
+		~Event();
+
+	};
+
 }
+
 #endif

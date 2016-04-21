@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -13,6 +13,7 @@
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
+#include "Event.h"
 #include "Particle.h"
 
 namespace apriluiparticle
@@ -40,7 +41,12 @@ namespace apriluiparticle
 		if (this->system != NULL)
 		{
 			this->system->setEnabled(this->isDerivedEnabled());
+			bool expired = this->system->isExpired();
 			this->system->update(timeDelta);
+			if (!expired && this->system->isExpired())
+			{
+				this->triggerEvent(Event::ParticleSystemExpired, NULL);
+			}
 		}
 		Base::_update(timeDelta);
 	}

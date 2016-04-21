@@ -1,17 +1,19 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
 /// This program is free software; you can redistribute it and/or modify it under
 /// the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 
+#include <aprilparticle/System.h>
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
 
 #include "apriluiparticle.h"
+#include "Event.h"
 #include "Space.h"
 #include "System.h"
 
@@ -69,6 +71,7 @@ namespace apriluiparticle
 			}
 		}
 		Base::stopSystem();
+		this->previousExpired = true;
 	}
 
 	void System::resetSystem()
@@ -81,6 +84,31 @@ namespace apriluiparticle
 			}
 		}
 		Base::resetSystem();
+		this->previousExpired = false;
 	}
 	
+	void System::_load()
+	{
+		Base::_load();
+		this->previousExpired = (this->system == NULL);
+	}
+
+	void System::_update(float timeDelta)
+	{
+		if (this->system != NULL)
+		{
+			bool expired = this->system->isExpired();
+			if (!this->previousExpired && expired)
+			{
+				this->triggerEvent(Event::ParticleSystemExpired, NULL);
+			}
+			this->previousExpired = expired;
+		}
+		else
+		{
+			this->previousExpired = true;
+		}
+		Base::_update(timeDelta);
+	}
+
 }

@@ -52,6 +52,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\apriluiparticle.cpp" />
     <ClCompile Include="..\..\src\apriluiparticleUtil.cpp" />
+    <ClCompile Include="..\..\src\Event.cpp" />
     <ClCompile Include="..\..\src\Particle.cpp" />
     <ClCompile Include="..\..\src\Base.cpp" />
     <ClCompile Include="..\..\src\Emitter.cpp" />
@@ -61,6 +62,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\apriluiparticle\apriluiparticle.h" />
     <ClInclude Include="..\..\include\apriluiparticle\apriluiparticleExport.h" />
+    <ClInclude Include="..\..\include\apriluiparticle\Event.h" />
     <ClInclude Include="..\..\include\apriluiparticle\Particle.h" />
     <ClInclude Include="..\..\include\apriluiparticle\Base.h" />
     <ClInclude Include="..\..\include\apriluiparticle\Emitter.h" />

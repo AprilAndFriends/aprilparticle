@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -52,10 +52,15 @@ namespace apriluiparticle
 		void resetSystem();
 
 	protected:
+		bool previousExpired;
 		harray<Space*> spaceObjects;
 
 		void _registerSpaceObject(Space* spaceObject);
 		void _unregisterSpaceObject(Space* spaceObject);
+
+		void _load();
+
+		void _update(float timeDelta);
 
 	};
 }
