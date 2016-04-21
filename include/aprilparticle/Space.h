@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -81,12 +81,14 @@ namespace aprilparticle
 
 		void _updateInternal(float timeDelta);
 
-		void _addNewParticle(float timeDelta);
+		gvec3 _addNewParticle(float timeDelta);
 
 	private:
 		static harray<PropertyDescription> _propertyDescriptions;
 
 		gvec3 _movement;
+		gvec3 _movementDirection;
+		gvec3 _initialDirection;
 		Particle* _particle;
 		float _lastTimeFraction;
 

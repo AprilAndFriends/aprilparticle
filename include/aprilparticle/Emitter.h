@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -47,7 +47,9 @@ namespace aprilparticle
 			Sphere,
 			HollowSphere,
 			Cylinder,
-			HollowCylinder
+			HollowCylinder,
+			Circle,
+			HollowCircle
 		};
 	
 		friend class Space;
@@ -69,6 +71,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, loopDelay, LoopDelay);
 		HL_DEFINE_GETSET(int, loops, Loops);
 		HL_DEFINE_GET(int, limit, Limit);
+		HL_DEFINE_ISSET(angleAligned, AngleAligned);
 		void setLimit(int value);
 		HL_DEFINE_ISSET(reverseRendering, ReverseRendering);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
@@ -134,6 +137,7 @@ namespace aprilparticle
 		int currentLoop;
 		int alive;
 		int limit;
+		bool angleAligned;
 		bool reverseRendering;
 		float minLife;
 		float maxLife;

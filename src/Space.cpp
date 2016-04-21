@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -303,7 +303,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Space::_addNewParticle(float timeDelta)
+	gvec3 Space::_addNewParticle(float timeDelta)
 	{
 		this->particles += this->_particle;
 		++this->alive;
@@ -313,7 +313,23 @@ namespace aprilparticle
 			(*it)->_setSpace(this);
 			(*it)->update(this->_particle, timeDelta, this->_movement);
 		}
-		this->_particle->position += this->_movement + this->_particle->direction * timeDelta;
+		this->_movementDirection = this->_movement + this->_particle->direction * timeDelta;
+		this->_particle->position += this->_movementDirection;
+		if (timeDelta > 0.0f)
+		{
+			this->_initialDirection = this->_movementDirection;
+		}
+		else
+		{
+			this->_initialDirection.set(0.0f, 0.0f, 0.0f);
+			Particle dummy(*this->_particle);
+			foreach (Affector*, it, this->affectors)
+			{
+				(*it)->update(&dummy, 0.1f, this->_initialDirection);
+			}
+			this->_initialDirection += this->_particle->direction * 0.1f;
+		}
+		return this->_initialDirection;
 	}
 
 }

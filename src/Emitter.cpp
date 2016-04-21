@@ -1,5 +1,5 @@
 /// @file
-/// @version 2.2
+/// @version 2.3
 /// 
 /// @section LICENSE
 /// 
@@ -50,6 +50,7 @@ namespace aprilparticle
 		this->currentLoop = 0;
 		this->alive = 0;
 		this->limit = 10;
+		this->angleAligned = false;
 		this->reverseRendering = false;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
@@ -86,6 +87,7 @@ namespace aprilparticle
 		this->currentLoop = other.currentLoop;
 		this->alive = other.alive;
 		this->limit = other.limit;
+		this->angleAligned = other.angleAligned;
 		this->reverseRendering = other.reverseRendering;
 		this->minLife = other.minLife;
 		this->maxLife = other.maxLife;
@@ -142,6 +144,7 @@ namespace aprilparticle
 			Emitter::_propertyDescriptions += PropertyDescription("size", PropertyDescription::RANGE_GVEC2);
 			Emitter::_propertyDescriptions += PropertyDescription("scale", PropertyDescription::RANGE_FLOAT);
 			Emitter::_propertyDescriptions += PropertyDescription("angle", PropertyDescription::RANGE_FLOAT);
+			Emitter::_propertyDescriptions += PropertyDescription("angle_aligned", PropertyDescription::BOOL);
 		}
 		return (SpaceObject::getPropertyDescriptions() + Emitter::_propertyDescriptions);
 	}
@@ -272,6 +275,8 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, HollowSphere);
 			TRY_GET_TYPE(value, Cylinder);
 			TRY_GET_TYPE(value, HollowCylinder);
+			TRY_GET_TYPE(value, Circle);
+			TRY_GET_TYPE(value, HollowCircle);
 			return "";
 		}
 		if (name == "dimensions")			return april::gvec3ToHstr(this->getDimensions());
@@ -301,6 +306,7 @@ namespace aprilparticle
 		if (name == "loop_delay")			return this->getLoopDelay();
 		if (name == "loops")				return this->getLoops();
 		if (name == "limit")				return this->getLimit();
+		if (name == "angle_aligned")		return this->isAngleAligned();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
 		if (name == "direction")			return GET_RANGE(Direction, april::gvec3ToHstr);
@@ -322,6 +328,8 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, HollowSphere);
 			else TRY_SET_TYPE(value, Cylinder);
 			else TRY_SET_TYPE(value, HollowCylinder);
+			else TRY_SET_TYPE(value, Circle);
+			else TRY_SET_TYPE(value, HollowCircle);
 			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3(value));
@@ -345,6 +353,7 @@ namespace aprilparticle
 		else if	(name == "color_mode_factor")	this->setColorModeFactor(value);
 		else if	(name == "emission_rate")		this->setEmissionRate(value);
 		else if	(name == "limit")				this->setLimit(value);
+		else if (name == "angle_aligned")		this->setAngleAligned(value);
 		else if	(name == "duration")			this->setDuration(value);
 		else if	(name == "delay")				this->setDelay(value);
 		else if	(name == "loop_delay")			this->setLoopDelay(value);
@@ -387,12 +396,11 @@ namespace aprilparticle
 			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
 			break;
 		case HollowSphere:
-			this->_rho = 1.0f;
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
-			this->_angle = this->_rho * sin(this->_phi);
+			this->_angle = sin(this->_phi);
 
-			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
 			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
 			break;
@@ -406,13 +414,27 @@ namespace aprilparticle
 			this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
 			break;
 		case HollowCylinder:
-			this->_rho = 1.0f;
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
 
-			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
+			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
-			this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
+			this->_pos.z = this->dimensions.z * 0.5f * sin(this->_phi);
+			break;
+		case Circle:
+			this->_rho = hrandf(1.0f);
+			this->_angle = hrandf((float)G_PIx2);
+
+			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_angle);
+			this->_pos.y = this->dimensions.y * 0.5f * this->_rho * sin(this->_angle);
+			this->_pos.z = this->dimensions.z * 0.5f;
+			break;
+		case HollowCircle:
+			this->_angle = hrandf((float)G_PIx2);
+
+			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_angle);
+			this->_pos.y = this->dimensions.y * 0.5f * sin(this->_angle);
+			this->_pos.z = this->dimensions.z * 0.5f;
 			break;
 		}
 		this->_pos += this->position;
@@ -428,7 +450,11 @@ namespace aprilparticle
 		this->space->_particle->scale = RAND_RANGE(Scale);
 		this->space->_particle->angle = RAND_RANGE(Angle);
 		this->particles += this->space->_particle;
-		this->space->_addNewParticle(timeDelta);
+		gvec3 direction = this->space->_addNewParticle(timeDelta);
+		if (this->angleAligned && direction != gvec3())
+		{
+			this->space->_particle->angle += gvec2(direction.x, direction.y).angle();
+		}
 	}
 
 	void Emitter::reset()
@@ -743,4 +769,3 @@ namespace aprilparticle
 	}
 	
 }
-
