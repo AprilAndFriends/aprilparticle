@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B471F6941CC8C5D600C2E969 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B471F6931CC8C5D600C2E969 /* Event.cpp */; };
+		B471F6981CC8C5D700C2E969 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B471F6931CC8C5D600C2E969 /* Event.cpp */; };
+		B471F6991CC8C5D800C2E969 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B471F6931CC8C5D600C2E969 /* Event.cpp */; };
+		B471F69B1CC8C5DE00C2E969 /* Event.h in Headers */ = {isa = PBXBuildFile; fileRef = B471F69A1CC8C5DE00C2E969 /* Event.h */; };
 		C9255A10148E30C30019ED23 /* apriluiparticle.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0D148E30C30019ED23 /* apriluiparticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9255A13148E30D20019ED23 /* apriluiparticle.cpp */; };
@@ -68,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B471F6931CC8C5D600C2E969 /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Event.cpp; path = src/Event.cpp; sourceTree = SOURCE_ROOT; };
+		B471F69A1CC8C5DE00C2E969 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = include/apriluiparticle/Event.h; sourceTree = "<group>"; };
 		B48F0F4A1CC7AD740091D11F /* liteser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = liteser.xcodeproj; path = ../../liteser/liteser.xcodeproj; sourceTree = "<group>"; };
 		C9255A0D148E30C30019ED23 /* apriluiparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticle.h; path = include/apriluiparticle/apriluiparticle.h; sourceTree = SOURCE_ROOT; };
 		C9255A0E148E30C30019ED23 /* apriluiparticleExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = apriluiparticleExport.h; path = include/apriluiparticle/apriluiparticleExport.h; sourceTree = SOURCE_ROOT; };
@@ -162,6 +168,7 @@
 		C9DF8460148D03DC00B64799 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B471F6931CC8C5D600C2E969 /* Event.cpp */,
 				D16DF3AC1A248109005D6371 /* Base.cpp */,
 				D16DF3AD1A248109005D6371 /* Emitter.cpp */,
 				D16DF3AE1A248109005D6371 /* Space.cpp */,
@@ -178,6 +185,7 @@
 		C9DF8475148D041D00B64799 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				B471F69A1CC8C5DE00C2E969 /* Event.h */,
 				D16DF3A41A2480F9005D6371 /* Base.h */,
 				D16DF3A51A2480F9005D6371 /* Emitter.h */,
 				D16DF3A61A2480F9005D6371 /* Space.h */,
@@ -212,6 +220,7 @@
 				D16DF3AB1A2480F9005D6371 /* System.h in Headers */,
 				D16DF3A91A2480F9005D6371 /* Emitter.h in Headers */,
 				C9255A11148E30C30019ED23 /* apriluiparticleExport.h in Headers */,
+				B471F69B1CC8C5DE00C2E969 /* Event.h in Headers */,
 				D157EB641768B1250026F625 /* Particle.h in Headers */,
 				D157EB691768B1390026F625 /* apriluiparticleUtil.h in Headers */,
 			);
@@ -333,6 +342,7 @@
 				D16DF3B01A248109005D6371 /* Base.cpp in Sources */,
 				C9255A15148E30D20019ED23 /* apriluiparticle.cpp in Sources */,
 				D16DF3B21A248109005D6371 /* Space.cpp in Sources */,
+				B471F6941CC8C5D600C2E969 /* Event.cpp in Sources */,
 				D1EA92C6175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
 				D157EB6A1768B1390026F625 /* Particle.cpp in Sources */,
 				D16DF3B11A248109005D6371 /* Emitter.cpp in Sources */,
@@ -347,6 +357,7 @@
 				D16DF3B81A24814A005D6371 /* Base.cpp in Sources */,
 				C9FB785215010773008B2B48 /* apriluiparticle.cpp in Sources */,
 				D16DF3BA1A24814A005D6371 /* Space.cpp in Sources */,
+				B471F6991CC8C5D800C2E969 /* Event.cpp in Sources */,
 				D1EA92C7175DC8E9008F508D /* apriluiparticleUtil.cpp in Sources */,
 				D157EB6B1768B1390026F625 /* Particle.cpp in Sources */,
 				D16DF3B91A24814A005D6371 /* Emitter.cpp in Sources */,
@@ -361,6 +372,7 @@
 				D16DF3B41A248149005D6371 /* Base.cpp in Sources */,
 				D1F27B87177A307000E5C131 /* apriluiparticle.cpp in Sources */,
 				D16DF3B61A248149005D6371 /* Space.cpp in Sources */,
+				B471F6981CC8C5D700C2E969 /* Event.cpp in Sources */,
 				D1F27B88177A307000E5C131 /* apriluiparticleUtil.cpp in Sources */,
 				D1F27B8C177A307000E5C131 /* Particle.cpp in Sources */,
 				D16DF3B51A248149005D6371 /* Emitter.cpp in Sources */,
