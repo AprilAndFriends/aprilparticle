@@ -257,15 +257,15 @@ namespace aprilparticle
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (node->value == "Space")
+			if (node->name == "Space")
 			{
 				this->_loadSpace(node);
 			}
-			else if (node->value == "Affector")
+			else if (node->name == "Affector")
 			{
 				this->_loadAffector(node);
 			}
-			else if (node->value == "Texture")
+			else if (node->name == "Texture")
 			{
 				this->_loadTexture(node);
 			}
@@ -312,11 +312,11 @@ namespace aprilparticle
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (node->value == "Emitter")
+			if (node->name == "Emitter")
 			{
 				this->_loadEmitter(node, space);
 			}
-			else if (node->value == "Affector")
+			else if (node->name == "Affector")
 			{
 				this->_loadAffector(node, space);
 			}
@@ -333,7 +333,7 @@ namespace aprilparticle
 		}
 		foreach_xmlnode (node, root)
 		{
-			if (node->value == "Texture")
+			if (node->name == "Texture")
 			{
 				this->_loadTexture(node, emitter);
 			}
