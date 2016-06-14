@@ -26,16 +26,6 @@
 
 namespace aprilparticle
 {
-	static bool _filter_isRunning(Space* space)
-	{
-		return space->isRunning();
-	}
-
-	static bool _filter_isExpired(Space* space)
-	{
-		return space->isExpired();
-	}
-
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? april::generateName("System") : name), AffectorContainer()
 	{
 		this->filename = filename;
@@ -126,7 +116,8 @@ namespace aprilparticle
 	
 	bool System::isRunning()
 	{
-		return this->spaces.matchesAny(&_filter_isRunning);
+		HL_LAMBDA_CLASS(_isRunning, bool, ((Space* const& space) { return space->isRunning(); }));
+		return this->spaces.matchesAny(&_isRunning::lambda);
 	}
 
 	bool System::registerSpace(Space* space)
@@ -224,7 +215,8 @@ namespace aprilparticle
 
 	bool System::isExpired()
 	{
-		return this->spaces.matchesAll(&_filter_isExpired);
+		HL_LAMBDA_CLASS(_isExpired, bool, ((Space* const& space) { return space->isExpired(); }));
+		return this->spaces.matchesAny(&_isExpired::lambda);
 	}
 
 	void System::reset()
