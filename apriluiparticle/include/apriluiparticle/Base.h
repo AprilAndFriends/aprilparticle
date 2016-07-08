@@ -46,8 +46,8 @@ namespace apriluiparticle
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);
 		HL_DEFINE_ISSET(alwaysEnabled, AlwaysEnabled);
 		HL_DEFINE_GET(aprilparticle::System*, system, System);
-		bool isRunning();
-		bool isExpired();
+		bool isRunning() const;
+		bool isExpired() const;
 		
 		harray<aprilui::PropertyDescription> getPropertyDescriptions();
 

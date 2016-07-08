@@ -41,10 +41,10 @@ namespace apriluiparticle
 		return new System(name);
 	}
 
-	harray<Emitter*> System::getEmitterObjects()
+	harray<Emitter*> System::getEmitterObjects() const
 	{
 		harray<Emitter*> result;
-		foreach (Space*, it, this->spaceObjects)
+		foreachc (Space*, it, this->spaceObjects)
 		{
 			result += (*it)->getEmitterObjects();
 		}

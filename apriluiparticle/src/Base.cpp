@@ -48,12 +48,12 @@ namespace apriluiparticle
 		this->stopSystem();
 	}
 
-	bool Base::isRunning()
+	bool Base::isRunning() const
 	{
 		return (this->system != NULL && this->system->isRunning());
 	}
 
-	bool Base::isExpired()
+	bool Base::isExpired() const
 	{
 		return (this->system != NULL && this->system->isExpired());
 	}
