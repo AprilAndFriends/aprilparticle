@@ -31,12 +31,12 @@ namespace aprilparticle
 	{
 	}
 
-	float Particle::getLifeProgressRatio()
+	float Particle::getLifeProgressRatio() const
 	{
 		return (this->life > 0.0f ? (hclamp(this->timer / this->life, 0.0f, 1.0f)) : 1.0f);
 	}
 
-	bool Particle::isDead()
+	bool Particle::isDead() const
 	{
 		return (this->timer >= this->life);
 	}

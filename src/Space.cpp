@@ -56,19 +56,19 @@ namespace aprilparticle
 		}
 	}
 
-	bool Space::isRunning()
+	bool Space::isRunning() const
 	{
 		HL_LAMBDA_CLASS(_isRunning, bool, ((Emitter* const& emitter) { return emitter->isRunning(); }));
 		return this->emitters.matchesAny(&_isRunning::lambda);
 	}
 
-	bool Space::isExpired()
+	bool Space::isExpired() const
 	{
 		HL_LAMBDA_CLASS(_isExpired, bool, ((Emitter* const& emitter) { return emitter->isExpired(); }));
 		return this->emitters.matchesAll(&_isExpired::lambda);
 	}
 
-	int Space::getParticleCount()
+	int Space::getParticleCount() const
 	{
 		return this->alive;
 	}
@@ -116,9 +116,9 @@ namespace aprilparticle
 		return this->_removeAffector(affector);
 	}
 
-	Emitter* Space::getEmitter(chstr name)
+	Emitter* Space::getEmitter(chstr name) const
 	{
-		foreach (Emitter*, it, this->emitters)
+		foreachc (Emitter*, it, this->emitters)
 		{
 			if ((*it)->getName() == name)
 			{

@@ -72,8 +72,8 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, angle, Angle);
 		HL_DEFINE_GETSET(april::Color, color, Color);
 
-		float getLifeProgressRatio();
-		bool isDead();
+		float getLifeProgressRatio() const;
+		bool isDead() const;
 
 	protected:
 		float timer;

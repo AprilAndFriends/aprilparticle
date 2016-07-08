@@ -44,9 +44,9 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec3, up, Up);
 		inline void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GETSET(harray<Emitter*>, emitters, Emitters);
-		bool isRunning();
-		bool isExpired();
-		int getParticleCount();
+		bool isRunning() const;
+		bool isExpired() const;
+		int getParticleCount() const;
 
 		harray<PropertyDescription> getPropertyDescriptions() const;
 
@@ -63,7 +63,7 @@ namespace aprilparticle
 		bool unregisterEmitter(Emitter* emitter);
 		bool addAffector(Affector* affector);
 		bool removeAffector(Affector* affector);
-		Emitter* getEmitter(chstr name);
+		Emitter* getEmitter(chstr name) const;
 
 		void drawAffectors(); // usually only used for debug purposes, 3D
 

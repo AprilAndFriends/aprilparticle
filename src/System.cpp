@@ -104,17 +104,17 @@ namespace aprilparticle
 		}
 	}
 
-	harray<Emitter*> System::getEmitters()
+	harray<Emitter*> System::getEmitters() const
 	{
 		harray<Emitter*> emitters;
-		foreach (Space*, it, this->spaces)
+		foreachc (Space*, it, this->spaces)
 		{
 			emitters += (*it)->getEmitters();
 		}
 		return emitters;
 	}
 	
-	bool System::isRunning()
+	bool System::isRunning() const
 	{
 		HL_LAMBDA_CLASS(_isRunning, bool, ((Space* const& space) { return space->isRunning(); }));
 		return this->spaces.matchesAny(&_isRunning::lambda);
@@ -173,9 +173,9 @@ namespace aprilparticle
 		return this->textures.removeKey(name);
 	}
 
-	aprilparticle::Space* System::getSpace(chstr name)
+	aprilparticle::Space* System::getSpace(chstr name) const
 	{
-		foreach (Space*, it, this->spaces)
+		foreachc (Space*, it, this->spaces)
 		{
 			if ((*it)->getName() == name)
 			{
@@ -185,15 +185,15 @@ namespace aprilparticle
 		return NULL;
 	}
 	
-	aprilparticle::Texture* System::getTexture(chstr name)
+	aprilparticle::Texture* System::getTexture(chstr name) const
 	{
 		return this->textures.tryGet(name, NULL);
 	}
 	
-	aprilparticle::Emitter* System::getEmitter(chstr name)
+	aprilparticle::Emitter* System::getEmitter(chstr name) const
 	{
 		harray<Emitter*> emitters = this->getEmitters();
-		foreach (Emitter*, it, emitters)
+		foreachc (Emitter*, it, emitters)
 		{
 			if ((*it)->getName() == name)
 			{
@@ -203,17 +203,17 @@ namespace aprilparticle
 		return NULL;
 	}
 	
-	int System::getParticleCount()
+	int System::getParticleCount() const
 	{
 		int count = 0;
-		foreach (Space*, it, this->spaces)
+		foreachc (Space*, it, this->spaces)
 		{
 			count += (*it)->getParticleCount();
 		}
 		return count;
 	}
 
-	bool System::isExpired()
+	bool System::isExpired() const
 	{
 		HL_LAMBDA_CLASS(_isExpired, bool, ((Space* const& space) { return space->isExpired(); }));
 		return this->spaces.matchesAny(&_isExpired::lambda);

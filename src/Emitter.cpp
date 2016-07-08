@@ -227,7 +227,7 @@ namespace aprilparticle
 		this->setAngleRange(data.first(), data.last());
 	}
 
-	bool Emitter::isExpired()
+	bool Emitter::isExpired() const
 	{
 		return (!this->running && this->particles.size() == 0);
 	}

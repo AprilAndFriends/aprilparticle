@@ -46,8 +46,8 @@ namespace aprilparticle
 
 		virtual harray<PropertyDescription> getPropertyDescriptions() const;
 				
-		inline virtual void update(Particle* particle, float timeDelta, gvec3& movement) { }
-		inline virtual void draw() { }
+		virtual inline void update(Particle* particle, float timeDelta, gvec3& movement) { }
+		virtual inline void draw() { }
 
 		virtual hstr getProperty(chstr name);
 		virtual bool setProperty(chstr name, chstr value);

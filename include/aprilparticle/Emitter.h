@@ -95,7 +95,7 @@ namespace aprilparticle
 		void setSize(chstr value);
 		void setScale(chstr value);
 		void setAngle(chstr value);
-		bool isExpired();
+		bool isExpired() const;
 
 		void setLifeRange(float min, float max);
 		void setDirectionRange(gvec3 min, gvec3 max);

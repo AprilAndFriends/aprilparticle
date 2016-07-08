@@ -46,9 +46,9 @@ namespace aprilparticle
 		return true;
 	}
 
-	Affector* AffectorContainer::getAffector(chstr name)
+	Affector* AffectorContainer::getAffector(chstr name) const
 	{
-		foreach (Affector*, it, this->affectors)
+		foreachc (Affector*, it, this->affectors)
 		{
 			if ((*it)->getName() == name)
 			{

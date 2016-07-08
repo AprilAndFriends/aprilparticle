@@ -47,7 +47,7 @@ namespace aprilparticle
 			return new Revolutor(name);
 		}
 
-		bool Revolutor::isClockwise()
+		bool Revolutor::isClockwise() const
 		{
 			return (this->angle >= 0.0f);
 		}

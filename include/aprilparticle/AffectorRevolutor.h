@@ -38,7 +38,7 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec3, axis, Axis);
 			inline void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
 			HL_DEFINE_GETSET(float, evolutionSpeed, EvolutionSpeed);
-			bool isClockwise();
+			bool isClockwise() const;
 			void setClockwise(bool value);
 			
 			harray<PropertyDescription> getPropertyDescriptions() const;

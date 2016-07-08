@@ -52,9 +52,9 @@ namespace aprilparticle
 		HL_DEFINE_GET(hstr, filename, Filename);
 		HL_DEFINE_GET(harray<Space*>, spaces, Spaces);
 		HL_DEFINE_GET2(hmap, hstr, Texture*, textures, Textures);
-		harray<Emitter*> getEmitters();
-		bool isRunning();
-		bool isExpired();
+		harray<Emitter*> getEmitters() const;
+		bool isRunning() const;
+		bool isExpired() const;
 		
 		bool registerSpace(Space* space);
 		bool unregisterSpace(Space* space);
@@ -63,10 +63,10 @@ namespace aprilparticle
 		bool registerTexture(Texture* texture, chstr name = "");
 		bool unregisterTexture(chstr name);
 		bool unregisterTexture(Texture* texture);
-		Space* getSpace(chstr name);
-		Texture* getTexture(chstr name);
-		Emitter* getEmitter(chstr name);
-		int getParticleCount();
+		Space* getSpace(chstr name) const;
+		Texture* getTexture(chstr name) const;
+		Emitter* getEmitter(chstr name) const;
+		int getParticleCount() const;
 		
 		void reset();
 		void load();
