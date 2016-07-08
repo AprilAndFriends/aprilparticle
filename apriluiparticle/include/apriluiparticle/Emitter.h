@@ -47,7 +47,7 @@ namespace apriluiparticle
 		HL_DEFINE_GETSET(hstr, spaceObjectName, SpaceObjectName);
 		HL_DEFINE_GETSET(hstr, emitterName, EmitterName);
 
-		harray<aprilui::PropertyDescription> getPropertyDescriptions();
+		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
 
 		void resetEmitter();
 

@@ -73,7 +73,7 @@ namespace aprilparticle
 		return this->alive;
 	}
 
-	harray<PropertyDescription> Space::getPropertyDescriptions()
+	harray<PropertyDescription> Space::getPropertyDescriptions() const
 	{
 		if (Space::_propertyDescriptions.size() == 0)
 		{

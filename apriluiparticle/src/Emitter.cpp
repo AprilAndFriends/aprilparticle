@@ -63,7 +63,7 @@ namespace apriluiparticle
 		return new Emitter(name);
 	}
 
-	harray<aprilui::PropertyDescription> Emitter::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Emitter::getPropertyDescriptions() const
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{

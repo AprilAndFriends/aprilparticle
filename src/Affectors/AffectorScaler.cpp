@@ -36,7 +36,7 @@ namespace aprilparticle
 			return new Scaler(name);
 		}
 
-		harray<PropertyDescription> Scaler::getPropertyDescriptions()
+		harray<PropertyDescription> Scaler::getPropertyDescriptions() const
 		{
 			if (Scaler::_propertyDescriptions.size() == 0)
 			{

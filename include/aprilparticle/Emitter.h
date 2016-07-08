@@ -103,7 +103,7 @@ namespace aprilparticle
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
 
-		harray<PropertyDescription> getPropertyDescriptions();
+		harray<PropertyDescription> getPropertyDescriptions() const;
 
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);

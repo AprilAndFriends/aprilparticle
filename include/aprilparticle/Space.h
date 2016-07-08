@@ -48,7 +48,7 @@ namespace aprilparticle
 		bool isExpired();
 		int getParticleCount();
 
-		harray<PropertyDescription> getPropertyDescriptions();
+		harray<PropertyDescription> getPropertyDescriptions() const;
 
 		void reset();
 		void update(float timeDelta);

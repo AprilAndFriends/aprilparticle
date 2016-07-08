@@ -44,7 +44,7 @@ namespace aprilparticle
 
 		void setRandomnessRange(float min, float max);
 
-		virtual harray<PropertyDescription> getPropertyDescriptions();
+		virtual harray<PropertyDescription> getPropertyDescriptions() const;
 				
 		inline virtual void update(Particle* particle, float timeDelta, gvec3& movement) { }
 		inline virtual void draw() { }

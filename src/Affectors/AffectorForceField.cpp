@@ -68,7 +68,7 @@ namespace aprilparticle
 			return new ForceField(name);
 		}
 
-		harray<PropertyDescription> ForceField::getPropertyDescriptions()
+		harray<PropertyDescription> ForceField::getPropertyDescriptions() const
 		{
 			if (ForceField::_propertyDescriptions.size() == 0)
 			{

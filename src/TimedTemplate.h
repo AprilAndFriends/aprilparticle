@@ -74,7 +74,7 @@
 	++this->_size;
 
 #define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \
-	harray<PropertyDescription> classe::getPropertyDescriptions() \
+	harray<PropertyDescription> classe::getPropertyDescriptions() const \
 	{ \
 		if (classe::_propertyDescriptions.size() == 0) \
 		{ \

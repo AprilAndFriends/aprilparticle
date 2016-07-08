@@ -39,7 +39,7 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
 			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
 				
-			harray<PropertyDescription> getPropertyDescriptions();
+			harray<PropertyDescription> getPropertyDescriptions() const;
 
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);

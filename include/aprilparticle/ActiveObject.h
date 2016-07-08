@@ -34,7 +34,7 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(visible, Visible);
 		HL_DEFINE_ISSET(enabled, Enabled);
 
-		virtual harray<PropertyDescription> getPropertyDescriptions();
+		virtual harray<PropertyDescription> getPropertyDescriptions() const;
 		bool hasProperty(chstr name);
 
 		hstr getProperty(chstr name);

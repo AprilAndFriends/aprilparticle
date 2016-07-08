@@ -58,7 +58,7 @@ namespace apriluiparticle
 		return (this->system != NULL && this->system->isExpired());
 	}
 
-	harray<aprilui::PropertyDescription> Base::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Base::getPropertyDescriptions() const
 	{
 		if (Base::_propertyDescriptions.size() == 0)
 		{

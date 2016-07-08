@@ -41,7 +41,7 @@ namespace aprilparticle
 			void setTimings(hmap<float, float> value);
 			void setTimings(chstr value);
 
-			harray<PropertyDescription> getPropertyDescriptions();
+			harray<PropertyDescription> getPropertyDescriptions() const;
 
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);

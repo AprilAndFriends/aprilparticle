@@ -38,7 +38,7 @@ namespace aprilparticle
 			return new Rotator(name);
 		}
 
-		harray<PropertyDescription> Rotator::getPropertyDescriptions()
+		harray<PropertyDescription> Rotator::getPropertyDescriptions() const
 		{
 			if (Rotator::_propertyDescriptions.size() == 0)
 			{

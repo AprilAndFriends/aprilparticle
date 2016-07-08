@@ -41,7 +41,7 @@ namespace aprilparticle
 			return new Attractor(name);
 		}
 
-		harray<PropertyDescription> Attractor::getPropertyDescriptions()
+		harray<PropertyDescription> Attractor::getPropertyDescriptions() const
 		{
 			if (Attractor::_propertyDescriptions.size() == 0)
 			{

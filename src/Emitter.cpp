@@ -122,7 +122,7 @@ namespace aprilparticle
 		}
 	}
 
-	harray<PropertyDescription> Emitter::getPropertyDescriptions()
+	harray<PropertyDescription> Emitter::getPropertyDescriptions() const
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{

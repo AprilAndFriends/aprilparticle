@@ -39,7 +39,7 @@ namespace aprilparticle
 			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
 			inline void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
-			harray<PropertyDescription> getPropertyDescriptions();
+			harray<PropertyDescription> getPropertyDescriptions() const;
 
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);

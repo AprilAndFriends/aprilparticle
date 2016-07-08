@@ -45,7 +45,7 @@ namespace aprilparticle
 			return new ColorChanger(name);
 		}
 
-		harray<PropertyDescription> ColorChanger::getPropertyDescriptions()
+		harray<PropertyDescription> ColorChanger::getPropertyDescriptions() const
 		{
 			if (ColorChanger::_propertyDescriptions.size() == 0)
 			{

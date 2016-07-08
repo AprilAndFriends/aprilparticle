@@ -38,7 +38,7 @@ namespace aprilparticle
 			return new Resizer(name);
 		}
 
-		harray<PropertyDescription> Resizer::getPropertyDescriptions()
+		harray<PropertyDescription> Resizer::getPropertyDescriptions() const
 		{
 			if (Resizer::_propertyDescriptions.size() == 0)
 			{

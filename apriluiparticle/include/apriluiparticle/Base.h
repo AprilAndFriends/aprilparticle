@@ -49,7 +49,7 @@ namespace apriluiparticle
 		bool isRunning() const;
 		bool isExpired() const;
 		
-		harray<aprilui::PropertyDescription> getPropertyDescriptions();
+		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
 
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 

@@ -37,7 +37,7 @@ namespace aprilparticle
 			return new LinearForce(name);
 		}
 
-		harray<PropertyDescription> LinearForce::getPropertyDescriptions()
+		harray<PropertyDescription> LinearForce::getPropertyDescriptions() const
 		{
 			if (LinearForce::_propertyDescriptions.size() == 0)
 			{

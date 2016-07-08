@@ -49,7 +49,7 @@ namespace aprilparticle
 		this->maxRandomness = max;
 	}
 
-	harray<PropertyDescription> Affector::getPropertyDescriptions()
+	harray<PropertyDescription> Affector::getPropertyDescriptions() const
 	{
 		if (Affector::_propertyDescriptions.size() == 0)
 		{

@@ -57,7 +57,7 @@ namespace aprilparticle
 			this->angle = (value ? -360.0f : 360.0f);
 		}
 
-		harray<PropertyDescription> Revolutor::getPropertyDescriptions()
+		harray<PropertyDescription> Revolutor::getPropertyDescriptions() const
 		{
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{

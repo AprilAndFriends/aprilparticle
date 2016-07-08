@@ -62,7 +62,7 @@ namespace apriluiparticle
 		return new Space(name);
 	}
 
-	harray<aprilui::PropertyDescription> Space::getPropertyDescriptions()
+	harray<aprilui::PropertyDescription> Space::getPropertyDescriptions() const
 	{
 		if (Space::_propertyDescriptions.size() == 0)
 		{

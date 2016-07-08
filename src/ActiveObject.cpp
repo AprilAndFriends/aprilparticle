@@ -38,7 +38,7 @@ namespace aprilparticle
 	{
 	}
 
-	harray<PropertyDescription> ActiveObject::getPropertyDescriptions()
+	harray<PropertyDescription> ActiveObject::getPropertyDescriptions() const
 	{
 		if (ActiveObject::_propertyDescriptions.size() == 0)
 		{

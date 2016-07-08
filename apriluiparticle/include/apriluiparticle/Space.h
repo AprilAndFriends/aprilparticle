@@ -51,7 +51,7 @@ namespace apriluiparticle
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
 		HL_DEFINE_GETSET(hstr, spaceName, SpaceName);
 
-		harray<aprilui::PropertyDescription> getPropertyDescriptions();
+		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
 
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 
