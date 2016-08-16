@@ -19,7 +19,7 @@
 
 namespace apriluiparticle
 {
-	extern hstr logTag;
+	apriluiparticleExport extern hstr logTag;
 
 	apriluiparticleFnExport void init();
 	apriluiparticleFnExport void destroy();

@@ -30,7 +30,7 @@ namespace aprilparticle
 	class System;
 	class Texture;
 
-	extern hstr logTag;
+	aprilparticleExport extern hstr logTag;
 
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
