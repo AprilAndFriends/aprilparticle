@@ -549,7 +549,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_IOS,
 					"$(inherited)",
@@ -565,7 +564,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_IOS,
 					"$(inherited)",
@@ -581,7 +579,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1358BBF18D7772500A36FDC /* iOS.xcconfig */;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_IOS,
 					"$(inherited)",
