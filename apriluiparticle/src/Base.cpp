@@ -31,6 +31,7 @@ namespace apriluiparticle
 
 	Base::Base(chstr name) : aprilui::Object(name)
 	{
+		this->loaded = false;
 		this->system = NULL;
 		this->alwaysEnabled = false;
 	}
@@ -39,8 +40,13 @@ namespace apriluiparticle
 	{
 		this->filename = other.filename;
 		this->filepath = other.filepath;
+		this->loaded = other.loaded;
+		this->system = NULL;
 		this->alwaysEnabled = other.alwaysEnabled;
-		this->system = new aprilparticle::System(*other.system); // make a clone
+		if (other.system != NULL)
+		{
+			this->system = new aprilparticle::System(*other.system); // make a clone
+		}
 	}
 
 	Base::~Base()
@@ -77,9 +83,18 @@ namespace apriluiparticle
 		}
 		else if (type == Event::ParticleSettingsChanged)
 		{
-			if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
+			this->loaded = false;
+			if (this->filename != "" || this->filepath != "")
 			{
-				this->_load();
+				this->loaded = true;
+				if (this->alwaysEnabled || apriluiparticle::isEnabled())
+				{
+					this->_load();
+				}
+				else
+				{
+					this->stopSystem();
+				}
 			}
 			else
 			{
@@ -91,11 +106,16 @@ namespace apriluiparticle
 
 	void Base::load(chstr filename)
 	{
+		this->loaded = false;
 		this->filename = filename;
 		this->stopSystem();
-		if ((this->filename != "" || this->filepath != "") && (this->alwaysEnabled || apriluiparticle::isEnabled()))
+		if (this->filename != "" || this->filepath != "")
 		{
-			this->_load();
+			this->loaded = true;
+			if (this->alwaysEnabled || apriluiparticle::isEnabled())
+			{
+				this->_load();
+			}
 		}
 	}
 

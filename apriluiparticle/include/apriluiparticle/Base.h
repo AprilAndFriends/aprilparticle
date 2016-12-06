@@ -44,6 +44,7 @@ namespace apriluiparticle
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);
+		HL_DEFINE_IS(loaded, Loaded);
 		HL_DEFINE_ISSET(alwaysEnabled, AlwaysEnabled);
 		HL_DEFINE_GET(aprilparticle::System*, system, System);
 		bool isRunning() const;
@@ -64,6 +65,7 @@ namespace apriluiparticle
 	protected:
 		hstr filename;
 		hstr filepath;
+		bool loaded;
 		bool alwaysEnabled;
 		aprilparticle::System* system;
 
