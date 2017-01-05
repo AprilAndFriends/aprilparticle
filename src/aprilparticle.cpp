@@ -143,13 +143,14 @@ namespace aprilparticle
 		if (system == NULL)
 		{
 			system = new aprilparticle::System(filename, name);
+			system->load();
 			if (useCache)
 			{
 				gSystemCache[key] = system;
+				system = new aprilparticle::System(*system);
 			}
 		}
-		system->load();
-		return new aprilparticle::System(*system);
+		return system;
 	}
 
 }
