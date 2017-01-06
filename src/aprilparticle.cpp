@@ -140,15 +140,16 @@ namespace aprilparticle
 			key = filename;
 		}
 		aprilparticle::System* system = gSystemCache.tryGet(key, NULL);
-		if (system == NULL)
+		if (system != NULL)
 		{
-			system = new aprilparticle::System(filename, name);
-			system->load();
-			if (useCache)
-			{
-				gSystemCache[key] = system;
-				system = new aprilparticle::System(*system);
-			}
+			return new aprilparticle::System(*system);
+		}
+		system = new aprilparticle::System(filename, name);
+		system->load();
+		if (useCache)
+		{
+			gSystemCache[key] = system;
+			system = new aprilparticle::System(*system);
 		}
 		return system;
 	}
