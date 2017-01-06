@@ -51,7 +51,12 @@ namespace apriluiparticle
 
 	Base::~Base()
 	{
-		this->stopSystem();
+		// must not call stopSystem(), because it's virtual
+		if (this->system != NULL)
+		{
+			delete this->system;
+			this->system = NULL;
+		}
 	}
 
 	bool Base::isRunning() const

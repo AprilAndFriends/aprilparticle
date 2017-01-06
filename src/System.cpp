@@ -46,7 +46,7 @@ namespace aprilparticle
 		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties = other._affectorProperties;
 		hmap<hstr, hstr> properties;
 		harray<Affector*> affectors = other.affectors;
-		Affector* affector;
+		Affector* affector = NULL;
 		foreach (Affector*, it, affectors)
 		{
 			properties = _affectorProperties[*it];
@@ -63,11 +63,11 @@ namespace aprilparticle
 		}
 		// copy spaces
 		harray<Space*> spaces = other.spaces;
-		Space* space;
+		Space* space = NULL;
 		hmap<Space*, harray<hstr> > _mappedAffectors = other._mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures = other._mappedTextures;
 		harray<Emitter*> emitters;
-		Emitter* emitter;
+		Emitter* emitter = NULL;
 		foreach (Space*, it, spaces)
 		{
 			space = new Space(*(*it));

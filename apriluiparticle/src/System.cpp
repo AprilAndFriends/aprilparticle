@@ -68,6 +68,7 @@ namespace apriluiparticle
 			foreach (Space*, it, this->spaceObjects)
 			{
 				(*it)->_unbind();
+				(*it)->systemObject = NULL;
 			}
 		}
 		Base::stopSystem();
@@ -81,6 +82,7 @@ namespace apriluiparticle
 			foreach (Space*, it, this->spaceObjects)
 			{
 				(*it)->_unbind();
+				(*it)->systemObject = NULL;
 			}
 		}
 		Base::resetSystem();
