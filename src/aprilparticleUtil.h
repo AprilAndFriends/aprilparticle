@@ -14,8 +14,8 @@
 #define APRILPARTICLE_UTIL_H
 
 #define RAND_RANGE(name) (this->min ## name != this->max ## name ? this->min ## name + (this->max ## name - this->min ## name) * hrandf(1.0f) : this->min ## name)
-#define TRY_SET_TYPE(value, name) if (value == #name) this->setType(name)
-#define TRY_GET_TYPE(value, name) if (value == name) return #name;
+#define TRY_SET_TYPE(value, name) if (value == name.getName()) this->setType(name)
+#define TRY_GET_TYPE(value, name) if (value == name) return name.getName();
 #define GET_RANGE(name, func) (this->getMin ## name() != this->getMax ## name() ? \
 	func(this->getMin ## name()) + aprilparticle::SeparatorRange + func(this->getMax ## name()) : \
 	func(this->getMin ## name()))
