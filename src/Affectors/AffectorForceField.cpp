@@ -72,7 +72,7 @@ namespace aprilparticle
 		{
 			if (ForceField::_propertyDescriptions.size() == 0)
 			{
-				ForceField::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::GVEC3);
+				ForceField::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::Gvec3);
 			}
 			return (Space::getPropertyDescriptions() + ForceField::_propertyDescriptions);
 		}

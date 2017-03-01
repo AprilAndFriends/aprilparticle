@@ -61,9 +61,9 @@ namespace aprilparticle
 		{
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{
-				Revolutor::_propertyDescriptions += PropertyDescription("axis", PropertyDescription::GVEC3);
-				Revolutor::_propertyDescriptions += PropertyDescription("evolution_speed", PropertyDescription::FLOAT);
-				Revolutor::_propertyDescriptions += PropertyDescription("clockwise", PropertyDescription::BOOL);
+				Revolutor::_propertyDescriptions += PropertyDescription("axis", PropertyDescription::Type::Gvec3);
+				Revolutor::_propertyDescriptions += PropertyDescription("evolution_speed", PropertyDescription::Type::Float);
+				Revolutor::_propertyDescriptions += PropertyDescription("clockwise", PropertyDescription::Type::Bool);
 			}
 			return (Space::getPropertyDescriptions() + Revolutor::_propertyDescriptions);
 		}

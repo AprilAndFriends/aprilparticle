@@ -56,7 +56,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
-		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ScalerTimed, Affector, FLOAT);
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ScalerTimed, Affector, Float);
 
 		hstr ScalerTimed::getProperty(chstr name)
 		{

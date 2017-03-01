@@ -53,8 +53,8 @@ namespace aprilparticle
 	{
 		if (Affector::_propertyDescriptions.size() == 0)
 		{
-			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::STRING);
-			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::RANGE_FLOAT);
+			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
+			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
 		}
 		return Affector::_propertyDescriptions;
 	}

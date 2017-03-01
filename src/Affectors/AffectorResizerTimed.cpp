@@ -59,7 +59,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
-		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ResizerTimed, Affector, GVEC2);
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ResizerTimed, Affector, Gvec2);
 
 		hstr ResizerTimed::getProperty(chstr name)
 		{

@@ -78,7 +78,7 @@
 	{ \
 		if (classe::_propertyDescriptions.size() == 0) \
 		{ \
-			classe::_propertyDescriptions += PropertyDescription("timings", PropertyDescription::TIMING_ ## type); \
+			classe::_propertyDescriptions += PropertyDescription("timings", PropertyDescription::Type::Timing ## type); \
 		} \
 		return (superclasse::getPropertyDescriptions() + classe::_propertyDescriptions); \
 	}

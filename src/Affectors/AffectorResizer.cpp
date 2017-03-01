@@ -42,8 +42,8 @@ namespace aprilparticle
 		{
 			if (Resizer::_propertyDescriptions.size() == 0)
 			{
-				Resizer::_propertyDescriptions += PropertyDescription("start_size", PropertyDescription::GVEC2);
-				Resizer::_propertyDescriptions += PropertyDescription("end_size", PropertyDescription::GVEC2);
+				Resizer::_propertyDescriptions += PropertyDescription("start_size", PropertyDescription::Type::Gvec2);
+				Resizer::_propertyDescriptions += PropertyDescription("end_size", PropertyDescription::Type::Gvec2);
 			}
 			return (Affector::getPropertyDescriptions() + Resizer::_propertyDescriptions);
 		}

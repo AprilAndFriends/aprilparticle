@@ -49,8 +49,8 @@ namespace aprilparticle
 		{
 			if (ColorChanger::_propertyDescriptions.size() == 0)
 			{
-				ColorChanger::_propertyDescriptions += PropertyDescription("start_color", PropertyDescription::HEXCOLOR);
-				ColorChanger::_propertyDescriptions += PropertyDescription("end_color", PropertyDescription::HEXCOLOR);
+				ColorChanger::_propertyDescriptions += PropertyDescription("start_color", PropertyDescription::Type::Color);
+				ColorChanger::_propertyDescriptions += PropertyDescription("end_color", PropertyDescription::Type::Color);
 			}
 			return (Affector::getPropertyDescriptions() + ColorChanger::_propertyDescriptions);
 		}

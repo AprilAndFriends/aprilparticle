@@ -45,8 +45,8 @@ namespace aprilparticle
 		{
 			if (Attractor::_propertyDescriptions.size() == 0)
 			{
-				Attractor::_propertyDescriptions += PropertyDescription("force", PropertyDescription::FLOAT);
-				Attractor::_propertyDescriptions += PropertyDescription("exponent", PropertyDescription::FLOAT);
+				Attractor::_propertyDescriptions += PropertyDescription("force", PropertyDescription::Type::Float);
+				Attractor::_propertyDescriptions += PropertyDescription("exponent", PropertyDescription::Type::Float);
 			}
 			return (Space::getPropertyDescriptions() + Attractor::_propertyDescriptions);
 		}

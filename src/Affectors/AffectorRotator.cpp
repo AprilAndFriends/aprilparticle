@@ -42,7 +42,7 @@ namespace aprilparticle
 		{
 			if (Rotator::_propertyDescriptions.size() == 0)
 			{
-				Rotator::_propertyDescriptions += PropertyDescription("rotation_speed", PropertyDescription::FLOAT);
+				Rotator::_propertyDescriptions += PropertyDescription("rotation_speed", PropertyDescription::Type::Float);
 			}
 			return (Affector::getPropertyDescriptions() + Rotator::_propertyDescriptions);
 		}

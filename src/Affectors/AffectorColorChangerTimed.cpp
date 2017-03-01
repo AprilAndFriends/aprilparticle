@@ -57,7 +57,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
-		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ColorChangerTimed, Affector, HEXCOLOR);
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ColorChangerTimed, Affector, Color);
 
 		hstr ColorChangerTimed::getProperty(chstr name)
 		{

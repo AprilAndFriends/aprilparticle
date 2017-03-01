@@ -27,6 +27,19 @@
 
 namespace aprilparticle
 {
+	HL_ENUM_CLASS_DEFINE(Emitter::Type,
+	(
+		HL_ENUM_DEFINE(Emitter::Type, Point);
+		HL_ENUM_DEFINE(Emitter::Type, Box);
+		HL_ENUM_DEFINE(Emitter::Type, HollowBox);
+		HL_ENUM_DEFINE(Emitter::Type, Sphere);
+		HL_ENUM_DEFINE(Emitter::Type, HollowSphere);
+		HL_ENUM_DEFINE(Emitter::Type, Cylinder);
+		HL_ENUM_DEFINE(Emitter::Type, HollowCylinder);
+		HL_ENUM_DEFINE(Emitter::Type, Circle);
+		HL_ENUM_DEFINE(Emitter::Type, HollowCircle);
+	));
+
 	static gvec3 v[4]; // optimization
 
 	harray<PropertyDescription> Emitter::_propertyDescriptions;
@@ -37,7 +50,7 @@ namespace aprilparticle
 		this->loopTimer = 0.0f;
 		this->time = 0.0f;
 		this->running = true;
-		this->type = Point;
+		this->type = Type::Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
 		this->blendMode = april::BM_DEFAULT;
 		this->colorMode = april::CM_DEFAULT;
@@ -126,25 +139,25 @@ namespace aprilparticle
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{
-			Emitter::_propertyDescriptions += PropertyDescription("name", PropertyDescription::STRING);
-			Emitter::_propertyDescriptions += PropertyDescription("type", PropertyDescription::ENUM);
-			Emitter::_propertyDescriptions += PropertyDescription("dimensions", PropertyDescription::GVEC3);
-			Emitter::_propertyDescriptions += PropertyDescription("blend_mode", PropertyDescription::ENUM);
-			Emitter::_propertyDescriptions += PropertyDescription("color_mode", PropertyDescription::ENUM);
-			Emitter::_propertyDescriptions += PropertyDescription("color_mode_factor", PropertyDescription::FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("emission_rate", PropertyDescription::FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("duration", PropertyDescription::FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("delay", PropertyDescription::FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("loop_delay", PropertyDescription::FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("loops", PropertyDescription::INT);
-			Emitter::_propertyDescriptions += PropertyDescription("limit", PropertyDescription::INT);
-			Emitter::_propertyDescriptions += PropertyDescription("reverse_rendering", PropertyDescription::BOOL);
-			Emitter::_propertyDescriptions += PropertyDescription("life", PropertyDescription::RANGE_FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::RANGE_GVEC3);
-			Emitter::_propertyDescriptions += PropertyDescription("size", PropertyDescription::RANGE_GVEC2);
-			Emitter::_propertyDescriptions += PropertyDescription("scale", PropertyDescription::RANGE_FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("angle", PropertyDescription::RANGE_FLOAT);
-			Emitter::_propertyDescriptions += PropertyDescription("angle_aligned", PropertyDescription::BOOL);
+			Emitter::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
+			Emitter::_propertyDescriptions += PropertyDescription("type", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions += PropertyDescription("dimensions", PropertyDescription::Type::Gvec3);
+			Emitter::_propertyDescriptions += PropertyDescription("blend_mode", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions += PropertyDescription("color_mode", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions += PropertyDescription("color_mode_factor", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions += PropertyDescription("emission_rate", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions += PropertyDescription("duration", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions += PropertyDescription("delay", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions += PropertyDescription("loop_delay", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions += PropertyDescription("loops", PropertyDescription::Type::Int);
+			Emitter::_propertyDescriptions += PropertyDescription("limit", PropertyDescription::Type::Int);
+			Emitter::_propertyDescriptions += PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool);
+			Emitter::_propertyDescriptions += PropertyDescription("life", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::RangeGvec3);
+			Emitter::_propertyDescriptions += PropertyDescription("size", PropertyDescription::Type::RangeGvec2);
+			Emitter::_propertyDescriptions += PropertyDescription("scale", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions += PropertyDescription("angle", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions += PropertyDescription("angle_aligned", PropertyDescription::Type::Bool);
 		}
 		return (SpaceObject::getPropertyDescriptions() + Emitter::_propertyDescriptions);
 	}
@@ -268,15 +281,15 @@ namespace aprilparticle
 		if (name == "type")
 		{
 			Type value = this->getType();
-			TRY_GET_TYPE(value, Point);
-			TRY_GET_TYPE(value, Box);
-			TRY_GET_TYPE(value, HollowBox);
-			TRY_GET_TYPE(value, Sphere);
-			TRY_GET_TYPE(value, HollowSphere);
-			TRY_GET_TYPE(value, Cylinder);
-			TRY_GET_TYPE(value, HollowCylinder);
-			TRY_GET_TYPE(value, Circle);
-			TRY_GET_TYPE(value, HollowCircle);
+			TRY_GET_TYPE(value, Type::Point);
+			TRY_GET_TYPE(value, Type::Box);
+			TRY_GET_TYPE(value, Type::HollowBox);
+			TRY_GET_TYPE(value, Type::Sphere);
+			TRY_GET_TYPE(value, Type::HollowSphere);
+			TRY_GET_TYPE(value, Type::Cylinder);
+			TRY_GET_TYPE(value, Type::HollowCylinder);
+			TRY_GET_TYPE(value, Type::Circle);
+			TRY_GET_TYPE(value, Type::HollowCircle);
 			return "";
 		}
 		if (name == "dimensions")			return april::gvec3ToHstr(this->getDimensions());
@@ -321,15 +334,15 @@ namespace aprilparticle
 		if		(name == "name")				this->setName(value);
 		else if	(name == "type")
 		{
-			TRY_SET_TYPE(value, Point);
-			else TRY_SET_TYPE(value, Box);
-			else TRY_SET_TYPE(value, HollowBox);
-			else TRY_SET_TYPE(value, Sphere);
-			else TRY_SET_TYPE(value, HollowSphere);
-			else TRY_SET_TYPE(value, Cylinder);
-			else TRY_SET_TYPE(value, HollowCylinder);
-			else TRY_SET_TYPE(value, Circle);
-			else TRY_SET_TYPE(value, HollowCircle);
+			TRY_SET_TYPE(value, Type::Point);
+			else TRY_SET_TYPE(value, Type::Box);
+			else TRY_SET_TYPE(value, Type::HollowBox);
+			else TRY_SET_TYPE(value, Type::Sphere);
+			else TRY_SET_TYPE(value, Type::HollowSphere);
+			else TRY_SET_TYPE(value, Type::Cylinder);
+			else TRY_SET_TYPE(value, Type::HollowCylinder);
+			else TRY_SET_TYPE(value, Type::Circle);
+			else TRY_SET_TYPE(value, Type::HollowCircle);
 			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3(value));
@@ -370,22 +383,24 @@ namespace aprilparticle
 
 	void Emitter::_createNewParticle(float timeDelta)
 	{
-		switch (this->type)
+		if (this->type == Type::Point)
 		{
-		case Point:
 			this->_pos.set(0.0f, 0.0f, 0.0f);
-			break;
-		case Box:
+		}
+		else if (this->type == Type::Box)
+		{
 			this->_pos.x = this->dimensions.x * hrandf(-0.5f, 0.5f);
 			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
 			this->_pos.z = this->dimensions.z * hrandf(-0.5f, 0.5f);
-			break;
-		case HollowBox:
+		}
+		else if (this->type == Type::HollowBox)
+		{
 			this->_pos.x = this->dimensions.x * 0.5f - this->dimensions.x * hrand(2);
 			this->_pos.y = this->dimensions.y * 0.5f - this->dimensions.y * hrand(2);
 			this->_pos.z = this->dimensions.z * 0.5f - this->dimensions.z * hrand(2);
-			break;
-		case Sphere:
+		}
+		else if (this->type == Type::Sphere)
+		{
 			this->_rho = hrandf(1.0f);
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
@@ -394,8 +409,9 @@ namespace aprilparticle
 			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
 			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
-			break;
-		case HollowSphere:
+		}
+		else if (this->type == Type::HollowSphere)
+		{
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
 			this->_angle = sin(this->_phi);
@@ -403,8 +419,9 @@ namespace aprilparticle
 			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * 0.5f * this->_angle * sin(this->_theta);
 			this->_pos.z = this->dimensions.z * 0.5f * this->_angle * cos(this->_theta);
-			break;
-		case Cylinder:
+		}
+		else if (this->type == Type::Cylinder)
+		{
 			this->_rho = hrandf(1.0f);
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
@@ -412,30 +429,32 @@ namespace aprilparticle
 			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
 			this->_pos.z = this->dimensions.z * 0.5f * this->_rho * sin(this->_phi);
-			break;
-		case HollowCylinder:
+		}
+		else if (this->type == Type::HollowCylinder)
+		{
 			this->_phi = hrandf((float)G_PIx2);
 			this->_theta = hrandf((float)G_PI);
 
 			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_phi);
 			this->_pos.y = this->dimensions.y * hrandf(-0.5f, 0.5f);
 			this->_pos.z = this->dimensions.z * 0.5f * sin(this->_phi);
-			break;
-		case Circle:
+		}
+		else if (this->type == Type::Circle)
+		{
 			this->_rho = hrandf(1.0f);
 			this->_angle = hrandf((float)G_PIx2);
 
 			this->_pos.x = this->dimensions.x * 0.5f * this->_rho * cos(this->_angle);
 			this->_pos.y = this->dimensions.y * 0.5f * this->_rho * sin(this->_angle);
 			this->_pos.z = this->dimensions.z * 0.5f;
-			break;
-		case HollowCircle:
+		}
+		else if (this->type == Type::HollowCircle)
+		{
 			this->_angle = hrandf((float)G_PIx2);
 
 			this->_pos.x = this->dimensions.x * 0.5f * cos(this->_angle);
 			this->_pos.y = this->dimensions.y * 0.5f * sin(this->_angle);
 			this->_pos.z = this->dimensions.z * 0.5f;
-			break;
 		}
 		this->_pos += this->position;
 		if (this->space != NULL)

@@ -39,19 +39,19 @@ namespace aprilparticle
 	class aprilparticleExport Emitter : public SpaceObject
 	{
 	public:
-		enum Type
-		{
-			Point,
-			Box,
-			HollowBox,
-			Sphere,
-			HollowSphere,
-			Cylinder,
-			HollowCylinder,
-			Circle,
-			HollowCircle
-		};
-	
+		HL_ENUM_CLASS_PREFIX_DECLARE(aprilparticleExport, Type,
+		(
+			HL_ENUM_DECLARE(Type, Point);
+			HL_ENUM_DECLARE(Type, Box);
+			HL_ENUM_DECLARE(Type, HollowBox);
+			HL_ENUM_DECLARE(Type, Sphere);
+			HL_ENUM_DECLARE(Type, HollowSphere);
+			HL_ENUM_DECLARE(Type, Cylinder);
+			HL_ENUM_DECLARE(Type, HollowCylinder);
+			HL_ENUM_DECLARE(Type, Circle);
+			HL_ENUM_DECLARE(Type, HollowCircle);
+		));
+
 		friend class Space;
 
 		Emitter(chstr name = "");

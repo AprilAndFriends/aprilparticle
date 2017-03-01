@@ -13,6 +13,7 @@
 #ifndef APRILPARTICLE_PROPERTY_DESCRIPTION_H
 #define APRILPARTICLE_PROPERTY_DESCRIPTION_H
 
+#include <hltypes/henum.h>
 #include <hltypes/hltypesUtil.h>
 #include <hltypes/hstring.h>
 
@@ -23,37 +24,37 @@ namespace aprilparticle
 	class aprilparticleExport PropertyDescription
 	{
 	public:
-		enum PropertyType
-		{
-			INT,
-			FLOAT,
-			CHAR,
-			UCHAR,
-			BOOL,
-			STRING,
-			ENUM,
-			GRECT,
-			GVEC2,
-			GVEC3,
-			HEXCOLOR,
-			RANGE_FLOAT,
-			RANGE_GVEC2,
-			RANGE_GVEC3,
-			TIMING_HEXCOLOR,
-			TIMING_FLOAT,
-			TIMING_GVEC2
-		};
+		HL_ENUM_CLASS_PREFIX_DECLARE(aprilparticleExport, Type,
+		(
+			HL_ENUM_DECLARE(Type, Int);
+			HL_ENUM_DECLARE(Type, Float);
+			HL_ENUM_DECLARE(Type, Char);
+			HL_ENUM_DECLARE(Type, UChar);
+			HL_ENUM_DECLARE(Type, Bool);
+			HL_ENUM_DECLARE(Type, String);
+			HL_ENUM_DECLARE(Type, Enum);
+			HL_ENUM_DECLARE(Type, Grect);
+			HL_ENUM_DECLARE(Type, Gvec2);
+			HL_ENUM_DECLARE(Type, Gvec3);
+			HL_ENUM_DECLARE(Type, Color);
+			HL_ENUM_DECLARE(Type, RangeFloat);
+			HL_ENUM_DECLARE(Type, RangeGvec2);
+			HL_ENUM_DECLARE(Type, RangeGvec3);
+			HL_ENUM_DECLARE(Type, TimingColor);
+			HL_ENUM_DECLARE(Type, TimingFloat);
+			HL_ENUM_DECLARE(Type, TimingGvec2);
+		));
 
-		PropertyDescription(chstr name, PropertyType type, bool arrayData = false);
+		PropertyDescription(chstr name, Type type, bool arrayData = false);
 		~PropertyDescription();
 
 		HL_DEFINE_GET(hstr, name, Name);
-		HL_DEFINE_GET(PropertyType, type, Type);
+		HL_DEFINE_GET(Type, type, Type);
 		HL_DEFINE_IS(arrayData, ArrayData);
 
 	protected:
 		hstr name;
-		PropertyType type;
+		Type type;
 		bool arrayData;
 
 	};

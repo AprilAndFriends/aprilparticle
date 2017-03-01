@@ -40,8 +40,8 @@ namespace aprilparticle
 		{
 			if (Scaler::_propertyDescriptions.size() == 0)
 			{
-				Scaler::_propertyDescriptions += PropertyDescription("start_scale", PropertyDescription::FLOAT);
-				Scaler::_propertyDescriptions += PropertyDescription("end_scale", PropertyDescription::FLOAT);
+				Scaler::_propertyDescriptions += PropertyDescription("start_scale", PropertyDescription::Type::Float);
+				Scaler::_propertyDescriptions += PropertyDescription("end_scale", PropertyDescription::Type::Float);
 			}
 			return (Affector::getPropertyDescriptions() + Scaler::_propertyDescriptions);
 		}

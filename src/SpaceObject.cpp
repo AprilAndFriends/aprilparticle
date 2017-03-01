@@ -38,7 +38,7 @@ namespace aprilparticle
 	{
 		if (SpaceObject::_propertyDescriptions.size() == 0)
 		{
-			SpaceObject::_propertyDescriptions += PropertyDescription("position", PropertyDescription::GVEC3);
+			SpaceObject::_propertyDescriptions += PropertyDescription("position", PropertyDescription::Type::Gvec3);
 		}
 		return (ActiveObject::getPropertyDescriptions() + SpaceObject::_propertyDescriptions);
 	}

@@ -77,9 +77,9 @@ namespace aprilparticle
 	{
 		if (Space::_propertyDescriptions.size() == 0)
 		{
-			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::FLOAT);
-			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::FLOAT);
-			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::GVEC3);
+			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::Type::Gvec3);
 		}
 		return (SpaceObject::getPropertyDescriptions() + Space::_propertyDescriptions);
 	}

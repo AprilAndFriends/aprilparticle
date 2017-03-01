@@ -41,7 +41,7 @@ namespace aprilparticle
 		{
 			if (LinearForce::_propertyDescriptions.size() == 0)
 			{
-				LinearForce::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::GVEC3);
+				LinearForce::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::Gvec3);
 			}
 			return (Affector::getPropertyDescriptions() + LinearForce::_propertyDescriptions);
 		}

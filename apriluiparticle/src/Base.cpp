@@ -73,9 +73,9 @@ namespace apriluiparticle
 	{
 		if (Base::_propertyDescriptions.size() == 0)
 		{
-			Base::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::STRING);
-			Base::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::STRING);
-			Base::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::BOOL);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::Type::String);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::Type::String);
+			Base::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::Type::Bool);
 		}
 		return (aprilui::Object::getPropertyDescriptions() + Base::_propertyDescriptions);
 	}
