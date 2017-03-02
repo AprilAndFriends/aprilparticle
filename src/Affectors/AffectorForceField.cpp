@@ -115,10 +115,10 @@ namespace aprilparticle
 			}
 			arrow[0].set(this->position + this->space->getPosition());
 			arrow[1].set(this->position + this->space->getPosition() + this->direction);
-			april::rendersys->render(april::RO_LINE_STRIP, u, VERTEX_COUNT);
-			april::rendersys->render(april::RO_LINE_STRIP, v, VERTEX_COUNT);
-			april::rendersys->render(april::RO_LINE_STRIP, w, VERTEX_COUNT);
-			april::rendersys->render(april::RO_LINE_STRIP, arrow, 2);
+			april::rendersys->render(april::RenderOperation::LineStrip, u, VERTEX_COUNT);
+			april::rendersys->render(april::RenderOperation::LineStrip, v, VERTEX_COUNT);
+			april::rendersys->render(april::RenderOperation::LineStrip, w, VERTEX_COUNT);
+			april::rendersys->render(april::RenderOperation::LineStrip, arrow, 2);
 		}
 
 	}
