@@ -83,7 +83,7 @@ class KeyboardDelegate : public april::KeyboardDelegate
 {
 	void onKeyDown(april::Key keycode)
 	{
-		if (keycode == april::AK_RETURN)
+		if (keycode == april::Key::Return)
 		{
 			dataset->unload();
 			dataset->load();
