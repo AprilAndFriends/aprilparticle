@@ -186,13 +186,13 @@ namespace aprilparticle
 		this->maxLife = value;
 	}
 
-	void Emitter::setDirection(gvec3 value)
+	void Emitter::setDirection(cgvec3 value)
 	{
 		this->minDirection = value;
 		this->maxDirection = value;
 	}
 
-	void Emitter::setSize(gvec2 value)
+	void Emitter::setSize(cgvec2 value)
 	{
 		this->minSize = value;
 		this->maxSize = value;
@@ -251,13 +251,13 @@ namespace aprilparticle
 		this->maxLife = max;
 	}
 
-	void Emitter::setDirectionRange(gvec3 min, gvec3 max)
+	void Emitter::setDirectionRange(cgvec3 min, cgvec3 max)
 	{
 		this->minDirection = min;
 		this->maxDirection = max;
 	}
 
-	void Emitter::setSizeRange(gvec2 min, gvec2 max)
+	void Emitter::setSizeRange(cgvec2 min, cgvec2 max)
 	{
 		this->minSize = min;
 		this->maxSize = max;

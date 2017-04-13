@@ -25,7 +25,7 @@
 	this->times = value.keys().sorted(); \
 	foreach (float, it, this->times) \
 	{ \
-		this->values += value[*it]; \
+		this->values += value.at(*it); \
 	} \
 	this->_size = this->times.size() - 1;
 

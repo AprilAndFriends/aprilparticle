@@ -30,7 +30,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_INIT(gvec2(1.0f, 1.0f), gvec2(0.0f, 0.0f));
 		}
 		
-		ResizerTimed::ResizerTimed(hmap<float, gvec2> timings, chstr name) : Affector(name)
+		ResizerTimed::ResizerTimed(const hmap<float, gvec2>& timings, chstr name) : Affector(name)
 		{
 			this->setTimings(timings);
 		}
@@ -44,7 +44,7 @@ namespace aprilparticle
 			return new ResizerTimed(name);
 		}
 
-		void ResizerTimed::setTimings(hmap<float, gvec2> value)
+		void ResizerTimed::setTimings(const hmap<float, gvec2>& value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;
 		}

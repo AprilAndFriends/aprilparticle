@@ -86,8 +86,8 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
 		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
 		void setLife(float value);
-		void setDirection(gvec3 value);
-		void setSize(gvec2 value);
+		void setDirection(cgvec3 value);
+		void setSize(cgvec2 value);
 		void setScale(float value);
 		void setAngle(float value);
 		void setLife(chstr value);
@@ -98,8 +98,8 @@ namespace aprilparticle
 		bool isExpired() const;
 
 		void setLifeRange(float min, float max);
-		void setDirectionRange(gvec3 min, gvec3 max);
-		void setSizeRange(gvec2 min, gvec2 max);
+		void setDirectionRange(cgvec3 min, cgvec3 max);
+		void setSizeRange(cgvec2 min, cgvec2 max);
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
 

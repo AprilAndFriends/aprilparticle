@@ -32,13 +32,13 @@ namespace aprilparticle
 		{
 		public:
 			ScalerTimed(chstr name = "");
-			ScalerTimed(hmap<float, float> timings, chstr name = "");
+			ScalerTimed(const hmap<float, float>& timings, chstr name = "");
 			~ScalerTimed();
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<float>, values, Values);
-			void setTimings(hmap<float, float> value);
+			void setTimings(const hmap<float, float>& value);
 			void setTimings(chstr value);
 
 			harray<PropertyDescription> getPropertyDescriptions() const;

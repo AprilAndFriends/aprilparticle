@@ -32,13 +32,13 @@ namespace aprilparticle
 		{
 		public:
 			ColorChangerTimed(chstr name = "");
-			ColorChangerTimed(hmap<float, april::Color> timings, chstr name = "");
+			ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name = "");
 			~ColorChangerTimed();
 			static Affector* createInstance(chstr name = "");
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<april::Color>, values, Values);
-			void setTimings(hmap<float, april::Color> value);
+			void setTimings(const hmap<float, april::Color>& value);
 			void setTimings(chstr value);
 
 			harray<PropertyDescription> getPropertyDescriptions() const;

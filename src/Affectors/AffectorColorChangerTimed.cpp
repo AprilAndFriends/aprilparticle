@@ -28,7 +28,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_INIT(april::Color::White, april::Color::Blank);
 		}
 		
-		ColorChangerTimed::ColorChangerTimed(hmap<float, april::Color> timings, chstr name) : Affector(name)
+		ColorChangerTimed::ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name) : Affector(name)
 		{
 			this->setTimings(timings);
 		}
@@ -42,7 +42,7 @@ namespace aprilparticle
 			return new ColorChangerTimed(name);
 		}
 
-		void ColorChangerTimed::setTimings(hmap<float, april::Color> value)
+		void ColorChangerTimed::setTimings(const hmap<float, april::Color>& value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;
 		}

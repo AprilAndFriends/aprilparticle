@@ -27,7 +27,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_INIT(1.0f, 0.0f);
 		}
 		
-		ScalerTimed::ScalerTimed(hmap<float, float> timings, chstr name) : Affector(name)
+		ScalerTimed::ScalerTimed(const hmap<float, float>& timings, chstr name) : Affector(name)
 		{
 			this->setTimings(timings);
 		}
@@ -41,7 +41,7 @@ namespace aprilparticle
 			return new ScalerTimed(name);
 		}
 
-		void ScalerTimed::setTimings(hmap<float, float> value)
+		void ScalerTimed::setTimings(const hmap<float, float>& value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;
 		}
