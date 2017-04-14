@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			LinearForce(chstr name = "");
-			LinearForce(gvec3 direction, chstr name = "");
+			LinearForce(cgvec3 direction, chstr name = "");
 			~LinearForce();
 			static Affector* createInstance(chstr name = "");
 			

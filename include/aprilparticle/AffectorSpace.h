@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			Space(chstr name = "");
-			Space(gvec3 position, float space, chstr name = "");
+			Space(cgvec3 position, float space, chstr name = "");
 			~Space();
 			static Affector* createInstance(chstr name = "");
 

@@ -72,8 +72,8 @@ namespace aprilparticle
 		void load();
 		void update(float timeDelta);
 		void finish();
-		void draw(gvec3 point); // is the only 3D drawing method
-		void draw(gvec2 offset = gvec2(), april::Color color = april::Color::White);
+		void draw(cgvec3 point); // is the only 3D drawing method
+		void draw(cgvec2 offset = gvec2(), const april::Color& color = april::Color::White);
 		
 	protected:
 		hstr filename;

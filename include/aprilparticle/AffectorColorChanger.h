@@ -31,8 +31,8 @@ namespace aprilparticle
 		{
 		public:
 			ColorChanger(chstr name = "");
-			ColorChanger(april::Color endColor, chstr name = "");
-			ColorChanger(april::Color startColor, april::Color endColor, chstr name = "");
+			ColorChanger(const april::Color& endColor, chstr name = "");
+			ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name = "");
 			~ColorChanger();
 			static Affector* createInstance(chstr name = "");
 

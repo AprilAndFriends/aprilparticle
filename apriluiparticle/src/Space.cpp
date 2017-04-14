@@ -33,7 +33,7 @@ namespace apriluiparticle
 	{
 		this->systemObject = NULL;
 		this->space = NULL;
-		this->debugColor = april::Color(april::Color::LightMagenta, 32);
+		this->debugColor.set(april::Color::LightMagenta, 32);
 	}
 	
 	Space::Space(const Space& other) : aprilui::Object(other)

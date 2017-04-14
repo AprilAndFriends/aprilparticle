@@ -23,7 +23,7 @@ namespace aprilparticle
 			this->endSize.set(0.0f, 0.0f);
 		}
 
-		Resizer::Resizer(gvec2 startSize, gvec2 endSize, chstr name) : Affector(name)
+		Resizer::Resizer(cgvec2 startSize, cgvec2 endSize, chstr name) : Affector(name)
 		{
 			this->startSize = startSize;
 			this->endSize = endSize;

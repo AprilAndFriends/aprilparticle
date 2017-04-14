@@ -54,7 +54,7 @@ namespace aprilparticle
 			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
-		ForceField::ForceField(gvec3 position, float radius, gvec3 direction, chstr name) : Space(position, radius, name)
+		ForceField::ForceField(cgvec3 position, float radius, cgvec3 direction, chstr name) : Space(position, radius, name)
 		{
 			this->direction = direction;
 		}

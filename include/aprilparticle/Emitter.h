@@ -113,11 +113,11 @@ namespace aprilparticle
 		void update(float timeDelta);
 
 		/// @note Not thread-safe!
-		void draw(gvec3 point, gvec3 up); // the only 3D drawing method
+		void draw(cgvec3 point, cgvec3 up); // the only 3D drawing method
 		/// @note Not thread-safe!
-		void draw(gvec2 offset = gvec2());
+		void draw(cgvec2 offset = gvec2());
 		/// @note Not thread-safe!
-		void draw(gvec2 offset, april::Color color);
+		void draw(cgvec2 offset, const april::Color& color);
 
 	protected:
 		float emissionTimer;

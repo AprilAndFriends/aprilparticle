@@ -23,7 +23,7 @@ namespace aprilparticle
 			this->direction.set(0.0f, -1.0f, 0.0f);
 		}
 
-		LinearForce::LinearForce(gvec3 direction, chstr name) : Affector(name)
+		LinearForce::LinearForce(cgvec3 direction, chstr name) : Affector(name)
 		{
 			this->direction = direction;
 		}

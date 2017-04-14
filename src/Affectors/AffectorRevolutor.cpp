@@ -31,7 +31,7 @@ namespace aprilparticle
 			this->setClockwise(true);
 		}
 
-		Revolutor::Revolutor(gvec3 position, float radius, gvec3 axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
+		Revolutor::Revolutor(cgvec3 position, float radius, cgvec3 axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
 		{
 			this->axis = axis;
 			this->evolutionSpeed = evolutionSpeed;

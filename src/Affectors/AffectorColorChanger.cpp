@@ -24,13 +24,13 @@ namespace aprilparticle
 			this->endColor = april::Color::Blank;
 		}
 		
-		ColorChanger::ColorChanger(april::Color endColor, chstr name) : Affector(name)
+		ColorChanger::ColorChanger(const april::Color& endColor, chstr name) : Affector(name)
 		{
 			this->startColor = april::Color::White;
 			this->endColor = endColor;
 		}
 		
-		ColorChanger::ColorChanger(april::Color startColor, april::Color endColor, chstr name) : Affector(name)
+		ColorChanger::ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name) : Affector(name)
 		{
 			this->startColor = startColor;
 			this->endColor = endColor;

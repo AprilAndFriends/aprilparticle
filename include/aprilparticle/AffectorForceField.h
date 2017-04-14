@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			ForceField(chstr name = "");
-			ForceField(gvec3 position, float radius, gvec3 direction, chstr name = "");
+			ForceField(cgvec3 position, float radius, cgvec3 direction, chstr name = "");
 			~ForceField();
 			static Affector* createInstance(chstr name = "");
 

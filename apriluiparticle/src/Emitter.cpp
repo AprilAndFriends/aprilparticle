@@ -32,7 +32,7 @@ namespace apriluiparticle
 		this->spaceObject = NULL;
 		this->emitter = NULL;
 		this->initialAngle = 0.0f;
-		this->debugColor = april::Color(april::Color::LightNeon, 32);
+		this->debugColor.set(april::Color::LightNeon, 32);
 	}
 	
 	Emitter::Emitter(const Emitter& other) : aprilui::Object(other)

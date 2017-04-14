@@ -54,7 +54,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2, april::hstrToGvec2);
 		}
 		
-		void ResizerTimed::addTiming(float time, gvec2 value)
+		void ResizerTimed::addTiming(float time, cgvec2 value)
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}

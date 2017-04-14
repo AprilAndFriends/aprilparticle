@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			Resizer(chstr name = "");
-			Resizer(gvec2 startSize, gvec2 endSize, chstr name = "");
+			Resizer(cgvec2 startSize, cgvec2 endSize, chstr name = "");
 			~Resizer();
 			static Affector* createInstance(chstr name = "");
 

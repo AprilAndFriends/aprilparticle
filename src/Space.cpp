@@ -254,7 +254,7 @@ namespace aprilparticle
 		}
 	}
 
-	void Space::draw(gvec3 point)
+	void Space::draw(cgvec3 point)
 	{
 		if (this->visible)
 		{
@@ -265,7 +265,7 @@ namespace aprilparticle
 		}
 	}
 
-	void Space::draw(gvec2 offset, april::Color color)
+	void Space::draw(cgvec2 offset, const april::Color& color)
 	{
 		if (this->visible && color.a > 0)
 		{

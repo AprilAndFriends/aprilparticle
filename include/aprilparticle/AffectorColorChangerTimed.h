@@ -46,7 +46,7 @@ namespace aprilparticle
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void addTiming(float time, april::Color value);
+			void addTiming(float time, const april::Color& value);
 			
 			void update(Particle* emitter, float timeDelta, gvec3& movement);
 			

@@ -31,7 +31,7 @@ namespace aprilparticle
 		{
 		public:
 			Revolutor(chstr name = "");
-			Revolutor(gvec3 position, float radius, gvec3 axis, float evolutionSpeed, bool clockwise, chstr name = "");
+			Revolutor(cgvec3 position, float radius, cgvec3 axis, float evolutionSpeed, bool clockwise, chstr name = "");
 			~Revolutor();
 			static Affector* createInstance(chstr name = "");
 

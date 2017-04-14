@@ -26,7 +26,7 @@ namespace aprilparticle
 			this->exponent = 2.0f;
 		}
 		
-		Attractor::Attractor(gvec3 position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
+		Attractor::Attractor(cgvec3 position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
 		{
 			this->force = force;
 			this->exponent = exponent;

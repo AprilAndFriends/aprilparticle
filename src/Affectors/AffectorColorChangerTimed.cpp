@@ -52,7 +52,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_SET_TIMINGS_STRING(april::Color, april::Color);
 		}
 		
-		void ColorChangerTimed::addTiming(float time, april::Color value)
+		void ColorChangerTimed::addTiming(float time, const april::Color& value)
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}

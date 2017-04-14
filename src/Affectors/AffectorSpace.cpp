@@ -25,7 +25,7 @@ namespace aprilparticle
 			this->radius = 10.0f;
 		}
 		
-		Space::Space(gvec3 position, float radius, chstr name) : Affector(name)
+		Space::Space(cgvec3 position, float radius, chstr name) : Affector(name)
 		{
 			this->position = position;
 			this->radius = radius;

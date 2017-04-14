@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			Attractor(chstr name = "");
-			Attractor(gvec3 position, float radius, float force, float exponent, chstr name = "");
+			Attractor(cgvec3 position, float radius, float force, float exponent, chstr name = "");
 			~Attractor();
 			static Affector* createInstance(chstr name = "");
 

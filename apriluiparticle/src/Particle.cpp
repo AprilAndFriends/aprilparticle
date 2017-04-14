@@ -20,7 +20,7 @@ namespace apriluiparticle
 {
 	Particle::Particle(chstr name) : Base(name)
 	{
-		this->debugColor = april::Color(april::Color::LightPurple, 32);
+		this->debugColor.set(april::Color::LightPurple, 32);
 	}
 
 	Particle::Particle(const Particle& other) : Base(other)

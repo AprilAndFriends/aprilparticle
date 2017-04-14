@@ -25,8 +25,8 @@ namespace aprilparticle
 
 namespace apriluiparticle
 {
-	void resizeEmitter(gvec2 size, aprilparticle::Emitter* emitter);
-	void resizeEmitters(gvec2 size, harray<aprilparticle::Emitter*> emitters);
+	void resizeEmitter(cgvec2 size, aprilparticle::Emitter* emitter);
+	void resizeEmitters(cgvec2 size, const harray<aprilparticle::Emitter*>& emitters);
 	
 }
 #endif

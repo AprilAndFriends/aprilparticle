@@ -606,7 +606,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(gvec3 point, gvec3 up)
+	void Emitter::draw(cgvec3 point, cgvec3 up)
 	{
 		if (!this->visible)
 		{
@@ -665,7 +665,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(gvec2 offset)
+	void Emitter::draw(cgvec2 offset)
 	{
 		this->texture->load();
 		this->_w = (float)this->texture->getWidth();
@@ -727,7 +727,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(gvec2 offset, april::Color color)
+	void Emitter::draw(cgvec2 offset, const april::Color& color)
 	{
 		if (color.a == 0)
 		{
