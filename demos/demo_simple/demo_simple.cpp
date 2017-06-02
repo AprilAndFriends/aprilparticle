@@ -71,7 +71,7 @@ void setupGrid(float spacing)
 
 void drawGrid()
 {
-	april::rendersys->render(april::RO_LINE_LIST, grid, 44);
+	april::rendersys->render(april::RenderOperation::LineList, grid, 44);
 }
 
 class UpdateDelegate : public april::UpdateDelegate

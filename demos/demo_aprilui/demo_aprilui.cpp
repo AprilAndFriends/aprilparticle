@@ -88,7 +88,7 @@ class KeyboardDelegate : public april::KeyboardDelegate
 			dataset->unload();
 			dataset->load();
 		}
-		else if (keycode == april::AK_BACK)
+		else if (keycode == april::Key::Backspace)
 		{
 			apriluiparticle::System* particle = dataset->getObject<apriluiparticle::System*>("segmented");
 			particle->stopSystem();
