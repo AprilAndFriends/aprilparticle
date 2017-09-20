@@ -10,8 +10,8 @@
 /// 
 /// Represents a resizer with timed values.
 
-#ifndef APRILPARTICLE_RESIZER_TIMED_H
-#define APRILPARTICLE_RESIZER_TIMED_H
+#ifndef APRILPARTICLE_AFFECTORS_RESIZER_TIMED_H
+#define APRILPARTICLE_AFFECTORS_RESIZER_TIMED_H
 
 #include <gtypes/Vector2.h>
 #include <gtypes/Vector3.h>
@@ -62,7 +62,7 @@ namespace aprilparticle
 			int _size;
 
 		};
-	};
-}
 
+	}
+}
 #endif

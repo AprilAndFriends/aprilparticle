@@ -10,8 +10,8 @@
 /// 
 /// Represents an attractor affector.
 
-#ifndef APRILPARTICLE_ATTRACTOR_H
-#define APRILPARTICLE_ATTRACTOR_H
+#ifndef APRILPARTICLE_AFFECTORS_ATTRACTOR_H
+#define APRILPARTICLE_AFFECTORS_ATTRACTOR_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -56,7 +56,7 @@ namespace aprilparticle
 			float _squaredLength;
 
 		};
-	};
-}
 
+	}
+}
 #endif

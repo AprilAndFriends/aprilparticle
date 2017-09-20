@@ -10,8 +10,8 @@
 /// 
 /// Represents a rotation affector.
 
-#ifndef APRILPARTICLE_ROTATOR_H
-#define APRILPARTICLE_ROTATOR_H
+#ifndef APRILPARTICLE_AFFECTORS_ROTATOR_H
+#define APRILPARTICLE_AFFECTORS_ROTATOR_H
 
 #include <hltypes/hltypesUtil.h>
 
@@ -47,7 +47,7 @@ namespace aprilparticle
 			static harray<PropertyDescription> _propertyDescriptions;
 
 		};
-	};
-}
 
+	}
+}
 #endif

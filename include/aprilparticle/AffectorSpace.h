@@ -10,8 +10,8 @@
 /// 
 /// Represents an Space with a position in 3D space.
 
-#ifndef APRILPARTICLE_Space_H
-#define APRILPARTICLE_Space_H
+#ifndef APRILPARTICLE_AFFECTORS_SPACE_H
+#define APRILPARTICLE_AFFECTORS_SPACE_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -51,7 +51,7 @@ namespace aprilparticle
 			static harray<PropertyDescription> _propertyDescriptions;
 
 		};
-	};
-}
 
+	}
+}
 #endif

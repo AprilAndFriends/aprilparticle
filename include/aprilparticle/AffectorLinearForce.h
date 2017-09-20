@@ -10,8 +10,8 @@
 /// 
 /// Represents a linear force affector.
 
-#ifndef APRILPARTICLE_LINEAR_FORCE_H
-#define APRILPARTICLE_LINEAR_FORCE_H
+#ifndef APRILPARTICLE_AFFECTORS_LINEAR_FORCE_H
+#define APRILPARTICLE_AFFECTORS_LINEAR_FORCE_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -51,7 +51,7 @@ namespace aprilparticle
 			static harray<PropertyDescription> _propertyDescriptions;
 
 		};
-	};
-}
 
+	}
+}
 #endif

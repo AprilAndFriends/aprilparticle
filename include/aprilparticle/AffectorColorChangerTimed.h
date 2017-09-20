@@ -10,8 +10,8 @@
 /// 
 /// Represents a color changer with timed values.
 
-#ifndef APRILPARTICLE_COLOR_CHANGER_TIMED_H
-#define APRILPARTICLE_COLOR_CHANGER_TIMED_H
+#ifndef APRILPARTICLE_AFFECTORS_COLOR_CHANGER_TIMED_H
+#define APRILPARTICLE_AFFECTORS_COLOR_CHANGER_TIMED_H
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
@@ -62,7 +62,7 @@ namespace aprilparticle
 			int _size;
 
 		};
-	};
-}
 
+	}
+}
 #endif

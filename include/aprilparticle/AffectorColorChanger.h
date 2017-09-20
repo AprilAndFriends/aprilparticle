@@ -10,8 +10,8 @@
 /// 
 /// Represents a color changer. This class is more light-weight compared to multi-color changer.
 
-#ifndef APRILPARTICLE_COLOR_CHANGER_H
-#define APRILPARTICLE_COLOR_CHANGER_H
+#ifndef APRILPARTICLE_AFFECTORS_COLOR_CHANGER_H
+#define APRILPARTICLE_AFFECTORS_COLOR_CHANGER_H
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
@@ -56,7 +56,7 @@ namespace aprilparticle
 			float _ratio;
 
 		};
-	};
-}
 
+	}
+}
 #endif

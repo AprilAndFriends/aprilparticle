@@ -10,8 +10,8 @@
 /// 
 /// Represents a resizing affector.
 
-#ifndef APRILPARTICLE_RESIZER_H
-#define APRILPARTICLE_RESIZER_H
+#ifndef APRILPARTICLE_AFFECTORS_RESIZER_H
+#define APRILPARTICLE_AFFECTORS_RESIZER_H
 
 #include <gtypes/Vector2.h>
 #include <hltypes/harray.h>
@@ -56,7 +56,7 @@ namespace aprilparticle
 			float _ratio;
 
 		};
-	};
-}
 
+	}
+}
 #endif

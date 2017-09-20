@@ -10,8 +10,8 @@
 /// 
 /// Represents a scaler with timed values.
 
-#ifndef APRILPARTICLE_SCALER_TIMED_H
-#define APRILPARTICLE_SCALER_TIMED_H
+#ifndef APRILPARTICLE_AFFECTORS_SCALER_TIMED_H
+#define APRILPARTICLE_AFFECTORS_SCALER_TIMED_H
 
 #include <april/Color.h>
 #include <gtypes/Vector3.h>
@@ -62,7 +62,7 @@ namespace aprilparticle
 			int _size;
 
 		};
-	};
-}
 
+	}
+}
 #endif

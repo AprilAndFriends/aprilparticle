@@ -10,8 +10,8 @@
 /// 
 /// Represents an evolution affector.
 
-#ifndef APRILPARTICLE_EVOLUTOR_H
-#define APRILPARTICLE_EVOLUTOR_H
+#ifndef APRILPARTICLE_AFFECTORS_REVOLUTOR_H
+#define APRILPARTICLE_AFFECTORS_REVOLUTOR_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -61,7 +61,7 @@ namespace aprilparticle
 			float _squaredLength;
 		
 		};
-	};
-}
 
+	}
+}
 #endif

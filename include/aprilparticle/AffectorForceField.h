@@ -10,8 +10,8 @@
 /// 
 /// Represents a force field affector.
 
-#ifndef APRILPARTICLE_FORCE_FIELD_H
-#define APRILPARTICLE_FORCE_FIELD_H
+#ifndef APRILPARTICLE_AFFECTORS_FORCE_FIELD_H
+#define APRILPARTICLE_AFFECTORS_FORCE_FIELD_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -55,7 +55,7 @@ namespace aprilparticle
 			float _squaredLength;
 			
 		};
-	};
-}
 
+	}
+}
 #endif

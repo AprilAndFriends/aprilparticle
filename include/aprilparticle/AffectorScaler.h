@@ -10,8 +10,8 @@
 /// 
 /// Represents a scale affector.
 
-#ifndef APRILPARTICLE_SCALER_H
-#define APRILPARTICLE_SCALER_H
+#ifndef APRILPARTICLE_AFFECTORS_SCALER_H
+#define APRILPARTICLE_AFFECTORS_SCALER_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -54,7 +54,7 @@ namespace aprilparticle
 			float _ratio;
 
 		};
-	};
-}
 
+	}
+}
 #endif

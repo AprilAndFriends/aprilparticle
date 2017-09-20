@@ -10,8 +10,8 @@
 /// 
 /// Represents an affector that uses a callback for the particle affection.
 
-#ifndef APRILPARTICLE_CALLBACK_AFFECTOR_H
-#define APRILPARTICLE_CALLBACK_AFFECTOR_H
+#ifndef APRILPARTICLE_AFFECTORS_CALLBACK_AFFECTOR_H
+#define APRILPARTICLE_AFFECTORS_CALLBACK_AFFECTOR_H
 
 #include <gtypes/Vector3.h>
 #include <hltypes/harray.h>
@@ -48,7 +48,7 @@ namespace aprilparticle
 			void (*affectionCallback)(CallbackAffector*, Particle*, float, gvec3&);
 
 		};
-	};
-}
 
+	}
+}
 #endif
