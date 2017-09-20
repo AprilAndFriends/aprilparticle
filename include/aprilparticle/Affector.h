@@ -35,6 +35,8 @@ namespace aprilparticle
 		Affector(chstr name = "");
 		virtual ~Affector();
 
+		virtual harray<PropertyDescription> getPropertyDescriptions() const;
+
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_GETSET(float, minRandomness, MinRandomness);
 		HL_DEFINE_GETSET(float, maxRandomness, MaxRandomness);
@@ -44,8 +46,6 @@ namespace aprilparticle
 
 		void setRandomnessRange(float min, float max);
 
-		virtual harray<PropertyDescription> getPropertyDescriptions() const;
-				
 		virtual inline void update(Particle* particle, float timeDelta, gvec3& movement) { }
 		virtual inline void draw() { }
 

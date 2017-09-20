@@ -31,10 +31,10 @@ namespace aprilparticle
 			~Rotator();
 			static Affector* createInstance(chstr name = "");
 
-			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
-				
 			harray<PropertyDescription> getPropertyDescriptions() const;
 
+			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
+				
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 

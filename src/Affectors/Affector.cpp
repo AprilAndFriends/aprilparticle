@@ -31,6 +31,16 @@ namespace aprilparticle
 	{
 	}
 
+	harray<PropertyDescription> Affector::getPropertyDescriptions() const
+	{
+		if (Affector::_propertyDescriptions.size() == 0)
+		{
+			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
+			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
+		}
+		return Affector::_propertyDescriptions;
+	}
+
 	void Affector::setRandomness(float value)
 	{
 		this->minRandomness = value;
@@ -47,16 +57,6 @@ namespace aprilparticle
 	{
 		this->minRandomness = min;
 		this->maxRandomness = max;
-	}
-
-	harray<PropertyDescription> Affector::getPropertyDescriptions() const
-	{
-		if (Affector::_propertyDescriptions.size() == 0)
-		{
-			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
-			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
-		}
-		return Affector::_propertyDescriptions;
 	}
 
 	hstr Affector::getProperty(chstr name)

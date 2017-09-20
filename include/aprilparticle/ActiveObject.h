@@ -30,13 +30,13 @@ namespace aprilparticle
 		ActiveObject(const ActiveObject& other);
 		virtual ~ActiveObject();
 
+		virtual harray<PropertyDescription> getPropertyDescriptions() const;
+
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_ISSET(visible, Visible);
 		HL_DEFINE_ISSET(enabled, Enabled);
 
-		virtual harray<PropertyDescription> getPropertyDescriptions() const;
 		bool hasProperty(chstr name);
-
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 

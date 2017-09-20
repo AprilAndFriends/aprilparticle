@@ -42,7 +42,6 @@ namespace apriluiparticle
 		System(chstr name);
 		~System();
 		inline hstr getClassName() const { return "apriluiparticle.System"; }
-
 		static aprilui::Object* createInstance(chstr name);
 
 		HL_DEFINE_GET(harray<Space*>, spaceObjects, SpaceObjects);

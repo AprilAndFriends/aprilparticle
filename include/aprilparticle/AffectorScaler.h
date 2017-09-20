@@ -34,11 +34,11 @@ namespace aprilparticle
 			~Scaler();
 			static Affector* createInstance(chstr name = "");
 
+			harray<PropertyDescription> getPropertyDescriptions() const;
+
 			HL_DEFINE_GETSET(float, startScale, StartScale);
 			HL_DEFINE_GETSET(float, endScale, EndScale);
 			
-			harray<PropertyDescription> getPropertyDescriptions() const;
-
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 

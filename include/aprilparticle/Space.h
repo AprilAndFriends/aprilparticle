@@ -39,6 +39,8 @@ namespace aprilparticle
 		Space(const Space& other);
 		~Space();
 
+		harray<PropertyDescription> getPropertyDescriptions() const;
+
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_GETSET(float, fixedTimeStep, FixedTimeStep);
 		HL_DEFINE_GETSET(gvec3, up, Up);
@@ -47,8 +49,6 @@ namespace aprilparticle
 		bool isRunning() const;
 		bool isExpired() const;
 		int getParticleCount() const;
-
-		harray<PropertyDescription> getPropertyDescriptions() const;
 
 		void reset();
 		void update(float timeDelta);

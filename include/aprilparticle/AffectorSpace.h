@@ -34,12 +34,12 @@ namespace aprilparticle
 			~Space();
 			static Affector* createInstance(chstr name = "");
 
+			harray<PropertyDescription> getPropertyDescriptions() const;
+
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(float, radius, Radius);
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
-			
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 

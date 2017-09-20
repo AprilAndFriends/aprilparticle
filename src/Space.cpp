@@ -56,6 +56,17 @@ namespace aprilparticle
 		}
 	}
 
+	harray<PropertyDescription> Space::getPropertyDescriptions() const
+	{
+		if (Space::_propertyDescriptions.size() == 0)
+		{
+			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::Type::Gvec3);
+		}
+		return (SpaceObject::getPropertyDescriptions() + Space::_propertyDescriptions);
+	}
+
 	bool Space::isRunning() const
 	{
 		HL_LAMBDA_CLASS(_isRunning, bool, ((Emitter* const& emitter) { return emitter->isRunning(); }));
@@ -71,17 +82,6 @@ namespace aprilparticle
 	int Space::getParticleCount() const
 	{
 		return this->alive;
-	}
-
-	harray<PropertyDescription> Space::getPropertyDescriptions() const
-	{
-		if (Space::_propertyDescriptions.size() == 0)
-		{
-			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::Type::Float);
-			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
-			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::Type::Gvec3);
-		}
-		return (SpaceObject::getPropertyDescriptions() + Space::_propertyDescriptions);
 	}
 
 	bool Space::registerEmitter(Emitter* emitter)

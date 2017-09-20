@@ -58,6 +58,8 @@ namespace aprilparticle
 		Emitter(const Emitter& other);
 		~Emitter();
 
+		harray<PropertyDescription> getPropertyDescriptions() const;
+
 		HL_DEFINE_ISSET(running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
 		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
@@ -102,8 +104,6 @@ namespace aprilparticle
 		void setSizeRange(cgvec2 min, cgvec2 max);
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
-
-		harray<PropertyDescription> getPropertyDescriptions() const;
 
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);

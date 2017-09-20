@@ -59,16 +59,6 @@ namespace apriluiparticle
 		}
 	}
 
-	bool Base::isRunning() const
-	{
-		return (this->system != NULL && this->system->isRunning());
-	}
-
-	bool Base::isExpired() const
-	{
-		return (this->system != NULL && this->system->isExpired());
-	}
-
 	harray<aprilui::PropertyDescription> Base::getPropertyDescriptions() const
 	{
 		if (Base::_propertyDescriptions.size() == 0)
@@ -78,6 +68,16 @@ namespace apriluiparticle
 			Base::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::Type::Bool);
 		}
 		return (aprilui::Object::getPropertyDescriptions() + Base::_propertyDescriptions);
+	}
+
+	bool Base::isRunning() const
+	{
+		return (this->system != NULL && this->system->isRunning());
+	}
+
+	bool Base::isExpired() const
+	{
+		return (this->system != NULL && this->system->isExpired());
 	}
 
 	void Base::notifyEvent(chstr type, aprilui::EventArgs* args)

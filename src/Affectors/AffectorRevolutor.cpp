@@ -47,16 +47,6 @@ namespace aprilparticle
 			return new Revolutor(name);
 		}
 
-		bool Revolutor::isClockwise() const
-		{
-			return (this->angle >= 0.0f);
-		}
-
-		void Revolutor::setClockwise(bool value)
-		{
-			this->angle = (value ? -360.0f : 360.0f);
-		}
-
 		harray<PropertyDescription> Revolutor::getPropertyDescriptions() const
 		{
 			if (Revolutor::_propertyDescriptions.size() == 0)
@@ -66,6 +56,16 @@ namespace aprilparticle
 				Revolutor::_propertyDescriptions += PropertyDescription("clockwise", PropertyDescription::Type::Bool);
 			}
 			return (Space::getPropertyDescriptions() + Revolutor::_propertyDescriptions);
+		}
+
+		bool Revolutor::isClockwise() const
+		{
+			return (this->angle >= 0.0f);
+		}
+
+		void Revolutor::setClockwise(bool value)
+		{
+			this->angle = (value ? -360.0f : 360.0f);
 		}
 
 		hstr Revolutor::getProperty(chstr name)

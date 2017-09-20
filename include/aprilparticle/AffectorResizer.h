@@ -34,13 +34,13 @@ namespace aprilparticle
 			~Resizer();
 			static Affector* createInstance(chstr name = "");
 
+			harray<PropertyDescription> getPropertyDescriptions() const;
+
 			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
 			inline void setStartSize(float x, float y) { this->startSize.set(x, y); }
 			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
 			inline void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
-			harray<PropertyDescription> getPropertyDescriptions() const;
-
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 

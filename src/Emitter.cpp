@@ -126,15 +126,6 @@ namespace aprilparticle
 		}
 	}
 
-	void Emitter::setLimit(int value)
-	{
-		if (this->limit != value)
-		{
-			this->limit = value;
-			this->_setupTriangleBatch();
-		}
-	}
-
 	harray<PropertyDescription> Emitter::getPropertyDescriptions() const
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
@@ -160,6 +151,15 @@ namespace aprilparticle
 			Emitter::_propertyDescriptions += PropertyDescription("angle_aligned", PropertyDescription::Type::Bool);
 		}
 		return (SpaceObject::getPropertyDescriptions() + Emitter::_propertyDescriptions);
+	}
+
+	void Emitter::setLimit(int value)
+	{
+		if (this->limit != value)
+		{
+			this->limit = value;
+			this->_setupTriangleBatch();
+		}
 	}
 
 	void Emitter::_setupTriangleBatch()

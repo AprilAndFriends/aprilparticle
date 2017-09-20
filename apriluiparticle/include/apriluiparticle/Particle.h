@@ -32,7 +32,6 @@ namespace apriluiparticle
 		Particle(chstr name);
 		~Particle();
 		inline hstr getClassName() const { return "apriluiparticle.Particle"; }
-
 		static aprilui::Object* createInstance(chstr name);
 
 	protected:

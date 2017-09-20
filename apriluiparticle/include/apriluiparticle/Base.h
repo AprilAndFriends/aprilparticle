@@ -42,6 +42,8 @@ namespace apriluiparticle
 		~Base();
 		inline hstr getClassName() const { return "apriluiparticle.Base"; }
 
+		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
+
 		HL_DEFINE_GETSET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);
 		HL_DEFINE_IS(loaded, Loaded);
@@ -50,8 +52,6 @@ namespace apriluiparticle
 		bool isRunning() const;
 		bool isExpired() const;
 		
-		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
-
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 
 		void load(chstr filename);
