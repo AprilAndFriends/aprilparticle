@@ -54,6 +54,7 @@
     <ProjectGuid>{AEE6186A-6335-4EC4-9356-BE34B6BED1D8}</ProjectGuid>
     <RootNamespace>aprilparticle</RootNamespace>
   </PropertyGroup>
+  <Import Project="..\..\..\hltypes\msvc\vs2013\props-generic\system.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="props\default.props" />
   <Import Project="..\..\..\hltypes\msvc\vs2013\props-generic\platform-$(Platform).props" />
