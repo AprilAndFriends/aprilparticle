@@ -667,7 +667,7 @@ namespace aprilparticle
 	
 	void Emitter::draw(cgvec2 offset)
 	{
-		this->texture->load();
+		this->texture->loadAsync();
 		this->_w = (float)this->texture->getWidth();
 		this->_h = (float)this->texture->getHeight();
 		this->_pStart = 0;
@@ -733,7 +733,7 @@ namespace aprilparticle
 		{
 			return;
 		}
-		this->texture->load();
+		this->texture->loadAsync();
 		this->_w = (float)this->texture->getWidth();
 		this->_h = (float)this->texture->getHeight();
 		this->_pStart = 0;
