@@ -522,7 +522,7 @@ void setupTwirl()
 	right->setScaleRange(0.3f, 0.5f);
 }
 
-void april_init(const harray<hstr>& args)
+void __aprilApplicationInit()
 {
 #ifdef __APPLE__
 	// On MacOSX, the current working directory is not set by
@@ -592,7 +592,7 @@ void april_init(const harray<hstr>& args)
 	setupTwirl();
 }
 
-void april_destroy()
+void __aprilApplicationDestroy()
 {
 	delete flame;
 	delete bubbles;

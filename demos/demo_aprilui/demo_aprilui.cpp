@@ -25,7 +25,7 @@
 #endif
 
 #include <april/april.h>
-#include <april/KeyboardDelegate.h>
+#include <april/KeyDelegate.h>
 #include <april/main.h>
 #include <april/MouseDelegate.h>
 #include <april/Platform.h>
@@ -79,7 +79,7 @@ protected:
 
 } updateDelegate;
 
-class KeyboardDelegate : public april::KeyboardDelegate
+class KeyDelegate : public april::KeyDelegate
 {
 	void onKeyDown(april::Key keycode)
 	{
@@ -107,7 +107,7 @@ class KeyboardDelegate : public april::KeyboardDelegate
 		aprilui::onChar(charCode);
 	}
 
-} keyboardDelegate;
+} keyDelegate;
 
 class MouseDelegate : public april::MouseDelegate
 {
@@ -133,7 +133,7 @@ class MouseDelegate : public april::MouseDelegate
 
 } mouseDelegate;
 
-void april_init(const harray<hstr>& args)
+void __aprilApplicationInit()
 {
 #ifdef __APPLE__
 	// On MacOSX, the current working directory is not set by
@@ -194,7 +194,7 @@ void april_init(const harray<hstr>& args)
 		aprilparticle::setUseCache(true);
 		apriluiparticle::init();
 		april::window->setUpdateDelegate(&updateDelegate);
-		april::window->setKeyboardDelegate(&keyboardDelegate);
+		april::window->setKeyDelegate(&keyDelegate);
 		april::window->setMouseDelegate(&mouseDelegate);
 		apriluiparticle::setDefaultPath("");
 		dataset = new aprilui::Dataset(RESOURCE_PATH "demo_aprilui.dts");
@@ -209,11 +209,12 @@ void april_init(const harray<hstr>& args)
 	}
 }
 
-void april_destroy()
+void __aprilApplicationDestroy()
 {
 	try
 	{
 		delete dataset;
+		dataset = NULL;
 		apriluiparticle::destroy();
 		aprilparticle::destroy();
 		aprilui::destroy();
