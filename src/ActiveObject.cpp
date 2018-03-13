@@ -18,7 +18,7 @@
 
 namespace aprilparticle
 {
-	harray<PropertyDescription> ActiveObject::_propertyDescriptions;
+	hmap<hstr, PropertyDescription> ActiveObject::_propertyDescriptions;
 
 	ActiveObject::ActiveObject(chstr name)
 	{
@@ -38,28 +38,20 @@ namespace aprilparticle
 	{
 	}
 
-	harray<PropertyDescription> ActiveObject::getPropertyDescriptions() const
+	hmap<hstr, PropertyDescription>& ActiveObject::getPropertyDescriptions() const
 	{
 		if (ActiveObject::_propertyDescriptions.size() == 0)
 		{
-			ActiveObject::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
-			ActiveObject::_propertyDescriptions += PropertyDescription("visible", PropertyDescription::Type::Bool);
-			ActiveObject::_propertyDescriptions += PropertyDescription("enabled", PropertyDescription::Type::Bool);
+			ActiveObject::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
+			ActiveObject::_propertyDescriptions["visible"] = PropertyDescription("visible", PropertyDescription::Type::Bool);
+			ActiveObject::_propertyDescriptions["enabled"] = PropertyDescription("enabled", PropertyDescription::Type::Bool);
 		}
 		return ActiveObject::_propertyDescriptions;
 	}
 
 	bool ActiveObject::hasProperty(chstr name)
 	{
-		harray<PropertyDescription> properties = this->getPropertyDescriptions();
-		foreach (PropertyDescription, it, properties)
-		{
-			if ((*it).getName() == name)
-			{
-				return true;
-			}
-		}
-		return false;
+		return this->getPropertyDescriptions().hasKey(name);
 	}
 
 	hstr ActiveObject::getProperty(chstr name)

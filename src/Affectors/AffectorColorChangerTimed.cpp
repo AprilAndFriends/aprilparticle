@@ -21,7 +21,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> ColorChangerTimed::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> ColorChangerTimed::_propertyDescriptions;
 
 		ColorChangerTimed::ColorChangerTimed(chstr name) : Affector(name)
 		{

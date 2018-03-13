@@ -16,7 +16,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> ColorChanger::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> ColorChanger::_propertyDescriptions;
 
 		ColorChanger::ColorChanger(chstr name) : Affector(name)
 		{
@@ -45,14 +45,15 @@ namespace aprilparticle
 			return new ColorChanger(name);
 		}
 
-		harray<PropertyDescription> ColorChanger::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& ColorChanger::getPropertyDescriptions() const
 		{
 			if (ColorChanger::_propertyDescriptions.size() == 0)
 			{
-				ColorChanger::_propertyDescriptions += PropertyDescription("start_color", PropertyDescription::Type::Color);
-				ColorChanger::_propertyDescriptions += PropertyDescription("end_color", PropertyDescription::Type::Color);
+				ColorChanger::_propertyDescriptions = Affector::getPropertyDescriptions();
+				ColorChanger::_propertyDescriptions["start_color"] = PropertyDescription("start_color", PropertyDescription::Type::Color);
+				ColorChanger::_propertyDescriptions["end_color"] = PropertyDescription("end_color", PropertyDescription::Type::Color);
 			}
-			return (Affector::getPropertyDescriptions() + ColorChanger::_propertyDescriptions);
+			return ColorChanger::_propertyDescriptions;
 		}
 
 		hstr ColorChanger::getProperty(chstr name)

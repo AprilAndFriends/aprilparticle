@@ -45,8 +45,8 @@ namespace aprilparticle
 			HL_ENUM_DECLARE(Type, TimingGvec2);
 		));
 
+		PropertyDescription();
 		PropertyDescription(chstr name, Type type, bool arrayData = false);
-		~PropertyDescription();
 
 		HL_DEFINE_GET(hstr, name, Name);
 		HL_DEFINE_GET(Type, type, Type);

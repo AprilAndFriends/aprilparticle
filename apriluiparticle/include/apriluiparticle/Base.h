@@ -42,7 +42,7 @@ namespace apriluiparticle
 		~Base();
 		inline hstr getClassName() const { return "apriluiparticle.Base"; }
 
-		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
+		hmap<hstr, aprilui::PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GETSET(hstr, filename, Filename);
 		HL_DEFINE_GETSET(hstr, filepath, Filepath);
@@ -75,7 +75,7 @@ namespace apriluiparticle
 		virtual void _resize();
 
 	private:
-		static harray<aprilui::PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, aprilui::PropertyDescription> _propertyDescriptions;
 
 	};
 }

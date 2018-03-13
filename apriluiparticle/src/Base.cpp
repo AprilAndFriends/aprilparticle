@@ -27,7 +27,7 @@
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> Base::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription> Base::_propertyDescriptions;
 
 	Base::Base(chstr name) : aprilui::Object(name)
 	{
@@ -59,15 +59,16 @@ namespace apriluiparticle
 		}
 	}
 
-	harray<aprilui::PropertyDescription> Base::getPropertyDescriptions() const
+	hmap<hstr, aprilui::PropertyDescription>& Base::getPropertyDescriptions() const
 	{
 		if (Base::_propertyDescriptions.size() == 0)
 		{
-			Base::_propertyDescriptions += aprilui::PropertyDescription("filename", aprilui::PropertyDescription::Type::String);
-			Base::_propertyDescriptions += aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::Type::String);
-			Base::_propertyDescriptions += aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::Type::Bool);
+			Base::_propertyDescriptions = aprilui::Object::getPropertyDescriptions();
+			Base::_propertyDescriptions["filename"] = aprilui::PropertyDescription("filename", aprilui::PropertyDescription::Type::String);
+			Base::_propertyDescriptions["filepath"] = aprilui::PropertyDescription("filepath", aprilui::PropertyDescription::Type::String);
+			Base::_propertyDescriptions["always_enabled"] = aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::Type::Bool);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + Base::_propertyDescriptions);
+		return Base::_propertyDescriptions;
 	}
 
 	bool Base::isRunning() const

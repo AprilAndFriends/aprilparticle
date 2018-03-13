@@ -30,7 +30,7 @@ namespace aprilparticle
 		SpaceObject(const SpaceObject& other);
 		~SpaceObject();
 
-		harray<PropertyDescription> getPropertyDescriptions() const;
+		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GETSET(gvec3, position, Position);
 		inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
@@ -42,7 +42,7 @@ namespace aprilparticle
 		gvec3 position;
 
 	private:
-		static harray<PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 	};
 }

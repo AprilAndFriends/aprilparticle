@@ -36,7 +36,7 @@ namespace aprilparticle
 			~ColorChanger();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
 			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
@@ -51,7 +51,7 @@ namespace aprilparticle
 			april::Color endColor;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _ratio;
 

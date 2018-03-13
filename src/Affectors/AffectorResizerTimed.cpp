@@ -23,7 +23,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> ResizerTimed::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> ResizerTimed::_propertyDescriptions;
 
 		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
 		{

@@ -36,7 +36,7 @@ namespace aprilparticle
 			~ScalerTimed();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GET(harray<float>, times, Times);
 			HL_DEFINE_GET(harray<float>, values, Values);
@@ -55,7 +55,7 @@ namespace aprilparticle
 			harray<float> values;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _ratio;
 			int _i;

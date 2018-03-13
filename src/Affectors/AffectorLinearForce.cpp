@@ -16,7 +16,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> LinearForce::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> LinearForce::_propertyDescriptions;
 
 		LinearForce::LinearForce(chstr name) : Affector(name)
 		{
@@ -37,13 +37,14 @@ namespace aprilparticle
 			return new LinearForce(name);
 		}
 
-		harray<PropertyDescription> LinearForce::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& LinearForce::getPropertyDescriptions() const
 		{
 			if (LinearForce::_propertyDescriptions.size() == 0)
 			{
-				LinearForce::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::Gvec3);
+				LinearForce::_propertyDescriptions = Affector::getPropertyDescriptions();
+				LinearForce::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3);
 			}
-			return (Affector::getPropertyDescriptions() + LinearForce::_propertyDescriptions);
+			return LinearForce::_propertyDescriptions;
 		}
 
 		hstr LinearForce::getProperty(chstr name)

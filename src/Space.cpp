@@ -21,7 +21,7 @@
 
 namespace aprilparticle
 {
-	harray<PropertyDescription> Space::_propertyDescriptions;
+	hmap<hstr, PropertyDescription> Space::_propertyDescriptions;
 
 	Space::Space(chstr name) : SpaceObject(name == "" ? april::generateName("Space") : name), AffectorContainer(), _lastTimeFraction(0.0f)
 	{
@@ -56,15 +56,16 @@ namespace aprilparticle
 		}
 	}
 
-	harray<PropertyDescription> Space::getPropertyDescriptions() const
+	hmap<hstr, PropertyDescription>& Space::getPropertyDescriptions() const
 	{
 		if (Space::_propertyDescriptions.size() == 0)
 		{
-			Space::_propertyDescriptions += PropertyDescription("pre_update", PropertyDescription::Type::Float);
-			Space::_propertyDescriptions += PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
-			Space::_propertyDescriptions += PropertyDescription("up", PropertyDescription::Type::Gvec3);
+			Space::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
+			Space::_propertyDescriptions["pre_update"] = PropertyDescription("pre_update", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions["fixed_time_step"] = PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
+			Space::_propertyDescriptions["up"] = PropertyDescription("up", PropertyDescription::Type::Gvec3);
 		}
-		return (SpaceObject::getPropertyDescriptions() + Space::_propertyDescriptions);
+		return Space::_propertyDescriptions;
 	}
 
 	bool Space::isRunning() const

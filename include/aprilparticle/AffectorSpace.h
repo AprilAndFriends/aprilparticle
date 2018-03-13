@@ -34,7 +34,7 @@ namespace aprilparticle
 			~Space();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(gvec3, position, Position);
 			inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
@@ -48,7 +48,7 @@ namespace aprilparticle
 			float radius;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 		};
 

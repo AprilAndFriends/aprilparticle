@@ -27,7 +27,7 @@
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> Space::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription> Space::_propertyDescriptions;
 
 	Space::Space(chstr name) : aprilui::Object(name)
 	{
@@ -62,14 +62,15 @@ namespace apriluiparticle
 		return new Space(name);
 	}
 
-	harray<aprilui::PropertyDescription> Space::getPropertyDescriptions() const
+	hmap<hstr, aprilui::PropertyDescription>& Space::getPropertyDescriptions() const
 	{
 		if (Space::_propertyDescriptions.size() == 0)
 		{
-			Space::_propertyDescriptions += aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::Type::String);
-			Space::_propertyDescriptions += aprilui::PropertyDescription("space", aprilui::PropertyDescription::Type::String);
+			Space::_propertyDescriptions = aprilui::Object::getPropertyDescriptions();
+			Space::_propertyDescriptions["system_object"] = aprilui::PropertyDescription("system_object", aprilui::PropertyDescription::Type::String);
+			Space::_propertyDescriptions["space"] = aprilui::PropertyDescription("space", aprilui::PropertyDescription::Type::String);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + Space::_propertyDescriptions);
+		return Space::_propertyDescriptions;
 	}
 
 	void Space::_update(float timeDelta)

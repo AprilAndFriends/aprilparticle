@@ -17,7 +17,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> Rotator::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> Rotator::_propertyDescriptions;
 
 		Rotator::Rotator(chstr name) : Affector(name)
 		{
@@ -38,13 +38,14 @@ namespace aprilparticle
 			return new Rotator(name);
 		}
 
-		harray<PropertyDescription> Rotator::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& Rotator::getPropertyDescriptions() const
 		{
 			if (Rotator::_propertyDescriptions.size() == 0)
 			{
-				Rotator::_propertyDescriptions += PropertyDescription("rotation_speed", PropertyDescription::Type::Float);
+				Rotator::_propertyDescriptions = Affector::getPropertyDescriptions();
+				Rotator::_propertyDescriptions["rotation_speed"] = PropertyDescription("rotation_speed", PropertyDescription::Type::Float);
 			}
-			return (Affector::getPropertyDescriptions() + Rotator::_propertyDescriptions);
+			return Rotator::_propertyDescriptions;
 		}
 
 		hstr Rotator::getProperty(chstr name)

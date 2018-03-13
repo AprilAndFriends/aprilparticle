@@ -34,7 +34,7 @@ namespace aprilparticle
 			~Resizer();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
 			inline void setStartSize(float x, float y) { this->startSize.set(x, y); }
@@ -51,7 +51,7 @@ namespace aprilparticle
 			gvec2 endSize;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _ratio;
 

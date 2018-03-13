@@ -39,7 +39,7 @@ namespace aprilparticle
 		Space(const Space& other);
 		~Space();
 
-		harray<PropertyDescription> getPropertyDescriptions() const;
+		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_GETSET(float, fixedTimeStep, FixedTimeStep);
@@ -84,7 +84,7 @@ namespace aprilparticle
 		gvec3 _addNewParticle(float timeDelta);
 
 	private:
-		static harray<PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 		gvec3 _movement;
 		gvec3 _movementDirection;

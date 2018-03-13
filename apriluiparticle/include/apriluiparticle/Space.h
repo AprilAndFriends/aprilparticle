@@ -45,7 +45,7 @@ namespace apriluiparticle
 		inline hstr getClassName() const { return "apriluiparticle.Space"; }
 		static aprilui::Object* createInstance(chstr name);
 
-		harray<aprilui::PropertyDescription> getPropertyDescriptions() const;
+		hmap<hstr, aprilui::PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GET(System*, systemObject, SystemObject);
 		HL_DEFINE_GET(harray<Emitter*>, emitterObjects, EmitterObjects);
@@ -76,7 +76,7 @@ namespace apriluiparticle
 		void _resize();
 
 	private:
-		static harray<aprilui::PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, aprilui::PropertyDescription> _propertyDescriptions;
 
 	};
 }

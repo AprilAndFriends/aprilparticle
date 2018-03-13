@@ -18,7 +18,7 @@
 
 namespace aprilparticle
 {
-	harray<PropertyDescription> SpaceObject::_propertyDescriptions;
+	hmap<hstr, PropertyDescription> SpaceObject::_propertyDescriptions;
 
 	SpaceObject::SpaceObject(chstr name) : ActiveObject(name == "" ? april::generateName("SpaceObject") : name)
 	{
@@ -34,13 +34,14 @@ namespace aprilparticle
 	{
 	}
 
-	harray<PropertyDescription> SpaceObject::getPropertyDescriptions() const
+	hmap<hstr, PropertyDescription>& SpaceObject::getPropertyDescriptions() const
 	{
 		if (SpaceObject::_propertyDescriptions.size() == 0)
 		{
-			SpaceObject::_propertyDescriptions += PropertyDescription("position", PropertyDescription::Type::Gvec3);
+			SpaceObject::_propertyDescriptions = ActiveObject::getPropertyDescriptions();
+			SpaceObject::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3);
 		}
-		return (ActiveObject::getPropertyDescriptions() + SpaceObject::_propertyDescriptions);
+		return SpaceObject::_propertyDescriptions;
 	}
 
 	hstr SpaceObject::getProperty(chstr name)

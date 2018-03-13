@@ -22,7 +22,7 @@ namespace aprilparticle
 	{
 		static gmat3 _rotation;
 
-		harray<PropertyDescription> Revolutor::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> Revolutor::_propertyDescriptions;
 
 		Revolutor::Revolutor(chstr name) : Space(name)
 		{
@@ -47,15 +47,16 @@ namespace aprilparticle
 			return new Revolutor(name);
 		}
 
-		harray<PropertyDescription> Revolutor::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& Revolutor::getPropertyDescriptions() const
 		{
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{
-				Revolutor::_propertyDescriptions += PropertyDescription("axis", PropertyDescription::Type::Gvec3);
-				Revolutor::_propertyDescriptions += PropertyDescription("evolution_speed", PropertyDescription::Type::Float);
-				Revolutor::_propertyDescriptions += PropertyDescription("clockwise", PropertyDescription::Type::Bool);
+				Revolutor::_propertyDescriptions = Space::getPropertyDescriptions();
+				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3);
+				Revolutor::_propertyDescriptions["evolution_speed"] = PropertyDescription("evolution_speed", PropertyDescription::Type::Float);
+				Revolutor::_propertyDescriptions["clockwise"] = PropertyDescription("clockwise", PropertyDescription::Type::Bool);
 			}
-			return (Space::getPropertyDescriptions() + Revolutor::_propertyDescriptions);
+			return Revolutor::_propertyDescriptions;
 		}
 
 		bool Revolutor::isClockwise() const

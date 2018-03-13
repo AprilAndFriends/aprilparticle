@@ -31,7 +31,7 @@ namespace aprilparticle
 			~Rotator();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(float, rotationSpeed, RotationSpeed);
 				
@@ -44,7 +44,7 @@ namespace aprilparticle
 			float rotationSpeed;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 		};
 

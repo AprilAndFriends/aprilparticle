@@ -35,7 +35,7 @@ namespace aprilparticle
 		Affector(chstr name = "");
 		virtual ~Affector();
 
-		virtual harray<PropertyDescription> getPropertyDescriptions() const;
+		virtual hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_GETSET(float, minRandomness, MinRandomness);
@@ -62,7 +62,7 @@ namespace aprilparticle
 		inline void _setSpace(Space* value) { this->space = value; }
 
 	private:
-		static harray<PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 	};
 }

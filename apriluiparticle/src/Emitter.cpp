@@ -25,7 +25,7 @@
 
 namespace apriluiparticle
 {
-	harray<aprilui::PropertyDescription> Emitter::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription> Emitter::_propertyDescriptions;
 
 	Emitter::Emitter(chstr name) : aprilui::Object(name)
 	{
@@ -63,14 +63,15 @@ namespace apriluiparticle
 		return new Emitter(name);
 	}
 
-	harray<aprilui::PropertyDescription> Emitter::getPropertyDescriptions() const
+	hmap<hstr, aprilui::PropertyDescription>& Emitter::getPropertyDescriptions() const
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{
-			Emitter::_propertyDescriptions += aprilui::PropertyDescription("space_object", aprilui::PropertyDescription::Type::String);
-			Emitter::_propertyDescriptions += aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::Type::String);
+			Emitter::_propertyDescriptions = aprilui::Object::getPropertyDescriptions();
+			Emitter::_propertyDescriptions["space_object"] = aprilui::PropertyDescription("space_object", aprilui::PropertyDescription::Type::String);
+			Emitter::_propertyDescriptions["emitter"] = aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::Type::String);
 		}
-		return (aprilui::Object::getPropertyDescriptions() + Emitter::_propertyDescriptions);
+		return Emitter::_propertyDescriptions;
 	}
 
 	void Emitter::resetEmitter()

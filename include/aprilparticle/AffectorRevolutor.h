@@ -35,7 +35,7 @@ namespace aprilparticle
 			~Revolutor();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(gvec3, axis, Axis);
 			inline void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
@@ -54,7 +54,7 @@ namespace aprilparticle
 			float angle;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			gvec3 _position;
 			gvec3 _direction;

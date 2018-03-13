@@ -20,7 +20,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> ScalerTimed::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> ScalerTimed::_propertyDescriptions;
 
 		ScalerTimed::ScalerTimed(chstr name) : Affector(name)
 		{

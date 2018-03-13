@@ -42,7 +42,7 @@ namespace aprilparticle
 
 	static gvec3 v[4]; // optimization
 
-	harray<PropertyDescription> Emitter::_propertyDescriptions;
+	hmap<hstr, PropertyDescription> Emitter::_propertyDescriptions;
 
 	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? april::generateName("Emitter") : name)
 	{
@@ -126,31 +126,32 @@ namespace aprilparticle
 		}
 	}
 
-	harray<PropertyDescription> Emitter::getPropertyDescriptions() const
+	hmap<hstr, PropertyDescription>& Emitter::getPropertyDescriptions() const
 	{
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{
-			Emitter::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
-			Emitter::_propertyDescriptions += PropertyDescription("type", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions += PropertyDescription("dimensions", PropertyDescription::Type::Gvec3);
-			Emitter::_propertyDescriptions += PropertyDescription("blend_mode", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions += PropertyDescription("color_mode", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions += PropertyDescription("color_mode_factor", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions += PropertyDescription("emission_rate", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions += PropertyDescription("duration", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions += PropertyDescription("delay", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions += PropertyDescription("loop_delay", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions += PropertyDescription("loops", PropertyDescription::Type::Int);
-			Emitter::_propertyDescriptions += PropertyDescription("limit", PropertyDescription::Type::Int);
-			Emitter::_propertyDescriptions += PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool);
-			Emitter::_propertyDescriptions += PropertyDescription("life", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::RangeGvec3);
-			Emitter::_propertyDescriptions += PropertyDescription("size", PropertyDescription::Type::RangeGvec2);
-			Emitter::_propertyDescriptions += PropertyDescription("scale", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions += PropertyDescription("angle", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions += PropertyDescription("angle_aligned", PropertyDescription::Type::Bool);
+			Emitter::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
+			Emitter::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
+			Emitter::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3);
+			Emitter::_propertyDescriptions["blend_mode"] = PropertyDescription("blend_mode", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions["color_mode"] = PropertyDescription("color_mode", PropertyDescription::Type::Enum);
+			Emitter::_propertyDescriptions["color_mode_factor"] = PropertyDescription("color_mode_factor", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions["emission_rate"] = PropertyDescription("emission_rate", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions["duration"] = PropertyDescription("duration", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions["delay"] = PropertyDescription("delay", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions["loop_delay"] = PropertyDescription("loop_delay", PropertyDescription::Type::Float);
+			Emitter::_propertyDescriptions["loops"] = PropertyDescription("loops", PropertyDescription::Type::Int);
+			Emitter::_propertyDescriptions["limit"] = PropertyDescription("limit", PropertyDescription::Type::Int);
+			Emitter::_propertyDescriptions["reverse_rendering"] = PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool);
+			Emitter::_propertyDescriptions["life"] = PropertyDescription("life", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::RangeGvec3);
+			Emitter::_propertyDescriptions["size"] = PropertyDescription("size", PropertyDescription::Type::RangeGvec2);
+			Emitter::_propertyDescriptions["scale"] = PropertyDescription("scale", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions["angle"] = PropertyDescription("angle", PropertyDescription::Type::RangeFloat);
+			Emitter::_propertyDescriptions["angle_aligned"] = PropertyDescription("angle_aligned", PropertyDescription::Type::Bool);
 		}
-		return (SpaceObject::getPropertyDescriptions() + Emitter::_propertyDescriptions);
+		return Emitter::_propertyDescriptions;
 	}
 
 	void Emitter::setLimit(int value)

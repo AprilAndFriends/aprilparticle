@@ -47,7 +47,7 @@ namespace aprilparticle
 
 	namespace Affectors
 	{
-		harray<PropertyDescription> ForceField::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> ForceField::_propertyDescriptions;
 
 		ForceField::ForceField(chstr name) : Space(name)
 		{
@@ -68,13 +68,14 @@ namespace aprilparticle
 			return new ForceField(name);
 		}
 
-		harray<PropertyDescription> ForceField::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& ForceField::getPropertyDescriptions() const
 		{
 			if (ForceField::_propertyDescriptions.size() == 0)
 			{
-				ForceField::_propertyDescriptions += PropertyDescription("direction", PropertyDescription::Type::Gvec3);
+				ForceField::_propertyDescriptions = Space::getPropertyDescriptions();
+				ForceField::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3);
 			}
-			return (Space::getPropertyDescriptions() + ForceField::_propertyDescriptions);
+			return ForceField::_propertyDescriptions;
 		}
 
 		hstr ForceField::getProperty(chstr name)

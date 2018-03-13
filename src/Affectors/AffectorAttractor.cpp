@@ -18,7 +18,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> Attractor::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> Attractor::_propertyDescriptions;
 
 		Attractor::Attractor(chstr name) : Space(name)
 		{
@@ -41,14 +41,15 @@ namespace aprilparticle
 			return new Attractor(name);
 		}
 
-		harray<PropertyDescription> Attractor::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& Attractor::getPropertyDescriptions() const
 		{
 			if (Attractor::_propertyDescriptions.size() == 0)
 			{
-				Attractor::_propertyDescriptions += PropertyDescription("force", PropertyDescription::Type::Float);
-				Attractor::_propertyDescriptions += PropertyDescription("exponent", PropertyDescription::Type::Float);
+				Attractor::_propertyDescriptions = Space::getPropertyDescriptions();
+				Attractor::_propertyDescriptions["force"] = PropertyDescription("force", PropertyDescription::Type::Float);
+				Attractor::_propertyDescriptions["exponent"] = PropertyDescription("exponent", PropertyDescription::Type::Float);
 			}
-			return (Space::getPropertyDescriptions() + Attractor::_propertyDescriptions);
+			return Attractor::_propertyDescriptions;
 		}
 
 		hstr Attractor::getProperty(chstr name)

@@ -34,7 +34,7 @@ namespace aprilparticle
 			~Attractor();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(float, force, Force);
 			HL_DEFINE_GETSET(float, exponent, Exponent);
@@ -49,7 +49,7 @@ namespace aprilparticle
 			float exponent;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			gvec3 _direction;
 			float _factor;

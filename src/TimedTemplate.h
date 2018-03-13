@@ -74,13 +74,14 @@
 	++this->_size;
 
 #define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \
-	harray<PropertyDescription> classe::getPropertyDescriptions() const \
+	hmap<hstr, PropertyDescription>& classe::getPropertyDescriptions() const \
 	{ \
 		if (classe::_propertyDescriptions.size() == 0) \
 		{ \
-			classe::_propertyDescriptions += PropertyDescription("timings", PropertyDescription::Type::Timing ## type); \
+			classe::_propertyDescriptions = superclasse::getPropertyDescriptions(); \
+			classe::_propertyDescriptions["timings"] = PropertyDescription("timings", PropertyDescription::Type::Timing ## type); \
 		} \
-		return (superclasse::getPropertyDescriptions() + classe::_propertyDescriptions); \
+		return classe::_propertyDescriptions; \
 	}
 
 #define TIMED_TEMPLATE_UPDATE(particle, var) \

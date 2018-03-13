@@ -34,7 +34,7 @@ namespace aprilparticle
 			~ForceField();
 			static Affector* createInstance(chstr name = "");
 
-			harray<PropertyDescription> getPropertyDescriptions() const;
+			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(gvec3, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
@@ -49,7 +49,7 @@ namespace aprilparticle
 			gvec3 direction;
 
 		private:
-			static harray<PropertyDescription> _propertyDescriptions;
+			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _factor;
 			float _squaredLength;

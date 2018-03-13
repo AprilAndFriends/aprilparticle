@@ -17,7 +17,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> Space::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> Space::_propertyDescriptions;
 
 		Space::Space(chstr name) : Affector(name)
 		{
@@ -35,14 +35,15 @@ namespace aprilparticle
 		{
 		}
 		
-		harray<PropertyDescription> Space::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& Space::getPropertyDescriptions() const
 		{
 			if (Space::_propertyDescriptions.size() == 0)
 			{
-				Space::_propertyDescriptions += PropertyDescription("position", PropertyDescription::Type::Gvec3);
-				Space::_propertyDescriptions += PropertyDescription("radius", PropertyDescription::Type::Float);
+				Space::_propertyDescriptions = Affector::getPropertyDescriptions();
+				Space::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3);
+				Space::_propertyDescriptions["radius"] = PropertyDescription("radius", PropertyDescription::Type::Float);
 			}
-			return (Affector::getPropertyDescriptions() + Space::_propertyDescriptions);
+			return Space::_propertyDescriptions;
 		}
 
 		hstr Space::getProperty(chstr name)

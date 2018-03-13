@@ -58,7 +58,7 @@ namespace aprilparticle
 		Emitter(const Emitter& other);
 		~Emitter();
 
-		harray<PropertyDescription> getPropertyDescriptions() const;
+		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_ISSET(running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
@@ -157,7 +157,7 @@ namespace aprilparticle
 		inline void _setSpace(Space* value) { this->space = value; }
 
 	private:
-		static harray<PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 		april::ColoredTexturedVertex* _triangleBatch;
 		gvec3 _pos;

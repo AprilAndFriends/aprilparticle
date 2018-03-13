@@ -13,7 +13,7 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		harray<PropertyDescription> Scaler::_propertyDescriptions;
+		hmap<hstr, PropertyDescription> Scaler::_propertyDescriptions;
 
 		Scaler::Scaler(chstr name) : Affector(name)
 		{
@@ -36,14 +36,15 @@ namespace aprilparticle
 			return new Scaler(name);
 		}
 
-		harray<PropertyDescription> Scaler::getPropertyDescriptions() const
+		hmap<hstr, PropertyDescription>& Scaler::getPropertyDescriptions() const
 		{
 			if (Scaler::_propertyDescriptions.size() == 0)
 			{
-				Scaler::_propertyDescriptions += PropertyDescription("start_scale", PropertyDescription::Type::Float);
-				Scaler::_propertyDescriptions += PropertyDescription("end_scale", PropertyDescription::Type::Float);
+				Scaler::_propertyDescriptions = Affector::getPropertyDescriptions();
+				Scaler::_propertyDescriptions["start_scale"] = PropertyDescription("start_scale", PropertyDescription::Type::Float);
+				Scaler::_propertyDescriptions["end_scale"] = PropertyDescription("end_scale", PropertyDescription::Type::Float);
 			}
-			return (Affector::getPropertyDescriptions() + Scaler::_propertyDescriptions);
+			return Scaler::_propertyDescriptions;
 		}
 
 		hstr Scaler::getProperty(chstr name)

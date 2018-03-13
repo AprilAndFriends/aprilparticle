@@ -16,7 +16,7 @@
 
 namespace aprilparticle
 {
-	harray<PropertyDescription> Affector::_propertyDescriptions;
+	hmap<hstr, PropertyDescription> Affector::_propertyDescriptions;
 
 	Affector::Affector(chstr name)
 	{
@@ -31,12 +31,12 @@ namespace aprilparticle
 	{
 	}
 
-	harray<PropertyDescription> Affector::getPropertyDescriptions() const
+	hmap<hstr, PropertyDescription>& Affector::getPropertyDescriptions() const
 	{
 		if (Affector::_propertyDescriptions.size() == 0)
 		{
-			Affector::_propertyDescriptions += PropertyDescription("name", PropertyDescription::Type::String);
-			Affector::_propertyDescriptions += PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
+			Affector::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
+			Affector::_propertyDescriptions["randomness"] = PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
 		}
 		return Affector::_propertyDescriptions;
 	}
