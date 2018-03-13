@@ -54,15 +54,15 @@ namespace apriluiparticle
 
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 
-		hstr getProperty(chstr name);
-		bool setProperty(chstr name, chstr value);
-		
 	protected:
 		System* systemObject;
 		harray<Emitter*> emitterObjects;
 		aprilparticle::Space* space;
 		hstr systemObjectName;
 		hstr spaceName;
+
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getGetters() const;
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getSetters() const;
 
 		void _update(float timeDelta);
 		void _draw();
@@ -77,8 +77,10 @@ namespace apriluiparticle
 
 	private:
 		static hmap<hstr, aprilui::PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _getters;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _setters;
 
 	};
-}
 
+}
 #endif

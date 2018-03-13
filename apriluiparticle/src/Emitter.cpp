@@ -26,6 +26,8 @@
 namespace apriluiparticle
 {
 	hmap<hstr, aprilui::PropertyDescription> Emitter::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Emitter::_getters;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Emitter::_setters;
 
 	Emitter::Emitter(chstr name) : aprilui::Object(name)
 	{
@@ -72,6 +74,29 @@ namespace apriluiparticle
 			Emitter::_propertyDescriptions["emitter"] = aprilui::PropertyDescription("emitter", aprilui::PropertyDescription::Type::String);
 		}
 		return Emitter::_propertyDescriptions;
+	}
+
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Emitter::_getGetters() const
+	{
+		if (Emitter::_getters.size() == 0)
+		{
+			Emitter::_getters = aprilui::Object::_getGetters();
+			Emitter::_getters["space_object"] = new aprilui::PropertyDescription::Get<Emitter, hstr>(&Emitter::getSpaceObjectName);
+			Emitter::_getters["emitter"] = new aprilui::PropertyDescription::Get<Emitter, hstr>(&Emitter::getEmitterName);
+		}
+		return Emitter::_getters;
+	}
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Emitter::_getSetters() const
+	{
+		if (Emitter::_setters.size() == 0)
+		{
+			Emitter::_setters = aprilui::Object::_getSetters();
+			Emitter::_setters["space_object"] = new aprilui::PropertyDescription::Set<Emitter, hstr>(&Emitter::setSpaceObjectName);
+			Emitter::_setters["emitter"] = new aprilui::PropertyDescription::Set<Emitter, hstr>(&Emitter::setEmitterName);
+		}
+		return Emitter::_setters;
 	}
 
 	void Emitter::resetEmitter()
@@ -213,21 +238,6 @@ namespace apriluiparticle
 			this->emitter->setEnabled(this->isDerivedEnabled());
 		}
 		Object::notifyEvent(type, args);
-	}
-
-	hstr Emitter::getProperty(chstr name)
-	{
-		if (name == "space_object")	return this->getSpaceObjectName();
-		if (name == "emitter")		return this->getEmitterName();
-		return aprilui::Object::getProperty(name);
-	}
-
-	bool Emitter::setProperty(chstr name, chstr value)
-	{
-		if (name == "space_object")	this->setSpaceObjectName(value);
-		else if (name == "emitter")	this->setEmitterName(value);
-		else return aprilui::Object::setProperty(name, value);
-		return true;
 	}
 	
 	void Emitter::_unbind()

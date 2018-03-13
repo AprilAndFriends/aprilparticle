@@ -59,7 +59,6 @@ namespace apriluiparticle
 		virtual void stopSystem();
 		virtual void resetSystem();
 		
-		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 		
 	protected:
@@ -71,13 +70,18 @@ namespace apriluiparticle
 
 		inline aprilparticle::System** _getSystemPtr() { return &this->system; }
 
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getGetters() const;
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getSetters() const;
+
 		virtual void _load();
 		virtual void _resize();
 
 	private:
 		static hmap<hstr, aprilui::PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _getters;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _setters;
 
 	};
-}
 
+}
 #endif

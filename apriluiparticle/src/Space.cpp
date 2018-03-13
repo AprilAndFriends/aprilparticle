@@ -28,6 +28,8 @@
 namespace apriluiparticle
 {
 	hmap<hstr, aprilui::PropertyDescription> Space::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Space::_getters;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Space::_setters;
 
 	Space::Space(chstr name) : aprilui::Object(name)
 	{
@@ -71,6 +73,29 @@ namespace apriluiparticle
 			Space::_propertyDescriptions["space"] = aprilui::PropertyDescription("space", aprilui::PropertyDescription::Type::String);
 		}
 		return Space::_propertyDescriptions;
+	}
+
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Space::_getGetters() const
+	{
+		if (Space::_getters.size() == 0)
+		{
+			Space::_getters = aprilui::Object::_getGetters();
+			Space::_getters["system_object"] = new aprilui::PropertyDescription::Get<Space, hstr>(&Space::getSystemObjectName);
+			Space::_getters["space"] = new aprilui::PropertyDescription::Get<Space, hstr>(&Space::getSpaceName);
+		}
+		return Space::_getters;
+	}
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Space::_getSetters() const
+	{
+		if (Space::_setters.size() == 0)
+		{
+			Space::_setters = aprilui::Object::_getSetters();
+			Space::_setters["system_object"] = new aprilui::PropertyDescription::Set<Space, hstr>(&Space::setSystemObjectName);
+			Space::_setters["space"] = new aprilui::PropertyDescription::Set<Space, hstr>(&Space::setSpaceName);
+		}
+		return Space::_setters;
 	}
 
 	void Space::_update(float timeDelta)
@@ -197,21 +222,6 @@ namespace apriluiparticle
 		{
 			apriluiparticle::resizeEmitters(this->getSize(), this->space->getEmitters());
 		}
-	}
-
-	hstr Space::getProperty(chstr name)
-	{
-		if (name == "system_object")	return this->getSystemObjectName();
-		if (name == "space")			return this->getSpaceName();
-		return aprilui::Object::getProperty(name);
-	}
-
-	bool Space::setProperty(chstr name, chstr value)
-	{
-		if (name == "system_object")	this->setSystemObjectName(value);
-		else if (name == "space")		this->setSpaceName(value);
-		else return aprilui::Object::setProperty(name, value);
-		return true;
 	}
 
 }

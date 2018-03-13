@@ -52,9 +52,6 @@ namespace apriluiparticle
 
 		void notifyEvent(chstr type, aprilui::EventArgs* args);
 		
-		hstr getProperty(chstr name);
-		bool setProperty(chstr name, chstr value);
-		
 	protected:
 		Space* spaceObject;
 		aprilparticle::Emitter* emitter;
@@ -68,6 +65,9 @@ namespace apriluiparticle
 		gvec2 emitterMinSize;
 		gvec2 emitterMaxSize;
 
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getGetters() const;
+		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getSetters() const;
+
 		void _update(float timeDelta);
 		void _draw();
 
@@ -79,8 +79,10 @@ namespace apriluiparticle
 
 	private:
 		static hmap<hstr, aprilui::PropertyDescription> _propertyDescriptions;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _getters;
+		static hmap<hstr, aprilui::PropertyDescription::Accessor*> _setters;
 
 	};
-}
 
+}
 #endif

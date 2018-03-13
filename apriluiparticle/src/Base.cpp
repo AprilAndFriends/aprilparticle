@@ -28,6 +28,8 @@
 namespace apriluiparticle
 {
 	hmap<hstr, aprilui::PropertyDescription> Base::_propertyDescriptions;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Base::_getters;
+	hmap<hstr, aprilui::PropertyDescription::Accessor*> Base::_setters;
 
 	Base::Base(chstr name) : aprilui::Object(name)
 	{
@@ -69,6 +71,28 @@ namespace apriluiparticle
 			Base::_propertyDescriptions["always_enabled"] = aprilui::PropertyDescription("always_enabled", aprilui::PropertyDescription::Type::Bool);
 		}
 		return Base::_propertyDescriptions;
+	}
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Base::_getGetters() const
+	{
+		if (Base::_getters.size() == 0)
+		{
+			Base::_getters = aprilui::Object::_getGetters();
+			Base::_getters["filename"] = new aprilui::PropertyDescription::Get<Base, hstr>(&Base::getFilename);
+			Base::_getters["filepath"] = new aprilui::PropertyDescription::Get<Base, hstr>(&Base::getFilepath);
+			Base::_getters["always_enabled"] = new aprilui::PropertyDescription::Get<Base, bool>(&Base::isAlwaysEnabled);
+		}
+		return Base::_getters;
+	}
+
+	hmap<hstr, aprilui::PropertyDescription::Accessor*>& Base::_getSetters() const
+	{
+		if (Base::_setters.size() == 0)
+		{
+			Base::_setters = aprilui::Object::_getSetters();
+			Base::_setters["always_enabled"] = new aprilui::PropertyDescription::Set<Base, bool>(&Base::setAlwaysEnabled);
+		}
+		return Base::_setters;
 	}
 
 	bool Base::isRunning() const
@@ -184,31 +208,23 @@ namespace apriluiparticle
 		}
 	}
 	
-	hstr Base::getProperty(chstr name)
-	{
-		if (name == "filename")			return this->getFilename();
-		if (name == "filepath")			return this->getFilepath();
-		if (name == "always_enabled")	return this->isAlwaysEnabled();
-		return aprilui::Object::getProperty(name);
-	}
-
 	bool Base::setProperty(chstr name, chstr value)
 	{
-		if		(name == "filename")
+		if (name == "filename")
 		{
 			this->setFilename(value);
 			this->setFilepath("");
 			this->notifyEvent(Event::ParticleSettingsChanged, NULL);
+			return true;
 		}
-		else if	(name == "filepath")
+		if	(name == "filepath")
 		{
 			this->setFilepath(value);
 			this->setFilename("");
 			this->notifyEvent(Event::ParticleSettingsChanged, NULL);
+			return true;
 		}
-		else if	(name == "always_enabled")	this->setAlwaysEnabled(value);
-		else return aprilui::Object::setProperty(name, value);
-		return true;
+		return aprilui::Object::setProperty(name, value);
 	}
 
 }
