@@ -13,6 +13,7 @@
 #ifndef APRILUIPARTICLE_BASE_H
 #define APRILUIPARTICLE_BASE_H
 
+#include <aprilui/PropertyDescription.h>
 #include <aprilui/Object.h>
 #include <gtypes/Rectangle.h>
 #include <gtypes/Vector2.h>
