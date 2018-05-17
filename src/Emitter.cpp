@@ -309,6 +309,8 @@ namespace aprilparticle
 			if (mode == april::ColorMode::Multiply)		return "multiply";
 			if (mode == april::ColorMode::AlphaMap)		return "alpha_map";
 			if (mode == april::ColorMode::Lerp)			return "lerp";
+			if (mode == april::ColorMode::Desaturate)	return "desaturate";
+			if (mode == april::ColorMode::Sepia)		return "sepia";
 			return "";
 		}
 		if (name == "color_mode_factor")	return this->getColorModeFactor();
@@ -368,6 +370,8 @@ namespace aprilparticle
 			else if	(value == "multiply")		this->setColorMode(april::ColorMode::Multiply);
 			else if	(value == "alpha_map")		this->setColorMode(april::ColorMode::AlphaMap);
 			else if (value == "lerp")			this->setColorMode(april::ColorMode::Lerp);
+			else if (value == "desaturate")		this->setColorMode(april::ColorMode::Desaturate);
+			else if (value == "sepia")			this->setColorMode(april::ColorMode::Sepia);
 			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
 		else if	(name == "color_mode_factor")	this->setColorModeFactor(value);
