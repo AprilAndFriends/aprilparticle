@@ -1,0 +1,25 @@
+apply plugin: "com.android.library"
+apply from: "../../../hltypes/android-studio/generic/default.gradle"
+apply from: "../../../hltypes/android-studio/generic/native.gradle"
+apply from: "../../../hltypes/android-studio/generic/cpp.gradle"
+
+android {
+	defaultConfig {
+		versionCode 2300
+		versionName "2.3.0"
+	}
+	externalNativeBuild {
+		cmake {
+			path "CMakeLists.txt"
+		}
+	}
+}
+
+dependencies {
+	implementation project(":april")
+	implementation project(":hltypes")
+	implementation project(":gtypes")
+	implementation project(":jpeg")
+	implementation project(":png")
+	implementation fileTree(include: ["*.jar"], dir: "libs")
+}

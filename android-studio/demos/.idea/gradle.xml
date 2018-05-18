@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../april/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../april/lib/jpeg/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../april/lib/png/android-studio/lib" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/demo_gui" />
+            <option value="$PROJECT_DIR$/demo_simple" />
+            <option value="$PROJECT_DIR$/demo_tileimage" />
+            <option value="$PROJECT_DIR$/demo_zorder" />
+            <option value="$PROJECT_DIR$/../lib" />
+            <option value="$PROJECT_DIR$/../../../atres/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../gtypes/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../hltypes/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../hltypes/hlxml/android-studio/lib" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
