@@ -11,11 +11,12 @@
             <option value="$PROJECT_DIR$/../../../april/lib/jpeg/android-studio/lib" />
             <option value="$PROJECT_DIR$/../../../april/lib/png/android-studio/lib" />
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/demo_gui" />
+            <option value="$PROJECT_DIR$/demo_aprilui" />
+            <option value="$PROJECT_DIR$/demo_particle" />
             <option value="$PROJECT_DIR$/demo_simple" />
-            <option value="$PROJECT_DIR$/demo_tileimage" />
-            <option value="$PROJECT_DIR$/demo_zorder" />
             <option value="$PROJECT_DIR$/../lib" />
+            <option value="$PROJECT_DIR$/../../apriluiparticle/android-studio/lib" />
+            <option value="$PROJECT_DIR$/../../../aprilui/android-studio/lib" />
             <option value="$PROJECT_DIR$/../../../atres/android-studio/lib" />
             <option value="$PROJECT_DIR$/../../../gtypes/android-studio/lib" />
             <option value="$PROJECT_DIR$/../../../hltypes/android-studio/lib" />

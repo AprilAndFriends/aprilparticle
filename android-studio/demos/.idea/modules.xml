@@ -3,12 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../../april/android-studio/lib/april.iml" filepath="$PROJECT_DIR$/../../../april/android-studio/lib/april.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../lib/aprilui.iml" filepath="$PROJECT_DIR$/../lib/aprilui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lib/aprilparticle.iml" filepath="$PROJECT_DIR$/../lib/aprilparticle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../aprilui/android-studio/lib/aprilui.iml" filepath="$PROJECT_DIR$/../../../aprilui/android-studio/lib/aprilui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../apriluiparticle/android-studio/lib/apriluiparticle.iml" filepath="$PROJECT_DIR$/../../apriluiparticle/android-studio/lib/apriluiparticle.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../atres/android-studio/lib/atres.iml" filepath="$PROJECT_DIR$/../../../atres/android-studio/lib/atres.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo_gui/demo_gui.iml" filepath="$PROJECT_DIR$/demo_gui/demo_gui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_aprilui/demo_aprilui.iml" filepath="$PROJECT_DIR$/demo_aprilui/demo_aprilui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_particle/demo_particle.iml" filepath="$PROJECT_DIR$/demo_particle/demo_particle.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo_simple/demo_simple.iml" filepath="$PROJECT_DIR$/demo_simple/demo_simple.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo_tileimage/demo_tileimage.iml" filepath="$PROJECT_DIR$/demo_tileimage/demo_tileimage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo_zorder/demo_zorder.iml" filepath="$PROJECT_DIR$/demo_zorder/demo_zorder.iml" />
       <module fileurl="file://$PROJECT_DIR$/demos.iml" filepath="$PROJECT_DIR$/demos.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../gtypes/android-studio/lib/gtypes.iml" filepath="$PROJECT_DIR$/../../../gtypes/android-studio/lib/gtypes.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../hltypes/android-studio/lib/hltypes.iml" filepath="$PROJECT_DIR$/../../../hltypes/android-studio/lib/hltypes.iml" />
