@@ -9,7 +9,7 @@
 #include <math.h>
 
 #include <april/Color.h>
-#include <gtypes/Constants.h>
+#include <gtypes/constants.h>
 #include <gtypes/Matrix3.h>
 #include <gtypes/Matrix4.h>
 #include <gtypes/Vector2.h>
