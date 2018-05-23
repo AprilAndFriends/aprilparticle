@@ -49,6 +49,7 @@ namespace apriluiparticle
 
 		HL_DEFINE_GET(System*, systemObject, SystemObject);
 		HL_DEFINE_GET(harray<Emitter*>, emitterObjects, EmitterObjects);
+		HL_DEFINE_GET(aprilparticle::Space*, space, Space);
 		HL_DEFINE_GETSET(hstr, systemObjectName, SystemObjectName);
 		HL_DEFINE_GETSET(hstr, spaceName, SpaceName);
 

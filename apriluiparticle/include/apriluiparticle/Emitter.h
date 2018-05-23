@@ -45,6 +45,7 @@ namespace apriluiparticle
 		hmap<hstr, aprilui::PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GET(Space*, spaceObject, SpaceObject);
+		HL_DEFINE_GET(aprilparticle::Emitter*, emitter, Emitter);
 		HL_DEFINE_GETSET(hstr, spaceObjectName, SpaceObjectName);
 		HL_DEFINE_GETSET(hstr, emitterName, EmitterName);
 
