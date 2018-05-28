@@ -133,7 +133,7 @@ namespace aprilparticle
 	{
 		if (name == "pre_update")		return this->getPreUpdate();
 		if (name == "fixed_time_step")	return this->getFixedTimeStep();
-		if (name == "up")				return april::gvec3ToHstr(this->getUp());
+		if (name == "up")				return april::gvec3fToHstr(this->getUp());
 		return SpaceObject::getProperty(name);
 	}
 
@@ -255,7 +255,7 @@ namespace aprilparticle
 		}
 	}
 
-	void Space::draw(cgvec3 point)
+	void Space::draw(cgvec3f point)
 	{
 		if (this->visible)
 		{
@@ -266,7 +266,7 @@ namespace aprilparticle
 		}
 	}
 
-	void Space::draw(cgvec2 offset, const april::Color& color)
+	void Space::draw(cgvec2f offset, const april::Color& color)
 	{
 		if (this->visible && color.a > 0)
 		{
@@ -296,7 +296,7 @@ namespace aprilparticle
 		}
 	}
 	
-	gvec3 Space::_addNewParticle(float timeDelta)
+	gvec3f Space::_addNewParticle(float timeDelta)
 	{
 		this->particles += this->_particle;
 		++this->alive;

@@ -129,16 +129,16 @@ namespace apriluiparticle
 
 	void Emitter::_updateEmitterData()
 	{
-		gvec2 newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedPivot()) - this->initialPosition - this->spaceObject->_makeDrawRect().getSize() * 0.5f;
-		this->emitter->setPosition(this->emitterPosition + gvec3(newPosition.x, newPosition.y, 0.0f));
+		gvec2f newPosition = this->spaceObject->transformToLocalSpace(this->getDerivedPivot()) - this->initialPosition - this->spaceObject->_makeDrawRect().getSize() * 0.5f;
+		this->emitter->setPosition(this->emitterPosition + gvec3f(newPosition.x, newPosition.y, 0.0f));
 		float angle = this->initialAngle - this->_getDerivedAngle();
-		gvec2 newMinDirection = gvec2(this->emitterMinDirection.x, this->emitterMinDirection.y).rotated(angle);
-		gvec2 newMaxDirection = gvec2(this->emitterMaxDirection.x, this->emitterMaxDirection.y).rotated(angle);
-		this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
-		this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
-		this->emitter->setMinDirection(gvec3(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
-		this->emitter->setMaxDirection(gvec3(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
-		gvec2 scale = this->getDerivedScale() / this->spaceObject->getDerivedScale();
+		gvec2f newMinDirection = gvec2f(this->emitterMinDirection.x, this->emitterMinDirection.y).rotated(angle);
+		gvec2f newMaxDirection = gvec2f(this->emitterMaxDirection.x, this->emitterMaxDirection.y).rotated(angle);
+		this->emitter->setMinDirection(gvec3f(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
+		this->emitter->setMaxDirection(gvec3f(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
+		this->emitter->setMinDirection(gvec3f(newMinDirection.x, newMinDirection.y, this->emitterMinDirection.z));
+		this->emitter->setMaxDirection(gvec3f(newMaxDirection.x, newMaxDirection.y, this->emitterMaxDirection.z));
+		gvec2f scale = this->getDerivedScale() / this->spaceObject->getDerivedScale();
 		this->emitter->setMinSize(this->emitterMinSize * scale);
 		this->emitter->setMinSize(this->emitterMaxSize * scale);
 	}

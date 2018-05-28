@@ -30,22 +30,22 @@ namespace aprilparticle
 		{
 		public:
 			LinearForce(chstr name = "");
-			LinearForce(cgvec3 direction, chstr name = "");
+			LinearForce(cgvec3f direction, chstr name = "");
 			~LinearForce();
 			static Affector* createInstance(chstr name = "");
 			
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-			HL_DEFINE_GETSET(gvec3, direction, Direction);
+			HL_DEFINE_GETSET(gvec3f, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float timeDelta, gvec3& movement);
+			void update(Particle* particle, float timeDelta, gvec3f& movement);
 
 		protected:
-			gvec3 direction;
+			gvec3f direction;
 	
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;

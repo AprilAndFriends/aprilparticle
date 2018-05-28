@@ -15,13 +15,13 @@
 
 namespace apriluiparticle
 {
-	void resizeEmitter(cgvec2 size, aprilparticle::Emitter* emitter)
+	void resizeEmitter(cgvec2f size, aprilparticle::Emitter* emitter)
 	{
 		if (emitter == NULL)
 		{
 			return;
 		}
-		gvec3 dimensions = emitter->getDimensions();
+		gvec3f dimensions = emitter->getDimensions();
 		if (size.x > 0.0f)
 		{
 			dimensions.x = size.x;
@@ -34,15 +34,15 @@ namespace apriluiparticle
 		}
 	}
 
-	void resizeEmitters(cgvec2 size, const harray<aprilparticle::Emitter*>& emitters)
+	void resizeEmitters(cgvec2f size, const harray<aprilparticle::Emitter*>& emitters)
 	{
 		if (emitters.size() == 0)
 		{
 			return;
 		}
-		gvec3 dimensions;
-		gvec3 firstDimensions = emitters.first()->getDimensions();
-		gvec2 rescale = size;
+		gvec3f dimensions;
+		gvec3f firstDimensions = emitters.first()->getDimensions();
+		gvec2f rescale = size;
 		if (size.x > 0.0f)
 		{
 			if (firstDimensions.x > 0.0f)

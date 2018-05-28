@@ -30,7 +30,7 @@ namespace aprilparticle
 		{
 		public:
 			Attractor(chstr name = "");
-			Attractor(cgvec3 position, float radius, float force, float exponent, chstr name = "");
+			Attractor(cgvec3f position, float radius, float force, float exponent, chstr name = "");
 			~Attractor();
 			static Affector* createInstance(chstr name = "");
 
@@ -42,7 +42,7 @@ namespace aprilparticle
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float timeDelta, gvec3& movement);
+			void update(Particle* particle, float timeDelta, gvec3f& movement);
 
 		protected:
 			float force;
@@ -51,7 +51,7 @@ namespace aprilparticle
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
-			gvec3 _direction;
+			gvec3f _direction;
 			float _factor;
 			float _squaredLength;
 

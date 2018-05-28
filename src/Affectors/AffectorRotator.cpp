@@ -61,7 +61,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Rotator::update(Particle* particle, float timeDelta, gvec3& movement)
+		void Rotator::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			particle->angle += RAND_RANGE(Randomness) * this->rotationSpeed * timeDelta;
 		}

@@ -30,13 +30,13 @@ namespace aprilparticle
 		{
 		public:
 			Space(chstr name = "");
-			Space(cgvec3 position, float space, chstr name = "");
+			Space(cgvec3f position, float space, chstr name = "");
 			~Space();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-			HL_DEFINE_GETSET(gvec3, position, Position);
+			HL_DEFINE_GETSET(gvec3f, position, Position);
 			inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 			HL_DEFINE_GETSET(float, radius, Radius);
 
@@ -44,7 +44,7 @@ namespace aprilparticle
 			bool setProperty(chstr name, chstr value);
 
 		protected:
-			gvec3 position;
+			gvec3f position;
 			float radius;
 
 		private:

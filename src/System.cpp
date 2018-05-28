@@ -419,7 +419,7 @@ namespace aprilparticle
 		}
 	}
 
-	void System::draw(cgvec3 point)
+	void System::draw(cgvec3f point)
 	{
 		if (this->visible)
 		{
@@ -430,7 +430,7 @@ namespace aprilparticle
 		}
 	}
 
-	void System::draw(cgvec2 offset, const april::Color& color)
+	void System::draw(cgvec2f offset, const april::Color& color)
 	{
 		if (this->visible && color.a > 0)
 		{

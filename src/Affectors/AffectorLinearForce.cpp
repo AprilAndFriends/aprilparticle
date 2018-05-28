@@ -23,7 +23,7 @@ namespace aprilparticle
 			this->direction.set(0.0f, -1.0f, 0.0f);
 		}
 
-		LinearForce::LinearForce(cgvec3 direction, chstr name) : Affector(name)
+		LinearForce::LinearForce(cgvec3f direction, chstr name) : Affector(name)
 		{
 			this->direction = direction;
 		}
@@ -49,7 +49,7 @@ namespace aprilparticle
 
 		hstr LinearForce::getProperty(chstr name)
 		{
-			if (name == "direction")	return april::gvec3ToHstr(this->getDirection());
+			if (name == "direction")	return april::gvec3fToHstr(this->getDirection());
 			return Affector::getProperty(name);
 		}
 
@@ -60,7 +60,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void LinearForce::update(Particle* particle, float timeDelta, gvec3& movement)
+		void LinearForce::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			particle->direction += this->direction * (RAND_RANGE(Randomness) * timeDelta);
 		}

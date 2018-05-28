@@ -18,7 +18,7 @@ namespace aprilparticle
 			this->affectionCallback = NULL;
 		}
 		
-		CallbackAffector::CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3&), chstr name) : Affector(name)
+		CallbackAffector::CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name) : Affector(name)
 		{
 			this->affectionCallback = function;
 		}
@@ -50,7 +50,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void CallbackAffector::update(Particle* particle, float timeDelta, gvec3& movement)
+		void CallbackAffector::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			if (this->affectionCallback != NULL)
 			{

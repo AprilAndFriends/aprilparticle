@@ -43,7 +43,7 @@ namespace aprilparticle
 
 		HL_DEFINE_GETSET(float, preUpdate, PreUpdate);
 		HL_DEFINE_GETSET(float, fixedTimeStep, FixedTimeStep);
-		HL_DEFINE_GETSET(gvec3, up, Up);
+		HL_DEFINE_GETSET(gvec3f, up, Up);
 		inline void setUp(float x, float y, float z) { this->up.set(x, y, z); }
 		HL_DEFINE_GETSET(harray<Emitter*>, emitters, Emitters);
 		bool isRunning() const;
@@ -53,8 +53,8 @@ namespace aprilparticle
 		void reset();
 		void update(float timeDelta);
 		void finish();
-		void draw(cgvec3 point); // is the only 3D drawing method
-		void draw(cgvec2 offset, const april::Color& color = april::Color::White);
+		void draw(cgvec3f point); // is the only 3D drawing method
+		void draw(cgvec2f offset, const april::Color& color = april::Color::White);
 
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
@@ -70,7 +70,7 @@ namespace aprilparticle
 	protected:
 		float preUpdate;
 		float fixedTimeStep;
-		gvec3 up;
+		gvec3f up;
 		System* system;
 		harray<Emitter*> emitters;
 		harray<Particle*> particles;
@@ -81,14 +81,14 @@ namespace aprilparticle
 
 		void _updateInternal(float timeDelta);
 
-		gvec3 _addNewParticle(float timeDelta);
+		gvec3f _addNewParticle(float timeDelta);
 
 	private:
 		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
-		gvec3 _movement;
-		gvec3 _movementDirection;
-		gvec3 _initialDirection;
+		gvec3f _movement;
+		gvec3f _movementDirection;
+		gvec3f _initialDirection;
 		Particle* _particle;
 		float _lastTimeFraction;
 

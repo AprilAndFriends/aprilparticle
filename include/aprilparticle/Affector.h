@@ -40,13 +40,13 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(hstr, name, Name);
 		HL_DEFINE_GETSET(float, minRandomness, MinRandomness);
 		HL_DEFINE_GETSET(float, maxRandomness, MaxRandomness);
-		HL_DEFINE_GETSET(gvec3, chaoticity, Chaoticity);
+		HL_DEFINE_GETSET(gvec3f, chaoticity, Chaoticity);
 		void setRandomness(float value);
 		void setRandomness(chstr value);
 
 		void setRandomnessRange(float min, float max);
 
-		virtual inline void update(Particle* particle, float timeDelta, gvec3& movement) { }
+		virtual inline void update(Particle* particle, float timeDelta, gvec3f& movement) { }
 		virtual inline void draw() { }
 
 		virtual hstr getProperty(chstr name);
@@ -56,7 +56,7 @@ namespace aprilparticle
 		hstr name;
 		float minRandomness;
 		float maxRandomness;
-		gvec3 chaoticity;
+		gvec3f chaoticity;
 		Space* space;
 
 		inline void _setSpace(Space* value) { this->space = value; }

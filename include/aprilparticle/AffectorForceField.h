@@ -30,23 +30,23 @@ namespace aprilparticle
 		{
 		public:
 			ForceField(chstr name = "");
-			ForceField(cgvec3 position, float radius, cgvec3 direction, chstr name = "");
+			ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name = "");
 			~ForceField();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-			HL_DEFINE_GETSET(gvec3, direction, Direction);
+			HL_DEFINE_GETSET(gvec3f, direction, Direction);
 			inline void setDirection(float x, float y, float z) { this->direction.set(x, y, z); }
 				
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* article, float timeDelta, gvec3& movement);
+			void update(Particle* article, float timeDelta, gvec3f& movement);
 			void draw();
 
 		protected:
-			gvec3 direction;
+			gvec3f direction;
 
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;

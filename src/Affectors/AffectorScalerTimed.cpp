@@ -74,7 +74,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ScalerTimed::update(Particle* particle, float timeDelta, gvec3& movement)
+		void ScalerTimed::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			TIMED_TEMPLATE_UPDATE(particle, scale);
 		}

@@ -26,7 +26,7 @@ namespace aprilparticle
 			this->exponent = 2.0f;
 		}
 		
-		Attractor::Attractor(cgvec3 position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
+		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
 		{
 			this->force = force;
 			this->exponent = exponent;
@@ -67,7 +67,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Attractor::update(Particle* particle, float timeDelta, gvec3& movement)
+		void Attractor::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			this->_direction = this->position + this->space->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();

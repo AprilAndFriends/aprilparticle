@@ -30,25 +30,25 @@ namespace aprilparticle
 		{
 		public:
 			Resizer(chstr name = "");
-			Resizer(cgvec2 startSize, cgvec2 endSize, chstr name = "");
+			Resizer(cgvec2f startSize, cgvec2f endSize, chstr name = "");
 			~Resizer();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-			HL_DEFINE_GETSET(gvec2, startSize, StartSize);
+			HL_DEFINE_GETSET(gvec2f, startSize, StartSize);
 			inline void setStartSize(float x, float y) { this->startSize.set(x, y); }
-			HL_DEFINE_GETSET(gvec2, endSize, EndSize);
+			HL_DEFINE_GETSET(gvec2f, endSize, EndSize);
 			inline void setEndSize(float x, float y) { this->endSize.set(x, y); }
 				
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float timeDelta, gvec3& movement);
+			void update(Particle* particle, float timeDelta, gvec3f& movement);
 
 		protected:
-			gvec2 startSize;
-			gvec2 endSize;
+			gvec2f startSize;
+			gvec2f endSize;
 
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;

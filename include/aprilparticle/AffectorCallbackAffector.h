@@ -31,21 +31,21 @@ namespace aprilparticle
 		{
 		public:
 			CallbackAffector(chstr name = "");
-			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3&), chstr name = "");
+			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name = "");
 			~CallbackAffector();
 			static Affector* createInstance(chstr name = "");
 
-			inline void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3&) { return this->affectionCallback; }
-			inline void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float, gvec3&)) { this->affectionCallback = value; }
+			inline void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3f&) { return this->affectionCallback; }
+			inline void setAffectionCallback(void (*value)(CallbackAffector*, Particle*, float, gvec3f&)) { this->affectionCallback = value; }
 				
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float timeDelta, gvec3& movement);
+			void update(Particle* particle, float timeDelta, gvec3f& movement);
 
 		protected:
 			hmap<hstr, hstr> properties;
-			void (*affectionCallback)(CallbackAffector*, Particle*, float, gvec3&);
+			void (*affectionCallback)(CallbackAffector*, Particle*, float, gvec3f&);
 
 		};
 

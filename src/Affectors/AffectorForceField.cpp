@@ -26,9 +26,9 @@ namespace aprilparticle
 	static april::ColoredVertex v[VERTEX_COUNT];
 	static april::ColoredVertex w[VERTEX_COUNT];
 	static april::ColoredVertex arrow[2];
-	static gvec3 ut;
-	static gvec3 vt;
-	static gvec3 wt;
+	static gvec3f ut;
+	static gvec3f vt;
+	static gvec3f wt;
 
 	void initForceField()
 	{
@@ -54,7 +54,7 @@ namespace aprilparticle
 			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
-		ForceField::ForceField(cgvec3 position, float radius, cgvec3 direction, chstr name) : Space(position, radius, name)
+		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) : Space(position, radius, name)
 		{
 			this->direction = direction;
 		}
@@ -80,7 +80,7 @@ namespace aprilparticle
 
 		hstr ForceField::getProperty(chstr name)
 		{
-			if (name == "direction")	return april::gvec3ToHstr(this->getDirection());
+			if (name == "direction")	return april::gvec3fToHstr(this->getDirection());
 			return Space::getProperty(name);
 		}
 
@@ -91,7 +91,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ForceField::update(Particle* particle, float timeDelta, gvec3& movement)
+		void ForceField::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			this->_squaredLength = (this->position + this->space->getPosition() - particle->position).squaredLength();
 			if (this->_squaredLength <= this->radius * this->radius)
@@ -105,9 +105,9 @@ namespace aprilparticle
 		void ForceField::draw()
 		{
 			float length = this->direction.length();
-			gvec3 uVector = this->position + this->space->getPosition() + ut * length;
-			gvec3 vVector = this->position + this->space->getPosition() + vt * length;
-			gvec3 wVector = this->position + this->space->getPosition() + wt * length;
+			gvec3f uVector = this->position + this->space->getPosition() + ut * length;
+			gvec3f vVector = this->position + this->space->getPosition() + vt * length;
+			gvec3f wVector = this->position + this->space->getPosition() + wt * length;
 			for_iter (i, 0, VERTEX_COUNT)
 			{
 				u[i].set(uVector);

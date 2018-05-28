@@ -31,13 +31,13 @@ namespace aprilparticle
 		{
 		public:
 			Revolutor(chstr name = "");
-			Revolutor(cgvec3 position, float radius, cgvec3 axis, float evolutionSpeed, bool clockwise, chstr name = "");
+			Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name = "");
 			~Revolutor();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-			HL_DEFINE_GETSET(gvec3, axis, Axis);
+			HL_DEFINE_GETSET(gvec3f, axis, Axis);
 			inline void setAxis(float x, float y, float z) { this->axis.set(x, y, z); }
 			HL_DEFINE_GETSET(float, evolutionSpeed, EvolutionSpeed);
 			bool isClockwise() const;
@@ -46,18 +46,18 @@ namespace aprilparticle
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);
 
-			void update(Particle* particle, float timeDelta, gvec3& movement);
+			void update(Particle* particle, float timeDelta, gvec3f& movement);
 
 		protected:
-			gvec3 axis;
+			gvec3f axis;
 			float evolutionSpeed;
 			float angle;
 
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
-			gvec3 _position;
-			gvec3 _direction;
+			gvec3f _position;
+			gvec3f _direction;
 			float _squaredLength;
 		
 		};

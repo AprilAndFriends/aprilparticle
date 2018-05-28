@@ -58,13 +58,13 @@ namespace apriluiparticle
 		aprilparticle::Emitter* emitter;
 		hstr spaceObjectName;
 		hstr emitterName;
-		gvec2 initialPosition;
+		gvec2f initialPosition;
 		float initialAngle;
-		gvec3 emitterPosition;
-		gvec3 emitterMinDirection;
-		gvec3 emitterMaxDirection;
-		gvec2 emitterMinSize;
-		gvec2 emitterMaxSize;
+		gvec3f emitterPosition;
+		gvec3f emitterMinDirection;
+		gvec3f emitterMaxDirection;
+		gvec2f emitterMinSize;
+		gvec2f emitterMaxSize;
 
 		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getGetters() const;
 		hmap<hstr, aprilui::PropertyDescription::Accessor*>& _getSetters() const;

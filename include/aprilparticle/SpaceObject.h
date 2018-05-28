@@ -32,14 +32,14 @@ namespace aprilparticle
 
 		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
-		HL_DEFINE_GETSET(gvec3, position, Position);
+		HL_DEFINE_GETSET(gvec3f, position, Position);
 		inline void setPosition(float x, float y, float z) { this->position.set(x, y, z); }
 
 		hstr getProperty(chstr name);
 		bool setProperty(chstr name, chstr value);
 
 	protected:
-		gvec3 position;
+		gvec3f position;
 
 	private:
 		static hmap<hstr, PropertyDescription> _propertyDescriptions;

@@ -23,7 +23,7 @@ namespace aprilparticle
 			this->endSize.set(0.0f, 0.0f);
 		}
 
-		Resizer::Resizer(cgvec2 startSize, cgvec2 endSize, chstr name) : Affector(name)
+		Resizer::Resizer(cgvec2f startSize, cgvec2f endSize, chstr name) : Affector(name)
 		{
 			this->startSize = startSize;
 			this->endSize = endSize;
@@ -51,8 +51,8 @@ namespace aprilparticle
 
 		hstr Resizer::getProperty(chstr name)
 		{
-			if (name == "start_size")	return april::gvec2ToHstr(this->getStartSize());
-			if (name == "end_size")		return april::gvec2ToHstr(this->getEndSize());
+			if (name == "start_size")	return april::gvec2fToHstr(this->getStartSize());
+			if (name == "end_size")		return april::gvec2fToHstr(this->getEndSize());
 			return Affector::getProperty(name);
 		}
 
@@ -64,7 +64,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Resizer::update(Particle* particle, float timeDelta, gvec3& movement)
+		void Resizer::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			this->_ratio = particle->getLifeProgressRatio();
 			particle->size = this->startSize * (1.0f - this->_ratio) + this->endSize * this->_ratio;

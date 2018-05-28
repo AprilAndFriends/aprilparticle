@@ -46,7 +46,7 @@ namespace aprilparticle
 
 	hstr SpaceObject::getProperty(chstr name)
 	{
-		if (name == "position")	return april::gvec3ToHstr(this->getPosition());
+		if (name == "position")	return april::gvec3fToHstr(this->getPosition());
 		return ActiveObject::getProperty(name);
 	}
 

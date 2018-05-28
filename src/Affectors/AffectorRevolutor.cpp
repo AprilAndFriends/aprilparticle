@@ -31,7 +31,7 @@ namespace aprilparticle
 			this->setClockwise(true);
 		}
 
-		Revolutor::Revolutor(cgvec3 position, float radius, cgvec3 axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
+		Revolutor::Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
 		{
 			this->axis = axis;
 			this->evolutionSpeed = evolutionSpeed;
@@ -71,7 +71,7 @@ namespace aprilparticle
 
 		hstr Revolutor::getProperty(chstr name)
 		{
-			if (name == "axis")				return april::gvec3ToHstr(this->getAxis());
+			if (name == "axis")				return april::gvec3fToHstr(this->getAxis());
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
 			return Space::getProperty(name);
@@ -86,7 +86,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void Revolutor::update(Particle* particle, float timeDelta, gvec3& movement)
+		void Revolutor::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			this->_position = this->position + this->space->getPosition();
 			this->_direction = particle->position - this->_position;

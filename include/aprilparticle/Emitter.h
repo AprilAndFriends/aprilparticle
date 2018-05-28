@@ -62,7 +62,7 @@ namespace aprilparticle
 
 		HL_DEFINE_ISSET(running, Running);
 		HL_DEFINE_GETSET(Type, type, Type);
-		HL_DEFINE_GETSET(gvec3, dimensions, Dimensions);
+		HL_DEFINE_GETSET(gvec3f, dimensions, Dimensions);
 		inline void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
 		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
 		HL_DEFINE_GETSET(april::ColorMode, colorMode, ColorMode);
@@ -78,18 +78,18 @@ namespace aprilparticle
 		HL_DEFINE_ISSET(reverseRendering, ReverseRendering);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
 		HL_DEFINE_GETSET(float, maxLife, MaxLife);
-		HL_DEFINE_GETSET(gvec3, minDirection, MinDirection);
-		HL_DEFINE_GETSET(gvec3, maxDirection, MaxDirection);
-		HL_DEFINE_GETSET(gvec2, minSize, MinSize);
-		HL_DEFINE_GETSET(gvec2, maxSize, MaxSize);
+		HL_DEFINE_GETSET(gvec3f, minDirection, MinDirection);
+		HL_DEFINE_GETSET(gvec3f, maxDirection, MaxDirection);
+		HL_DEFINE_GETSET(gvec2f, minSize, MinSize);
+		HL_DEFINE_GETSET(gvec2f, maxSize, MaxSize);
 		HL_DEFINE_GETSET(float, minScale, MinScale);
 		HL_DEFINE_GETSET(float, maxScale, MaxScale);
 		HL_DEFINE_GETSET(float, minAngle, MinAngle);
 		HL_DEFINE_GETSET(float, maxAngle, MaxAngle);
 		HL_DEFINE_GETSET(april::Texture*, texture, Texture);
 		void setLife(float value);
-		void setDirection(cgvec3 value);
-		void setSize(cgvec2 value);
+		void setDirection(cgvec3f value);
+		void setSize(cgvec2f value);
 		void setScale(float value);
 		void setAngle(float value);
 		void setLife(chstr value);
@@ -100,8 +100,8 @@ namespace aprilparticle
 		bool isExpired() const;
 
 		void setLifeRange(float min, float max);
-		void setDirectionRange(cgvec3 min, cgvec3 max);
-		void setSizeRange(cgvec2 min, cgvec2 max);
+		void setDirectionRange(cgvec3f min, cgvec3f max);
+		void setSizeRange(cgvec2f min, cgvec2f max);
 		void setScaleRange(float min, float max);
 		void setAngleRange(float min, float max);
 
@@ -113,11 +113,11 @@ namespace aprilparticle
 		void update(float timeDelta);
 
 		/// @note Not thread-safe!
-		void draw(cgvec3 point, cgvec3 up); // the only 3D drawing method
+		void draw(cgvec3f point, cgvec3f up); // the only 3D drawing method
 		/// @note Not thread-safe!
-		void draw(cgvec2 offset = gvec2());
+		void draw(cgvec2f offset = gvec2f());
 		/// @note Not thread-safe!
-		void draw(cgvec2 offset, const april::Color& color);
+		void draw(cgvec2f offset, const april::Color& color);
 
 	protected:
 		float emissionTimer;
@@ -125,7 +125,7 @@ namespace aprilparticle
 		float time;
 		bool running;
 		Type type;
-		gvec3 dimensions;
+		gvec3f dimensions;
 		april::BlendMode blendMode;
 		april::ColorMode colorMode;
 		float colorModeFactor;
@@ -141,10 +141,10 @@ namespace aprilparticle
 		bool reverseRendering;
 		float minLife;
 		float maxLife;
-		gvec3 minDirection;
-		gvec3 maxDirection;
-		gvec2 minSize;
-		gvec2 maxSize;
+		gvec3f minDirection;
+		gvec3f maxDirection;
+		gvec2f minSize;
+		gvec2f maxSize;
 		float minScale;
 		float maxScale;
 		float minAngle;
@@ -160,7 +160,7 @@ namespace aprilparticle
 		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 		april::ColoredTexturedVertex* _triangleBatch;
-		gvec3 _pos;
+		gvec3f _pos;
 		float _rho;
 		float _phi;
 		float _theta;
@@ -171,7 +171,7 @@ namespace aprilparticle
 		bool _expired;
 		gmat4 _billboard;
 		gmat3 _rot;
-		gvec3 _offset;
+		gvec3f _offset;
 		float _xSize;
 		float _ySize;
 		int _i;

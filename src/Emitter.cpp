@@ -40,7 +40,7 @@ namespace aprilparticle
 		HL_ENUM_DEFINE(Emitter::Type, HollowCircle);
 	));
 
-	static gvec3 v[4]; // optimization
+	static gvec3f v[4]; // optimization
 
 	hmap<hstr, PropertyDescription> Emitter::_propertyDescriptions;
 
@@ -187,13 +187,13 @@ namespace aprilparticle
 		this->maxLife = value;
 	}
 
-	void Emitter::setDirection(cgvec3 value)
+	void Emitter::setDirection(cgvec3f value)
 	{
 		this->minDirection = value;
 		this->maxDirection = value;
 	}
 
-	void Emitter::setSize(cgvec2 value)
+	void Emitter::setSize(cgvec2f value)
 	{
 		this->minSize = value;
 		this->maxSize = value;
@@ -252,13 +252,13 @@ namespace aprilparticle
 		this->maxLife = max;
 	}
 
-	void Emitter::setDirectionRange(cgvec3 min, cgvec3 max)
+	void Emitter::setDirectionRange(cgvec3f min, cgvec3f max)
 	{
 		this->minDirection = min;
 		this->maxDirection = max;
 	}
 
-	void Emitter::setSizeRange(cgvec2 min, cgvec2 max)
+	void Emitter::setSizeRange(cgvec2f min, cgvec2f max)
 	{
 		this->minSize = min;
 		this->maxSize = max;
@@ -293,7 +293,7 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, Type::HollowCircle);
 			return "";
 		}
-		if (name == "dimensions")			return april::gvec3ToHstr(this->getDimensions());
+		if (name == "dimensions")			return april::gvec3fToHstr(this->getDimensions());
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
@@ -323,8 +323,8 @@ namespace aprilparticle
 		if (name == "angle_aligned")		return this->isAngleAligned();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
-		if (name == "direction")			return GET_RANGE(Direction, april::gvec3ToHstr);
-		if (name == "size")					return GET_RANGE(Size, april::gvec2ToHstr);
+		if (name == "direction")			return GET_RANGE(Direction, april::gvec3fToHstr);
+		if (name == "size")					return GET_RANGE(Size, april::gvec2fToHstr);
 		if (name == "scale")				return GET_RANGE(Scale, hstr);
 		if (name == "angle")				return GET_RANGE(Angle, hstr);
 		return SpaceObject::getProperty(name);
@@ -480,10 +480,10 @@ namespace aprilparticle
 		this->space->_particle->scale = RAND_RANGE(Scale);
 		this->space->_particle->angle = RAND_RANGE(Angle);
 		this->particles += this->space->_particle;
-		gvec3 direction = this->space->_addNewParticle(timeDelta);
-		if (this->angleAligned && direction != gvec3())
+		gvec3f direction = this->space->_addNewParticle(timeDelta);
+		if (this->angleAligned && direction != gvec3f())
 		{
-			this->space->_particle->angle += gvec2(direction.x, direction.y).angle();
+			this->space->_particle->angle += gvec2f(direction.x, direction.y).angle();
 		}
 	}
 
@@ -611,7 +611,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(cgvec3 point, cgvec3 up)
+	void Emitter::draw(cgvec3f point, cgvec3f up)
 	{
 		if (!this->visible)
 		{
@@ -670,7 +670,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(cgvec2 offset)
+	void Emitter::draw(cgvec2f offset)
 	{
 		this->texture->loadAsync();
 		this->_w = (float)this->texture->getWidth();
@@ -732,7 +732,7 @@ namespace aprilparticle
 		}
 	}
 	
-	void Emitter::draw(cgvec2 offset, const april::Color& color)
+	void Emitter::draw(cgvec2f offset, const april::Color& color)
 	{
 		if (color.a == 0)
 		{

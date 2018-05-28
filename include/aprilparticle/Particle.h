@@ -65,9 +65,9 @@ namespace aprilparticle
 		virtual ~Particle();
 
 		HL_DEFINE_GETSET(float, life, Life);
-		HL_DEFINE_GETSET(gvec3, position, Position);
-		HL_DEFINE_GETSET(gvec3, direction, Direction);
-		HL_DEFINE_GETSET(gvec2, size, Size);
+		HL_DEFINE_GETSET(gvec3f, position, Position);
+		HL_DEFINE_GETSET(gvec3f, direction, Direction);
+		HL_DEFINE_GETSET(gvec2f, size, Size);
 		HL_DEFINE_GETSET(float, scale, Scale);
 		HL_DEFINE_GETSET(float, angle, Angle);
 		HL_DEFINE_GETSET(april::Color, color, Color);
@@ -78,9 +78,9 @@ namespace aprilparticle
 	protected:
 		float timer;
 		float life;
-		gvec3 position;
-		gvec3 direction;
-		gvec2 size;
+		gvec3f position;
+		gvec3f direction;
+		gvec2f size;
 		float scale;
 		float angle;
 		april::Color color;

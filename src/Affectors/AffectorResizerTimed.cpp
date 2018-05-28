@@ -27,10 +27,10 @@ namespace aprilparticle
 
 		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
 		{
-			TIMED_TEMPLATE_INIT(gvec2(1.0f, 1.0f), gvec2(0.0f, 0.0f));
+			TIMED_TEMPLATE_INIT(gvec2f(1.0f, 1.0f), gvec2f(0.0f, 0.0f));
 		}
 		
-		ResizerTimed::ResizerTimed(const hmap<float, gvec2>& timings, chstr name) : Affector(name)
+		ResizerTimed::ResizerTimed(const hmap<float, gvec2f>& timings, chstr name) : Affector(name)
 		{
 			this->setTimings(timings);
 		}
@@ -44,17 +44,17 @@ namespace aprilparticle
 			return new ResizerTimed(name);
 		}
 
-		void ResizerTimed::setTimings(const hmap<float, gvec2>& value)
+		void ResizerTimed::setTimings(const hmap<float, gvec2f>& value)
 		{
 			TIMED_TEMPLATE_SET_TIMINGS;
 		}
 		
 		void ResizerTimed::setTimings(chstr value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2, april::hstrToGvec2);
+			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2f, april::hstrToGvec2);
 		}
 		
-		void ResizerTimed::addTiming(float time, cgvec2 value)
+		void ResizerTimed::addTiming(float time, cgvec2f value)
 		{
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
@@ -65,7 +65,7 @@ namespace aprilparticle
 		{
 			if (name == "timings")
 			{
-				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(april::gvec2ToHstr, ); // conversion using april::gvec2ToHstr prefix
+				TIMED_TEMPLATE_GET_TIMINGS_PROPERTY(april::gvec2fToHstr, ); // conversion using april::gvec2fToHstr prefix
 			}
 			return Affector::getProperty(name);
 		}
@@ -77,7 +77,7 @@ namespace aprilparticle
 			return true;
 		}
 
-		void ResizerTimed::update(Particle* particle, float timeDelta, gvec3& movement)
+		void ResizerTimed::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
 			TIMED_TEMPLATE_UPDATE(particle, size);
 		}

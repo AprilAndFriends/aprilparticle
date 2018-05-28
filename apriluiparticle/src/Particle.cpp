@@ -53,7 +53,7 @@ namespace apriluiparticle
 
 	void Particle::_draw()
 	{
-		grect rect = this->_makeDrawRect();
+		grectf rect = this->_makeDrawRect();
 		if (this->system != NULL)
 		{
 			this->system->setVisible(this->isDerivedVisible());

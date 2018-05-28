@@ -48,7 +48,7 @@ namespace aprilparticle
 
 			void addTiming(float time, const april::Color& value);
 			
-			void update(Particle* emitter, float timeDelta, gvec3& movement);
+			void update(Particle* emitter, float timeDelta, gvec3f& movement);
 			
 		protected:
 			harray<float> times;
