@@ -42,7 +42,7 @@ namespace aprilparticle
 			if (LinearForce::_propertyDescriptions.size() == 0)
 			{
 				LinearForce::_propertyDescriptions = Affector::getPropertyDescriptions();
-				LinearForce::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3);
+				LinearForce::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f);
 			}
 			return LinearForce::_propertyDescriptions;
 		}
@@ -55,7 +55,7 @@ namespace aprilparticle
 
 		bool LinearForce::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(april::hstrToGvec3(value));
+			if		(name == "direction")	this->setDirection(april::hstrToGvec3f(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}

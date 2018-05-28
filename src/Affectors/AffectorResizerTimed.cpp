@@ -51,7 +51,7 @@ namespace aprilparticle
 		
 		void ResizerTimed::setTimings(chstr value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2f, april::hstrToGvec2);
+			TIMED_TEMPLATE_SET_TIMINGS_STRING(gvec2f, april::hstrToGvec2f);
 		}
 		
 		void ResizerTimed::addTiming(float time, cgvec2f value)
@@ -59,7 +59,7 @@ namespace aprilparticle
 			TIMED_TEMPLATE_ADD_TIMING;
 		}
 
-		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ResizerTimed, Affector, Gvec2);
+		TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(ResizerTimed, Affector, Gvec2f);
 
 		hstr ResizerTimed::getProperty(chstr name)
 		{

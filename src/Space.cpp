@@ -63,7 +63,7 @@ namespace aprilparticle
 			Space::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
 			Space::_propertyDescriptions["pre_update"] = PropertyDescription("pre_update", PropertyDescription::Type::Float);
 			Space::_propertyDescriptions["fixed_time_step"] = PropertyDescription("fixed_time_step", PropertyDescription::Type::Float);
-			Space::_propertyDescriptions["up"] = PropertyDescription("up", PropertyDescription::Type::Gvec3);
+			Space::_propertyDescriptions["up"] = PropertyDescription("up", PropertyDescription::Type::Gvec3f);
 		}
 		return Space::_propertyDescriptions;
 	}
@@ -141,7 +141,7 @@ namespace aprilparticle
 	{
 		if		(name == "pre_update")		this->setPreUpdate(value);
 		else if	(name == "fixed_time_step")	this->setFixedTimeStep(value);
-		else if	(name == "up")				this->setUp(april::hstrToGvec3(value));
+		else if	(name == "up")				this->setUp(april::hstrToGvec3f(value));
 		else return SpaceObject::setProperty(name, value);
 		return true;
 	}

@@ -73,7 +73,7 @@ namespace aprilparticle
 			if (ForceField::_propertyDescriptions.size() == 0)
 			{
 				ForceField::_propertyDescriptions = Space::getPropertyDescriptions();
-				ForceField::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3);
+				ForceField::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f);
 			}
 			return ForceField::_propertyDescriptions;
 		}
@@ -86,7 +86,7 @@ namespace aprilparticle
 
 		bool ForceField::setProperty(chstr name, chstr value)
 		{
-			if		(name == "direction")	this->setDirection(april::hstrToGvec3(value));
+			if		(name == "direction")	this->setDirection(april::hstrToGvec3f(value));
 			else return Space::setProperty(name, value);
 			return true;
 		}

@@ -39,7 +39,7 @@ namespace aprilparticle
 		if (SpaceObject::_propertyDescriptions.size() == 0)
 		{
 			SpaceObject::_propertyDescriptions = ActiveObject::getPropertyDescriptions();
-			SpaceObject::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3);
+			SpaceObject::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3f);
 		}
 		return SpaceObject::_propertyDescriptions;
 	}
@@ -52,7 +52,7 @@ namespace aprilparticle
 
 	bool SpaceObject::setProperty(chstr name, chstr value)
 	{
-		if	(name == "position")	this->setPosition(april::hstrToGvec3(value));
+		if	(name == "position")	this->setPosition(april::hstrToGvec3f(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}

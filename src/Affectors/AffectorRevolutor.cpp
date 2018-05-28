@@ -52,7 +52,7 @@ namespace aprilparticle
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{
 				Revolutor::_propertyDescriptions = Space::getPropertyDescriptions();
-				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3);
+				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3f);
 				Revolutor::_propertyDescriptions["evolution_speed"] = PropertyDescription("evolution_speed", PropertyDescription::Type::Float);
 				Revolutor::_propertyDescriptions["clockwise"] = PropertyDescription("clockwise", PropertyDescription::Type::Bool);
 			}
@@ -79,7 +79,7 @@ namespace aprilparticle
 
 		bool Revolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "axis")			this->setAxis(april::hstrToGvec3(value));
+			if		(name == "axis")			this->setAxis(april::hstrToGvec3f(value));
 			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
 			else if	(name == "clockwise")		this->setClockwise(value);
 			else return Space::setProperty(name, value);

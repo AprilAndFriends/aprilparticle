@@ -33,16 +33,16 @@ namespace aprilparticle
 			HL_ENUM_DECLARE(Type, Bool);
 			HL_ENUM_DECLARE(Type, String);
 			HL_ENUM_DECLARE(Type, Enum);
-			HL_ENUM_DECLARE(Type, Grect);
-			HL_ENUM_DECLARE(Type, Gvec2);
-			HL_ENUM_DECLARE(Type, Gvec3);
+			HL_ENUM_DECLARE(Type, Grectf);
+			HL_ENUM_DECLARE(Type, Gvec2f);
+			HL_ENUM_DECLARE(Type, Gvec3f);
 			HL_ENUM_DECLARE(Type, Color);
 			HL_ENUM_DECLARE(Type, RangeFloat);
-			HL_ENUM_DECLARE(Type, RangeGvec2);
-			HL_ENUM_DECLARE(Type, RangeGvec3);
+			HL_ENUM_DECLARE(Type, RangeGvec2f);
+			HL_ENUM_DECLARE(Type, RangeGvec3f);
 			HL_ENUM_DECLARE(Type, TimingColor);
 			HL_ENUM_DECLARE(Type, TimingFloat);
-			HL_ENUM_DECLARE(Type, TimingGvec2);
+			HL_ENUM_DECLARE(Type, TimingGvec2f);
 		));
 
 		PropertyDescription();
