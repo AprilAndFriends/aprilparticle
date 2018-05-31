@@ -84,6 +84,12 @@ namespace aprilparticle
 			throw Exception("Affector Factory '" + typeName + "' already exists!");
 		}
 		gAffectorFactories[typeName] = factory;
+		// create all important property meta data here already to avoid issues with multi-threaded first-time setup
+		Affector* temp = (*factory)("temp");
+		temp->getPropertyDescriptions();
+		temp->getProperty("name");
+		temp->setProperty("name", "");
+		delete temp;
 	}
 
 	Affector* createAffector(chstr typeName, chstr name)
