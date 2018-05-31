@@ -40,8 +40,8 @@
 #define AFFECTOR_FORCE_3 "force3"
 #define AFFECTOR_FORCE_4 "force4"
 
-grect drawRect(0.0f, 0.0f, 800.0f, 600.0f);
-grect viewport = drawRect;
+grectf drawRect(0.0f, 0.0f, 800.0f, 600.0f);
+grectf viewport = drawRect;
 
 aprilparticle::System* flame = NULL;
 aprilparticle::System* bubbles = NULL;
@@ -107,17 +107,17 @@ public:
 		
 		april::rendersys->setPerspective(60.0f, 1 / drawRect.getAspect(), 0.1f, 100.0f);
 		
-		gvec3 pos(0.0f, 18.0f, 25.0f);
+		gvec3f pos(0.0f, 18.0f, 25.0f);
 		gmat3 rot;
 		rot.setRotation3D(0.0f, 1.0f, 0.0f, this->angle * 0.2f);
 		pos = rot * pos;
-		april::rendersys->lookAt(pos, gvec3(0.0f, 0.0f, 0.0f), gvec3(0.0f, 1.0f, 0.0f));
+		april::rendersys->lookAt(pos, gvec3f(0.0f, 0.0f, 0.0f), gvec3f(0.0f, 1.0f, 0.0f));
 		drawGrid();
 		
-		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3(sin(this->angle * 0.06666667f), 0.0f, cos(this->angle * 0.03333333f)) * 10.0f);
-		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3(sin(this->angle * 0.06666667f), sin(this->angle * 0.03333333f), 0.0f) * 10.0f);
-		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
-		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3(sin(this->angle * 0.03333333f), sin(this->angle * 0.06666667f), 0.0f) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_1)->setDirection(gvec3f(sin(this->angle * 0.06666667f), 0.0f, cos(this->angle * 0.03333333f)) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_2)->setDirection(gvec3f(sin(this->angle * 0.06666667f), sin(this->angle * 0.03333333f), 0.0f) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_3)->setDirection(gvec3f(cos(this->angle * 0.03333333f), 0.0f, sin(this->angle * 0.06666667f)) * 10.0f);
+		twirl->getAffector<aprilparticle::Affectors::ForceField>(AFFECTOR_FORCE_4)->setDirection(gvec3f(sin(this->angle * 0.03333333f), sin(this->angle * 0.06666667f), 0.0f) * 10.0f);
 		
 		flame->update(timeDelta);
 		bubbles->update(timeDelta);
