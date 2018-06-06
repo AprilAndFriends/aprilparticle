@@ -2,7 +2,7 @@
 <Dataset>
 
 	<Container name="root" rect="0,0,800,600">
-		<illedRect" name="background" color="000000" rect="0,0,800,600"/>
+		<FilledRect name="background" color="000000" rect="0,0,800,600"/>
 		<apriluiparticle.Particle name="rain" filename="gui_rain.particle" position="100,100"/>
 		<apriluiparticle.Particle name="warp" filename="gui_warp.particle" position="220,200"/>
 		<apriluiparticle.Particle name="moon" filename="gui_moon.particle" position="100,500"/>
