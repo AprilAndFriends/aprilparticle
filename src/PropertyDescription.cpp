@@ -36,15 +36,15 @@ namespace aprilparticle
 
 	PropertyDescription::PropertyDescription()
 	{
-		this->name = "";
 		this->type = Type::String;
 		this->arrayData = false;
 	}
 
-	PropertyDescription::PropertyDescription(chstr name, Type type, bool arrayData)
+	PropertyDescription::PropertyDescription(chstr name, Type type, chstr defaultValue, bool arrayData)
 	{
 		this->name = name;
 		this->type = type;
+		this->defaultValue = defaultValue;
 		this->arrayData = arrayData;
 	}
 

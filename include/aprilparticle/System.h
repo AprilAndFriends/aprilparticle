@@ -67,9 +67,12 @@ namespace aprilparticle
 		Texture* getTexture(chstr name) const;
 		Emitter* getEmitter(chstr name) const;
 		int getParticleCount() const;
+
+		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 		
 		void reset();
 		void load();
+		void save(chstr filename);
 		void update(float timeDelta);
 		void finish();
 		void draw(cgvec3f point); // is the only 3D drawing method
@@ -92,6 +95,8 @@ namespace aprilparticle
 		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties;
 		hmap<Space*, harray<hstr> > _mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures;
+
+		static hmap<hstr, PropertyDescription> System::_propertyDescriptions;
 		
 	};
 }

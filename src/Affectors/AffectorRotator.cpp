@@ -21,11 +21,13 @@ namespace aprilparticle
 
 		Rotator::Rotator(chstr name) : Affector(name)
 		{
+			this->type = "Rotator";
 			this->rotationSpeed = 1.0f;
 		}
 
 		Rotator::Rotator(float rotationSpeed, chstr name) : Affector(name)
 		{
+			this->type = "Rotator";
 			this->rotationSpeed = rotationSpeed;
 		}
 
@@ -43,7 +45,7 @@ namespace aprilparticle
 			if (Rotator::_propertyDescriptions.size() == 0)
 			{
 				Rotator::_propertyDescriptions = Affector::getPropertyDescriptions();
-				Rotator::_propertyDescriptions["rotation_speed"] = PropertyDescription("rotation_speed", PropertyDescription::Type::Float);
+				Rotator::_propertyDescriptions["rotation_speed"] = PropertyDescription("rotation_speed", PropertyDescription::Type::Float, 1.0f);
 			}
 			return Rotator::_propertyDescriptions;
 		}

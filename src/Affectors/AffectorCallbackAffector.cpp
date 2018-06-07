@@ -15,11 +15,13 @@ namespace aprilparticle
 	{
 		CallbackAffector::CallbackAffector(chstr name) : Affector(name)
 		{
+			this->type = "Callback";
 			this->affectionCallback = NULL;
 		}
 		
 		CallbackAffector::CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name) : Affector(name)
 		{
+			this->type = "Callback";
 			this->affectionCallback = function;
 		}
 		

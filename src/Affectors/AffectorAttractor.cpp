@@ -22,12 +22,14 @@ namespace aprilparticle
 
 		Attractor::Attractor(chstr name) : Space(name)
 		{
+			this->type = "Attractor";
 			this->force = 1.0f;
 			this->exponent = 2.0f;
 		}
 		
 		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
 		{
+			this->type = "Attractor";
 			this->force = force;
 			this->exponent = exponent;
 		}
@@ -46,8 +48,8 @@ namespace aprilparticle
 			if (Attractor::_propertyDescriptions.size() == 0)
 			{
 				Attractor::_propertyDescriptions = Space::getPropertyDescriptions();
-				Attractor::_propertyDescriptions["force"] = PropertyDescription("force", PropertyDescription::Type::Float);
-				Attractor::_propertyDescriptions["exponent"] = PropertyDescription("exponent", PropertyDescription::Type::Float);
+				Attractor::_propertyDescriptions["force"] = PropertyDescription("force", PropertyDescription::Type::Float, 1.0f);
+				Attractor::_propertyDescriptions["exponent"] = PropertyDescription("exponent", PropertyDescription::Type::Float, 2.0f);
 			}
 			return Attractor::_propertyDescriptions;
 		}

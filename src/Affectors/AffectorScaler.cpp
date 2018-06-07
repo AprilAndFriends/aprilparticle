@@ -17,12 +17,14 @@ namespace aprilparticle
 
 		Scaler::Scaler(chstr name) : Affector(name)
 		{
+			this->type = "Scaler";
 			this->startScale = 1.0f;
 			this->endScale = 0.0f;
 		}
 
 		Scaler::Scaler(float startScale, float endScale, chstr name) : Affector(name)
 		{
+			this->type = "Scaler";
 			this->startScale = startScale;
 			this->endScale = endScale;
 		}
@@ -41,8 +43,8 @@ namespace aprilparticle
 			if (Scaler::_propertyDescriptions.size() == 0)
 			{
 				Scaler::_propertyDescriptions = Affector::getPropertyDescriptions();
-				Scaler::_propertyDescriptions["start_scale"] = PropertyDescription("start_scale", PropertyDescription::Type::Float);
-				Scaler::_propertyDescriptions["end_scale"] = PropertyDescription("end_scale", PropertyDescription::Type::Float);
+				Scaler::_propertyDescriptions["start_scale"] = PropertyDescription("start_scale", PropertyDescription::Type::Float, 1.0f);
+				Scaler::_propertyDescriptions["end_scale"] = PropertyDescription("end_scale", PropertyDescription::Type::Float, 0.0f);
 			}
 			return Scaler::_propertyDescriptions;
 		}

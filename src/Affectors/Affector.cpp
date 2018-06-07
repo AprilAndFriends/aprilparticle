@@ -21,6 +21,7 @@ namespace aprilparticle
 	Affector::Affector(chstr name)
 	{
 		this->name = (name == "" ? april::generateName("Affector") : name);
+		this->type = "";
 		this->minRandomness = 1.0f;
 		this->maxRandomness = 1.0f;
 		this->chaoticity.set(0.0f, 0.0f, 0.0f);
@@ -35,8 +36,9 @@ namespace aprilparticle
 	{
 		if (Affector::_propertyDescriptions.size() == 0)
 		{
+			Affector::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::String);
 			Affector::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
-			Affector::_propertyDescriptions["randomness"] = PropertyDescription("randomness", PropertyDescription::Type::RangeFloat);
+			Affector::_propertyDescriptions["randomness"] = PropertyDescription("randomness", PropertyDescription::Type::RangeFloat, hstr(1.0f) + aprilparticle::SeparatorRange + hstr(1.0f));
 		}
 		return Affector::_propertyDescriptions;
 	}
@@ -61,6 +63,7 @@ namespace aprilparticle
 
 	hstr Affector::getProperty(chstr name)
 	{
+		if (name == "type")			return this->getType();
 		if (name == "name")			return this->getName();
 		if (name == "randomness")	return GET_RANGE(Randomness, hstr);
 		hlog::warnf(logTag, "Affector property '%s' does not exist in '%s'!", name.cStr(), this->name.cStr());

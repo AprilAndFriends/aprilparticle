@@ -26,6 +26,7 @@ namespace aprilparticle
 
 		Revolutor::Revolutor(chstr name) : Space(name)
 		{
+			this->type = "Revolutor";
 			this->axis.set(0.0f, 1.0f, 0.0f);
 			this->evolutionSpeed = 1.0f;
 			this->setClockwise(true);
@@ -33,6 +34,7 @@ namespace aprilparticle
 
 		Revolutor::Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
 		{
+			this->type = "Revolutor";
 			this->axis = axis;
 			this->evolutionSpeed = evolutionSpeed;
 			this->setClockwise(clockwise);
@@ -52,9 +54,9 @@ namespace aprilparticle
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{
 				Revolutor::_propertyDescriptions = Space::getPropertyDescriptions();
-				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3f);
-				Revolutor::_propertyDescriptions["evolution_speed"] = PropertyDescription("evolution_speed", PropertyDescription::Type::Float);
-				Revolutor::_propertyDescriptions["clockwise"] = PropertyDescription("clockwise", PropertyDescription::Type::Bool);
+				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 1.0f, 0.0f)));
+				Revolutor::_propertyDescriptions["evolution_speed"] = PropertyDescription("evolution_speed", PropertyDescription::Type::Float, 1.0f);
+				Revolutor::_propertyDescriptions["clockwise"] = PropertyDescription("clockwise", PropertyDescription::Type::Bool, "true");
 			}
 			return Revolutor::_propertyDescriptions;
 		}

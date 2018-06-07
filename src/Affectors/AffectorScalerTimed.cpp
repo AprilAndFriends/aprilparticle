@@ -24,11 +24,13 @@ namespace aprilparticle
 
 		ScalerTimed::ScalerTimed(chstr name) : Affector(name)
 		{
+			this->type = "Scaler";
 			TIMED_TEMPLATE_INIT(1.0f, 0.0f);
 		}
 		
 		ScalerTimed::ScalerTimed(const hmap<float, float>& timings, chstr name) : Affector(name)
 		{
+			this->type = "Scaler";
 			this->setTimings(timings);
 		}
 

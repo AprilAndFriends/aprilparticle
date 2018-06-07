@@ -27,11 +27,13 @@ namespace aprilparticle
 
 		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
 		{
+			this->type = "Resizer";
 			TIMED_TEMPLATE_INIT(gvec2f(1.0f, 1.0f), gvec2f(0.0f, 0.0f));
 		}
 		
 		ResizerTimed::ResizerTimed(const hmap<float, gvec2f>& timings, chstr name) : Affector(name)
 		{
+			this->type = "Resizer";
 			this->setTimings(timings);
 		}
 

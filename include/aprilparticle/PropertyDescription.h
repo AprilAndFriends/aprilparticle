@@ -46,15 +46,17 @@ namespace aprilparticle
 		));
 
 		PropertyDescription();
-		PropertyDescription(chstr name, Type type, bool arrayData = false);
+		PropertyDescription(chstr name, Type type, chstr defaultValue = "", bool arrayData = false);
 
 		HL_DEFINE_GET(hstr, name, Name);
 		HL_DEFINE_GET(Type, type, Type);
+		HL_DEFINE_GET(hstr, defaultValue, DefaultValue);
 		HL_DEFINE_IS(arrayData, ArrayData);
 
 	protected:
 		hstr name;
 		Type type;
+		hstr defaultValue;
 		bool arrayData;
 
 	};

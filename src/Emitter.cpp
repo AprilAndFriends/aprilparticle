@@ -131,25 +131,24 @@ namespace aprilparticle
 		if (Emitter::_propertyDescriptions.size() == 0)
 		{
 			Emitter::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
-			Emitter::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
-			Emitter::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3f);
-			Emitter::_propertyDescriptions["blend_mode"] = PropertyDescription("blend_mode", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions["color_mode"] = PropertyDescription("color_mode", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions["color_mode_factor"] = PropertyDescription("color_mode_factor", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions["emission_rate"] = PropertyDescription("emission_rate", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions["duration"] = PropertyDescription("duration", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions["delay"] = PropertyDescription("delay", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions["loop_delay"] = PropertyDescription("loop_delay", PropertyDescription::Type::Float);
-			Emitter::_propertyDescriptions["loops"] = PropertyDescription("loops", PropertyDescription::Type::Int);
-			Emitter::_propertyDescriptions["limit"] = PropertyDescription("limit", PropertyDescription::Type::Int);
-			Emitter::_propertyDescriptions["reverse_rendering"] = PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool);
-			Emitter::_propertyDescriptions["life"] = PropertyDescription("life", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::RangeGvec3f);
-			Emitter::_propertyDescriptions["size"] = PropertyDescription("size", PropertyDescription::Type::RangeGvec2f);
-			Emitter::_propertyDescriptions["scale"] = PropertyDescription("scale", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions["angle"] = PropertyDescription("angle", PropertyDescription::Type::RangeFloat);
-			Emitter::_propertyDescriptions["angle_aligned"] = PropertyDescription("angle_aligned", PropertyDescription::Type::Bool);
+			Emitter::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::Enum, "point");
+			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(1.0f, 1.0f, 1.0f)));
+			Emitter::_propertyDescriptions["blend_mode"] = PropertyDescription("blend_mode", PropertyDescription::Type::Enum, "alpha");
+			Emitter::_propertyDescriptions["color_mode"] = PropertyDescription("color_mode", PropertyDescription::Type::Enum, "multiply");
+			Emitter::_propertyDescriptions["color_mode_factor"] = PropertyDescription("color_mode_factor", PropertyDescription::Type::Float, 1.0f);
+			Emitter::_propertyDescriptions["emission_rate"] = PropertyDescription("emission_rate", PropertyDescription::Type::Float, 0.0f);
+			Emitter::_propertyDescriptions["duration"] = PropertyDescription("duration", PropertyDescription::Type::Float, -1.0f);
+			Emitter::_propertyDescriptions["delay"] = PropertyDescription("delay", PropertyDescription::Type::Float, 0.0f);
+			Emitter::_propertyDescriptions["loop_delay"] = PropertyDescription("loop_delay", PropertyDescription::Type::Float, 0.0f);
+			Emitter::_propertyDescriptions["loops"] = PropertyDescription("loops", PropertyDescription::Type::Int, -1);
+			Emitter::_propertyDescriptions["limit"] = PropertyDescription("limit", PropertyDescription::Type::Int, 10);
+			Emitter::_propertyDescriptions["reverse_rendering"] = PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool, "false");
+			Emitter::_propertyDescriptions["life"] = PropertyDescription("life", PropertyDescription::Type::RangeFloat, hstr(1.0f) + aprilparticle::SeparatorRange + hstr(1.0f));
+			Emitter::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::RangeGvec3f, april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 0.0f)) + aprilparticle::SeparatorRange + april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 0.0f)));
+			Emitter::_propertyDescriptions["size"] = PropertyDescription("size", PropertyDescription::Type::RangeGvec2f, april::gvec2fToHstr(gvec2f(1.0f, 1.0f)) + aprilparticle::SeparatorRange + april::gvec2fToHstr(gvec2f(1.0f, 1.0f)));
+			Emitter::_propertyDescriptions["scale"] = PropertyDescription("scale", PropertyDescription::Type::RangeFloat, hstr(1.0f) + aprilparticle::SeparatorRange + hstr(1.0f));
+			Emitter::_propertyDescriptions["angle"] = PropertyDescription("angle", PropertyDescription::Type::RangeFloat, hstr(0.0f) + aprilparticle::SeparatorRange + hstr(0.0f));
+			Emitter::_propertyDescriptions["angle_aligned"] = PropertyDescription("angle_aligned", PropertyDescription::Type::Bool, "false");
 		}
 		return Emitter::_propertyDescriptions;
 	}

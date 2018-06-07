@@ -51,11 +51,13 @@ namespace aprilparticle
 
 		ForceField::ForceField(chstr name) : Space(name)
 		{
+			this->type = "ForceField";
 			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
 		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) : Space(position, radius, name)
 		{
+			this->type = "ForceField";
 			this->direction = direction;
 		}
 
@@ -73,7 +75,7 @@ namespace aprilparticle
 			if (ForceField::_propertyDescriptions.size() == 0)
 			{
 				ForceField::_propertyDescriptions = Space::getPropertyDescriptions();
-				ForceField::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f);
+				ForceField::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 1.0f)));
 			}
 			return ForceField::_propertyDescriptions;
 		}

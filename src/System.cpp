@@ -10,6 +10,7 @@
 #include <april/Texture.h>
 #include <gtypes/Vector3.h>
 #include <hltypes/hdir.h>
+#include <hltypes/hfile.h>
 #include <hltypes/hlist.h>
 #include <hltypes/hlog.h>
 #include <hltypes/hmap.h>
@@ -24,8 +25,15 @@
 #include "System.h"
 #include "Texture.h"
 
+#define XML_HEADER "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+
+#define MAKE_OPEN_NODE(name, values) hstr(values.size() > 0 ? "<" name " " + values.joined(" ") + ">" : "<" name ">")
+#define MAKE_CLOSED_NODE(name, values) hstr(values.size() > 0 ? "<" name " " + values.joined(" ") + "/>" : "<" name "/>")
+
 namespace aprilparticle
 {
+	hmap<hstr, PropertyDescription> System::_propertyDescriptions;
+
 	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? april::generateName("System") : name), AffectorContainer()
 	{
 		this->filename = filename;
@@ -102,6 +110,15 @@ namespace aprilparticle
 				delete it->second;
 			}
 		}
+	}
+
+	hmap<hstr, PropertyDescription>& System::getPropertyDescriptions() const
+	{
+		if (System::_propertyDescriptions.size() == 0)
+		{
+			System::_propertyDescriptions = ActiveObject::getPropertyDescriptions();
+		}
+		return System::_propertyDescriptions;
 	}
 
 	harray<Emitter*> System::getEmitters() const
@@ -263,6 +280,179 @@ namespace aprilparticle
 			}
 		}
 		this->_assignObjectData();
+	}
+
+	void System::save(chstr filename)
+	{
+		harray<hstr> lines;
+		harray<hstr> values;
+		harray<Emitter*> emitters;
+		harray<Affector*> affectors;
+		april::Texture* emitterTexture = NULL;
+		hstr name;
+		hstr value;
+		hmap<hstr, PropertyDescription> descriptions = this->getPropertyDescriptions(); // TODO - not using hmap&, because there seems to be an issue with the assignment operator
+		foreach_m (PropertyDescription, it, descriptions)
+		{
+			value = this->getProperty(it->first);
+			if (it->second.getType() == PropertyDescription::Type::Bool)
+			{
+				value = ((bool)value ? "true" : "false"); // compatibility hack
+			}
+			if (value != it->second.getDefaultValue())
+			{
+				values += it->first + "=\"" + value + "\"";
+			}
+		}
+		lines += MAKE_OPEN_NODE("ParticleSystem", values);
+		if (this->spaces.size() > 0)
+		{
+			lines += "";
+		}
+		foreach (Space*, it, this->spaces)
+		{
+			values.clear();
+			descriptions = (*it)->getPropertyDescriptions();
+			foreach_m (PropertyDescription, it2, descriptions)
+			{
+				value = (*it)->getProperty(it2->first);
+				if (it2->second.getType() == PropertyDescription::Type::Bool)
+				{
+					value = ((bool)value ? "true" : "false"); // compatibility hack
+				}
+				if (value != it2->second.getDefaultValue())
+				{
+					values += it2->first + "=\"" + value + "\"";
+				}
+			}
+			emitters = (*it)->getEmitters();
+			affectors = (*it)->getAffectors();
+			if (emitters.size() > 0 || affectors.size() > 0)
+			{
+				lines += "\t" + MAKE_OPEN_NODE("Space", values);
+				foreach (Emitter*, it2, emitters)
+				{
+					values.clear();
+					descriptions = (*it2)->getPropertyDescriptions();
+					foreach_m (PropertyDescription, it3, descriptions)
+					{
+						value = (*it2)->getProperty(it3->first);
+						if (it3->second.getType() == PropertyDescription::Type::Bool)
+						{
+							value = ((bool)value ? "true" : "false"); // compatibility hack
+						}
+						if (value != it3->second.getDefaultValue())
+						{
+							values += it3->first + "=\"" + value + "\"";
+						}
+					}
+					emitterTexture = (*it2)->getTexture();
+					if (emitterTexture != NULL)
+					{
+						lines += "\t\t" + MAKE_OPEN_NODE("Emitter", values);
+						foreach_m (Texture*, it4, this->textures)
+						{
+							if (it4->second->getTexture() == emitterTexture)
+							{
+								lines += "\t\t\t<Texture reference=\"" + it4->first + "\"/>";
+								break;
+							}
+						}
+						lines += "\t\t</Emitter>";
+					}
+					else
+					{
+						lines += "\t\t" + MAKE_CLOSED_NODE("Emitter", values);
+					}
+				}
+				foreach (Affector*, it2, affectors)
+				{
+					if (this->_mappedAffectors[*it].has((*it2)->getName()))
+					{
+						values.clear();
+						descriptions = (*it2)->getPropertyDescriptions();
+						foreach_m (PropertyDescription, it3, descriptions)
+						{
+							value = (*it2)->getProperty(it3->first);
+							if (it3->second.getType() == PropertyDescription::Type::Bool)
+							{
+								value = ((bool)value ? "true" : "false"); // compatibility hack
+							}
+							if (value != it3->second.getDefaultValue())
+							{
+								values += it3->first + "=\"" + value + "\"";
+							}
+						}
+						lines += "\t\t" + MAKE_CLOSED_NODE("Affector", values);
+					}
+					else
+					{
+						lines += "\t\t<Affector reference=\"" + (*it2)->getName() + "\"/>";
+					}
+				}
+				lines += "\t</Space>";
+			}
+			else
+			{
+				lines += "\t" + MAKE_CLOSED_NODE("Space", values);
+			}
+		}
+		harray<hstr> allNames;
+		foreach_map (Space*, harray<hstr>, it, this->_mappedAffectors)
+		{
+			allNames += it->second;
+		}
+		allNames.removeDuplicates();
+		harray<Affector*> externalAffectors;
+		foreach (Affector*, it, this->affectors)
+		{
+			if (!allNames.has((*it)->getName()))
+			{
+				externalAffectors += (*it);
+			}
+		}
+		if (externalAffectors.size() > 0)
+		{
+			lines += "";
+		}
+		foreach (Affector*, it, externalAffectors)
+		{
+			values.clear();
+			descriptions = (*it)->getPropertyDescriptions();
+			foreach_m (PropertyDescription, it2, descriptions)
+			{
+				value = (*it)->getProperty(it2->first);
+				if (it2->second.getType() == PropertyDescription::Type::Bool)
+				{
+					value = ((bool)value ? "true" : "false"); // compatibility hack
+				}
+				if (value != it2->second.getDefaultValue())
+				{
+					values += it2->first + "=\"" + value + "\"";
+				}
+			}
+			lines += "\t" + MAKE_CLOSED_NODE("Affector", values);
+		}
+		if (this->textures.size() > 0)
+		{
+			lines += "";
+		}
+		foreach_m (Texture*, it, this->textures)
+		{
+			values.clear();
+			values += "filename=\"" + it->first + "\"";
+			if (it->second->isCached())
+			{
+				values += "cached=\"true\"";
+			}
+			lines += "\t" + MAKE_CLOSED_NODE("Texture", values);
+		}
+		lines += "";
+		lines += "</ParticleSystem>";
+		hfile file;
+		file.open(filename, hfile::AccessMode::Write);
+		file.writeLine(XML_HEADER);
+		file.writeLine(lines.joined("\n"));
 	}
 
 	void System::_assignObjectData()

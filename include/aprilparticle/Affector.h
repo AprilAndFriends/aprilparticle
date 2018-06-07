@@ -38,6 +38,7 @@ namespace aprilparticle
 		virtual hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 		HL_DEFINE_GETSET(hstr, name, Name);
+		HL_DEFINE_GET(hstr, type, Type);
 		HL_DEFINE_GETSET(float, minRandomness, MinRandomness);
 		HL_DEFINE_GETSET(float, maxRandomness, MaxRandomness);
 		HL_DEFINE_GETSET(gvec3f, chaoticity, Chaoticity);
@@ -54,6 +55,7 @@ namespace aprilparticle
 
 	protected:
 		hstr name;
+		hstr type;
 		float minRandomness;
 		float maxRandomness;
 		gvec3f chaoticity;

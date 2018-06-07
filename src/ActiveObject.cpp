@@ -43,8 +43,8 @@ namespace aprilparticle
 		if (ActiveObject::_propertyDescriptions.size() == 0)
 		{
 			ActiveObject::_propertyDescriptions["name"] = PropertyDescription("name", PropertyDescription::Type::String);
-			ActiveObject::_propertyDescriptions["visible"] = PropertyDescription("visible", PropertyDescription::Type::Bool);
-			ActiveObject::_propertyDescriptions["enabled"] = PropertyDescription("enabled", PropertyDescription::Type::Bool);
+			ActiveObject::_propertyDescriptions["visible"] = PropertyDescription("visible", PropertyDescription::Type::Bool, "true");
+			ActiveObject::_propertyDescriptions["enabled"] = PropertyDescription("enabled", PropertyDescription::Type::Bool, "true");
 		}
 		return ActiveObject::_propertyDescriptions;
 	}

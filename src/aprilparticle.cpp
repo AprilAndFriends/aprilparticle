@@ -24,7 +24,7 @@ namespace aprilparticle
 {
 	hstr logTag = "aprilparticle";
 
-	static hversion version(2, 2, 0);
+	static hversion version(2, 3, 0);
 
 	static bool useCache = true;
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;

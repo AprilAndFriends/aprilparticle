@@ -20,18 +20,21 @@ namespace aprilparticle
 
 		ColorChanger::ColorChanger(chstr name) : Affector(name)
 		{
+			this->type = "ColorChanger";
 			this->startColor = april::Color::White;
 			this->endColor = april::Color::Blank;
 		}
 		
 		ColorChanger::ColorChanger(const april::Color& endColor, chstr name) : Affector(name)
 		{
+			this->type = "ColorChanger";
 			this->startColor = april::Color::White;
 			this->endColor = endColor;
 		}
 		
 		ColorChanger::ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name) : Affector(name)
 		{
+			this->type = "ColorChanger";
 			this->startColor = startColor;
 			this->endColor = endColor;
 		}
@@ -50,8 +53,8 @@ namespace aprilparticle
 			if (ColorChanger::_propertyDescriptions.size() == 0)
 			{
 				ColorChanger::_propertyDescriptions = Affector::getPropertyDescriptions();
-				ColorChanger::_propertyDescriptions["start_color"] = PropertyDescription("start_color", PropertyDescription::Type::Color);
-				ColorChanger::_propertyDescriptions["end_color"] = PropertyDescription("end_color", PropertyDescription::Type::Color);
+				ColorChanger::_propertyDescriptions["start_color"] = PropertyDescription("start_color", PropertyDescription::Type::Color, april::Color::White.hex());
+				ColorChanger::_propertyDescriptions["end_color"] = PropertyDescription("end_color", PropertyDescription::Type::Color, april::Color::Black.hex());
 			}
 			return ColorChanger::_propertyDescriptions;
 		}

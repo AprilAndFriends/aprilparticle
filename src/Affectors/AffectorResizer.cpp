@@ -19,12 +19,14 @@ namespace aprilparticle
 
 		Resizer::Resizer(chstr name) : Affector(name)
 		{
+			this->type = "Resizer";
 			this->startSize.set(1.0f, 1.0f);
 			this->endSize.set(0.0f, 0.0f);
 		}
 
 		Resizer::Resizer(cgvec2f startSize, cgvec2f endSize, chstr name) : Affector(name)
 		{
+			this->type = "Resizer";
 			this->startSize = startSize;
 			this->endSize = endSize;
 		}
@@ -43,8 +45,8 @@ namespace aprilparticle
 			if (Resizer::_propertyDescriptions.size() == 0)
 			{
 				Resizer::_propertyDescriptions = Affector::getPropertyDescriptions();
-				Resizer::_propertyDescriptions["start_size"] = PropertyDescription("start_size", PropertyDescription::Type::Gvec2f);
-				Resizer::_propertyDescriptions["end_size"] = PropertyDescription("end_size", PropertyDescription::Type::Gvec2f);
+				Resizer::_propertyDescriptions["start_size"] = PropertyDescription("start_size", PropertyDescription::Type::Gvec2f, april::gvec2fToHstr(gvec2f(1.0f, 1.0f)));
+				Resizer::_propertyDescriptions["end_size"] = PropertyDescription("end_size", PropertyDescription::Type::Gvec2f, april::gvec2fToHstr(gvec2f(0.0f, 0.0f)));
 			}
 			return Resizer::_propertyDescriptions;
 		}

@@ -25,11 +25,13 @@ namespace aprilparticle
 
 		ColorChangerTimed::ColorChangerTimed(chstr name) : Affector(name)
 		{
+			this->type = "ColorChanger";
 			TIMED_TEMPLATE_INIT(april::Color::White, april::Color::Blank);
 		}
 		
 		ColorChangerTimed::ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name) : Affector(name)
 		{
+			this->type = "ColorChanger";
 			this->setTimings(timings);
 		}
 

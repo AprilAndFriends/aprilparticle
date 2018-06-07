@@ -20,11 +20,13 @@ namespace aprilparticle
 
 		LinearForce::LinearForce(chstr name) : Affector(name)
 		{
+			this->type = "LinearForce";
 			this->direction.set(0.0f, -1.0f, 0.0f);
 		}
 
 		LinearForce::LinearForce(cgvec3f direction, chstr name) : Affector(name)
 		{
+			this->type = "LinearForce";
 			this->direction = direction;
 		}
 
@@ -42,7 +44,7 @@ namespace aprilparticle
 			if (LinearForce::_propertyDescriptions.size() == 0)
 			{
 				LinearForce::_propertyDescriptions = Affector::getPropertyDescriptions();
-				LinearForce::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f);
+				LinearForce::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, -1.0f, 0.0f)));
 			}
 			return LinearForce::_propertyDescriptions;
 		}

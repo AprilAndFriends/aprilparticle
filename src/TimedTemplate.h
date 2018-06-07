@@ -56,9 +56,9 @@
 	harray<hstr> result; \
 	for_iter (i, 0, this->times.size()) \
 	{ \
-		result += hsprintf("%f%c%s", this->times[i], aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).cStr()); \
+		result += hsprintf("%s%c%s", hstr(this->times[i]).cStr(), aprilparticle::SeparatorTiming, (prefix(this->values[i])suffix).cStr()); \
 	} \
-	return result.joined(aprilparticle::SeparatorVector);
+	return result.joined(aprilparticle::SeparatorValue);
 
 #define TIMED_TEMPLATE_ADD_TIMING \
 	time = hclamp(time, 0.0f, 1.0f); \
