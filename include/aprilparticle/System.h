@@ -96,7 +96,7 @@ namespace aprilparticle
 		hmap<Space*, harray<hstr> > _mappedAffectors;
 		hmap<Emitter*, hstr> _mappedTextures;
 
-		static hmap<hstr, PropertyDescription> System::_propertyDescriptions;
+		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 		
 	};
 }
