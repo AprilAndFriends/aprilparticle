@@ -72,25 +72,26 @@ namespace aprilparticle
 		// copy spaces
 		harray<Space*> spaces = other.spaces;
 		Space* space = NULL;
-		hmap<Space*, harray<hstr> > _mappedAffectors = other._mappedAffectors;
-		hmap<Emitter*, hstr> _mappedTextures = other._mappedTextures;
 		harray<Emitter*> emitters;
 		Emitter* emitter = NULL;
 		foreach (Space*, it, spaces)
 		{
 			space = new Space(*(*it));
 			this->registerSpace(space);
-			this->_mappedAffectors[space] = _mappedAffectors[*it];
+			// setup affectors in space
+			affectors = (*it)->getAffectors();
+			foreach (Affector*, it, affectors)
+			{
+				space->addAffector(this->getAffector((*it)->getName()));
+			}
 			// copy emitters in space
 			emitters = (*it)->getEmitters();
 			foreach (Emitter*, it2, emitters)
 			{
 				emitter = new Emitter(*(*it2));
 				space->registerEmitter(emitter);
-				this->_mappedTextures[emitter] = _mappedTextures[*it2];
 			}
 		}
-		this->_assignObjectData();
 	}
 	
 	System::~System()
@@ -264,13 +265,10 @@ namespace aprilparticle
 		{
 			this->name = this->filename.rsplit('.', -1, true).first();
 		}
+		// first load all textures and affectors first
 		foreach_xmlnode (node, root)
 		{
-			if ((*node)->name == "Space")
-			{
-				this->_loadSpace(*node);
-			}
-			else if ((*node)->name == "Affector")
+			if ((*node)->name == "Affector")
 			{
 				this->_loadAffector(*node);
 			}
@@ -279,16 +277,20 @@ namespace aprilparticle
 				this->_loadTexture(*node);
 			}
 		}
-		this->_assignObjectData();
+		// then load the spaces
+		foreach_xmlnode (node, root)
+		{
+			if ((*node)->name == "Space")
+			{
+				this->_loadSpace(*node);
+			}
+		}
 	}
 
 	void System::save(chstr filename)
 	{
 		harray<hstr> lines;
 		harray<hstr> values;
-		harray<Emitter*> emitters;
-		harray<Affector*> affectors;
-		april::Texture* emitterTexture = NULL;
 		hstr name;
 		hstr value;
 		hmap<hstr, PropertyDescription> descriptions = this->getPropertyDescriptions(); // TODO - not using hmap&, because there seems to be an issue with the assignment operator
@@ -305,11 +307,68 @@ namespace aprilparticle
 			}
 		}
 		lines += MAKE_OPEN_NODE("ParticleSystem", values);
+		// first check potential references
+		harray<Affector*> spaceAffectors;
+		foreachc (Space*, it, this->spaces)
+		{
+			spaceAffectors += (*it)->getAffectors();
+		}
+		hmap<april::Texture*, hstr> texturesNames;
+		foreachc_m (Texture*, it, this->textures)
+		{
+			texturesNames[it->second->getTexture()] = it->first;
+		}
+		harray<Affector*> referencedAffectors;
+		foreachc (Affector*, it, this->affectors)
+		{
+			if (spaceAffectors.count(*it) > 1)
+			{
+				referencedAffectors += (*it);
+			}
+		}
+		if (textures.size() > 0)
+		{
+			lines += "";
+		}
+		foreachc_m (Texture*, it, textures)
+		{
+			values.clear();
+			values += "filename=\"" + it->first + "\"";
+			if (it->second->isCached())
+			{
+				values += "cached=\"true\"";
+			}
+			lines += "\t" + MAKE_CLOSED_NODE("Texture", values);
+		}
+		if (referencedAffectors.size() > 0)
+		{
+			lines += "";
+		}
+		foreachc (Affector*, it, referencedAffectors)
+		{
+			values.clear();
+			descriptions = (*it)->getPropertyDescriptions();
+			foreachc_m (PropertyDescription, it2, descriptions)
+			{
+				value = (*it)->getProperty(it2->first);
+				if (it2->second.getType() == PropertyDescription::Type::Bool)
+				{
+					value = ((bool)value ? "true" : "false"); // compatibility hack
+				}
+				if (value != it2->second.getDefaultValue())
+				{
+					values += it2->first + "=\"" + value + "\"";
+				}
+			}
+			lines += "\t" + MAKE_CLOSED_NODE("Affector", values);
+		}
 		if (this->spaces.size() > 0)
 		{
 			lines += "";
 		}
-		foreach (Space*, it, this->spaces)
+		harray<Emitter*> emitters;
+		april::Texture* emitterTexture = NULL;
+		foreachc (Space*, it, this->spaces)
 		{
 			values.clear();
 			descriptions = (*it)->getPropertyDescriptions();
@@ -326,15 +385,15 @@ namespace aprilparticle
 				}
 			}
 			emitters = (*it)->getEmitters();
-			affectors = (*it)->getAffectors();
-			if (emitters.size() > 0 || affectors.size() > 0)
+			spaceAffectors = (*it)->getAffectors();
+			if (emitters.size() > 0 || spaceAffectors.size() > 0)
 			{
 				lines += "\t" + MAKE_OPEN_NODE("Space", values);
-				foreach (Emitter*, it2, emitters)
+				foreachc (Emitter*, it2, emitters)
 				{
 					values.clear();
 					descriptions = (*it2)->getPropertyDescriptions();
-					foreach_m (PropertyDescription, it3, descriptions)
+					foreachc_m (PropertyDescription, it3, descriptions)
 					{
 						value = (*it2)->getProperty(it3->first);
 						if (it3->second.getType() == PropertyDescription::Type::Bool)
@@ -350,14 +409,7 @@ namespace aprilparticle
 					if (emitterTexture != NULL)
 					{
 						lines += "\t\t" + MAKE_OPEN_NODE("Emitter", values);
-						foreach_m (Texture*, it4, this->textures)
-						{
-							if (it4->second->getTexture() == emitterTexture)
-							{
-								lines += "\t\t\t<Texture reference=\"" + it4->first + "\"/>";
-								break;
-							}
-						}
+						lines += "\t\t\t<Texture reference=\"" + texturesNames[emitterTexture] + "\"/>";
 						lines += "\t\t</Emitter>";
 					}
 					else
@@ -365,9 +417,9 @@ namespace aprilparticle
 						lines += "\t\t" + MAKE_CLOSED_NODE("Emitter", values);
 					}
 				}
-				foreach (Affector*, it2, affectors)
+				foreachc (Affector*, it2, spaceAffectors)
 				{
-					if (this->_mappedAffectors[*it].has((*it2)->getName()))
+					if (!referencedAffectors.has(*it2))
 					{
 						values.clear();
 						descriptions = (*it2)->getPropertyDescriptions();
@@ -397,91 +449,12 @@ namespace aprilparticle
 				lines += "\t" + MAKE_CLOSED_NODE("Space", values);
 			}
 		}
-		harray<hstr> allNames;
-		foreach_map (Space*, harray<hstr>, it, this->_mappedAffectors)
-		{
-			allNames += it->second;
-		}
-		allNames.removeDuplicates();
-		harray<Affector*> externalAffectors;
-		foreach (Affector*, it, this->affectors)
-		{
-			if (!allNames.has((*it)->getName()))
-			{
-				externalAffectors += (*it);
-			}
-		}
-		if (externalAffectors.size() > 0)
-		{
-			lines += "";
-		}
-		foreach (Affector*, it, externalAffectors)
-		{
-			values.clear();
-			descriptions = (*it)->getPropertyDescriptions();
-			foreach_m (PropertyDescription, it2, descriptions)
-			{
-				value = (*it)->getProperty(it2->first);
-				if (it2->second.getType() == PropertyDescription::Type::Bool)
-				{
-					value = ((bool)value ? "true" : "false"); // compatibility hack
-				}
-				if (value != it2->second.getDefaultValue())
-				{
-					values += it2->first + "=\"" + value + "\"";
-				}
-			}
-			lines += "\t" + MAKE_CLOSED_NODE("Affector", values);
-		}
-		if (this->textures.size() > 0)
-		{
-			lines += "";
-		}
-		foreach_m (Texture*, it, this->textures)
-		{
-			values.clear();
-			values += "filename=\"" + it->first + "\"";
-			if (it->second->isCached())
-			{
-				values += "cached=\"true\"";
-			}
-			lines += "\t" + MAKE_CLOSED_NODE("Texture", values);
-		}
 		lines += "";
 		lines += "</ParticleSystem>";
 		hfile file;
 		file.open(filename, hfile::AccessMode::Write);
 		file.writeLine(XML_HEADER);
 		file.writeLine(lines.joined("\n"));
-	}
-
-	void System::_assignObjectData()
-	{
-		// assigning affectors to spaces
-		Affector* affector = NULL;
-		foreach_map (Space*, harray<hstr>, it, this->_mappedAffectors)
-		{
-			foreach (hstr, it2, it->second)
-			{
-				affector = this->getAffector(*it2);
-				if (affector == NULL)
-				{
-					throw Exception("Affector reference '" + (*it2) + "' does not exist!");
-				}
-				it->first->addAffector(affector);
-			}
-		}
-		// assigning textures to emitters
-		aprilparticle::Texture* texture = NULL;
-		foreach_map (Emitter*, hstr, it, this->_mappedTextures)
-		{
-			texture = this->getTexture(it->second);
-			if (texture == NULL)
-			{
-				throw Exception("Texture reference '" + it->second + "' does not exist!");
-			}
-			it->first->setTexture(texture->getTexture());
-		}
 	}
 
 	void System::_loadSpace(hlxml::Node* root)
@@ -525,7 +498,6 @@ namespace aprilparticle
 	void System::_loadAffector(hlxml::Node* root, Space* space)
 	{
 		Affector* affector = NULL;
-		bool map = false;
 		hstr name = "";
 		if (root->pexists("type"))
 		{
@@ -550,26 +522,25 @@ namespace aprilparticle
 			{
 				affector->setProperty(it->first, it->second);
 			}
-			map = true;
+			if (space != NULL)
+			{
+				space->addAffector(affector);
+			}
 		}
-		else if (root->pexists("reference"))
+		else if (space != NULL && root->pexists("reference"))
 		{
 			name = root->pstr("reference");
-			map = true;
-		}
-		if (space != NULL && map)
-		{
-			if (!this->_mappedAffectors.hasKey(space))
+			affector = this->getAffector(name);
+			if (affector == NULL)
 			{
-				this->_mappedAffectors[space] = harray<hstr>();
+				throw Exception("Affector reference '" + name + "' does not exist!");
 			}
-			this->_mappedAffectors[space] += name;
+			space->addAffector(affector);
 		}
 	}
 
 	void System::_loadTexture(hlxml::Node* root, Emitter* emitter)
 	{
-		bool map = false;
 		hstr name = "";
 		if (root->pexists("filename"))
 		{
@@ -577,16 +548,20 @@ namespace aprilparticle
 			name = root->pstr("name", filename);
 			aprilparticle::Texture* texture = aprilparticle::loadTexture(hdir::joinPath(hdir::baseDir(this->filename), filename, false), root->pbool("cached", false));
 			this->registerTexture(texture, name);
-			map = true;
+			if (emitter != NULL)
+			{
+				emitter->setTexture(texture->getTexture());
+			}
 		}
-		else if (root->pexists("reference"))
+		else if (emitter != NULL && root->pexists("reference"))
 		{
 			name = root->pstr("reference");
-			map = true;
-		}
-		if (emitter != NULL && map)
-		{
-			this->_mappedTextures[emitter] = name;
+			Texture* texture = this->getTexture(name);
+			if (texture == NULL)
+			{
+				throw Exception("Texture reference '" + name + "' does not exist!");
+			}
+			emitter->setTexture(texture->getTexture());
 		}
 	}
 

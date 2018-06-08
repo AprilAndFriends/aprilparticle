@@ -89,12 +89,10 @@ namespace aprilparticle
 		void _loadAffector(hlxml::Node* root, Space* space = NULL);
 		void _loadTexture(hlxml::Node* root, Emitter* emitter = NULL);
 
-		void _assignObjectData();
+		//harray<hstr> _generate
 
 	private:
 		hmap<Affector*, hmap<hstr, hstr> > _affectorProperties;
-		hmap<Space*, harray<hstr> > _mappedAffectors;
-		hmap<Emitter*, hstr> _mappedTextures;
 
 		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 		

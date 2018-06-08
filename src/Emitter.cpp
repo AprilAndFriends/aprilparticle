@@ -112,7 +112,7 @@ namespace aprilparticle
 		this->maxScale = other.maxScale;
 		this->minAngle = other.minAngle;
 		this->maxAngle = other.maxAngle;
-		this->texture = NULL;
+		this->texture = other.texture;
 		this->_triangleBatch = NULL;
 		this->_setupTriangleBatch();
 		this->space = NULL;
@@ -348,12 +348,7 @@ namespace aprilparticle
 		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3f(value));
 		else if	(name == "blend_mode")
 		{
-			if (value == "default")
-			{
-				hlog::warn(logTag, "'blend_mode=default' is deprecated. Use 'blend_mode=alpha' instead."); // DEPRECATED
-				this->setBlendMode(april::BlendMode::Alpha);
-			}
-			else if	(value == "alpha")			this->setBlendMode(april::BlendMode::Alpha);
+			if (value == "alpha")				this->setBlendMode(april::BlendMode::Alpha);
 			else if	(value == "add")			this->setBlendMode(april::BlendMode::Add);
 			else if	(value == "subtract")		this->setBlendMode(april::BlendMode::Subtract);
 			else if	(value == "overwrite")		this->setBlendMode(april::BlendMode::Overwrite);
@@ -361,12 +356,7 @@ namespace aprilparticle
 		}
 		else if	(name == "color_mode")
 		{
-			if (value == "default")
-			{
-				hlog::warn(logTag, "'color_mode=default' is deprecated. Use 'color_mode=multiply' instead."); // DEPRECATED
-				this->setColorMode(april::ColorMode::Multiply);
-			}
-			else if	(value == "multiply")		this->setColorMode(april::ColorMode::Multiply);
+			if (value == "multiply")			this->setColorMode(april::ColorMode::Multiply);
 			else if	(value == "alpha_map")		this->setColorMode(april::ColorMode::AlphaMap);
 			else if (value == "lerp")			this->setColorMode(april::ColorMode::Lerp);
 			else if (value == "desaturate")		this->setColorMode(april::ColorMode::Desaturate);
