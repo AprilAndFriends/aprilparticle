@@ -627,20 +627,17 @@ namespace aprilparticle
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
-				
 				this->_rot.setRotation3D(0.0f, 0.0f, -1.0f, this->space->_particle->angle);
 				v[0] = this->_rot * v[0];
 				v[1] = this->_rot * v[1];
 				v[2] = this->_rot * v[2];
 				v[3] = this->_rot * v[3];
-			
 				this->_billboard.lookAt(this->space->_particle->position, point - this->space->_particle->position, -up);
 				this->_billboard.inverse();
 				v[0] = this->_billboard * v[0];
 				v[1] = this->_billboard * v[1];
 				v[2] = this->_billboard * v[2];
 				v[3] = this->_billboard * v[3];
-			
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
 				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
@@ -685,7 +682,6 @@ namespace aprilparticle
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
-
 				this->_offset.set(this->space->_particle->position.x + offset.x, this->space->_particle->position.y + offset.y, 0.0f);
 				if (this->space->_particle->angle != 0.0f)
 				{
@@ -702,7 +698,6 @@ namespace aprilparticle
 					v[2] += this->_offset;
 					v[3] += this->_offset;
 				}
-				
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color);
 				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
@@ -751,7 +746,6 @@ namespace aprilparticle
 				v[1].set(this->_xSize, -this->_ySize, 0.0f);
 				v[2].set(-this->_xSize, this->_ySize, 0.0f);
 				v[3].set(this->_xSize, this->_ySize, 0.0f);
-
 				this->_offset.set(this->space->_particle->position.x + offset.x, this->space->_particle->position.y + offset.y, 0.0f);
 				if (this->space->_particle->angle != 0.0f)
 				{
@@ -768,7 +762,6 @@ namespace aprilparticle
 					v[2] += this->_offset;
 					v[3] += this->_offset;
 				}
-				
 				this->_color = april::rendersys->getNativeColorUInt(this->space->_particle->color * color);
 				this->_triangleBatch[this->_i].set(v[0]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
 				this->_triangleBatch[this->_i].set(v[1]);	this->_triangleBatch[this->_i].color = this->_color;		++this->_i;
