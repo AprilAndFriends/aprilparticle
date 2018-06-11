@@ -76,6 +76,7 @@ namespace aprilparticle
 		harray<Particle*> particles;
 		int alive;
 		bool started;
+		float lastTimeFraction;
 
 		inline void _setSystem(System* value) { this->system = value; }
 
@@ -90,7 +91,6 @@ namespace aprilparticle
 		gvec3f _movementDirection;
 		gvec3f _initialDirection;
 		Particle* _particle;
-		float _lastTimeFraction;
 
 	};
 }

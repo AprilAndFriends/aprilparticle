@@ -29,6 +29,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport CallbackAffector : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(CallbackAffector);
 		public:
 			CallbackAffector(chstr name = "");
 			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name = "");

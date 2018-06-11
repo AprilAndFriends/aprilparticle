@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Resizer : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(Resizer);
 		public:
 			Resizer(chstr name = "");
 			Resizer(cgvec2f startSize, cgvec2f endSize, chstr name = "");

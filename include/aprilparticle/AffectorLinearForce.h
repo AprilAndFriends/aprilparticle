@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport LinearForce : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(LinearForce);
 		public:
 			LinearForce(chstr name = "");
 			LinearForce(cgvec3f direction, chstr name = "");

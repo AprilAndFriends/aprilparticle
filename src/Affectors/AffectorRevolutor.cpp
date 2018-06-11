@@ -24,7 +24,7 @@ namespace aprilparticle
 
 		hmap<hstr, PropertyDescription> Revolutor::_propertyDescriptions;
 
-		Revolutor::Revolutor(chstr name) : Space(name)
+		Revolutor::Revolutor(chstr name) : Space(name), _squaredLength(0.0f)
 		{
 			this->type = "Revolutor";
 			this->axis.set(0.0f, 1.0f, 0.0f);
@@ -32,12 +32,19 @@ namespace aprilparticle
 			this->setClockwise(true);
 		}
 
-		Revolutor::Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name)
+		Revolutor::Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name) : Space(position, radius, name), _squaredLength(0.0f)
 		{
 			this->type = "Revolutor";
 			this->axis = axis;
 			this->evolutionSpeed = evolutionSpeed;
 			this->setClockwise(clockwise);
+		}
+
+		Revolutor::Revolutor(const Revolutor& other) : Space(other), _squaredLength(0.0f)
+		{
+			this->axis = other.axis;
+			this->evolutionSpeed = other.evolutionSpeed;
+			this->angle = other.angle;
 		}
 		
 		Revolutor::~Revolutor()
@@ -90,7 +97,7 @@ namespace aprilparticle
 
 		void Revolutor::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
-			this->_position = this->position + this->space->getPosition();
+			this->_position = this->position + this->_space->getPosition();
 			this->_direction = particle->position - this->_position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (this->_squaredLength < this->radius * this->radius)

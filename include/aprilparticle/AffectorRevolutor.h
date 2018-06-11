@@ -29,6 +29,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Revolutor : public Space
 		{
+			APRILPARTICLE_CLONEABLE(Revolutor);
 		public:
 			Revolutor(chstr name = "");
 			Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name = "");

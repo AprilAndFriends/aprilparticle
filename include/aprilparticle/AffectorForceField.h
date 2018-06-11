@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport ForceField : public Space
 		{
+			APRILPARTICLE_CLONEABLE(ForceField);
 		public:
 			ForceField(chstr name = "");
 			ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name = "");

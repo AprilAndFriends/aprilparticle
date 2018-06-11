@@ -18,25 +18,31 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ColorChanger::_propertyDescriptions;
 
-		ColorChanger::ColorChanger(chstr name) : Affector(name)
+		ColorChanger::ColorChanger(chstr name) : Affector(name), _ratio(0.0f)
 		{
 			this->type = "ColorChanger";
 			this->startColor = april::Color::White;
 			this->endColor = april::Color::Blank;
 		}
 		
-		ColorChanger::ColorChanger(const april::Color& endColor, chstr name) : Affector(name)
+		ColorChanger::ColorChanger(const april::Color& endColor, chstr name) : Affector(name), _ratio(0.0f)
 		{
 			this->type = "ColorChanger";
 			this->startColor = april::Color::White;
 			this->endColor = endColor;
 		}
 		
-		ColorChanger::ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name) : Affector(name)
+		ColorChanger::ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name) : Affector(name), _ratio(0.0f)
 		{
 			this->type = "ColorChanger";
 			this->startColor = startColor;
 			this->endColor = endColor;
+		}
+
+		ColorChanger::ColorChanger(const ColorChanger& other) : Affector(other), _ratio(0.0f)
+		{
+			this->startColor = other.startColor;
+			this->endColor = other.endColor;
 		}
 
 		ColorChanger::~ColorChanger()

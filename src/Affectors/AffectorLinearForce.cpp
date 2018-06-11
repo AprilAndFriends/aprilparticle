@@ -30,6 +30,11 @@ namespace aprilparticle
 			this->direction = direction;
 		}
 
+		LinearForce::LinearForce(const LinearForce& other) : Affector(other)
+		{
+			this->direction = other.direction;
+		}
+
 		LinearForce::~LinearForce()
 		{
 		}

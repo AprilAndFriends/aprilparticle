@@ -30,6 +30,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport ColorChangerTimed : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(ColorChangerTimed);
 		public:
 			ColorChangerTimed(chstr name = "");
 			ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name = "");
@@ -53,13 +54,13 @@ namespace aprilparticle
 		protected:
 			harray<float> times;
 			harray<april::Color> values;
+			int size; // serves as optimization, but it's not isolated
 
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _ratio;
 			int _i;
-			int _size;
 
 		};
 

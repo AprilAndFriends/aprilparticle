@@ -202,19 +202,19 @@ void __aprilApplicationInit()
 	april::window->setUpdateDelegate(&updateDelegate);
 	setupGrid(2.0f);
 	// setting up every system
-	flame = new aprilparticle::System(RESOURCE_PATH "flame.particle");
+	flame = aprilparticle::loadSystem(RESOURCE_PATH "flame.particle");
 	flame->load();
-	bubbles = new aprilparticle::System(RESOURCE_PATH "bubbles.particle");
+	bubbles = aprilparticle::loadSystem(RESOURCE_PATH "bubbles.particle");
 	bubbles->load();
-	vortex = new aprilparticle::System(RESOURCE_PATH "vortex.particle");
+	vortex = aprilparticle::loadSystem(RESOURCE_PATH "vortex.particle");
 	vortex->load();
-	rain = new aprilparticle::System(RESOURCE_PATH "rain.particle");
+	rain = aprilparticle::loadSystem(RESOURCE_PATH "rain.particle");
 	rain->load();
-	quazar = new aprilparticle::System(RESOURCE_PATH "quazar.particle");
+	quazar = aprilparticle::loadSystem(RESOURCE_PATH "quazar.particle");
 	quazar->load();
-	milkyWay = new aprilparticle::System(RESOURCE_PATH "milkyWay.particle");
+	milkyWay = aprilparticle::loadSystem(RESOURCE_PATH "milkyWay.particle");
 	milkyWay->load();
-	twirl = new aprilparticle::System(RESOURCE_PATH "twirl.particle");
+	twirl =  aprilparticle::loadSystem(RESOURCE_PATH "twirl.particle");
 	twirl->load();
 }
 

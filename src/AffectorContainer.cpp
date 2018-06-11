@@ -8,6 +8,7 @@
 
 #include <hltypes/harray.h>
 #include <hltypes/hstring.h>
+#include <hltypes/hlog.h>
 
 #include "AffectorContainer.h"
 #include "Affector.h"

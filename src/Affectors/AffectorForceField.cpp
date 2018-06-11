@@ -49,16 +49,21 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ForceField::_propertyDescriptions;
 
-		ForceField::ForceField(chstr name) : Space(name)
+		ForceField::ForceField(chstr name) : Space(name), _factor(0.0f), _squaredLength(0.0f)
 		{
 			this->type = "ForceField";
 			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
-		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) : Space(position, radius, name)
+		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) : Space(position, radius, name), _factor(0.0f), _squaredLength(0.0f)
 		{
 			this->type = "ForceField";
 			this->direction = direction;
+		}
+
+		ForceField::ForceField(const ForceField& other) : Space(other), _factor(0.0f), _squaredLength(0.0f)
+		{
+			this->direction = other.direction;
 		}
 
 		ForceField::~ForceField()
@@ -95,7 +100,7 @@ namespace aprilparticle
 
 		void ForceField::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
-			this->_squaredLength = (this->position + this->space->getPosition() - particle->position).squaredLength();
+			this->_squaredLength = (this->position + this->_space->getPosition() - particle->position).squaredLength();
 			if (this->_squaredLength <= this->radius * this->radius)
 			{
 				this->_factor = (this->radius - hsqrt(this->_squaredLength)) / this->radius;
@@ -107,17 +112,17 @@ namespace aprilparticle
 		void ForceField::draw()
 		{
 			float length = this->direction.length();
-			gvec3f uVector = this->position + this->space->getPosition() + ut * length;
-			gvec3f vVector = this->position + this->space->getPosition() + vt * length;
-			gvec3f wVector = this->position + this->space->getPosition() + wt * length;
+			gvec3f uVector = this->position + this->_space->getPosition() + ut * length;
+			gvec3f vVector = this->position + this->_space->getPosition() + vt * length;
+			gvec3f wVector = this->position + this->_space->getPosition() + wt * length;
 			for_iter (i, 0, VERTEX_COUNT)
 			{
 				u[i].set(uVector);
 				v[i].set(vVector);
 				w[i].set(wVector);
 			}
-			arrow[0].set(this->position + this->space->getPosition());
-			arrow[1].set(this->position + this->space->getPosition() + this->direction);
+			arrow[0].set(this->position + this->_space->getPosition());
+			arrow[1].set(this->position + this->_space->getPosition() + this->direction);
 			april::rendersys->render(april::RenderOperation::LineStrip, u, VERTEX_COUNT);
 			april::rendersys->render(april::RenderOperation::LineStrip, v, VERTEX_COUNT);
 			april::rendersys->render(april::RenderOperation::LineStrip, w, VERTEX_COUNT);

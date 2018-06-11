@@ -15,11 +15,12 @@
 
 namespace aprilparticle
 {
-	Texture::Texture(april::Texture* texture, chstr filename, bool cached)
+	Texture::Texture(april::Texture* texture, chstr filename, bool cached, bool cachedDefinition)
 	{
 		this->texture = texture;
 		this->filename = filename;
 		this->cached = cached;
+		this->cachedDefinition = cached;
 	}
 
 	Texture::~Texture()

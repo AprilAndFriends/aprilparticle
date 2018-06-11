@@ -30,6 +30,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport ScalerTimed : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(ScalerTimed);
 		public:
 			ScalerTimed(chstr name = "");
 			ScalerTimed(const hmap<float, float>& timings, chstr name = "");
@@ -53,13 +54,13 @@ namespace aprilparticle
 		protected:
 			harray<float> times;
 			harray<float> values;
+			int size;
 
 		private:
 			static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
 			float _ratio;
 			int _i;
-			int _size;
 
 		};
 

@@ -25,16 +25,22 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ResizerTimed::_propertyDescriptions;
 
-		ResizerTimed::ResizerTimed(chstr name) : Affector(name)
+		ResizerTimed::ResizerTimed(chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
 		{
 			this->type = "Resizer";
 			TIMED_TEMPLATE_INIT(gvec2f(1.0f, 1.0f), gvec2f(0.0f, 0.0f));
 		}
 		
-		ResizerTimed::ResizerTimed(const hmap<float, gvec2f>& timings, chstr name) : Affector(name)
+		ResizerTimed::ResizerTimed(const hmap<float, gvec2f>& timings, chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
 		{
 			this->type = "Resizer";
 			this->setTimings(timings);
+		}
+
+		ResizerTimed::ResizerTimed(const ResizerTimed& other) : Affector(other), size(0), _ratio(0.0f), _i(0)
+		{
+			this->times = other.times;
+			this->values = other.values;
 		}
 
 		ResizerTimed::~ResizerTimed()

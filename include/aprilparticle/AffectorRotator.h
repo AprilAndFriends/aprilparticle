@@ -25,6 +25,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Rotator : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(Rotator);
 		public:
 			Rotator(chstr name = "");
 			Rotator(float rotationSpeed, chstr name = "");

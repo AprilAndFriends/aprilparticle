@@ -24,7 +24,7 @@ namespace aprilparticle
 {
 	hstr logTag = "aprilparticle";
 
-	static hversion version(2, 3, 0);
+	static hversion version(3, 0, 0);
 
 	static bool useCache = true;
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
@@ -110,12 +110,12 @@ namespace aprilparticle
 		}
 		else
 		{
-			cached |= useCache;
-			april::Texture* aprilTexture = april::rendersys->createTextureFromResource(filename, april::Texture::Type::Immutable, cached ? april::Texture::LoadMode::Async : april::Texture::LoadMode::OnDemand);
+			bool cachedTexture = (cached || useCache);
+			april::Texture* aprilTexture = april::rendersys->createTextureFromResource(filename, april::Texture::Type::Immutable, cachedTexture ? april::Texture::LoadMode::Async : april::Texture::LoadMode::OnDemand);
 			if (aprilTexture != NULL)
 			{
-				texture = new aprilparticle::Texture(aprilTexture, filename, cached);
-				if (cached)
+				texture = new aprilparticle::Texture(aprilTexture, filename, cachedTexture, cached);
+				if (cachedTexture)
 				{
 					gTextureCache[filename] = texture;
 				}

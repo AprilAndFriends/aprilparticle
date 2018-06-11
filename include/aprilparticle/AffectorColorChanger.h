@@ -29,6 +29,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport ColorChanger : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(ColorChanger);
 		public:
 			ColorChanger(chstr name = "");
 			ColorChanger(const april::Color& endColor, chstr name = "");

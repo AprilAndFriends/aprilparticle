@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Scaler : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(Scaler);
 		public:
 			Scaler(chstr name = "");
 			Scaler(float startScale, float endScale, chstr name = "");

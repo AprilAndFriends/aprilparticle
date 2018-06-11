@@ -18,7 +18,7 @@
 	this->values += first; \
 	this->times += 1.0f; \
 	this->values += last; \
-	this->_size = 1;
+	this->size = 1;
 
 #define TIMED_TEMPLATE_SET_TIMINGS \
 	this->values.clear(); \
@@ -27,7 +27,7 @@
 	{ \
 		this->values += value.at(*it); \
 	} \
-	this->_size = this->times.size() - 1;
+	this->size = this->times.size();
 
 #define TIMED_TEMPLATE_SET_TIMINGS_STRING(type, constructor) \
 	harray<hstr> entries = value.split(aprilparticle::SeparatorValue); \
@@ -49,6 +49,7 @@
 	{ \
 		this->times.clear(); \
 		this->values.clear(); \
+		this->size = 0; \
 		hlog::warn(logTag, "Incorrect usage of 'timings' for Affector!"); \
 	}
 
@@ -71,7 +72,7 @@
 	} \
 	this->times.insertAt(this->_i, time); \
 	this->values.insertAt(this->_i, value); \
-	++this->_size;
+	++this->size;
 
 #define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \
 	hmap<hstr, PropertyDescription>& classe::getPropertyDescriptions() const \
@@ -85,7 +86,7 @@
 	}
 
 #define TIMED_TEMPLATE_UPDATE(particle, var) \
-	if (this->times.size() == 0) \
+	if (this->size == 0) \
 	{ \
 		return; \
 	} \
@@ -96,14 +97,14 @@
 	} \
 	else \
 	{ \
-		for_iterx (this->_i, 0, this->_size) \
+		for_iterx (this->_i, 0, this->size) \
 		{ \
 			if (hbetweenEI(this->_ratio, this->times[this->_i], this->times[this->_i + 1])) \
 			{ \
 				break; \
 			} \
 		} \
-		if (this->_i < this->_size) \
+		if (this->_i < this->size) \
 		{ \
 			this->_ratio = (this->times[this->_i + 1] - this->_ratio) / (this->times[this->_i + 1] - this->times[this->_i]); \
 			particle->var = this->values[this->_i] * this->_ratio + this->values[this->_i + 1] * (1.0f - this->_ratio); \

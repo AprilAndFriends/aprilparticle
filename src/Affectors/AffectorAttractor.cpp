@@ -20,18 +20,24 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Attractor::_propertyDescriptions;
 
-		Attractor::Attractor(chstr name) : Space(name)
+		Attractor::Attractor(chstr name) : Space(name), _factor(0.0f), _squaredLength(0.0f)
 		{
 			this->type = "Attractor";
 			this->force = 1.0f;
 			this->exponent = 2.0f;
 		}
 		
-		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) : Space(position, radius, name)
+		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) : Space(position, radius, name), _factor(0.0f), _squaredLength(0.0f)
 		{
 			this->type = "Attractor";
 			this->force = force;
 			this->exponent = exponent;
+		}
+
+		Attractor::Attractor(const Attractor& other) : Space(other), _factor(0.0f), _squaredLength(0.0f)
+		{
+			this->force = other.force;
+			this->exponent = other.exponent;
 		}
 
 		Attractor::~Attractor()
@@ -71,7 +77,7 @@ namespace aprilparticle
 
 		void Attractor::update(Particle* particle, float timeDelta, gvec3f& movement)
 		{
-			this->_direction = this->position + this->space->getPosition() - particle->position;
+			this->_direction = this->position + this->_space->getPosition() - particle->position;
 			this->_squaredLength = this->_direction.squaredLength();
 			if (hbetweenEI(this->_squaredLength, 0.02f, this->radius * this->radius))
 			{

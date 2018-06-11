@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Attractor : public Space
 		{
+			APRILPARTICLE_CLONEABLE(Attractor);
 		public:
 			Attractor(chstr name = "");
 			Attractor(cgvec3f position, float radius, float force, float exponent, chstr name = "");

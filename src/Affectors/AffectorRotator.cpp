@@ -31,6 +31,11 @@ namespace aprilparticle
 			this->rotationSpeed = rotationSpeed;
 		}
 
+		Rotator::Rotator(const Rotator& other) : Affector(other)
+		{
+			this->rotationSpeed = other.rotationSpeed;
+		}
+
 		Rotator::~Rotator()
 		{
 		}

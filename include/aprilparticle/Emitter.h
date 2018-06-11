@@ -150,15 +150,15 @@ namespace aprilparticle
 		float minAngle;
 		float maxAngle;
 		april::Texture* texture;
-		Space* space;
 		harray<Particle*> particles;
 
 		void _createNewParticle(float timeDelta);
-		inline void _setSpace(Space* value) { this->space = value; }
+		inline void _setSpace(Space* value) { this->_space = value; }
 
 	private:
 		static hmap<hstr, PropertyDescription> _propertyDescriptions;
 
+		Space* _space;
 		april::ColoredTexturedVertex* _triangleBatch;
 		gvec3f _pos;
 		float _rho;

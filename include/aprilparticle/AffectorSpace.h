@@ -28,6 +28,7 @@ namespace aprilparticle
 	{
 		class aprilparticleExport Space : public Affector
 		{
+			APRILPARTICLE_CLONEABLE(Space);
 		public:
 			Space(chstr name = "");
 			Space(cgvec3f position, float space, chstr name = "");

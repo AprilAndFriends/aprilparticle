@@ -24,6 +24,12 @@ namespace aprilparticle
 			this->type = "Callback";
 			this->affectionCallback = function;
 		}
+
+		CallbackAffector::CallbackAffector(const CallbackAffector& other) : Affector(other)
+		{
+			this->properties = other.properties;
+			this->affectionCallback = other.affectionCallback;
+		}
 		
 		CallbackAffector::~CallbackAffector()
 		{

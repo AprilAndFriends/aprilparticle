@@ -33,6 +33,12 @@ namespace aprilparticle
 			this->radius = radius;
 		}
 
+		Space::Space(const Space& other) : Affector(other)
+		{
+			this->position = other.position;
+			this->radius = other.radius;
+		}
+
 		Space::~Space()
 		{
 		}
