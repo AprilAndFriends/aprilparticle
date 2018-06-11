@@ -6,8 +6,8 @@ apply from: "../../../../hltypes/android-studio/generic/cpp.gradle"
 android {
 	defaultConfig {
 		applicationId "com.aprilparticle.demoAprilui"
-		versionCode 2300
-		versionName "2.3.0"
+		versionCode 3000
+		versionName "3.0.0"
 	}
 	externalNativeBuild {
 		cmake {
