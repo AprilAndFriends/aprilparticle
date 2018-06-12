@@ -27,7 +27,7 @@
 	{ \
 		this->values += value.at(*it); \
 	} \
-	this->size = this->times.size();
+	this->size = this->times.size() - 1;
 
 #define TIMED_TEMPLATE_SET_TIMINGS_STRING(type, constructor) \
 	harray<hstr> entries = value.split(aprilparticle::SeparatorValue); \
