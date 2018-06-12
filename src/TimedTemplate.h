@@ -72,7 +72,7 @@
 	} \
 	this->times.insertAt(this->_i, time); \
 	this->values.insertAt(this->_i, value); \
-	++this->size;
+	this->size = this->times.size() - 1;
 
 #define TIMED_TEMPLATE_PROPERTY_DESCRIPTIONS(classe, superclasse, type) \
 	hmap<hstr, PropertyDescription>& classe::getPropertyDescriptions() const \
