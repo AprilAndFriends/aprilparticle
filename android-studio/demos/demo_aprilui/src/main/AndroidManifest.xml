@@ -3,7 +3,7 @@
 		package="com.aprilparticle.demoAprilui">
 		
 	<application android:label="Demo April UI"
-			android:icon="@drawable/icon"
+			android:icon="@mipmap/icon"
 			android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 		<activity android:name=".Main"
 				android:label="Demo April UI"
