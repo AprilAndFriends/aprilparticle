@@ -31,14 +31,16 @@ namespace apriluiparticle
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Space::_getters;
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Space::_setters;
 
-	Space::Space(chstr name) : aprilui::Object(name)
+	Space::Space(chstr name) :
+		aprilui::Object(name)
 	{
 		this->systemObject = NULL;
 		this->space = NULL;
 		this->debugColor.set(april::Color::LightMagenta, 32);
 	}
 	
-	Space::Space(const Space& other) : aprilui::Object(other)
+	Space::Space(const Space& other) :
+		aprilui::Object(other)
 	{
 		this->systemObject = NULL;
 		this->space = NULL;

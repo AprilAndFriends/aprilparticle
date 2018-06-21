@@ -19,21 +19,24 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Space::_propertyDescriptions;
 
-		Space::Space(chstr name) : Affector(name)
+		Space::Space(chstr name) :
+			Affector(name)
 		{
 			this->type = "Space";
 			this->position.set(0.0f, 0.0f, 0.0f);
 			this->radius = 10.0f;
 		}
 		
-		Space::Space(cgvec3f position, float radius, chstr name) : Affector(name)
+		Space::Space(cgvec3f position, float radius, chstr name) :
+			Affector(name)
 		{
 			this->type = "Space";
 			this->position = position;
 			this->radius = radius;
 		}
 
-		Space::Space(const Space& other) : Affector(other)
+		Space::Space(const Space& other) :
+			Affector(other)
 		{
 			this->position = other.position;
 			this->radius = other.radius;

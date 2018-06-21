@@ -29,7 +29,8 @@ namespace apriluiparticle
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Emitter::_getters;
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Emitter::_setters;
 
-	Emitter::Emitter(chstr name) : aprilui::Object(name)
+	Emitter::Emitter(chstr name) :
+		aprilui::Object(name)
 	{
 		this->spaceObject = NULL;
 		this->emitter = NULL;
@@ -37,7 +38,8 @@ namespace apriluiparticle
 		this->debugColor.set(april::Color::LightNeon, 32);
 	}
 	
-	Emitter::Emitter(const Emitter& other) : aprilui::Object(other)
+	Emitter::Emitter(const Emitter& other) :
+		aprilui::Object(other)
 	{
 		this->spaceObject = NULL;
 		this->emitter = NULL;

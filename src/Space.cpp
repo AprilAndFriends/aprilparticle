@@ -24,7 +24,10 @@ namespace aprilparticle
 {
 	hmap<hstr, PropertyDescription> Space::_propertyDescriptions;
 
-	Space::Space(chstr name) : SpaceObject(name == "" ? april::generateName("Space") : name), AffectorContainer(), _particle(NULL)
+	Space::Space(chstr name) :
+		SpaceObject(name == "" ? april::generateName("Space") : name),
+		AffectorContainer(),
+		_particle(NULL)
 	{
 		if (name == "")
 		{
@@ -39,7 +42,10 @@ namespace aprilparticle
 		this->lastTimeFraction = 0.0f;
 	}
 
-	Space::Space(const Space& other) : SpaceObject(other), AffectorContainer(other), _particle(NULL)
+	Space::Space(const Space& other) :
+		SpaceObject(other),
+		AffectorContainer(other),
+		_particle(NULL)
 	{
 		this->preUpdate = other.preUpdate;
 		this->fixedTimeStep = other.fixedTimeStep;

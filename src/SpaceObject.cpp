@@ -20,7 +20,8 @@ namespace aprilparticle
 {
 	hmap<hstr, PropertyDescription> SpaceObject::_propertyDescriptions;
 
-	SpaceObject::SpaceObject(chstr name) : ActiveObject(name == "" ? april::generateName("SpaceObject") : name)
+	SpaceObject::SpaceObject(chstr name) :
+		ActiveObject(name == "" ? april::generateName("SpaceObject") : name)
 	{
 		if (name == "")
 		{
@@ -29,7 +30,8 @@ namespace aprilparticle
 		this->position.set(0.0f, 0.0f, 0.0f);
 	}
 	
-	SpaceObject::SpaceObject(const SpaceObject& other) : ActiveObject(other)
+	SpaceObject::SpaceObject(const SpaceObject& other) :
+		ActiveObject(other)
 	{
 		this->position = other.position;
 	}

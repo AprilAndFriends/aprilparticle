@@ -15,21 +15,27 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Scaler::_propertyDescriptions;
 
-		Scaler::Scaler(chstr name) : Affector(name), _ratio(0.0f)
+		Scaler::Scaler(chstr name) :
+			Affector(name),
+			_ratio(0.0f)
 		{
 			this->type = "Scaler";
 			this->startScale = 1.0f;
 			this->endScale = 0.0f;
 		}
 
-		Scaler::Scaler(float startScale, float endScale, chstr name) : Affector(name), _ratio(0.0f)
+		Scaler::Scaler(float startScale, float endScale, chstr name) :
+			Affector(name),
+			_ratio(0.0f)
 		{
 			this->type = "Scaler";
 			this->startScale = startScale;
 			this->endScale = endScale;
 		}
 
-		Scaler::Scaler(const Scaler& other) : Affector(other), _ratio(0.0f)
+		Scaler::Scaler(const Scaler& other) :
+			Affector(other),
+			_ratio(0.0f)
 		{
 			this->startScale = other.startScale;
 			this->endScale = other.endScale;

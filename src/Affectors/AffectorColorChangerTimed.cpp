@@ -23,19 +23,31 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ColorChangerTimed::_propertyDescriptions;
 
-		ColorChangerTimed::ColorChangerTimed(chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
+		ColorChangerTimed::ColorChangerTimed(chstr name) :
+			Affector(name),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->type = "ColorChanger";
 			TIMED_TEMPLATE_INIT(april::Color::White, april::Color::Blank);
 		}
 		
-		ColorChangerTimed::ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
+		ColorChangerTimed::ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name) :
+			Affector(name),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->type = "ColorChanger";
 			this->setTimings(timings);
 		}
 
-		ColorChangerTimed::ColorChangerTimed(const ColorChangerTimed& other) : Affector(other), size(0), _ratio(0.0f), _i(0)
+		ColorChangerTimed::ColorChangerTimed(const ColorChangerTimed& other) :
+			Affector(other),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->times = other.times;
 			this->values = other.values;

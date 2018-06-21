@@ -19,19 +19,22 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Rotator::_propertyDescriptions;
 
-		Rotator::Rotator(chstr name) : Affector(name)
+		Rotator::Rotator(chstr name) :
+			Affector(name)
 		{
 			this->type = "Rotator";
 			this->rotationSpeed = 1.0f;
 		}
 
-		Rotator::Rotator(float rotationSpeed, chstr name) : Affector(name)
+		Rotator::Rotator(float rotationSpeed, chstr name) :
+			Affector(name)
 		{
 			this->type = "Rotator";
 			this->rotationSpeed = rotationSpeed;
 		}
 
-		Rotator::Rotator(const Rotator& other) : Affector(other)
+		Rotator::Rotator(const Rotator& other) :
+			Affector(other)
 		{
 			this->rotationSpeed = other.rotationSpeed;
 		}

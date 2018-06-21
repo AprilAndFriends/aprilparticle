@@ -49,19 +49,28 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ForceField::_propertyDescriptions;
 
-		ForceField::ForceField(chstr name) : Space(name), _factor(0.0f), _squaredLength(0.0f)
+		ForceField::ForceField(chstr name) :
+			Space(name),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->type = "ForceField";
 			this->direction.set(0.0f, 0.0f, 1.0f);
 		}
 		
-		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) : Space(position, radius, name), _factor(0.0f), _squaredLength(0.0f)
+		ForceField::ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name) :
+			Space(position, radius, name),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->type = "ForceField";
 			this->direction = direction;
 		}
 
-		ForceField::ForceField(const ForceField& other) : Space(other), _factor(0.0f), _squaredLength(0.0f)
+		ForceField::ForceField(const ForceField& other) :
+			Space(other),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->direction = other.direction;
 		}

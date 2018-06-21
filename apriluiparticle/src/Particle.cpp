@@ -18,12 +18,14 @@
 
 namespace apriluiparticle
 {
-	Particle::Particle(chstr name) : Base(name)
+	Particle::Particle(chstr name) :
+		Base(name)
 	{
 		this->debugColor.set(april::Color::LightPurple, 32);
 	}
 
-	Particle::Particle(const Particle& other) : Base(other)
+	Particle::Particle(const Particle& other) :
+		Base(other)
 	{
 	}
 

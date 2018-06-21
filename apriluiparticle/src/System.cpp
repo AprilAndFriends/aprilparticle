@@ -19,11 +19,13 @@
 
 namespace apriluiparticle
 {
-	System::System(chstr name) : Base(name)
+	System::System(chstr name) :
+		Base(name)
 	{
 	}
 	
-	System::System(const System& other) : Base(other)
+	System::System(const System& other) :
+		Base(other)
 	{
 	}
 

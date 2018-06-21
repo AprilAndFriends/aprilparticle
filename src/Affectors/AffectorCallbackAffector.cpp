@@ -13,19 +13,22 @@ namespace aprilparticle
 {
 	namespace Affectors
 	{
-		CallbackAffector::CallbackAffector(chstr name) : Affector(name)
+		CallbackAffector::CallbackAffector(chstr name) :
+			Affector(name)
 		{
 			this->type = "Callback";
 			this->affectionCallback = NULL;
 		}
 		
-		CallbackAffector::CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name) : Affector(name)
+		CallbackAffector::CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name) :
+			Affector(name)
 		{
 			this->type = "Callback";
 			this->affectionCallback = function;
 		}
 
-		CallbackAffector::CallbackAffector(const CallbackAffector& other) : Affector(other)
+		CallbackAffector::CallbackAffector(const CallbackAffector& other) :
+			Affector(other)
 		{
 			this->properties = other.properties;
 			this->affectionCallback = other.affectionCallback;

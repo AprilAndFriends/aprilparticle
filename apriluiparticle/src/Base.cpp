@@ -31,14 +31,16 @@ namespace apriluiparticle
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Base::_getters;
 	hmap<hstr, aprilui::PropertyDescription::Accessor*> Base::_setters;
 
-	Base::Base(chstr name) : aprilui::Object(name)
+	Base::Base(chstr name) :
+		aprilui::Object(name)
 	{
 		this->loaded = false;
 		this->system = NULL;
 		this->alwaysEnabled = false;
 	}
 	
-	Base::Base(const Base& other) : aprilui::Object(other)
+	Base::Base(const Base& other) :
+		aprilui::Object(other)
 	{
 		this->filename = other.filename;
 		this->filepath = other.filepath;

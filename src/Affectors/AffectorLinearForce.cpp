@@ -18,19 +18,22 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> LinearForce::_propertyDescriptions;
 
-		LinearForce::LinearForce(chstr name) : Affector(name)
+		LinearForce::LinearForce(chstr name) :
+			Affector(name)
 		{
 			this->type = "LinearForce";
 			this->direction.set(0.0f, -1.0f, 0.0f);
 		}
 
-		LinearForce::LinearForce(cgvec3f direction, chstr name) : Affector(name)
+		LinearForce::LinearForce(cgvec3f direction, chstr name) :
+			Affector(name)
 		{
 			this->type = "LinearForce";
 			this->direction = direction;
 		}
 
-		LinearForce::LinearForce(const LinearForce& other) : Affector(other)
+		LinearForce::LinearForce(const LinearForce& other) :
+			Affector(other)
 		{
 			this->direction = other.direction;
 		}

@@ -46,9 +46,26 @@ namespace aprilparticle
 
 	hmap<hstr, PropertyDescription> Emitter::_propertyDescriptions;
 
-	Emitter::Emitter(chstr name) : SpaceObject(name == "" ? april::generateName("Emitter") : name),
-		_rho(0.0f), _phi(0.0f), _theta(0.0f), _angle(0.0f), _emissionTime(0.0f), _quota(0), _fullQuota(0), _expired(false), _xSize(1.0f), _ySize(1.0f),
-		_i(0), _w(1.0f), _h(1.0f), _color(0xFFFFFFFF), _pStart(0), _pEnd(0), _pStep(0), _pI(0)
+	Emitter::Emitter(chstr name) :
+		SpaceObject(name == "" ? april::generateName("Emitter") : name),
+		_rho(0.0f),
+		_phi(0.0f),
+		_theta(0.0f),
+		_angle(0.0f),
+		_emissionTime(0.0f),
+		_quota(0),
+		_fullQuota(0),
+		_expired(false),
+		_xSize(1.0f),
+		_ySize(1.0f),
+		_i(0),
+		_w(1.0f),
+		_h(1.0f),
+		_color(0xFFFFFFFF),
+		_pStart(0),
+		_pEnd(0),
+		_pStep(0),
+		_pI(0)
 	{
 		if (name == "")
 		{
@@ -89,9 +106,26 @@ namespace aprilparticle
 		this->_setupTriangleBatch();
 	}
 
-	Emitter::Emitter(const Emitter& other) : SpaceObject(other),
-		_rho(0.0f), _phi(0.0f), _theta(0.0f), _angle(0.0f), _emissionTime(0.0f), _quota(0), _fullQuota(0), _expired(false), _xSize(1.0f), _ySize(1.0f),
-		_i(0), _w(1.0f), _h(1.0f), _color(0xFFFFFFFF), _pStart(0), _pEnd(0), _pStep(0), _pI(0)
+	Emitter::Emitter(const Emitter& other) :
+		SpaceObject(other),
+		_rho(0.0f),
+		_phi(0.0f),
+		_theta(0.0f),
+		_angle(0.0f),
+		_emissionTime(0.0f),
+		_quota(0),
+		_fullQuota(0),
+		_expired(false),
+		_xSize(1.0f),
+		_ySize(1.0f),
+		_i(0),
+		_w(1.0f),
+		_h(1.0f),
+		_color(0xFFFFFFFF),
+		_pStart(0),
+		_pEnd(0),
+		_pStep(0),
+		_pI(0)
 	{
 		this->emissionTimer = other.emissionTimer;
 		this->loopTimer = other.loopTimer;

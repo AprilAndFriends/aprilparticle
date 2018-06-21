@@ -34,7 +34,9 @@ namespace aprilparticle
 {
 	hmap<hstr, PropertyDescription> System::_propertyDescriptions;
 
-	System::System(chstr filename, chstr name) : ActiveObject(name == "" ? april::generateName("System") : name), AffectorContainer()
+	System::System(chstr filename, chstr name) :
+		ActiveObject(name == "" ? april::generateName("System") : name),
+		AffectorContainer()
 	{
 		if (name == "")
 		{
@@ -44,7 +46,9 @@ namespace aprilparticle
 		this->loaded = false;
 	}
 	
-	System::System(const System& other) : ActiveObject(other), AffectorContainer(other)
+	System::System(const System& other) :
+		ActiveObject(other),
+		AffectorContainer(other)
 	{
 		this->filename = other.filename;
 		this->loaded = other.loaded;

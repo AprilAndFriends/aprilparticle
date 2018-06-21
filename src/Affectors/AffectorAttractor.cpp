@@ -20,21 +20,30 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Attractor::_propertyDescriptions;
 
-		Attractor::Attractor(chstr name) : Space(name), _factor(0.0f), _squaredLength(0.0f)
+		Attractor::Attractor(chstr name) :
+			Space(name),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->type = "Attractor";
 			this->force = 1.0f;
 			this->exponent = 2.0f;
 		}
 		
-		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) : Space(position, radius, name), _factor(0.0f), _squaredLength(0.0f)
+		Attractor::Attractor(cgvec3f position, float radius, float force, float exponent, chstr name) :
+			Space(position, radius, name),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->type = "Attractor";
 			this->force = force;
 			this->exponent = exponent;
 		}
 
-		Attractor::Attractor(const Attractor& other) : Space(other), _factor(0.0f), _squaredLength(0.0f)
+		Attractor::Attractor(const Attractor& other) :
+			Space(other),
+			_factor(0.0f),
+			_squaredLength(0.0f)
 		{
 			this->force = other.force;
 			this->exponent = other.exponent;

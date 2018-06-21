@@ -17,21 +17,27 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> Resizer::_propertyDescriptions;
 
-		Resizer::Resizer(chstr name) : Affector(name), _ratio(0.0f)
+		Resizer::Resizer(chstr name) :
+			Affector(name),
+			_ratio(0.0f)
 		{
 			this->type = "Resizer";
 			this->startSize.set(1.0f, 1.0f);
 			this->endSize.set(0.0f, 0.0f);
 		}
 
-		Resizer::Resizer(cgvec2f startSize, cgvec2f endSize, chstr name) : Affector(name), _ratio(0.0f)
+		Resizer::Resizer(cgvec2f startSize, cgvec2f endSize, chstr name) :
+			Affector(name),
+			_ratio(0.0f)
 		{
 			this->type = "Resizer";
 			this->startSize = startSize;
 			this->endSize = endSize;
 		}
 
-		Resizer::Resizer(const Resizer& other) : Affector(other), _ratio(0.0f)
+		Resizer::Resizer(const Resizer& other) :
+			Affector(other),
+			_ratio(0.0f)
 		{
 			this->startSize = other.startSize;
 			this->endSize = other.endSize;

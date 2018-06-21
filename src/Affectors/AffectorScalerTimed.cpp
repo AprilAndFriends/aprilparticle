@@ -22,19 +22,31 @@ namespace aprilparticle
 	{
 		hmap<hstr, PropertyDescription> ScalerTimed::_propertyDescriptions;
 
-		ScalerTimed::ScalerTimed(chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
+		ScalerTimed::ScalerTimed(chstr name) :
+			Affector(name),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->type = "Scaler";
 			TIMED_TEMPLATE_INIT(1.0f, 0.0f);
 		}
 		
-		ScalerTimed::ScalerTimed(const hmap<float, float>& timings, chstr name) : Affector(name), size(0), _ratio(0.0f), _i(0)
+		ScalerTimed::ScalerTimed(const hmap<float, float>& timings, chstr name) :
+			Affector(name),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->type = "Scaler";
 			this->setTimings(timings);
 		}
 
-		ScalerTimed::ScalerTimed(const ScalerTimed& other) : Affector(other), size(0), _ratio(0.0f), _i(0)
+		ScalerTimed::ScalerTimed(const ScalerTimed& other) :
+			Affector(other),
+			size(0),
+			_ratio(0.0f),
+			_i(0)
 		{
 			this->times = other.times;
 			this->values = other.values;
