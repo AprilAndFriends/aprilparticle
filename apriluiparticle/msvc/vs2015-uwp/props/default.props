@@ -5,7 +5,6 @@
       <PreprocessorDefinitions>APRILUIPARTICLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../include/apriluiparticle;../../../../hltypes/include;../../../../gtypes/include;../../../../april/include;../../../../aprilui/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
 </Project>
