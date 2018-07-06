@@ -19,9 +19,6 @@ include_directories(AFTER "../../../april/include")
 include_directories(AFTER "../../../hltypes/hlxml/include")
 include_directories(AFTER "../../../gtypes/include")
 include_directories(AFTER "../../../hltypes/include")
-include_directories(AFTER "../../lib/jpeg")
-include_directories(AFTER "../../lib/png")
-include_directories(AFTER "../../../hltypes/lib/zlib")
 
 add_definitions(
 	-DAPRILPARTICLE_EXPORTS
