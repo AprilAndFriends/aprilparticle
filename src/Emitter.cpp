@@ -504,19 +504,19 @@ namespace aprilparticle
 		if (this->_space != NULL)
 		{
 			this->_pos += this->_space->getPosition();
-		}
-		this->_space->_particle = new Particle();
-		this->_space->_particle->life = RAND_RANGE(Life);
-		this->_space->_particle->position = this->_pos;
-		this->_space->_particle->direction = RAND_RANGE(Direction);
-		this->_space->_particle->size = RAND_RANGE(Size);
-		this->_space->_particle->scale = RAND_RANGE(Scale);
-		this->_space->_particle->angle = RAND_RANGE(Angle);
-		this->particles += this->_space->_particle;
-		gvec3f direction = this->_space->_addNewParticle(timeDelta);
-		if (this->angleAligned && direction != gvec3f())
-		{
-			this->_space->_particle->angle += gvec2f(direction.x, direction.y).angle();
+			this->_space->_particle = new Particle();
+			this->_space->_particle->life = RAND_RANGE(Life);
+			this->_space->_particle->position = this->_pos;
+			this->_space->_particle->direction = RAND_RANGE(Direction);
+			this->_space->_particle->size = RAND_RANGE(Size);
+			this->_space->_particle->scale = RAND_RANGE(Scale);
+			this->_space->_particle->angle = RAND_RANGE(Angle);
+			this->particles += this->_space->_particle;
+			gvec3f direction = this->_space->_addNewParticle(timeDelta);
+			if (this->angleAligned && direction != gvec3f())
+			{
+				this->_space->_particle->angle += gvec2f(direction.x, direction.y).angle();
+			}
 		}
 	}
 
