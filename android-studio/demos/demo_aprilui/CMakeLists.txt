@@ -42,10 +42,5 @@ target_link_libraries(
 	gtypes
 	jpeg
 	png
-	${liblog}
-	${libz}
-	${libc}
-	${libdl}
-	${libandroid}
-	${libGLESv2}
+	${SYSTEM_LIBS}
 )
