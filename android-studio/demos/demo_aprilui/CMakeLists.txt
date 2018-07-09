@@ -12,7 +12,6 @@ file(
 
 add_library(demo_aprilui SHARED ${CppSrc})
 
-include_directories(AFTER "../../../include")
 include_directories(AFTER "../../../apriluiparticle/include")
 include_directories(AFTER "../../../../aprilui/include")
 include_directories(AFTER "../../../../atres/include")

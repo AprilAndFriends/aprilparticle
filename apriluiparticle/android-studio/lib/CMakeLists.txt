@@ -14,8 +14,6 @@ file(
 add_library(apriluiparticle STATIC ${CppSrc})
 
 include_directories(AFTER "../../include/apriluiparticle")
-include_directories(AFTER "../../src")
-include_directories(AFTER "../../../include")
 include_directories(AFTER "../../../../aprilui/include")
 include_directories(AFTER "../../../../atres/include")
 include_directories(AFTER "../../../../april/include")

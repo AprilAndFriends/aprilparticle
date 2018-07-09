@@ -14,7 +14,6 @@ file(
 add_library(aprilparticle STATIC ${CppSrc})
 
 include_directories(AFTER "../../include/aprilparticle")
-include_directories(AFTER "../../src")
 include_directories(AFTER "../../../april/include")
 include_directories(AFTER "../../../hltypes/hlxml/include")
 include_directories(AFTER "../../../gtypes/include")
