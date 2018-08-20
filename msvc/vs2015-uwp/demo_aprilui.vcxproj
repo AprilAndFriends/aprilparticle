@@ -184,6 +184,7 @@
     <Image Include="media\bubble.png" />
     <Image Include="media\fire_particle.png" />
     <Image Include="media\green_particle.png" />
+    <Image Include="media\logo.png" />
     <Image Include="media\rain_drop.png" />
     <Image Include="media\red_particle.png" />
     <Image Include="media\white_particle.png" />
@@ -209,6 +210,9 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="media\gui_segmented.particle">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="media\gui_warp.particle">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="media\milkyWay.particle">
