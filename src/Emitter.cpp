@@ -89,6 +89,7 @@ namespace aprilparticle
 		this->alive = 0;
 		this->limit = 10;
 		this->angleAligned = false;
+		this->directionAligned = false;
 		this->reverseRendering = false;
 		this->minLife = 1.0f;
 		this->maxLife = 1.0f;
@@ -145,6 +146,7 @@ namespace aprilparticle
 		this->alive = other.alive;
 		this->limit = other.limit;
 		this->angleAligned = other.angleAligned;
+		this->directionAligned = other.directionAligned;
 		this->reverseRendering = other.reverseRendering;
 		this->minLife = other.minLife;
 		this->maxLife = other.maxLife;
@@ -364,6 +366,7 @@ namespace aprilparticle
 		if (name == "loops")				return this->getLoops();
 		if (name == "limit")				return this->getLimit();
 		if (name == "angle_aligned")		return this->isAngleAligned();
+		if (name == "direction_aligned")	return this->isDirectionAligned();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
 		if (name == "direction")			return GET_RANGE(Direction, april::gvec3fToHstr);
@@ -411,6 +414,7 @@ namespace aprilparticle
 		else if	(name == "emission_rate")		this->setEmissionRate(value);
 		else if	(name == "limit")				this->setLimit(value);
 		else if (name == "angle_aligned")		this->setAngleAligned(value);
+		else if (name == "direction_aligned")	this->setDirectionAligned(value);
 		else if	(name == "duration")			this->setDuration(value);
 		else if	(name == "delay")				this->setDelay(value);
 		else if	(name == "loop_delay")			this->setLoopDelay(value);
@@ -511,6 +515,7 @@ namespace aprilparticle
 			this->_space->_particle->size = RAND_RANGE(Size);
 			this->_space->_particle->scale = RAND_RANGE(Scale);
 			this->_space->_particle->angle = RAND_RANGE(Angle);
+			this->_space->_particle->directionAligned = this->directionAligned;
 			this->particles += this->_space->_particle;
 			gvec3f direction = this->_space->_addNewParticle(timeDelta);
 			if (this->angleAligned && direction != gvec3f())

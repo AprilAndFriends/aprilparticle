@@ -74,6 +74,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(int, loops, Loops);
 		HL_DEFINE_GET(int, limit, Limit);
 		HL_DEFINE_ISSET(angleAligned, AngleAligned);
+		HL_DEFINE_ISSET(directionAligned, DirectionAligned);
 		void setLimit(int value);
 		HL_DEFINE_ISSET(reverseRendering, ReverseRendering);
 		HL_DEFINE_GETSET(float, minLife, MinLife);
@@ -138,6 +139,7 @@ namespace aprilparticle
 		int alive;
 		int limit;
 		bool angleAligned;
+		bool directionAligned;
 		bool reverseRendering;
 		float minLife;
 		float maxLife;

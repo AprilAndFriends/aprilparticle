@@ -231,7 +231,12 @@ namespace aprilparticle
 					(*it2)->_setSpace(this);
 					(*it2)->update((*it), timeDelta, this->_movement);
 				}
-				(*it)->position += this->_movement + (*it)->direction * timeDelta;
+				this->_movement += (*it)->direction * timeDelta;
+				(*it)->position += this->_movement;
+				if ((*it)->directionAligned && (this->_movement.x != 0.0f || this->_movement.y != 0.0f || this->_movement.z != 0.0f))
+				{
+					(*it)->angle = gvec2f(this->_movement.x, this->_movement.y).angle();
+				}
 				++this->alive;
 			}
 		}

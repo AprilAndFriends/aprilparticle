@@ -70,6 +70,7 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(gvec2f, size, Size);
 		HL_DEFINE_GETSET(float, scale, Scale);
 		HL_DEFINE_GETSET(float, angle, Angle);
+		HL_DEFINE_ISSET(directionAligned, DirectionAligned);
 		HL_DEFINE_GETSET(april::Color, color, Color);
 
 		float getLifeProgressRatio() const;
@@ -83,6 +84,7 @@ namespace aprilparticle
 		gvec2f size;
 		float scale;
 		float angle;
+		bool directionAligned;
 		april::Color color;
 
 	};
