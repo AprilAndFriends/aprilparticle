@@ -27,6 +27,7 @@ namespace aprilparticle
 	static hversion version(3, 0, 0);
 
 	static bool useCache = true;
+	static bool throwExceptionOnTextureFailure = true;
 	static hmap<hstr, Affector* (*)(chstr)> gAffectorFactories;
 	static hmap<hstr, aprilparticle::Texture*> gTextureCache;
 	static hmap<hstr, System*> gSystemCache;
@@ -72,9 +73,19 @@ namespace aprilparticle
 		return useCache;
 	}
 
-	void setUseCache(bool value)
+	void setUseCache(const bool& value)
 	{
 		useCache = value;
+	}
+
+	bool isThrowExceptionOnTextureFailure()
+	{
+		return throwExceptionOnTextureFailure;
+	}
+
+	void setThrowExceptionOnTextureFailure(const bool& value)
+	{
+		throwExceptionOnTextureFailure = value;
 	}
 
 	void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr))
@@ -119,6 +130,10 @@ namespace aprilparticle
 				{
 					gTextureCache[filename] = texture;
 				}
+			}
+			else if (throwExceptionOnTextureFailure)
+			{
+				throw FileCouldNotOpenException(filename);
 			}
 		}
 		return texture;

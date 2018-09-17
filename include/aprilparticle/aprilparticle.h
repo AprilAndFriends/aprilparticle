@@ -35,7 +35,9 @@ namespace aprilparticle
 	aprilparticleFnExport void init();
 	aprilparticleFnExport void destroy();
 	aprilparticleFnExport bool isUseCache();
-	aprilparticleFnExport void setUseCache(bool value);
+	aprilparticleFnExport void setUseCache(const bool& value);
+	aprilparticleFnExport bool isThrowExceptionOnTextureFailure();
+	aprilparticleFnExport void setThrowExceptionOnTextureFailure(const bool& value);
 	aprilparticleFnExport void registerAffectorFactory(chstr typeName, Affector* (*factory)(chstr));
 	aprilparticleFnExport Affector* createAffector(chstr type, chstr name = "");
 	aprilparticleFnExport aprilparticle::Texture* loadTexture(chstr filename, bool cached = false);
