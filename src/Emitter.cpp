@@ -178,7 +178,7 @@ namespace aprilparticle
 		{
 			Emitter::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
 			Emitter::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::Enum);
-			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(1.0f, 1.0f, 1.0f)));
+			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(1.0f, 1.0f, 1.0f)));
 			Emitter::_propertyDescriptions["blend_mode"] = PropertyDescription("blend_mode", PropertyDescription::Type::Enum, "alpha");
 			Emitter::_propertyDescriptions["color_mode"] = PropertyDescription("color_mode", PropertyDescription::Type::Enum, "multiply");
 			Emitter::_propertyDescriptions["color_mode_factor"] = PropertyDescription("color_mode_factor", PropertyDescription::Type::Float, 1.0f);
@@ -190,8 +190,8 @@ namespace aprilparticle
 			Emitter::_propertyDescriptions["limit"] = PropertyDescription("limit", PropertyDescription::Type::Int, 10);
 			Emitter::_propertyDescriptions["reverse_rendering"] = PropertyDescription("reverse_rendering", PropertyDescription::Type::Bool, "false");
 			Emitter::_propertyDescriptions["life"] = PropertyDescription("life", PropertyDescription::Type::RangeFloat, 1.0f);
-			Emitter::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::RangeGvec3f, april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 0.0f)));
-			Emitter::_propertyDescriptions["size"] = PropertyDescription("size", PropertyDescription::Type::RangeGvec2f, april::gvec2fToHstr(gvec2f(1.0f, 1.0f)));
+			Emitter::_propertyDescriptions["direction"] = PropertyDescription("direction", PropertyDescription::Type::RangeGvec3f, april::gvec3ToHstr<float>(gvec3f(0.0f, 0.0f, 0.0f)));
+			Emitter::_propertyDescriptions["size"] = PropertyDescription("size", PropertyDescription::Type::RangeGvec2f, april::gvec2ToHstr<float>(gvec2f(1.0f, 1.0f)));
 			Emitter::_propertyDescriptions["scale"] = PropertyDescription("scale", PropertyDescription::Type::RangeFloat, 1.0f);
 			Emitter::_propertyDescriptions["angle"] = PropertyDescription("angle", PropertyDescription::Type::RangeFloat, 0.0f);
 			Emitter::_propertyDescriptions["angle_aligned"] = PropertyDescription("angle_aligned", PropertyDescription::Type::Bool, "false");
@@ -265,13 +265,13 @@ namespace aprilparticle
 	void Emitter::setDirection(chstr value)
 	{
 		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
-		this->setDirectionRange(april::hstrToGvec3f(data.first()), april::hstrToGvec3f(data.last()));
+		this->setDirectionRange(april::hstrToGvec3<float>(data.first()), april::hstrToGvec3<float>(data.last()));
 	}
 
 	void Emitter::setSize(chstr value)
 	{
 		harray<hstr> data = value.split(aprilparticle::SeparatorRange);
-		this->setSizeRange(april::hstrToGvec2f(data.first()), april::hstrToGvec2f(data.last()));
+		this->setSizeRange(april::hstrToGvec2<float>(data.first()), april::hstrToGvec2<float>(data.last()));
 	}
 
 	void Emitter::setScale(chstr value)
@@ -338,7 +338,7 @@ namespace aprilparticle
 			TRY_GET_TYPE(value, Type::HollowCircle);
 			return "";
 		}
-		if (name == "dimensions")			return april::gvec3fToHstr(this->getDimensions());
+		if (name == "dimensions")			return april::gvec3ToHstr<float>(this->getDimensions());
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
@@ -369,8 +369,8 @@ namespace aprilparticle
 		if (name == "direction_aligned")	return this->isDirectionAligned();
 		if (name == "reverse_rendering")	return this->isReverseRendering();
 		if (name == "life")					return GET_RANGE(Life, hstr);
-		if (name == "direction")			return GET_RANGE(Direction, april::gvec3fToHstr);
-		if (name == "size")					return GET_RANGE(Size, april::gvec2fToHstr);
+		if (name == "direction")			return GET_RANGE(Direction, april::gvec3ToHstr<float>);
+		if (name == "size")					return GET_RANGE(Size, april::gvec2ToHstr<float>);
 		if (name == "scale")				return GET_RANGE(Scale, hstr);
 		if (name == "angle")				return GET_RANGE(Angle, hstr);
 		return SpaceObject::getProperty(name);
@@ -392,7 +392,7 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, Type::HollowCircle);
 			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
-		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3f(value));
+		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3<float>(value));
 		else if	(name == "blend_mode")
 		{
 			if (value == "alpha")				this->setBlendMode(april::BlendMode::Alpha);

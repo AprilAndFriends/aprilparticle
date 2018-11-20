@@ -75,7 +75,7 @@ namespace aprilparticle
 			Space::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
 			Space::_propertyDescriptions["pre_update"] = PropertyDescription("pre_update", PropertyDescription::Type::Float, 0.0f);
 			Space::_propertyDescriptions["fixed_time_step"] = PropertyDescription("fixed_time_step", PropertyDescription::Type::Float, 0.0f);
-			Space::_propertyDescriptions["up"] = PropertyDescription("up", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 1.0f, 0.0f)));
+			Space::_propertyDescriptions["up"] = PropertyDescription("up", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(0.0f, 1.0f, 0.0f)));
 		}
 		return Space::_propertyDescriptions;
 	}
@@ -145,7 +145,7 @@ namespace aprilparticle
 	{
 		if (name == "pre_update")		return this->getPreUpdate();
 		if (name == "fixed_time_step")	return this->getFixedTimeStep();
-		if (name == "up")				return april::gvec3fToHstr(this->getUp());
+		if (name == "up")				return april::gvec3ToHstr<float>(this->getUp());
 		return SpaceObject::getProperty(name);
 	}
 
@@ -153,7 +153,7 @@ namespace aprilparticle
 	{
 		if		(name == "pre_update")		this->setPreUpdate(value);
 		else if	(name == "fixed_time_step")	this->setFixedTimeStep(value);
-		else if	(name == "up")				this->setUp(april::hstrToGvec3f(value));
+		else if	(name == "up")				this->setUp(april::hstrToGvec3<float>(value));
 		else return SpaceObject::setProperty(name, value);
 		return true;
 	}

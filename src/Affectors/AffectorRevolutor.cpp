@@ -67,7 +67,7 @@ namespace aprilparticle
 			if (Revolutor::_propertyDescriptions.size() == 0)
 			{
 				Revolutor::_propertyDescriptions = Space::getPropertyDescriptions();
-				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 1.0f, 0.0f)));
+				Revolutor::_propertyDescriptions["axis"] = PropertyDescription("axis", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(0.0f, 1.0f, 0.0f)));
 				Revolutor::_propertyDescriptions["evolution_speed"] = PropertyDescription("evolution_speed", PropertyDescription::Type::Float, 1.0f);
 				Revolutor::_propertyDescriptions["clockwise"] = PropertyDescription("clockwise", PropertyDescription::Type::Bool, "true");
 			}
@@ -86,7 +86,7 @@ namespace aprilparticle
 
 		hstr Revolutor::getProperty(chstr name)
 		{
-			if (name == "axis")				return april::gvec3fToHstr(this->getAxis());
+			if (name == "axis")				return april::gvec3ToHstr<float>(this->getAxis());
 			if (name == "evolution_speed")	return this->getEvolutionSpeed();
 			if (name == "clockwise")		return this->isClockwise();
 			return Space::getProperty(name);
@@ -94,7 +94,7 @@ namespace aprilparticle
 
 		bool Revolutor::setProperty(chstr name, chstr value)
 		{
-			if		(name == "axis")			this->setAxis(april::hstrToGvec3f(value));
+			if		(name == "axis")			this->setAxis(april::hstrToGvec3<float>(value));
 			else if	(name == "evolution_speed")	this->setEvolutionSpeed(value);
 			else if	(name == "clockwise")		this->setClockwise(value);
 			else return Space::setProperty(name, value);

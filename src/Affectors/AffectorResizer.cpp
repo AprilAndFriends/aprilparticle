@@ -57,23 +57,23 @@ namespace aprilparticle
 			if (Resizer::_propertyDescriptions.size() == 0)
 			{
 				Resizer::_propertyDescriptions = Affector::getPropertyDescriptions();
-				Resizer::_propertyDescriptions["start_size"] = PropertyDescription("start_size", PropertyDescription::Type::Gvec2f, april::gvec2fToHstr(gvec2f(1.0f, 1.0f)));
-				Resizer::_propertyDescriptions["end_size"] = PropertyDescription("end_size", PropertyDescription::Type::Gvec2f, april::gvec2fToHstr(gvec2f(0.0f, 0.0f)));
+				Resizer::_propertyDescriptions["start_size"] = PropertyDescription("start_size", PropertyDescription::Type::Gvec2f, april::gvec2ToHstr<float>(gvec2f(1.0f, 1.0f)));
+				Resizer::_propertyDescriptions["end_size"] = PropertyDescription("end_size", PropertyDescription::Type::Gvec2f, april::gvec2ToHstr<float>(gvec2f(0.0f, 0.0f)));
 			}
 			return Resizer::_propertyDescriptions;
 		}
 
 		hstr Resizer::getProperty(chstr name)
 		{
-			if (name == "start_size")	return april::gvec2fToHstr(this->getStartSize());
-			if (name == "end_size")		return april::gvec2fToHstr(this->getEndSize());
+			if (name == "start_size")	return april::gvec2ToHstr<float>(this->getStartSize());
+			if (name == "end_size")		return april::gvec2ToHstr<float>(this->getEndSize());
 			return Affector::getProperty(name);
 		}
 
 		bool Resizer::setProperty(chstr name, chstr value)
 		{
-			if		(name == "start_size")	this->setStartSize(april::hstrToGvec2f(value));
-			else if	(name == "end_size")	this->setEndSize(april::hstrToGvec2f(value));
+			if		(name == "start_size")	this->setStartSize(april::hstrToGvec2<float>(value));
+			else if	(name == "end_size")	this->setEndSize(april::hstrToGvec2<float>(value));
 			else return Affector::setProperty(name, value);
 			return true;
 		}
