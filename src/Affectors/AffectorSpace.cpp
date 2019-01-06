@@ -51,7 +51,7 @@ namespace aprilparticle
 			if (Space::_propertyDescriptions.size() == 0)
 			{
 				Space::_propertyDescriptions = Affector::getPropertyDescriptions();
-				Space::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 0.0f)));
+				Space::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(0.0f, 0.0f, 0.0f)));
 				Space::_propertyDescriptions["radius"] = PropertyDescription("radius", PropertyDescription::Type::Float, 10.0f);
 			}
 			return Space::_propertyDescriptions;
@@ -59,14 +59,14 @@ namespace aprilparticle
 
 		hstr Space::getProperty(chstr name)
 		{
-			if (name == "position")	return april::gvec3fToHstr(this->getPosition());
+			if (name == "position")	return april::gvec3ToHstr<float>(this->getPosition());
 			if (name == "radius")	return this->getRadius();
 			return Affector::getProperty(name);
 		}
 
 		bool Space::setProperty(chstr name, chstr value)
 		{
-			if		(name == "position")	this->setPosition(april::hstrToGvec3f(value));
+			if		(name == "position")	this->setPosition(april::hstrToGvec3<float>(value));
 			else if	(name == "radius")		this->setRadius(value);
 			else return Affector::setProperty(name, value);
 			return true;

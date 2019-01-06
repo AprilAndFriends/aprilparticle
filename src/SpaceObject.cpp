@@ -45,20 +45,20 @@ namespace aprilparticle
 		if (SpaceObject::_propertyDescriptions.size() == 0)
 		{
 			SpaceObject::_propertyDescriptions = ActiveObject::getPropertyDescriptions();
-			SpaceObject::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3f, april::gvec3fToHstr(gvec3f(0.0f, 0.0f, 0.0f)));
+			SpaceObject::_propertyDescriptions["position"] = PropertyDescription("position", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(0.0f, 0.0f, 0.0f)));
 		}
 		return SpaceObject::_propertyDescriptions;
 	}
 
 	hstr SpaceObject::getProperty(chstr name)
 	{
-		if (name == "position")	return april::gvec3fToHstr(this->getPosition());
+		if (name == "position")	return april::gvec3ToHstr<float>(this->getPosition());
 		return ActiveObject::getProperty(name);
 	}
 
 	bool SpaceObject::setProperty(chstr name, chstr value)
 	{
-		if	(name == "position")	this->setPosition(april::hstrToGvec3f(value));
+		if	(name == "position")	this->setPosition(april::hstrToGvec3<float>(value));
 		else return ActiveObject::setProperty(name, value);
 		return true;
 	}
