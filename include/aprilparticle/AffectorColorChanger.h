@@ -34,13 +34,14 @@ namespace aprilparticle
 			ColorChanger(chstr name = "");
 			ColorChanger(const april::Color& endColor, chstr name = "");
 			ColorChanger(const april::Color& startColor, const april::Color& endColor, chstr name = "");
-			~ColorChanger();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 
 			HL_DEFINE_GETSET(april::Color, startColor, StartColor);
+			void setStartSymbolicColor(chstr value);
 			HL_DEFINE_GETSET(april::Color, endColor, EndColor);
+			void setEndSymbolicColor(chstr value);
 				
 			hstr getProperty(chstr name);
 			bool setProperty(chstr name, chstr value);

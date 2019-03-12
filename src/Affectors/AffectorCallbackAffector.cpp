@@ -34,10 +34,6 @@ namespace aprilparticle
 			this->affectionCallback = other.affectionCallback;
 		}
 		
-		CallbackAffector::~CallbackAffector()
-		{
-		}
-		
 		Affector* CallbackAffector::createInstance(chstr name)
 		{
 			return new CallbackAffector(name);

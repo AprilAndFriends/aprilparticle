@@ -14,6 +14,7 @@
 
 #include "AffectorColorChangerTimed.h"
 #include "aprilparticle.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 #include "TimedTemplate.h"
 
@@ -54,10 +55,6 @@ namespace aprilparticle
 			this->size = other.size;
 		}
 
-		ColorChangerTimed::~ColorChangerTimed()
-		{
-		}
-
 		Affector* ColorChangerTimed::createInstance(chstr name)
 		{
 			return new ColorChangerTimed(name);
@@ -70,7 +67,7 @@ namespace aprilparticle
 		
 		void ColorChangerTimed::setTimings(chstr value)
 		{
-			TIMED_TEMPLATE_SET_TIMINGS_STRING(april::Color, april::Color);
+			TIMED_TEMPLATE_SET_TIMINGS_STRING(april::Color, aprilparticle::_makeColor);
 		}
 		
 		void ColorChangerTimed::addTiming(float time, const april::Color& value)

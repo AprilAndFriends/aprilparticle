@@ -33,7 +33,6 @@ namespace aprilparticle
 		public:
 			Revolutor(chstr name = "");
 			Revolutor(cgvec3f position, float radius, cgvec3f axis, float evolutionSpeed, bool clockwise, chstr name = "");
-			~Revolutor();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

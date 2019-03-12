@@ -32,7 +32,6 @@ namespace aprilparticle
 		public:
 			Space(chstr name = "");
 			Space(cgvec3f position, float space, chstr name = "");
-			~Space();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

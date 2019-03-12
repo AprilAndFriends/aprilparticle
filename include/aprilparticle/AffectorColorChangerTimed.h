@@ -34,7 +34,6 @@ namespace aprilparticle
 		public:
 			ColorChangerTimed(chstr name = "");
 			ColorChangerTimed(const hmap<float, april::Color>& timings, chstr name = "");
-			~ColorChangerTimed();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

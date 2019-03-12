@@ -32,7 +32,6 @@ namespace aprilparticle
 		public:
 			Scaler(chstr name = "");
 			Scaler(float startScale, float endScale, chstr name = "");
-			~Scaler();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

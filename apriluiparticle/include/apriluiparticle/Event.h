@@ -27,7 +27,6 @@ namespace apriluiparticle
 
 	private:
 		Event();
-		~Event();
 
 	};
 

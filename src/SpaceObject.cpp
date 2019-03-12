@@ -36,10 +36,6 @@ namespace aprilparticle
 		this->position = other.position;
 	}
 	
-	SpaceObject::~SpaceObject()
-	{
-	}
-
 	hmap<hstr, PropertyDescription>& SpaceObject::getPropertyDescriptions() const
 	{
 		if (SpaceObject::_propertyDescriptions.size() == 0)

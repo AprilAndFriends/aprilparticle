@@ -43,10 +43,6 @@ namespace aprilparticle
 			this->endSize = other.endSize;
 		}
 
-		Resizer::~Resizer()
-		{
-		}
-		
 		Affector* Resizer::createInstance(chstr name)
 		{
 			return new Resizer(name);

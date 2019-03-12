@@ -41,10 +41,6 @@ namespace aprilparticle
 			this->endScale = other.endScale;
 		}
 
-		Scaler::~Scaler()
-		{
-		}
-		
 		Affector* Scaler::createInstance(chstr name)
 		{
 			return new Scaler(name);

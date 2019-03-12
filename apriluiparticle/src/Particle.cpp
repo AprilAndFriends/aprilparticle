@@ -29,10 +29,6 @@ namespace apriluiparticle
 	{
 	}
 
-	Particle::~Particle()
-	{
-	}
-
 	aprilui::Object* Particle::createInstance(chstr name)
 	{
 		return new Particle(name);

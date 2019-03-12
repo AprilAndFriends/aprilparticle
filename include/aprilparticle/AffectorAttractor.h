@@ -32,7 +32,6 @@ namespace aprilparticle
 		public:
 			Attractor(chstr name = "");
 			Attractor(cgvec3f position, float radius, float force, float exponent, chstr name = "");
-			~Attractor();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

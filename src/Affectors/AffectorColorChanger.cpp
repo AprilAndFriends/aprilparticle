@@ -10,6 +10,7 @@
 #include <hltypes/hltypesUtil.h>
 
 #include "AffectorColorChanger.h"
+#include "aprilparticleUtil.h"
 #include "Particle.h"
 
 namespace aprilparticle
@@ -53,10 +54,6 @@ namespace aprilparticle
 			this->endColor = other.endColor;
 		}
 
-		ColorChanger::~ColorChanger()
-		{
-		}
-	
 		Affector* ColorChanger::createInstance(chstr name)
 		{
 			return new ColorChanger(name);
@@ -73,6 +70,16 @@ namespace aprilparticle
 			return ColorChanger::_propertyDescriptions;
 		}
 
+		void ColorChanger::setStartSymbolicColor(chstr value)
+		{
+			this->setStartColor(aprilparticle::_makeColor(value));
+		}
+
+		void ColorChanger::setEndSymbolicColor(chstr value)
+		{
+			this->setEndColor(aprilparticle::_makeColor(value));
+		}
+
 		hstr ColorChanger::getProperty(chstr name)
 		{
 			if (name == "start_color")	return this->getStartColor().hex();
@@ -82,8 +89,8 @@ namespace aprilparticle
 
 		bool ColorChanger::setProperty(chstr name, chstr value)
 		{
-			if		(name == "start_color")	this->setStartColor(value);
-			else if	(name == "end_color")	this->setEndColor(value);
+			if		(name == "start_color")	this->setStartSymbolicColor(value);
+			else if	(name == "end_color")	this->setEndSymbolicColor(value);
 			else return Affector::setProperty(name, value);
 			return true;
 		}

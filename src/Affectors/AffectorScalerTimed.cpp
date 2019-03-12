@@ -52,10 +52,6 @@ namespace aprilparticle
 			this->values = other.values;
 		}
 
-		ScalerTimed::~ScalerTimed()
-		{
-		}
-
 		Affector* ScalerTimed::createInstance(chstr name)
 		{
 			return new ScalerTimed(name);

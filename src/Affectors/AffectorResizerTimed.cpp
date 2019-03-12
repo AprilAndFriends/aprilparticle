@@ -55,10 +55,6 @@ namespace aprilparticle
 			this->values = other.values;
 		}
 
-		ResizerTimed::~ResizerTimed()
-		{
-		}
-
 		Affector* ResizerTimed::createInstance(chstr name)
 		{
 			return new ResizerTimed(name);

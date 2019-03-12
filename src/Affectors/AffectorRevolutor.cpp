@@ -53,10 +53,6 @@ namespace aprilparticle
 			this->angle = other.angle;
 		}
 		
-		Revolutor::~Revolutor()
-		{
-		}
-		
 		Affector* Revolutor::createInstance(chstr name)
 		{
 			return new Revolutor(name);

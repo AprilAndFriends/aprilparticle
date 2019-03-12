@@ -28,7 +28,6 @@ namespace aprilparticle
 	public:
 		SpaceObject(chstr name = "");
 		SpaceObject(const SpaceObject& other);
-		~SpaceObject();
 
 		hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;
 

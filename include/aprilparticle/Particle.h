@@ -62,7 +62,6 @@ namespace aprilparticle
 		friend class Affectors::ScalerTimed;
 
 		Particle();
-		virtual ~Particle();
 
 		HL_DEFINE_GETSET(float, life, Life);
 		HL_DEFINE_GETSET(gvec3f, position, Position);

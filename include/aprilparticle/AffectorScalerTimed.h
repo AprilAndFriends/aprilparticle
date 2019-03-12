@@ -34,7 +34,6 @@ namespace aprilparticle
 		public:
 			ScalerTimed(chstr name = "");
 			ScalerTimed(const hmap<float, float>& timings, chstr name = "");
-			~ScalerTimed();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

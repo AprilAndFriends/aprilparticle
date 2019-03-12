@@ -39,10 +39,6 @@ namespace aprilparticle
 			this->rotationSpeed = other.rotationSpeed;
 		}
 
-		Rotator::~Rotator()
-		{
-		}
-		
 		Affector* Rotator::createInstance(chstr name)
 		{
 			return new Rotator(name);

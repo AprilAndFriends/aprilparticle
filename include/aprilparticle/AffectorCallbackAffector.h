@@ -33,7 +33,6 @@ namespace aprilparticle
 		public:
 			CallbackAffector(chstr name = "");
 			CallbackAffector(void (*function)(CallbackAffector*, Particle*, float, gvec3f&), chstr name = "");
-			~CallbackAffector();
 			static Affector* createInstance(chstr name = "");
 
 			inline void (*getAffectionCallback())(CallbackAffector*, Particle*, float, gvec3f&) { return this->affectionCallback; }

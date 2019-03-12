@@ -28,10 +28,6 @@ namespace aprilparticle
 		this->color = april::Color::White;
 	}
 	
-	Particle::~Particle()
-	{
-	}
-
 	float Particle::getLifeProgressRatio() const
 	{
 		return (this->life > 0.0f ? (hclamp(this->timer / this->life, 0.0f, 1.0f)) : 1.0f);

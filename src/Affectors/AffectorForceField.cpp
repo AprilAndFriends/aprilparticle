@@ -75,10 +75,6 @@ namespace aprilparticle
 			this->direction = other.direction;
 		}
 
-		ForceField::~ForceField()
-		{
-		}
-		
 		Affector* ForceField::createInstance(chstr name)
 		{
 			return new ForceField(name);

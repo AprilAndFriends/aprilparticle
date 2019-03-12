@@ -49,10 +49,6 @@ namespace aprilparticle
 			this->exponent = other.exponent;
 		}
 
-		Attractor::~Attractor()
-		{
-		}
-		
 		Affector* Attractor::createInstance(chstr name)
 		{
 			return new Attractor(name);

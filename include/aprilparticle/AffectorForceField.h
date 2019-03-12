@@ -32,7 +32,6 @@ namespace aprilparticle
 		public:
 			ForceField(chstr name = "");
 			ForceField(cgvec3f position, float radius, cgvec3f direction, chstr name = "");
-			~ForceField();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

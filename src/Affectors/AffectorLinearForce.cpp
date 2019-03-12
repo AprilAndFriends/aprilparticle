@@ -38,10 +38,6 @@ namespace aprilparticle
 			this->direction = other.direction;
 		}
 
-		LinearForce::~LinearForce()
-		{
-		}
-		
 		Affector* LinearForce::createInstance(chstr name)
 		{
 			return new LinearForce(name);

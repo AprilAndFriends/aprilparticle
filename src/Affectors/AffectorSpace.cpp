@@ -42,10 +42,6 @@ namespace aprilparticle
 			this->radius = other.radius;
 		}
 
-		Space::~Space()
-		{
-		}
-		
 		hmap<hstr, PropertyDescription>& Space::getPropertyDescriptions() const
 		{
 			if (Space::_propertyDescriptions.size() == 0)

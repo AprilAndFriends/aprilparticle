@@ -34,7 +34,6 @@ namespace aprilparticle
 		public:
 			ResizerTimed(chstr name = "");
 			ResizerTimed(const hmap<float, gvec2f>& timings, chstr name = "");
-			~ResizerTimed();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

@@ -29,7 +29,6 @@ namespace aprilparticle
 		public:
 			Rotator(chstr name = "");
 			Rotator(float rotationSpeed, chstr name = "");
-			~Rotator();
 			static Affector* createInstance(chstr name = "");
 
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

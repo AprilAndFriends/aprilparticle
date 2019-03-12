@@ -32,7 +32,6 @@ namespace aprilparticle
 		public:
 			LinearForce(chstr name = "");
 			LinearForce(cgvec3f direction, chstr name = "");
-			~LinearForce();
 			static Affector* createInstance(chstr name = "");
 			
 			hmap<hstr, PropertyDescription>& getPropertyDescriptions() const;

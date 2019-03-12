@@ -30,7 +30,6 @@ namespace apriluiparticle
 		APRILUI_CLONEABLE(Particle);
 	public:
 		Particle(chstr name);
-		~Particle();
 		inline hstr getClassName() const { return "apriluiparticle.Particle"; }
 		static aprilui::Object* createInstance(chstr name);
 
