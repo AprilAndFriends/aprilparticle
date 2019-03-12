@@ -77,6 +77,7 @@ namespace aprilparticle
 		this->running = true;
 		this->type = Type::Point;
 		this->dimensions.set(1.0f, 1.0f, 1.0f);
+		this->color = april::Color::White;
 		this->blendMode = april::BlendMode::Alpha;
 		this->colorMode = april::ColorMode::Multiply;
 		this->colorModeFactor = 1.0f;
@@ -134,6 +135,7 @@ namespace aprilparticle
 		this->running = other.running;
 		this->type = other.type;
 		this->dimensions = other.dimensions;
+		this->color = other.color;
 		this->blendMode = other.blendMode;
 		this->colorMode = other.colorMode;
 		this->colorModeFactor = other.colorModeFactor;
@@ -179,6 +181,7 @@ namespace aprilparticle
 			Emitter::_propertyDescriptions = SpaceObject::getPropertyDescriptions();
 			Emitter::_propertyDescriptions["type"] = PropertyDescription("type", PropertyDescription::Type::Enum);
 			Emitter::_propertyDescriptions["dimensions"] = PropertyDescription("dimensions", PropertyDescription::Type::Gvec3f, april::gvec3ToHstr<float>(gvec3f(1.0f, 1.0f, 1.0f)));
+			Emitter::_propertyDescriptions["color"] = PropertyDescription("color", PropertyDescription::Type::Color, april::Color::White.hex());
 			Emitter::_propertyDescriptions["blend_mode"] = PropertyDescription("blend_mode", PropertyDescription::Type::Enum, "alpha");
 			Emitter::_propertyDescriptions["color_mode"] = PropertyDescription("color_mode", PropertyDescription::Type::Enum, "multiply");
 			Emitter::_propertyDescriptions["color_mode_factor"] = PropertyDescription("color_mode_factor", PropertyDescription::Type::Float, 1.0f);
@@ -197,6 +200,11 @@ namespace aprilparticle
 			Emitter::_propertyDescriptions["angle_aligned"] = PropertyDescription("angle_aligned", PropertyDescription::Type::Bool, "false");
 		}
 		return Emitter::_propertyDescriptions;
+	}
+
+	void Emitter::setSymbolicColor(chstr value)
+	{
+		this->setColor(aprilparticle::_makeColor(value));
 	}
 
 	void Emitter::setLimit(int value)
@@ -339,6 +347,7 @@ namespace aprilparticle
 			return "";
 		}
 		if (name == "dimensions")			return april::gvec3ToHstr<float>(this->getDimensions());
+		if (name == "color")				return this->getColor().hex();
 		if (name == "blend_mode")
 		{
 			april::BlendMode mode = this->getBlendMode();
@@ -392,7 +401,8 @@ namespace aprilparticle
 			else TRY_SET_TYPE(value, Type::HollowCircle);
 			else hlog::warnf(logTag, "Value '%s' does not exist for property '%s' in '%s'!", value.cStr(), name.cStr(), this->name.cStr());
 		}
-		else if	(name == "dimensions")			this->setDimensions(april::hstrToGvec3<float>(value));
+		else if (name == "dimensions")			this->setDimensions(april::hstrToGvec3<float>(value));
+		else if (name == "color")				this->setSymbolicColor(value);
 		else if	(name == "blend_mode")
 		{
 			if (value == "alpha")				this->setBlendMode(april::BlendMode::Alpha);
@@ -512,6 +522,7 @@ namespace aprilparticle
 			this->_space->_particle->life = RAND_RANGE(Life);
 			this->_space->_particle->position = this->_pos;
 			this->_space->_particle->direction = RAND_RANGE(Direction);
+			this->_space->_particle->color = this->color;
 			this->_space->_particle->size = RAND_RANGE(Size);
 			this->_space->_particle->scale = RAND_RANGE(Scale);
 			this->_space->_particle->angle = RAND_RANGE(Angle);

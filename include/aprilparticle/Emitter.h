@@ -64,6 +64,8 @@ namespace aprilparticle
 		HL_DEFINE_GETSET(Type, type, Type);
 		HL_DEFINE_GETSET(gvec3f, dimensions, Dimensions);
 		inline void setDimensions(float x, float y, float z) { this->dimensions.set(x, y, z); }
+		HL_DEFINE_GETSET(april::Color, color, Color);
+		void setSymbolicColor(chstr value);
 		HL_DEFINE_GETSET(april::BlendMode, blendMode, BlendMode);
 		HL_DEFINE_GETSET(april::ColorMode, colorMode, ColorMode);
 		HL_DEFINE_GETSET(float, colorModeFactor, ColorModeFactor);
@@ -127,6 +129,7 @@ namespace aprilparticle
 		bool running;
 		Type type;
 		gvec3f dimensions;
+		april::Color color;
 		april::BlendMode blendMode;
 		april::ColorMode colorMode;
 		float colorModeFactor;
