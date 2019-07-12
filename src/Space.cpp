@@ -220,6 +220,7 @@ namespace aprilparticle
 		}
 		// update all particles
 		this->alive = 0;
+		gvec2f movementVector;
 		foreach (Particle*, it, this->particles)
 		{
 			(*it)->timer += timeDelta;
@@ -235,7 +236,8 @@ namespace aprilparticle
 				(*it)->position += this->_movement;
 				if ((*it)->directionAligned && (this->_movement.x != 0.0f || this->_movement.y != 0.0f || this->_movement.z != 0.0f))
 				{
-					(*it)->angle = gvec2f(this->_movement.x, this->_movement.y).angle();
+					movementVector.set(this->_movement.x, this->_movement.y);
+					(*it)->angle = movementVector.angle();
 				}
 				++this->alive;
 			}
